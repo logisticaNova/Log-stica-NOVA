@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGÍSTICA NOVA | Portal de Gestiones</title>
+    <title>LOGÍSTICA NOVA | Portal de Gestiones y Seguimiento</title>
     <style>
         :root {
             --bg-dark: #090d16;
@@ -96,6 +96,39 @@
             color: var(--text-muted);
             margin-bottom: 2rem;
             font-size: 0.95rem;
+        }
+
+        /* Seccion de Búsqueda Rapida */
+        .search-box-wrapper {
+            background-color: #030712;
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-row input {
+            flex-grow: 1;
+        }
+
+        .btn-search {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-search:hover {
+            background-color: var(--primary-hover);
         }
 
         /* Tarjeta Principal */
@@ -351,25 +384,49 @@
             color: var(--text-muted);
         }
 
+        /* Botón de WhatsApp con mensaje de abono */
         .btn-whatsapp {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 4px;
             width: 100%;
             background-color: #059669;
             color: white;
             text-decoration: none;
-            padding: 0.95rem;
+            padding: 1rem;
             border-radius: 8px;
             font-weight: 700;
             box-sizing: border-box;
             transition: background-color 0.2s;
             box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+            text-align: center;
         }
 
         .btn-whatsapp:hover {
             background-color: #047857;
+        }
+
+        .btn-whatsapp .subtext {
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 1.2rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: #ffffff;
         }
 
         footer {
@@ -387,6 +444,9 @@
             .form-group.full-width {
                 grid-column: span 1;
             }
+            .search-row {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -403,8 +463,17 @@
         <div class="hero-container">
             
             <div id="headerTitle">
-                <h1 class="hero-title" id="mainTitle">Datos de Envío</h1>
-                <p class="hero-subtitle" id="mainSubtitle">Complete la información requerida para la gestión y entrega de su paquete.</p>
+                <h1 class="hero-title" id="mainTitle">Portal de Gestión y Seguimiento</h1>
+                <p class="hero-subtitle" id="mainSubtitle">Ingrese su número de guía o registre sus datos para la asignación del envío.</p>
+            </div>
+
+            <!-- Caja de Búsqueda por Número de Guía -->
+            <div class="search-box-wrapper" id="searchBoxContainer">
+                <label for="searchCodeInput">¿Ya tiene un número de guía?</label>
+                <div class="search-row" style="margin-top: 0.5rem;">
+                    <input type="text" id="searchCodeInput" placeholder="Ej: NV-1001-2026">
+                    <button type="button" class="btn-search" id="btnSearchGuide">Consultar Guía</button>
+                </div>
             </div>
 
             <div class="main-card">
@@ -495,11 +564,11 @@
                             <p>Información de envío procesada correctamente por el sistema.</p>
                         </div>
                         <div class="timeline-step active">
-                            <h4>En Procesamiento y Preparación</h4>
-                            <p>Asignación de depósito, etiquetado y precintado de la unidad.</p>
+                            <h4>En Procesamiento y Etiquetado</h4>
+                            <p>Asignación de depósito y control documental para despacho.</p>
                         </div>
                         <div class="timeline-step">
-                            <h4>En Tránsito / Distribución</h4>
+                            <h4>En Tránsito / Distribución Zonal</h4>
                             <p>Despacho en ruta de entrega hacia la dirección asignada.</p>
                         </div>
                         <div class="timeline-step">
@@ -514,10 +583,13 @@
                         <p>Conserve este código. Se le solicitará presencialmente al momento de recibir.</p>
                     </div>
 
-                    <a href="https://wa.me/5491100000000?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20envío" target="_blank" class="btn-whatsapp">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.124.553 4.195 1.603 6.01L.226 23.774l5.882-1.543A11.968 11.968 0 0012.031 24c6.645 0 12.031-5.385 12.031-12.031S18.676 0 12.031 0zm0 22.012c-1.8 0-3.565-.483-5.114-1.401l-.367-.217-3.799.996.996-3.799-.217-.367c-.918-1.549-1.401-3.314-1.401-5.114 0-5.551 4.517-10.068 10.068-10.068s10.068 4.517 10.068 10.068-4.517 10.068-10.068 10.068zm5.525-7.552c-.303-.152-1.792-.885-2.07-.987-.278-.101-.48-.152-.682.152-.202.303-.783.987-.96 1.189-.177.202-.354.227-.657.076-1.353-.666-2.317-1.258-3.197-2.738-.227-.379.227-.379.808-1.54.076-.152.038-.278-.038-.43-.076-.152-.682-1.642-.935-2.248-.246-.593-.497-.512-.682-.522-.177-.01-.379-.01-.581-.01-.202 0-.53.076-.808.379-.278.303-1.061 1.036-1.061 2.526 0 1.491 1.086 2.93 1.238 3.133.152.202 2.135 3.26 5.174 4.575 2.051.884 2.829.96 3.966.808 1.137-.152 2.317-.987 2.645-1.945.328-.96.328-1.794.227-1.945-.101-.152-.379-.227-.682-.379z"/></svg>
-                        Soporte Operativo (WhatsApp)
+                    <!-- Botón de WhatsApp enfocado al abono de etapa -->
+                    <a href="#" id="whatsappBtnLink" target="_blank" class="btn-whatsapp">
+                        <span>Contactar por WhatsApp para Avanzar Etapa</span>
+                        <span class="subtext">Para pasar al siguiente historial operativo debe abonar el cargo correspondiente</span>
                     </a>
+
+                    <a href="#" class="back-btn" id="btnReset">← Volver al formulario / Consultar otra guía</a>
                 </div>
             </div>
 
@@ -529,21 +601,40 @@
     </footer>
 
     <script>
+        // Teléfono de soporte configurado
+        const PHONE_WHATSAPP = "5491155012447";
+
+        // Base de datos local (simulación de guías preexistentes)
+        const dbGuias = {
+            "NV-1001-2026": {
+                destination: "Av. Corrientes 1234, CABA",
+                receiver: "Juan Pérez (DNI: 38123456)",
+                secCode: "849201",
+                status: "En procesamiento"
+            }
+        };
+
         const thirdPartyCheckbox = document.getElementById('thirdPartyReceiver');
         const authorizedFields = document.getElementById('authorizedFields');
         const receiverNameInput = document.getElementById('receiverName');
         const receiverDniInput = document.getElementById('receiverDni');
         const shippingForm = document.getElementById('shippingForm');
         const resultsSection = document.getElementById('resultsSection');
+        const searchBoxContainer = document.getElementById('searchBoxContainer');
         
         const mainTitle = document.getElementById('mainTitle');
         const mainSubtitle = document.getElementById('mainSubtitle');
 
-        // Campos dinámicos de salida
+        // Campos de salida
         const resTrackingCode = document.getElementById('resTrackingCode');
         const resDestination = document.getElementById('resDestination');
         const resReceiver = document.getElementById('resReceiver');
         const resSecCode = document.getElementById('resSecCode');
+        const whatsappBtnLink = document.getElementById('whatsappBtnLink');
+
+        const searchCodeInput = document.getElementById('searchCodeInput');
+        const btnSearchGuide = document.getElementById('btnSearchGuide');
+        const btnReset = document.getElementById('btnReset');
 
         // Alternar campos de receptor autorizado
         thirdPartyCheckbox.addEventListener('change', (e) => {
@@ -558,39 +649,80 @@
             }
         });
 
-        // Procesar formulario y pasar al estado de "Pedido en proceso"
+        // Función para actualizar enlace de WhatsApp con mensaje personalizado
+        function updateWhatsAppLink(guiaCode) {
+            const text = encodeURIComponent(`Hola, quiero abonar para que mi pedido con la guía ${guiaCode} pase a la siguiente etapa del historial operativo.`);
+            whatsappBtnLink.href = `https://wa.me/${PHONE_WHATSAPP}?text=${text}`;
+        }
+
+        // Mostrar pantalla de estado del envío
+        function showStatusView(code, destination, receiver, secCode) {
+            resTrackingCode.textContent = code;
+            resDestination.textContent = destination;
+            resReceiver.textContent = receiver;
+            resSecCode.textContent = secCode;
+
+            updateWhatsAppLink(code);
+
+            mainTitle.textContent = "Estado del Envío";
+            mainSubtitle.textContent = "Su paquete se encuentra registrado y en proceso de gestión.";
+
+            shippingForm.style.display = 'none';
+            searchBoxContainer.style.display = 'none';
+            resultsSection.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Consultar por número de guía existente
+        btnSearchGuide.addEventListener('click', () => {
+            const query = searchCodeInput.value.trim().toUpperCase();
+            if (dbGuias[query]) {
+                const data = dbGuias[query];
+                showStatusView(query, data.destination, data.receiver, data.secCode);
+            } else if (query !== "") {
+                alert("Número de guía no encontrado. Verifique el código o complete el formulario para registrar un nuevo envío.");
+            }
+        });
+
+        // Registro de un nuevo envío
         shippingForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Generar código de seguimiento y código de seguridad aleatorios
             const randomNum = Math.floor(1000 + Math.random() * 9000);
             const randomSec = Math.floor(100000 + Math.random() * 900000);
+            const guideCode = `NV-${randomNum}-2026`;
             
             const fullName = document.getElementById('fullName').value;
             const address = document.getElementById('address').value;
             const postalCode = document.getElementById('postalCode').value;
 
-            // Determinar quién recibe
             let receiverText = fullName;
             if (thirdPartyCheckbox.checked && receiverNameInput.value) {
                 receiverText = `${receiverNameInput.value} (DNI: ${receiverDniInput.value})`;
             }
 
-            // Inyectar datos en la pantalla de seguimiento
-            resTrackingCode.textContent = `NV-${randomNum}-2026`;
-            resDestination.textContent = `${address} (CP: ${postalCode})`;
-            resReceiver.textContent = receiverText;
-            resSecCode.textContent = randomSec;
+            const destinationText = `${address} (CP: ${postalCode})`;
 
-            // Cambiar vista de títulos
-            mainTitle.textContent = "Estado del Envío";
-            mainSubtitle.textContent = "Su solicitud fue procesada y el envío se encuentra actualmente en curso.";
+            // Guardar en la base local para que también pueda consultarse si se reingresa la guía
+            dbGuias[guideCode] = {
+                destination: destinationText,
+                receiver: receiverText,
+                secCode: randomSec,
+                status: "En procesamiento"
+            };
 
-            // Ocultar formulario y mostrar pantalla de estado
-            shippingForm.style.display = 'none';
-            resultsSection.style.display = 'block';
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showStatusView(guideCode, destinationText, receiverText, randomSec);
+        });
+
+        // Botón para volver
+        btnReset.addEventListener('click', (e) => {
+            e.preventDefault();
+            resultsSection.style.display = 'none';
+            shippingForm.style.display = 'block';
+            searchBoxContainer.style.display = 'block';
+            mainTitle.textContent = "Portal de Gestión y Seguimiento";
+            mainSubtitle.textContent = "Ingrese su número de guía o registre sus datos para la asignación del envío.";
+            searchCodeInput.value = '';
         });
     </script>
 </body>
