@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGÍSTICA NOVA | Registro de Envío</title>
+    <title>LOGÍSTICA NOVA | Portal de Gestiones</title>
     <style>
         :root {
             --bg-dark: #090d16;
@@ -98,8 +98,8 @@
             font-size: 0.95rem;
         }
 
-        /* Tarjeta de Formulario */
-        .form-card {
+        /* Tarjeta Principal */
+        .main-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 2.5rem;
@@ -218,19 +218,158 @@
             transform: translateY(-1px);
         }
 
-        /* Mensaje de Confirmación */
-        .success-box {
+        /* Sección de Resultados / Proceso */
+        .results-section {
             display: none;
-            background-color: #030712;
-            border: 1px solid var(--accent);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
+            animation: fadeIn 0.4s ease;
         }
 
-        .success-box h3 {
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #030712;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .status-header span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .status-header strong {
             color: var(--accent);
-            margin-top: 0;
+            font-size: 0.95rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box {
+            background-color: #030712;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-box span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-box strong {
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 1.2rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -1.6rem;
+            top: 0.2rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+        }
+
+        .timeline-step.completed::before {
+            background-color: var(--accent);
+        }
+
+        .timeline-step.active::before {
+            background-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+        }
+
+        .timeline-step h4 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+
+        .timeline-step p {
+            margin: 0.2rem 0 0 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Caja de Código */
+        .security-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .security-box h3 {
+            margin: 0 0 0.4rem 0;
+            font-size: 0.85rem;
+            color: #93c5fd;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .security-box span {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: #ffffff;
+            margin: 0.3rem 0;
+        }
+
+        .security-box p {
+            margin: 0;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .btn-whatsapp {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            background-color: #059669;
+            color: white;
+            text-decoration: none;
+            padding: 0.95rem;
+            border-radius: 8px;
+            font-weight: 700;
+            box-sizing: border-box;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #047857;
         }
 
         footer {
@@ -242,7 +381,7 @@
         }
 
         @media (max-width: 640px) {
-            .form-grid {
+            .form-grid, .info-grid {
                 grid-template-columns: 1fr;
             }
             .form-group.full-width {
@@ -257,20 +396,20 @@
         <div class="logo-area">
             <div class="logo">LOGÍSTICA <span>NOVA</span></div>
         </div>
-        <div class="badge-live">Sistema de Despachos</div>
+        <div class="badge-live">Sistema Operativo Activo</div>
     </header>
 
     <main>
         <div class="hero-container">
             
-            <div id="initialHeading">
-                <h1 class="hero-title">Datos de Envío</h1>
-                <p class="hero-subtitle">Complete la información requerida para la gestión y entrega de su paquete.</p>
+            <div id="headerTitle">
+                <h1 class="hero-title" id="mainTitle">Datos de Envío</h1>
+                <p class="hero-subtitle" id="mainSubtitle">Complete la información requerida para la gestión y entrega de su paquete.</p>
             </div>
 
-            <div class="form-card">
+            <div class="main-card">
+                <!-- Formulario de Registro -->
                 <form id="shippingForm">
-                    <!-- Datos del Titular -->
                     <div class="section-title">1. Datos del Titular</div>
                     <div class="form-grid">
                         <div class="form-group">
@@ -287,7 +426,6 @@
                         </div>
                     </div>
 
-                    <!-- Datos de Dirección -->
                     <div class="section-title">2. Dirección de Entrega</div>
                     <div class="form-grid">
                         <div class="form-group full-width">
@@ -304,9 +442,8 @@
                         </div>
                     </div>
 
-                    <!-- Persona que Recibe -->
                     <div class="section-title">3. Recepción del Paquete</div>
-                    <div class="checkbox-group" id="toggleReceiverBox">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="thirdPartyReceiver">
                         <label for="thirdPartyReceiver">¿El paquete lo recibirá otra persona (no el titular)?</label>
                     </div>
@@ -324,13 +461,63 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-submit">Confirmar Registro de Envío</button>
+                    <button type="submit" class="btn-submit">Confirmar Registro y Procesar Envío</button>
                 </form>
 
-                <!-- Mensaje al completar -->
-                <div class="success-box" id="successBox">
-                    <h3>¡Datos Registrados con Éxito!</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Su solicitud de envío en <strong>LOGÍSTICA NOVA</strong> ha sido procesada correctamente. Se enviará la confirmación al correo ingresado.</p>
+                <!-- Vista de Pedido en Proceso -->
+                <div class="results-section" id="resultsSection">
+                    <div class="status-header">
+                        <div>
+                            <span>Número de Guía:</span>
+                            <strong id="resTrackingCode" style="color: #fff; display: block; font-size: 1.1rem; margin-top: 2px;">-</strong>
+                        </div>
+                        <div style="text-align: right;">
+                            <span>Estado Actual:</span>
+                            <strong style="color: var(--primary);" id="resStatus">En procesamiento</strong>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-box">
+                            <span>Destino Confirmado</span>
+                            <strong id="resDestination">-</strong>
+                        </div>
+                        <div class="info-box">
+                            <span>Receptor Asignado</span>
+                            <strong id="resReceiver">-</strong>
+                        </div>
+                    </div>
+
+                    <div style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Historial Operativo:</div>
+                    <div class="timeline">
+                        <div class="timeline-step completed">
+                            <h4>Registro de Datos Confirmado</h4>
+                            <p>Información de envío procesada correctamente por el sistema.</p>
+                        </div>
+                        <div class="timeline-step active">
+                            <h4>En Procesamiento y Preparación</h4>
+                            <p>Asignación de depósito, etiquetado y precintado de la unidad.</p>
+                        </div>
+                        <div class="timeline-step">
+                            <h4>En Tránsito / Distribución</h4>
+                            <p>Despacho en ruta de entrega hacia la dirección asignada.</p>
+                        </div>
+                        <div class="timeline-step">
+                            <h4>Entrega Final</h4>
+                            <p>Validación obligatoria presencial con el código de seguridad.</p>
+                        </div>
+                    </div>
+
+                    <div class="security-box">
+                        <h3>Código de Seguridad Dinámico</h3>
+                        <span id="resSecCode">000000</span>
+                        <p>Conserve este código. Se le solicitará presencialmente al momento de recibir.</p>
+                    </div>
+
+                    <a href="https://wa.me/5491100000000?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20envío" target="_blank" class="btn-whatsapp">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.124.553 4.195 1.603 6.01L.226 23.774l5.882-1.543A11.968 11.968 0 0012.031 24c6.645 0 12.031-5.385 12.031-12.031S18.676 0 12.031 0zm0 22.012c-1.8 0-3.565-.483-5.114-1.401l-.367-.217-3.799.996.996-3.799-.217-.367c-.918-1.549-1.401-3.314-1.401-5.114 0-5.551 4.517-10.068 10.068-10.068s10.068 4.517 10.068 10.068-4.517 10.068-10.068 10.068zm5.525-7.552c-.303-.152-1.792-.885-2.07-.987-.278-.101-.48-.152-.682.152-.202.303-.783.987-.96 1.189-.177.202-.354.227-.657.076-1.353-.666-2.317-1.258-3.197-2.738-.227-.379.227-.379.808-1.54.076-.152.038-.278-.038-.43-.076-.152-.682-1.642-.935-2.248-.246-.593-.497-.512-.682-.522-.177-.01-.379-.01-.581-.01-.202 0-.53.076-.808.379-.278.303-1.061 1.036-1.061 2.526 0 1.491 1.086 2.93 1.238 3.133.152.202 2.135 3.26 5.174 4.575 2.051.884 2.829.96 3.966.808 1.137-.152 2.317-.987 2.645-1.945.328-.96.328-1.794.227-1.945-.101-.152-.379-.227-.682-.379z"/></svg>
+                        Soporte Operativo (WhatsApp)
+                    </a>
                 </div>
             </div>
 
@@ -347,9 +534,18 @@
         const receiverNameInput = document.getElementById('receiverName');
         const receiverDniInput = document.getElementById('receiverDni');
         const shippingForm = document.getElementById('shippingForm');
-        const successBox = document.getElementById('successBox');
+        const resultsSection = document.getElementById('resultsSection');
+        
+        const mainTitle = document.getElementById('mainTitle');
+        const mainSubtitle = document.getElementById('mainSubtitle');
 
-        // Muestra u oculta los campos de la tercera persona
+        // Campos dinámicos de salida
+        const resTrackingCode = document.getElementById('resTrackingCode');
+        const resDestination = document.getElementById('resDestination');
+        const resReceiver = document.getElementById('resReceiver');
+        const resSecCode = document.getElementById('resSecCode');
+
+        // Alternar campos de receptor autorizado
         thirdPartyCheckbox.addEventListener('change', (e) => {
             if (e.target.checked) {
                 authorizedFields.style.display = 'block';
@@ -359,16 +555,42 @@
                 authorizedFields.style.display = 'none';
                 receiverNameInput.removeAttribute('required');
                 receiverDniInput.removeAttribute('required');
-                receiverNameInput.value = '';
-                receiverDniInput.value = '';
             }
         });
 
-        // Simulación de envío de formulario
+        // Procesar formulario y pasar al estado de "Pedido en proceso"
         shippingForm.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            // Generar código de seguimiento y código de seguridad aleatorios
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const randomSec = Math.floor(100000 + Math.random() * 900000);
+            
+            const fullName = document.getElementById('fullName').value;
+            const address = document.getElementById('address').value;
+            const postalCode = document.getElementById('postalCode').value;
+
+            // Determinar quién recibe
+            let receiverText = fullName;
+            if (thirdPartyCheckbox.checked && receiverNameInput.value) {
+                receiverText = `${receiverNameInput.value} (DNI: ${receiverDniInput.value})`;
+            }
+
+            // Inyectar datos en la pantalla de seguimiento
+            resTrackingCode.textContent = `NV-${randomNum}-2026`;
+            resDestination.textContent = `${address} (CP: ${postalCode})`;
+            resReceiver.textContent = receiverText;
+            resSecCode.textContent = randomSec;
+
+            // Cambiar vista de títulos
+            mainTitle.textContent = "Estado del Envío";
+            mainSubtitle.textContent = "Su solicitud fue procesada y el envío se encuentra actualmente en curso.";
+
+            // Ocultar formulario y mostrar pantalla de estado
             shippingForm.style.display = 'none';
-            successBox.style.display = 'block';
+            resultsSection.style.display = 'block';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
