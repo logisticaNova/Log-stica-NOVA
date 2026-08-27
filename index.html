@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PANROD | Portal Logístico e Institucional</title>
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --card-bg: #111827;
+            --border-color: #1f2937;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --accent: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Institucional */
+        header {
+            background-color: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .badge-live {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Contenedor Principal / Hero */
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+            background: radial-gradient(circle at 50% 20%, #1e293b 0%, var(--bg-dark) 70%);
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .hero-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        /* Tarjeta de Búsqueda Interactiva */
+        .search-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #e5e7eb;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.95rem 1rem;
+            background-color: #030712;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            font-size: 1.05rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-track {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.1s ease, opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-track:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        .error-msg {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Sección de Resultados Dinámicos */
+        .results-section {
+            display: none;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #030712;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .status-header span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .status-header strong {
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box {
+            background-color: #030712;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-box span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-box strong {
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        /* Timeline Mejorada */
+        .timeline {
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 1.2rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -1.6rem;
+            top: 0.2rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+        }
+
+        .timeline-step.completed::before {
+            background-color: var(--accent);
+        }
+
+        .timeline-step.active::before {
+            background-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+        }
+
+        .timeline-step h4 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+
+        .timeline-step p {
+            margin: 0.2rem 0 0 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Caja del Código de Seguridad */
+        .security-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .security-box h3 {
+            margin: 0 0 0.4rem 0;
+            font-size: 0.9rem;
+            color: #93c5fd;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .security-box span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: #ffffff;
+            margin: 0.3rem 0;
+        }
+
+        .security-box p {
+            margin: 0;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* Botón WhatsApp */
+        .btn-whatsapp {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            background-color: #059669;
+            color: white;
+            text-decoration: none;
+            padding: 0.95rem;
+            border-radius: 8px;
+            font-weight: 700;
+            box-sizing: border-box;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #047857;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 1.2rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: #ffffff;
+        }
+
+        /* Footer sutil */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <div class="logo">PANROD<span>.</span></div>
+        </div>
+        <div class="badge-live">Sistemas Operativos Activos</div>
+    </header>
+
+    <main>
+        <div class="hero-container">
+            
+            <div id="initialHeading">
+                <h1 class="hero-title">Centro de Rastreo</h1>
+                <p class="hero-subtitle">Ingrese su identificador único para acceder al seguimiento institucional y protocolos de entrega.</p>
+            </div>
+
+            <div class="search-card">
+                <!-- Formulario de Búsqueda -->
+                <div id="searchFormContainer">
+                    <div class="form-group">
+                        <label for="trackingNumber">Número de Seguimiento / Código</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="trackingNumber" placeholder="Ej: PRD-1001">
+                        </div>
+                    </div>
+                    
+                    <button class="btn-track" id="btnSearch">Consultar Envío</button>
+                    <div id="errorMsg" class="error-msg">Código no registrado o inactivo en el sistema. Verifique los datos ingresados.</div>
+                </div>
+
+                <!-- Sección de Resultados (Oculta por defecto) -->
+                <div class="results-section" id="resultsSection">
+                    
+                    <div class="status-header">
+                        <div>
+                            <span>Seguimiento activo:</span>
+                            <strong id="resTrackingCode" style="color: #fff; display: block; font-size: 1.1rem; margin-top: 2px;">-</strong>
+                        </div>
+                        <div style="text-align: right;">
+                            <span>Estado:</span>
+                            <strong id="resStatus">En tránsito</strong>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-box">
+                            <span>Destino Asignado</span>
+                            <strong id="resDestination">-</strong>
+                        </div>
+                        <div class="info-box">
+                            <span>Estado de Fondos</span>
+                            <strong style="color: var(--accent);" id="resPayment">Validado ✅</strong>
+                        </div>
+                    </div>
+
+                    <div style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Historial Operativo:</div>
+                    <div class="timeline">
+                        <div class="timeline-step completed">
+                            <h4>Pago y Registro Aprobado</h4>
+                            <p>Acreditación confirmada por el sistema central.</p>
+                        </div>
+                        <div class="timeline-step completed">
+                            <h4>Preparación y Precintado</h4>
+                            <p>Generación de etiquetas y control de salida.</p>
+                        </div>
+                        <div class="timeline-step active">
+                            <h4>En Tránsito / Distribución</h4>
+                            <p id="transitDesc">Unidad en ruta hacia centro de destino.</p>
+                        </div>
+                        <div class="timeline-step">
+                            <h4>Entrega Final</h4>
+                            <p>Requiere validación presencial con código de seguridad.</p>
+                        </div>
+                    </div>
+
+                    <div class="security-box">
+                        <h3>Código de Seguridad Dinámico</h3>
+                        <span id="resSecCode">000000</span>
+                        <p>Presente este código únicamente al recibir o retirar su paquete.</p>
+                    </div>
+
+                    <a href="#" target="_blank" id="resWhatsappBtn" class="btn-whatsapp">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.124.553 4.195 1.603 6.01L.226 23.774l5.882-1.543A11.968 11.968 0 0012.031 24c6.645 0 12.031-5.385 12.031-12.031S18.676 0 12.031 0zm0 22.012c-1.8 0-3.565-.483-5.114-1.401l-.367-.217-3.799.996.996-3.799-.217-.367c-.918-1.549-1.401-3.314-1.401-5.114 0-5.551 4.517-10.068 10.068-10.068s10.068 4.517 10.068 10.068-4.517 10.068-10.068 10.068zm5.525-7.552c-.303-.152-1.792-.885-2.07-.987-.278-.101-.48-.152-.682.152-.202.303-.783.987-.96 1.189-.177.202-.354.227-.657.076-1.353-.666-2.317-1.258-3.197-2.738-.227-.379.227-.379.808-1.54.076-.152.038-.278-.038-.43-.076-.152-.682-1.642-.935-2.248-.246-.593-.497-.512-.682-.522-.177-.01-.379-.01-.581-.01-.202 0-.53.076-.808.379-.278.303-1.061 1.036-1.061 2.526 0 1.491 1.086 2.93 1.238 3.133.152.202 2.135 3.26 5.174 4.575 2.051.884 2.829.96 3.966.808 1.137-.152 2.317-.987 2.645-1.945.328-.96.328-1.794.227-1.945-.101-.152-.379-.227-.682-.379z"/></svg>
+                        Soporte Operativo (WhatsApp)
+                    </a>
+
+                    <a href="#" class="back-btn" id="btnReset">← Realizar otra consulta</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        PANROD Logística & Distribución Global &copy; 2026 — Todos los derechos reservados.
+    </footer>
+
+    <script>
+        // Base de datos de prueba
+        const dbEnvíos = {
+            "PRD-1001": {
+                status: "En tránsito a sucursal",
+                destination: "Capital Federal, CABA",
+                payment: "Validado ✅",
+                secCode: "482019",
+                transitDesc: "Unidad despachada hacia el centro de distribución zonal.",
+                whatsapp: "5491100000000"
+            },
+            "PRD-1002": {
+                status: "Listo para retiro",
+                destination: "Córdoba Capital",
+                payment: "Validado ✅",
+                secCode: "891234",
+                transitDesc: "El paquete aguarda en depósito con precinto cerrado.",
+                whatsapp: "5491100000000"
+            }
+        };
+
+        const btnSearch = document.getElementById('btnSearch');
+        const trackingInput = document.getElementById('trackingNumber');
+        const errorMsg = document.getElementById('errorMsg');
+        const resultsSection = document.getElementById('resultsSection');
+        const searchFormContainer = document.getElementById('searchFormContainer');
+        const initialHeading = document.getElementById('initialHeading');
+        const btnReset = document.getElementById('btnReset');
+
+        const resTrackingCode = document.getElementById('resTrackingCode');
+        const resStatus = document.getElementById('resStatus');
+        const resDestination = document.getElementById('resDestination');
+        const resPayment = document.getElementById('resPayment');
+        const resSecCode = document.getElementById('resSecCode');
+        const transitDesc = document.getElementById('transitDesc');
+        const resWhatsappBtn = document.getElementById('resWhatsappBtn');
+
+        btnSearch.addEventListener('click', () => {
+            const query = trackingInput.value.trim().toUpperCase();
+
+            if (dbEnvíos[query]) {
+                const data = dbEnvíos[query];
+                
+                resTrackingCode.textContent = query;
+                resStatus.textContent = data.status;
+                resDestination.textContent = data.destination;
+                resPayment.textContent = data.payment;
+                resSecCode.textContent = data.secCode;
+                transitDesc.textContent = data.transitDesc;
+                resWhatsappBtn.href = `https://wa.me/${data.whatsapp}?text=Hola,%20tengo%20una%20consulta%20sobre%20el%20envío%20${query}`;
+
+                errorMsg.style.display = 'none';
+                searchFormContainer.style.display = 'none';
+                initialHeading.style.display = 'none';
+                resultsSection.style.display = 'block';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        trackingInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') btnSearch.click();
+        });
+
+        btnReset.addEventListener('click', (e) => {
+            e.preventDefault();
+            trackingInput.value = '';
+            resultsSection.style.display = 'none';
+            searchFormContainer.style.display = 'block';
+            initialHeading.style.display = 'block';
+        });
+    </script>
+</body>
+              </html>
