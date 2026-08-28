@@ -72,7 +72,7 @@
 
         .hero-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
         }
 
         .hero-title {
@@ -201,27 +201,49 @@
             color: var(--text-main);
         }
 
-        /* Estilos del Catálogo */
+        /* Estilos del Catálogo con Imágenes */
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
             margin-bottom: 2rem;
         }
 
         .product-card {
             background-color: #030712;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 1rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, transform 0.2s;
+            overflow: hidden;
         }
 
         .product-card:hover {
             border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .product-img-container {
+            width: 100%;
+            height: 160px;
+            background-color: #0d1322;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 0.5rem;
+            box-sizing: border-box;
         }
 
         .product-title {
@@ -237,7 +259,7 @@
         }
 
         .product-price {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: var(--accent);
             margin-bottom: 0.8rem;
@@ -253,11 +275,13 @@
             background: var(--border-color);
             color: white;
             border: none;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 6px;
             font-weight: bold;
+            font-size: 1rem;
             cursor: pointer;
+            transition: background 0.2s;
         }
 
         .qty-btn:hover {
@@ -265,9 +289,9 @@
         }
 
         .qty-val {
-            font-size: 0.9rem;
-            font-weight: 600;
-            width: 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            width: 24px;
             text-align: center;
         }
 
@@ -486,7 +510,7 @@
                     <button type="button" class="btn-search" onclick="searchTracking()">Buscar Envío</button>
                 </div>
 
-                <!-- Resultado del Rastreos -->
+                <!-- Resultado del Rastreo -->
                 <div class="tracking-result" id="trackingResult">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
                         <div>
@@ -587,7 +611,7 @@
                         </div>
                     </div>
 
-                    <!-- SECCIÓN 4: RECEPCTOR AUTORIZADO -->
+                    <!-- SECCIÓN 4: RECEPTOR AUTORIZADO -->
                     <div class="section-title">4. Recepción del Paquete</div>
                     <div class="checkbox-group">
                         <input type="checkbox" id="thirdPartyReceiver">
@@ -668,21 +692,45 @@
     </footer>
 
     <script>
-        // CONFIGURACIÓN Y PRODUCTOS
+        // CONFIGURACIÓN Y PRODUCTOS CON IMÁGENES
         const TARGET_WHATSAPP = "5491155012447";
         const PRICE_PER_KM = 350; 
         const BASE_FEE = 1500;
 
         const products = [
-            { id: 1, name: "Combo de Lavarropa Columbia", desc: "Lavarropas automático alta eficiencia", price: 400000 },
-            { id: 2, name: "Combo Codini", desc: "Lavarropas semiautomático / centrífuga", price: 350000 },
-            { id: 3, name: "TV Smart 32\"", desc: "Pantalla LED HD Smart TV", price: 170000 },
-            { id: 4, name: "TV Smart 55\"", desc: "Pantalla 4K UHD Smart TV", price: 330000 }
+            { 
+                id: 1, 
+                name: "Combo de Lavarropa Columbia", 
+                desc: "Lavarropas semiautomático / alta eficiencia", 
+                price: 400000,
+                image: "https://columbiaelectrodomesticos.com.ar/Image/0/750_750-LSC7000_sin_logo.jpg"
+            },
+            { 
+                id: 2, 
+                name: "Combo Codini", 
+                desc: "Lavarropas semiautomático / centrífuga", 
+                price: 350000,
+                image: "https://www.codini.com.ar/mods/html/fil/Model/Product/18/Copiade4051-frontal.jpg.webp"
+            },
+            { 
+                id: 3, 
+                name: "TV Smart 32\"", 
+                desc: "Pantalla LED HD Smart TV", 
+                price: 170000,
+                image: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTG6bg14FKIKuBvOAAADSZ8WjABCdFVJTXu2Lb_PTlZ-l9zEJu54twlVdM6OVXH6zrOcGs-zwTpfy8KN5I"
+            },
+            { 
+                id: 4, 
+                name: "TV Smart 55\"", 
+                desc: "Pantalla 4K UHD Smart TV", 
+                price: 330000,
+                image: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTWW8AKYb7VgfaaRW1DHVU2wuEDlS8nefomKIlI0UlJ4U4psn60b0ThbaUtwphbqGCFwmJvQMVnBOTBxJA"
+            }
         ];
 
         const cart = {};
 
-        // Cargar Catálogo en HTML
+        // Cargar Catálogo en HTML con Imágenes
         const catalogContainer = document.getElementById('catalogContainer');
         
         products.forEach(p => {
@@ -691,6 +739,9 @@
             card.className = 'product-card';
             card.innerHTML = `
                 <div>
+                    <div class="product-img-container">
+                        <img src="${p.image}" alt="${p.name}" class="product-img" loading="lazy">
+                    </div>
                     <div class="product-title">${p.name}</div>
                     <div class="product-desc">${p.desc}</div>
                 </div>
@@ -738,19 +789,16 @@
             resultBox.style.display = 'block';
             codeDisplay.textContent = inputVal;
 
-            // Resetear pasos de la barra
             for (let i = 1; i <= 4; i++) {
                 document.getElementById(`step${i}`).classList.remove('active');
             }
 
-            // Simulador de estados
             if (inputVal === currentCreatedTracking) {
                 statusDisplay.textContent = "Pendiente de Facturación";
                 document.getElementById('step1').classList.add('active');
             } else {
-                // Generar un estado aleatorio demostrativo para cualquier otro código
                 const hash = inputVal.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-                const step = (hash % 3) + 2; // Simula estado entre 2 y 4
+                const step = (hash % 3) + 2;
 
                 const statusTexts = {
                     2: "Procesando en Centro de Distribución",
@@ -800,7 +848,6 @@
 
             const prodSubtotal = calculateProductsTotal();
             
-            // Construir lista de productos comprados para WhatsApp
             let itemsListText = "";
             products.forEach(p => {
                 if (cart[p.id] > 0) {
@@ -838,10 +885,8 @@
             const randomSec = Math.floor(100000 + Math.random() * 900000);
             const trackingCode = `NV-${randomNum}-2026`;
 
-            // Guardar para el buscador de seguimiento
             currentCreatedTracking = trackingCode;
 
-            // Actualizar interfaz con los resultados
             document.getElementById('resTrackingCode').textContent = trackingCode;
             document.getElementById('resDestination').textContent = `${address}, ${city}`;
             document.getElementById('resReceiver').textContent = receiverText;
@@ -850,7 +895,6 @@
             document.getElementById('resGrandTotal').textContent = `$${grandTotal.toLocaleString('es-AR')}`;
             document.getElementById('resSecCode').textContent = randomSec;
 
-            // Formato de Mensaje Completo para WhatsApp
             const message = encodeURIComponent(
                 `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n` +
                 `*LOGÍSTICA NOVA*\n` +
