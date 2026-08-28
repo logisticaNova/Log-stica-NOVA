@@ -545,9 +545,9 @@
     </footer>
 
     <script>
-        const PRICE_PER_KM = 350; // Tarifa por kilómetro
-        const BASE_FEE = 1500;     // Tarifa base de despacho
-        const TARGET_WHATSAPP = "5491155012447"; // Número final de destino
+        const PRICE_PER_KM = 350; 
+        const BASE_FEE = 1500;     
+        const TARGET_WHATSAPP = "5491155012447"; // Número WhatsApp de recepción de órdenes
 
         const thirdPartyCheckbox = document.getElementById('thirdPartyReceiver');
         const authorizedFields = document.getElementById('authorizedFields');
@@ -624,28 +624,29 @@
             resCost.textContent = `$${shippingCost.toLocaleString('es-AR')}`;
             resSecCode.textContent = randomSec;
 
-            // Generar la URL de WhatsApp dirigida al 1155012447
-            const message = `*SOLICITUD DE FACTURACIÓN Y PAGO - LOGÍSTICA NOVA*%0A` +
-                `----------------------------------------%0A` +
-                `*Guía N°:* ${trackingCode}%0A` +
-                `*Código de Seguridad:* ${randomSec}%0A%0A` +
-                `*DATOS DEL TITULAR*%0A` +
-                `• Nombre: ${fullName}%0A` +
-                `• DNI: ${dni}%0A` +
-                `• Teléfono: ${phone}%0A` +
-                `• Email: ${email}%0A%0A` +
-                `*DIRECCIÓN DE ENTREGA*%0A` +
-                `• Provincia: ${province}%0A` +
-                `• Localidad: ${city}%0A` +
-                `• Calle/Nro: ${address}%0A` +
-                `• Entre Calles: ${crossStreets}%0A` +
-                `• C.P.: ${postalCode}%0A%0A` +
-                `*RECEPCIÓN*%0A` +
-                `• Quien recibe: ${receiverDetails}%0A%0A` +
-                `*COTIZACIÓN Y DETALLE DE PAGO*%0A` +
-                `• Distancia calculada: ${estimatedKm} km%0A` +
-                `• *Monto a Abonar:* $${shippingCost.toLocaleString('es-AR')}%0A%0A` +
-                `*Hola, solicito el enlace de pago/datos bancarios para abonar el envío.*`;
+            // Formato profesional del mensaje de facturación
+            const message = encodeURIComponent(
+                `*SOLICITUD DE FACTURACIÓN Y PAGO*\n` +
+                `*LOGÍSTICA NOVA - ORDEN DE SERVICIO*\n` +
+                `----------------------------------------\n` +
+                `*N° de Guía:* ${trackingCode}\n` +
+                `*Código de Seguridad:* ${randomSec}\n\n` +
+                `*DATOS DE FACTURACIÓN Y TITULAR*\n` +
+                `• Nombre/Razón Social: ${fullName}\n` +
+                `• DNI / CUIL / CUIT: ${dni}\n` +
+                `• Teléfono: ${phone}\n` +
+                `• Email: ${email}\n\n` +
+                `*DATOS DE ENTREGA*\n` +
+                `• Dirección: ${address}\n` +
+                `• Localidad/Provincia: ${city}, ${province}\n` +
+                `• Entre calles: ${crossStreets}\n` +
+                `• Código Postal: ${postalCode}\n` +
+                `• Receptor Asignado: ${receiverDetails}\n\n` +
+                `*DETALLE DEL IMPORTE*\n` +
+                `• Distancia: ${estimatedKm} km\n` +
+                `• *Total a Facturar:* $${shippingCost.toLocaleString('es-AR')}\n\n` +
+                `Solicito los datos de pago / link de cobro para realizar el pago correspondiente a este envío.`
+            );
 
             whatsappBtn.href = `https://wa.me/${TARGET_WHATSAPP}?text=${message}`;
 
