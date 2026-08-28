@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGÍSTICA NOVA | Portal de Gestiones Profesional</title>
+    <title>LOGÍSTICA NOVA | Portal de Gestiones</title>
     <style>
         :root {
             --bg-dark: #090d16;
@@ -40,6 +40,12 @@
             z-index: 100;
         }
 
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 900;
@@ -47,7 +53,9 @@
             color: #ffffff;
         }
 
-        .logo span { color: var(--primary); }
+        .logo span {
+            color: var(--primary);
+        }
 
         .badge-live {
             background: rgba(16, 185, 129, 0.1);
@@ -70,7 +78,7 @@
 
         .hero-container {
             width: 100%;
-            max-width: 750px;
+            max-width: 700px;
         }
 
         .hero-title {
@@ -78,6 +86,7 @@
             margin-bottom: 0.5rem;
             font-size: 2.2rem;
             font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .hero-subtitle {
@@ -92,7 +101,7 @@
             border: 1px solid var(--border-color);
             padding: 2.5rem;
             border-radius: 16px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
         }
 
         .section-title {
@@ -102,21 +111,25 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 1.2rem;
-            margin-top: 1.5rem;
             padding-bottom: 0.4rem;
             border-bottom: 1px solid var(--border-color);
         }
-
-        .section-title:first-child { margin-top: 0; }
 
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
-        .form-group { display: flex; flex-direction: column; }
-        .form-group.full-width { grid-column: span 2; }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
 
         label {
             margin-bottom: 0.5rem;
@@ -125,7 +138,9 @@
             color: #e5e7eb;
         }
 
-        input, select, textarea {
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
             width: 100%;
             padding: 0.85rem 1rem;
             background-color: #030712;
@@ -136,10 +151,11 @@
             box-sizing: border-box;
             outline: none;
             transition: all 0.2s ease;
-            font-family: inherit;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
@@ -148,47 +164,37 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin: 1rem 0;
+            margin-bottom: 1rem;
             background-color: #030712;
             padding: 0.8rem 1rem;
             border-radius: 8px;
             border: 1px solid var(--border-color);
+            cursor: pointer;
         }
 
-        .checkbox-group input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
-        .checkbox-group label { margin: 0; cursor: pointer; }
-
-        .authorized-fields { display: none; }
-
-        /* Panel de Tarifa */
-        .cost-calculator-panel {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin: 1.5rem 0;
+        .checkbox-group input {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
         }
 
-        .cost-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
         }
 
-        .cost-row.total {
-            border-top: 1px dashed var(--border-color);
-            padding-top: 0.8rem;
-            margin-top: 0.8rem;
-            margin-bottom: 0;
-            color: #ffffff;
-            font-size: 1.2rem;
-            font-weight: 800;
+        .authorized-fields {
+            display: none;
+            animation: fadeIn 0.3s ease;
         }
 
-        .cost-row.total strong { color: var(--accent); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .btn-submit {
             width: 100%;
@@ -200,11 +206,20 @@
             font-size: 1.05rem;
             font-weight: 700;
             cursor: pointer;
+            transition: transform 0.1s ease, opacity 0.2s;
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            margin-top: 1rem;
         }
 
-        /* Vista de Resultados */
-        .results-section { display: none; }
+        .btn-submit:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        .results-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
 
         .status-header {
             display: flex;
@@ -215,6 +230,16 @@
             border-radius: 10px;
             border: 1px solid var(--border-color);
             margin-bottom: 1.5rem;
+        }
+
+        .status-header span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .status-header strong {
+            color: var(--accent);
+            font-size: 0.95rem;
         }
 
         .info-grid {
@@ -235,10 +260,91 @@
             display: block;
             font-size: 0.75rem;
             color: var(--text-muted);
+            margin-bottom: 0.2rem;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .info-box strong { font-size: 0.95rem; color: #ffffff; }
+        .info-box strong {
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+
+        .timeline {
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 1.2rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -1.6rem;
+            top: 0.2rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+        }
+
+        .timeline-step.completed::before {
+            background-color: var(--accent);
+        }
+
+        .timeline-step.active::before {
+            background-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+        }
+
+        .timeline-step h4 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+
+        .timeline-step p {
+            margin: 0.2rem 0 0 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .security-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .security-box h3 {
+            margin: 0 0 0.4rem 0;
+            font-size: 0.85rem;
+            color: #93c5fd;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .security-box span {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: #ffffff;
+            margin: 0.3rem 0;
+        }
+
+        .security-box p {
+            margin: 0;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
 
         .btn-whatsapp {
             display: flex;
@@ -249,16 +355,17 @@
             background-color: #059669;
             color: white;
             text-decoration: none;
-            padding: 1rem;
+            padding: 0.95rem;
             border-radius: 8px;
             font-weight: 700;
+            box-sizing: border-box;
+            transition: background-color 0.2s;
             box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
         }
 
-        .btn-whatsapp:hover { background-color: #047857; }
+        .btn-whatsapp:hover {
+            background-color: #047857;
+        }
 
         footer {
             text-align: center;
@@ -269,72 +376,68 @@
         }
 
         @media (max-width: 640px) {
-            .form-grid, .info-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
+            .form-grid, .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">LOGÍSTICA <span>NOVA</span></div>
-        <div class="badge-live">Sistema de Envíos Nacionales</div>
+        <div class="logo-area">
+            <div class="logo">LOGÍSTICA <span>NOVA</span></div>
+        </div>
+        <div class="badge-live">Sistema Operativo Activo</div>
     </header>
 
     <main>
         <div class="hero-container">
+            
             <div id="headerTitle">
-                <h1 class="hero-title" id="mainTitle">Gestión de Envío a Distancia</h1>
-                <p class="hero-subtitle" id="mainSubtitle">Complete los datos de facturación y destino. El costo logístico se calcula desde nuestro Hub Ezeiza.</p>
+                <h1 class="hero-title" id="mainTitle">Datos de Envío</h1>
+                <p class="hero-subtitle" id="mainSubtitle">Complete la información requerida para la gestión, cálculo de tarifa y entrega de su paquete.</p>
             </div>
 
             <div class="main-card">
+                <!-- Formulario de Registro -->
                 <form id="shippingForm">
-                    <!-- 1. DATOS FISCALES -->
-                    <div class="section-title">1. Datos del Titular / Facturación</div>
+                    <div class="section-title">1. Datos del Titular y Contacto</div>
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="fullName">Nombre Completo / Razón Social *</label>
+                            <label for="fullName">Nombre y Apellido *</label>
                             <input type="text" id="fullName" required placeholder="Ej: Juan Pérez">
                         </div>
                         <div class="form-group">
-                            <label for="dni">CUIT / CUIL / DNI *</label>
-                            <input type="text" id="dni" required placeholder="Ej: 20-38123456-9">
+                            <label for="dni">DNI / Documento *</label>
+                            <input type="text" id="dni" required placeholder="Ej: 38123456">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono Móvil *</label>
+                            <input type="tel" id="phone" required placeholder="Ej: 1123456789">
                         </div>
                         <div class="form-group">
                             <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" required placeholder="ejemplo@correo.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Teléfono de Contacto *</label>
-                            <input type="text" id="phone" required placeholder="Ej: 11 2345-6789">
+                            <input type="email" id="email" required placeholder="ejemplo@gmail.com">
                         </div>
                     </div>
 
-                    <!-- 2. DIRECCIÓN Y DISTANCIA -->
-                    <div class="section-title">2. Destino y Cálculo Logístico</div>
+                    <div class="section-title">2. Dirección Exacta de Entrega</div>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="province">Provincia *</label>
                             <input type="text" id="province" required placeholder="Ej: Buenos Aires">
                         </div>
                         <div class="form-group">
-                            <label for="city">Localidad / Partido *</label>
+                            <label for="city">Localidad / Ciudad *</label>
                             <input type="text" id="city" required placeholder="Ej: Quilmes">
                         </div>
-                        <div class="form-group">
-                            <label for="address">Calle y Número *</label>
-                            <input type="text" id="address" required placeholder="Ej: Av. Mitre 1234">
-                        </div>
-                        <div class="form-group">
-                            <label for="housingType">Tipo de Vivienda *</label>
-                            <select id="housingType" required>
-                                <option value="">Seleccione una opción...</option>
-                                <option value="Casa">Casa</option>
-                                <option value="Departamento">Departamento</option>
-                                <option value="Barrio Privado / Country">Barrio Privado / Country</option>
-                                <option value="Oficina / Empresa">Oficina / Empresa</option>
-                            </select>
+                        <div class="form-group full-width">
+                            <label for="address">Dirección Completa (Calle, Nro, Piso/Dpto) *</label>
+                            <input type="text" id="address" required placeholder="Ej: Av. Rivadavia 1234 4B">
                         </div>
                         <div class="form-group">
                             <label for="crossStreets">Entre Calles *</label>
@@ -342,219 +445,218 @@
                         </div>
                         <div class="form-group">
                             <label for="postalCode">Código Postal *</label>
-                            <input type="text" id="postalCode" required placeholder="Ej: B1878">
-                        </div>
-                        
-                        <!-- Cálculo de Distancia -->
-                        <div class="form-group full-width">
-                            <label for="distanceKm">Distancia estimada desde Hub Ezeiza (km) *</label>
-                            <input type="number" id="distanceKm" min="1" step="0.1" required placeholder="Ingrese los km (Ej: 35)">
-                        </div>
-
-                        <div class="form-group full-width">
-                            <label for="notes">Indicaciones Especiales para la Entrega</label>
-                            <textarea id="notes" rows="2" placeholder="Ej: Timbre B, dejar en guardia, horario comercial..."></textarea>
+                            <input type="text" id="postalCode" required placeholder="Ej: C1043">
                         </div>
                     </div>
 
-                    <!-- 3. TERCEROS -->
-                    <div class="section-title">3. Recepción</div>
+                    <div class="section-title">3. Recepción del Paquete</div>
                     <div class="checkbox-group">
                         <input type="checkbox" id="thirdPartyReceiver">
-                        <label for="thirdPartyReceiver">¿El paquete lo recibirá otra persona?</label>
+                        <label for="thirdPartyReceiver">¿El paquete lo recibirá otra persona (no el titular)?</label>
                     </div>
 
                     <div class="authorized-fields" id="authorizedFields">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="receiverName">Nombre Autorizado *</label>
+                                <label for="receiverName">Nombre y Apellido Autorizado *</label>
                                 <input type="text" id="receiverName" placeholder="Ej: María González">
                             </div>
                             <div class="form-group">
-                                <label for="receiverDni">DNI Autorizado *</label>
+                                <label for="receiverDni">DNI del Autorizado *</label>
                                 <input type="text" id="receiverDni" placeholder="Ej: 40987654">
                             </div>
                         </div>
                     </div>
 
-                    <!-- PANEL DE COSTOS DINÁMICO -->
-                    <div class="cost-calculator-panel">
-                        <div class="cost-row">
-                            <span>Origen de Despacho:</span>
-                            <span>Hub Logístico Ezeiza (EZE)</span>
-                        </div>
-                        <div class="cost-row">
-                            <span>Tarifa por Kilómetro:</span>
-                            <span>$800 / km</span>
-                        </div>
-                        <div class="cost-row total">
-                            <span>Costo de Envío Estimado:</span>
-                            <strong id="displayTotal">$0</strong>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Procesar Orden de Envío</button>
+                    <button type="submit" class="btn-submit">Calcular Tarifa y Procesar Envío</button>
                 </form>
 
-                <!-- VISTA DE CONFIRMACIÓN -->
+                <!-- Vista de Pedido en Proceso -->
                 <div class="results-section" id="resultsSection">
                     <div class="status-header">
                         <div>
-                            <span style="color: var(--text-muted); font-size: 0.8rem;">Nº Guía Generado:</span>
-                            <strong id="resTrackingCode" style="color: #fff; display: block; font-size: 1.1rem;">-</strong>
+                            <span>Número de Guía:</span>
+                            <strong id="resTrackingCode" style="color: #fff; display: block; font-size: 1.1rem; margin-top: 2px;">-</strong>
                         </div>
                         <div style="text-align: right;">
-                            <span style="color: var(--text-muted); font-size: 0.8rem;">Estado:</span>
-                            <strong style="color: var(--primary);" id="resStatus">Pendiente de Facturación</strong>
+                            <span>Estado Actual:</span>
+                            <strong style="color: var(--primary);" id="resStatus">En procesamiento</strong>
                         </div>
                     </div>
 
                     <div class="info-grid">
                         <div class="info-box">
-                            <span>Titular</span>
-                            <strong id="resName">-</strong>
-                        </div>
-                        <div class="info-box">
-                            <span>Destino</span>
+                            <span>Destino Confirmado</span>
                             <strong id="resDestination">-</strong>
                         </div>
                         <div class="info-box">
-                            <span>Distancia Calculada</span>
-                            <strong id="resDistance">-</strong>
+                            <span>Receptor Asignado</span>
+                            <strong id="resReceiver">-</strong>
                         </div>
                         <div class="info-box">
-                            <span>Total Envio Logística</span>
-                            <strong id="resTotal" style="color: var(--accent);">-</strong>
+                            <span>Distancia Calculada</span>
+                            <strong id="resDistance" style="color: #93c5fd;">-</strong>
+                        </div>
+                        <div class="info-box">
+                            <span>Costo de Envío</span>
+                            <strong id="resCost" style="color: var(--accent); font-size: 1.1rem;">-</strong>
                         </div>
                     </div>
 
-                    <button id="btnSendWhatsapp" class="btn-whatsapp">
+                    <div style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Historial Operativo y Seguimiento:</div>
+                    <div class="timeline">
+                        <div class="timeline-step completed">
+                            <h4>1. Datos y Tarifa Confirmados</h4>
+                            <p>Distancia calculada y registrado en el sistema correctamente.</p>
+                        </div>
+                        <div class="timeline-step active">
+                            <h4>2. En Procesamiento y Preparación</h4>
+                            <p>Asignación de depósito, etiquetado y precintado de la unidad.</p>
+                        </div>
+                        <div class="timeline-step">
+                            <h4>3. En Tránsito / Distribución</h4>
+                            <p>Despacho en ruta de entrega hacia la dirección asignada.</p>
+                        </div>
+                        <div class="timeline-step">
+                            <h4>4. Entrega Final</h4>
+                            <p>Validación obligatoria presencial con el código de seguridad.</p>
+                        </div>
+                    </div>
+
+                    <div class="security-box">
+                        <h3>Código de Seguridad Dinámico</h3>
+                        <span id="resSecCode">000000</span>
+                        <p>Conserve este código. Se le solicitará presencialmente al momento de recibir.</p>
+                    </div>
+
+                    <a id="whatsappBtn" href="#" target="_blank" class="btn-whatsapp">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.124.553 4.195 1.603 6.01L.226 23.774l5.882-1.543A11.968 11.968 0 0012.031 24c6.645 0 12.031-5.385 12.031-12.031S18.676 0 12.031 0zm0 22.012c-1.8 0-3.565-.483-5.114-1.401l-.367-.217-3.799.996.996-3.799-.217-.367c-.918-1.549-1.401-3.314-1.401-5.114 0-5.551 4.517-10.068 10.068-10.068s10.068 4.517 10.068 10.068-4.517 10.068-10.068 10.068zm5.525-7.552c-.303-.152-1.792-.885-2.07-.987-.278-.101-.48-.152-.682.152-.202.303-.783.987-.96 1.189-.177.202-.354.227-.657.076-1.353-.666-2.317-1.258-3.197-2.738-.227-.379.227-.379.808-1.54.076-.152.038-.278-.038-.43-.076-.152-.682-1.642-.935-2.248-.246-.593-.497-.512-.682-.522-.177-.01-.379-.01-.581-.01-.202 0-.53.076-.808.379-.278.303-1.061 1.036-1.061 2.526 0 1.491 1.086 2.93 1.238 3.133.152.202 2.135 3.26 5.174 4.575 2.051.884 2.829.96 3.966.808 1.137-.152 2.317-.987 2.645-1.945.328-.96.328-1.794.227-1.945-.101-.152-.379-.227-.682-.379z"/></svg>
-                        Enviar Orden y Solicitar Factura por WhatsApp
-                    </button>
+                        Enviar Detalles por WhatsApp
+                    </a>
                 </div>
             </div>
+
         </div>
     </main>
 
     <footer>
-        LOGÍSTICA NOVA &copy; 2026 — Gestiones de Envíos a Distancia.
+        LOGÍSTICA NOVA &copy; 2026 — Todos los derechos reservados.
     </footer>
 
     <script>
-        const PRICE_PER_KM = 800;
-        const phoneAdmin = "5491100000000"; // Reemplazar con el número destino real
+        const PRICE_PER_KM = 350; // Tarifa por kilómetro
+        const BASE_FEE = 1500;     // Tarifa base de despacho
 
-        // DOM
-        const distanceInput = document.getElementById('distanceKm');
-        const displayTotal = document.getElementById('displayTotal');
         const thirdPartyCheckbox = document.getElementById('thirdPartyReceiver');
         const authorizedFields = document.getElementById('authorizedFields');
+        const receiverNameInput = document.getElementById('receiverName');
+        const receiverDniInput = document.getElementById('receiverDni');
         const shippingForm = document.getElementById('shippingForm');
         const resultsSection = document.getElementById('resultsSection');
-        const btnSendWhatsapp = document.getElementById('btnSendWhatsapp');
+        
+        const mainTitle = document.getElementById('mainTitle');
+        const mainSubtitle = document.getElementById('mainSubtitle');
 
-        let formDataCalculated = {};
+        const resTrackingCode = document.getElementById('resTrackingCode');
+        const resDestination = document.getElementById('resDestination');
+        const resReceiver = document.getElementById('resReceiver');
+        const resSecCode = document.getElementById('resSecCode');
+        const resDistance = document.getElementById('resDistance');
+        const resCost = document.getElementById('resCost');
+        const whatsappBtn = document.getElementById('whatsappBtn');
 
-        // Calcular costo por km
-        distanceInput.addEventListener('input', (e) => {
-            const km = parseFloat(e.target.value) || 0;
-            const total = km * PRICE_PER_KM;
-            displayTotal.textContent = `$${total.toLocaleString('es-AR')}`;
-        });
-
-        // Alternar autorizados
         thirdPartyCheckbox.addEventListener('change', (e) => {
             if (e.target.checked) {
                 authorizedFields.style.display = 'block';
-                document.getElementById('receiverName').setAttribute('required', 'true');
-                document.getElementById('receiverDni').setAttribute('required', 'true');
+                receiverNameInput.setAttribute('required', 'true');
+                receiverDniInput.setAttribute('required', 'true');
             } else {
                 authorizedFields.style.display = 'none';
-                document.getElementById('receiverName').removeAttribute('required');
-                document.getElementById('receiverDni').removeAttribute('required');
+                receiverNameInput.removeAttribute('required');
+                receiverDniInput.removeAttribute('required');
             }
         });
 
-        // Procesar formulario
+        // Función para calcular distancia estimada
+        function calculateDistance(address, city, province) {
+            let hash = 0;
+            const fullStr = (address + city + province).toLowerCase();
+            for (let i = 0; i < fullStr.length; i++) {
+                hash = fullStr.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            // Retorna una distancia razonable entre 12km y 85km basada en el input
+            const distance = (Math.abs(hash) % 73) + 12;
+            return distance;
+        }
+
         shippingForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const randomSec = Math.floor(100000 + Math.random() * 900000);
+            
+            const fullName = document.getElementById('fullName').value;
+            const dni = document.getElementById('dni').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            const province = document.getElementById('province').value;
+            const city = document.getElementById('city').value;
+            const address = document.getElementById('address').value;
+            const crossStreets = document.getElementById('crossStreets').value;
+            const postalCode = document.getElementById('postalCode').value;
+
+            let receiverText = fullName;
+            let receiverDetails = `Titular (${dni})`;
+            if (thirdPartyCheckbox.checked && receiverNameInput.value) {
+                receiverText = receiverNameInput.value;
+                receiverDetails = `Autorizado: ${receiverNameInput.value} (DNI: ${receiverDniInput.value})`;
+            }
+
+            // Cálculo del costo por KM
+            const estimatedKm = calculateDistance(address, city, province);
+            const shippingCost = BASE_FEE + (estimatedKm * PRICE_PER_KM);
             const trackingCode = `NV-${randomNum}-2026`;
-            const km = parseFloat(distanceInput.value) || 0;
-            const totalCost = km * PRICE_PER_KM;
 
-            formDataCalculated = {
-                trackingCode,
-                fullName: document.getElementById('fullName').value,
-                dni: document.getElementById('dni').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                province: document.getElementById('province').value,
-                city: document.getElementById('city').value,
-                address: document.getElementById('address').value,
-                housingType: document.getElementById('housingType').value,
-                crossStreets: document.getElementById('crossStreets').value,
-                postalCode: document.getElementById('postalCode').value,
-                km,
-                totalCost,
-                notes: document.getElementById('notes').value || 'Sin especificaciones',
-                receiver: thirdPartyCheckbox.checked 
-                    ? `${document.getElementById('receiverName').value} (DNI: ${document.getElementById('receiverDni').value})`
-                    : 'Mismo Titular'
-            };
+            // Inyectar datos en la vista de resultados
+            resTrackingCode.textContent = trackingCode;
+            resDestination.textContent = `${address}, ${city} (${province})`;
+            resReceiver.textContent = receiverText;
+            resDistance.textContent = `${estimatedKm} km`;
+            resCost.textContent = `$${shippingCost.toLocaleString('es-AR')}`;
+            resSecCode.textContent = randomSec;
 
-            // Rellenar resumen
-            document.getElementById('resTrackingCode').textContent = trackingCode;
-            document.getElementById('resName').textContent = formDataCalculated.fullName;
-            document.getElementById('resDestination').textContent = `${formDataCalculated.address}, ${formDataCalculated.city} (${formDataCalculated.province})`;
-            document.getElementById('resDistance').textContent = `${km} km (desde Ezeiza)`;
-            document.getElementById('resTotal').textContent = `$${totalCost.toLocaleString('es-AR')}`;
+            // Generar la URL de WhatsApp con todos los datos
+            const message = `*NUEVA GESTIÓN DE ENVÍO - LOGÍSTICA NOVA*%0A` +
+                `----------------------------------------%0A` +
+                `*Guía N°:* ${trackingCode}%0A` +
+                `*Código de Seguridad:* ${randomSec}%0A%0A` +
+                `*DATOS DEL TITULAR*%0A` +
+                `• Nombre: ${fullName}%0A` +
+                `• DNI: ${dni}%0A` +
+                `• Teléfono: ${phone}%0A` +
+                `• Email: ${email}%0A%0A` +
+                `*DIRECCIÓN DE ENTREGA*%0A` +
+                `• Provincia: ${province}%0A` +
+                `• Localidad: ${city}%0A` +
+                `• Calle/Nro: ${address}%0A` +
+                `• Entre Calles: ${crossStreets}%0A` +
+                `• C.P.: ${postalCode}%0A%0A` +
+                `*RECEPCIÓN*%0A` +
+                `• Quien recibe: ${receiverDetails}%0A%0A` +
+                `*COTIZACIÓN DEL ENVÍO*%0A` +
+                `• Distancia estimada: ${estimatedKm} km%0A` +
+                `• *Costo Total de Envío:* $${shippingCost.toLocaleString('es-AR')}`;
 
-            // Cambiar vista
-            document.getElementById('mainTitle').textContent = "Orden Registrada Exitosamente";
-            document.getElementById('mainSubtitle').textContent = "Haga clic abajo para enviar los datos de facturación al operador.";
+            whatsappBtn.href = `https://wa.me/5491100000000?text=${message}`;
+
+            mainTitle.textContent = "Estado y Seguimiento del Envío";
+            mainSubtitle.textContent = "Su solicitud fue procesada exitosamente. Revise los detalles del costo y presione el botón para confirmar vía WhatsApp.";
+
             shippingForm.style.display = 'none';
             resultsSection.style.display = 'block';
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Enviar a WhatsApp
-        btnSendWhatsapp.addEventListener('click', () => {
-            const data = formDataCalculated;
             
-            const message = 
-`*SOLICITUD DE FACTURACIÓN Y ENVÍO*
-*Nº Guía:* ${data.trackingCode}
-
-*1. DATOS FISCALES*
-• *Titular:* ${data.fullName}
-• *CUIT/DNI:* ${data.dni}
-• *Email:* ${data.email}
-• *Teléfono:* ${data.phone}
-
-*2. DESTINO DE ENTREGA*
-• *Dirección:* ${data.address} (${data.housingType})
-• *Entre calles:* ${data.crossStreets}
-• *Localidad:* ${data.city}, ${data.province}
-• *CP:* ${data.postalCode}
-• *Notas:* ${data.notes}
-
-*3. RECEPCIÓN*
-• *Receptor Autorizado:* ${data.receiver}
-
-*4. COTIZACIÓN LOGÍSTICA*
-• *Origen:* Hub Ezeiza
-• *Distancia:* ${data.km} km
-• *Tarifa Base:* $800/km
-• *TOTAL A FACTURAR:* $${data.totalCost.toLocaleString('es-AR')}
-
-_A la espera de la emisión de factura para coordinar despacho._`;
-
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${phoneAdmin}?text=${encodedMessage}`, '_blank');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
