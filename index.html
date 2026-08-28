@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGÍSTICA NOVA | Catálogo y Envíos</title>
+    <title>LOGÍSTICA NOVA | Portal de Gestiones</title>
     <style>
         :root {
             --bg-dark: #090d16;
@@ -40,6 +40,12 @@
             z-index: 100;
         }
 
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 900;
@@ -72,7 +78,7 @@
 
         .hero-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 700px;
         }
 
         .hero-title {
@@ -109,88 +115,6 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* Estilos del Catálogo */
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .product-card {
-            background-color: #030712;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: border-color 0.2s;
-        }
-
-        .product-card:hover {
-            border-color: var(--primary);
-        }
-
-        .product-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-
-        .product-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 0.8rem;
-        }
-
-        .product-price {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 0.8rem;
-        }
-
-        .product-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .qty-btn {
-            background: var(--border-color);
-            color: white;
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .qty-btn:hover {
-            background: var(--primary);
-        }
-
-        .qty-val {
-            font-size: 0.9rem;
-            font-weight: 600;
-            width: 20px;
-            text-align: center;
-        }
-
-        .cart-summary {
-            background: rgba(59, 130, 246, 0.05);
-            border: 1px dashed var(--primary);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Estilos del Formulario */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -226,6 +150,7 @@
             font-size: 0.95rem;
             box-sizing: border-box;
             outline: none;
+            transition: all 0.2s ease;
         }
 
         input[type="text"]:focus,
@@ -263,6 +188,12 @@
 
         .authorized-fields {
             display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .btn-submit {
@@ -275,12 +206,19 @@
             font-size: 1.05rem;
             font-weight: 700;
             cursor: pointer;
+            transition: transform 0.1s ease, opacity 0.2s;
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
             margin-top: 1rem;
         }
 
+        .btn-submit:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
         .results-section {
             display: none;
+            animation: fadeIn 0.4s ease;
         }
 
         .status-header {
@@ -292,6 +230,16 @@
             border-radius: 10px;
             border: 1px solid var(--border-color);
             margin-bottom: 1.5rem;
+        }
+
+        .status-header span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .status-header strong {
+            color: var(--accent);
+            font-size: 0.95rem;
         }
 
         .info-grid {
@@ -314,11 +262,56 @@
             color: var(--text-muted);
             margin-bottom: 0.2rem;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .info-box strong {
             font-size: 0.95rem;
             color: #ffffff;
+        }
+
+        .timeline {
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 1.2rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -1.6rem;
+            top: 0.2rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+        }
+
+        .timeline-step.completed::before {
+            background-color: var(--accent);
+        }
+
+        .timeline-step.active::before {
+            background-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+        }
+
+        .timeline-step h4 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+
+        .timeline-step p {
+            margin: 0.2rem 0 0 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
         .security-box {
@@ -330,12 +323,27 @@
             margin: 1.5rem 0;
         }
 
+        .security-box h3 {
+            margin: 0 0 0.4rem 0;
+            font-size: 0.85rem;
+            color: #93c5fd;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .security-box span {
             display: block;
             font-size: 2.2rem;
             font-weight: 900;
             letter-spacing: 6px;
             color: #ffffff;
+            margin: 0.3rem 0;
+        }
+
+        .security-box p {
+            margin: 0;
+            font-size: 0.78rem;
+            color: var(--text-muted);
         }
 
         .btn-whatsapp {
@@ -351,7 +359,13 @@
             border-radius: 8px;
             font-weight: 700;
             box-sizing: border-box;
+            transition: background-color 0.2s;
             box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+            font-size: 1rem;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #047857;
         }
 
         footer {
@@ -375,7 +389,9 @@
 <body>
 
     <header>
-        <div class="logo">LOGÍSTICA <span>NOVA</span></div>
+        <div class="logo-area">
+            <div class="logo">LOGÍSTICA <span>NOVA</span></div>
+        </div>
         <div class="badge-live">Sistema Operativo Activo</div>
     </header>
 
@@ -383,25 +399,14 @@
         <div class="hero-container">
             
             <div id="headerTitle">
-                <h1 class="hero-title" id="mainTitle">Catálogo y Pedidos</h1>
-                <p class="hero-subtitle" id="mainSubtitle">Seleccione sus productos e ingrese sus datos para procesar la orden de envío y facturación.</p>
+                <h1 class="hero-title" id="mainTitle">Datos de Envío</h1>
+                <p class="hero-subtitle" id="mainSubtitle">Complete la información requerida para la gestión, cálculo de tarifa y entrega de su paquete.</p>
             </div>
 
             <div class="main-card">
+                <!-- Formulario de Registro -->
                 <form id="shippingForm">
-                    <!-- SECCIÓN 1: CATÁLOGO DE PRODUCTOS -->
-                    <div class="section-title">1. Selección de Productos</div>
-                    <div class="catalog-grid" id="catalogContainer">
-                        <!-- Productos generados dinámicamente -->
-                    </div>
-
-                    <div class="cart-summary">
-                        <span>Subtotal Productos:</span>
-                        <strong id="productsTotal" style="font-size: 1.2rem; color: var(--accent);">$0</strong>
-                    </div>
-
-                    <!-- SECCIÓN 2: DATOS DEL CLIENTE -->
-                    <div class="section-title">2. Datos del Titular y Contacto</div>
+                    <div class="section-title">1. Datos del Titular y Contacto</div>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="fullName">Nombre y Apellido *</label>
@@ -421,8 +426,7 @@
                         </div>
                     </div>
 
-                    <!-- SECCIÓN 3: DIRECCIÓN DE ENTREGA -->
-                    <div class="section-title">3. Dirección Exacta de Entrega</div>
+                    <div class="section-title">2. Dirección Exacta de Entrega</div>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="province">Provincia *</label>
@@ -446,8 +450,7 @@
                         </div>
                     </div>
 
-                    <!-- SECCIÓN 4: RECEPCTOR AUTORIZADO -->
-                    <div class="section-title">4. Recepción del Paquete</div>
+                    <div class="section-title">3. Recepción del Paquete</div>
                     <div class="checkbox-group">
                         <input type="checkbox" id="thirdPartyReceiver">
                         <label for="thirdPartyReceiver">¿El paquete lo recibirá otra persona (no el titular)?</label>
@@ -466,10 +469,10 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-submit">Procesar Orden y Calcular Total</button>
+                    <button type="submit" class="btn-submit">Calcular Tarifa y Procesar Envío</button>
                 </form>
 
-                <!-- VISTA DE RESULTADOS -->
+                <!-- Vista de Pedido en Proceso -->
                 <div class="results-section" id="resultsSection">
                     <div class="status-header">
                         <div>
@@ -477,8 +480,8 @@
                             <strong id="resTrackingCode" style="color: #fff; display: block; font-size: 1.1rem; margin-top: 2px;">-</strong>
                         </div>
                         <div style="text-align: right;">
-                            <span>Estado:</span>
-                            <strong style="color: var(--primary);">Pendiente de Facturación</strong>
+                            <span>Estado Actual:</span>
+                            <strong style="color: var(--primary);" id="resStatus">En procesamiento</strong>
                         </div>
                     </div>
 
@@ -492,24 +495,39 @@
                             <strong id="resReceiver">-</strong>
                         </div>
                         <div class="info-box">
-                            <span>Costo de Productos</span>
-                            <strong id="resProdTotal" style="color: #93c5fd;">-</strong>
+                            <span>Distancia Calculada</span>
+                            <strong id="resDistance" style="color: #93c5fd;">-</strong>
                         </div>
                         <div class="info-box">
                             <span>Costo de Envío</span>
-                            <strong id="resShipTotal" style="color: #93c5fd;">-</strong>
+                            <strong id="resCost" style="color: var(--accent); font-size: 1.1rem;">-</strong>
                         </div>
                     </div>
 
-                    <div class="info-box" style="margin-bottom: 1.5rem; background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
-                        <span style="color: var(--accent);">TOTAL GENERAL A PAGAR</span>
-                        <strong id="resGrandTotal" style="font-size: 1.5rem; color: var(--accent);">$0</strong>
+                    <div style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Historial Operativo y Seguimiento:</div>
+                    <div class="timeline">
+                        <div class="timeline-step completed">
+                            <h4>1. Datos y Tarifa Confirmados</h4>
+                            <p>Distancia calculada y registrado en el sistema correctamente.</p>
+                        </div>
+                        <div class="timeline-step active">
+                            <h4>2. Pendiente de Pago y Facturación</h4>
+                            <p>Asignación de orden lista para procesamiento de pago y emisión de comprobante.</p>
+                        </div>
+                        <div class="timeline-step">
+                            <h4>3. En Tránsito / Distribución</h4>
+                            <p>Despacho en ruta de entrega hacia la dirección asignada.</p>
+                        </div>
+                        <div class="timeline-step">
+                            <h4>4. Entrega Final</h4>
+                            <p>Validación obligatoria presencial con el código de seguridad.</p>
+                        </div>
                     </div>
 
                     <div class="security-box">
-                        <h3 style="margin: 0; font-size: 0.85rem; color: #93c5fd;">Código de Seguridad Dinámico</h3>
+                        <h3>Código de Seguridad Dinámico</h3>
                         <span id="resSecCode">000000</span>
-                        <p style="margin: 0.4rem 0 0 0; font-size: 0.78rem; color: var(--text-muted);">Conserve este código. Se le solicitará presencialmente al momento de recibir.</p>
+                        <p>Conserve este código. Se le solicitará presencialmente al momento de recibir.</p>
                     </div>
 
                     <a id="whatsappBtn" href="#" target="_blank" class="btn-whatsapp">
@@ -527,66 +545,27 @@
     </footer>
 
     <script>
-        // CONFIGURACIÓN Y PRODUCTOS
-        const TARGET_WHATSAPP = "5491155012447";
         const PRICE_PER_KM = 350; 
-        const BASE_FEE = 1500;
+        const BASE_FEE = 1500;     
+        const TARGET_WHATSAPP = "5491155012447"; // Número WhatsApp de recepción de órdenes
 
-        const products = [
-            { id: 1, name: "Caja de Embalaje Premium", desc: "Reforzada 40x30x30 cm", price: 2500 },
-            { id: 2, name: "Rollo Plástico Burbuja", desc: "50m x 0.5m de alta densidad", price: 4200 },
-            { id: 3, name: "Cinta de Embalar Heavy Duty", desc: "Pack x 3 unidades (48mm)", price: 1800 },
-            { id: 4, name: "Kit Etiquetas Frágil", desc: "Rollo de 100 adhesivos", price: 1200 }
-        ];
-
-        const cart = {};
-
-        // Cargar Catálogo en HTML
-        const catalogContainer = document.getElementById('catalogContainer');
-        
-        products.forEach(p => {
-            cart[p.id] = 0;
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.innerHTML = `
-                <div>
-                    <div class="product-title">${p.name}</div>
-                    <div class="product-desc">${p.desc}</div>
-                </div>
-                <div>
-                    <div class="product-price">$${p.price.toLocaleString('es-AR')}</div>
-                    <div class="product-actions">
-                        <button type="button" class="qty-btn" onclick="updateQty(${p.id}, -1)">-</button>
-                        <span class="qty-val" id="qty-${p.id}">0</span>
-                        <button type="button" class="qty-btn" onclick="updateQty(${p.id}, 1)">+</button>
-                    </div>
-                </div>
-            `;
-            catalogContainer.appendChild(card);
-        });
-
-        function updateQty(id, change) {
-            cart[id] = Math.max(0, cart[id] + change);
-            document.getElementById(`qty-${id}`).textContent = cart[id];
-            calculateProductsTotal();
-        }
-
-        function calculateProductsTotal() {
-            let total = 0;
-            products.forEach(p => {
-                total += cart[p.id] * p.price;
-            });
-            document.getElementById('productsTotal').textContent = `$${total.toLocaleString('es-AR')}`;
-            return total;
-        }
-
-        // Lógica del Formulario
         const thirdPartyCheckbox = document.getElementById('thirdPartyReceiver');
         const authorizedFields = document.getElementById('authorizedFields');
         const receiverNameInput = document.getElementById('receiverName');
         const receiverDniInput = document.getElementById('receiverDni');
         const shippingForm = document.getElementById('shippingForm');
         const resultsSection = document.getElementById('resultsSection');
+        
+        const mainTitle = document.getElementById('mainTitle');
+        const mainSubtitle = document.getElementById('mainSubtitle');
+
+        const resTrackingCode = document.getElementById('resTrackingCode');
+        const resDestination = document.getElementById('resDestination');
+        const resReceiver = document.getElementById('resReceiver');
+        const resSecCode = document.getElementById('resSecCode');
+        const resDistance = document.getElementById('resDistance');
+        const resCost = document.getElementById('resCost');
+        const whatsappBtn = document.getElementById('whatsappBtn');
 
         thirdPartyCheckbox.addEventListener('change', (e) => {
             if (e.target.checked) {
@@ -606,26 +585,16 @@
             for (let i = 0; i < fullStr.length; i++) {
                 hash = fullStr.charCodeAt(i) + ((hash << 5) - hash);
             }
-            return (Math.abs(hash) % 73) + 12;
+            const distance = (Math.abs(hash) % 73) + 12;
+            return distance;
         }
 
         shippingForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const prodSubtotal = calculateProductsTotal();
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            const randomSec = Math.floor(100000 + Math.random() * 900000);
             
-            // Construir lista de productos comprados para WhatsApp
-            let itemsListText = "";
-            products.forEach(p => {
-                if (cart[p.id] > 0) {
-                    itemsListText += `  • ${p.name} x${cart[p.id]} ($${(cart[p.id] * p.price).toLocaleString('es-AR')})\n`;
-                }
-            });
-
-            if (itemsListText === "") {
-                itemsListText = "  • Sin productos seleccionados (Solo servicio de envío)\n";
-            }
-
             const fullName = document.getElementById('fullName').value;
             const dni = document.getElementById('dni').value;
             const phone = document.getElementById('phone').value;
@@ -646,53 +615,43 @@
 
             const estimatedKm = calculateDistance(address, city, province);
             const shippingCost = BASE_FEE + (estimatedKm * PRICE_PER_KM);
-            const grandTotal = prodSubtotal + shippingCost;
-            
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            const randomSec = Math.floor(100000 + Math.random() * 900000);
             const trackingCode = `NV-${randomNum}-2026`;
 
-            // Actualizar interfaz con los resultados
-            document.getElementById('resTrackingCode').textContent = trackingCode;
-            document.getElementById('resDestination').textContent = `${address}, ${city}`;
-            document.getElementById('resReceiver').textContent = receiverText;
-            document.getElementById('resProdTotal').textContent = `$${prodSubtotal.toLocaleString('es-AR')}`;
-            document.getElementById('resShipTotal').textContent = `$${shippingCost.toLocaleString('es-AR')} (${estimatedKm}km)`;
-            document.getElementById('resGrandTotal').textContent = `$${grandTotal.toLocaleString('es-AR')}`;
-            document.getElementById('resSecCode').textContent = randomSec;
+            resTrackingCode.textContent = trackingCode;
+            resDestination.textContent = `${address}, ${city} (${province})`;
+            resReceiver.textContent = receiverText;
+            resDistance.textContent = `${estimatedKm} km`;
+            resCost.textContent = `$${shippingCost.toLocaleString('es-AR')}`;
+            resSecCode.textContent = randomSec;
 
-            // Formato de Mensaje Completo para WhatsApp
+            // Formato profesional del mensaje de facturación
             const message = encodeURIComponent(
-                `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n` +
-                `*LOGÍSTICA NOVA*\n` +
+                `*SOLICITUD DE FACTURACIÓN Y PAGO*\n` +
+                `*LOGÍSTICA NOVA - ORDEN DE SERVICIO*\n` +
                 `----------------------------------------\n` +
                 `*N° de Guía:* ${trackingCode}\n` +
                 `*Código de Seguridad:* ${randomSec}\n\n` +
-                `*DETALLE DE PRODUCTOS*\n` +
-                `${itemsListText}` +
-                `*Subtotal Productos:* $${prodSubtotal.toLocaleString('es-AR')}\n\n` +
-                `*DATOS DEL COMPRADOR*\n` +
-                `• Nombre: ${fullName}\n` +
-                `• DNI/CUIL: ${dni}\n` +
+                `*DATOS DE FACTURACIÓN Y TITULAR*\n` +
+                `• Nombre/Razón Social: ${fullName}\n` +
+                `• DNI / CUIL / CUIT: ${dni}\n` +
                 `• Teléfono: ${phone}\n` +
                 `• Email: ${email}\n\n` +
-                `*DIRECCIÓN DE ENTREGA*\n` +
+                `*DATOS DE ENTREGA*\n` +
                 `• Dirección: ${address}\n` +
-                `• Ciudad/Provincia: ${city}, ${province}\n` +
+                `• Localidad/Provincia: ${city}, ${province}\n` +
                 `• Entre calles: ${crossStreets}\n` +
-                `• C.P.: ${postalCode}\n` +
-                `• Recibe: ${receiverDetails}\n\n` +
-                `*RESUMEN TOTAL*\n` +
-                `• Productos: $${prodSubtotal.toLocaleString('es-AR')}\n` +
-                `• Envío (${estimatedKm} km): $${shippingCost.toLocaleString('es-AR')}\n` +
-                `• *TOTAL A FACTURAR:* $${grandTotal.toLocaleString('es-AR')}\n\n` +
-                `Solicito link de pago / datos bancarios para completar la transacción.`
+                `• Código Postal: ${postalCode}\n` +
+                `• Receptor Asignado: ${receiverDetails}\n\n` +
+                `*DETALLE DEL IMPORTE*\n` +
+                `• Distancia: ${estimatedKm} km\n` +
+                `• *Total a Facturar:* $${shippingCost.toLocaleString('es-AR')}\n\n` +
+                `Solicito los datos de pago / link de cobro para realizar el pago correspondiente a este envío.`
             );
 
-            document.getElementById('whatsappBtn').href = `https://wa.me/${TARGET_WHATSAPP}?text=${message}`;
+            whatsappBtn.href = `https://wa.me/${TARGET_WHATSAPP}?text=${message}`;
 
-            document.getElementById('mainTitle').textContent = "Resumen de su Orden";
-            document.getElementById('mainSubtitle').textContent = "Verifique los montos totales y confirme el pedido a través de WhatsApp.";
+            mainTitle.textContent = "Estado y Seguimiento del Envío";
+            mainSubtitle.textContent = "Su solicitud fue procesada exitosamente. Haga clic en el botón a continuación para proceder con la facturación y el pago.";
 
             shippingForm.style.display = 'none';
             resultsSection.style.display = 'block';
