@@ -294,7 +294,7 @@
             transform: translateY(-2px);
         }
 
-        /* GALERÍA DESLIZABLE CON SCROLL SNAP */
+        /* GALERÍA DESLIZABLE CON SCROLL SNAP Y MANO DE HOVER */
         .product-img-slider {
             width: 100%;
             height: 130px;
@@ -306,6 +306,7 @@
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
+            cursor: pointer;
         }
 
         .product-img-slider::-webkit-scrollbar { height: 3px; }
@@ -331,15 +332,36 @@
             line-height: 1.2;
         }
 
+        /* DESCRIPCIÓN EXPANDIBLE CON "VER MÁS" */
+        .product-desc-wrapper {
+            margin-bottom: 0.6rem;
+        }
+
         .product-desc { 
             font-size: 0.72rem; 
             color: var(--text-muted); 
-            margin-bottom: 0.6rem; 
             line-height: 1.25;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-desc.expanded {
+            display: block;
+            overflow: visible;
+        }
+
+        .btn-see-more {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 2px 0 0 0;
+            cursor: pointer;
+            text-decoration: underline;
         }
 
         .product-price { 
@@ -408,6 +430,45 @@
             justify-content: space-between;
             align-items: center;
             font-size: 0.9rem;
+        }
+
+        /* MODAL PANTALLA COMPLETA DE IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 85%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            line-height: 1;
         }
 
         /* FORMULARIO */
@@ -527,6 +588,32 @@
 
         .info-box strong { font-size: 0.85rem; color: #ffffff; }
 
+        .selected-items-box {
+            background: rgba(3, 7, 18, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+        }
+
+        .selected-items-box h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.75rem;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .item-row-detail {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-bottom: 1px dashed var(--border-color);
+            padding: 0.3rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .item-row-detail:last-child { border-bottom: none; }
+
         .security-box {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
             border: 1px solid rgba(59, 130, 246, 0.3);
@@ -587,7 +674,7 @@
             .product-card { padding: 0.5rem; }
             .product-img-slider { height: 110px; }
             .product-title { font-size: 0.78rem; }
-            .product-desc { font-size: 0.68rem; margin-bottom: 0.4rem; }
+            .product-desc { font-size: 0.68rem; }
             .product-price { font-size: 0.9rem; }
             
             .form-grid, .info-grid { grid-template-columns: 1fr; }
@@ -768,6 +855,14 @@
                         </div>
                     </div>
 
+                    <!-- DESGLOSE DE PRODUCTOS Y CUOTAS SELECCIONADAS -->
+                    <div class="selected-items-box">
+                        <h4>Detalle de Productos y Financiación</h4>
+                        <div id="resItemsList">
+                            <!-- Inyectado por JS -->
+                        </div>
+                    </div>
+
                     <div class="info-grid">
                         <div class="info-box">
                             <span>Destino Confirmado</span>
@@ -810,6 +905,12 @@
         </div>
     </main>
 
+    <!-- MODAL DE PANTALLA COMPLETA PARA FOTOS -->
+    <div class="image-modal" id="imageModal">
+        <span class="image-modal-close" id="closeModal">&times;</span>
+        <img class="image-modal-content" id="modalImg" src="" alt="Vista previa">
+    </div>
+
     <footer>
         LOGÍSTICA NOVA &copy; 2026 — Todos los derechos reservados.
     </footer>
@@ -822,126 +923,156 @@
             INTEREST_PER_INSTALLMENT: 0.045
         };
 
-        // MATRIZ COMPLETA DE 100 ARTÍCULOS NUMERADOS CON SUS IMÁGENES
+        // MATRIZ CON 100 ARTÍCULOS, DESCRIPCIONES EXTENDIDAS Y 3 IMÁGENES REALES DIVERSAS
         const PRODUCTS = [
-            // LAVARROPAS Y SECARROPAS
-            { id: 1, name: "Lavarropas a Paleta 7kg", desc: "Sistema de lavado vaivén económico y de bajo consumo.", price: 185000, images: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"] },
-            { id: 2, name: "Lavarropas Semiautomático 10kg", desc: "Doble tina con turbina y centrifugado independiente.", price: 240000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            { id: 3, name: "Lavarropas Automático 6kg", desc: "Carga frontal 800 RPM con programas rápidos.", price: 420000, images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"] },
-            { id: 4, name: "Lavarropas Automático 8kg Inverter", desc: "Carga frontal ultra silencioso y ahorro de energía.", price: 680000, images: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"] },
-            { id: 5, name: "Lavarropas Automático 10kg Carga Superior", desc: "Panel digital touch y tambor de acero inoxidable.", price: 590000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            { id: 6, name: "Secarropas Centrífugo 5.5kg", desc: "2800 RPM con freno de seguridad instantáneo.", price: 110000, images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"] },
-            { id: 7, name: "Secarropas por Calor 6kg", desc: "Tambor de acero aluminizado y salida de aire flexible.", price: 310000, images: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"] },
-            { id: 8, name: "Secarropas por Condensación 8kg", desc: "No requiere salida al exterior, depósito de agua extraíble.", price: 520000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            
-            // HELADERAS Y FREEZERS
-            { id: 9, name: "Heladera Cíclica con Congelador 240L", desc: "Ideal para espacios reducidos, bajo consumo eléctrico.", price: 380000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 10, name: "Heladera con Freezer 300L Cíclica", desc: "Estantes regulables y freezer de alta capacidad de congelado.", price: 490000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
-            { id: 11, name: "Heladera No Frost 330L", desc: "Frío seco sin escarcha y tecnología MultiFlow.", price: 850000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
-            { id: 12, name: "Heladera Inverter No Frost 400L", desc: "Ahorro energético A+++ y dispenser de agua exterior.", price: 1150000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 13, name: "Frigobar Económico 90L", desc: "Compacto con congelador superior, perfecto para oficinas.", price: 210000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
-            { id: 14, name: "Freezer Pozo Horizontal 150L Económico", desc: "Doble función congelador/conservador con canasto.", price: 290000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
-            { id: 15, name: "Freezer Pozo Horizontal 300L", desc: "Aislamiento térmico reforzado y tapa con cerradura.", price: 430000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 16, name: "Freezer Vertical 4 Cajones", desc: "Organización óptima por compartimentos separados.", price: 390000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
-            { id: 17, name: "Exhibidora Vertical de Bebidas 380L", desc: "Puerta de doble vidrio templado e iluminación LED interior.", price: 620000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
-
-            // COCINAS Y HORNOS PIZZEROS
-            { id: 18, name: "Cocina a Gas 4 Hornallas Económica", desc: "Ancho 50cm, horno con multigas y válvula de seguridad.", price: 210000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 19, name: "Cocina 4 Hornallas Acero Inoxidable", desc: "Rejillas de fundición pesada y encendido electrónico.", price: 340000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 20, name: "Cocina Industrial 4 Hornallas", desc: "Mecheros de alto rendimiento y piso de ladrillos refractarios.", price: 420000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 21, name: "Cocina 6 Hornallas Semi Industrial", desc: "Gran capacidad, frente de acero y doble grilla interior.", price: 580000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 22, name: "Cocina Industrial 6 Hornallas Gigante", desc: "Para alta producción gastronómica, quemadores estrella.", price: 790000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 23, name: "Horno Pizzero 4 Moldes Económico", desc: "Piso refractario, exterior en chapa aluminizada con pirómetro.", price: 260000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 24, name: "Horno Pizzero 6 Moldes", desc: "Incluye base de caño estructural y aislamiento térmico.", price: 340000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500"] },
-            { id: 25, name: "Horno Pizzero 12 Bandejas / Moldes", desc: "Puerta con visor, 2 válvulas de control y piso totalmente refractario.", price: 580000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 26, name: "Horno Pastelero Convector 4 Bandejas", desc: "Inyección de vapor y circulación de aire caliente uniforme.", price: 890000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500"] },
-            { id: 27, name: "Anafe a Gas 2 Hornallas de Mesa", desc: "Ideal para camping o espacios reducidos, chapa enlozada.", price: 45000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 28, name: "Anafe de Inducción Eléctrico 1 Puesto", desc: "Digital, portátil, control de temperatura por toque.", price: 68000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-
-            // CELULARES ECONÓMICOS Y TECNOLOGÍA
-            { id: 29, name: "Celular Smartphone 32GB Económico", desc: "Pantalla 6.1\", Dual SIM, batería duradera de 4000mAh.", price: 115000, images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
-            { id: 30, name: "Celular Smartphone 64GB 4G", desc: "Cámara doble 13MP, desbloqueo facial y Android Go.", price: 155000, images: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500"] },
-            { id: 31, name: "Celular Smartphone 128GB 4GB RAM", desc: "Procesador Octa-Core, pantalla 90Hz Full HD.", price: 210000, images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
-            { id: 32, name: "Celular Básico con Teclado y Linterna", desc: "Súper resistente, batería que dura días, radio FM.", price: 35000, images: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500"] },
-            { id: 33, name: "Tablet 7\" Económica para Niños", desc: "Funda de silicona anti-golpes y control parental.", price: 72000, images: ["https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
-            { id: 34, name: "Tablet 10.1\" Octa Core 64GB", desc: "Conexión Wi-Fi dual, ideal para estudio y trabajo.", price: 165000, images: ["https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"] },
-            { id: 35, name: "Smartwatch deportivo básico", desc: "Monitoreo de pasos, pulsaciones y notificaciones WhatsApp.", price: 28000, images: ["https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500"] },
-
-            // PEQUEÑOS ELECTRODOMÉSTICOS Y HOGAR
-            { id: 36, name: "Microondas Digital 20L", desc: "Descongelado automático y varios programas predefinidos.", price: 145000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 37, name: "Microondas con Grill 25L", desc: "Acero inoxidable, función doradora y temporizador.", price: 189000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500"] },
-            { id: 38, name: "Horno Eléctrico de Mesa 30L", desc: "Con convección y spiedo para spiedos o carnes.", price: 92000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 39, name: "Horno Eléctrico Grande 60L", desc: "Doble anafe superior integrado y control de temperatura.", price: 168000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500"] },
-            { id: 40, name: "Freidora de Aire Digital 4L", desc: "Cocción sin aceite, temporizador táctil y canasto antiadherente.", price: 98000, images: ["https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
-            { id: 41, name: "Freidora de Aire Familiar 6.5L", desc: "Doble resistencia y ventana transparente de inspección.", price: 145000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 42, name: "Cafetera de Goteo 12 Tazas", desc: "Filtro permanente lavable y placa calefactora antiadherente.", price: 38000, images: ["https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500"] },
-            { id: 43, name: "Cafetera Express Automática 15 Bar", desc: "Para café molido o cápsulas con espumador de leche.", price: 185000, images: ["https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500"] },
-            { id: 44, name: "Pava Eléctrica Plástica 1.7L", desc: "Corte automático para mate a 80°C y hervor.", price: 24000, images: ["https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500"] },
-            { id: 45, name: "Pava Eléctrica Acero Inoxidable Regulable", desc: "Selector digital de temperatura e indicador LED.", price: 42000, images: ["https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500"] },
-            { id: 46, name: "Licuadora de Pie 1.5L 500W", desc: "Jarra plástica de alta resistencia y 2 velocidades + pulso.", price: 42000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 47, name: "Licuadora de Vidrio 800W Pica Hielo", desc: "Cuchillas desarmables de acero de 6 hojas.", price: 65000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 48, name: "Mixer Minipimer 600W con Accesorios", desc: "Incluye batidor de alambre y vaso picador procesador.", price: 48000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500"] },
-            { id: 49, name: "Procesadora de Alimentos Multifunción", desc: "Ralla, pica, rebana y amasa. Motor de 750W.", price: 98000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 50, name: "Tostadora Eléctrica 2 Panes", desc: "7 niveles de tostado y bandeja junta migas extraíble.", price: 32000, images: ["https://images.unsplash.com/photo-1583634674352-7864d5e1698b?w=500"] },
-            { id: 51, name: "Sandwichera Grill Doble", desc: "Placas antiadherentes con corte sellador triangular.", price: 29000, images: ["https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500"] },
-            { id: 52, name: "Exprimir de Cítricos Eléctrico", desc: "Doble sentido de giro y motor silencioso de 40W.", price: 22000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 53, name: "Batidora de Mano 5 Velocidades", desc: "Incluye ganchos batidores y amasadores cromados.", price: 29000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500"] },
-            { id: 54, name: "Batidora Planetaria con Bowl de Acero 4.5L", desc: "3 accesorios principales y movimiento planetario parejo.", price: 135000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 55, name: "Aspiradora Tricapa de Arrastre 1800W", desc: "Bolsa de tela lavable y tubo telescópico metálico.", price: 88000, images: ["https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500"] },
-            { id: 56, name: "Aspiradora Robot Wi-Fi Económica", desc: "Limpia y barre automáticamente con sensores anticaída.", price: 195000, images: ["https://images.unsplash.com/photo-1618103138281-99609e8d353b?w=500"] },
-            { id: 57, name: "Aspiradora Robot con Mopa y Mapeo", desc: "Navegación inteligente por aplicación móvil.", price: 340000, images: ["https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=500"] },
-
-            // AUDIO, TV Y CLIMATIZACIÓN
-            { id: 58, name: "Smart TV 32\" HD Android TV", desc: "Wi-Fi integrado, Netflix, YouTube y comando vocal.", price: 240000, images: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500"] },
-            { id: 59, name: "Smart TV 43\" Full HD Borderless", desc: "Diseño sin marcos con soporte Chromecast integrado.", price: 360000, images: ["https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500"] },
-            { id: 60, name: "Smart TV 50\" 4K UHD Google TV", desc: "Tecnología HDR10 y sonido Dolby Audio.", price: 520000, images: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500"] },
-            { id: 61, name: "Smart TV 65\" 4K QLED", desc: "Colores ultrarrealistas y tasa de refresco 120Hz.", price: 980000, images: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500"] },
-            { id: 62, name: "Soporte TV Móvil Articulado 32 a 55\"", desc: "Brazo extensible con inclinación y giro.", price: 22000, images: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500"] },
-            { id: 63, name: "Parlante Bluetooth Portátil Resitente al Agua", desc: "Batería recargable de 8 horas de autonomía continua.", price: 38000, images: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"] },
-            { id: 64, name: "Torre de Sonido Bluetooth 10000W PMPO", desc: "Luces LED rítmicas y entrada para micrófono de Karaoke.", price: 165000, images: ["https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500"] },
-            { id: 65, name: "Barra de Sonido 2.1 con Subwoofer Inalámbrico", desc: "Conexión óptica y HDMI ARC para TV.", price: 195000, images: ["https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500"] },
-            { id: 66, name: "Auriculares Inalámbricos TWS In-Ear", desc: "Estuche de carga magnética y controles táctiles.", price: 24000, images: ["https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500"] },
-            { id: 67, name: "Auriculares Bluetooth Over-Ear Diadema", desc: "Almohadillas acolchadas suaves y cancelación pasiva.", price: 42000, images: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"] },
-            { id: 68, name: "Aire Acondicionado Split 3000 Fibras F/C", desc: "Gas ecológico R410a con filtro de alta densidad.", price: 680000, images: ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500"] },
-            { id: 69, name: "Aire Acondicionado Inverter 4500 Frigorías", desc: "Ahorro de hasta 50% de energía y súper silencioso.", price: 950000, images: ["https://images.unsplash.com/photo-1631545821013-1768832a1291?w=500"] },
-            { id: 70, name: "Ventilador de Pie 20\" Palas Metálicas", desc: "Base pesada oscilante y motor reforzado de 90W.", price: 58000, images: ["https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
-            { id: 71, name: "Ventilador de Torre Silencioso", desc: "3 velocidades con temporizador apaga solo.", price: 75000, images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?w=500"] },
-            { id: 72, name: "Calefactor Convector Eléctrico 2000W", desc: "Termostato regulable y opción de montaje en pared.", price: 52000, images: ["https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500"] },
-            { id: 73, name: "Estufa Garretera halógena 3 Velas", desc: "Encendido piezoeléctrico y corte anticaída automático.", price: 34000, images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?w=500"] },
-
-            // MÁS ARTÍCULOS VARIADOS HASTA COMPLETAR 100
-            { id: 74, name: "Plancha a Vapor Cerámica", desc: "Sistema antigoteo y autolimpieza.", price: 35000, images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"] },
-            { id: 75, name: "Plancha Vertical a Vapor de Mano", desc: "Ideal para prendas colgadas y cortinas.", price: 42000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            { id: 76, name: "Secador de Pelo Iónico 2200W", desc: "Incluye boquilla concentradora y difusor.", price: 48000, images: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500"] },
-            { id: 77, name: "Planchita de Pelo Titanio 230°C", desc: "Calentamiento ultra rápido en 15 segundos.", price: 39000, images: ["https://images.unsplash.com/photo-1621607512214-68297480165e?w=500"] },
-            { id: 78, name: "Cortadora de Pelo y Barba Recargable", desc: "Cuchillas de acero inox y peines guía intercambiables.", price: 26000, images: ["https://images.unsplash.com/photo-1621607512214-68297480165e?w=500"] },
-            { id: 79, name: "Afeitadora Rotativa 3 Cabezales", desc: "Uso en seco o húmedo, lavable bajo la canilla.", price: 45000, images: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500"] },
-            { id: 80, name: "Balanza Digital de Baño Vidrio Templado", desc: "Sensor de alta precisión hasta 180kg.", price: 18000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500"] },
-            { id: 81, name: "Balanza de Cocina Digital 1g a 5kg", desc: "Función Tara e indicador de batería baja.", price: 14000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 82, name: "Lámpara LED Escritorio Flexible", desc: "Batería recargable USB y 3 niveles de brillo.", price: 19000, images: ["https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?w=500"] },
-            { id: 83, name: "Humidificador Difusor Aromas LED", desc: "Capacidad 300ml ultrasónico súper silencioso.", price: 22000, images: ["https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500"] },
-            { id: 84, name: "Cámara de Seguridad IP Wi-Fi Exterior", desc: "Visión nocturna, audio bidireccional y resistencia IP66.", price: 42000, images: ["https://images.unsplash.com/photo-1557862921-37829c790f19?w=500"] },
-            { id: 85, name: "Cámara Domo Interior 360° HD", desc: "Seguimiento automático de movimiento.", price: 32000, images: ["https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500"] },
-            { id: 86, name: "Cerradura Digital Inteligente Biométrica", desc: "Apertura por huella, clave, tarjeta o llave física.", price: 135000, images: ["https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500"] },
-            { id: 87, name: "Consola de Videojuegos Portátil Retro", desc: "Más de 500 juegos clásicos incluidos y pantalla a color.", price: 28000, images: ["https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"] },
-            { id: 88, name: "Joystick Inalámbrico Bluetooth PC/Console", desc: "Vibración doble y batería de litio interna.", price: 34000, images: ["https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=500"] },
-            { id: 89, name: "Notebook 14\" Celeron 4GB RAM 128GB SSD", desc: "Liviana, ideal para tareas escolares y navegación.", price: 340000, images: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500"] },
-            { id: 90, name: "Notebook 15.6\" Core i3 8GB RAM 256GB SSD", desc: "Excelente fluidez para oficina y streaming.", price: 520000, images: ["https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500"] },
-            { id: 91, name: "Impresora Multifunción Wi-Fi Tinta Continua", desc: "Imprime, escanea y copia a un costo por página ultra bajo.", price: 280000, images: ["https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500"] },
-            { id: 92, name: "Teclado y Mouse Inalámbrico Kit", desc: "Conexión receptora USB única de largo alcance.", price: 22000, images: ["https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500"] },
-            { id: 93, name: "Mochila Porta Notebook Impermeable", desc: "Compartimento acolchado y puerto de carga USB externo.", price: 29000, images: ["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500"] },
-            { id: 94, name: "Termo de Acero Inoxidable 1 Litro", desc: "Mantiene agua caliente/fría por 24 horas continuas.", price: 32000, images: ["https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500"] },
-            { id: 95, name: "Set de Ollas antiadherentes 5 Piezas", desc: "Mangos de silicona toque suave y tapas de vidrio.", price: 78000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 96, name: "Sartén de Aluminio Forjado 24cm", desc: "Revestimiento cerámico antiadherente libre de PFOA.", price: 24000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 97, name: "Parrilla Eléctrica de Mesa con Tapa", desc: "Superficie acanalada y lisa con termostato regulable.", price: 68000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 98, name: "Fabrica de Pastas Caseras Manual", desc: "Ancho de rodillo 150mm con accesorio sobador y cortador.", price: 48000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500"] },
-            { id: 99, name: "Corta Fiambre Hogareño Disco 19cm", desc: "Cuchilla de acero dentada y regulador de grosor.", price: 125000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 100, name: "Termotanque Eléctrico 50 Litros", desc: "Aislamiento de poliuretano expandido y alta recuperación.", price: 195000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] }
+            { 
+                id: 1, 
+                name: "Lavarropas a Paleta 7kg", 
+                desc: "Sistema de lavado por vaivén con paleta central súper eficiente. Ofrece un lavado rápido, económico y de muy bajo consumo eléctrico. Ideal para prendas pesadas, de trabajo o uso diario intenso en el hogar.", 
+                price: 185000, 
+                images: [
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500",
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500",
+                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"
+                ] 
+            },
+            { 
+                id: 2, 
+                name: "Lavarropas Semiautomático 10kg", 
+                desc: "Doble tina integrada con turbina de alto flujo y centrifugado independiente de alta velocidad. Permite lavar y centrifugar en paralelo para ahorrar tiempo.", 
+                price: 240000, 
+                images: [
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500",
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500",
+                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"
+                ] 
+            },
+            { 
+                id: 3, 
+                name: "Lavarropas Automático 6kg", 
+                desc: "Carga frontal con centrifugado de 800 RPM. Cuenta con 15 programas automáticos de lavado, incluyendo ciclo súper rápido de 15 minutos y lavado eco.", 
+                price: 420000, 
+                images: [
+                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500",
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500",
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"
+                ] 
+            },
+            { 
+                id: 4, 
+                name: "Lavarropas Automático 8kg Inverter", 
+                desc: "Motor Inverter ultrasilencioso con garantía de durabilidad. Ahorra hasta un 40% de energía con su tecnología de autopesado e inyección de vapor desinfectante.", 
+                price: 680000, 
+                images: [
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500",
+                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500",
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"
+                ] 
+            },
+            { 
+                id: 5, 
+                name: "Lavarropas Automático 10kg Carga Superior", desc: "Panel táctil digital impermeabilizado, tambor de acero inoxidable con filtro atrapapelusas reforzado y dispensador automático de jabón y suavizante.", price: 590000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"] },
+            { id: 6, name: "Secarropas Centrífugo 5.5kg", desc: "Potente motor de 2800 RPM que quita el agua por completo en solo 3 minutos. Incluye tambor de acero inoxidable y freno instantáneo al abrir la tapa.", price: 110000, images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
+            { id: 7, name: "Secarropas por Calor 6kg", desc: "Sistema de secado por aire caliente con tambor aluminizado antiarrugas. Incluye conducto flexible para salida de vapor exterior.", price: 310000, images: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"] },
+            { id: 8, name: "Secarropas por Condensación 8kg", desc: "Tecnología avanzada que recolecta la humedad en un depósito interno. No requiere instalación de tubos al exterior, ideal para departamentos.", price: 520000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"] },
+            { id: 9, name: "Heladera Cíclica con Congelador 240L", desc: "Diseño compacto ideal para cocinas pequeñas o departamentos. Mantiene excelente frío con un consumo optimizado Clase A.", price: 380000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
+            { id: 10, name: "Heladera con Freezer 300L Cíclica", desc: "Gran almacenamiento interno con estantes de vidrio templado regulables en altura y un congelador amplio con crisper para verduras.", price: 490000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
+            { id: 11, name: "Heladera No Frost 330L", desc: "Sistema de frío seco que evita la formación de escarcha por completo. Circulación de aire uniforme MultiFlow en todos los estantes.", price: 850000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
+            { id: 12, name: "Heladera Inverter No Frost 400L", desc: "Compresor Inverter de máxima eficiencia energética. Incluye dispensador externo de agua helada y panel de control táctil exterior.", price: 1150000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
+            { id: 13, name: "Frigobar Económico 90L", desc: "Heladera bajo mesada ideal para habitaciones, oficinas o quinchos. Incluye pequeño congelador superior y compartimento para botellas grandes.", price: 210000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
+            { id: 14, name: "Freezer Pozo Horizontal 150L Económico", desc: "Doble función seleccionable: congelador o conservador de alimentos. Incluye canasto de alambre deslizante y drenaje frontal para fácil limpieza.", price: 290000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
+            { id: 15, name: "Freezer Pozo Horizontal 300L", desc: "Aislamiento térmico reforzado con poliuretano de alta densidad. Tapa equilibrada con cerradura de seguridad y luz LED interior.", price: 430000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
+            { id: 16, name: "Freezer Vertical 4 Cajones", desc: "Diseño cómodo en vertical con 4 cajones transparentes para organizar los alimentos por categorías sin mezclar olores.", price: 390000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
+            { id: 17, name: "Exhibidora Vertical de Bebidas 380L", desc: "Puerta de doble vidrio templado antiempañante. Iluminación LED vertical que resalta los productos y controlador digital de temperatura.", price: 620000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
+            { id: 18, name: "Cocina a Gas 4 Hornallas Económica", desc: "Ancho compacto de 50 cm. Horno con válvula de seguridad térmica, multigas (gas natural o envasado) y enlosado autolimpiante.", price: 210000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 19, name: "Cocina 4 Hornallas Acero Inoxidable", desc: "Frente y mesada completamente en acero inoxidable. Rejillas de hierro fundido ultra resistentes y encendido electrónico a una mano.", price: 340000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 20, name: "Cocina Industrial 4 Hornallas", desc: "Quemadores de alta potencia de fundición de aluminio. Piso de horno con ladrillos refractarios para una cocción pareja tipo pizzera.", price: 420000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 21, name: "Cocina 6 Hornallas Semi Industrial", desc: "Gran capacidad de cocción para gastronomía o familias numerosas. Incluye doble rejilla en horno y parrilla inferior deslizable.", price: 580000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 22, name: "Cocina Industrial 6 Hornallas Gigante", desc: "Construcción pesada para alta producción. Quemadores tipo estrella de máxima radiación calórica y horno con capacidad para asaderas grandes.", price: 790000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 23, name: "Horno Pizzero 4 Moldes Económico", desc: "Interior con piso refractario para pizzas a la piedra perfectas. Reloj pirómetro frontal y quemadores tubulares de alto rendimiento.", price: 260000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
+            { id: 24, name: "Horno Pizzero 6 Moldes", desc: "Incluye base de apoyo de caño estructural. Aislamiento de lana de vidrio para mantener el calor interno de forma sostenida.", price: 340000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
+            { id: 25, name: "Horno Pizzero 12 Bandejas / Moldes", desc: "Doble entrada con control de temperatura independiente por sector. Construcción externa reforzada en acero inox de alta calidad.", price: 580000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
+            { id: 26, name: "Horno Pastelero Convector 4 Bandejas", desc: "Circulación de aire caliente por turbina de convección. Sistema de inyección de humedad para panadería y repostería profesional.", price: 890000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
+            { id: 27, name: "Anafe a Gas 2 Hornallas de Mesa", desc: "Ultra portátil y práctico con cuerpo enlozado. Válvulas de control progresivo de llama para uso en mesada o camping.", price: 45000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 28, name: "Anafe de Inducción Eléctrico 1 Puesto", desc: "Calentamiento ultra rápido por inducción magnética. Vidrio vitrocerámico táctil de fácil limpieza con temporizador digital.", price: 68000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 29, name: "Celular Smartphone 32GB Económico", desc: "Pantalla HD+ de 6.1 pulgadas. Batería de 4000 mAh que garantiza todo un día de autonomía con uso intensivo de aplicaciones.", price: 115000, images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
+            { id: 30, name: "Celular Smartphone 64GB 4G", desc: "Cámara trasera doble de 13 MP con IA, sensor de huella dactilar posterior y desbloqueo por reconocimiento facial.", price: 155000, images: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
+            { id: 31, name: "Celular Smartphone 128GB 4GB RAM", desc: "Pantalla fluida a 90Hz, procesador Octa-Core de alto rendimiento y carga rápida de 18W. Excelente para juegos y redes sociales.", price: 210000, images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
+            { id: 32, name: "Celular Básico con Teclado y Linterna", desc: "Teléfono clásico ultra resistente. Batería de extra larga duración (hasta 1 semana en espera), linterna LED potente y radio FM.", price: 35000, images: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
+            { id: 33, name: "Tablet 7\" Económica para Niños", desc: "Incluye funda protectora antigolpes de silicona suave con soporte. Software preinstalado con aplicaciones educativas y control parental.", price: 72000, images: ["https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500", "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
+            { id: 34, name: "Tablet 10.1\" Octa Core 64GB", desc: "Pantalla IPS Full HD, doble parlante estéreo y cuerpo liviano de aluminio. Ideal para clases virtuales, lectura o reproducción de videos.", price: 165000, images: ["https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
+            { id: 35, name: "Smartwatch deportivo básico", desc: "Pantalla a color touch. Mide ritmo cardíaco, pasos, calorías quemadas y notifica llamadas entrantes o mensajes de WhatsApp.", price: 28000, images: ["https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
+            { id: 36, name: "Microondas Digital 20L", desc: "Panel digital con reloj integrado, opción de descongelado por peso o tiempo y plato giratorio de vidrio de alta resistencia.", price: 145000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
+            { id: 37, name: "Microondas con Grill 25L", desc: "Interior de acero inoxidable con función doradora de Grill halógeno para gratinar pizzas, carnes y empanadas rápidamente.", price: 189000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
+            { id: 38, name: "Horno Eléctrico de Mesa 30L", desc: "Selector de temperatura de 100°C a 250°C. Incluye bandeja junta migas, rejilla cromada y función de cocción superior/inferior.", price: 92000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
+            { id: 39, name: "Horno Eléctrico Grande 60L", desc: "Incluye dos hornallas eléctricas integradas en el techo superior. Espacio suficiente para dos asaderas de tamaño grande simultáneas.", price: 168000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
+            { id: 40, name: "Freidora de Aire Digital 4L", desc: "Cocina hasta un 85% menos de grasa utilizando aire caliente circulante. Pantalla digital táctil con 8 programas preconfigurados.", price: 98000, images: ["https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 41, name: "Freidora de Aire Familiar 6.5L", desc: "Gran capacidad para un pollo entero o 1kg de papas. Ventana transparente de inspección frontal con iluminación interna.", price: 145000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 42, name: "Cafetera de Goteo 12 Tazas", desc: "Jarra de vidrio templado graduada con placa calefactora que mantiene el café caliente. Filtro de nailon lavable sin necesidad de papel.", price: 38000, images: ["https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500", "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500", "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500"] },
+            { id: 43, name: "Cafetera Express Automática 15 Bar", desc: "Bomba italiana de alta presión para un espresso cremoso. Incluye tubo espumador orientable de vapor para capuchinos perfectos.", price: 185000, images: ["https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500", "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500", "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500"] },
+            { id: 44, name: "Pava Eléctrica Plástica 1.7L", desc: "Filtro de impurezas extraíble y medidor de nivel de agua transparente. Selector automático con posición especial para agua de mate.", price: 24000, images: ["https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500", "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500", "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500"] },
+            { id: 45, name: "Pava Eléctrica Acero Inoxidable Regulable", desc: "Cuerpo íntegro en acero pulido con selector digital. Mantiene la temperatura deseada constante por más de 30 minutos.", price: 42000, images: ["https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500", "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500", "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500"] },
+            { id: 46, name: "Licuadora de Pie 1.5L 500W", desc: "Cuchillas de acero inoxidable ultra afiladas y jarra graduada. Apta para batidos, jugos y licuados cremosos.", price: 42000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
+            { id: 47, name: "Licuadora de Vidrio 800W Pica Hielo", desc: "Potente motor reforzado y jarra de vidrio térmico resistente a cambios bruscos de temperatura. Cuchilla especial de 6 hojas pica hielo.", price: 65000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
+            { id: 48, name: "Mixer Minipimer 600W con Accesorios", desc: "Procesador de mano con varilla de acero inoxidable apta para calientes. Incluye vaso medidor, batidor de alambre y vaso picador.", price: 48000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
+            { id: 49, name: "Procesadora de Alimentos Multifunción", desc: "Procesa, pica, ralla, rebana y amasa con sus discos intercambiables de acero inox. Doble traba de seguridad en la tapa.", price: 98000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
+            { id: 50, name: "Tostadora Eléctrica 2 Panes", desc: "Ranuras extra anchas para pan lactal o artesanal. Funciones especiales para cancelar, recalentar y descongelar pan de inmediato.", price: 32000, images: ["https://images.unsplash.com/photo-1583634674352-7864d5e1698b?w=500", "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
+            { id: 51, name: "Sandwichera Grill Doble", desc: "Placas con antiadherente de teflón que cortan y sellan dos sándwiches en minutos. Luces piloto indicadoras de encendido y listo.", price: 29000, images: ["https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500", "https://images.unsplash.com/photo-1583634674352-7864d5e1698b?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
+            { id: 52, name: "Exprimido de Cítricos Eléctrico", desc: "Encendido automático por presión de la fruta sobre el cono. Incluye dos conos adaptables para naranjas, pomelos o limones.", price: 22000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
+            { id: 53, name: "Batidora de Mano 5 Velocidades", desc: "Botón expulsor de accesorios con función Turbo para máxima potencia instantánea. Trae batidores de claras y ganchos amasadore cromados.", price: 29000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
+            { id: 54, name: "Batidora Planetaria con Bowl de Acero 4.5L", desc: "Acción de mezclado planetario que cubre todo el tazón. Incluye batidor de alambre, paleta plana y gancho para masas pesadas.", price: 135000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
+            { id: 55, name: "Aspiradora Tricapa de Arrastre 1800W", desc: "Filtro HEPA que retiene el 99.9% de ácaros y polvo. Enrollacable automático, indicador de bolsa llena y cepillo multisuperficie.", price: 88000, images: ["https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500", "https://images.unsplash.com/photo-1618103138281-99609e8d353b?w=500", "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=500"] },
+            { id: 56, name: "Aspiradora Robot Wi-Fi Económica", desc: "Barre y aspira de forma autónoma con sensores inteligentes anti-choque y anti-caída. Vuelve sola a su base para recargar la batería.", price: 195000, images: ["https://images.unsplash.com/photo-1618103138281-99609e8d353b?w=500", "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=500", "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500"] },
+            { id: 57, name: "Aspiradora Robot con Mopa y Mapeo", desc: "Navegación láser en tiempo real que crea mapas de la casa en la App móvil. Aspira y trapea el piso al mismo tiempo.", price: 340000, images: ["https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=500", "https://images.unsplash.com/photo-1618103138281-99609e8d353b?w=500", "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500"] },
+            { id: 58, name: "Smart TV 32\" HD Android TV", desc: "Sistema oficial Android TV con asistente por voz en el control remoto. Descarga Netflix, Disney+, Prime y miles de apps en Google Play.", price: 240000, images: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500", "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500"] },
+            { id: 59, name: "Smart TV 43\" Full HD Borderless", desc: "Pantalla sin marcos metálicos de máximo aprovechamiento visual. Chromecast integrado para transmitir el celular al televisor al instante.", price: 360000, images: ["https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500", "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500"] },
+            { id: 60, name: "Smart TV 50\" 4K UHD Google TV", desc: "Resolución 4K Real con soporte HDR10+. Procesador de imagen optimizado con IA y sonido envolvente Dolby Audio.", price: 520000, images: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500", "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500"] },
+            { id: 61, name: "Smart TV 65\" 4K QLED", desc: "Tecnología Quantum Dot de más de 1000 millones de colores. Pantalla ultra delgada de 120Hz fluida ideal para consolas de última generación.", price: 980000, images: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500", "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500"] },
+            { id: 62, name: "Soporte TV Móvil Articulado 32 a 55\"", desc: "Brazo doble de acero reforzado extensible. Permite inclinar y girar el televisor en todas las direcciones de forma segura.", price: 22000, images: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500", "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500"] },
+            { id: 63, name: "Parlante Bluetooth Portátil Resitente al Agua", desc: "Certificación IPX7 sumergible. Potente sonido envolvente con radiadores pasivos de bajos y batería para 10 horas seguidas.", price: 38000, images: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500", "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500", "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500"] },
+            { id: 64, name: "Torre de Sonido Bluetooth 10000W PMPO", desc: "Consola de luces LED RGB rítmicas. Incluye entrada para guitarra, entrada para micrófono y función de Karaoke con eco regulable.", price: 165000, images: ["https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500", "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500"] },
+            { id: 65, name: "Barra de Sonido 2.1 con Subwoofer Inalámbrico", desc: "Sistema de cine en casa con conexión Bluetooth, Óptica y HDMI ARC. Graves potentes sin cables adicionales en la sala.", price: 195000, images: ["https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500", "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"] },
+            { id: 66, name: "Auriculares Inalámbricos TWS In-Ear", desc: "Conexión Bluetooth 5.3 ultra estable sin demora. Estuche compacto de carga rápida que provee hasta 20 horas totales de reproducción.", price: 24000, images: ["https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500", "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"] },
+            { id: 67, name: "Auriculares Bluetooth Over-Ear Diadema", desc: "Almohadillas ergonómicas de cuero sintético con cancelación pasiva de ruido externo. Estructura plegable con micrófono para llamadas.", price: 42000, images: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500", "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"] },
+            { id: 68, name: "Aire Acondicionado Split 3000 Fibras F/C", desc: "Climatizador Frío/Calor de alta eficiencia. Utiliza refrigerante ecológico R410a con filtros lavables purificadores de ambiente.", price: 680000, images: ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500", "https://images.unsplash.com/photo-1631545821013-1768832a1291?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
+            { id: 69, name: "Aire Acondicionado Inverter 4500 Frigorías", desc: "Ahorra más del 50% de electricidad manteniendo la temperatura ambiente constante sin picos de consumo. Súper silencioso.", price: 950000, images: ["https://images.unsplash.com/photo-1631545821013-1768832a1291?w=500", "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
+            { id: 70, name: "Ventilador de Pie 20\" Palas Metálicas", desc: "Motor industrial de 90W con 3 velocidades. Hélice metálica balanceada de alto flujo de aire y cabezal reclinable con oscilación 180°.", price: 58000, images: ["https://images.unsplash.com/photo-1618941723681-37053e198656?w=500", "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500", "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500"] },
+            { id: 71, name: "Ventilador de Torre Silencioso", desc: "Diseño moderno y estilizado sin aspas expuestas. Control remoto con temporizador apaga solo hasta 7.5 horas.", price: 75000, images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500", "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500"] },
+            { id: 72, name: "Calefactor Convector Eléctrico 2000W", desc: "Calienta ambientes cerrados rápidamente sin consumir oxígeno. Termostato ambiental regulable y patas de apoyo o fijación a pared.", price: 52000, images: ["https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500", "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
+            { id: 73, name: "Estufa Garretera halógena 3 Velas", desc: "Radiación calórica instantánea con 3 tubos de halógeno regulables de forma independiente. Traba de corte automático anticaídas.", price: 34000, images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?w=500", "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
+            { id: 74, name: "Plancha a Vapor Cerámica", desc: "Suela antiadherente de cerámica fluida. Golpe de vapor horizontal y vertical con sistema anticalcáreo integrado.", price: 35000, images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500"] },
+            { id: 75, name: "Plancha Vertical a Vapor de Mano", desc: "Plancha directamente prendas colgadas en perchas o cortinas. Desinfecta y elimina olores por vapor continuo en segundos.", price: 42000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500"] },
+            { id: 76, name: "Secador de Pelo Iónico 2200W", desc: "Generador de iones negativos que reduce el encrespamiento y aporta brillo natural al cabello. Incluye boquilla concentradora y difusor.", price: 48000, images: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", "https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
+            { id: 77, name: "Planchita de Pelo Titanio 230°C", desc: "Placas flotantes de titanio que mantienen la temperatura homogénea. Ideal para alisados progresivos y peinados profesionales.", price: 39000, images: ["https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
+            { id: 78, name: "Cortadora de Pelo y Barba Recargable", desc: "Cuchillas de acero inoxidable lavables. Batería de litio de rápida carga que brinda 90 minutos de uso continuo inalámbrico.", price: 26000, images: ["https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
+            { id: 79, name: "Afeitadora Rotativa 3 Cabezales", desc: "Cabezales flotantes multidireccionales que se adaptan a los contornos del rostro. 100% resistente al agua para afeitado en seco o ducha.", price: 45000, images: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", "https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
+            { id: 80, name: "Balanza Digital de Baño Vidrio Templado", desc: "Sensor de alta precisión de 100g en 100g hasta 180kg. Pantalla LCD retroiluminada de fácil lectura y encendido al pisar.", price: 18000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
+            { id: 81, name: "Balanza de Cocina Digital 1g a 5kg", desc: "Esencial para repostería y recetas exactas. Función Tare para descontar el peso del recipiente y cambio de unidades de gramos a oz.", price: 14000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
+            { id: 82, name: "Lámpara LED Escritorio Flexible", desc: "Brazo totalmente orientable con panel táctil de 3 niveles de intensidad de luz blanca sin parpadeos para proteger la vista.", price: 19000, images: ["https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?w=500", "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500"] },
+            { id: 83, name: "Humidificador Difusor Aromas LED", desc: "Capacidad de 300ml ultrasónico. Produce una niebla fina relajante con luces LED RGB cambiantes y corte automático de seguridad.", price: 22000, images: ["https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500", "https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?w=500", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500"] },
+            { id: 84, name: "Cámara de Seguridad IP Wi-Fi Exterior", desc: "Resistente a la intemperie (IP66). Visión nocturna por infrarrojos, detección de movimiento y alertas en vivo a la App del celular.", price: 42000, images: ["https://images.unsplash.com/photo-1557862921-37829c790f19?w=500", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500", "https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500"] },
+            { id: 85, name: "Cámara Domo Interior 360° HD", desc: "Rotación motorizada controlable desde la App. Audio bidireccional para escuchar y hablar a través de la cámara desde cualquier lugar.", price: 32000, images: ["https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500", "https://images.unsplash.com/photo-1557862921-37829c790f19?w=500", "https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500"] },
+            { id: 86, name: "Cerradura Digital Inteligente Biométrica", desc: "Apertura por lector de huella dactilar, clave numérica táctil, tarjeta RFID de proximidad o llave mecánica tradicional.", price: 135000, images: ["https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500", "https://images.unsplash.com/photo-1557862921-37829c790f19?w=500"] },
+            { id: 87, name: "Consola de Videojuegos Portátil Retro", desc: "Pantalla a color IPS de 3.5 pulgadas. Incluye más de 500 juegos clásicos precargados y salida de audio/video para conectar a la TV.", price: 28000, images: ["https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500", "https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
+            { id: 88, name: "Joystick Inalámbrico Bluetooth PC/Console", desc: "Mando ergonómico con motores de vibración dual incorporados y batería de litio recargable por USB tipo C.", price: 34000, images: ["https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=500", "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
+            { id: 89, name: "Notebook 14\" Celeron 4GB RAM 128GB SSD", desc: "Diseño ultraliviano de 1.3kg con disco de estado sólido SSD de rápido encendido. Excelente para tareas escolares y oficina web.", price: 340000, images: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500", "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500", "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"] },
+            { id: 90, name: "Notebook 15.6\" Core i3 8GB RAM 256GB SSD", desc: "Pantalla Full HD antirreflejo con teclado numérico incorporado. Excelente fluidez multitarea para trabajo pesado o streaming.", price: 520000, images: ["https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500", "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500", "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"] },
+            { id: 91, name: "Impresora Multifunción Wi-Fi Tinta Continua", desc: "Sistema de tanques de tinta recargables que reduce el costo por página en un 90%. Imprime, escanea y copia sin cables vía Wi-Fi.", price: 280000, images: ["https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500", "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500", "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500"] },
+            { id: 92, name: "Teclado y Mouse Inalámbrico Kit", desc: "Conexión USB de 2.4 GHz mediante un único receptor inalámbrico. Teclas silenciosas con diseño ergonómico de larga durabilidad.", price: 22000, images: ["https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500", "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500", "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500"] },
+            { id: 93, name: "Mochila Porta Notebook Impermeable", desc: "Tela Oxford repelente al agua con bolsillo especial acolchado antirrobo para laptops de hasta 15.6\". Incluye puerto USB externo.", price: 29000, images: ["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500", "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
+            { id: 94, name: "Termo de Acero Inoxidable 1 Litro", desc: "Doble pared con aislamiento de vacío que mantiene líquidos calientes o fríos por 24 horas. Incluye tapón cebador ergonómico.", price: 32000, images: ["https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
+            { id: 95, name: "Set de Ollas antiadherentes 5 Piezas", desc: "Aluminio de alto grosor con triple capa de teflón reforzado antiadherente. Tapas de vidrio templado con válvula de escape de vapor.", price: 78000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
+            { id: 96, name: "Sartén de Aluminio Forjado 24cm", desc: "Distribución homogénea del calor sin deformaciones. Fondo apto para cocinas a gas, eléctricas e inducción.", price: 24000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
+            { id: 97, name: "Parrilla Eléctrica de Mesa con Tapa", desc: "Parrilla antiadherente libre de humo ideal para departamentos. Bandeja recuperadora de grasas inferior extraíble y lavable.", price: 68000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
+            { id: 98, name: "Fabrica de Pastas Caseras Manual", desc: "Estructura de acero cromado pesado. Estiradora con 9 niveles de grosor de masa y accesorio de corte para tallarines o cintas.", price: 48000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
+            { id: 99, name: "Corta Fiambre Hogareño Disco 19cm", desc: "Disco dentado de acero inox reforzado. Regulador de espesor milimétrico de corte para fiambres, quesos o carnes.", price: 125000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
+            { id: 100, name: "Termotanque Eléctrico 50 Litros", desc: "Aislamiento térmico ecológico de poliuretano expandido. Válvula de seguridad contra sobrepresión e indicador frontal analógico de temperatura.", price: 195000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] }
         ];
 
-        // Estado Global
+        // Estado Global con cuotas por producto
         const state = {
             cart: Object.fromEntries(PRODUCTS.map(p => [p.id, 0])),
+            installments: Object.fromEntries(PRODUCTS.map(p => [p.id, 1])),
             createdTracking: ""
         };
 
@@ -950,8 +1081,11 @@
             const container = document.getElementById('catalogContainer');
             container.innerHTML = PRODUCTS.map(p => {
                 const imagesHTML = p.images.map(imgSrc => 
-                    `<img src="${imgSrc}" alt="${p.name}" class="product-img" loading="lazy">`
+                    `<img src="${imgSrc}" alt="${p.name}" class="product-img" loading="lazy" data-fullsrc="${imgSrc}">`
                 ).join('');
+
+                // Ocultar opción de 12 cuotas si el producto cuesta menos de 50.000
+                const allow12 = p.price >= 50000;
 
                 return `
                 <div class="product-card">
@@ -961,17 +1095,20 @@
                             ${imagesHTML}
                         </div>
                         <div class="product-title">${p.name}</div>
-                        <div class="product-desc">${p.desc}</div>
+                        <div class="product-desc-wrapper">
+                            <div class="product-desc" id="desc-${p.id}">${p.desc}</div>
+                            <button type="button" class="btn-see-more" data-id="${p.id}" id="btn-more-${p.id}">Ver más</button>
+                        </div>
                     </div>
                     <div>
                         <div class="product-price">$${p.price.toLocaleString('es-AR')}</div>
                         
                         <div class="installments-container">
                             <select class="installments-select" data-price="${p.price}" data-id="${p.id}">
-                                <option value="1">1 cuota sin interés</option>
-                                <option value="3">3 cuotas (+13.5%)</option>
-                                <option value="6">6 cuotas (+27.0%)</option>
-                                <option value="12">12 cuotas (+54.0%)</option>
+                                <option value="1" ${state.installments[p.id] === 1 ? 'selected' : ''}>1 cuota sin interés</option>
+                                <option value="3" ${state.installments[p.id] === 3 ? 'selected' : ''}>3 cuotas (+13.5%)</option>
+                                <option value="6" ${state.installments[p.id] === 6 ? 'selected' : ''}>6 cuotas (+27.0%)</option>
+                                ${allow12 ? `<option value="12" ${state.installments[p.id] === 12 ? 'selected' : ''}>12 cuotas (+54.0%)</option>` : ''}
                             </select>
                             <div class="installment-detail" id="inst-detail-${p.id}">
                                 1x $${p.price.toLocaleString('es-AR')}
@@ -988,32 +1125,84 @@
             `}).join('');
         }
 
+        // Calcular costo total sumando las cuotas seleccionadas de cada artículo
         function calculateProductsTotal() {
-            const total = PRODUCTS.reduce((sum, p) => sum + (state.cart[p.id] * p.price), 0);
+            let total = 0;
+            PRODUCTS.forEach(p => {
+                const qty = state.cart[p.id];
+                if (qty > 0) {
+                    const count = state.installments[p.id] || 1;
+                    let unitPrice = p.price;
+                    if (count > 1) {
+                        unitPrice = p.price * (1 + (count * CONFIG.INTEREST_PER_INSTALLMENT));
+                    }
+                    total += Math.round(unitPrice) * qty;
+                }
+            });
             document.getElementById('productsTotal').textContent = `$${total.toLocaleString('es-AR')}`;
             return total;
         }
 
-        // Eventos en el catálogo
+        // Manejo de eventos en el catálogo
         document.getElementById('catalogContainer').addEventListener('click', (e) => {
-            const btn = e.target.closest('.qty-btn');
-            if (!btn) return;
+            // Manejar "Ver más" de descripciones
+            const btnMore = e.target.closest('.btn-see-more');
+            if (btnMore) {
+                const id = btnMore.dataset.id;
+                const descEl = document.getElementById(`desc-${id}`);
+                if (descEl.classList.contains('expanded')) {
+                    descEl.classList.remove('expanded');
+                    btnMore.textContent = 'Ver más';
+                } else {
+                    descEl.classList.add('expanded');
+                    btnMore.textContent = 'Ver menos';
+                }
+                return;
+            }
 
-            const id = Number(btn.dataset.id);
-            const isIncrease = btn.dataset.action === 'increase';
-            
-            state.cart[id] = Math.max(0, state.cart[id] + (isIncrease ? 1 : -1));
-            document.getElementById(`qty-${id}`).textContent = state.cart[id];
-            calculateProductsTotal();
+            // Manejar pantalla completa en imágenes
+            const imgEl = e.target.closest('.product-img');
+            if (imgEl) {
+                const fullSrc = imgEl.dataset.fullsrc;
+                if (fullSrc) {
+                    document.getElementById('modalImg').src = fullSrc;
+                    document.getElementById('imageModal').classList.add('active');
+                }
+                return;
+            }
+
+            // Manejar botones de cantidad
+            const btnQty = e.target.closest('.qty-btn');
+            if (btnQty) {
+                const id = Number(btnQty.dataset.id);
+                const isIncrease = btnQty.dataset.action === 'increase';
+                
+                state.cart[id] = Math.max(0, state.cart[id] + (isIncrease ? 1 : -1));
+                document.getElementById(`qty-${id}`).textContent = state.cart[id];
+                calculateProductsTotal();
+            }
         });
 
+        // Evento para cerrar modal de imagen
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('imageModal').classList.remove('active');
+        });
+        document.getElementById('imageModal').addEventListener('click', (e) => {
+            if (e.target.id === 'imageModal') {
+                document.getElementById('imageModal').classList.remove('active');
+            }
+        });
+
+        // Cambio de selector de cuotas
         document.getElementById('catalogContainer').addEventListener('change', (e) => {
             const select = e.target.closest('.installments-select');
             if (!select) return;
 
             const basePrice = Number(select.dataset.price);
-            const productId = select.dataset.id;
+            const productId = Number(select.dataset.id);
             const count = Number(select.value);
+
+            state.installments[productId] = count;
 
             let totalPrice = basePrice;
             if (count > 1) {
@@ -1025,6 +1214,7 @@
             const detailLabel = document.getElementById(`inst-detail-${productId}`);
             
             detailLabel.textContent = `${count}x de $${installmentAmount.toLocaleString('es-AR')}`;
+            calculateProductsTotal();
         });
 
         function setStep(stepNumber) {
@@ -1059,7 +1249,10 @@
         document.getElementById('headerLogo').addEventListener('click', () => setStep(1));
         
         document.getElementById('btnRestart').addEventListener('click', () => {
-            PRODUCTS.forEach(p => state.cart[p.id] = 0);
+            PRODUCTS.forEach(p => {
+                state.cart[p.id] = 0;
+                state.installments[p.id] = 1;
+            });
             renderCatalog();
             calculateProductsTotal();
             document.getElementById('shippingForm').reset();
@@ -1141,15 +1334,41 @@
             const prodSubtotal = calculateProductsTotal();
             
             let itemsListText = "";
+            let itemsHtmlContainer = "";
+
             PRODUCTS.forEach(p => {
-                if (state.cart[p.id] > 0) {
-                    itemsListText += `  • [#${p.id}] ${p.name} x${state.cart[p.id]} ($${(state.cart[p.id] * p.price).toLocaleString('es-AR')})\n`;
+                const qty = state.cart[p.id];
+                if (qty > 0) {
+                    const instCount = state.installments[p.id] || 1;
+                    let unitFinal = p.price;
+                    if (instCount > 1) {
+                        unitFinal = Math.round(p.price * (1 + (instCount * CONFIG.INTEREST_PER_INSTALLMENT)));
+                    }
+                    const lineTotal = unitFinal * qty;
+                    const instText = instCount === 1 ? "1 pago" : `${instCount} cuotas de $${Math.round(unitFinal / instCount).toLocaleString('es-AR')}`;
+
+                    itemsListText += `  • [#${p.id}] ${p.name} x${qty} | Financiación: ${instText} | Total: $${lineTotal.toLocaleString('es-AR')}\n`;
+                    
+                    itemsHtmlContainer += `
+                        <div class="item-row-detail">
+                            <div>
+                                <strong>#${p.id} ${p.name}</strong> (x${qty})<br>
+                                <span style="font-size: 0.68rem; color: #93c5fd;">Plan: ${instText}</span>
+                            </div>
+                            <div style="text-align: right; font-weight: 700; color: #fff;">
+                                $${lineTotal.toLocaleString('es-AR')}
+                            </div>
+                        </div>
+                    `;
                 }
             });
 
             if (itemsListText === "") {
                 itemsListText = "  • Sin productos seleccionados (Solo despacho)\n";
+                itemsHtmlContainer = `<div style="font-size: 0.75rem; color: var(--text-muted);">Sin productos seleccionados.</div>`;
             }
+
+            document.getElementById('resItemsList').innerHTML = itemsHtmlContainer;
 
             const fullName = document.getElementById('fullName').value;
             const dni = document.getElementById('dni').value;
@@ -1193,8 +1412,8 @@
                 `----------------------------------------\n` +
                 `*N° de Guía:* ${trackingCode}\n` +
                 `*Código de Seguridad:* ${randomSec}\n\n` +
-                `*DETALLE DE PRODUCTOS*\n` +
-                `${itemsListText}` +
+                `*DETALLE DE PRODUCTOS Y CUOTAS*\n` +
+                `${itemsListText}\n` +
                 `*Subtotal Productos:* $${prodSubtotal.toLocaleString('es-AR')}\n\n` +
                 `*DATOS DEL COMPRADOR*\n` +
                 `• Nombre: ${fullName}\n` +
