@@ -17,6 +17,12 @@
             --text-muted: #94a3b8;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-dark);
@@ -27,11 +33,9 @@
                 linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
             color: var(--text-main);
-            margin: 0;
-            padding: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
         header {
@@ -128,1319 +132,453 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        /* BARRA DE PASOS */
-        .step-indicator {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .step-indicator::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--border-color);
-            z-index: 1;
-            transform: translateY(-50%);
-        }
-
-        .step-item {
-            position: relative;
-            z-index: 2;
-            background: var(--bg-dark);
-            padding: 0.4rem 0.6rem;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: all 0.3s ease;
-        }
-
-        .step-item.active {
-            border-color: var(--primary);
-            color: #fff;
-            background: var(--primary);
-            box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
-        }
-
-        .step-item.completed {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* BUSCADOR DE RASTREO */
-        .search-box {
-            display: flex;
-            gap: 8px;
-            margin-top: 0.8rem;
-        }
-
-        .search-box input { flex-grow: 1; }
-
-        .btn-search {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            white-space: nowrap;
-        }
-
-        .btn-search:hover { background: var(--primary-hover); }
-
-        .tracking-result {
-            display: none;
-            margin-top: 1rem;
-            background: rgba(3, 7, 18, 0.8);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1rem;
-        }
-
-        .tracking-timeline {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin-top: 1.2rem;
-            padding: 0 5px;
-        }
-
-        .tracking-timeline::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            right: 15px;
-            height: 2px;
-            background: var(--border-color);
-            z-index: 1;
-        }
-
-        .timeline-step {
-            position: relative;
-            z-index: 2;
-            background: #030712;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .step-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--border-color);
-            border: 2px solid #030712;
-        }
-
-        .timeline-step.active .step-dot {
-            background: var(--accent);
-            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
-        }
-
-        .step-label {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .timeline-step.active .step-label { color: var(--text-main); }
-
-        /* CATÁLOGO DE PRODUCTOS - ADAPTADO A CUADRÍCULA MÓVIL */
-        .catalog-grid {
+        /* Grid de Productos */
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
         .product-card {
-            background-color: rgba(3, 7, 18, 0.6);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 0.75rem;
+            padding: 0.85rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: border-color 0.2s, transform 0.2s;
-            position: relative;
-        }
-
-        .product-number-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(59, 130, 246, 0.9);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 6px;
-            z-index: 10;
+            transition: transform 0.2s, border-color 0.2s;
         }
 
         .product-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* GALERÍA DESLIZABLE CON SCROLL SNAP Y MANO DE HOVER */
-        .product-img-slider {
-            width: 100%;
-            height: 130px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            margin-bottom: 0.6rem;
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            cursor: pointer;
-        }
-
-        .product-img-slider::-webkit-scrollbar { height: 3px; }
-        .product-img-slider::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
+            transform: translateY(-3px);
+            border-color: rgba(59, 130, 246, 0.4);
         }
 
         .product-img {
-            flex: 0 0 100%;
             width: 100%;
-            height: 100%;
+            height: 140px;
             object-fit: contain;
-            padding: 0.4rem;
-            box-sizing: border-box;
-            scroll-snap-align: start;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
-        .product-title { 
-            font-size: 0.85rem; 
-            font-weight: 700; 
-            margin-bottom: 0.2rem;
+        .product-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
             line-height: 1.2;
         }
 
-        /* DESCRIPCIÓN EXPANDIBLE CON "VER MÁS" */
-        .product-desc-wrapper {
-            margin-bottom: 0.6rem;
+        .product-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
         }
 
-        .product-desc { 
-            font-size: 0.72rem; 
-            color: var(--text-muted); 
-            line-height: 1.25;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            transition: all 0.3s ease;
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
         }
 
-        .product-desc.expanded {
-            display: block;
-            overflow: visible;
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .btn-see-more {
-            background: none;
+        .btn-qty {
+            background: rgba(255, 255, 255, 0.1);
             border: none;
-            color: var(--primary);
-            font-size: 0.68rem;
-            font-weight: 700;
-            padding: 2px 0 0 0;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .product-price { 
-            font-size: 1rem; 
-            font-weight: 800; 
-            color: var(--accent); 
-            margin-bottom: 0.4rem; 
-        }
-
-        /* SELECTOR DE CUOTAS */
-        .installments-container {
-            margin-bottom: 0.6rem;
-            background: #111827;
-            padding: 0.4rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .installments-select {
-            width: 100%;
-            background: #030712;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            padding: 0.3rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .installment-detail {
-            font-size: 0.68rem;
-            color: #93c5fd;
-            margin-top: 0.2rem;
-            font-weight: 600;
-        }
-
-        .product-actions { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
-
-        .qty-btn {
-            background: var(--border-color);
-            color: white;
-            border: none;
+            color: #fff;
             width: 28px;
             height: 28px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 0.9rem;
             cursor: pointer;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .qty-btn:hover { background: var(--primary); }
-        .qty-val { font-size: 0.85rem; font-weight: 700; width: 20px; text-align: center; }
+        .btn-qty:hover { background: var(--primary); }
 
-        .cart-summary {
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px dashed var(--primary);
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-        }
-
-        /* MODAL PANTALLA COMPLETA DE IMÁGENES */
-        .image-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
-        }
-
-        .image-modal.active {
-            display: flex;
-        }
-
-        .image-modal-content {
-            max-width: 90%;
-            max-height: 85%;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
-        }
-
-        .image-modal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: #fff;
-            font-size: 2.5rem;
+        .qty-val {
+            font-size: 0.85rem;
             font-weight: bold;
-            cursor: pointer;
-            z-index: 1001;
-            line-height: 1;
+            width: 20px;
+            text-align: center;
         }
 
-        /* FORMULARIO */
+        /* Formularios */
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.85rem;
         }
 
-        .form-group { display: flex; flex-direction: column; }
-        .form-group.full-width { grid-column: span 2; }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
 
-        label {
-            margin-bottom: 0.4rem;
+        .form-group label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
             font-weight: 600;
-            font-size: 0.8rem;
-            color: #e5e7eb;
         }
 
-        input[type="text"], input[type="email"], input[type="tel"] {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: rgba(3, 7, 18, 0.8);
+        .form-control {
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 0.6rem;
             border-radius: 8px;
-            color: white;
             font-size: 0.85rem;
-            box-sizing: border-box;
             outline: none;
         }
 
-        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        .form-control:focus {
+            border-color: var(--border-focus);
         }
 
         .checkbox-group {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 1rem;
-            background-color: rgba(3, 7, 18, 0.8);
-            padding: 0.75rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-        }
-
-        .checkbox-group input { cursor: pointer; width: 16px; height: 16px; accent-color: var(--primary); }
-        .checkbox-group label { margin: 0; cursor: pointer; font-weight: 500; font-size: 0.8rem; }
-
-        .authorized-fields { display: none; }
-
-        .btn-action {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-            color: white;
-            border: none;
-            padding: 0.85rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-            margin-top: 0.8rem;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            box-shadow: none;
-        }
-
-        .btn-secondary:hover { background: var(--border-color); color: #fff; }
-
-        .action-group { display: flex; gap: 0.8rem; }
-
-        .view-step { display: none; }
-        .view-step.active-view { display: block; }
-
-        /* RESULTADOS */
-        .status-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(3, 7, 18, 0.8);
-            padding: 0.8rem 1rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 1.2rem;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
             font-size: 0.8rem;
         }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .info-box {
-            background-color: rgba(3, 7, 18, 0.8);
-            padding: 0.8rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        .info-box span {
-            display: block;
-            font-size: 0.68rem;
-            color: var(--text-muted);
-            margin-bottom: 0.2rem;
-            text-transform: uppercase;
-        }
-
-        .info-box strong { font-size: 0.85rem; color: #ffffff; }
-
-        .selected-items-box {
-            background: rgba(3, 7, 18, 0.8);
-            border: 1px solid var(--border-color);
-            padding: 0.8rem;
-            border-radius: 8px;
-            margin-bottom: 1.2rem;
-        }
-
-        .selected-items-box h4 {
-            margin: 0 0 0.5rem 0;
-            font-size: 0.75rem;
-            color: var(--primary);
-            text-transform: uppercase;
-        }
-
-        .item-row-detail {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            border-bottom: 1px dashed var(--border-color);
-            padding: 0.3rem 0;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .item-row-detail:last-child { border-bottom: none; }
-
-        .security-box {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 1.2rem;
-            border-radius: 12px;
-            text-align: center;
-            margin: 1.2rem 0;
-        }
-
-        .security-box span {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: 5px;
-            color: #ffffff;
-        }
-
-        .btn-whatsapp {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
+        /* Botones de acción */
+        .btn-main {
             width: 100%;
-            background-color: #059669;
-            color: white;
-            text-decoration: none;
+            background: var(--primary);
+            color: #fff;
+            border: none;
             padding: 0.85rem;
             border-radius: 8px;
             font-weight: 700;
+            cursor: pointer;
             font-size: 0.9rem;
-            box-sizing: border-box;
-            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+            margin-top: 1rem;
+            transition: background 0.2s;
         }
 
-        footer {
-            text-align: center;
-            padding: 1.2rem;
+        .btn-main:hover { background: var(--primary-hover); }
+
+        .btn-whatsapp {
+            background: #25d366;
+            margin-top: 0.75rem;
+        }
+
+        .btn-whatsapp:hover { background: #1da851; }
+
+        /* Panel de Resumen */
+        .summary-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
             color: var(--text-muted);
-            font-size: 0.75rem;
+        }
+
+        .summary-row.total {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
             border-top: 1px solid var(--border-color);
-            background: rgba(11, 15, 25, 0.9);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
         }
 
-        /* RESPONSIVO PARA PANTALLAS */
-        @media (max-width: 1024px) {
-            .catalog-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        /* ADAPTACIÓN CELULAR: CUADRÍCULA DE 2 COLUMNAS */
-        @media (max-width: 680px) {
-            .catalog-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 0.6rem;
-            }
-
-            .main-card { padding: 0.85rem; }
-            .hero-title { font-size: 1.4rem; }
-            .product-card { padding: 0.5rem; }
-            .product-img-slider { height: 110px; }
-            .product-title { font-size: 0.78rem; }
-            .product-desc { font-size: 0.68rem; }
-            .product-price { font-size: 0.9rem; }
-            
-            .form-grid, .info-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
-            .action-group { flex-direction: column; }
-            
-            .step-item { font-size: 0.65rem; padding: 0.3rem 0.4rem; }
+        .code-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px dashed var(--accent);
+            color: var(--accent);
+            padding: 0.6rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-top: 0.75rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo" id="headerLogo">LOGÍSTICA <span>NOVA</span></div>
-        <div class="badge-live">Sistema Operativo</div>
+        <div class="logo">LOGÍSTICA <span>NOVA</span></div>
+        <div class="badge-live">SISTEMA DE DESPACHO ACTIVO</div>
     </header>
 
     <main>
         <div class="hero-container">
-            
-            <!-- TARJETA: BUSCADOR DE SEGUIMIENTO -->
+            <h1 class="hero-title">Catálogo Oficial & Sistema de Envíos</h1>
+            <p class="hero-subtitle">Seleccione sus productos y configure su método de entrega y financiación.</p>
+
             <div class="main-card">
-                <div class="section-title">Rastrear Envíos y Pedidos</div>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">Ingrese su número de guía para consultar el estado en tiempo real.</p>
-                <div class="search-box">
-                    <input type="text" id="trackInput" placeholder="Ej: NV-8492-2026">
-                    <button type="button" class="btn-search" id="btnSearch">Buscar</button>
-                </div>
+                <div class="section-title">1. Selección de Productos</div>
+                <div class="products-grid" id="products-container"></div>
+            </div>
 
-                <div class="tracking-result" id="trackingResult">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                        <div>
-                            <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">Número de Guía</span>
-                            <strong id="trackCodeDisplay" style="color: #fff; font-size: 0.95rem;">-</strong>
-                        </div>
-                        <div style="text-align: right;">
-                            <span style="font-size: 0.7rem; color: var(--text-muted); display: block;">Estado Actual</span>
-                            <strong id="trackStatusDisplay" style="color: var(--accent); font-size: 0.85rem;">-</strong>
-                        </div>
+            <div class="main-card">
+                <div class="section-title">2. Datos de Envío y Contacto</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nombre y Apellido</label>
+                        <input type="text" id="nombre" class="form-control" placeholder="Ej: Carlos Pérez">
                     </div>
-
-                    <div class="tracking-timeline">
-                        <div class="timeline-step active" id="step1">
-                            <div class="step-dot"></div>
-                            <span class="step-label">Registrado</span>
-                        </div>
-                        <div class="timeline-step" id="step2">
-                            <div class="step-dot"></div>
-                            <span class="step-label">Procesando</span>
-                        </div>
-                        <div class="timeline-step" id="step3">
-                            <div class="step-dot"></div>
-                            <span class="step-label">En Camino</span>
-                        </div>
-                        <div class="timeline-step" id="step4">
-                            <div class="step-dot"></div>
-                            <span class="step-label">Entregado</span>
-                        </div>
+                    <div class="form-group">
+                        <label>DNI / CUIT</label>
+                        <input type="text" id="dni" class="form-control" placeholder="Ej: 35123456">
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono Móvil</label>
+                        <input type="text" id="telefono" class="form-control" placeholder="Ej: 1123456789">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="email" class="form-control" placeholder="cliente@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Provincia / Localidad</label>
+                        <input type="text" id="localidad" class="form-control" placeholder="Ej: Buenos Aires, CABA">
+                    </div>
+                    <div class="form-group">
+                        <label>Domicilio Completo</label>
+                        <input type="text" id="domicilio" class="form-control" placeholder="Calle, Número, Piso/Depto">
                     </div>
                 </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="tercero-check" onchange="toggleTercero(this.checked)">
+                    <label for="tercero-check">El paquete lo recibirá un tercero autorizado</label>
+                </div>
+
+                <div id="tercero-fields" class="form-grid" style="display: none; margin-top: 0.85rem;">
+                    <div class="form-group">
+                        <label>Nombre del Autorizado</label>
+                        <input type="text" id="tercero-nombre" class="form-control" placeholder="Nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label>DNI del Autorizado</label>
+                        <input type="text" id="tercero-dni" class="form-control" placeholder="Número de documento">
+                    </div>
+                </div>
             </div>
 
-            <!-- INDICADOR DE PASOS -->
-            <div class="step-indicator">
-                <div class="step-item active" id="badgeStep1">1. Catálogo</div>
-                <div class="step-item" id="badgeStep2">2. Envíos</div>
-                <div class="step-item" id="badgeStep3">3. Confirmación</div>
-            </div>
-
-            <!-- ENCABEZADO -->
-            <div id="headerTitle">
-                <h1 class="hero-title" id="mainTitle">Catálogo de Productos</h1>
-                <p class="hero-subtitle" id="mainSubtitle">Seleccione los productos para sumar a su orden de envío.</p>
-            </div>
-
-            <!-- TARJETA PRINCIPAL -->
             <div class="main-card">
+                <div class="section-title">3. Financiación y Resumen de la Orden</div>
                 
-                <!-- PASO 1: CATÁLOGO DE PRODUCTOS -->
-                <div class="view-step active-view" id="viewCatalog">
-                    <div class="section-title">Productos Disponibles (100 Artículos)</div>
-                    
-                    <div class="catalog-grid" id="catalogContainer">
-                        <!-- Generado dinámicamente -->
-                    </div>
-
-                    <div class="cart-summary">
-                        <span>Subtotal Seleccionado:</span>
-                        <strong id="productsTotal" style="font-size: 1.1rem; color: var(--accent);">$0</strong>
-                    </div>
-
-                    <button type="button" class="btn-action" id="btnGoToCheckout">Continuar a Datos de Envío →</button>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Seleccionar Opciones de Pago / Cuotas</label>
+                    <select id="select-cuotas" class="form-control" onchange="calcularTotal()">
+                        <option value="1">1 Pago Contado / Débito (Sin interés)</option>
+                        <option value="3">3 Cuotas Fijas (10% recargo)</option>
+                        <option value="6">6 Cuotas Fijas (20% recargo)</option>
+                        <option value="12">12 Cuotas Fijas (40% recargo)</option>
+                        <option value="18">18 Cuotas Fijas (60% recargo)</option>
+                    </select>
                 </div>
 
-                <!-- PASO 2: FORMULARIO DE ENVÍO -->
-                <div class="view-step" id="viewShipping">
-                    <form id="shippingForm">
-                        <div class="section-title">1. Datos del Titular y Contacto</div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="fullName">Nombre y Apellido *</label>
-                                <input type="text" id="fullName" required placeholder="Ej: Juan Pérez">
-                            </div>
-                            <div class="form-group">
-                                <label for="dni">DNI / Documento *</label>
-                                <input type="text" id="dni" required placeholder="Ej: 38123456">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Teléfono Móvil *</label>
-                                <input type="tel" id="phone" required placeholder="Ej: 1123456789">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Correo Electrónico *</label>
-                                <input type="email" id="email" required placeholder="ejemplo@gmail.com">
-                            </div>
-                        </div>
+                <button class="btn-main" onclick="procesarOrden()">Procesar Orden y Calcular Total</button>
 
-                        <div class="section-title">2. Dirección Exacta de Entrega</div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="province">Provincia *</label>
-                                <input type="text" id="province" required placeholder="Ej: Buenos Aires">
-                            </div>
-                            <div class="form-group">
-                                <label for="city">Localidad / Ciudad *</label>
-                                <input type="text" id="city" required placeholder="Ej: Quilmes">
-                            </div>
-                            <div class="form-group full-width">
-                                <label for="address">Dirección Completa (Calle, Nro, Piso/Dpto) *</label>
-                                <input type="text" id="address" required placeholder="Ej: Av. Rivadavia 1234 4B">
-                            </div>
-                            <div class="form-group">
-                                <label for="crossStreets">Entre Calles *</label>
-                                <input type="text" id="crossStreets" required placeholder="Ej: San Martín y Belgrano">
-                            </div>
-                            <div class="form-group">
-                                <label for="postalCode">Código Postal *</label>
-                                <input type="text" id="postalCode" required placeholder="Ej: C1043">
-                            </div>
-                        </div>
+                <div class="summary-box" id="summary-box" style="display: none;">
+                    <div class="summary-row">
+                        <span>Subtotal Productos:</span>
+                        <span id="subtotal-val">$0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Costo de Envío:</span>
+                        <span id="envio-val">$4.500</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Financiación / Cuotas:</span>
+                        <span id="cuotas-detalle">1x $0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Final:</span>
+                        <span id="total-val">$0</span>
+                    </div>
 
-                        <div class="section-title">3. Recepción del Paquete</div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="thirdPartyReceiver">
-                            <label for="thirdPartyReceiver">¿El paquete lo recibirá otra persona (no el titular)?</label>
-                        </div>
-
-                        <div class="authorized-fields" id="authorizedFields">
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="receiverName">Nombre y Apellido Autorizado *</label>
-                                    <input type="text" id="receiverName" placeholder="Ej: María González">
-                                </div>
-                                <div class="form-group">
-                                    <label for="receiverDni">DNI del Autorizado *</label>
-                                    <input type="text" id="receiverDni" placeholder="Ej: 40987654">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="action-group">
-                            <button type="button" class="btn-action btn-secondary" id="btnBackToCatalog">← Volver al Catálogo</button>
-                            <button type="submit" class="btn-action">Procesar Orden y Calcular Total</button>
-                        </div>
-                    </form>
+                    <div class="code-box" id="code-box">CÓDIGO DE SEGURIDAD: ------</div>
+                    <button class="btn-main btn-whatsapp" onclick="enviarWhatsApp()">Pasar a Facturación y Pago (WhatsApp)</button>
                 </div>
-
-                <!-- PASO 3: CONFIRMACIÓN Y RESULTADOS -->
-                <div class="view-step" id="viewResults">
-                    <div class="status-header">
-                        <div>
-                            <span>Número de Guía:</span>
-                            <strong id="resTrackingCode" style="color: #fff; display: block; font-size: 1rem; margin-top: 2px;">-</strong>
-                        </div>
-                        <div style="text-align: right;">
-                            <span>Estado:</span>
-                            <strong style="color: var(--primary);">Pendiente de Facturación</strong>
-                        </div>
-                    </div>
-
-                    <!-- DESGLOSE DE PRODUCTOS Y CUOTAS SELECCIONADAS -->
-                    <div class="selected-items-box">
-                        <h4>Detalle de Productos y Financiación</h4>
-                        <div id="resItemsList">
-                            <!-- Inyectado por JS -->
-                        </div>
-                    </div>
-
-                    <div class="info-grid">
-                        <div class="info-box">
-                            <span>Destino Confirmado</span>
-                            <strong id="resDestination">-</strong>
-                        </div>
-                        <div class="info-box">
-                            <span>Receptor Asignado</span>
-                            <strong id="resReceiver">-</strong>
-                        </div>
-                        <div class="info-box">
-                            <span>Costo de Productos</span>
-                            <strong id="resProdTotal" style="color: #93c5fd;">-</strong>
-                        </div>
-                        <div class="info-box">
-                            <span>Costo de Envío</span>
-                            <strong id="resShipTotal" style="color: #93c5fd;">-</strong>
-                        </div>
-                    </div>
-
-                    <div class="info-box" style="margin-bottom: 1.2rem; background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
-                        <span style="color: var(--accent);">TOTAL GENERAL A PAGAR</span>
-                        <strong id="resGrandTotal" style="font-size: 1.4rem; color: var(--accent);">$0</strong>
-                    </div>
-
-                    <div class="security-box">
-                        <h3 style="margin: 0; font-size: 0.8rem; color: #93c5fd;">Código de Seguridad Dinámico</h3>
-                        <span id="resSecCode">000000</span>
-                        <p style="margin: 0.3rem 0 0 0; font-size: 0.72rem; color: var(--text-muted);">Conserve este código para recibir su pedido.</p>
-                    </div>
-
-                    <a id="whatsappBtn" href="#" target="_blank" class="btn-whatsapp">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.124.553 4.195 1.603 6.01L.226 23.774l5.882-1.543A11.968 11.968 0 0012.031 24c6.645 0 12.031-5.385 12.031-12.031S18.676 0 12.031 0zm0 22.012c-1.8 0-3.565-.483-5.114-1.401l-.367-.217-3.799.996.996-3.799-.217-.367c-.918-1.549-1.401-3.314-1.401-5.114 0-5.551 4.517-10.068 10.068-10.068s10.068 4.517 10.068 10.068-4.517 10.068-10.068 10.068zm5.525-7.552c-.303-.152-1.792-.885-2.07-.987-.278-.101-.48-.152-.682.152-.202.303-.783.987-.96 1.189-.177.202-.354.227-.657.076-1.353-.666-2.317-1.258-3.197-2.738-.227-.379.227-.379.808-1.54.076-.152.038-.278-.038-.43-.076-.152-.682-1.642-.935-2.248-.246-.593-.497-.512-.682-.522-.177-.01-.379-.01-.581-.01-.202 0-.53.076-.808.379-.278.303-1.061 1.036-1.061 2.526 0 1.491 1.086 2.93 1.238 3.133.152.202 2.135 3.26 5.174 4.575 2.051.884 2.829.96 3.966.808 1.137-.152 2.317-.987 2.645-1.945.328-.96.328-1.794.227-1.945-.101-.152-.379-.227-.682-.379z"/></svg>
-                        Pasar a Facturación y Pago (WhatsApp)
-                    </a>
-
-                    <button type="button" class="btn-action btn-secondary" id="btnRestart" style="margin-top: 0.8rem;">Realizar Nuevo Pedido</button>
-                </div>
-
             </div>
+
         </div>
     </main>
 
-    <!-- MODAL DE PANTALLA COMPLETA PARA FOTOS -->
-    <div class="image-modal" id="imageModal">
-        <span class="image-modal-close" id="closeModal">&times;</span>
-        <img class="image-modal-content" id="modalImg" src="" alt="Vista previa">
-    </div>
-
-    <footer>
-        LOGÍSTICA NOVA &copy; 2026 — Todos los derechos reservados.
-    </footer>
-
-    <script type="module">
-        const CONFIG = {
-            TARGET_WHATSAPP: "5491155012447",
-            PRICE_PER_KM: 350,
-            BASE_FEE: 1500,
-            INTEREST_PER_INSTALLMENT: 0.045
-        };
-
-        // MATRIZ CON 100 ARTÍCULOS, DESCRIPCIONES EXTENDIDAS Y 3 IMÁGENES REALES DIVERSAS
-        const PRODUCTS = [
-            { 
-                id: 1, 
-                name: "Lavarropas a Paleta 7kg", 
-                desc: "Sistema de lavado por vaivén con paleta central súper eficiente. Ofrece un lavado rápido, económico y de muy bajo consumo eléctrico. Ideal para prendas pesadas, de trabajo o uso diario intenso en el hogar.", 
-                price: 185000, 
-                images: [
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500",
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500",
-                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"
-                ] 
+    <script>
+        // Catálogo de Productos (Inspirado en Musimundo)
+        const productos = [
+            {
+                id: 1,
+                nombre: 'Smart TV Samsung 55" 4K UHD',
+                desc: 'Pantalla Crystal Processor 4K, HDR, Tizen OS integrados.',
+                precio: 649999,
+                imagen: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=400&q=80',
+                cant: 0
             },
-            { 
-                id: 2, 
-                name: "Lavarropas Semiautomático 10kg", 
-                desc: "Doble tina integrada con turbina de alto flujo y centrifugado independiente de alta velocidad. Permite lavar y centrifugar en paralelo para ahorrar tiempo.", 
-                price: 240000, 
-                images: [
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500",
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500",
-                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"
-                ] 
+            {
+                id: 2,
+                nombre: 'Notebook Lenovo V15 Ryzen 5',
+                desc: '16GB RAM, SSD 512GB, Pantalla 15.6" FHD Anti-Glare.',
+                precio: 789999,
+                imagen: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=400&q=80',
+                cant: 0
             },
-            { 
-                id: 3, 
-                name: "Lavarropas Automático 6kg", 
-                desc: "Carga frontal con centrifugado de 800 RPM. Cuenta con 15 programas automáticos de lavado, incluyendo ciclo súper rápido de 15 minutos y lavado eco.", 
-                price: 420000, 
-                images: [
-                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500",
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500",
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"
-                ] 
+            {
+                id: 3,
+                nombre: 'Smartphone Motorola Edge 40',
+                desc: '256GB storage, 8GB RAM, Cámara 50MP, Pantalla OLED 144Hz.',
+                precio: 529999,
+                imagen: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80',
+                cant: 0
             },
-            { 
-                id: 4, 
-                name: "Lavarropas Automático 8kg Inverter", 
-                desc: "Motor Inverter ultrasilencioso con garantía de durabilidad. Ahorra hasta un 40% de energía con su tecnología de autopesado e inyección de vapor desinfectante.", 
-                price: 680000, 
-                images: [
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500",
-                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500",
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"
-                ] 
-            },
-            { 
-                id: 5, 
-                name: "Lavarropas Automático 10kg Carga Superior", desc: "Panel táctil digital impermeabilizado, tambor de acero inoxidable con filtro atrapapelusas reforzado y dispensador automático de jabón y suavizante.", price: 590000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"] },
-            { id: 6, name: "Secarropas Centrífugo 5.5kg", desc: "Potente motor de 2800 RPM que quita el agua por completo en solo 3 minutos. Incluye tambor de acero inoxidable y freno instantáneo al abrir la tapa.", price: 110000, images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            { id: 7, name: "Secarropas por Calor 6kg", desc: "Sistema de secado por aire caliente con tambor aluminizado antiarrugas. Incluye conducto flexible para salida de vapor exterior.", price: 310000, images: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500"] },
-            { id: 8, name: "Secarropas por Condensación 8kg", desc: "Tecnología avanzada que recolecta la humedad en un depósito interno. No requiere instalación de tubos al exterior, ideal para departamentos.", price: 520000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500"] },
-            { id: 9, name: "Heladera Cíclica con Congelador 240L", desc: "Diseño compacto ideal para cocinas pequeñas o departamentos. Mantiene excelente frío con un consumo optimizado Clase A.", price: 380000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
-            { id: 10, name: "Heladera con Freezer 300L Cíclica", desc: "Gran almacenamiento interno con estantes de vidrio templado regulables en altura y un congelador amplio con crisper para verduras.", price: 490000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 11, name: "Heladera No Frost 330L", desc: "Sistema de frío seco que evita la formación de escarcha por completo. Circulación de aire uniforme MultiFlow en todos los estantes.", price: 850000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
-            { id: 12, name: "Heladera Inverter No Frost 400L", desc: "Compresor Inverter de máxima eficiencia energética. Incluye dispensador externo de agua helada y panel de control táctil exterior.", price: 1150000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
-            { id: 13, name: "Frigobar Económico 90L", desc: "Heladera bajo mesada ideal para habitaciones, oficinas o quinchos. Incluye pequeño congelador superior y compartimento para botellas grandes.", price: 210000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 14, name: "Freezer Pozo Horizontal 150L Económico", desc: "Doble función seleccionable: congelador o conservador de alimentos. Incluye canasto de alambre deslizante y drenaje frontal para fácil limpieza.", price: 290000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
-            { id: 15, name: "Freezer Pozo Horizontal 300L", desc: "Aislamiento térmico reforzado con poliuretano de alta densidad. Tapa equilibrada con cerradura de seguridad y luz LED interior.", price: 430000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500"] },
-            { id: 16, name: "Freezer Vertical 4 Cajones", desc: "Diseño cómodo en vertical con 4 cajones transparentes para organizar los alimentos por categorías sin mezclar olores.", price: 390000, images: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 17, name: "Exhibidora Vertical de Bebidas 380L", desc: "Puerta de doble vidrio templado antiempañante. Iluminación LED vertical que resalta los productos y controlador digital de temperatura.", price: 620000, images: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500"] },
-            { id: 18, name: "Cocina a Gas 4 Hornallas Económica", desc: "Ancho compacto de 50 cm. Horno con válvula de seguridad térmica, multigas (gas natural o envasado) y enlosado autolimpiante.", price: 210000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 19, name: "Cocina 4 Hornallas Acero Inoxidable", desc: "Frente y mesada completamente en acero inoxidable. Rejillas de hierro fundido ultra resistentes y encendido electrónico a una mano.", price: 340000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 20, name: "Cocina Industrial 4 Hornallas", desc: "Quemadores de alta potencia de fundición de aluminio. Piso de horno con ladrillos refractarios para una cocción pareja tipo pizzera.", price: 420000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 21, name: "Cocina 6 Hornallas Semi Industrial", desc: "Gran capacidad de cocción para gastronomía o familias numerosas. Incluye doble rejilla en horno y parrilla inferior deslizable.", price: 580000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 22, name: "Cocina Industrial 6 Hornallas Gigante", desc: "Construcción pesada para alta producción. Quemadores tipo estrella de máxima radiación calórica y horno con capacidad para asaderas grandes.", price: 790000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 23, name: "Horno Pizzero 4 Moldes Económico", desc: "Interior con piso refractario para pizzas a la piedra perfectas. Reloj pirómetro frontal y quemadores tubulares de alto rendimiento.", price: 260000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 24, name: "Horno Pizzero 6 Moldes", desc: "Incluye base de apoyo de caño estructural. Aislamiento de lana de vidrio para mantener el calor interno de forma sostenida.", price: 340000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 25, name: "Horno Pizzero 12 Bandejas / Moldes", desc: "Doble entrada con control de temperatura independiente por sector. Construcción externa reforzada en acero inox de alta calidad.", price: 580000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 26, name: "Horno Pastelero Convector 4 Bandejas", desc: "Circulación de aire caliente por turbina de convección. Sistema de inyección de humedad para panadería y repostería profesional.", price: 890000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 27, name: "Anafe a Gas 2 Hornallas de Mesa", desc: "Ultra portátil y práctico con cuerpo enlozado. Válvulas de control progresivo de llama para uso en mesada o camping.", price: 45000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 28, name: "Anafe de Inducción Eléctrico 1 Puesto", desc: "Calentamiento ultra rápido por inducción magnética. Vidrio vitrocerámico táctil de fácil limpieza con temporizador digital.", price: 68000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 29, name: "Celular Smartphone 32GB Económico", desc: "Pantalla HD+ de 6.1 pulgadas. Batería de 4000 mAh que garantiza todo un día de autonomía con uso intensivo de aplicaciones.", price: 115000, images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
-            { id: 30, name: "Celular Smartphone 64GB 4G", desc: "Cámara trasera doble de 13 MP con IA, sensor de huella dactilar posterior y desbloqueo por reconocimiento facial.", price: 155000, images: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
-            { id: 31, name: "Celular Smartphone 128GB 4GB RAM", desc: "Pantalla fluida a 90Hz, procesador Octa-Core de alto rendimiento y carga rápida de 18W. Excelente para juegos y redes sociales.", price: 210000, images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
-            { id: 32, name: "Celular Básico con Teclado y Linterna", desc: "Teléfono clásico ultra resistente. Batería de extra larga duración (hasta 1 semana en espera), linterna LED potente y radio FM.", price: 35000, images: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
-            { id: 33, name: "Tablet 7\" Económica para Niños", desc: "Incluye funda protectora antigolpes de silicona suave con soporte. Software preinstalado con aplicaciones educativas y control parental.", price: 72000, images: ["https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500", "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
-            { id: 34, name: "Tablet 10.1\" Octa Core 64GB", desc: "Pantalla IPS Full HD, doble parlante estéreo y cuerpo liviano de aluminio. Ideal para clases virtuales, lectura o reproducción de videos.", price: 165000, images: ["https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
-            { id: 35, name: "Smartwatch deportivo básico", desc: "Pantalla a color touch. Mide ritmo cardíaco, pasos, calorías quemadas y notifica llamadas entrantes o mensajes de WhatsApp.", price: 28000, images: ["https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500"] },
-            { id: 36, name: "Microondas Digital 20L", desc: "Panel digital con reloj integrado, opción de descongelado por peso o tiempo y plato giratorio de vidrio de alta resistencia.", price: 145000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
-            { id: 37, name: "Microondas con Grill 25L", desc: "Interior de acero inoxidable con función doradora de Grill halógeno para gratinar pizzas, carnes y empanadas rápidamente.", price: 189000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
-            { id: 38, name: "Horno Eléctrico de Mesa 30L", desc: "Selector de temperatura de 100°C a 250°C. Incluye bandeja junta migas, rejilla cromada y función de cocción superior/inferior.", price: 92000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
-            { id: 39, name: "Horno Eléctrico Grande 60L", desc: "Incluye dos hornallas eléctricas integradas en el techo superior. Espacio suficiente para dos asaderas de tamaño grande simultáneas.", price: 168000, images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500"] },
-            { id: 40, name: "Freidora de Aire Digital 4L", desc: "Cocina hasta un 85% menos de grasa utilizando aire caliente circulante. Pantalla digital táctil con 8 programas preconfigurados.", price: 98000, images: ["https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 41, name: "Freidora de Aire Familiar 6.5L", desc: "Gran capacidad para un pollo entero o 1kg de papas. Ventana transparente de inspección frontal con iluminación interna.", price: 145000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1626197031507-c170a04d83e0?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 42, name: "Cafetera de Goteo 12 Tazas", desc: "Jarra de vidrio templado graduada con placa calefactora que mantiene el café caliente. Filtro de nailon lavable sin necesidad de papel.", price: 38000, images: ["https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500", "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500", "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500"] },
-            { id: 43, name: "Cafetera Express Automática 15 Bar", desc: "Bomba italiana de alta presión para un espresso cremoso. Incluye tubo espumador orientable de vapor para capuchinos perfectos.", price: 185000, images: ["https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500", "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500", "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500"] },
-            { id: 44, name: "Pava Eléctrica Plástica 1.7L", desc: "Filtro de impurezas extraíble y medidor de nivel de agua transparente. Selector automático con posición especial para agua de mate.", price: 24000, images: ["https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500", "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500", "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500"] },
-            { id: 45, name: "Pava Eléctrica Acero Inoxidable Regulable", desc: "Cuerpo íntegro en acero pulido con selector digital. Mantiene la temperatura deseada constante por más de 30 minutos.", price: 42000, images: ["https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500", "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?w=500", "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500"] },
-            { id: 46, name: "Licuadora de Pie 1.5L 500W", desc: "Cuchillas de acero inoxidable ultra afiladas y jarra graduada. Apta para batidos, jugos y licuados cremosos.", price: 42000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 47, name: "Licuadora de Vidrio 800W Pica Hielo", desc: "Potente motor reforzado y jarra de vidrio térmico resistente a cambios bruscos de temperatura. Cuchilla especial de 6 hojas pica hielo.", price: 65000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 48, name: "Mixer Minipimer 600W con Accesorios", desc: "Procesador de mano con varilla de acero inoxidable apta para calientes. Incluye vaso medidor, batidor de alambre y vaso picador.", price: 48000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 49, name: "Procesadora de Alimentos Multifunción", desc: "Procesa, pica, ralla, rebana y amasa con sus discos intercambiables de acero inox. Doble traba de seguridad en la tapa.", price: 98000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 50, name: "Tostadora Eléctrica 2 Panes", desc: "Ranuras extra anchas para pan lactal o artesanal. Funciones especiales para cancelar, recalentar y descongelar pan de inmediato.", price: 32000, images: ["https://images.unsplash.com/photo-1583634674352-7864d5e1698b?w=500", "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 51, name: "Sandwichera Grill Doble", desc: "Placas con antiadherente de teflón que cortan y sellan dos sándwiches en minutos. Luces piloto indicadoras de encendido y listo.", price: 29000, images: ["https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500", "https://images.unsplash.com/photo-1583634674352-7864d5e1698b?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 52, name: "Exprimido de Cítricos Eléctrico", desc: "Encendido automático por presión de la fruta sobre el cono. Incluye dos conos adaptables para naranjas, pomelos o limones.", price: 22000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500"] },
-            { id: 53, name: "Batidora de Mano 5 Velocidades", desc: "Botón expulsor de accesorios con función Turbo para máxima potencia instantánea. Trae batidores de claras y ganchos amasadore cromados.", price: 29000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 54, name: "Batidora Planetaria con Bowl de Acero 4.5L", desc: "Acción de mezclado planetario que cubre todo el tazón. Incluye batidor de alambre, paleta plana y gancho para masas pesadas.", price: 135000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 55, name: "Aspiradora Tricapa de Arrastre 1800W", desc: "Filtro HEPA que retiene el 99.9% de ácaros y polvo. Enrollacable automático, indicador de bolsa llena y cepillo multisuperficie.", price: 88000, images: ["https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500", "https://images.unsplash.com/photo-1618103138281-99609e8d353b?w=500", "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=500"] },
-            { id: 56, name: "Aspiradora Robot Wi-Fi Económica", desc: "Barre y aspira de forma autónoma con sensores inteligentes anti-choque y anti-caída. Vuelve sola a su base para recargar la batería.", price: 195000, images: ["https://images.unsplash.com/photo-1618103138281-99609e8d353b?w=500", "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=500", "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500"] },
-            { id: 57, name: "Aspiradora Robot con Mopa y Mapeo", desc: "Navegación láser en tiempo real que crea mapas de la casa en la App móvil. Aspira y trapea el piso al mismo tiempo.", price: 340000, images: ["https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=500", "https://images.unsplash.com/photo-1618103138281-99609e8d353b?w=500", "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500"] },
-            { id: 58, name: "Smart TV 32\" HD Android TV", desc: "Sistema oficial Android TV con asistente por voz en el control remoto. Descarga Netflix, Disney+, Prime y miles de apps en Google Play.", price: 240000, images: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500", "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500"] },
-            { id: 59, name: "Smart TV 43\" Full HD Borderless", desc: "Pantalla sin marcos metálicos de máximo aprovechamiento visual. Chromecast integrado para transmitir el celular al televisor al instante.", price: 360000, images: ["https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500", "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500"] },
-            { id: 60, name: "Smart TV 50\" 4K UHD Google TV", desc: "Resolución 4K Real con soporte HDR10+. Procesador de imagen optimizado con IA y sonido envolvente Dolby Audio.", price: 520000, images: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500", "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500"] },
-            { id: 61, name: "Smart TV 65\" 4K QLED", desc: "Tecnología Quantum Dot de más de 1000 millones de colores. Pantalla ultra delgada de 120Hz fluida ideal para consolas de última generación.", price: 980000, images: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500", "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500"] },
-            { id: 62, name: "Soporte TV Móvil Articulado 32 a 55\"", desc: "Brazo doble de acero reforzado extensible. Permite inclinar y girar el televisor en todas las direcciones de forma segura.", price: 22000, images: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500", "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500"] },
-            { id: 63, name: "Parlante Bluetooth Portátil Resitente al Agua", desc: "Certificación IPX7 sumergible. Potente sonido envolvente con radiadores pasivos de bajos y batería para 10 horas seguidas.", price: 38000, images: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500", "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500", "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500"] },
-            { id: 64, name: "Torre de Sonido Bluetooth 10000W PMPO", desc: "Consola de luces LED RGB rítmicas. Incluye entrada para guitarra, entrada para micrófono y función de Karaoke con eco regulable.", price: 165000, images: ["https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500", "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500"] },
-            { id: 65, name: "Barra de Sonido 2.1 con Subwoofer Inalámbrico", desc: "Sistema de cine en casa con conexión Bluetooth, Óptica y HDMI ARC. Graves potentes sin cables adicionales en la sala.", price: 195000, images: ["https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=500", "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"] },
-            { id: 66, name: "Auriculares Inalámbricos TWS In-Ear", desc: "Conexión Bluetooth 5.3 ultra estable sin demora. Estuche compacto de carga rápida que provee hasta 20 horas totales de reproducción.", price: 24000, images: ["https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500", "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"] },
-            { id: 67, name: "Auriculares Bluetooth Over-Ear Diadema", desc: "Almohadillas ergonómicas de cuero sintético con cancelación pasiva de ruido externo. Estructura plegable con micrófono para llamadas.", price: 42000, images: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500", "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"] },
-            { id: 68, name: "Aire Acondicionado Split 3000 Fibras F/C", desc: "Climatizador Frío/Calor de alta eficiencia. Utiliza refrigerante ecológico R410a con filtros lavables purificadores de ambiente.", price: 680000, images: ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500", "https://images.unsplash.com/photo-1631545821013-1768832a1291?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
-            { id: 69, name: "Aire Acondicionado Inverter 4500 Frigorías", desc: "Ahorra más del 50% de electricidad manteniendo la temperatura ambiente constante sin picos de consumo. Súper silencioso.", price: 950000, images: ["https://images.unsplash.com/photo-1631545821013-1768832a1291?w=500", "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
-            { id: 70, name: "Ventilador de Pie 20\" Palas Metálicas", desc: "Motor industrial de 90W con 3 velocidades. Hélice metálica balanceada de alto flujo de aire y cabezal reclinable con oscilación 180°.", price: 58000, images: ["https://images.unsplash.com/photo-1618941723681-37053e198656?w=500", "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500", "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500"] },
-            { id: 71, name: "Ventilador de Torre Silencioso", desc: "Diseño moderno y estilizado sin aspas expuestas. Control remoto con temporizador apaga solo hasta 7.5 horas.", price: 75000, images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500", "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500"] },
-            { id: 72, name: "Calefactor Convector Eléctrico 2000W", desc: "Calienta ambientes cerrados rápidamente sin consumir oxígeno. Termostato ambiental regulable y patas de apoyo o fijación a pared.", price: 52000, images: ["https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500", "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
-            { id: 73, name: "Estufa Garretera halógena 3 Velas", desc: "Radiación calórica instantánea con 3 tubos de halógeno regulables de forma independiente. Traba de corte automático anticaídas.", price: 34000, images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?w=500", "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500", "https://images.unsplash.com/photo-1618941723681-37053e198656?w=500"] },
-            { id: 74, name: "Plancha a Vapor Cerámica", desc: "Suela antiadherente de cerámica fluida. Golpe de vapor horizontal y vertical con sistema anticalcáreo integrado.", price: 35000, images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500"] },
-            { id: 75, name: "Plancha Vertical a Vapor de Mano", desc: "Plancha directamente prendas colgadas en perchas o cortinas. Desinfecta y elimina olores por vapor continuo en segundos.", price: 42000, images: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500"] },
-            { id: 76, name: "Secador de Pelo Iónico 2200W", desc: "Generador de iones negativos que reduce el encrespamiento y aporta brillo natural al cabello. Incluye boquilla concentradora y difusor.", price: 48000, images: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", "https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            { id: 77, name: "Planchita de Pelo Titanio 230°C", desc: "Placas flotantes de titanio que mantienen la temperatura homogénea. Ideal para alisados progresivos y peinados profesionales.", price: 39000, images: ["https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            { id: 78, name: "Cortadora de Pelo y Barba Recargable", desc: "Cuchillas de acero inoxidable lavables. Batería de litio de rápida carga que brinda 90 minutos de uso continuo inalámbrico.", price: 26000, images: ["https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            { id: 79, name: "Afeitadora Rotativa 3 Cabezales", desc: "Cabezales flotantes multidireccionales que se adaptan a los contornos del rostro. 100% resistente al agua para afeitado en seco o ducha.", price: 45000, images: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", "https://images.unsplash.com/photo-1621607512214-68297480165e?w=500", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500"] },
-            { id: 80, name: "Balanza Digital de Baño Vidrio Templado", desc: "Sensor de alta precisión de 100g en 100g hasta 180kg. Pantalla LCD retroiluminada de fácil lectura y encendido al pisar.", price: 18000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 81, name: "Balanza de Cocina Digital 1g a 5kg", desc: "Esencial para repostería y recetas exactas. Función Tare para descontar el peso del recipiente y cambio de unidades de gramos a oz.", price: 14000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 82, name: "Lámpara LED Escritorio Flexible", desc: "Brazo totalmente orientable con panel táctil de 3 niveles de intensidad de luz blanca sin parpadeos para proteger la vista.", price: 19000, images: ["https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?w=500", "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500"] },
-            { id: 83, name: "Humidificador Difusor Aromas LED", desc: "Capacidad de 300ml ultrasónico. Produce una niebla fina relajante con luces LED RGB cambiantes y corte automático de seguridad.", price: 22000, images: ["https://images.unsplash.com/photo-1602928321679-560bb453f190?w=500", "https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?w=500", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500"] },
-            { id: 84, name: "Cámara de Seguridad IP Wi-Fi Exterior", desc: "Resistente a la intemperie (IP66). Visión nocturna por infrarrojos, detección de movimiento y alertas en vivo a la App del celular.", price: 42000, images: ["https://images.unsplash.com/photo-1557862921-37829c790f19?w=500", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500", "https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500"] },
-            { id: 85, name: "Cámara Domo Interior 360° HD", desc: "Rotación motorizada controlable desde la App. Audio bidireccional para escuchar y hablar a través de la cámara desde cualquier lugar.", price: 32000, images: ["https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500", "https://images.unsplash.com/photo-1557862921-37829c790f19?w=500", "https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500"] },
-            { id: 86, name: "Cerradura Digital Inteligente Biométrica", desc: "Apertura por lector de huella dactilar, clave numérica táctil, tarjeta RFID de proximidad o llave mecánica tradicional.", price: 135000, images: ["https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=500", "https://images.unsplash.com/photo-1557862921-37829c790f19?w=500"] },
-            { id: 87, name: "Consola de Videojuegos Portátil Retro", desc: "Pantalla a color IPS de 3.5 pulgadas. Incluye más de 500 juegos clásicos precargados y salida de audio/video para conectar a la TV.", price: 28000, images: ["https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500", "https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
-            { id: 88, name: "Joystick Inalámbrico Bluetooth PC/Console", desc: "Mando ergonómico con motores de vibración dual incorporados y batería de litio recargable por USB tipo C.", price: 34000, images: ["https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=500", "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500", "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"] },
-            { id: 89, name: "Notebook 14\" Celeron 4GB RAM 128GB SSD", desc: "Diseño ultraliviano de 1.3kg con disco de estado sólido SSD de rápido encendido. Excelente para tareas escolares y oficina web.", price: 340000, images: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500", "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500", "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"] },
-            { id: 90, name: "Notebook 15.6\" Core i3 8GB RAM 256GB SSD", desc: "Pantalla Full HD antirreflejo con teclado numérico incorporado. Excelente fluidez multitarea para trabajo pesado o streaming.", price: 520000, images: ["https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500", "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500", "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500"] },
-            { id: 91, name: "Impresora Multifunción Wi-Fi Tinta Continua", desc: "Sistema de tanques de tinta recargables que reduce el costo por página en un 90%. Imprime, escanea y copia sin cables vía Wi-Fi.", price: 280000, images: ["https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500", "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500", "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500"] },
-            { id: 92, name: "Teclado y Mouse Inalámbrico Kit", desc: "Conexión USB de 2.4 GHz mediante un único receptor inalámbrico. Teclas silenciosas con diseño ergonómico de larga durabilidad.", price: 22000, images: ["https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500", "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500", "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500"] },
-            { id: 93, name: "Mochila Porta Notebook Impermeable", desc: "Tela Oxford repelente al agua con bolsillo especial acolchado antirrobo para laptops de hasta 15.6\". Incluye puerto USB externo.", price: 29000, images: ["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500", "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 94, name: "Termo de Acero Inoxidable 1 Litro", desc: "Doble pared con aislamiento de vacío que mantiene líquidos calientes o fríos por 24 horas. Incluye tapón cebador ergonómico.", price: 32000, images: ["https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500", "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500"] },
-            { id: 95, name: "Set de Ollas antiadherentes 5 Piezas", desc: "Aluminio de alto grosor con triple capa de teflón reforzado antiadherente. Tapas de vidrio templado con válvula de escape de vapor.", price: 78000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 96, name: "Sartén de Aluminio Forjado 24cm", desc: "Distribución homogénea del calor sin deformaciones. Fondo apto para cocinas a gas, eléctricas e inducción.", price: 24000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] },
-            { id: 97, name: "Parrilla Eléctrica de Mesa con Tapa", desc: "Parrilla antiadherente libre de humo ideal para departamentos. Bandeja recuperadora de grasas inferior extraíble y lavable.", price: 68000, images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500"] },
-            { id: 98, name: "Fabrica de Pastas Caseras Manual", desc: "Estructura de acero cromado pesado. Estiradora con 9 niveles de grosor de masa y accesorio de corte para tallarines o cintas.", price: 48000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 99, name: "Corta Fiambre Hogareño Disco 19cm", desc: "Disco dentado de acero inox reforzado. Regulador de espesor milimétrico de corte para fiambres, quesos o carnes.", price: 125000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=500", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500"] },
-            { id: 100, name: "Termotanque Eléctrico 50 Litros", desc: "Aislamiento térmico ecológico de poliuretano expandido. Válvula de seguridad contra sobrepresión e indicador frontal analógico de temperatura.", price: 195000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500", "https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500"] }
+            {
+                id: 4,
+                nombre: 'Auriculares Inalámbricos Sony WH-CH520',
+                desc: 'Bluetooth, hasta 50hs de batería, micrófono integrado.',
+                precio: 89999,
+                imagen: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80',
+                cant: 0
+            }
         ];
 
-        // Estado Global con cuotas por producto
-        const state = {
-            cart: Object.fromEntries(PRODUCTS.map(p => [p.id, 0])),
-            installments: Object.fromEntries(PRODUCTS.map(p => [p.id, 1])),
-            createdTracking: ""
-        };
+        const COSTO_ENVIO = 4500;
+        let codigoSeguridadGenerado = "";
 
-        // Renderizar Catálogo en el DOM
-        function renderCatalog() {
-            const container = document.getElementById('catalogContainer');
-            container.innerHTML = PRODUCTS.map(p => {
-                const imagesHTML = p.images.map(imgSrc => 
-                    `<img src="${imgSrc}" alt="${p.name}" class="product-img" loading="lazy" data-fullsrc="${imgSrc}">`
-                ).join('');
+        // Renderizar Productos
+        function renderProductos() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
 
-                // Ocultar opción de 12 cuotas si el producto cuesta menos de 50.000
-                const allow12 = p.price >= 50000;
-
-                return `
-                <div class="product-card">
-                    <span class="product-number-badge">#${p.id}</span>
-                    <div>
-                        <div class="product-img-slider">
-                            ${imagesHTML}
+            productos.forEach((prod, idx) => {
+                container.innerHTML += `
+                    <div class="product-card">
+                        <div>
+                            <img src="${prod.imagen}" alt="${prod.nombre}" class="product-img">
+                            <div class="product-title">${prod.nombre}</div>
+                            <div class="product-desc">${prod.desc}</div>
                         </div>
-                        <div class="product-title">${p.name}</div>
-                        <div class="product-desc-wrapper">
-                            <div class="product-desc" id="desc-${p.id}">${p.desc}</div>
-                            <button type="button" class="btn-see-more" data-id="${p.id}" id="btn-more-${p.id}">Ver más</button>
+                        <div>
+                            <div class="product-price">$${prod.precio.toLocaleString('es-AR')}</div>
+                            <div class="qty-controls">
+                                <button class="btn-qty" onclick="cambiarCant(${idx}, -1)">-</button>
+                                <span class="qty-val">${prod.cant}</span>
+                                <button class="btn-qty" onclick="cambiarCant(${idx}, 1)">+</button>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="product-price">$${p.price.toLocaleString('es-AR')}</div>
-                        
-                        <div class="installments-container">
-                            <select class="installments-select" data-price="${p.price}" data-id="${p.id}">
-                                <option value="1" ${state.installments[p.id] === 1 ? 'selected' : ''}>1 cuota sin interés</option>
-                                <option value="3" ${state.installments[p.id] === 3 ? 'selected' : ''}>3 cuotas (+13.5%)</option>
-                                <option value="6" ${state.installments[p.id] === 6 ? 'selected' : ''}>6 cuotas (+27.0%)</option>
-                                ${allow12 ? `<option value="12" ${state.installments[p.id] === 12 ? 'selected' : ''}>12 cuotas (+54.0%)</option>` : ''}
-                            </select>
-                            <div class="installment-detail" id="inst-detail-${p.id}">
-                                1x $${p.price.toLocaleString('es-AR')}
-                            </div>
-                        </div>
-
-                        <div class="product-actions">
-                            <button type="button" class="qty-btn" data-action="decrease" data-id="${p.id}">-</button>
-                            <span class="qty-val" id="qty-${p.id}">${state.cart[p.id]}</span>
-                            <button type="button" class="qty-btn" data-action="increase" data-id="${p.id}">+</button>
-                        </div>
-                    </div>
-                </div>
-            `}).join('');
-        }
-
-        // Calcular costo total sumando las cuotas seleccionadas de cada artículo
-        function calculateProductsTotal() {
-            let total = 0;
-            PRODUCTS.forEach(p => {
-                const qty = state.cart[p.id];
-                if (qty > 0) {
-                    const count = state.installments[p.id] || 1;
-                    let unitPrice = p.price;
-                    if (count > 1) {
-                        unitPrice = p.price * (1 + (count * CONFIG.INTEREST_PER_INSTALLMENT));
-                    }
-                    total += Math.round(unitPrice) * qty;
-                }
+                `;
             });
-            document.getElementById('productsTotal').textContent = `$${total.toLocaleString('es-AR')}`;
-            return total;
         }
 
-        // Manejo de eventos en el catálogo
-        document.getElementById('catalogContainer').addEventListener('click', (e) => {
-            // Manejar "Ver más" de descripciones
-            const btnMore = e.target.closest('.btn-see-more');
-            if (btnMore) {
-                const id = btnMore.dataset.id;
-                const descEl = document.getElementById(`desc-${id}`);
-                if (descEl.classList.contains('expanded')) {
-                    descEl.classList.remove('expanded');
-                    btnMore.textContent = 'Ver más';
-                } else {
-                    descEl.classList.add('expanded');
-                    btnMore.textContent = 'Ver menos';
-                }
+        function cambiarCant(index, cambio) {
+            if (productos[index].cant + cambio >= 0) {
+                productos[index].cant += cambio;
+                renderProductos();
+                calcularTotal();
+            }
+        }
+
+        function toggleTercero(checked) {
+            document.getElementById('tercero-fields').style.display = checked ? 'grid' : 'none';
+        }
+
+        function calcularTotal() {
+            const subtotal = productos.reduce((acc, p) => acc + (p.precio * p.cant), 0);
+            if (subtotal === 0) {
+                document.getElementById('summary-box').style.display = 'none';
+                return subtotal;
+            }
+
+            const cuotas = parseInt(document.getElementById('select-cuotas').value);
+            let recargo = 0;
+
+            switch (cuotas) {
+                case 3: recargo = 0.10; break;
+                case 6: recargo = 0.20; break;
+                case 12: recargo = 0.40; break;
+                case 18: recargo = 0.60; break;
+                default: recargo = 0; break;
+            }
+
+            const subtotalConEnvio = subtotal + COSTO_ENVIO;
+            const totalFinal = subtotalConEnvio * (1 + recargo);
+            const valorCuota = totalFinal / cuotas;
+
+            document.getElementById('subtotal-val').innerText = `$${subtotal.toLocaleString('es-AR')}`;
+            document.getElementById('envio-val').innerText = `$${COSTO_ENVIO.toLocaleString('es-AR')}`;
+            document.getElementById('cuotas-detalle').innerText = `${cuotas}x de $${Math.round(valorCuota).toLocaleString('es-AR')}`;
+            document.getElementById('total-val').innerText = `$${Math.round(totalFinal).toLocaleString('es-AR')}`;
+
+            return totalFinal;
+        }
+
+        function procesarOrden() {
+            const subtotal = productos.reduce((acc, p) => acc + (p.precio * p.cant), 0);
+            const nombre = document.getElementById('nombre').value.trim();
+
+            if (subtotal === 0) {
+                alert('Por favor, seleccione al menos un producto del catálogo.');
                 return;
             }
 
-            // Manejar pantalla completa en imágenes
-            const imgEl = e.target.closest('.product-img');
-            if (imgEl) {
-                const fullSrc = imgEl.dataset.fullsrc;
-                if (fullSrc) {
-                    document.getElementById('modalImg').src = fullSrc;
-                    document.getElementById('imageModal').classList.add('active');
-                }
+            if (!nombre) {
+                alert('Por favor, ingrese el nombre del destinatario.');
                 return;
             }
 
-            // Manejar botones de cantidad
-            const btnQty = e.target.closest('.qty-btn');
-            if (btnQty) {
-                const id = Number(btnQty.dataset.id);
-                const isIncrease = btnQty.dataset.action === 'increase';
-                
-                state.cart[id] = Math.max(0, state.cart[id] + (isIncrease ? 1 : -1));
-                document.getElementById(`qty-${id}`).textContent = state.cart[id];
-                calculateProductsTotal();
-            }
-        });
-
-        // Evento para cerrar modal de imagen
-        document.getElementById('closeModal').addEventListener('click', () => {
-            document.getElementById('imageModal').classList.remove('active');
-        });
-        document.getElementById('imageModal').addEventListener('click', (e) => {
-            if (e.target.id === 'imageModal') {
-                document.getElementById('imageModal').classList.remove('active');
-            }
-        });
-
-        // Cambio de selector de cuotas
-        document.getElementById('catalogContainer').addEventListener('change', (e) => {
-            const select = e.target.closest('.installments-select');
-            if (!select) return;
-
-            const basePrice = Number(select.dataset.price);
-            const productId = Number(select.dataset.id);
-            const count = Number(select.value);
-
-            state.installments[productId] = count;
-
-            let totalPrice = basePrice;
-            if (count > 1) {
-                const totalInterestPercent = count * CONFIG.INTEREST_PER_INSTALLMENT;
-                totalPrice = basePrice * (1 + totalInterestPercent);
-            }
-
-            const installmentAmount = Math.round(totalPrice / count);
-            const detailLabel = document.getElementById(`inst-detail-${productId}`);
+            // Generar código de seguridad de 6 dígitos aleatorio
+            codigoSeguridadGenerado = Math.floor(100000 + Math.random() * 900000).toString();
+            document.getElementById('code-box').innerText = `CÓDIGO DE SEGURIDAD: ${codigoSeguridadGenerado}`;
             
-            detailLabel.textContent = `${count}x de $${installmentAmount.toLocaleString('es-AR')}`;
-            calculateProductsTotal();
-        });
-
-        function setStep(stepNumber) {
-            document.querySelectorAll('.view-step').forEach(v => v.classList.remove('active-view'));
-            
-            document.getElementById('badgeStep1').className = `step-item ${stepNumber === 1 ? 'active' : stepNumber > 1 ? 'completed' : ''}`;
-            document.getElementById('badgeStep2').className = `step-item ${stepNumber === 2 ? 'active' : stepNumber > 2 ? 'completed' : ''}`;
-            document.getElementById('badgeStep3').className = `step-item ${stepNumber === 3 ? 'active' : ''}`;
-
-            const mainTitle = document.getElementById('mainTitle');
-            const mainSubtitle = document.getElementById('mainSubtitle');
-
-            if (stepNumber === 1) {
-                document.getElementById('viewCatalog').classList.add('active-view');
-                mainTitle.textContent = "Catálogo de Productos";
-                mainSubtitle.textContent = "Seleccione los productos para sumar a su orden de envío.";
-            } else if (stepNumber === 2) {
-                document.getElementById('viewShipping').classList.add('active-view');
-                mainTitle.textContent = "Datos de Envío y Facturación";
-                mainSubtitle.textContent = "Ingrese la ubicación exacta para calcular el despacho.";
-            } else if (stepNumber === 3) {
-                document.getElementById('viewResults').classList.add('active-view');
-                mainTitle.textContent = "Resumen de su Orden";
-                mainSubtitle.textContent = "Verifique los montos totales y confirme vía WhatsApp.";
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            calcularTotal();
+            document.getElementById('summary-box').style.display = 'block';
         }
 
-        document.getElementById('btnGoToCheckout').addEventListener('click', () => setStep(2));
-        document.getElementById('btnBackToCatalog').addEventListener('click', () => setStep(1));
-        document.getElementById('headerLogo').addEventListener('click', () => setStep(1));
-        
-        document.getElementById('btnRestart').addEventListener('click', () => {
-            PRODUCTS.forEach(p => {
-                state.cart[p.id] = 0;
-                state.installments[p.id] = 1;
-            });
-            renderCatalog();
-            calculateProductsTotal();
-            document.getElementById('shippingForm').reset();
-            document.getElementById('authorizedFields').style.display = 'none';
-            setStep(1);
-        });
+        function enviarWhatsApp() {
+            const nombre = document.getElementById('nombre').value.trim();
+            const dni = document.getElementById('dni').value.trim();
+            const localidad = document.getElementById('localidad').value.trim();
+            const domicilio = document.getElementById('domicilio').value.trim();
+            const cuotas = document.getElementById('select-cuotas').value;
+            const totalText = document.getElementById('total-val').innerText;
 
-        // Búsqueda de Rastreo
-        document.getElementById('btnSearch').addEventListener('click', () => {
-            const inputVal = document.getElementById('trackInput').value.trim().toUpperCase();
-            const resultBox = document.getElementById('trackingResult');
-            const codeDisplay = document.getElementById('trackCodeDisplay');
-            const statusDisplay = document.getElementById('trackStatusDisplay');
+            let resumenProds = productos
+                .filter(p => p.cant > 0)
+                .map(p => `• ${p.nombre} (x${p.cant})`)
+                .join('%0A');
 
-            if (!inputVal) {
-                alert('Por favor ingrese un código de guía válido.');
-                return;
-            }
+            let msj = `*NUEVA ORDEN DE COMPRA - LOGÍSTICA NOVA*%0A%0A`;
+            msj += `*Cliente:* ${nombre} (DNI: ${dni})%0A`;
+            msj += `*Destino:* ${domicilio}, ${localidad}%0A%0A`;
+            msj += `*Productos:*%0A${resumenProds}%0A%0A`;
+            msj += `*Plan Elegido:* ${cuotas} Pago(s)%0A`;
+            msj += `*Total Final:* ${totalText}%0A`;
+            msj += `*Código de Verificación:* ${codigoSeguridadGenerado}`;
 
-            resultBox.style.display = 'block';
-            codeDisplay.textContent = inputVal;
-
-            for (let i = 1; i <= 4; i++) {
-                document.getElementById(`step${i}`).classList.remove('active');
-            }
-
-            if (inputVal === state.createdTracking) {
-                statusDisplay.textContent = "Pendiente de Facturación";
-                document.getElementById('step1').classList.add('active');
-            } else {
-                const hash = inputVal.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-                const step = (hash % 3) + 2;
-
-                const statusTexts = {
-                    2: "Procesando en Depósito",
-                    3: "En Camino al Destino",
-                    4: "Entregado"
-                };
-
-                statusDisplay.textContent = statusTexts[step];
-
-                for (let i = 1; i <= step; i++) {
-                    document.getElementById(`step${i}`).classList.add('active');
-                }
-            }
-        });
-
-        // Terceros
-        const thirdPartyCheckbox = document.getElementById('thirdPartyReceiver');
-        const authorizedFields = document.getElementById('authorizedFields');
-        const receiverNameInput = document.getElementById('receiverName');
-        const receiverDniInput = document.getElementById('receiverDni');
-
-        thirdPartyCheckbox.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                authorizedFields.style.display = 'block';
-                receiverNameInput.setAttribute('required', 'true');
-                receiverDniInput.setAttribute('required', 'true');
-            } else {
-                authorizedFields.style.display = 'none';
-                receiverNameInput.removeAttribute('required');
-                receiverDniInput.removeAttribute('required');
-            }
-        });
-
-        function calculateDistance(address, city, province) {
-            let hash = 0;
-            const fullStr = (address + city + province).toLowerCase();
-            for (let i = 0; i < fullStr.length; i++) {
-                hash = fullStr.charCodeAt(i) + ((hash << 5) - hash);
-            }
-            return (Math.abs(hash) % 73) + 12;
+            // Redirección a WhatsApp (reemplazar número según corresponda)
+            window.open(`https://wa.me/5491100000000?text=${msj}`, '_blank');
         }
 
-        // Envío del Formulario
-        document.getElementById('shippingForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const prodSubtotal = calculateProductsTotal();
-            
-            let itemsListText = "";
-            let itemsHtmlContainer = "";
-
-            PRODUCTS.forEach(p => {
-                const qty = state.cart[p.id];
-                if (qty > 0) {
-                    const instCount = state.installments[p.id] || 1;
-                    let unitFinal = p.price;
-                    if (instCount > 1) {
-                        unitFinal = Math.round(p.price * (1 + (instCount * CONFIG.INTEREST_PER_INSTALLMENT)));
-                    }
-                    const lineTotal = unitFinal * qty;
-                    const instText = instCount === 1 ? "1 pago" : `${instCount} cuotas de $${Math.round(unitFinal / instCount).toLocaleString('es-AR')}`;
-
-                    itemsListText += `  • [#${p.id}] ${p.name} x${qty} | Financiación: ${instText} | Total: $${lineTotal.toLocaleString('es-AR')}\n`;
-                    
-                    itemsHtmlContainer += `
-                        <div class="item-row-detail">
-                            <div>
-                                <strong>#${p.id} ${p.name}</strong> (x${qty})<br>
-                                <span style="font-size: 0.68rem; color: #93c5fd;">Plan: ${instText}</span>
-                            </div>
-                            <div style="text-align: right; font-weight: 700; color: #fff;">
-                                $${lineTotal.toLocaleString('es-AR')}
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-
-            if (itemsListText === "") {
-                itemsListText = "  • Sin productos seleccionados (Solo despacho)\n";
-                itemsHtmlContainer = `<div style="font-size: 0.75rem; color: var(--text-muted);">Sin productos seleccionados.</div>`;
-            }
-
-            document.getElementById('resItemsList').innerHTML = itemsHtmlContainer;
-
-            const fullName = document.getElementById('fullName').value;
-            const dni = document.getElementById('dni').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-
-            const province = document.getElementById('province').value;
-            const city = document.getElementById('city').value;
-            const address = document.getElementById('address').value;
-            const crossStreets = document.getElementById('crossStreets').value;
-            const postalCode = document.getElementById('postalCode').value;
-
-            let receiverText = fullName;
-            let receiverDetails = `Titular (${dni})`;
-            if (thirdPartyCheckbox.checked && receiverNameInput.value) {
-                receiverText = receiverNameInput.value;
-                receiverDetails = `Autorizado: ${receiverNameInput.value} (DNI:${receiverDniInput.value})`;
-            }
-
-            const estimatedKm = calculateDistance(address, city, province);
-            const shippingCost = CONFIG.BASE_FEE + (estimatedKm * CONFIG.PRICE_PER_KM);
-            const grandTotal = prodSubtotal + shippingCost;
-            
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            const randomSec = Math.floor(100000 + Math.random() * 900000);
-            const trackingCode = `NV-${randomNum}-2026`;
-
-            state.createdTracking = trackingCode;
-
-            document.getElementById('resTrackingCode').textContent = trackingCode;
-            document.getElementById('resDestination').textContent = `${address}, ${city}`;
-            document.getElementById('resReceiver').textContent = receiverText;
-            document.getElementById('resProdTotal').textContent = `$${prodSubtotal.toLocaleString('es-AR')}`;
-            document.getElementById('resShipTotal').textContent = `$${shippingCost.toLocaleString('es-AR')} (${estimatedKm}km)`;
-            document.getElementById('resGrandTotal').textContent = `$${grandTotal.toLocaleString('es-AR')}`;
-            document.getElementById('resSecCode').textContent = randomSec;
-
-            const message = encodeURIComponent(
-                `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n` +
-                `*LOGÍSTICA NOVA*\n` +
-                `----------------------------------------\n` +
-                `*N° de Guía:* ${trackingCode}\n` +
-                `*Código de Seguridad:* ${randomSec}\n\n` +
-                `*DETALLE DE PRODUCTOS Y CUOTAS*\n` +
-                `${itemsListText}\n` +
-                `*Subtotal Productos:* $${prodSubtotal.toLocaleString('es-AR')}\n\n` +
-                `*DATOS DEL COMPRADOR*\n` +
-                `• Nombre: ${fullName}\n` +
-                `• DNI/CUIL: ${dni}\n` +
-                `• Teléfono: ${phone}\n` +
-                `• Email: ${email}\n\n` +
-                `*DIRECCIÓN DE ENTREGA*\n` +
-                `• Dirección: ${address}\n` +
-                `• Ciudad/Provincia: ${city}, ${province}\n` +
-                `• Entre calles: ${crossStreets}\n` +
-                `• C.P.: ${postalCode}\n` +
-                `• Recibe: ${receiverDetails}\n\n` +
-                `*RESUMEN TOTAL*\n` +
-                `• Productos: $${prodSubtotal.toLocaleString('es-AR')}\n` +
-                `• Envío (${estimatedKm} km): $${shippingCost.toLocaleString('es-AR')}\n` +
-                `• *TOTAL A FACTURAR:* $${grandTotal.toLocaleString('es-AR')}\n\n` +
-                `Solicito link de pago / datos bancarios para completar la transacción.`
-            );
-
-            document.getElementById('whatsappBtn').href = `https://wa.me/${CONFIG.TARGET_WHATSAPP}?text=${message}`;
-
-            setStep(3);
-        });
-
-        // Inicialización
-        renderCatalog();
-        calculateProductsTotal();
+        // Inicializar
+        renderProductos();
     </script>
 </body>
 </html>
