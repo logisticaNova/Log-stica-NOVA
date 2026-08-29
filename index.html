@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda Electro - Estilo Frávega</title>
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     .fravega-blue { background-color: #002244; }
@@ -14,25 +12,10 @@
     .fravega-red:hover { background-color: #c4030f; color: white; }
     .step-active { background-color: #002244; color: white; font-weight: bold; }
     .step-inactive { background-color: #e9ecef; color: #6c757d; }
-    
-    /* Estilo para el recuadro de imagen vacío */
-    .product-image-placeholder {
-      width: 100%;
-      height: 180px; /* Misma altura que tenían los placeholders */
-      background-color: #f8f9fa;
-      border: 2px dashed #dee2e6;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #adb5bd;
-      margin-bottom: 15px;
-    }
   </style>
 </head>
 <body class="bg-light">
 
-  <!-- Header / Barra de Navegación -->
   <nav class="navbar navbar-expand-lg navbar-dark fravega-blue sticky-top">
     <div class="container">
       <a class="navbar-brand fw-bold fs-3" href="#" onclick="showSection('catalog')">
@@ -47,7 +30,6 @@
     </div>
   </nav>
 
-  <!-- Indicador de Progreso -->
   <div class="container my-4">
     <div class="row text-center g-2" id="progress-bar">
       <div class="col-3"><div id="step-catalog" class="p-2 rounded step-active">1. Catálogo</div></div>
@@ -59,15 +41,12 @@
 
   <div class="container pb-5">
 
-    <!-- SECCIÓN 1: CATÁLOGO DE PRODUCTOS -->
     <section id="sec-catalog">
       <h2 class="mb-4 text-secondary">Ofertas Destacadas</h2>
       <div class="row g-4" id="products-grid">
-        <!-- Generado con JS -->
-      </div>
+        </div>
     </section>
 
-    <!-- SECCIÓN 2: CARRITO DE COMPRAS -->
     <section id="sec-cart" class="d-none">
       <h2 class="mb-4 text-secondary">Tu Carrito de Compras</h2>
       <div class="card shadow-sm p-4">
@@ -83,8 +62,7 @@
               </tr>
             </thead>
             <tbody id="cart-table">
-              <!-- Generado con JS -->
-            </tbody>
+              </tbody>
           </table>
         </div>
         <div class="d-flex justify-content-between align-items-center mt-3 fs-4 fw-bold">
@@ -98,7 +76,6 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: DATOS DE ENTREGA -->
     <section id="sec-checkout" class="d-none">
       <h2 class="mb-4 text-secondary">Datos para la Entrega</h2>
       <div class="card shadow-sm p-4 col-md-8 mx-auto">
@@ -131,7 +108,6 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 4: SEGUIMIENTO Y ENVÍO A WHATSAPP -->
     <section id="sec-tracking" class="d-none">
       <h2 class="mb-4 text-secondary text-center">Estado del Pedido</h2>
       <div class="card shadow-sm p-4 col-md-8 mx-auto text-center">
@@ -142,8 +118,7 @@
         <hr class="my-4">
         
         <div class="text-start bg-light p-3 rounded mb-4" id="order-summary-details">
-          <!-- Detalle final del pedido -->
-        </div>
+          </div>
 
         <div class="alert alert-info">
            Haz clic en el botón de abajo para enviar los detalles directamente a nuestro equipo de ventas por WhatsApp y finalizar tu compra.
@@ -158,12 +133,12 @@
   </div>
 
   <script>
-    // Datos del catálogo (se eliminó la propiedad img)
+    // Datos del catálogo
     const products = [
-      { id: 1, name: 'Smart TV 50" 4K UHD', price: 450000 },
-      { id: 2, name: 'Heladera No Frost 300L', price: 820000 },
-      { id: 3, name: 'Lavarropas Automático 8kg', price: 610000 },
-      { id: 4, name: 'Aire Acondicionado 3000 FC', price: 540000 }
+      { id: 1, name: 'Smart TV 50" 4K UHD', price: 450000, img: 'https://via.placeholder.com/250x180?text=Smart+TV+50' },
+      { id: 2, name: 'Heladera No Frost 300L', price: 820000, img: 'https://via.placeholder.com/250x180?text=Heladera' },
+      { id: 3, name: 'Lavarropas Automático 8kg', price: 610000, img: 'https://via.placeholder.com/250x180?text=Lavarropas' },
+      { id: 4, name: 'Aire Acondicionado 3000 FC', price: 540000, img: 'https://via.placeholder.com/250x180?text=Aire+Acondicionado' }
     ];
 
     let cart = [];
@@ -172,14 +147,11 @@
     // Cargar catálogo al inicio
     function loadProducts() {
       const grid = document.getElementById('products-grid');
-      // Ahora genera un div vacío con la clase 'product-image-placeholder'
       grid.innerHTML = products.map(p => `
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="card h-100 shadow-sm border-0 p-3">
-            <div class="product-image-placeholder">
-                <i class="bi bi-image fs-1"></i>
-            </div>
-            <div class="card-body d-flex flex-column justify-content-between p-0">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="${p.img}" class="card-img-top p-3" alt="${p.name}">
+            <div class="card-body d-flex flex-column justify-content-between">
               <div>
                 <h5 class="card-title fs-6">${p.name}</h5>
                 <p class="card-text text-danger fs-4 fw-bold">$${p.price.toLocaleString('es-AR')}</p>
