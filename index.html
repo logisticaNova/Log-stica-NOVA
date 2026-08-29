@@ -71,7 +71,7 @@
 
         .hero-container {
             width: 100%;
-            max-width: 850px;
+            max-width: 1000px;
         }
 
         .hero-title {
@@ -235,10 +235,10 @@
 
         .timeline-step.active .step-label { color: var(--text-main); }
 
-        /* CATÁLOGO DE PRODUCTOS */
+        /* CATÁLOGO DE PRODUCTOS - VISTA EN CUADRÍCULA ESTRUCTURADA */
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.2rem;
             margin-bottom: 2rem;
         }
@@ -259,29 +259,70 @@
             transform: translateY(-2px);
         }
 
-        .product-img-container {
+        /* GALERÍA DESLIZABLE CON SCROLL SNAP */
+        .product-img-slider {
             width: 100%;
-            height: 160px;
+            height: 180px;
             background-color: #ffffff;
             border-radius: 8px;
             margin-bottom: 0.8rem;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .product-img-slider::-webkit-scrollbar {
+            height: 5px;
+        }
+        
+        .product-img-slider::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
         }
 
         .product-img {
+            flex: 0 0 100%;
             width: 100%;
             height: 100%;
             object-fit: contain;
             padding: 0.5rem;
             box-sizing: border-box;
+            scroll-snap-align: start;
         }
 
         .product-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
-        .product-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; }
-        .product-price { font-size: 1.15rem; font-weight: 800; color: var(--accent); margin-bottom: 0.8rem; }
+        .product-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.3; }
+        .product-price { font-size: 1.15rem; font-weight: 800; color: var(--accent); margin-bottom: 0.4rem; }
+
+        /* SELECTOR DE CUOTAS DINÁMICO */
+        .installments-container {
+            margin-bottom: 0.8rem;
+            background: #111827;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .installments-select {
+            width: 100%;
+            background: #030712;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .installment-detail {
+            font-size: 0.75rem;
+            color: #93c5fd;
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
 
         .product-actions { display: flex; align-items: center; gap: 8px; }
 
@@ -474,7 +515,12 @@
             border-top: 1px solid var(--border-color);
         }
 
+        @media (max-width: 900px) {
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 640px) {
+            .catalog-grid { grid-template-columns: 1fr; }
             .form-grid, .info-grid { grid-template-columns: 1fr; }
             .form-group.full-width { grid-column: span 1; }
             .search-box { flex-direction: column; }
@@ -702,40 +748,41 @@
         const CONFIG = {
             TARGET_WHATSAPP: "5491155012447",
             PRICE_PER_KM: 350,
-            BASE_FEE: 1500
+            BASE_FEE: 1500,
+            INTEREST_PER_INSTALLMENT: 0.045
         };
 
         const PRODUCTS = [
-            { id: 1, name: "Smart TV 50\" 4K UHD", desc: "Pantalla LED con Google TV y control por voz", price: 520000, image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=600&q=80" },
-            { id: 2, name: "Aspiradora Robot Wi-Fi", desc: "Navegación inteligente con mapeo láser y mopa", price: 340000, image: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=600&q=80" },
-            { id: 3, name: "Freidora de Aire Digital 5.5L", desc: "Cocina sin aceite con panel táctil y 8 programas", price: 115000, image: "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80" },
-            { id: 4, name: "Cafetera Express Automática", desc: "Para café molido o cápsulas con espumador de leche", price: 185000, image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=600&q=80" },
-            { id: 5, name: "Microondas Digital 20L", desc: "Con grill, descongelado automático y plato giratorio", price: 145000, image: "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?auto=format&fit=crop&w=600&q=80" },
-            { id: 6, name: "Lavarropas Automático 8kg", desc: "Inverter 1200 RPM con lavado rápido de 15 min", price: 680000, image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80" },
-            { id: 7, name: "Heladera No Frost 330L", desc: "Eficiencia energética A+ con freezer superior", price: 850000, image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=600&q=80" },
-            { id: 8, name: "Pava Eléctrica Regulable", desc: "Corte automático ideal para mate y té 1.7L", price: 42000, image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?auto=format&fit=crop&w=600&q=80" },
-            { id: 9, name: "Licuadora de Pie 800W", desc: "Jarra de vidrio de 1.5L con cuchillas de titanio", price: 65000, image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80" },
-            { id: 10, name: "Procesadora de Alimentos", desc: "Multifunción 1000W con discos de corte y amasador", price: 98000, image: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=600&q=80" },
-            { id: 11, name: "Aire Acondicionado Frío/Calor", desc: "Split Inverter 3000 frigorías de alto rendimiento", price: 790000, image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80" },
-            { id: 12, name: "Parlante Bluetooth Portátil", desc: "Resistente al agua IPX7 con 12hs de batería", price: 78000, image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80" },
-            { id: 13, name: "Barra de Sonido 2.1 con Subwoofer", desc: "Conexión HDMI ARC, Bluetooth y 200W de potencia", price: 195000, image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80" },
-            { id: 14, name: "Auriculares Inalámbricos TWS", desc: "Cancelación activa de ruido y estuche de carga", price: 45000, image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80" },
-            { id: 15, name: "Smartwatch Deportivo", desc: "Monitor de ritmo cardíaco, oxímetro y GPS integrado", price: 62000, image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=600&q=80" },
-            { id: 16, name: "Tablet 10.1\" FHD", desc: "64GB almacenamiento, 4GB RAM con funda protectora", price: 165000, image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=600&q=80" },
-            { id: 17, name: "Asistente Virtual Smart Home", desc: "Altavoz inteligente con control de dispositivos del hogar", price: 82000, image: "https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=600&q=80" },
-            { id: 18, name: "Cámara de Seguridad Wi-Fi 360°", desc: "Visión nocturna HD con detección de movimiento", price: 38000, image: "https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&w=600&q=80" },
-            { id: 19, name: "Consola de Videojuegos 512GB", desc: "Gráficos de última generación a 120 FPS", price: 650000, image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=600&q=80" },
-            { id: 20, name: "Notebook 15.6\" Core i5", desc: "8GB RAM, SSD 256GB, pantalla Full HD antivreflejo", price: 740000, image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80" },
-            { id: 21, name: "Tostadora Eléctrica de Acero", desc: "Ranuras anchas con 7 niveles de tostado", price: 36000, image: "https://images.unsplash.com/photo-1583634674352-7864d5e1698b?auto=format&fit=crop&w=600&q=80" },
-            { id: 22, name: "Sandwichera Grill Antiadherente", desc: "Placas selladoras para 2 sándwiches simultáneos", price: 29000, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" },
-            { id: 23, name: "Plancha a Vapor Cerámica", desc: "Sistema antigoteo y golpe de vapor vertical", price: 35000, image: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=600&q=80" },
-            { id: 24, name: "Secador de Pelo Profesional", desc: "Motor AC 2200W con tecnología iónica y difusor", price: 54000, image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" },
-            { id: 25, name: "Afeitadora Eléctrica Recargable", desc: "Cabezales flotantes lavables aptos para uso en seco y húmedo", price: 48000, image: "https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=600&q=80" },
-            { id: 26, name: "Ventilador de Torre Silencioso", desc: "Con temporizador, 3 velocidades y control remoto", price: 75000, image: "https://images.unsplash.com/photo-1618941723681-37053e198656?auto=format&fit=crop&w=600&q=80" },
-            { id: 27, name: "Calefactor Convector Digital", desc: "Termostato regulable y protección contra sobrecalentamiento", price: 68000, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80" },
-            { id: 28, name: "Humidificador Ultrasónico RGB", desc: "Difusor de aromas de 300ml con luz LED de colores", price: 24000, image: "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=600&q=80" },
-            { id: 29, name: "Balanza Digital de Cocina", desc: "Sensor de alta precisión con función Tara hasta 5kg", price: 15000, image: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=600&q=80" },
-            { id: 30, name: "Lámpara LED de Escritorio Smart", desc: "Brillo regulable, puerto de carga USB y cuello flexible", price: 28000, image: "https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=600&q=80" }
+            { id: 1, name: "Smart TV 50\" 4K UHD", desc: "Experimenta la máxima resolución Ultra HD con tecnología HDR. Conecta tus apps favoritas mediante Google TV rápido e intuitivo.", price: 520000, images: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1577979749830-f1d742b96791?auto=format&fit=crop&w=600&q=80"] },
+            { id: 2, name: "Aspiradora Robot Wi-Fi", desc: "Mapeo inteligente por láser y sistema de mopa pasiva. Mantén tus pisos impecables programando la limpieza desde la App Móvil.", price: 340000, images: ["https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"] },
+            { id: 3, name: "Freidora de Aire Digital 5.5L", desc: "Cocina saludable y crocante con hasta un 85% menos de aceite. Cuenta con panel táctil intuitivo y 8 programas de cocción rápida.", price: 115000, images: ["https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?auto=format&fit=crop&w=600&q=80"] },
+            { id: 4, name: "Cafetera Express Automática", desc: "Extrae el aroma perfecto de cada grano. Compatible con café molido o cápsulas, e incluye espumador de leche estilo barista.", price: 185000, images: ["https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"] },
+            { id: 5, name: "Microondas Digital 20L", desc: "Descongelado automático uniforme e incorporación de Grill superior. Ideal para dorar, calentar y cocinar alimentos en minutos.", price: 145000, images: ["https://images.unsplash.com/photo-1585659722983-3a675dabf23d?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=600&q=80"] },
+            { id: 6, name: "Lavarropas Automático 8kg", desc: "Motor Inverter ultra silencioso de alta durabilidad y consumo A+++. Programa express de 15 minutos para ropa del día a día.", price: 680000, images: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=600&q=80"] },
+            { id: 7, name: "Heladera No Frost 330L", desc: "Mantiene la frescura intacta sin generar escarcha. Cuenta con distribución de aire envolvente MultiFlow y estantes regulables.", price: 850000, images: ["https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=600&q=80"] },
+            { id: 8, name: "Pava Eléctrica Regulable", desc: "Elige la temperatura exacta para tu mate o infusiones finas. Cuerpo de acero inoxidable con corte automático de seguridad.", price: 42000, images: ["https://images.unsplash.com/photo-1594212699903-ec8a3eca50f6?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1520981825232-ece5fae45120?auto=format&fit=crop&w=600&q=80"] },
+            { id: 9, name: "Licuadora de Pie 800W", desc: "Procesa hielo y alimentos duros sin esfuerzo con cuchillas de titanio. Jarra de vidrio templado resistente a choques térmicos.", price: 65000, images: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80"] },
+            { id: 10, name: "Procesadora de Alimentos", desc: "Cortar, rebanar, picar y amasar en segundos. El asistente indispensable que simplifica la preparación de todas tus recetas.", price: 98000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
+            { id: 11, name: "Aire Acondicionado Frío/Calor", desc: "Climatización rápida con eficiencia Inverter de bajo consumo. Mantén el ambiente perfecto todo el año silenciosamente.", price: 790000, images: ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1631545821013-1768832a1291?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=600&q=80"] },
+            { id: 12, name: "Parlante Bluetooth Portátil", desc: "Lleva la música a donde quieras con protección total al agua IPX7 y batería de hasta 12 horas. Sonido de alta fidelidad.", price: 78000, images: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80"] },
+            { id: 13, name: "Barra de Sonido 2.1 con Subwoofer", desc: "Transforma tu sala en un cine con 200W de potencia pura. Conexión inalámbrica por Bluetooth y cable HDMI ARC.", price: 195000, images: ["https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80"] },
+            { id: 14, name: "Auriculares Inalámbricos TWS", desc: "Cancelación activa de ruido para máxima inmersión musical. Estuche de carga rápida con hasta 24hs de reproducción total.", price: 45000, images: ["https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80"] },
+            { id: 15, name: "Smartwatch Deportivo", desc: "Controla tu salud y rendimiento físico en tiempo real con monitoreo cardíaco, GPS y seguimiento avanzado de entrenamientos.", price: 62000, images: ["https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1510017803434-a899398421b3?auto=format&fit=crop&w=600&q=80"] },
+            { id: 16, name: "Tablet 10.1\" FHD", desc: "Perfecta para entretenimiento, estudio y trabajo. Pantalla vívida Full HD, procesador ágil y batería de larga duración.", price: 165000, images: ["https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&w=600&q=80"] },
+            { id: 17, name: "Asistente Virtual Smart Home", desc: "Organiza tu día, reproduce música y controla dispositivos inteligentes de la casa simplemente mediante comandos de voz.", price: 82000, images: ["https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1558089687-f282ffcbc126?auto=format&fit=crop&w=600&q=80"] },
+            { id: 18, name: "Cámara de Seguridad Wi-Fi 360°", desc: "Vigilancia constante con audio bidireccional y alertas por movimiento directamente a tu teléfono móvil. Visión nocturna HD.", price: 38000, images: ["https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80"] },
+            { id: 19, name: "Consola de Videojuegos 512GB", desc: "Sumérgete en la nueva generación de juegos con gráficos en alta fidelidad y tiempos de carga prácticamente instantáneos.", price: 650000, images: ["https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1486401899868-0e435ed85128?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80"] },
+            { id: 20, name: "Notebook 15.6\" Core i5", desc: "Potencia tu productividad con el procesador Intel Core i5, disco SSD ultrarrápido y un diseño delgado para llevar a todos lados.", price: 740000, images: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=600&q=80"] },
+            { id: 21, name: "Tostadora Eléctrica de Acero", desc: "Tostado parejo e impecable con 7 niveles de dorado y ranuras extra anchas adaptables para todo tipo de panes.", price: 36000, images: ["https://images.unsplash.com/photo-1583634674352-7864d5e1698b?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=600&q=80"] },
+            { id: 22, name: "Sandwichera Grill Antiadherente", desc: "Sella tus tostados y sándwiches perfectamente en minutos con placas de fácil limpieza que evitan que la comida se pegue.", price: 29000, images: ["https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
+            { id: 23, name: "Plancha a Vapor Cerámica", desc: "Elimina las arrugas más difíciles rápida y suavemente sin dañar tus prendas gracias a la suela cerámica antiadherente.", price: 35000, images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"] },
+            { id: 24, name: "Secador de Pelo Profesional", desc: "Secado ultra veloz y acabado suave libre de frizz. Equipado con tecnología de emisión iónica y motor AC de larga vida útil.", price: 54000, images: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1583634674352-7864d5e1698b?auto=format&fit=crop&w=600&q=80"] },
+            { id: 25, name: "Afeitadora Eléctrica Recargable", desc: "Afeitado suave y al ras con cabezales flexibles tridimensionales que se adaptan a las contornos. Uso seguro en seco o bajo la ducha.", price: 48000, images: ["https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1583634674352-7864d5e1698b?auto=format&fit=crop&w=600&q=80"] },
+            { id: 26, name: "Ventilador de Torre Silencioso", desc: "Distribución uniforme del aire fresco en toda la habitación con oscilación suave, temporizador programable y control remoto.", price: 75000, images: ["https://images.unsplash.com/photo-1618941723681-37053e198656?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=600&q=80"] },
+            { id: 27, name: "Calefactor Convector Digital", desc: "Entibia espacios rápidamente sin consumir oxígeno ni generar ruidos molestos. Termostato de precisión para mantener la temperatura ideal.", price: 68000, images: ["https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1618941723681-37053e198656?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=600&q=80"] },
+            { id: 28, name: "Humidificador Ultrasónico RGB", desc: "Mejora la calidad del aire del hogar y aromatiza con tus aceites esenciales favoritos. Iluminación LED multicolor relajante.", price: 24000, images: ["https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1618941723681-37053e198656?auto=format&fit=crop&w=600&q=80"] },
+            { id: 29, name: "Balanza Digital de Cocina", desc: "Logra la máxima exactitud en todas tus preparaciones gastronómicas gracias a sus sensores de alta precisión y función Tara.", price: 15000, images: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
+            { id: 30, name: "Lámpara LED de Escritorio Smart", desc: "Cuida tu vista ajustando el nivel de brillo y la temperatura de luz. Incluye puerto USB integrado para cargar tus dispositivos móviles.", price: 28000, images: ["https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=600&q=80"] }
         ];
 
         // Estado Global de la app
@@ -747,14 +794,37 @@
         // Renderizar Catálogo
         function renderCatalog() {
             const container = document.getElementById('catalogContainer');
-            container.innerHTML = PRODUCTS.map(p => `
+            container.innerHTML = PRODUCTS.map(p => {
+                const imagesHTML = p.images.map(imgSrc => 
+                    `<img src="${imgSrc}" alt="${p.name}" class="product-img" loading="lazy">`
+                ).join('');
+
+                const singleInstallmentPrice = Math.round((p.price * (1 + CONFIG.INTEREST_PER_INSTALLMENT)) / 1);
+
+                return `
                 <div class="product-card">
                     <div>
-                        <div class="product-img-container">
-                            <img src="${p.image}" alt="${p.name}" class="product-img" loading="lazy">
+                        <div class="product-img-slider" title="Desliza para ver más fotos">
+                            ${imagesHTML}
                         </div>
                         <div class="product-title">${p.name}</div>
-                        <div class="product-desc">${p.desc}</div>                     </div>                     <div>                         <div class="product-price">$${p.price.toLocaleString('es-AR')}</div>
+                        <div class="product-desc">${p.desc}</div>
+                    </div>
+                    <div>
+                        <div class="product-price">$${p.price.toLocaleString('es-AR')}</div>
+                        
+                        <div class="installments-container">
+                            <select class="installments-select" data-price="${p.price}" data-id="${p.id}">
+                                <option value="1">1 cuota sin recargo extra ($${p.price.toLocaleString('es-AR')})</option>
+                                <option value="3">3 cuotas (+13.5%)</option>
+                                <option value="6">6 cuotas (+27.0%)</option>
+                                <option value="12">12 cuotas (+54.0%)</option>
+                            </select>
+                            <div class="installment-detail" id="inst-detail-${p.id}">
+                                1x $${p.price.toLocaleString('es-AR')}
+                            </div>
+                        </div>
+
                         <div class="product-actions">
                             <button type="button" class="qty-btn" data-action="decrease" data-id="${p.id}">-</button>
                             <span class="qty-val" id="qty-${p.id}">${state.cart[p.id]}</span>
@@ -762,7 +832,7 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         function calculateProductsTotal() {
@@ -771,7 +841,7 @@
             return total;
         }
 
-        // Delegación de eventos para los botones del carrito
+        // Delegación de eventos para los botones del carrito y selectores de cuotas
         document.getElementById('catalogContainer').addEventListener('click', (e) => {
             const btn = e.target.closest('.qty-btn');
             if (!btn) return;
@@ -782,6 +852,26 @@
             state.cart[id] = Math.max(0, state.cart[id] + (isIncrease ? 1 : -1));
             document.getElementById(`qty-${id}`).textContent = state.cart[id];
             calculateProductsTotal();
+        });
+
+        document.getElementById('catalogContainer').addEventListener('change', (e) => {
+            const select = e.target.closest('.installments-select');
+            if (!select) return;
+
+            const basePrice = Number(select.dataset.price);
+            const productId = select.dataset.id;
+            const count = Number(select.value);
+
+            let totalPrice = basePrice;
+            if (count > 1) {
+                const totalInterestPercent = count * CONFIG.INTEREST_PER_INSTALLMENT;
+                totalPrice = basePrice * (1 + totalInterestPercent);
+            }
+
+            const installmentAmount = Math.round(totalPrice / count);
+            const detailLabel = document.getElementById(`inst-detail-${productId}`);
+            
+            detailLabel.textContent = `${count}x de $${installmentAmount.toLocaleString('es-AR')} (Total: $${Math.round(totalPrice).toLocaleString('es-AR')})`;
         });
 
         // NAVEGACIÓN ENTRE PASOS
