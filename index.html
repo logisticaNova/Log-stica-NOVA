@@ -364,6 +364,19 @@
             z-index: 10;
         }
 
+        .gama-badge {
+            position: absolute;
+            top: 10px; right: 10px;
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            z-index: 10;
+            text-transform: uppercase;
+        }
+        .gama-badge.media { background: #e2e8f0; color: #334155; }
+        .gama-badge.alta { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+
         /* CARRUSEL DE IMÁGENES */
         .product-slider-container {
             position: relative;
@@ -765,6 +778,7 @@
                 <span class="nav-item" onclick="filterCategory('Climatizacion')">Climatización</span>
                 <span class="nav-item" onclick="filterCategory('Celulares')">Celulares</span>
                 <span class="nav-item" onclick="filterCategory('Laptops')">Laptops</span>
+                <span class="nav-item" onclick="filterCategory('Consolas')">Consolas & Gaming</span>
             </div>
         </nav>
     </header>
@@ -822,13 +836,24 @@
                 
                 <div class="filter-bar">
                     <span style="font-size:0.85rem; font-weight:700;" id="catalogCounterText">Cargando productos...</span>
-                    <div style="display:flex; align-items:center; gap:6px;">
-                        <label for="sortSelect" style="margin:0; font-size:0.8rem;">Ordenar por:</label>
-                        <select id="sortSelect" style="width:auto; padding:0.3rem 0.6rem;">
-                            <option value="default">Destacados</option>
-                            <option value="price-asc">Menor Precio</option>
-                            <option value="price-desc">Mayor Precio</option>
-                        </select>
+                    
+                    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <label for="gamaSelect" style="margin:0; font-size:0.8rem;">Gama:</label>
+                            <select id="gamaSelect" style="width:auto; padding:0.3rem 0.6rem;">
+                                <option value="ALL">Todas las Gamas</option>
+                                <option value="media">Gama Media</option>
+                                <option value="alta">Gama Alta</option>
+                            </select>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <label for="sortSelect" style="margin:0; font-size:0.8rem;">Ordenar por:</label>
+                            <select id="sortSelect" style="width:auto; padding:0.3rem 0.6rem;">
+                                <option value="default">Destacados</option>
+                                <option value="price-asc">Menor Precio</option>
+                                <option value="price-desc">Mayor Precio</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -1020,172 +1045,127 @@
                 "BUENOS_AIRES": 12500,
                 "INTERIOR": 18500
             },
-            ITEMS_PER_PAGE: 8,
+            ITEMS_PER_PAGE: 12,
             CARD_INTEREST_PER_INSTALLMENT: 0.07, // 7% por cuota
             TRANSFER_DISCOUNT: 0.15 // 15% Descuento
         };
 
-        // CATÁLOGO COMPLETO DE PRODUCTOS
-        const PRODUCTS = [
-            // --- LAVARROPAS A PALETA (ECONÓMICOS) Y AUTOMÁTICOS ---
-            {
-                id: 101,
-                category: "Lavarropas",
-                name: "Lavarropas a Paleta Codini 6kg Carga Superior Semiautomático",
-                price: 189999,
-                description: "Lavarropas súper económico a paleta con sistema de lavado por turbina de alto rendimiento. Mínimo consumo de agua y electricidad.",
-                images: [
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80"
-                ]
+        // MODELO DE CONFIGURACIÓN DE GAMA DE PRECIOS POR CATEGORÍA
+        const CATEGORIES_CONFIG = {
+            Lavarropas: {
+                media: { basePrice: 380000, priceRange: 180000, prefix: "Smart/Auto", features: ["6kg Carga Frontal", "7kg Carga Superior", "Motor Silencioso", "Centrifugado 1000 RPM"] },
+                alta: { basePrice: 850000, priceRange: 450000, prefix: "Inverter Pro", features: ["10kg EcoBubble", "Secado por Calor", "WiFi Direct & AI", "1400 RPM Inverter"] },
+                image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80"
             },
-            {
-                id: 102,
-                category: "Lavarropas",
-                name: "Lavarropas a Paleta Columbia 7kg Carga Superior",
-                price: 219999,
-                description: "Gabinete inalterable de alta resistencia, agitador central de doble acción y timer con apagado automático.",
-                images: [
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80"
-                ]
+            Heladeras: {
+                media: { basePrice: 650000, priceRange: 250000, prefix: "Cycle Defrost", features: ["300L Eficiencia A", "Crisper XXL", "Luz LED Interior", "Freezer Superior"] },
+                alta: { basePrice: 1400000, priceRange: 900000, prefix: "No Frost Inverter", features: ["450L Stainless Steel", "Dispenser de Agua", "Twin Cooling System", "Door-in-Door"] },
+                image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&auto=format&fit=crop&q=80"
             },
-            {
-                id: 103,
-                category: "Lavarropas",
-                name: "Lavarropas Inverter Drean 8kg 1200 RPM Carga Frontal",
-                price: 689999,
-                description: "Motor Inverter silencioso A+++, display táctil y sistema Autoload automático de agua.",
-                images: [
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80"
-                ]
+            Cocinas: {
+                media: { basePrice: 320000, priceRange: 150000, prefix: "Multigas Standard", features: ["4 Hornallas Multigas", "Puerta Doble Vidrio", "Enlozado Multiclean", "Luz de Horno"] },
+                alta: { basePrice: 750000, priceRange: 400000, prefix: "Gourmet Pro Stainless", features: ["Acero Inoxidable AISI 430", "Encendido Electrónico", "Timer Digital", "Grill Eléctrico Incorporado"] },
+                image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80"
             },
-            {
-                id: 104,
-                category: "Lavarropas",
-                name: "Lavarropas Samsung 9.5kg EcoBubble Carga Frontal Silver",
-                price: 949999,
-                description: "Burbujas EcoBubble que limpian profundamente a baja temperatura. Lavado a vapor higiénico.",
-                images: [
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80"
-                ]
+            TVs: {
+                media: { basePrice: 350000, priceRange: 180000, prefix: "Smart TV FHD", features: ["43 Pulgadas Google TV", "HDR10", "Chromecast Integrado", "Comando por Voz"] },
+                alta: { basePrice: 890000, priceRange: 750000, prefix: "OLED / QLED 4K", features: ["65 Pulgadas 120Hz", "Dolby Vision & Atmos", "Gaming Hub HDMI 2.1", "Procesador IA Alpha 9"] },
+                image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=80"
             },
-
-            // --- HELADERAS Y FREEZERS ---
-            {
-                id: 105,
-                category: "Heladeras",
-                name: "Heladera No Frost Samsung 382L Inverter Inox",
-                price: 1149999,
-                description: "Tecnología Digital Inverter con Twin Cooling Plus que evita mezcla de olores y ahorra energía.",
-                images: [
-                    "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&auto=format&fit=crop&q=80"
-                ]
+            Electrodomesticos: {
+                media: { basePrice: 60000, priceRange: 50000, prefix: "Daily Use", features: ["Digital 1500W", "Accesorios Antiadherentes", "Selector Removible", "Fácil Limpieza"] },
+                alta: { basePrice: 220000, priceRange: 180000, prefix: "Chef Deluxe", features: ["Cuerpo de Acero Pulido", "Paneles Táctiles OLED", "Tecnología RapidAir", "Motor Profesional"] },
+                image: "https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&auto=format&fit=crop&q=80"
             },
-            {
-                id: 106,
-                category: "Heladeras",
-                name: "Heladera Gafa 360L Cycle Defrost Blanca",
-                price: 789999,
-                description: "Espacio de guardado optimizado, crisper de verduras XXL y clasificación energética A.",
-                images: [
-                    "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&auto=format&fit=crop&q=80"
-                ]
+            Sommiers: {
+                media: { basePrice: 280000, priceRange: 150000, prefix: "Orthopedic Comfort", features: ["2 Plazas Espuma 30kg/m3", "Tela Jacquard Antiácaros", "Base Tapizada", "Espuma Firme"] },
+                alta: { basePrice: 720000, priceRange: 500000, prefix: "King Size Pocket", features: ["Resortes Enfundados Individuales", "Pillow Top Memory Foam", "200x200 Súper Confort", "Tejido de Punto"] },
+                image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=80"
             },
-
-            // --- SMART TVS & AUDIO ---
-            {
-                id: 107,
-                category: "TVs",
-                name: "Smart TV LG 55' 4K UHD ThinQ AI Nanocell",
-                price: 749999,
-                description: "Procesador α5 AI Gen6, HDR10 Pro, WebOS con Inteligencia Artificial integrada y Magic Remote.",
-                images: [
-                    "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=80"
-                ]
+            Climatizacion: {
+                media: { basePrice: 390000, priceRange: 160000, prefix: "Split Frío/Calor", features: ["3000 Frigorías ECO", "Filtro Antipolvo", "Display Oculto", "Gas R410a"] },
+                alta: { basePrice: 880000, priceRange: 450000, prefix: "Inverter Smart Shield", features: ["5200 Frigorías Inverter", "Ahorro 60% Energía", "Control por App WiFi", "Bomba de Calor"] },
+                image: "https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=800&auto=format&fit=crop&q=80"
             },
-            {
-                id: 108,
-                category: "TVs",
-                name: "Smart TV Philips 43' Full HD Google TV",
-                price: 429999,
-                description: "Sistema operativo Google TV con control por voz, Chromecast integrado y diseño sin bordes.",
-                images: [
-                    "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=80"
-                ]
+            Laptops: {
+                media: { basePrice: 450000, priceRange: 220000, prefix: "Slim Book Pro", features: ["Intel Core i5 / Ryzen 5", "8GB RAM - 256GB SSD", "Pantalla 15.6 FHD", "Teclado Español"] },
+                alta: { basePrice: 1250000, priceRange: 900000, prefix: "Ultra Gaming Studio", features: ["Core i9 / Ryzen 9 / M3 Pro", "16GB/32GB - 1TB NVMe", "NVIDIA RTX 4070", "Pantalla 165Hz Oled"] },
+                image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop&q=80"
             },
-
-            // --- PEQUEÑOS ELECTRODOMÉSTICOS ---
-            {
-                id: 109,
-                category: "Electrodomesticos",
-                name: "Freidora de Aire / Airfryer Philips Walita 4.1L Digital",
-                price: 189999,
-                description: "Cocina hasta con 90% menos de grasa. Tecnología RapidAir con pantalla táctil y 7 programas preprogramados.",
-                images: [
-                    "https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&auto=format&fit=crop&q=80"
-                ]
+            Celulares: {
+                media: { basePrice: 240000, priceRange: 160000, prefix: "Series Lite / Mid", features: ["128GB Almacenamiento", "Pantalla 90Hz AMOLED", "Cámara 50MP Dual", "Carga Rápida 33W"] },
+                alta: { basePrice: 950000, priceRange: 800000, prefix: "Ultra Flagship 5G", features: ["256GB / 512GB NVMe", "Cámara 200MP Zoom 100x", "Procesador Flagship 4nm", "Titanium Frame"] },
+                image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80"
             },
-            {
-                id: 110,
-                category: "Electrodomesticos",
-                name: "Cafetera Express Oster Prima Latte II Espresso y Capuchino",
-                price: 289999,
-                description: "Bomba de 15 bares de presión, depósito de leche desmontable de 600ml y selector de bebida táctil.",
-                images: [
-                    "https://images.unsplash.com/photo-1517668808822-9ebd02f2a888?w=800&auto=format&fit=crop&q=80"
-                ]
-            },
-
-            // --- COCINAS Y HORNOS ---
-            {
-                id: 111,
-                category: "Cocinas",
-                name: "Cocina a Gas Patrick 56cm Acero Inoxidable",
-                price: 499999,
-                description: "4 hornallas multigas, encendido electrónico, puerta de doble vidrio templado y grill superior.",
-                images: [
-                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80"
-                ]
-            },
-
-            // --- SOMMIERS ---
-            {
-                id: 112,
-                category: "Sommiers",
-                name: "Sommier y Colchón 2 Plazas Queen Memory Foam",
-                price: 629999,
-                description: "Espuma de alta densidad anatómica con base de madera reforzada tapizada en ecocuero.",
-                images: [
-                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=80"
-                ]
-            },
-
-            // --- CELULARES & TECNOLOGÍA ---
-            {
-                id: 113,
-                category: "Celulares",
-                name: "Apple iPhone 15 128GB Negro",
-                price: 1549999,
-                description: "Dynamic Island, chip A16 Bionic, cámara de 48MP con conector universal USB-C.",
-                images: [
-                    "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80"
-                ]
-            },
-            {
-                id: 114,
-                category: "Celulares",
-                name: "Samsung Galaxy A16 128GB Gray",
-                price: 284899,
-                description: "Pantalla Super AMOLED de 6.7p, triple cámara de 50MP y batería de 5000 mAh.",
-                images: [
-                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80"
-                ]
+            Consolas: {
+                media: { basePrice: 420000, priceRange: 180000, prefix: "Digital Edition", features: ["512GB SSD ultraveloz", "Control Inalámbrico", "HDR Gaming", "Compact Design"] },
+                alta: { basePrice: 890000, priceRange: 400000, prefix: "Pro Ultra Console", features: ["1TB SSD High Performance", "Juegos 4K a 120 FPS", "Ray Tracing Avanzado", "Audio 3D Tempest"] },
+                image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80"
             }
-        ];
+        };
+
+        const BRANDS = ["Samsung", "LG", "Philips", "Whirlpool", "Drean", "Sony", "Dell", "Lenovo", "Asus", "Xiaomi", "Apple", "Oster", "Gafa", "Peabody", "Philco"];
+
+        // GENERADOR DINÁMICO DE 200 PRODUCTOS
+        function generate200Products() {
+            const productsList = [];
+            const categories = Object.keys(CATEGORIES_CONFIG);
+            let idCounter = 101;
+
+            categories.forEach(cat => {
+                const config = CATEGORIES_CONFIG[cat];
+                
+                // Generar 10 de Gama Media por categoría
+                for (let i = 1; i <= 10; i++) {
+                    const brand = BRANDS[(i + idCounter) % BRANDS.length];
+                    const priceOffset = (i * 13700) % config.media.priceRange;
+                    const finalPrice = config.media.basePrice + priceOffset;
+                    const feat = config.media.features[i % config.media.features.length];
+
+                    productsList.push({
+                        id: idCounter++,
+                        category: cat,
+                        gama: "media",
+                        name: `${cat} ${brand} ${config.media.prefix} M${i * 10}`,
+                        price: finalPrice,
+                        description: `Equipo ${brand} Gama Media balanceada. Incluye ${feat}, excelente eficiencia y respaldo oficial NOVA.`,
+                        images: [
+                            config.image,
+                            "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=80"
+                        ]
+                    });
+                }
+
+                // Generar 10 de Gama Alta por categoría
+                for (let i = 1; i <= 10; i++) {
+                    const brand = BRANDS[(i + idCounter + 3) % BRANDS.length];
+                    const priceOffset = (i * 39000) % config.alta.priceRange;
+                    const finalPrice = config.alta.basePrice + priceOffset;
+                    const feat = config.alta.features[i % config.alta.features.length];
+
+                    productsList.push({
+                        id: idCounter++,
+                        category: cat,
+                        gama: "alta",
+                        name: `${cat} ${brand} ${config.alta.prefix} Premium X${i * 100}`,
+                        price: finalPrice,
+                        description: `Gama Alta Flagship. Equipamiento premium ${brand} con ${feat}. Alto desempeño y materiales premium.`,
+                        images: [
+                            config.image,
+                            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80"
+                        ]
+                    });
+                }
+            });
+
+            return productsList;
+        }
+
+        const PRODUCTS = generate200Products();
 
         const cart = {};
         let currentCategoryFilter = "ALL";
+        let currentGamaFilter = "ALL";
         let currentSortOrder = "default";
         let currentOrderData = null;
         let slideIndexes = {};
@@ -1207,8 +1187,9 @@
             let filtered = PRODUCTS.filter(p => {
                 const navMatch = currentCategoryFilter === "ALL" || p.category === currentCategoryFilter;
                 const selectMatch = selectCategoryVal === "ALL" || p.category === selectCategoryVal;
+                const gamaMatch = currentGamaFilter === "ALL" || p.gama === currentGamaFilter;
                 const matchSearch = p.name.toLowerCase().includes(searchVal) || (p.description && p.description.toLowerCase().includes(searchVal));
-                return navMatch && selectMatch && matchSearch;
+                return navMatch && selectMatch && gamaMatch && matchSearch;
             });
 
             // ORDENAMIENTO
@@ -1248,9 +1229,12 @@
                     <button class="slider-btn next" onclick="moveProductSlide(${p.id}, 1)">&#10095;</button>
                 ` : "";
 
+                const gamaLabel = p.gama === "alta" ? "Gama Alta" : "Gama Media";
+
                 return `
                     <div class="product-card">
                         <span class="product-badge">${p.category}</span>
+                        <span class="gama-badge ${p.gama}">${gamaLabel}</span>
                         <div class="product-slider-container">
                             ${navBtnsHtml}
                             <div class="product-slider-track" id="track-${p.id}">
@@ -1261,7 +1245,7 @@
                             </div>
                         </div>
                         <div>
-                            <div class="product-cat-tag">${p.category}</div>
+                            <div class="product-cat-tag">${p.category} — ${gamaLabel}</div>
                             <div class="product-title" title="${p.name}">${p.name}</div>
                             <div class="product-description">${p.description}</div>
                             <div class="product-price">$${p.price.toLocaleString("es-AR")}</div>
@@ -1276,9 +1260,19 @@
             }).join("");
 
             let pageBtnsHtml = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">« Anterior</button>`;
-            for (let i = 1; i <= totalPages; i++) {
-                pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">Pág ${i}</button>`;
+            
+            // PAGINACIÓN TRUNCADA INTELIGENTE
+            let startP = Math.max(1, currentPage - 2);
+            let endP = Math.min(totalPages, currentPage + 2);
+
+            if (startP > 1) pageBtnsHtml += `<button class="page-btn" onclick="changePage(1)">1</button><span>...</span>`;
+
+            for (let i = startP; i <= endP; i++) {
+                pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
             }
+
+            if (endP < totalPages) pageBtnsHtml += `<span>...</span><button class="page-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+
             pageBtnsHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">Siguiente »</button>`;
 
             paginationContainer.innerHTML = totalPages > 1 ? pageBtnsHtml : "";
@@ -1483,6 +1477,12 @@
             document.getElementById("searchInput").addEventListener("input", () => { currentPage = 1; renderCatalog(); });
             document.getElementById("searchCategory").addEventListener("change", () => { currentPage = 1; renderCatalog(); });
             document.getElementById("btnSearchCatalog").addEventListener("click", () => { currentPage = 1; renderCatalog(); });
+
+            document.getElementById("gamaSelect").addEventListener("change", (e) => {
+                currentGamaFilter = e.target.value;
+                currentPage = 1;
+                renderCatalog();
+            });
 
             document.getElementById("sortSelect").addEventListener("change", (e) => {
                 currentSortOrder = e.target.value;
