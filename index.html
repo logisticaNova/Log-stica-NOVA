@@ -43,7 +43,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- MENÚ PRINCIPAL TIPO TIENDAMIA --- */
+        /* --- MENÚ PRINCIPAL --- */
         header {
             background-color: #ffffff;
             border-bottom: 2px solid var(--border-color);
@@ -154,7 +154,7 @@
             font-size: 0.85rem;
         }
 
-        /* NAVEGACIÓN CATEGORÍAS TIPO TIENDAMIA */
+        /* NAVEGACIÓN CATEGORÍAS */
         .nav-categories {
             background: #f8fafc;
             border-top: 1px solid var(--border-color);
@@ -333,7 +333,7 @@
             z-index: 10;
         }
 
-        /* CARRUSEL DE IMÁGENES DESLIZABLE EN FICHA DE PRODUCTO */
+        /* CARRUSEL DE IMÁGENES */
         .product-slider-container {
             position: relative;
             width: 100%;
@@ -341,7 +341,7 @@
             margin-bottom: 0.8rem;
             overflow: hidden;
             border-radius: 6px;
-            background: #ffffff;
+            background: #f8fafc;
         }
 
         .product-slider-track {
@@ -354,7 +354,7 @@
         .product-img {
             min-width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             cursor: pointer;
         }
 
@@ -398,7 +398,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
         }
 
@@ -506,7 +506,7 @@
             border-color: var(--border-color);
         }
 
-        /* CARRITO / RESUMEN FLOTANTE INFERIOR */
+        /* RESUMEN FLOTANTE INFERIOR */
         .cart-bar {
             background: #1e293b;
             color: white;
@@ -540,7 +540,7 @@
 
         .btn-secondary:hover { background: #f1f5f9; color: var(--text-dark); }
 
-        /* FORMULARIO Y CHECKOUT */
+        /* FORMULARIO */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -572,7 +572,7 @@
             border-color: var(--primary-orange);
         }
 
-        /* MODAL IMÁGENES / PANTALLA COMPLETA DESLIZABLE */
+        /* MODAL IMÁGENES */
         .image-modal {
             display: none;
             position: fixed;
@@ -634,7 +634,7 @@
         .view-step { display: none; }
         .view-step.active-view { display: block; }
 
-        /* RESULTADOS Y WHATSAPP */
+        /* BOTÓN WHATSAPP */
         .btn-whatsapp {
             display: flex;
             justify-content: center;
@@ -683,7 +683,7 @@
         ENVÍOS INTERNACIONALES DIRECTOS A TU PUERTA CON LOGÍSTICA NOVA — SIN TRÁMITES ADUANEROS
     </div>
 
-    <!-- MENÚ PRINCIPAL TIPO TIENDAMIA -->
+    <!-- MENÚ PRINCIPAL -->
     <header>
         <div class="header-main">
             <a href="#" class="logo" id="mainLogo">
@@ -702,7 +702,7 @@
                     <option value="Fotografia">Fotografía</option>
                     <option value="Wearables">Wearables</option>
                 </select>
-                <input type="text" id="searchInput" placeholder="Buscar productos electrónicos importados Mercado Libre...">
+                <input type="text" id="searchInput" placeholder="Buscar productos electrónicos importados...">
                 <button type="button" id="btnSearchCatalog">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
@@ -736,7 +736,6 @@
     </header>
 
     <main>
-        
         <!-- RASTREO RÁPIDO -->
         <div class="main-card">
             <div class="section-title">
@@ -795,7 +794,7 @@
                 </div>
             </div>
 
-            <!-- PASO 2: FORMULARIO DE ENVÍO Y CUOTAS GLOBAL -->
+            <!-- PASO 2: FORMULARIO DE ENVÍO -->
             <div class="view-step" id="viewShipping">
                 <form id="shippingForm">
                     <div class="section-title">1. Datos Personales y de Contacto</div>
@@ -838,7 +837,7 @@
                         </div>
                     </div>
 
-                    <!-- OPCIÓN DE CUOTAS AL FINAL -->
+                    <!-- OPCIÓN DE CUOTAS -->
                     <div class="section-title">3. Opción de Pago y Financiación Global</div>
                     <div class="form-grid">
                         <div class="form-group full-width">
@@ -899,12 +898,12 @@
         </div>
     </main>
 
-    <!-- MODAL VISTA PREVIA / PANTALLA COMPLETA SLIDER -->
+    <!-- MODAL VISTA PREVIA SLIDER -->
     <div class="image-modal" id="imageModal">
         <div class="modal-slider-box">
             <button class="modal-nav-btn prev" onclick="moveModalSlide(-1)">&#10094;</button>
             <div class="modal-img-track" id="modalImgTrack">
-                <!-- Imágen(es) inyectadas por JS -->
+                <!-- Imagen(es) inyectadas por JS -->
             </div>
             <button class="modal-nav-btn next" onclick="moveModalSlide(1)">&#10095;</button>
         </div>
@@ -928,7 +927,7 @@
             }
         };
 
-        // EXTENSO CATÁLOGO DE ELECTRÓNICOS DE MERCADO LIBRE CON FOTOS Y DESCRIPCIÓN COMPLETA
+        // CATÁLOGO DE PRODUCTOS CON IMÁGENES DE ALTA DISPONIBILIDAD Y RESPALDO
         const PRODUCTS = [
             // --- CELULARES ---
             { 
@@ -938,9 +937,9 @@
                 price: 284899,
                 description: "Pantalla Super AMOLED de 6.7 pulgadas FHD+, procesador Octa-Core eficiente, triple cámara trasera de 50MP y batería de 5000 mAh de larga duración.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_793382-MLA80126990393_102024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_616499-MLA80126990397_102024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_892831-MLA80126990401_102024-F.webp"
+                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -950,9 +949,8 @@
                 price: 269999,
                 description: "Pantalla HD+ de 6.6 pulgadas a 90Hz, cámara principal con inteligencia artificial de 50MP, sonido Dolby Atmos y diseño elegante resistente a salpicaduras.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_728956-MLA75317424195_032024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_838274-MLA75317424197_032024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_910082-MLA75317424199_032024-F.webp"
+                    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -962,9 +960,8 @@
                 price: 1549999,
                 description: "Dynamic Island, chip A16 Bionic súper veloz, cámara avanzada de 48MP con teleobjetivo 2x y conector USB-C universal integrado.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_822268-MLA71782867168_092023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_828620-MLA71782867170_092023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_801041-MLA71782867172_092023-F.webp"
+                    "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -974,9 +971,8 @@
                 price: 529999,
                 description: "Cámara insignia de 200MP con OIS, pantalla AMOLED 120Hz FHD+, carga ultra rápida de 67W y procesador Snapdragon de alta eficiencia.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_656519-MLA74351336040_022024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_912231-MLA74351336042_022024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_789012-MLA74351336044_022024-F.webp"
+                    "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -986,9 +982,8 @@
                 price: 2199999,
                 description: "Marco de titanio premium, Galaxy AI integrada para traducción en tiempo real, S Pen incorporado y cámara principal de 200MP con zoom óptico 10x.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_832329-MLA74130022206_012024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_838201-MLA74130022208_012024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_910293-MLA74130022210_012024-F.webp"
+                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -998,9 +993,8 @@
                 price: 999999,
                 description: "Diseño curvado ergonómico en cuero vegano, certificación IP68, carga TurboPower de 125W y cámara triple validada por Pantone.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_612839-MLA75839201923_042024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_719283-MLA75839201925_042024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_891203-MLA75839201927_042024-F.webp"
+                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
 
@@ -1012,9 +1006,8 @@
                 price: 22659,
                 description: "Auriculares in-ear con hasta 36 horas de autonomía con estuche de carga, driver dinámico de 10mm y cancelación de ruido por IA para llamadas.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_750532-MLA78891081546_092024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_981273-MLA78891081548_092024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_612948-MLA78891081550_092024-F.webp"
+                    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1024,9 +1017,8 @@
                 price: 84999,
                 description: "Hasta 50 horas de batería, conexión multipunto para cambiar entre dispositivos fácilmente, micrófono integrado y ecualización personalizada vía App.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_798032-MLA54923293021_042023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_902183-MLA54923293023_042023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_671239-MLA54923293025_042023-F.webp"
+                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1036,9 +1028,8 @@
                 price: 74999,
                 description: "Sonido JBL Pro ultraportátil, resistencia al agua y polvo IP67, correa integrada mejorada y hasta 7 horas de reproducción continua.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_632194-MLA76012984102_042024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_812394-MLA76012984104_042024-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_910283-MLA76012984106_042024-F.webp"
+                    "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1048,9 +1039,8 @@
                 price: 449999,
                 description: "Cancelación Activa de Ruido hasta 2x más efectiva, Audio Espacial personalizado con seguimiento dinámico de la cabeza y estuche MagSafe USB-C.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_941029-MLA71782867200_092023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_819203-MLA71782867202_092023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA71782867204_092023-F.webp"
+                    "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
 
@@ -1062,9 +1052,8 @@
                 price: 89990,
                 description: "Reproducción cinematográfica en 4K Ultra HD con Dolby Vision, HDR10+ y audio inmersivo Dolby Atmos. Incluye mando con Alexa.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_938122-MLA47812903821_102021-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_712983-MLA47812903823_102021-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_819203-MLA47812903825_102021-F.webp"
+                    "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1074,9 +1063,7 @@
                 price: 78500,
                 description: "Agrupa todo tu contenido de streaming en una sola pantalla principal. Soporta 1080p HDR y control por voz con Asistente de Google.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_619023-MLA52083920192_102022-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_789123-MLA52083920194_102022-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_801928-MLA52083920196_102022-F.webp"
+                    "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1086,9 +1073,7 @@
                 price: 69999,
                 description: "Streaming 4K e imágenes HDR nítidas y brillantes. Configuración rápida y sencilla con cable HDMI de alta velocidad incluido.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_738201-MLA46029102931_052021-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_819203-MLA46029102933_052021-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_910293-MLA46029102935_052021-F.webp"
+                    "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
 
@@ -1100,9 +1085,8 @@
                 price: 1149999,
                 description: "Diseño ultracompacto con 1TB de almacenamiento SSD NVMe de alta velocidad, Ray Tracing, audio 3D y retroalimentación háptica DualSense.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_702938-MLA73520192831_122023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_890123-MLA73520192833_122023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_918237-MLA73520192835_122023-F.webp"
+                    "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1112,9 +1096,7 @@
                 price: 112999,
                 description: "Gatillos adaptativos dinámicos, retroalimentación háptica inmersiva, micrófono integrado y botón 'Crear' para compartir tus mejores partidas.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_841203-MLA44192039123_112020-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_910293-MLA44192039125_112020-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_719283-MLA44192039127_112020-F.webp"
+                    "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1124,9 +1106,7 @@
                 price: 689999,
                 description: "Pantalla OLED de 7 pulgadas con colores intensos y alto contraste, soporte ajustable ancho, puerto LAN por cable en la base y 64GB de memoria interna.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_839201-MLA47820192831_102021-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA47820192833_102021-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA47820192835_102021-F.webp"
+                    "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
 
@@ -1138,9 +1118,8 @@
                 price: 789999,
                 description: "Pantalla FHD de 15.6 pulgadas antirreflejo, procesador Intel Core i5 de 12.ª generación, 16GB RAM para multitarea fluida y SSD veloz.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_619283-MLA71029381023_082023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_789120-MLA71029381025_082023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_901293-MLA71029381027_082023-F.webp"
+                    "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1150,9 +1129,8 @@
                 price: 1699999,
                 description: "Diseño ultradelgado de aluminio, chip M2 súper potente y eficiente, pantalla Liquid Retina de 13.6 pulgadas y hasta 18 horas de batería.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_738192-MLA50839201921_072022-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_891203-MLA50839201923_072022-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA50839201925_072022-F.webp"
+                    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1162,9 +1140,7 @@
                 price: 1349999,
                 description: "Rendimiento para videojuegos intensos con gráfica NVIDIA GeForce RTX 3050, pantalla de 144Hz FHD y durabilidad militar certificada.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_839201-MLA72019283102_102023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_901293-MLA72019283104_102023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA72019283106_102023-F.webp"
+                    "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
 
@@ -1176,9 +1152,7 @@
                 price: 529999,
                 description: "Arquitectura NVIDIA Ada Lovelace con DLSS 3, Ray Tracing de 3ra generación y diseño de ventiladores Axial-tech para máximo flujo de aire.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_819203-MLA69820192831_062023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA69820192833_062023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA69820192835_062023-F.webp"
+                    "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1188,9 +1162,7 @@
                 price: 289999,
                 description: "8 núcleos y 16 hilos de procesamiento optimizados para gaming y creación de contenido intensivo en plataforma Socket AM4.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_738192-MLA49820192831_042022-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_891203-MLA49820192833_042022-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA49820192835_042022-F.webp"
+                    "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
 
@@ -1202,9 +1174,7 @@
                 price: 349999,
                 description: "Pantalla Sapphire Crystal ultra resistente, monitoreo de composición corporal BIA, seguimiento del sueño avanzado y sensor ECG de frecuencia cardíaca.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_839201-MLA70820192831_082023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_901293-MLA70820192833_082023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA70820192835_082023-F.webp"
+                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -1214,9 +1184,7 @@
                 price: 649999,
                 description: "Estabilización de video HyperSmooth 6.0 ganadora del Emmy, transmisión en directo FHD, cuerpo sumergible sin funda hasta 10 metros.",
                 images: [
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_738192-MLA71820192831_092023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_891203-MLA71820192833_092023-F.webp",
-                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA71820192835_092023-F.webp"
+                    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&auto=format&fit=crop&q=80"
                 ] 
             }
         ];
@@ -1253,7 +1221,6 @@
                 return;
             }
 
-            // LÓGICA DE PAGINACIÓN (HOJA 1, HOJA 2, ETC.)
             const totalPages = Math.ceil(filtered.length / CONFIG.ITEMS_PER_PAGE);
             if (currentPage > totalPages) currentPage = 1;
 
@@ -1265,22 +1232,26 @@
                 if (!(p.id in slideIndexes)) slideIndexes[p.id] = 0;
                 
                 const imgsHtml = p.images.map((img, idx) => 
-                    `<img src="${img}" alt="${p.name}" class="product-img" onclick="openFullscreenModal(${p.id}, ${idx})">`
+                    `<img src="${img}" alt="${p.name}" class="product-img" referrerpolicy="no-referrer" onclick="openFullscreenModal(${p.id}, ${idx})">`
                 ).join("");
 
-                const dotsHtml = p.images.map((_, idx) => 
+                const dotsHtml = p.images.length > 1 ? p.images.map((_, idx) => 
                     `<span class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setProductSlide(${p.id}, ${idx})"></span>`
-                ).join("");
+                ).join("") : "";
+
+                const navBtnsHtml = p.images.length > 1 ? `
+                    <button class="slider-btn prev" onclick="moveProductSlide(${p.id}, -1)">&#10094;</button>
+                    <button class="slider-btn next" onclick="moveProductSlide(${p.id}, 1)">&#10095;</button>
+                ` : "";
 
                 return `
                     <div class="product-card">
                         <span class="product-badge">${p.category}</span>
                         <div class="product-slider-container">
-                            <button class="slider-btn prev" onclick="moveProductSlide(${p.id}, -1)">&#10094;</button>
+                            ${navBtnsHtml}
                             <div class="product-slider-track" id="track-${p.id}">
                                 ${imgsHtml}
                             </div>
-                            <button class="slider-btn next" onclick="moveProductSlide(${p.id}, 1)">&#10095;</button>
                             <div class="slider-dots" id="dots-${p.id}">
                                 ${dotsHtml}
                             </div>
@@ -1300,7 +1271,6 @@
                 `;
             }).join("");
 
-            // RENDERING DE BOTONES DE HOJAS DE PAGINACIÓN
             let pageBtnsHtml = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">« Anterior</button>`;
             
             for (let i = 1; i <= totalPages; i++) {
@@ -1349,7 +1319,7 @@
 
             const modalTrack = document.getElementById("modalImgTrack");
             modalTrack.innerHTML = currentModalImages.map(img => 
-                `<img src="${img}" class="modal-img">`
+                `<img src="${img}" class="modal-img" referrerpolicy="no-referrer">`
             ).join("");
 
             updateModalSlide();
