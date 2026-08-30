@@ -498,6 +498,8 @@
             font-weight: 800;
             font-size: 1rem;
             margin-top: 1rem;
+            cursor: pointer;
+            border: none;
         }
 
         footer {
@@ -729,10 +731,10 @@
                     <h2 id="resSecCode" style="letter-spacing: 4px; color: var(--text-dark);">000000</h2>
                 </div>
 
-                <a id="whatsappBtn" href="#" target="_blank" class="btn-whatsapp">
+                <button id="whatsappBtn" type="button" class="btn-whatsapp">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.124.553 4.195 1.603 6.01L.226 23.774l5.882-1.543A11.968 11.968 0 0012.031 24c6.645 0 12.031-5.385 12.031-12.031S18.676 0 12.031 0zm0 22.012c-1.8 0-3.565-.483-5.114-1.401l-.367-.217-3.799.996.996-3.799-.217-.367c-.918-1.549-1.401-3.314-1.401-5.114 0-5.551 4.517-10.068 10.068-10.068s10.068 4.517 10.068 10.068-4.517 10.068-10.068 10.068zm5.525-7.552c-.303-.152-1.792-.885-2.07-.987-.278-.101-.48-.152-.682.152-.202.303-.783.987-.96 1.189-.177.202-.354.227-.657.076-1.353-.666-2.317-1.258-3.197-2.738-.227-.379.227-.379.808-1.54.076-.152.038-.278-.038-.43-.076-.152-.682-1.642-.935-2.248-.246-.593-.497-.512-.682-.522-.177-.01-.379-.01-.581-.01-.202 0-.53.076-.808.379-.278.303-1.061 1.036-1.061 2.526 0 1.491 1.086 2.93 1.238 3.133.152.202 2.135 3.26 5.174 4.575 2.051.884 2.829.96 3.966.808 1.137-.152 2.317-.987 2.645-1.945.328-.96.328-1.794.227-1.945-.101-.152-.379-.227-.682-.379z"/></svg>
                     Confirmar Pedido vía WhatsApp con LOGÍSTICA NOVA
-                </a>
+                </button>
 
                 <button type="button" class="btn-action btn-secondary" id="btnRestart" style="width: 100%; margin-top: 1rem;">Realizar Otro Pedido</button>
             </div>
@@ -846,6 +848,7 @@
 
         const cart = {};
         let currentCategoryFilter = "ALL";
+        let currentOrderData = null;
 
         document.addEventListener("DOMContentLoaded", () => {
             renderCatalog();
@@ -977,6 +980,12 @@
                 document.getElementById("trackingResult").style.display = "block";
             });
 
+            document.getElementById("whatsappBtn").addEventListener("click", () => {
+                if (currentOrderData) {
+                    enviarWhatsAppDinamico(currentOrderData, CONFIG.TARGET_WHATSAPP);
+                }
+            });
+
             document.getElementById("btnRestart").addEventListener("click", () => location.reload());
             document.getElementById("closeModal").addEventListener("click", () => document.getElementById("imageModal").classList.remove("active"));
         }
@@ -1002,13 +1011,18 @@
             const secCode = Math.floor(100000 + Math.random() * 900000);
 
             const name = document.getElementById("fullName").value;
+            const dni = document.getElementById("dni").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
             const address = document.getElementById("address").value;
             const city = document.getElementById("city").value;
+            const province = document.getElementById("province").value;
+            const postalCode = document.getElementById("postalCode").value;
             const chosenInstallment = parseInt(document.getElementById("globalInstallments").value);
 
             let prodSubtotal = 0;
             let itemsHtml = "";
-            let itemsTxt = "";
+            let productosSeleccionados = [];
 
             Object.keys(cart).forEach(id => {
                 const qty = cart[id];
@@ -1025,7 +1039,12 @@
                             </div>
                         `;
 
-                        itemsTxt += `• ${qty}x ${product.name}\n`;
+                        productosSeleccionados.push({
+                            nombre: product.name,
+                            cantidad: qty,
+                            precio: product.price,
+                            foto: product.img
+                        });
                     }
                 }
             });
@@ -1044,18 +1063,54 @@
             document.getElementById("resGrandTotal").innerText = `$${grandTotal.toLocaleString("es-AR")}`;
             document.getElementById("resSecCode").innerText = secCode;
 
-            const message = `Hola LOGÍSTICA NOVA, deseo confirmar mi pedido de electrónica:\n\n` +
-                `*Guía:* ${trackingCode}\n` +
-                `*Cliente:* ${name}\n` +
-                `*Dirección:* ${address}, ${city}\n\n` +
-                `*Productos:*\n${itemsTxt}\n` +
-                `*Plan de Cuotas:* ${planLabel}\n` +
-                `*TOTAL A PAGAR:* $${grandTotal.toLocaleString("es-AR")}\n` +
-                `*Código de Seguridad:* ${secCode}`;
-
-            document.getElementById("whatsappBtn").href = `https://wa.me/${CONFIG.TARGET_WHATSAPP}?text=${encodeURIComponent(message)}`;
+            // Almacenamos los datos globales de la orden para WhatsApp
+            currentOrderData = {
+                guia: trackingCode,
+                codigoSeguridad: secCode,
+                nombre: name,
+                dni: dni,
+                telefono: phone,
+                email: email,
+                direccion: `${address}, ${city}, ${province} (CP: ${postalCode})`,
+                productos: productosSeleccionados,
+                cuotas: planLabel,
+                total: grandTotal.toLocaleString("es-AR")
+            };
 
             switchView("viewResults", 3);
+        }
+
+        function enviarWhatsAppDinamico(datosOrden, numeroTelefono) {
+            let detalleProductos = datosOrden.productos.map(p => 
+                `• ${p.cantidad}x ${p.nombre}\n  🖼️ Foto: ${p.foto}`
+            ).join('\n\n');
+
+            const mensaje = `*NUEVA ORDEN DE COMPRA Y ENVÍO*
+*LOGÍSTICA NOVA*
+----------------------------------------
+*N° de Guía:* ${datosOrden.guia}
+*Código de Seguridad:* ${datosOrden.codigoSeguridad}
+
+*DATOS DEL COMPRADOR*
+• Nombre: ${datosOrden.nombre}
+• DNI/CUIL: ${datosOrden.dni}
+• Teléfono: ${datosOrden.telefono}
+• Email: ${datosOrden.email}
+• Dirección: ${datosOrden.direccion}
+
+*PRODUCTOS SELECCIONADOS*
+${detalleProductos}
+
+*PLAN DE PAGO*
+• ${datosOrden.cuotas}
+
+*RESUMEN TOTAL*
+• *TOTAL A FACTURAR:* $${datosOrden.total}
+
+Solicito link de pago / datos bancarios para completar la transacción cbu o alias.`;
+
+            const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
         }
     </script>
 </body>
