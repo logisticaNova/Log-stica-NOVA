@@ -15,6 +15,7 @@
             --border-color: #e2e8f0;
             --accent-blue: #0284c7;
             --accent-green: #16a34a;
+            --coppel-blue: #003366;
         }
 
         * {
@@ -142,9 +143,9 @@
             white-space: nowrap;
         }
 
-        /* NAVEGACIÓN CATEGORÍAS */
+        /* NAVEGACIÓN ESTILO COPPEL / MULTICATEGORÍA */
         .nav-categories {
-            background: #f8fafc;
+            background: var(--coppel-blue);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
         }
@@ -153,29 +154,29 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            gap: 0.5rem;
+            gap: 0.2rem;
             overflow-x: auto;
-            padding: 0.5rem 1rem;
+            padding: 0 1rem;
             white-space: nowrap;
             scrollbar-width: thin;
         }
 
         .nav-item {
-            color: var(--text-dark);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.38rem 0.8rem;
-            border-radius: 20px;
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 0.75rem 1rem;
             cursor: pointer;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s;
+            background: transparent;
+            border: none;
+            transition: background 0.2s;
+            display: block;
+            text-decoration: none;
         }
 
         .nav-item:hover, .nav-item.active {
-            background: var(--primary-orange);
-            color: #ffffff;
-            border-color: var(--primary-orange);
+            background: #002244;
+            color: var(--primary-orange);
         }
 
         /* CARRITO LATERAL SLIDE-OVER */
@@ -738,16 +739,13 @@
             <div class="header-search">
                 <select id="searchCategory">
                     <option value="ALL">Categorías</option>
-                    <option value="Lavarropas">Lavarropas & Secarropas</option>
-                    <option value="Heladeras">Heladeras & Freezers</option>
-                    <option value="Cocinas">Cocinas & Hornos</option>
-                    <option value="Sommiers">Sommiers & Colchones</option>
-                    <option value="TVs">Smart TVs & Audio</option>
-                    <option value="Electrodomesticos">Pequeños Electros</option>
-                    <option value="Climatizacion">Climatización</option>
-                    <option value="Laptops">Laptops & PC</option>
+                    <option value="Electrodomesticos">Electrodomésticos</option>
+                    <option value="Tecnologia">Tecnología</option>
                     <option value="Celulares">Celulares</option>
-                    <option value="Consolas">Consolas & Gaming</option>
+                    <option value="Hogar">Hogar</option>
+                    <option value="Muebles">Muebles</option>
+                    <option value="Moda y Calzado">Moda y Calzado</option>
+                    <option value="Herramientas">Herramientas</option>
                 </select>
                 <input type="text" id="searchInput" placeholder="Buscar por producto, marca o modelo...">
                 <button type="button" id="btnSearchCatalog">
@@ -766,20 +764,17 @@
             </div>
         </div>
 
-        <!-- NAVEGACIÓN CATEGORÍAS -->
+        <!-- NAVEGACIÓN CATEGORÍAS (ESTILO COPPEL) -->
         <nav class="nav-categories">
             <div class="nav-container">
                 <span class="nav-item active" onclick="filterCategory('ALL')">Ver Todo</span>
-                <span class="nav-item" onclick="filterCategory('Lavarropas')">Lavarropas</span>
-                <span class="nav-item" onclick="filterCategory('Heladeras')">Heladeras</span>
-                <span class="nav-item" onclick="filterCategory('Cocinas')">Cocinas</span>
-                <span class="nav-item" onclick="filterCategory('TVs')">Smart TVs</span>
-                <span class="nav-item" onclick="filterCategory('Electrodomesticos')">Pequeños Electros</span>
-                <span class="nav-item" onclick="filterCategory('Sommiers')">Sommiers</span>
-                <span class="nav-item" onclick="filterCategory('Climatizacion')">Climatización</span>
+                <span class="nav-item" onclick="filterCategory('Electrodomesticos')">Electrodomésticos</span>
+                <span class="nav-item" onclick="filterCategory('Tecnologia')">Tecnología</span>
                 <span class="nav-item" onclick="filterCategory('Celulares')">Celulares</span>
-                <span class="nav-item" onclick="filterCategory('Laptops')">Laptops</span>
-                <span class="nav-item" onclick="filterCategory('Consolas')">Consolas & Gaming</span>
+                <span class="nav-item" onclick="filterCategory('Hogar')">Hogar</span>
+                <span class="nav-item" onclick="filterCategory('Muebles')">Muebles</span>
+                <span class="nav-item" onclick="filterCategory('Moda y Calzado')">Moda y Calzado</span>
+                <span class="nav-item" onclick="filterCategory('Herramientas')">Herramientas</span>
             </div>
         </nav>
     </header>
@@ -1048,48 +1043,11 @@
                 "INTERIOR": 18500
             },
             ITEMS_PER_PAGE: 12,
-            CARD_INTEREST_PER_INSTALLMENT: 0.07, // 7% por cuota
-            TRANSFER_DISCOUNT: 0.15 // 15% Descuento
+            CARD_INTEREST_PER_INSTALLMENT: 0.07,
+            TRANSFER_DISCOUNT: 0.15
         };
 
-        // ENLACES DE IMÁGENES ESTABLES (WIKIMEDIA COMMONS Y REPOSITORIOS PÚBLICOS)
         const CATEGORIES_CONFIG = {
-            Lavarropas: {
-                baja: { basePrice: 220000, priceRange: 80000, prefix: "Semi-Auto Compact", features: ["5kg Carga Superior", "Lavado Básico", "Bajo Consumo", "Diseño Liviano"] },
-                media: { basePrice: 380000, priceRange: 180000, prefix: "Smart/Auto", features: ["6kg Carga Frontal", "7kg Carga Superior", "Motor Silencioso", "Centrifugado 1000 RPM"] },
-                alta: { basePrice: 850000, priceRange: 450000, prefix: "Inverter Pro", features: ["10kg EcoBubble", "Secado por Calor", "WiFi Direct & AI", "1400 RPM Inverter"] },
-                images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Washing_machine_icon.svg/512px-Washing_machine_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/BOSCH_washing_machine_door.jpg/640px-BOSCH_washing_machine_door.jpg"
-                ]
-            },
-            Heladeras: {
-                baja: { basePrice: 390000, priceRange: 120000, prefix: "Mini Cycle", features: ["200L Compacta", "Frío Cíclico", "Estantes Regulables", "Eficiencia B"] },
-                media: { basePrice: 650000, priceRange: 250000, prefix: "Cycle Defrost", features: ["300L Eficiencia A", "Crisper XXL", "Luz LED Interior", "Freezer Superior"] },
-                alta: { basePrice: 1400000, priceRange: 900000, prefix: "No Frost Inverter", features: ["450L Stainless Steel", "Dispenser de Agua", "Twin Cooling System", "Door-in-Door"] },
-                images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Refrigerator_icon.svg/512px-Refrigerator_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Smeg_fridge_at_100_Design_2006.jpg/640px-Smeg_fridge_at_100_Design_2006.jpg"
-                ]
-            },
-            Cocinas: {
-                baja: { basePrice: 180000, priceRange: 80000, prefix: "Compact 4H", features: ["4 Hornallas Básicas", "Válvula de Seguridad", "Parrilla en Hornos", "Encendido Manual"] },
-                media: { basePrice: 320000, priceRange: 150000, prefix: "Multigas Standard", features: ["4 Hornallas Multigas", "Puerta Doble Vidrio", "Enlozado Multiclean", "Luz de Horno"] },
-                alta: { basePrice: 750000, priceRange: 400000, prefix: "Gourmet Pro Stainless", features: ["Acero Inoxidable AISI 430", "Encendido Electrónico", "Timer Digital", "Grill Eléctrico Incorporado"] },
-                images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Gas_stove_icon.svg/512px-Gas_stove_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Kitchen_stove_by_Whirlpool.jpg/640px-Kitchen_stove_by_Whirlpool.jpg"
-                ]
-            },
-            TVs: {
-                baja: { basePrice: 190000, priceRange: 90000, prefix: "LED HD Ready", features: ["32 Pulgadas Smart TV", "Entradas HDMI/USB", "Sonido Estéreo", "Bajo Consumo"] },
-                media: { basePrice: 350000, priceRange: 180000, prefix: "Smart TV FHD", features: ["43 Pulgadas Google TV", "HDR10", "Chromecast Integrado", "Comando por Voz"] },
-                alta: { basePrice: 890000, priceRange: 750000, prefix: "OLED / QLED 4K", features: ["65 Pulgadas 120Hz", "Dolby Vision & Atmos", "Gaming Hub HDMI 2.1", "Procesador IA Alpha 9"] },
-                images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/CRT_television_icon_%28Noun_Project%29.svg/512px-CRT_television_icon_%28Noun_Project%29.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Television_icon.svg/512px-Television_icon.svg.png"
-                ]
-            },
             Electrodomesticos: {
                 baja: { basePrice: 25000, priceRange: 20000, prefix: "Basic Home", features: ["Cafetera de Filtro / Tostadora", "Diseño Compacto", "Potencia Estándar", "Fácil Uso"] },
                 media: { basePrice: 60000, priceRange: 50000, prefix: "Daily Use", features: ["Digital 1500W", "Accesorios Antiadherentes", "Selector Removible", "Fácil Limpieza"] },
@@ -1099,31 +1057,13 @@
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Coffee_maker_icon.svg/512px-Coffee_maker_icon.svg.png"
                 ]
             },
-            Sommiers: {
-                baja: { basePrice: 150000, priceRange: 70000, prefix: "Classic Foam", features: ["2 Plazas Espuma Estándar", "Tela Algodón", "Estructura Rígida", "Soporte 70kg por lado"] },
-                media: { basePrice: 280000, priceRange: 150000, prefix: "Orthopedic Comfort", features: ["2 Plazas Espuma 30kg/m3", "Tela Jacquard Antiácaros", "Base Tapizada", "Espuma Firme"] },
-                alta: { basePrice: 720000, priceRange: 500000, prefix: "King Size Pocket", features: ["Resortes Enfundados Individuales", "Pillow Top Memory Foam", "200x200 Súper Confort", "Tejido de Punto"] },
+            Tecnologia: {
+                baja: { basePrice: 190000, priceRange: 90000, prefix: "Gadget Essential", features: ["Accesorios Multimedia", "Conexión USB", "Portátil", "Bajo Consumo"] },
+                media: { basePrice: 350000, priceRange: 180000, prefix: "Smart Hub", features: ["Pantalla HD", "Conectividad Avanzada", "Sonido Estéreo", "Compatible Bluetooth"] },
+                alta: { basePrice: 890000, priceRange: 750000, prefix: "Pro Ultra Tech", features: ["Rendimiento Extremo", "Procesador IA", "Alta Definición", "Diseño Premium"] },
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bed_icon.svg/512px-Bed_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Noun_Project_bed_icon_1079313.svg/512px-Noun_Project_bed_icon_1079313.svg.png"
-                ]
-            },
-            Climatizacion: {
-                baja: { basePrice: 220000, priceRange: 100000, prefix: "Ventilación / Caloventor", features: ["Caloventor Cerámico 2000W", "Termostato Regulable", "Seguridad por Volcamiento", "Portátil"] },
-                media: { basePrice: 390000, priceRange: 160000, prefix: "Split Frío/Calor", features: ["3000 Frigorías ECO", "Filtro Antipolvo", "Display Oculto", "Gas R410a"] },
-                alta: { basePrice: 880000, priceRange: 450000, prefix: "Inverter Smart Shield", features: ["5200 Frigorías Inverter", "Ahorro 60% Energía", "Control por App WiFi", "Bomba de Calor"] },
-                images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Fan_icon.svg/512px-Fan_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Air_conditioner_icon.svg/512px-Air_conditioner_icon.svg.png"
-                ]
-            },
-            Laptops: {
-                baja: { basePrice: 250000, priceRange: 120000, prefix: "Student Essential", features: ["Intel Celeron / 4GB RAM", "128GB SSD", "Pantalla 14 HD", "Ideal Oficina y Estudiar"] },
-                media: { basePrice: 450000, priceRange: 220000, prefix: "Slim Book Pro", features: ["Intel Core i5 / Ryzen 5", "8GB RAM - 256GB SSD", "Pantalla 15.6 FHD", "Teclado Español"] },
-                alta: { basePrice: 1250000, priceRange: 900000, prefix: "Ultra Gaming Studio", features: ["Core i9 / Ryzen 9 / M3 Pro", "16GB/32GB - 1TB NVMe", "NVIDIA RTX 4070", "Pantalla 165Hz Oled"] },
-                images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Laptop_icon.svg/512px-Laptop_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Apple_logo_grey.svg/512px-Apple_logo_grey.svg.png"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/CRT_television_icon_%28Noun_Project%29.svg/512px-CRT_television_icon_%28Noun_Project%29.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Television_icon.svg/512px-Television_icon.svg.png"
                 ]
             },
             Celulares: {
@@ -1135,20 +1075,46 @@
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/IPhone_logo_and_wordmark.svg/640px-IPhone_logo_and_wordmark.svg.png"
                 ]
             },
-            Consolas: {
-                baja: { basePrice: 180000, priceRange: 90000, prefix: "Retro Box Arcade", features: ["Emulador Multijuegos", "Mandos USB Incluidos", "Plug & Play HDMI", "Biblioteca Clásica"] },
-                media: { basePrice: 420000, priceRange: 180000, prefix: "Digital Edition", features: ["512GB SSD ultraveloz", "Control Inalámbrico", "HDR Gaming", "Compact Design"] },
-                alta: { basePrice: 890000, priceRange: 400000, prefix: "Pro Ultra Console", features: ["1TB SSD High Performance", "Juegos 4K a 120 FPS", "Ray Tracing Avanzado", "Audio 3D Tempest"] },
+            Hogar: {
+                baja: { basePrice: 150000, priceRange: 70000, prefix: "Classic Home", features: ["Estructura Rígida", "Materiales Resistentes", "Fácil Armado", "Estilo Versátil"] },
+                media: { basePrice: 280000, priceRange: 150000, prefix: "Comfort Deco", features: ["Diseño Moderno", "Tejido de Alta Calidad", "Soporte Ergonómico", "Fácil Limpieza"] },
+                alta: { basePrice: 720000, priceRange: 500000, prefix: "Luxury Living", features: ["Acabados de Lujo", "Máxima Comodidad", "Materiales Premium", "Durabilidad Garantizada"] },
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Gamepad_icon.svg/512px-Gamepad_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/PlayStation_logo.svg/512px-PlayStation_logo.svg.png"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bed_icon.svg/512px-Bed_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Noun_Project_bed_icon_1079313.svg/512px-Noun_Project_bed_icon_1079313.svg.png"
+                ]
+            },
+            Muebles: {
+                baja: { basePrice: 180000, priceRange: 80000, prefix: "Compact Wood", features: ["Melamina Resistente", "Diseño Funcional", "Optimización de Espacios", "Kit de Fácil Armado"] },
+                media: { basePrice: 320000, priceRange: 150000, prefix: "Modern Living", features: ["Herrajes Metálicos", "Diseño Contemporáneo", "Gran Capacidad de Carga", "Terminación Texturada"] },
+                alta: { basePrice: 750000, priceRange: 400000, prefix: "Design Studio", features: ["Madera Maciza Seleccionada", "Lacas Poliuretánicas", "Diseño de Vanguardia", "Herrajes con Cierre Suave"] },
+                images: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Kitchen_stove_by_Whirlpool.jpg/640px-Kitchen_stove_by_Whirlpool.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bed_icon.svg/512px-Bed_icon.svg.png"
+                ]
+            },
+            "Moda y Calzado": {
+                baja: { basePrice: 45000, priceRange: 25000, prefix: "Urban Basic", features: ["Tejido Respirable", "Costuras Reforzadas", "Diseño Casual", "Cómodo para Uso Diario"] },
+                media: { basePrice: 95000, priceRange: 45000, prefix: "Active Sport", features: ["Suela Antideslizante", "Amortiguación Flexible", "Materiales Impermeables", "Soporte Ergonómico"] },
+                alta: { basePrice: 210000, priceRange: 120000, prefix: "Exclusive Line", features: ["Cuero Genuino / Alta Gama", "Diseño de Autor", "Confección Premium", "Edición Limitada"] },
+                images: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Laptop_icon.svg/512px-Laptop_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Smartphone_icon.svg/512px-Smartphone_icon.svg.png"
+                ]
+            },
+            Herramientas: {
+                baja: { basePrice: 65000, priceRange: 30000, prefix: "DIY Compact", features: ["Motor Estándar", "Mango Ergonómico Antideslizante", "Ideal Tareas del Hogar", "Liviana y Práctica"] },
+                media: { basePrice: 140000, priceRange: 70000, prefix: "Power Workshop", features: ["Velocidad Variable", "Mandril Metálico", "Batería de Litio Recargable", "Alto Torque"] },
+                alta: { basePrice: 380000, priceRange: 200000, prefix: "Industrial Pro", features: ["Motor Brushless Sin Carbones", "Sistema Anti-Vibración", "Uso Intensivo Profesional", "Maletín de Transporte Incluido"] },
+                images: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Fan_icon.svg/512px-Fan_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Air_conditioner_icon.svg/512px-Air_conditioner_icon.svg.png"
                 ]
             }
         };
 
         const BRANDS = ["Samsung", "LG", "Philips", "Whirlpool", "Drean", "Sony", "Dell", "Lenovo", "Asus", "Xiaomi", "Apple", "Oster", "Gafa", "Peabody", "Philco"];
 
-        // GENERADOR DINÁMICO DE 300 PRODUCTOS
         function generate300Products() {
             const productsList = [];
             const categories = Object.keys(CATEGORIES_CONFIG);
@@ -1220,7 +1186,6 @@
                 return navMatch && selectMatch && gamaMatch && matchSearch;
             });
 
-            // ORDENAMIENTO
             if (currentSortOrder === "price-asc") {
                 filtered.sort((a, b) => a.price - b.price);
             } else if (currentSortOrder === "price-desc") {
