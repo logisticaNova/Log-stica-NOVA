@@ -34,7 +34,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* BARRA SUPERIOR DE ANUNCIOS */
         .top-bar {
             background-color: #1e293b;
             color: #ffffff;
@@ -45,7 +44,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* MENÚ PRINCIPAL */
         header {
             background-color: #ffffff;
             border-bottom: 2px solid var(--border-color);
@@ -78,7 +76,6 @@
 
         .logo span { color: var(--primary-orange); }
 
-        /* BARRA DE BÚSQUEDA DEL MENÚ */
         .header-search {
             flex-grow: 1;
             max-width: 550px;
@@ -121,7 +118,6 @@
             justify-content: center;
         }
 
-        /* CONTROLES DERECHA */
         .header-actions {
             display: flex;
             align-items: center;
@@ -143,7 +139,6 @@
             white-space: nowrap;
         }
 
-        /* NAVEGACIÓN ESTILO COPPEL / MULTICATEGORÍA */
         .nav-categories {
             background: var(--coppel-blue);
             border-top: 1px solid var(--border-color);
@@ -179,7 +174,6 @@
             color: var(--primary-orange);
         }
 
-        /* CARRITO LATERAL SLIDE-OVER */
         .cart-drawer-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -237,7 +231,6 @@
 
         .cart-item-img { width: 50px; height: 50px; object-fit: contain; }
 
-        /* CONTENEDOR PRINCIPAL */
         main {
             flex-grow: 1;
             max-width: 1200px;
@@ -269,7 +262,6 @@
             gap: 0.5rem;
         }
 
-        /* BARRA DE FILTROS / ORDENAMIENTO */
         .filter-bar {
             display: flex;
             justify-content: space-between;
@@ -283,7 +275,6 @@
             gap: 0.5rem;
         }
 
-        /* PASOS Y RASTREO */
         .step-indicator {
             display: flex;
             justify-content: space-between;
@@ -327,7 +318,6 @@
             color: var(--accent-green);
         }
 
-        /* CATÁLOGO DE PRODUCTOS */
         .catalog-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -379,7 +369,6 @@
         .gama-badge.media { background: #e2e8f0; color: #334155; }
         .gama-badge.alta { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
 
-        /* CARRUSEL DE IMÁGENES */
         .product-slider-container {
             position: relative;
             width: 100%;
@@ -480,11 +469,21 @@
             -webkit-box-orient: vertical;
         }
 
+        .product-price-box {
+            margin-bottom: 0.8rem;
+        }
+
+        .old-price {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-right: 6px;
+        }
+
         .product-price {
             font-size: 1.15rem;
             font-weight: 900;
             color: var(--text-dark);
-            margin-bottom: 0.8rem;
         }
 
         .product-actions {
@@ -511,7 +510,6 @@
         .qty-btn:hover { background: var(--primary-orange); color: white; border-color: var(--primary-orange); }
         .qty-val { font-size: 0.9rem; font-weight: 700; width: 24px; text-align: center; }
 
-        /* PAGINACIÓN */
         .pagination-container {
             display: flex;
             justify-content: center;
@@ -544,7 +542,6 @@
             cursor: not-allowed;
         }
 
-        /* RESUMEN BARRA INFERIOR DE CATALOGO */
         .cart-bar {
             background: #1e293b;
             color: white;
@@ -579,7 +576,6 @@
 
         .btn-secondary:hover { background: #f1f5f9; color: var(--text-dark); }
 
-        /* FORMULARIO */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -611,7 +607,6 @@
             border-color: var(--primary-orange);
         }
 
-        /* MODAL PANTALLA COMPLETA DE IMÁGENES */
         .image-modal {
             display: none;
             position: fixed;
@@ -696,7 +691,6 @@
             font-size: 0.8rem; margin-top: auto;
         }
 
-        /* ADAPTABILIDAD MOBILE */
         @media (max-width: 992px) {
             .catalog-grid { grid-template-columns: repeat(3, 1fr); }
         }
@@ -715,7 +709,7 @@
         }
 
         @media (max-width: 480px) {
-            .catalog-grid { grid-template-columns: repeat(1, 1fr); }
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
             .step-indicator { flex-direction: column; }
             .step-indicator::before { display: none; }
             .step-item { width: 100%; }
@@ -724,12 +718,10 @@
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR DE ANUNCIOS -->
     <div class="top-bar">
         🚛 ENVÍOS A TODO EL PAÍS — ENVÍO GRATIS EN COMPRAS MAYORES A $800.000 — 15% OFF EN TRANSFERENCIA
     </div>
 
-    <!-- MENÚ PRINCIPAL -->
     <header>
         <div class="header-main">
             <a href="#" class="logo" id="mainLogo">
@@ -739,13 +731,14 @@
             <div class="header-search">
                 <select id="searchCategory">
                     <option value="ALL">Categorías</option>
-                    <option value="Electrodomesticos">Electrodomésticos</option>
-                    <option value="Tecnologia">Tecnología</option>
+                    <option value="Electrodomésticos">Electrodomésticos</option>
+                    <option value="Tecnología">Tecnología</option>
                     <option value="Celulares">Celulares</option>
+                    <option value="TV y Audio">TV y Audio</option>
                     <option value="Hogar">Hogar</option>
                     <option value="Muebles">Muebles</option>
-                    <option value="Moda y Calzado">Moda y Calzado</option>
                     <option value="Herramientas">Herramientas</option>
+                    <option value="Moda y Calzado">Moda y Calzado</option>
                 </select>
                 <input type="text" id="searchInput" placeholder="Buscar por producto, marca o modelo...">
                 <button type="button" id="btnSearchCatalog">
@@ -764,31 +757,28 @@
             </div>
         </div>
 
-        <!-- NAVEGACIÓN CATEGORÍAS (ESTILO COPPEL) -->
         <nav class="nav-categories">
             <div class="nav-container">
                 <span class="nav-item active" onclick="filterCategory('ALL')">Ver Todo</span>
-                <span class="nav-item" onclick="filterCategory('Electrodomesticos')">Electrodomésticos</span>
-                <span class="nav-item" onclick="filterCategory('Tecnologia')">Tecnología</span>
+                <span class="nav-item" onclick="filterCategory('Electrodomésticos')">Electrodomésticos</span>
+                <span class="nav-item" onclick="filterCategory('Tecnología')">Tecnología</span>
                 <span class="nav-item" onclick="filterCategory('Celulares')">Celulares</span>
+                <span class="nav-item" onclick="filterCategory('TV y Audio')">TV y Audio</span>
                 <span class="nav-item" onclick="filterCategory('Hogar')">Hogar</span>
                 <span class="nav-item" onclick="filterCategory('Muebles')">Muebles</span>
-                <span class="nav-item" onclick="filterCategory('Moda y Calzado')">Moda y Calzado</span>
                 <span class="nav-item" onclick="filterCategory('Herramientas')">Herramientas</span>
+                <span class="nav-item" onclick="filterCategory('Moda y Calzado')">Moda y Calzado</span>
             </div>
         </nav>
     </header>
 
-    <!-- CARRITO LATERAL SLIDE-OVER (DRAWER) -->
     <div class="cart-drawer-overlay" id="cartOverlay"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="drawer-header">
             <h3>Tu Carrito de Compra</h3>
             <button id="closeCartDrawerBtn" style="background:none; border:none; color:white; font-size:1.4rem; cursor:pointer;">✕</button>
         </div>
-        <div class="drawer-body" id="drawerItemsContainer">
-            <!-- Ítems del carrito -->
-        </div>
+        <div class="drawer-body" id="drawerItemsContainer"></div>
         <div class="drawer-footer">
             <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.1rem; margin-bottom:1rem;">
                 <span>Subtotal:</span>
@@ -799,7 +789,6 @@
     </div>
 
     <main>
-        <!-- RASTREO RÁPIDO DE GUÍAS -->
         <div class="main-card">
             <div class="section-title">
                 <span>Rastrear Envío</span>
@@ -817,17 +806,14 @@
             </div>
         </div>
 
-        <!-- INDICADOR DE PASOS -->
         <div class="step-indicator">
             <div class="step-item active" id="badgeStep1">1. Selección de Productos</div>
             <div class="step-item" id="badgeStep2">2. Datos y Método de Pago</div>
             <div class="step-item" id="badgeStep3">3. Confirmación de Orden</div>
         </div>
 
-        <!-- TARJETA PRINCIPAL DEL FLUJO -->
         <div class="main-card">
             
-            <!-- PASO 1: CATÁLOGO -->
             <div class="view-step active-view" id="viewCatalog">
                 
                 <div class="filter-bar">
@@ -854,11 +840,8 @@
                     </div>
                 </div>
 
-                <div class="catalog-grid" id="catalogContainer">
-                    <!-- Productos inyectados dinámicamente -->
-                </div>
+                <div class="catalog-grid" id="catalogContainer"></div>
 
-                <!-- CONTENEDOR DE PAGINACIÓN -->
                 <div class="pagination-container" id="paginationContainer"></div>
 
                 <div class="cart-bar">
@@ -870,7 +853,6 @@
                 </div>
             </div>
 
-            <!-- PASO 2: FORMULARIO Y PAGO -->
             <div class="view-step" id="viewShipping">
                 <form id="shippingForm">
                     <div class="section-title">1. Datos Personales y de Contacto</div>
@@ -928,12 +910,9 @@
                             </select>
                         </div>
 
-                        <!-- SUB-OPCIÓN SI ELIGE TARJETA DE CRÉDITO -->
                         <div class="form-group full-width" id="creditCardInstallmentsGroup" style="display:none;">
                             <label for="cardInstallments">Planes de Cuotas en Tarjeta de Crédito:</label>
-                            <select id="cardInstallments">
-                                <!-- Opciones inyectadas dinámicamente -->
-                            </select>
+                            <select id="cardInstallments"></select>
                         </div>
                     </div>
 
@@ -964,7 +943,6 @@
                 </form>
             </div>
 
-            <!-- PASO 3: CONFIRMACIÓN Y CBU -->
             <div class="view-step" id="viewResults">
                 <div class="section-title">¡Orden Registrada con Éxito!</div>
                 
@@ -984,7 +962,6 @@
                     <div id="resItemsList"></div>
                 </div>
 
-                <!-- TARJETA CBU (MUESTRA CUANDO SE ELIGE TRANSFERENCIA) -->
                 <div id="cbuDetailsBox" style="display:none; background:#e0f2fe; border:2px dashed #0284c7; padding:1.2rem; border-radius:8px; margin-bottom:1rem;">
                     <h4 style="color:#0369a1; margin-bottom:0.5rem;">🏦 DATOS BANCARIOS PARA TRANSFERIR (15% OFF APLICADO)</h4>
                     <p style="font-size:0.85rem; color:#0c4a6e; margin-bottom:0.5rem;">Realizá la transferencia a la siguiente cuenta y enviá el comprobante por WhatsApp:</p>
@@ -1019,7 +996,6 @@
         </div>
     </main>
 
-    <!-- MODAL PANTALLA COMPLETA VISOR DE IMÁGENES -->
     <div class="image-modal" id="imageModal">
         <button class="modal-close-btn" id="closeModal">✕</button>
         <div class="modal-slider-box">
@@ -1047,115 +1023,200 @@
             TRANSFER_DISCOUNT: 0.15
         };
 
-        const CATEGORIES_CONFIG = {
-            Electrodomesticos: {
-                baja: { basePrice: 25000, priceRange: 20000, prefix: "Basic Home", features: ["Cafetera de Filtro / Tostadora", "Diseño Compacto", "Potencia Estándar", "Fácil Uso"] },
-                media: { basePrice: 60000, priceRange: 50000, prefix: "Daily Use", features: ["Digital 1500W", "Accesorios Antiadherentes", "Selector Removible", "Fácil Limpieza"] },
-                alta: { basePrice: 220000, priceRange: 180000, prefix: "Chef Deluxe", features: ["Cuerpo de Acero Pulido", "Paneles Táctiles OLED", "Tecnología RapidAir", "Motor Profesional"] },
+        const PRODUCTS = [
+            {
+                id: 1,
+                category: "Electrodomésticos",
+                subcategory: "Lavarropas",
+                brand: "Drean",
+                gama: "media",
+                name: "Lavarropas Automático Drean Next 8.14 P Inverter",
+                oldPrice: 780000,
+                price: 650000,
+                description: "Lavarropas automático con tecnología Inverter, capacidad de 8 kg y velocidad de centrifugado de 1400 RPM. Display LED multifunción.",
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Blender_icon_%28Noun_Project%29.svg/512px-Blender_icon_%28Noun_Project%29.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Coffee_maker_icon.svg/512px-Coffee_maker_icon.svg.png"
-                ]
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "OFERTA"
             },
-            Tecnologia: {
-                baja: { basePrice: 190000, priceRange: 90000, prefix: "Gadget Essential", features: ["Accesorios Multimedia", "Conexión USB", "Portátil", "Bajo Consumo"] },
-                media: { basePrice: 350000, priceRange: 180000, prefix: "Smart Hub", features: ["Pantalla HD", "Conectividad Avanzada", "Sonido Estéreo", "Compatible Bluetooth"] },
-                alta: { basePrice: 890000, priceRange: 750000, prefix: "Pro Ultra Tech", features: ["Rendimiento Extremo", "Procesador IA", "Alta Definición", "Diseño Premium"] },
+            {
+                id: 2,
+                category: "Electrodomésticos",
+                subcategory: "Lavarropas",
+                brand: "Samsung",
+                gama: "alta",
+                name: "Lavarropas Carga Frontal Samsung 9Kg AI Control",
+                oldPrice: 1150000,
+                price: 999000,
+                description: "Tecnología EcoBubble, inteligencia artificial que optimiza el lavado y motor Digital Inverter con 10 años de garantía.",
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/CRT_television_icon_%28Noun_Project%29.svg/512px-CRT_television_icon_%28Noun_Project%29.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Television_icon.svg/512px-Television_icon.svg.png"
-                ]
+                    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "DESTACADO"
             },
-            Celulares: {
-                baja: { basePrice: 120000, priceRange: 60000, prefix: "Entry 4G", features: ["64GB Almacenamiento", "Pantalla HD+ 6.5", "Cámara Principal 13MP", "Batería 4000mAh"] },
-                media: { basePrice: 240000, priceRange: 160000, prefix: "Series Lite / Mid", features: ["128GB Almacenamiento", "Pantalla 90Hz AMOLED", "Cámara 50MP Dual", "Carga Rápida 33W"] },
-                alta: { basePrice: 950000, priceRange: 800000, prefix: "Ultra Flagship 5G", features: ["256GB / 512GB NVMe", "Cámara 200MP Zoom 100x", "Procesador Flagship 4nm", "Titanium Frame"] },
+            {
+                id: 3,
+                category: "Electrodomésticos",
+                subcategory: "Secarropas",
+                brand: "Codini",
+                gama: "baja",
+                name: "Secarropas Centrífugo Codini Aike 5.5 Kg",
+                oldPrice: 140000,
+                price: 119000,
+                description: "Secarropas centrífugo de alta eficiencia con traba de seguridad en tapa y tambor de acero inoxidable.",
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Smartphone_icon.svg/512px-Smartphone_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/IPhone_logo_and_wordmark.svg/640px-IPhone_logo_and_wordmark.svg.png"
-                ]
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "NUEVO"
             },
-            Hogar: {
-                baja: { basePrice: 150000, priceRange: 70000, prefix: "Classic Home", features: ["Estructura Rígida", "Materiales Resistentes", "Fácil Armado", "Estilo Versátil"] },
-                media: { basePrice: 280000, priceRange: 150000, prefix: "Comfort Deco", features: ["Diseño Moderno", "Tejido de Alta Calidad", "Soporte Ergonómico", "Fácil Limpieza"] },
-                alta: { basePrice: 720000, priceRange: 500000, prefix: "Luxury Living", features: ["Acabados de Lujo", "Máxima Comodidad", "Materiales Premium", "Durabilidad Garantizada"] },
+            {
+                id: 4,
+                category: "Electrodomésticos",
+                subcategory: "Heladeras",
+                brand: "Gafa",
+                gama: "media",
+                name: "Heladera Cíclica Gafa HGF357 Frost Free 282L",
+                oldPrice: 720000,
+                price: 599000,
+                description: "Heladera con freezer de gran capacidad, estantes antiderrame regulables y cajón especial para vegetales.",
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bed_icon.svg/512px-Bed_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Noun_Project_bed_icon_1079313.svg/512px-Noun_Project_bed_icon_1079313.svg.png"
-                ]
+                    "https://images.unsplash.com/photo-1584568694244-14fbdf83bd35?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1571175336579-43c3d551922c?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "OFERTA"
             },
-            Muebles: {
-                baja: { basePrice: 180000, priceRange: 80000, prefix: "Compact Wood", features: ["Melamina Resistente", "Diseño Funcional", "Optimización de Espacios", "Kit de Fácil Armado"] },
-                media: { basePrice: 320000, priceRange: 150000, prefix: "Modern Living", features: ["Herrajes Metálicos", "Diseño Contemporáneo", "Gran Capacidad de Carga", "Terminación Texturada"] },
-                alta: { basePrice: 750000, priceRange: 400000, prefix: "Design Studio", features: ["Madera Maciza Seleccionada", "Lacas Poliuretánicas", "Diseño de Vanguardia", "Herrajes con Cierre Suave"] },
+            {
+                id: 5,
+                category: "Electrodomésticos",
+                subcategory: "Cocinas",
+                brand: "Whirlpool",
+                gama: "alta",
+                name: "Cocina a Gas Whirlpool Acero Inoxidable 56 Cm WFX56",
+                oldPrice: 850000,
+                price: 749000,
+                description: "Encendido electrónico a una mano, horno autolimpiante con visor panorámico y válvula de seguridad.",
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Kitchen_stove_by_Whirlpool.jpg/640px-Kitchen_stove_by_Whirlpool.jpg",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bed_icon.svg/512px-Bed_icon.svg.png"
-                ]
+                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "ENVÍO GRATIS"
             },
-            "Moda y Calzado": {
-                baja: { basePrice: 45000, priceRange: 25000, prefix: "Urban Basic", features: ["Tejido Respirable", "Costuras Reforzadas", "Diseño Casual", "Cómodo para Uso Diario"] },
-                media: { basePrice: 95000, priceRange: 45000, prefix: "Active Sport", features: ["Suela Antideslizante", "Amortiguación Flexible", "Materiales Impermeables", "Soporte Ergonómico"] },
-                alta: { basePrice: 210000, priceRange: 120000, prefix: "Exclusive Line", features: ["Cuero Genuino / Alta Gama", "Diseño de Autor", "Confección Premium", "Edición Limitada"] },
+            {
+                id: 6,
+                category: "TV y Audio",
+                subcategory: "Smart TV",
+                brand: "Samsung",
+                gama: "alta",
+                name: "Smart TV 55 Pulgadas Samsung 4K UHD Crystal",
+                oldPrice: 950000,
+                price: 820000,
+                description: "Resolución 4K real, tecnología PurColor para colores vibrantes y diseño ultra delgado con Tizen OS.",
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Laptop_icon.svg/512px-Laptop_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Smartphone_icon.svg/512px-Smartphone_icon.svg.png"
-                ]
+                    "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1461151304267-38535e780c79?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "DESTACADO"
             },
-            Herramientas: {
-                baja: { basePrice: 65000, priceRange: 30000, prefix: "DIY Compact", features: ["Motor Estándar", "Mango Ergonómico Antideslizante", "Ideal Tareas del Hogar", "Liviana y Práctica"] },
-                media: { basePrice: 140000, priceRange: 70000, prefix: "Power Workshop", features: ["Velocidad Variable", "Mandril Metálico", "Batería de Litio Recargable", "Alto Torque"] },
-                alta: { basePrice: 380000, priceRange: 200000, prefix: "Industrial Pro", features: ["Motor Brushless Sin Carbones", "Sistema Anti-Vibración", "Uso Intensivo Profesional", "Maletín de Transporte Incluido"] },
+            {
+                id: 7,
+                category: "TV y Audio",
+                subcategory: "Smart TV",
+                brand: "TCL",
+                gama: "media",
+                name: "Smart TV 43 Pulgadas TCL Full HD Android TV",
+                oldPrice: 430000,
+                price: 379000,
+                description: "Acceso directo a Netflix, YouTube y Prime Video con Google Assistant integrado por voz.",
                 images: [
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Fan_icon.svg/512px-Fan_icon.svg.png",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Air_conditioner_icon.svg/512px-Air_conditioner_icon.svg.png"
-                ]
+                    "https://images.unsplash.com/photo-1461151304267-38535e780c79?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "OFERTA"
+            },
+            {
+                id: 8,
+                category: "Celulares",
+                subcategory: "Smartphones",
+                brand: "Samsung",
+                gama: "media",
+                name: "Celular Samsung Galaxy A34 5G 128GB",
+                oldPrice: 550000,
+                price: 489000,
+                description: "Pantalla Super AMOLED de 120Hz, triple cámara trasera de 48MP con estabilizador óptico y resistencia IP67.",
+                images: [
+                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "OFERTA"
+            },
+            {
+                id: 9,
+                category: "Celulares",
+                subcategory: "Smartphones",
+                brand: "Xiaomi",
+                gama: "media",
+                name: "Celular Xiaomi Redmi Note 13 256GB 8GB RAM",
+                oldPrice: 480000,
+                price: 419000,
+                description: "Cámara principal ultra nítida de 108MP, batería de 5000mAh con carga rápida de 33W y procesador Snapdragon.",
+                images: [
+                    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "NUEVO"
+            },
+            {
+                id: 10,
+                category: "Tecnología",
+                subcategory: "Notebooks",
+                brand: "Lenovo",
+                gama: "media",
+                name: "Notebook Lenovo V15 Intel Core i5 8GB 256GB SSD",
+                oldPrice: 890000,
+                price: 770000,
+                description: "Pantalla antirreflejo de 15.6 pulgadas Full HD, ideal para productividad, estudio y multitarea diaria.",
+                images: [
+                    "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "DESTACADO"
+            },
+            {
+                id: 11,
+                category: "Electrodomésticos",
+                subcategory: "Climatización",
+                brand: "Philco",
+                gama: "media",
+                name: "Aire Acondicionado Split Inverter Philco Frío/Calor 3200W",
+                oldPrice: 920000,
+                price: 810000,
+                description: "Eficiencia energética A, bajo nivel sonoro y tecnología Inverter para ahorro inteligente de energía.",
+                images: [
+                    "https://images.unsplash.com/photo-1615873968403-89e0676297c5?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1585670149967-b4f4da88cc9f?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "OFERTA"
+            },
+            {
+                id: 12,
+                category: "Herramientas",
+                subcategory: "Herramientas Eléctricas",
+                brand: "Peabody",
+                gama: "baja",
+                name: "Taladro Percutor Atornillador Inalámbrico 18V",
+                oldPrice: 160000,
+                price: 135000,
+                description: "Incluye batería de litio recargable, maletín de transporte y juego de 13 accesorios multipropósito.",
+                images: [
+                    "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80"
+                ],
+                badge: "NUEVO"
             }
-        };
-
-        const BRANDS = ["Samsung", "LG", "Philips", "Whirlpool", "Drean", "Sony", "Dell", "Lenovo", "Asus", "Xiaomi", "Apple", "Oster", "Gafa", "Peabody", "Philco"];
-
-        function generate300Products() {
-            const productsList = [];
-            const categories = Object.keys(CATEGORIES_CONFIG);
-            let idCounter = 101;
-
-            categories.forEach(cat => {
-                const config = CATEGORIES_CONFIG[cat];
-                const gamas = ["baja", "media", "alta"];
-
-                gamas.forEach(gamaKey => {
-                    const gamaData = config[gamaKey];
-                    
-                    for (let i = 1; i <= 10; i++) {
-                        const brand = BRANDS[(i + idCounter + gamaKey.length) % BRANDS.length];
-                        const priceOffset = (i * 12300) % gamaData.priceRange;
-                        const finalPrice = gamaData.basePrice + priceOffset;
-                        const feat = gamaData.features[i % gamaData.features.length];
-                        const imgSelected = config.images[(i + (gamaKey === 'alta' ? 1 : 0)) % config.images.length];
-
-                        let gamaTitleName = gamaKey === 'baja' ? 'Económico' : (gamaKey === 'media' ? 'Estándar' : 'Pro Premium');
-
-                        productsList.push({
-                            id: idCounter++,
-                            category: cat,
-                            gama: gamaKey,
-                            name: `${cat} ${brand} ${gamaData.prefix} ${gamaTitleName} #${i * 11}`,
-                            price: finalPrice,
-                            description: `Modelo ${brand} de gama ${gamaKey}. Destaca por ${feat}, excelente rendimiento garantizado por LOGÍSTICA NOVA.`,
-                            images: [
-                                imgSelected,
-                                config.images[0]
-                            ]
-                        });
-                    }
-                });
-            });
-
-            return productsList;
-        }
-
-        const PRODUCTS = generate300Products();
+        ];
 
         const cart = {};
         let currentCategoryFilter = "ALL";
@@ -1182,7 +1243,7 @@
                 const navMatch = currentCategoryFilter === "ALL" || p.category === currentCategoryFilter;
                 const selectMatch = selectCategoryVal === "ALL" || p.category === selectCategoryVal;
                 const gamaMatch = currentGamaFilter === "ALL" || p.gama === currentGamaFilter;
-                const matchSearch = p.name.toLowerCase().includes(searchVal) || (p.description && p.description.toLowerCase().includes(searchVal));
+                const matchSearch = p.name.toLowerCase().includes(searchVal) || (p.description && p.description.toLowerCase().includes(searchVal)) || p.brand.toLowerCase().includes(searchVal);
                 return navMatch && selectMatch && gamaMatch && matchSearch;
             });
 
@@ -1226,9 +1287,11 @@
                 if (p.gama === "baja") gamaLabel = "Gama Baja";
                 if (p.gama === "alta") gamaLabel = "Gama Alta";
 
+                const oldPriceHtml = p.oldPrice ? `<span class="old-price">$${p.oldPrice.toLocaleString("es-AR")}</span>` : "";
+
                 return `
                     <div class="product-card">
-                        <span class="product-badge">${p.category}</span>
+                        <span class="product-badge">${p.badge || p.category}</span>
                         <span class="gama-badge ${p.gama}">${gamaLabel}</span>
                         <div class="product-slider-container">
                             ${navBtnsHtml}
@@ -1240,10 +1303,13 @@
                             </div>
                         </div>
                         <div>
-                            <div class="product-cat-tag">${p.category} — ${gamaLabel}</div>
+                            <div class="product-cat-tag">${p.category} — ${p.brand}</div>
                             <div class="product-title" title="${p.name}">${p.name}</div>
                             <div class="product-description">${p.description}</div>
-                            <div class="product-price">$${p.price.toLocaleString("es-AR")}</div>
+                            <div class="product-price-box">
+                                ${oldPriceHtml}
+                                <span class="product-price">$${p.price.toLocaleString("es-AR")}</span>
+                            </div>
                         </div>
                         <div class="product-actions">
                             <button type="button" class="qty-btn" onclick="changeQty(${p.id}, -1)">-</button>
