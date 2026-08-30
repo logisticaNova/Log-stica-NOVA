@@ -30,6 +30,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* --- BARRA SUPERIOR DE ANUNCIOS --- */
@@ -60,11 +61,11 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 900;
             color: var(--text-dark);
             text-decoration: none;
@@ -86,17 +87,19 @@
             border: 2px solid var(--primary-orange);
             border-radius: 6px;
             overflow: hidden;
+            background: #ffffff;
         }
 
         .header-search select {
             background: #f8fafc;
             border: none;
-            padding: 0.5rem 0.75rem;
+            padding: 0.5rem 0.5rem;
             font-size: 0.8rem;
             color: var(--text-dark);
             outline: none;
             border-right: 1px solid var(--border-color);
             cursor: pointer;
+            max-width: 130px;
         }
 
         .header-search input {
@@ -105,13 +108,14 @@
             padding: 0.5rem 0.8rem;
             font-size: 0.85rem;
             outline: none;
+            width: 100%;
         }
 
         .header-search button {
             background: var(--primary-orange);
             border: none;
             color: white;
-            padding: 0 1.2rem;
+            padding: 0 1rem;
             cursor: pointer;
             transition: background 0.2s;
             display: flex;
@@ -127,22 +131,23 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .country-flag {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-dark);
+            white-space: nowrap;
         }
 
         .cart-widget {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: #fff3eb;
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
@@ -152,6 +157,7 @@
             color: var(--primary-orange);
             font-weight: 700;
             font-size: 0.85rem;
+            white-space: nowrap;
         }
 
         /* NAVEGACIÓN CATEGORÍAS */
@@ -165,10 +171,11 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             overflow-x: auto;
             padding: 0.5rem 1rem;
             white-space: nowrap;
+            scrollbar-width: thin;
         }
 
         .nav-item {
@@ -176,15 +183,18 @@
             text-decoration: none;
             font-size: 0.8rem;
             font-weight: 600;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
             transition: all 0.2s;
             cursor: pointer;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
         }
 
         .nav-item:hover, .nav-item.active {
             background: var(--primary-orange);
             color: #ffffff;
+            border-color: var(--primary-orange);
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -192,17 +202,17 @@
             flex-grow: 1;
             max-width: 1200px;
             width: 100%;
-            margin: 1.5rem auto;
+            margin: 1rem auto;
             padding: 0 1rem;
         }
 
         .main-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .section-title {
@@ -215,6 +225,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         /* RASTREO */
@@ -255,8 +267,9 @@
         .step-indicator {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             position: relative;
+            gap: 0.5rem;
         }
 
         .step-indicator::before {
@@ -275,12 +288,14 @@
             position: relative;
             z-index: 2;
             background: #ffffff;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 20px;
             border: 2px solid var(--border-color);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: var(--text-muted);
+            text-align: center;
+            flex: 1;
         }
 
         .step-item.active {
@@ -306,7 +321,7 @@
             background-color: #ffffff;
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 1rem;
+            padding: 0.9rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -333,15 +348,15 @@
             z-index: 10;
         }
 
-        /* CARRUSEL DE IMÁGENES */
+        /* CARRUSEL DE IMÁGENES DE PRODUCTO */
         .product-slider-container {
             position: relative;
             width: 100%;
-            height: 180px;
+            height: 190px;
             margin-bottom: 0.8rem;
             overflow: hidden;
             border-radius: 6px;
-            background: #f8fafc;
+            background: #ffffff;
         }
 
         .product-slider-track {
@@ -354,8 +369,9 @@
         .product-img {
             min-width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             cursor: pointer;
+            padding: 4px;
         }
 
         .slider-btn {
@@ -365,8 +381,8 @@
             background: rgba(0, 0, 0, 0.4);
             color: #ffffff;
             border: none;
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -398,7 +414,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.2);
             cursor: pointer;
         }
 
@@ -442,7 +458,7 @@
         }
 
         .product-price {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 900;
             color: var(--text-dark);
             margin-bottom: 0.8rem;
@@ -459,13 +475,16 @@
             background: #f1f5f9;
             color: var(--text-dark);
             border: 1px solid var(--border-color);
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .qty-btn:hover { background: var(--primary-orange); color: white; border-color: var(--primary-orange); }
@@ -476,7 +495,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             margin: 1.5rem 0;
             flex-wrap: wrap;
         }
@@ -485,7 +504,7 @@
             background: #ffffff;
             border: 1px solid var(--border-color);
             color: var(--text-dark);
-            padding: 0.4rem 0.8rem;
+            padding: 0.4rem 0.75rem;
             border-radius: 6px;
             font-size: 0.85rem;
             font-weight: 700;
@@ -506,16 +525,17 @@
             border-color: var(--border-color);
         }
 
-        /* RESUMEN FLOTANTE INFERIOR */
+        /* RESUMEN BARRA INFERIOR */
         .cart-bar {
             background: #1e293b;
             color: white;
-            padding: 1rem 1.5rem;
+            padding: 1rem 1.25rem;
             border-radius: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
+            gap: 1rem;
         }
 
         .btn-action {
@@ -540,7 +560,7 @@
 
         .btn-secondary:hover { background: #f1f5f9; color: var(--text-dark); }
 
-        /* FORMULARIO */
+        /* FORMULARIO DE ENVÍO */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -572,26 +592,27 @@
             border-color: var(--primary-orange);
         }
 
-        /* MODAL IMÁGENES */
+        /* MODAL PANTALLA COMPLETA DE IMÁGENES */
         .image-modal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            padding: 1rem;
         }
 
         .image-modal.active { display: flex; }
         
         .modal-slider-box {
             position: relative;
-            width: 90%;
-            max-width: 800px;
-            height: 70vh;
+            width: 100%;
+            max-width: 900px;
+            height: 75vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -618,18 +639,37 @@
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 20;
             transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-nav-btn:hover { background: var(--primary-orange); }
         .modal-nav-btn.prev { left: 10px; }
         .modal-nav-btn.next { right: 10px; }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 30;
+        }
 
         .view-step { display: none; }
         .view-step.active-view { display: block; }
@@ -662,17 +702,66 @@
             margin-top: auto;
         }
 
-        /* RESPONSIVO */
+        /* ADAPTABILIDAD COMPLETA A CELULARES Y TABLETS */
         @media (max-width: 992px) {
             .catalog-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
-        @media (max-width: 680px) {
-            .header-main { flex-direction: column; gap: 0.8rem; }
-            .header-search { width: 100%; }
-            .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
+        @media (max-width: 768px) {
+            .header-main {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-actions {
+                justify-content: space-between;
+            }
+            .catalog-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 0.75rem; 
+            }
+            .product-card {
+                padding: 0.6rem;
+            }
+            .product-slider-container {
+                height: 140px;
+            }
+            .cart-bar {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .btn-action {
+                width: 100%;
+            }
+            .form-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .form-group.full-width { 
+                grid-column: span 1; 
+            }
+            .modal-slider-box {
+                height: 60vh;
+            }
+            .modal-nav-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .catalog-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .step-indicator {
+                flex-direction: column;
+            }
+            .step-indicator::before {
+                display: none;
+            }
+            .step-item {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -680,7 +769,7 @@
 
     <!-- BARRA SUPERIOR -->
     <div class="top-bar">
-        ENVÍOS INTERNACIONALES DIRECTOS A TU PUERTA CON LOGÍSTICA NOVA — SIN TRÁMITES ADUANEROS
+        ENVÍOS DIRECTOS A DOMICILIO CON LOGÍSTICA NOVA — SIN TRÁMITES NI COMPLICACIONES
     </div>
 
     <!-- MENÚ PRINCIPAL -->
@@ -693,16 +782,17 @@
             <div class="header-search">
                 <select id="searchCategory">
                     <option value="ALL">Todas las Categorías</option>
+                    <option value="Lavarropas">Lavarropas y Secarropas</option>
+                    <option value="Heladeras">Heladeras y Freezers</option>
+                    <option value="Cocinas">Cocinas y Hornos</option>
+                    <option value="Sommiers">Sommiers y Colchones</option>
+                    <option value="Climatizacion">Climatización</option>
                     <option value="Laptops">Laptops y Computación</option>
                     <option value="Celulares">Celulares y Smartwatches</option>
                     <option value="Consolas">Consolas y Gaming</option>
                     <option value="Audio">Audio y Auriculares</option>
-                    <option value="Componentes">Componentes PC</option>
-                    <option value="Streaming">Streaming / TV</option>
-                    <option value="Fotografia">Fotografía</option>
-                    <option value="Wearables">Wearables</option>
                 </select>
-                <input type="text" id="searchInput" placeholder="Buscar productos electrónicos importados...">
+                <input type="text" id="searchInput" placeholder="Buscar electrodomésticos o tecnología...">
                 <button type="button" id="btnSearchCatalog">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
@@ -719,18 +809,19 @@
             </div>
         </div>
 
-        <!-- NAVEGACIÓN CATEGORÍAS -->
+        <!-- NAVEGACIÓN CATEGORÍAS EN BARRA -->
         <nav class="nav-categories">
             <div class="nav-container">
                 <span class="nav-item active" onclick="filterCategory('ALL')">Ver Todo</span>
-                <span class="nav-item" onclick="filterCategory('Laptops')">Laptops</span>
+                <span class="nav-item" onclick="filterCategory('Lavarropas')">Lavarropas</span>
+                <span class="nav-item" onclick="filterCategory('Heladeras')">Heladeras</span>
+                <span class="nav-item" onclick="filterCategory('Cocinas')">Cocinas</span>
+                <span class="nav-item" onclick="filterCategory('Sommiers')">Sommiers</span>
+                <span class="nav-item" onclick="filterCategory('Climatizacion')">Climatización</span>
                 <span class="nav-item" onclick="filterCategory('Celulares')">Celulares</span>
+                <span class="nav-item" onclick="filterCategory('Laptops')">Laptops</span>
                 <span class="nav-item" onclick="filterCategory('Consolas')">Consolas</span>
                 <span class="nav-item" onclick="filterCategory('Audio')">Audio</span>
-                <span class="nav-item" onclick="filterCategory('Wearables')">Wearables</span>
-                <span class="nav-item" onclick="filterCategory('Componentes')">Componentes PC</span>
-                <span class="nav-item" onclick="filterCategory('Streaming')">Streaming / TV</span>
-                <span class="nav-item" onclick="filterCategory('Fotografia')">Fotografía</span>
             </div>
         </nav>
     </header>
@@ -740,7 +831,7 @@
         <div class="main-card">
             <div class="section-title">
                 <span>Rastrear Envío</span>
-                <small style="font-weight: 400; font-size: 0.75rem; color: var(--text-muted);">Consulta el estado de tu orden en tiempo real</small>
+                <small style="font-weight: 400; font-size: 0.75rem; color: var(--text-muted);">Consulta el estado de tu paquete en tiempo real</small>
             </div>
             <div class="search-box">
                 <input type="text" id="trackInput" placeholder="Ej: NV-8492-2026">
@@ -770,14 +861,14 @@
         <!-- TARJETA PRINCIPAL DEL FLUJO -->
         <div class="main-card">
             
-            <!-- PASO 1: CATÁLOGO DE ELECTRÓNICA -->
+            <!-- PASO 1: CATÁLOGO DE PRODUCTOS -->
             <div class="view-step active-view" id="viewCatalog">
                 <div class="section-title">
-                    <span>Catálogo de Electrónica de Mercado Libre</span>
+                    <span>Catálogo de Electrónica y Electrodomésticos</span>
                 </div>
 
                 <div class="catalog-grid" id="catalogContainer">
-                    <!-- Productos inyectados por JS -->
+                    <!-- Productos inyectados dinámicamente -->
                 </div>
 
                 <!-- CONTENEDOR DE PAGINACIÓN -->
@@ -808,7 +899,7 @@
                             <input type="text" id="dni" required placeholder="Ej: 38123456">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Teléfono de Contacto *</label>
+                            <label for="phone">Teléfono WhatsApp de Contacto *</label>
                             <input type="tel" id="phone" required placeholder="Ej: 1123456789">
                         </div>
                         <div class="form-group">
@@ -838,7 +929,7 @@
                     </div>
 
                     <!-- OPCIÓN DE CUOTAS -->
-                    <div class="section-title">3. Opción de Pago y Financiación Global</div>
+                    <div class="section-title">3. Financiación y Plan de Pagos</div>
                     <div class="form-grid">
                         <div class="form-group full-width">
                             <label for="globalInstallments">Selecciona el plan de financiación para tu compra total:</label>
@@ -848,23 +939,23 @@
                         </div>
                     </div>
 
-                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                        <button type="button" class="btn-action btn-secondary" id="btnBackToCatalog" style="width: 50%;">← Volver al Catálogo</button>
-                        <button type="submit" class="btn-action" style="width: 50%;">Generar Orden de Compra</button>
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                        <button type="button" class="btn-action btn-secondary" id="btnBackToCatalog" style="flex: 1;">← Volver al Catálogo</button>
+                        <button type="submit" class="btn-action" style="flex: 1;">Generar Orden de Compra</button>
                     </div>
                 </form>
             </div>
 
-            <!-- PASO 3: CONFIRMACIÓN -->
+            <!-- PASO 3: CONFIRMACIÓN DE ORDEN -->
             <div class="view-step" id="viewResults">
                 <div class="section-title">Orden Generada Exitosamente</div>
                 
                 <div style="background: #f8fafc; border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap;">
                         <span>Número de Guía / Rastreo:</span>
                         <strong id="resTrackingCode" style="color: var(--primary-orange);">-</strong>
                     </div>
-                    <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                         <span>Estado:</span>
                         <strong style="color: var(--accent-green);">Pendiente de Pago</strong>
                     </div>
@@ -898,8 +989,9 @@
         </div>
     </main>
 
-    <!-- MODAL VISTA PREVIA SLIDER -->
+    <!-- MODAL PANTALLA COMPLETA VISOR DE IMÁGENES -->
     <div class="image-modal" id="imageModal">
+        <button class="modal-close-btn" id="closeModal">✕</button>
         <div class="modal-slider-box">
             <button class="modal-nav-btn prev" onclick="moveModalSlide(-1)">&#10094;</button>
             <div class="modal-img-track" id="modalImgTrack">
@@ -907,7 +999,6 @@
             </div>
             <button class="modal-nav-btn next" onclick="moveModalSlide(1)">&#10095;</button>
         </div>
-        <button type="button" class="btn-action" style="margin-top: 15px; width: 200px;" id="closeModal">Cerrar</button>
     </div>
 
     <footer>
@@ -927,30 +1018,143 @@
             }
         };
 
-        // CATÁLOGO DE PRODUCTOS CON IMÁGENES DE ALTA DISPONIBILIDAD Y RESPALDO
+        // CATÁLOGO DE PRODUCTOS (ELECTRÓNICA + ELECTRODOMÉSTICOS Y HOGAR)
         const PRODUCTS = [
+            // --- LAVARROPAS Y SECARROPAS ---
+            {
+                id: 101,
+                category: "Lavarropas",
+                name: "Lavarropas Inverter Drean 8kg 1200 RPM Carga Frontal",
+                price: 689999,
+                description: "Motor Inverter súper silencioso y de bajo consumo A+++. 29 programas de lavado, display LED táctil y sistema Autoload para optimizar agua.",
+                images: [
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 102,
+                category: "Lavarropas",
+                name: "Lavarropas Samsung 9.5kg EcoBubble Carga Frontal Silver",
+                price: 949999,
+                description: "Tecnología EcoBubble que convierte el detergente en burbujas para penetrar más rápido en las prendas. Lavado a vapor e Inverter Digital.",
+                images: [
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 103,
+                category: "Lavarropas",
+                name: "Secarropas por Calor Whirlpool 8kg Blanco",
+                price: 729999,
+                description: "Secado por condensación de alta eficiencia con sensores de humedad automáticos para proteger tus prendas sin sobrecalentar.",
+                images: [
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+
+            // --- HELADERAS Y FREEZERS ---
+            {
+                id: 104,
+                category: "Heladeras",
+                name: "Heladera No Frost Samsung 382L Inverter Inox",
+                price: 1149999,
+                description: "Tecnología Digital Inverter con 10 años de garantía. Twin Cooling Plus que conserva los alimentos frescos por más tiempo sin mezclar olores.",
+                images: [
+                    "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 105,
+                category: "Heladeras",
+                name: "Heladera Gafa 360L Cycle Defrost Blanca",
+                price: 789999,
+                description: "Gran capacidad de almacenaje con crisper de verduras XXL, estantes regulables de alta resistencia y clasificación energética A.",
+                images: [
+                    "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 106,
+                category: "Heladeras",
+                name: "Freezer Horizontal Gafa 280L Doble Función",
+                price: 589999,
+                description: "Función dual para congelar o conservar bebidas/alimentos. Sistema de drenaje frontal y canasto interior incluido.",
+                images: [
+                    "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+
+            // --- COCINAS Y HORNOS ---
+            {
+                id: 107,
+                category: "Cocinas",
+                name: "Cocina a Gas Patrick 56cm Acero Inoxidable Multigas",
+                price: 499999,
+                description: "4 hornallas de alta potencia, encendido electrónico, horno de gran volumen con luz interior y puerta de doble vidrio templado.",
+                images: [
+                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1590725140246-20acdee442be?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 108,
+                category: "Cocinas",
+                name: "Horno Eléctrico Emputable Longvie Convección 60cm",
+                price: 649999,
+                description: "Capacidad de 68 litros con turbo convección para una cocción pareja, grill eléctrico superior y temporizador digital.",
+                images: [
+                    "https://images.unsplash.com/photo-1590725140246-20acdee442be?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+
+            // --- SOMMIERS Y DORMITORIO ---
+            {
+                id: 109,
+                category: "Sommiers",
+                name: "Sommier y Colchón 2 Plazas Queen Memory Foam",
+                price: 629999,
+                description: "Espuma de alta densidad con capa superior Memory Foam de adaptación anatómica. Incluye base de madera reforzada tapizada en ecocuero.",
+                images: [
+                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 110,
+                category: "Sommiers",
+                name: "Sommier King Size Resortes Pocket Independientes 180x200",
+                price: 899999,
+                description: "Estructura de resortes enfundados que evitan la transferencia de movimiento. Pillow Top mullido de máximo confort y tela de punto hipoalergénica.",
+                images: [
+                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+
+            // --- CLIMATIZACIÓN ---
+            {
+                id: 111,
+                category: "Climatizacion",
+                name: "Aire Acondicionado Split Inverter BGH 3500W Frío/Calor",
+                price: 799999,
+                description: "Ahorro de hasta un 50% de energía con compresor Inverter, filtro antipolvo Lavable y funcionamiento ultra silencioso.",
+                images: [
+                    "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+
             // --- CELULARES ---
             { 
                 id: 1, 
                 category: "Celulares", 
-                name: "Samsung Galaxy A16 128GB + 4GB Gray", 
+                name: "Samsung Galaxy A16 128GB Gray", 
                 price: 284899,
-                description: "Pantalla Super AMOLED de 6.7 pulgadas FHD+, procesador Octa-Core eficiente, triple cámara trasera de 50MP y batería de 5000 mAh de larga duración.",
+                description: "Pantalla Super AMOLED de 6.7p FHD+, triple cámara de 50MP y batería de 5000 mAh de larga duración.",
                 images: [
-                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 2, 
-                category: "Celulares", 
-                name: "Motorola Moto G04s 128GB 4GB RAM Verde", 
-                price: 269999,
-                description: "Pantalla HD+ de 6.6 pulgadas a 90Hz, cámara principal con inteligencia artificial de 50MP, sonido Dolby Atmos y diseño elegante resistente a salpicaduras.",
-                images: [
-                    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
@@ -958,122 +1162,20 @@
                 category: "Celulares", 
                 name: "Apple iPhone 15 128GB Negro", 
                 price: 1549999,
-                description: "Dynamic Island, chip A16 Bionic súper veloz, cámara avanzada de 48MP con teleobjetivo 2x y conector USB-C universal integrado.",
+                description: "Dynamic Island, chip A16 Bionic súper veloz, cámara avanzada de 48MP y conector USB-C universal.",
                 images: [
-                    "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 4, 
-                category: "Celulares", 
-                name: "Xiaomi Redmi Note 13 Pro 256GB 8GB RAM", 
-                price: 529999,
-                description: "Cámara insignia de 200MP con OIS, pantalla AMOLED 120Hz FHD+, carga ultra rápida de 67W y procesador Snapdragon de alta eficiencia.",
-                images: [
-                    "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80"
                 ] 
             },
             { 
                 id: 5, 
                 category: "Celulares", 
-                name: "Samsung Galaxy S24 Ultra 256GB Titanium Gray", 
+                name: "Samsung Galaxy S24 Ultra 256GB Titanium", 
                 price: 2199999,
-                description: "Marco de titanio premium, Galaxy AI integrada para traducción en tiempo real, S Pen incorporado y cámara principal de 200MP con zoom óptico 10x.",
+                description: "Marco de titanio premium, Galaxy AI integrada para traducción en vivo, S Pen e increíble cámara de 200MP.",
                 images: [
-                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 6, 
-                category: "Celulares", 
-                name: "Motorola Edge 50 Pro 512GB Luxe Lavender", 
-                price: 999999,
-                description: "Diseño curvado ergonómico en cuero vegano, certificación IP68, carga TurboPower de 125W y cámara triple validada por Pantone.",
-                images: [
-                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-
-            // --- AUDIO ---
-            { 
-                id: 7, 
-                category: "Audio", 
-                name: "Xiaomi Redmi Buds 6 Play Bluetooth", 
-                price: 22659,
-                description: "Auriculares in-ear con hasta 36 horas de autonomía con estuche de carga, driver dinámico de 10mm y cancelación de ruido por IA para llamadas.",
-                images: [
-                    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 8, 
-                category: "Audio", 
-                name: "Auriculares Bluetooth Sony WH-CH520 Blanco", 
-                price: 84999,
-                description: "Hasta 50 horas de batería, conexión multipunto para cambiar entre dispositivos fácilmente, micrófono integrado y ecualización personalizada vía App.",
-                images: [
-                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 9, 
-                category: "Audio", 
-                name: "Parlante Portátil JBL Go 4 Sumergible Bluetooth", 
-                price: 74999,
-                description: "Sonido JBL Pro ultraportátil, resistencia al agua y polvo IP67, correa integrada mejorada y hasta 7 horas de reproducción continua.",
-                images: [
-                    "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 10, 
-                category: "Audio", 
-                name: "Apple AirPods Pro (2.ª Generación) USB-C", 
-                price: 449999,
-                description: "Cancelación Activa de Ruido hasta 2x más efectiva, Audio Espacial personalizado con seguimiento dinámico de la cabeza y estuche MagSafe USB-C.",
-                images: [
-                    "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1588423771073-b8903fbb85b5?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-
-            // --- STREAMING / TV ---
-            { 
-                id: 11, 
-                category: "Streaming", 
-                name: "Amazon Fire TV Stick 4K 8GB Con Control por Voz", 
-                price: 89990,
-                description: "Reproducción cinematográfica en 4K Ultra HD con Dolby Vision, HDR10+ y audio inmersivo Dolby Atmos. Incluye mando con Alexa.",
-                images: [
-                    "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 12, 
-                category: "Streaming", 
-                name: "Google Chromecast 4 HD con Google TV Nieve", 
-                price: 78500,
-                description: "Agrupa todo tu contenido de streaming en una sola pantalla principal. Soporta 1080p HDR y control por voz con Asistente de Google.",
-                images: [
-                    "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 13, 
-                category: "Streaming", 
-                name: "Roku Express 4K Streaming Media Player", 
-                price: 69999,
-                description: "Streaming 4K e imágenes HDR nítidas y brillantes. Configuración rápida y sencilla con cable HDMI de alta velocidad incluido.",
-                images: [
-                    "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80"
                 ] 
             },
 
@@ -1083,108 +1185,35 @@
                 category: "Consolas", 
                 name: "Sony PlayStation 5 Slim 1TB Edición Digital", 
                 price: 1149999,
-                description: "Diseño ultracompacto con 1TB de almacenamiento SSD NVMe de alta velocidad, Ray Tracing, audio 3D y retroalimentación háptica DualSense.",
+                description: "Diseño ultracompacto con 1TB de almacenamiento SSD NVMe de ultra velocidad, Ray Tracing y mando DualSense.",
                 images: [
-                    "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 15, 
-                category: "Consolas", 
-                name: "Joystick Inalámbrico Sony DualSense PS5 Blanco", 
-                price: 112999,
-                description: "Gatillos adaptativos dinámicos, retroalimentación háptica inmersiva, micrófono integrado y botón 'Crear' para compartir tus mejores partidas.",
-                images: [
-                    "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 16, 
-                category: "Consolas", 
-                name: "Nintendo Switch OLED Model 64GB Blanco", 
-                price: 689999,
-                description: "Pantalla OLED de 7 pulgadas con colores intensos y alto contraste, soporte ajustable ancho, puerto LAN por cable en la base y 64GB de memoria interna.",
-                images: [
-                    "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=600&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800&auto=format&fit=crop&q=80"
                 ] 
             },
 
             // --- LAPTOPS ---
             { 
-                id: 17, 
-                category: "Laptops", 
-                name: "Notebook Lenovo V15 G3 Core i5 16GB RAM 512GB SSD", 
-                price: 789999,
-                description: "Pantalla FHD de 15.6 pulgadas antirreflejo, procesador Intel Core i5 de 12.ª generación, 16GB RAM para multitarea fluida y SSD veloz.",
-                images: [
-                    "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
                 id: 18, 
                 category: "Laptops", 
-                name: "Apple MacBook Air 13 M2 256GB SSD 8GB RAM Space Gray", 
+                name: "Apple MacBook Air 13 M2 256GB SSD 8GB RAM", 
                 price: 1699999,
-                description: "Diseño ultradelgado de aluminio, chip M2 súper potente y eficiente, pantalla Liquid Retina de 13.6 pulgadas y hasta 18 horas de batería.",
+                description: "Diseño ultradelgado de aluminio, chip M2 súper potente y eficiente, pantalla Liquid Retina y hasta 18 hs de autonomía.",
                 images: [
-                    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 19, 
-                category: "Laptops", 
-                name: "Notebook Gamer Asus TUF F15 RTX 3050 i5 16GB 512GB", 
-                price: 1349999,
-                description: "Rendimiento para videojuegos intensos con gráfica NVIDIA GeForce RTX 3050, pantalla de 144Hz FHD y durabilidad militar certificada.",
-                images: [
-                    "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=80"
                 ] 
             },
 
-            // --- COMPONENTES PC ---
+            // --- AUDIO ---
             { 
-                id: 20, 
-                category: "Componentes", 
-                name: "Placa de Video ASUS Dual GeForce RTX 4060 OC 8GB", 
-                price: 529999,
-                description: "Arquitectura NVIDIA Ada Lovelace con DLSS 3, Ray Tracing de 3ra generación y diseño de ventiladores Axial-tech para máximo flujo de aire.",
+                id: 10, 
+                category: "Audio", 
+                name: "Apple AirPods Pro (2.ª Generación) USB-C", 
+                price: 449999,
+                description: "Cancelación Activa de Ruido de última generación, Audio Espacial personalizado y estuche MagSafe USB-C.",
                 images: [
-                    "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 21, 
-                category: "Componentes", 
-                name: "Procesador AMD Ryzen 7 5700X 4.6GHz Turbo AM4", 
-                price: 289999,
-                description: "8 núcleos y 16 hilos de procesamiento optimizados para gaming y creación de contenido intensivo en plataforma Socket AM4.",
-                images: [
-                    "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-
-            // --- WEARABLES & FOTOGRAFÍA ---
-            { 
-                id: 22, 
-                category: "Wearables", 
-                name: "Smartwatch Samsung Galaxy Watch 6 44mm Graphite", 
-                price: 349999,
-                description: "Pantalla Sapphire Crystal ultra resistente, monitoreo de composición corporal BIA, seguimiento del sueño avanzado y sensor ECG de frecuencia cardíaca.",
-                images: [
-                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 23, 
-                category: "Fotografia", 
-                name: "Cámara Deportiva GoPro HERO12 Black 4K/5.3K HDR", 
-                price: 649999,
-                description: "Estabilización de video HyperSmooth 6.0 ganadora del Emmy, transmisión en directo FHD, cuerpo sumergible sin funda hasta 10 metros.",
-                images: [
-                    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80"
                 ] 
             }
         ];
@@ -1216,7 +1245,7 @@
             });
 
             if (filtered.length === 0) {
-                container.innerHTML = `<div style="grid-column: span 4; text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron productos electrónicos en esta categoría.</div>`;
+                container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">No se encontraron artículos en esta categoría.</div>`;
                 paginationContainer.innerHTML = "";
                 return;
             }
@@ -1274,7 +1303,7 @@
             let pageBtnsHtml = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">« Anterior</button>`;
             
             for (let i = 1; i <= totalPages; i++) {
-                pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">Hoja ${i}</button>`;
+                pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">Pág ${i}</button>`;
             }
             
             pageBtnsHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">Siguiente »</button>`;
@@ -1311,6 +1340,7 @@
             }
         };
 
+        // APERTURA DE IMAGEN A PANTALLA COMPLETA
         window.openFullscreenModal = (id, initialIndex = 0) => {
             const product = PRODUCTS.find(p => p.id === id);
             if (!product) return;
@@ -1324,6 +1354,7 @@
 
             updateModalSlide();
             document.getElementById("imageModal").classList.add("active");
+            document.body.style.overflow = "hidden"; // Deshabilita el scroll del fondo
         };
 
         window.moveModalSlide = (dir) => {
@@ -1338,6 +1369,11 @@
             if (modalTrack) {
                 modalTrack.style.transform = `translateX(-${currentModalIndex * 100}%)`;
             }
+        }
+
+        function closeModalWindow() {
+            document.getElementById("imageModal").classList.remove("active");
+            document.body.style.overflow = "auto";
         }
 
         window.filterCategory = (cat) => {
@@ -1406,7 +1442,7 @@
             document.getElementById("btnGoToCheckout").addEventListener("click", () => {
                 const count = Object.values(cart).reduce((a, b) => a + b, 0);
                 if (count === 0) {
-                    alert("Por favor agrega al menos un producto a tu orden.");
+                    alert("Por favor agrega al menos un artículo a tu carrito.");
                     return;
                 }
                 switchView("viewShipping", 2);
@@ -1436,7 +1472,7 @@
             });
 
             document.getElementById("btnRestart").addEventListener("click", () => location.reload());
-            document.getElementById("closeModal").addEventListener("click", () => document.getElementById("imageModal").classList.remove("active"));
+            document.getElementById("closeModal").addEventListener("click", closeModalWindow);
         }
 
         function switchView(viewId, step) {
@@ -1550,7 +1586,7 @@ ${detalleProductos}
 *RESUMEN TOTAL*
 • *TOTAL A FACTURAR:* $${datosOrden.total}
 
-Solicito link de pago / datos bancarios para completar la transacción cbu o alias.`;
+Solicito datos bancarios (CBU / Alias) o link de pago para finalizar el pedido.`;
 
             const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
             window.open(url, '_blank');
