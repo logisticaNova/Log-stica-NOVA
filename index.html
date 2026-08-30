@@ -29,7 +29,7 @@
             color: var(--text-dark);
             min-height: 100vh;
             display: flex;
-            flex-direction: flex-col;
+            flex-direction: column;
         }
 
         /* --- BARRA SUPERIOR DE ANUNCIOS --- */
@@ -545,7 +545,8 @@
                     <option value="Consolas">Consolas y Gaming</option>
                     <option value="Audio">Audio y Auriculares</option>
                     <option value="Componentes">Componentes PC</option>
-                    <option value="SmartHome">Smart Home y TV</option>
+                    <option value="Streaming">Streaming / TV</option>
+                    <option value="Fotografia">Fotografía</option>
                 </select>
                 <input type="text" id="searchInput" placeholder="Buscar productos electrónicos importados...">
                 <button type="button" id="btnSearchCatalog">
@@ -616,7 +617,7 @@
         <!-- TARJETA PRINCIPAL DEL FLUJO -->
         <div class="main-card">
             
-            <!-- PASO 1: CATÁLOGO DE ELECTRONICA -->
+            <!-- PASO 1: CATÁLOGO DE ELECTRÓNICA -->
             <div class="view-step active-view" id="viewCatalog">
                 <div class="section-title">
                     <span>Catálogo de Electrónica Importada</span>
@@ -763,39 +764,84 @@
             }
         };
 
-        // CATÁLOGO COMPLETO DE ELECTRÓNICA DE LOGÍSTICA NOVA
+        // CATÁLOGO COMPLETO Y EXTENDIDO DE ELECTRÓNICA DE LOGÍSTICA NOVA
         const PRODUCTS = [
+            // --- LAPTOPS ---
             { id: 1, category: "Laptops", name: "Apple MacBook Air 15 M3 (8GB RAM, 256GB SSD)", price: 2150000, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500" },
             { id: 2, category: "Laptops", name: "ASUS ROG Strix G16 i7 RTX 4060", price: 2847000, img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500" },
             { id: 3, category: "Laptops", name: "Lenovo Legion Pro 5 Gen 8 AMD Ryzen 7", price: 2450000, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500" },
             { id: 4, category: "Laptops", name: "Dell XPS 13 Intel Core Ultra 7", price: 2310000, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500" },
-            
+            { id: 25, category: "Laptops", name: "Apple MacBook Pro 16 M3 Max 36GB RAM 1TB SSD", price: 4890000, img: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500" },
+            { id: 26, category: "Laptops", name: "Razer Blade 16 Gaming Laptop i9 RTX 4080", price: 4250000, img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500" },
+            { id: 27, category: "Laptops", name: "HP Spectre x360 2-in-1 Intel Core Ultra 5", price: 1980000, img: "https://images.unsplash.com/photo-1544731612-de7f96afe55f?w=500" },
+            { id: 28, category: "Laptops", name: "Acer Predator Helios 16 i7 RTX 4070", price: 2690000, img: "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=500" },
+            { id: 29, category: "Laptops", name: "Lenovo ThinkPad X1 Carbon Gen 11 i7 16GB", price: 2580000, img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500" },
+            { id: 30, category: "Laptops", name: "Microsoft Surface Laptop 6 15\" Snapdragon X Elite", price: 2240000, img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500" },
+
+            // --- CELULARES ---
             { id: 5, category: "Celulares", name: "Apple iPhone 16 Pro Max 256GB Titanio", price: 2280000, img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500" },
             { id: 6, category: "Celulares", name: "Samsung Galaxy S24 Ultra 512GB", price: 2100000, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500" },
             { id: 7, category: "Celulares", name: "Google Pixel 9 Pro XL 128GB", price: 1850000, img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500" },
             { id: 8, category: "Celulares", name: "Xiaomi 14 Ultra 512GB", price: 1650000, img: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=500" },
+            { id: 31, category: "Celulares", name: "Samsung Galaxy Z Fold6 512GB", price: 2950000, img: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=500" },
+            { id: 32, category: "Celulares", name: "Apple iPhone 15 Pro 128GB Titanio Azul", price: 1790000, img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500" },
+            { id: 33, category: "Celulares", name: "Samsung Galaxy Z Flip6 256GB", price: 1620000, img: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=500" },
+            { id: 34, category: "Celulares", name: "OnePlus 12 512GB Emerald Green", price: 1480000, img: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500" },
+            { id: 35, category: "Celulares", name: "Motorola Edge 50 Ultra 512GB", price: 1390000, img: "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=500" },
 
+            // --- CONSOLAS ---
             { id: 9, category: "Consolas", name: "Sony PlayStation 5 Slim 1TB Disc Edition", price: 980000, img: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500" },
             { id: 10, category: "Consolas", name: "Xbox Series X 1TB Console", price: 920000, img: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=500" },
             { id: 11, category: "Consolas", name: "Nintendo Switch OLED Model Mario Red", price: 650000, img: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=500" },
             { id: 12, category: "Consolas", name: "Steam Deck OLED 512GB Handheld", price: 1150000, img: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=500" },
+            { id: 36, category: "Consolas", name: "ASUS ROG Ally X Handheld Gaming PC 1TB", price: 1320000, img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500" },
+            { id: 37, category: "Consolas", name: "Lenovo Legion Go 8.8\" 144Hz Handheld 512GB", price: 1240000, img: "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=500" },
+            { id: 38, category: "Consolas", name: "PlayStation Portal Remote Player PS5", price: 420000, img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500" },
+            { id: 39, category: "Consolas", name: "Xbox Series S 1TB Robot White Edition", price: 680000, img: "https://images.unsplash.com/photo-1600861194942-f883de0dfe96?w=500" },
 
+            // --- AUDIO ---
             { id: 13, category: "Audio", name: "Apple AirPods Pro 2 USB-C", price: 420000, img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=500" },
             { id: 14, category: "Audio", name: "Sony WH-1000XM5 Noise Canceling Headphones", price: 610000, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" },
             { id: 15, category: "Audio", name: "Bose QuietComfort Ultra Headphones", price: 680000, img: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500" },
             { id: 16, category: "Audio", name: "JBL Boombox 3 Portable Bluetooth Speaker", price: 790000, img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500" },
+            { id: 40, category: "Audio", name: "Apple AirPods Max Wireless Over-Ear Headphones", price: 950000, img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500" },
+            { id: 41, category: "Audio", name: "Sennheiser Momentum 4 Wireless Headphones", price: 590000, img: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500" },
+            { id: 42, category: "Audio", name: "Marshall Stanmore III Bluetooth Speaker", price: 640000, img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500" },
+            { id: 43, category: "Audio", name: "Sony WF-1000XM5 Wireless Noise Canceling Earbuds", price: 440000, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500" },
+            { id: 44, category: "Audio", name: "Shure SM7B Vocal Dynamic Microphone", price: 690000, img: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500" },
 
+            // --- WEARABLES ---
             { id: 17, category: "Wearables", name: "Apple Watch Ultra 2 GPS + Cellular", price: 1350000, img: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=500" },
             { id: 18, category: "Wearables", name: "Samsung Galaxy Watch 7 Pro 45mm", price: 580000, img: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=500" },
+            { id: 45, category: "Wearables", name: "Apple Watch Series 9 GPS 45mm Aluminum", price: 740000, img: "https://images.unsplash.com/photo-1510017803434-a899398421b3?w=500" },
+            { id: 46, category: "Wearables", name: "Garmin Fenix 7 Pro Solar Multisport GPS", price: 1280000, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" },
+            { id: 47, category: "Wearables", name: "Garmin Forerunner 965 Premium Running Watch", price: 990000, img: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500" },
+            { id: 48, category: "Wearables", name: "Xiaomi Smart Band 8 Pro Global Version", price: 120000, img: "https://images.unsplash.com/photo-1557180295-76eee20ae8aa?w=500" },
 
+            // --- COMPONENTES ---
             { id: 19, category: "Componentes", name: "NVIDIA GeForce RTX 4090 24GB GPU", price: 3400000, img: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500" },
             { id: 20, category: "Componentes", name: "Intel Core i9-14900K Processor", price: 890000, img: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=500" },
+            { id: 49, category: "Componentes", name: "NVIDIA GeForce RTX 4080 Super 16GB GPU", price: 2150000, img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500" },
+            { id: 50, category: "Componentes", name: "AMD Ryzen 7 7800X3D Gaming Processor", price: 690000, img: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=500" },
+            { id: 51, category: "Componentes", name: "Samsung 990 Pro 2TB PCIe 4.0 NVMe SSD", price: 310000, img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=500" },
+            { id: 52, category: "Componentes", name: "Corsair Vengeance DDR5 32GB (2x16GB) 6000MHz", price: 240000, img: "https://images.unsplash.com/photo-1562976540-1502c2145186?w=500" },
+            { id: 53, category: "Componentes", name: "ASUS ROG Maximus Z790 Hero Motherboard", price: 1120000, img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" },
 
+            // --- STREAMING / TV ---
             { id: 21, category: "Streaming", name: "Amazon Fire TV Stick 4K Max", price: 95000, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500" },
             { id: 22, category: "Streaming", name: "Roku Ultra 4K HDR Streaming Device", price: 140000, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500" },
+            { id: 54, category: "Streaming", name: "Apple TV 4K 128GB Wi-Fi + Ethernet", price: 290000, img: "https://images.unsplash.com/photo-1528928441742-b4ccac1bb04c?w=500" },
+            { id: 55, category: "Streaming", name: "NVIDIA Shield TV Pro 4K HDR Media Player", price: 380000, img: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500" },
+            { id: 56, category: "Streaming", name: "Elgato HD60 X Game Capture Card 4K60", price: 320000, img: "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=500" },
+            { id: 57, category: "Streaming", name: "Logitech Brio 4K Ultra HD Webcam", price: 260000, img: "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=500" },
 
+            // --- FOTOGRAFÍA ---
             { id: 23, category: "Fotografia", name: "Sony Alpha a7 IV Mirrorless Camera Body", price: 3900000, img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500" },
-            { id: 24, category: "Fotografia", name: "GoPro HERO12 Black Action Camera", price: 620000, img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500" }
+            { id: 24, category: "Fotografia", name: "GoPro HERO12 Black Action Camera", price: 620000, img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500" },
+            { id: 58, category: "Fotografia", name: "Canon EOS R6 Mark II Mirrorless Camera", price: 4100000, img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500" },
+            { id: 59, category: "Fotografia", name: "DJI Mini 4 Pro Fly More Combo Drone", price: 1850000, img: "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=500" },
+            { id: 60, category: "Fotografia", name: "DJI Osmo Pocket 3 Creator Combo", price: 1120000, img: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=500" },
+            { id: 61, category: "Fotografia", name: "Fujifilm X-T5 Mirrorless Camera Body Black", price: 2980000, img: "https://images.unsplash.com/photo-1512790182412-b19e6d61b39a?w=500" }
         ];
 
         const cart = {};
@@ -809,11 +855,13 @@
         function renderCatalog() {
             const container = document.getElementById("catalogContainer");
             const searchVal = document.getElementById("searchInput").value.toLowerCase();
+            const selectCategoryVal = document.getElementById("searchCategory").value;
 
             const filtered = PRODUCTS.filter(p => {
-                const matchCat = currentCategoryFilter === "ALL" || p.category === currentCategoryFilter;
+                const navMatch = currentCategoryFilter === "ALL" || p.category === currentCategoryFilter;
+                const selectMatch = selectCategoryVal === "ALL" || p.category === selectCategoryVal;
                 const matchSearch = p.name.toLowerCase().includes(searchVal);
-                return matchCat && matchSearch;
+                return navMatch && selectMatch && matchSearch;
             });
 
             if (filtered.length === 0) {
@@ -867,8 +915,10 @@
                 const qty = cart[id];
                 if (qty > 0) {
                     const product = PRODUCTS.find(p => p.id === parseInt(id));
-                    total += product.price * qty;
-                    count += qty;
+                    if (product) {
+                        total += product.price * qty;
+                        count += qty;
+                    }
                 }
             });
 
@@ -898,6 +948,7 @@
 
         function setupEvents() {
             document.getElementById("searchInput").addEventListener("input", renderCatalog);
+            document.getElementById("searchCategory").addEventListener("change", renderCatalog);
             document.getElementById("btnSearchCatalog").addEventListener("click", renderCatalog);
 
             document.getElementById("btnGoToCheckout").addEventListener("click", () => {
@@ -963,17 +1014,19 @@
                 const qty = cart[id];
                 if (qty > 0) {
                     const product = PRODUCTS.find(p => p.id === parseInt(id));
-                    const lineTotal = product.price * qty;
-                    prodSubtotal += lineTotal;
+                    if (product) {
+                        const lineTotal = product.price * qty;
+                        prodSubtotal += lineTotal;
 
-                    itemsHtml += `
-                        <div style="display:flex; justify-content:space-between; font-size:0.8rem; padding:0.3rem 0; border-bottom:1px dashed #e2e8f0;">
-                            <span>${qty}x ${product.name}</span>
-                            <strong>$${lineTotal.toLocaleString("es-AR")}</strong>
-                        </div>
-                    `;
+                        itemsHtml += `
+                            <div style="display:flex; justify-content:space-between; font-size:0.8rem; padding:0.3rem 0; border-bottom:1px dashed #e2e8f0;">
+                                <span>${qty}x ${product.name}</span>
+                                <strong>$${lineTotal.toLocaleString("es-AR")}</strong>
+                            </div>
+                        `;
 
-                    itemsTxt += `• ${qty}x ${product.name}\n`;
+                        itemsTxt += `• ${qty}x ${product.name}\n`;
+                    }
                 }
             });
 
