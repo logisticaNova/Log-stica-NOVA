@@ -429,6 +429,18 @@
             -webkit-box-orient: vertical;
         }
 
+        .product-description {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+            height: 3.9em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
         .product-price {
             font-size: 1.2rem;
             font-weight: 900;
@@ -458,6 +470,41 @@
 
         .qty-btn:hover { background: var(--primary-orange); color: white; border-color: var(--primary-orange); }
         .qty-val { font-size: 0.9rem; font-weight: 700; width: 24px; text-align: center; }
+
+        /* PAGINACIÓN */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: var(--primary-orange);
+            color: white;
+            border-color: var(--primary-orange);
+        }
+
+        .page-btn:disabled {
+            background: #f1f5f9;
+            color: var(--text-muted);
+            cursor: not-allowed;
+            border-color: var(--border-color);
+        }
 
         /* CARRITO / RESUMEN FLOTANTE INFERIOR */
         .cart-bar {
@@ -653,6 +700,7 @@
                     <option value="Componentes">Componentes PC</option>
                     <option value="Streaming">Streaming / TV</option>
                     <option value="Fotografia">Fotografía</option>
+                    <option value="Wearables">Wearables</option>
                 </select>
                 <input type="text" id="searchInput" placeholder="Buscar productos electrónicos importados Mercado Libre...">
                 <button type="button" id="btnSearchCatalog">
@@ -731,6 +779,11 @@
 
                 <div class="catalog-grid" id="catalogContainer">
                     <!-- Productos inyectados por JS -->
+                </div>
+
+                <!-- CONTENEDOR DE PAGINACIÓN -->
+                <div class="pagination-container" id="paginationContainer">
+                    <!-- Botones de páginas inyectados dinámicamente -->
                 </div>
 
                 <div class="cart-bar">
@@ -866,6 +919,7 @@
         const CONFIG = {
             TARGET_WHATSAPP: "5491155012447",
             BASE_SHIPPING_FEE: 12500,
+            ITEMS_PER_PAGE: 8,
             INTEREST_RATES: {
                 1: 0,
                 3: 0.12,
@@ -874,14 +928,15 @@
             }
         };
 
-        // CATÁLOGO DE ELECTRÓNICOS DE MERCADO LIBRE CON 3 FOTOS CADA UNO
+        // EXTENSO CATÁLOGO DE ELECTRÓNICOS DE MERCADO LIBRE CON FOTOS Y DESCRIPCIÓN COMPLETA
         const PRODUCTS = [
             // --- CELULARES ---
             { 
                 id: 1, 
                 category: "Celulares", 
                 name: "Samsung Galaxy A16 128GB + 4GB Gray", 
-                price: 284899, 
+                price: 284899,
+                description: "Pantalla Super AMOLED de 6.7 pulgadas FHD+, procesador Octa-Core eficiente, triple cámara trasera de 50MP y batería de 5000 mAh de larga duración.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_793382-MLA80126990393_102024-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_616499-MLA80126990397_102024-F.webp",
@@ -892,7 +947,8 @@
                 id: 2, 
                 category: "Celulares", 
                 name: "Motorola Moto G04s 128GB 4GB RAM Verde", 
-                price: 269999, 
+                price: 269999,
+                description: "Pantalla HD+ de 6.6 pulgadas a 90Hz, cámara principal con inteligencia artificial de 50MP, sonido Dolby Atmos y diseño elegante resistente a salpicaduras.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_728956-MLA75317424195_032024-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_838274-MLA75317424197_032024-F.webp",
@@ -903,7 +959,8 @@
                 id: 3, 
                 category: "Celulares", 
                 name: "Apple iPhone 15 128GB Negro", 
-                price: 1549999, 
+                price: 1549999,
+                description: "Dynamic Island, chip A16 Bionic súper veloz, cámara avanzada de 48MP con teleobjetivo 2x y conector USB-C universal integrado.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_822268-MLA71782867168_092023-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_828620-MLA71782867170_092023-F.webp",
@@ -914,20 +971,46 @@
                 id: 4, 
                 category: "Celulares", 
                 name: "Xiaomi Redmi Note 13 Pro 256GB 8GB RAM", 
-                price: 529999, 
+                price: 529999,
+                description: "Cámara insignia de 200MP con OIS, pantalla AMOLED 120Hz FHD+, carga ultra rápida de 67W y procesador Snapdragon de alta eficiencia.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_656519-MLA74351336040_022024-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_912231-MLA74351336042_022024-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_789012-MLA74351336044_022024-F.webp"
                 ] 
             },
+            { 
+                id: 5, 
+                category: "Celulares", 
+                name: "Samsung Galaxy S24 Ultra 256GB Titanium Gray", 
+                price: 2199999,
+                description: "Marco de titanio premium, Galaxy AI integrada para traducción en tiempo real, S Pen incorporado y cámara principal de 200MP con zoom óptico 10x.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_832329-MLA74130022206_012024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_838201-MLA74130022208_012024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_910293-MLA74130022210_012024-F.webp"
+                ] 
+            },
+            { 
+                id: 6, 
+                category: "Celulares", 
+                name: "Motorola Edge 50 Pro 512GB Luxe Lavender", 
+                price: 999999,
+                description: "Diseño curvado ergonómico en cuero vegano, certificación IP68, carga TurboPower de 125W y cámara triple validada por Pantone.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_612839-MLA75839201923_042024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_719283-MLA75839201925_042024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_891203-MLA75839201927_042024-F.webp"
+                ] 
+            },
 
             // --- AUDIO ---
             { 
-                id: 5, 
+                id: 7, 
                 category: "Audio", 
                 name: "Xiaomi Redmi Buds 6 Play Bluetooth", 
-                price: 22659, 
+                price: 22659,
+                description: "Auriculares in-ear con hasta 36 horas de autonomía con estuche de carga, driver dinámico de 10mm y cancelación de ruido por IA para llamadas.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_750532-MLA78891081546_092024-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_981273-MLA78891081548_092024-F.webp",
@@ -935,10 +1018,11 @@
                 ] 
             },
             { 
-                id: 6, 
+                id: 8, 
                 category: "Audio", 
                 name: "Auriculares Bluetooth Sony WH-CH520 Blanco", 
-                price: 84999, 
+                price: 84999,
+                description: "Hasta 50 horas de batería, conexión multipunto para cambiar entre dispositivos fácilmente, micrófono integrado y ecualización personalizada vía App.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_798032-MLA54923293021_042023-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_902183-MLA54923293023_042023-F.webp",
@@ -946,23 +1030,37 @@
                 ] 
             },
             { 
-                id: 7, 
+                id: 9, 
                 category: "Audio", 
                 name: "Parlante Portátil JBL Go 4 Sumergible Bluetooth", 
-                price: 74999, 
+                price: 74999,
+                description: "Sonido JBL Pro ultraportátil, resistencia al agua y polvo IP67, correa integrada mejorada y hasta 7 horas de reproducción continua.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_632194-MLA76012984102_042024-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_812394-MLA76012984104_042024-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_910283-MLA76012984106_042024-F.webp"
                 ] 
             },
+            { 
+                id: 10, 
+                category: "Audio", 
+                name: "Apple AirPods Pro (2.ª Generación) USB-C", 
+                price: 449999,
+                description: "Cancelación Activa de Ruido hasta 2x más efectiva, Audio Espacial personalizado con seguimiento dinámico de la cabeza y estuche MagSafe USB-C.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_941029-MLA71782867200_092023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_819203-MLA71782867202_092023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA71782867204_092023-F.webp"
+                ] 
+            },
 
             // --- STREAMING / TV ---
             { 
-                id: 8, 
+                id: 11, 
                 category: "Streaming", 
                 name: "Amazon Fire TV Stick 4K 8GB Con Control por Voz", 
-                price: 89990, 
+                price: 89990,
+                description: "Reproducción cinematográfica en 4K Ultra HD con Dolby Vision, HDR10+ y audio inmersivo Dolby Atmos. Incluye mando con Alexa.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_938122-MLA47812903821_102021-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_712983-MLA47812903823_102021-F.webp",
@@ -970,23 +1068,37 @@
                 ] 
             },
             { 
-                id: 9, 
+                id: 12, 
                 category: "Streaming", 
                 name: "Google Chromecast 4 HD con Google TV Nieve", 
-                price: 78500, 
+                price: 78500,
+                description: "Agrupa todo tu contenido de streaming en una sola pantalla principal. Soporta 1080p HDR y control por voz con Asistente de Google.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_619023-MLA52083920192_102022-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_789123-MLA52083920194_102022-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_801928-MLA52083920196_102022-F.webp"
                 ] 
             },
+            { 
+                id: 13, 
+                category: "Streaming", 
+                name: "Roku Express 4K Streaming Media Player", 
+                price: 69999,
+                description: "Streaming 4K e imágenes HDR nítidas y brillantes. Configuración rápida y sencilla con cable HDMI de alta velocidad incluido.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_738201-MLA46029102931_052021-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_819203-MLA46029102933_052021-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_910293-MLA46029102935_052021-F.webp"
+                ] 
+            },
 
             // --- CONSOLAS ---
             { 
-                id: 10, 
+                id: 14, 
                 category: "Consolas", 
                 name: "Sony PlayStation 5 Slim 1TB Edición Digital", 
-                price: 1149999, 
+                price: 1149999,
+                description: "Diseño ultracompacto con 1TB de almacenamiento SSD NVMe de alta velocidad, Ray Tracing, audio 3D y retroalimentación háptica DualSense.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_702938-MLA73520192831_122023-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_890123-MLA73520192833_122023-F.webp",
@@ -994,27 +1106,117 @@
                 ] 
             },
             { 
-                id: 11, 
+                id: 15, 
                 category: "Consolas", 
                 name: "Joystick Inalámbrico Sony DualSense PS5 Blanco", 
-                price: 112999, 
+                price: 112999,
+                description: "Gatillos adaptativos dinámicos, retroalimentación háptica inmersiva, micrófono integrado y botón 'Crear' para compartir tus mejores partidas.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_841203-MLA44192039123_112020-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_910293-MLA44192039125_112020-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_719283-MLA44192039127_112020-F.webp"
                 ] 
             },
+            { 
+                id: 16, 
+                category: "Consolas", 
+                name: "Nintendo Switch OLED Model 64GB Blanco", 
+                price: 689999,
+                description: "Pantalla OLED de 7 pulgadas con colores intensos y alto contraste, soporte ajustable ancho, puerto LAN por cable en la base y 64GB de memoria interna.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_839201-MLA47820192831_102021-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA47820192833_102021-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA47820192835_102021-F.webp"
+                ] 
+            },
 
             // --- LAPTOPS ---
             { 
-                id: 12, 
+                id: 17, 
                 category: "Laptops", 
                 name: "Notebook Lenovo V15 G3 Core i5 16GB RAM 512GB SSD", 
-                price: 789999, 
+                price: 789999,
+                description: "Pantalla FHD de 15.6 pulgadas antirreflejo, procesador Intel Core i5 de 12.ª generación, 16GB RAM para multitarea fluida y SSD veloz.",
                 images: [
                     "https://http2.mlstatic.com/D_NQ_NP_2X_619283-MLA71029381023_082023-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_789120-MLA71029381025_082023-F.webp",
                     "https://http2.mlstatic.com/D_NQ_NP_2X_901293-MLA71029381027_082023-F.webp"
+                ] 
+            },
+            { 
+                id: 18, 
+                category: "Laptops", 
+                name: "Apple MacBook Air 13 M2 256GB SSD 8GB RAM Space Gray", 
+                price: 1699999,
+                description: "Diseño ultradelgado de aluminio, chip M2 súper potente y eficiente, pantalla Liquid Retina de 13.6 pulgadas y hasta 18 horas de batería.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_738192-MLA50839201921_072022-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_891203-MLA50839201923_072022-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA50839201925_072022-F.webp"
+                ] 
+            },
+            { 
+                id: 19, 
+                category: "Laptops", 
+                name: "Notebook Gamer Asus TUF F15 RTX 3050 i5 16GB 512GB", 
+                price: 1349999,
+                description: "Rendimiento para videojuegos intensos con gráfica NVIDIA GeForce RTX 3050, pantalla de 144Hz FHD y durabilidad militar certificada.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_839201-MLA72019283102_102023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_901293-MLA72019283104_102023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA72019283106_102023-F.webp"
+                ] 
+            },
+
+            // --- COMPONENTES PC ---
+            { 
+                id: 20, 
+                category: "Componentes", 
+                name: "Placa de Video ASUS Dual GeForce RTX 4060 OC 8GB", 
+                price: 529999,
+                description: "Arquitectura NVIDIA Ada Lovelace con DLSS 3, Ray Tracing de 3ra generación y diseño de ventiladores Axial-tech para máximo flujo de aire.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_819203-MLA69820192831_062023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA69820192833_062023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA69820192835_062023-F.webp"
+                ] 
+            },
+            { 
+                id: 21, 
+                category: "Componentes", 
+                name: "Procesador AMD Ryzen 7 5700X 4.6GHz Turbo AM4", 
+                price: 289999,
+                description: "8 núcleos y 16 hilos de procesamiento optimizados para gaming y creación de contenido intensivo en plataforma Socket AM4.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_738192-MLA49820192831_042022-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_891203-MLA49820192833_042022-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA49820192835_042022-F.webp"
+                ] 
+            },
+
+            // --- WEARABLES & FOTOGRAFÍA ---
+            { 
+                id: 22, 
+                category: "Wearables", 
+                name: "Smartwatch Samsung Galaxy Watch 6 44mm Graphite", 
+                price: 349999,
+                description: "Pantalla Sapphire Crystal ultra resistente, monitoreo de composición corporal BIA, seguimiento del sueño avanzado y sensor ECG de frecuencia cardíaca.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_839201-MLA70820192831_082023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_901293-MLA70820192833_082023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_710293-MLA70820192835_082023-F.webp"
+                ] 
+            },
+            { 
+                id: 23, 
+                category: "Fotografia", 
+                name: "Cámara Deportiva GoPro HERO12 Black 4K/5.3K HDR", 
+                price: 649999,
+                description: "Estabilización de video HyperSmooth 6.0 ganadora del Emmy, transmisión en directo FHD, cuerpo sumergible sin funda hasta 10 metros.",
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_738192-MLA71820192831_092023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_891203-MLA71820192833_092023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_901283-MLA71820192835_092023-F.webp"
                 ] 
             }
         ];
@@ -1025,6 +1227,7 @@
         let slideIndexes = {};
         let currentModalImages = [];
         let currentModalIndex = 0;
+        let currentPage = 1;
 
         document.addEventListener("DOMContentLoaded", () => {
             renderCatalog();
@@ -1033,22 +1236,32 @@
 
         function renderCatalog() {
             const container = document.getElementById("catalogContainer");
+            const paginationContainer = document.getElementById("paginationContainer");
             const searchVal = document.getElementById("searchInput").value.toLowerCase();
             const selectCategoryVal = document.getElementById("searchCategory").value;
 
             const filtered = PRODUCTS.filter(p => {
                 const navMatch = currentCategoryFilter === "ALL" || p.category === currentCategoryFilter;
                 const selectMatch = selectCategoryVal === "ALL" || p.category === selectCategoryVal;
-                const matchSearch = p.name.toLowerCase().includes(searchVal);
+                const matchSearch = p.name.toLowerCase().includes(searchVal) || (p.description && p.description.toLowerCase().includes(searchVal));
                 return navMatch && selectMatch && matchSearch;
             });
 
             if (filtered.length === 0) {
                 container.innerHTML = `<div style="grid-column: span 4; text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron productos electrónicos en esta categoría.</div>`;
+                paginationContainer.innerHTML = "";
                 return;
             }
 
-            container.innerHTML = filtered.map(p => {
+            // LÓGICA DE PAGINACIÓN (HOJA 1, HOJA 2, ETC.)
+            const totalPages = Math.ceil(filtered.length / CONFIG.ITEMS_PER_PAGE);
+            if (currentPage > totalPages) currentPage = 1;
+
+            const startIndex = (currentPage - 1) * CONFIG.ITEMS_PER_PAGE;
+            const endIndex = startIndex + CONFIG.ITEMS_PER_PAGE;
+            const paginatedItems = filtered.slice(startIndex, endIndex);
+
+            container.innerHTML = paginatedItems.map(p => {
                 if (!(p.id in slideIndexes)) slideIndexes[p.id] = 0;
                 
                 const imgsHtml = p.images.map((img, idx) => 
@@ -1075,6 +1288,7 @@
                         <div>
                             <div class="product-cat-tag">${p.category}</div>
                             <div class="product-title" title="${p.name}">${p.name}</div>
+                            <div class="product-description" title="${p.description}">${p.description}</div>
                             <div class="product-price">$${p.price.toLocaleString("es-AR")}</div>
                         </div>
                         <div class="product-actions">
@@ -1085,7 +1299,24 @@
                     </div>
                 `;
             }).join("");
+
+            // RENDERING DE BOTONES DE HOJAS DE PAGINACIÓN
+            let pageBtnsHtml = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">« Anterior</button>`;
+            
+            for (let i = 1; i <= totalPages; i++) {
+                pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">Hoja ${i}</button>`;
+            }
+            
+            pageBtnsHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">Siguiente »</button>`;
+
+            paginationContainer.innerHTML = totalPages > 1 ? pageBtnsHtml : "";
         }
+
+        window.changePage = (page) => {
+            currentPage = page;
+            renderCatalog();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        };
 
         window.moveProductSlide = (id, direction) => {
             const product = PRODUCTS.find(p => p.id === id);
@@ -1141,6 +1372,7 @@
 
         window.filterCategory = (cat) => {
             currentCategoryFilter = cat;
+            currentPage = 1;
             document.querySelectorAll(".nav-item").forEach(el => {
                 el.classList.toggle("active", el.innerText.toLowerCase().includes(cat.toLowerCase()) || (cat === 'ALL' && el.innerText === 'Ver Todo'));
             });
@@ -1197,9 +1429,9 @@
         }
 
         function setupEvents() {
-            document.getElementById("searchInput").addEventListener("input", renderCatalog);
-            document.getElementById("searchCategory").addEventListener("change", renderCatalog);
-            document.getElementById("btnSearchCatalog").addEventListener("click", renderCatalog);
+            document.getElementById("searchInput").addEventListener("input", () => { currentPage = 1; renderCatalog(); });
+            document.getElementById("searchCategory").addEventListener("change", () => { currentPage = 1; renderCatalog(); });
+            document.getElementById("btnSearchCatalog").addEventListener("click", () => { currentPage = 1; renderCatalog(); });
 
             document.getElementById("btnGoToCheckout").addEventListener("click", () => {
                 const count = Object.values(cart).reduce((a, b) => a + b, 0);
