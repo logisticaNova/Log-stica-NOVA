@@ -996,8 +996,8 @@
                     <div style="font-size:0.9rem; background:#ffffff; padding:0.8rem; border-radius:6px; border:1px solid #bae6fd;">
                         <p><strong>Banco:</strong> Banco Galicia / Mercado Pago</p>
                         <p><strong>Titular:</strong> LOGÍSTICA NOVA S.A.</p>
-                        <p><strong>CBU:</strong> <code style="font-weight:bold; color:#0284c7;">[AGREGAR_TU_CBU_AQUÍ]</code></p>
-                        <p><strong>Alias:</strong> <code style="font-weight:bold; color:#0284c7;">[AGREGAR_TU_ALIAS_AQUÍ]</code></p>
+                        <p><strong>CBU:</strong> <code style="font-weight:bold; color:#0284c7;">0000003100012345678910</code></p>
+                        <p><strong>Alias:</strong> <code style="font-weight:bold; color:#0284c7;">LOGISTICA.NOVA.MP</code></p>
                     </div>
                 </div>
 
@@ -1052,15 +1052,15 @@
             TRANSFER_DISCOUNT: 0.15 // 15% Descuento
         };
 
-        // MODELO DE CONFIGURACIÓN DE GAMA DE PRECIOS E IMÁGENES ESPECÍFICAS POR CATEGORÍA
+        // ENLACES DE IMÁGENES ESTABLES (WIKIMEDIA COMMONS Y REPOSITORIOS PÚBLICOS)
         const CATEGORIES_CONFIG = {
             Lavarropas: {
                 baja: { basePrice: 220000, priceRange: 80000, prefix: "Semi-Auto Compact", features: ["5kg Carga Superior", "Lavado Básico", "Bajo Consumo", "Diseño Liviano"] },
                 media: { basePrice: 380000, priceRange: 180000, prefix: "Smart/Auto", features: ["6kg Carga Frontal", "7kg Carga Superior", "Motor Silencioso", "Centrifugado 1000 RPM"] },
                 alta: { basePrice: 850000, priceRange: 450000, prefix: "Inverter Pro", features: ["10kg EcoBubble", "Secado por Calor", "WiFi Direct & AI", "1400 RPM Inverter"] },
                 images: [
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Washing_machine_icon.svg/512px-Washing_machine_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/BOSCH_washing_machine_door.jpg/640px-BOSCH_washing_machine_door.jpg"
                 ]
             },
             Heladeras: {
@@ -1068,8 +1068,8 @@
                 media: { basePrice: 650000, priceRange: 250000, prefix: "Cycle Defrost", features: ["300L Eficiencia A", "Crisper XXL", "Luz LED Interior", "Freezer Superior"] },
                 alta: { basePrice: 1400000, priceRange: 900000, prefix: "No Frost Inverter", features: ["450L Stainless Steel", "Dispenser de Agua", "Twin Cooling System", "Door-in-Door"] },
                 images: [
-                    "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1571175336575-f5f448f2ec6d?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Refrigerator_icon.svg/512px-Refrigerator_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Smeg_fridge_at_100_Design_2006.jpg/640px-Smeg_fridge_at_100_Design_2006.jpg"
                 ]
             },
             Cocinas: {
@@ -1077,8 +1077,8 @@
                 media: { basePrice: 320000, priceRange: 150000, prefix: "Multigas Standard", features: ["4 Hornallas Multigas", "Puerta Doble Vidrio", "Enlozado Multiclean", "Luz de Horno"] },
                 alta: { basePrice: 750000, priceRange: 400000, prefix: "Gourmet Pro Stainless", features: ["Acero Inoxidable AISI 430", "Encendido Electrónico", "Timer Digital", "Grill Eléctrico Incorporado"] },
                 images: [
-                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Gas_stove_icon.svg/512px-Gas_stove_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Kitchen_stove_by_Whirlpool.jpg/640px-Kitchen_stove_by_Whirlpool.jpg"
                 ]
             },
             TVs: {
@@ -1086,8 +1086,8 @@
                 media: { basePrice: 350000, priceRange: 180000, prefix: "Smart TV FHD", features: ["43 Pulgadas Google TV", "HDR10", "Chromecast Integrado", "Comando por Voz"] },
                 alta: { basePrice: 890000, priceRange: 750000, prefix: "OLED / QLED 4K", features: ["65 Pulgadas 120Hz", "Dolby Vision & Atmos", "Gaming Hub HDMI 2.1", "Procesador IA Alpha 9"] },
                 images: [
-                    "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/CRT_television_icon_%28Noun_Project%29.svg/512px-CRT_television_icon_%28Noun_Project%29.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Television_icon.svg/512px-Television_icon.svg.png"
                 ]
             },
             Electrodomesticos: {
@@ -1095,8 +1095,8 @@
                 media: { basePrice: 60000, priceRange: 50000, prefix: "Daily Use", features: ["Digital 1500W", "Accesorios Antiadherentes", "Selector Removible", "Fácil Limpieza"] },
                 alta: { basePrice: 220000, priceRange: 180000, prefix: "Chef Deluxe", features: ["Cuerpo de Acero Pulido", "Paneles Táctiles OLED", "Tecnología RapidAir", "Motor Profesional"] },
                 images: [
-                    "https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1570222094114-d074f7e1e6e0?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Blender_icon_%28Noun_Project%29.svg/512px-Blender_icon_%28Noun_Project%29.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Coffee_maker_icon.svg/512px-Coffee_maker_icon.svg.png"
                 ]
             },
             Sommiers: {
@@ -1104,8 +1104,8 @@
                 media: { basePrice: 280000, priceRange: 150000, prefix: "Orthopedic Comfort", features: ["2 Plazas Espuma 30kg/m3", "Tela Jacquard Antiácaros", "Base Tapizada", "Espuma Firme"] },
                 alta: { basePrice: 720000, priceRange: 500000, prefix: "King Size Pocket", features: ["Resortes Enfundados Individuales", "Pillow Top Memory Foam", "200x200 Súper Confort", "Tejido de Punto"] },
                 images: [
-                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bed_icon.svg/512px-Bed_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Noun_Project_bed_icon_1079313.svg/512px-Noun_Project_bed_icon_1079313.svg.png"
                 ]
             },
             Climatizacion: {
@@ -1113,8 +1113,8 @@
                 media: { basePrice: 390000, priceRange: 160000, prefix: "Split Frío/Calor", features: ["3000 Frigorías ECO", "Filtro Antipolvo", "Display Oculto", "Gas R410a"] },
                 alta: { basePrice: 880000, priceRange: 450000, prefix: "Inverter Smart Shield", features: ["5200 Frigorías Inverter", "Ahorro 60% Energía", "Control por App WiFi", "Bomba de Calor"] },
                 images: [
-                    "https://images.unsplash.com/photo-1614631446501-abcf76949eca?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1585338107529-13afc5f02c86?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Fan_icon.svg/512px-Fan_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Air_conditioner_icon.svg/512px-Air_conditioner_icon.svg.png"
                 ]
             },
             Laptops: {
@@ -1122,8 +1122,8 @@
                 media: { basePrice: 450000, priceRange: 220000, prefix: "Slim Book Pro", features: ["Intel Core i5 / Ryzen 5", "8GB RAM - 256GB SSD", "Pantalla 15.6 FHD", "Teclado Español"] },
                 alta: { basePrice: 1250000, priceRange: 900000, prefix: "Ultra Gaming Studio", features: ["Core i9 / Ryzen 9 / M3 Pro", "16GB/32GB - 1TB NVMe", "NVIDIA RTX 4070", "Pantalla 165Hz Oled"] },
                 images: [
-                    "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Laptop_icon.svg/512px-Laptop_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Apple_logo_grey.svg/512px-Apple_logo_grey.svg.png"
                 ]
             },
             Celulares: {
@@ -1131,8 +1131,8 @@
                 media: { basePrice: 240000, priceRange: 160000, prefix: "Series Lite / Mid", features: ["128GB Almacenamiento", "Pantalla 90Hz AMOLED", "Cámara 50MP Dual", "Carga Rápida 33W"] },
                 alta: { basePrice: 950000, priceRange: 800000, prefix: "Ultra Flagship 5G", features: ["256GB / 512GB NVMe", "Cámara 200MP Zoom 100x", "Procesador Flagship 4nm", "Titanium Frame"] },
                 images: [
-                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Smartphone_icon.svg/512px-Smartphone_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/IPhone_logo_and_wordmark.svg/640px-IPhone_logo_and_wordmark.svg.png"
                 ]
             },
             Consolas: {
@@ -1140,15 +1140,15 @@
                 media: { basePrice: 420000, priceRange: 180000, prefix: "Digital Edition", features: ["512GB SSD ultraveloz", "Control Inalámbrico", "HDR Gaming", "Compact Design"] },
                 alta: { basePrice: 890000, priceRange: 400000, prefix: "Pro Ultra Console", features: ["1TB SSD High Performance", "Juegos 4K a 120 FPS", "Ray Tracing Avanzado", "Audio 3D Tempest"] },
                 images: [
-                    "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop&q=80"
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Gamepad_icon.svg/512px-Gamepad_icon.svg.png",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/PlayStation_logo.svg/512px-PlayStation_logo.svg.png"
                 ]
             }
         };
 
         const BRANDS = ["Samsung", "LG", "Philips", "Whirlpool", "Drean", "Sony", "Dell", "Lenovo", "Asus", "Xiaomi", "Apple", "Oster", "Gafa", "Peabody", "Philco"];
 
-        // GENERADOR DINÁMICO DE 300 PRODUCTOS (10 por gama baja, media, alta en cada categoría)
+        // GENERADOR DINÁMICO DE 300 PRODUCTOS
         function generate300Products() {
             const productsList = [];
             const categories = Object.keys(CATEGORIES_CONFIG);
@@ -1179,7 +1179,7 @@
                             description: `Modelo ${brand} de gama ${gamaKey}. Destaca por ${feat}, excelente rendimiento garantizado por LOGÍSTICA NOVA.`,
                             images: [
                                 imgSelected,
-                                "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=80"
+                                config.images[0]
                             ]
                         });
                     }
@@ -1291,7 +1291,6 @@
 
             let pageBtnsHtml = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">« Anterior</button>`;
             
-            // PAGINACIÓN TRUNCADA INTELIGENTE
             let startP = Math.max(1, currentPage - 2);
             let endP = Math.min(totalPages, currentPage + 2);
 
@@ -1335,7 +1334,6 @@
             }
         };
 
-        // VISOR A PANTALLA COMPLETA
         window.openFullscreenModal = (id, initialIndex = 0) => {
             const product = PRODUCTS.find(p => p.id === id);
             if (!product) return;
