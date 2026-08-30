@@ -330,22 +330,82 @@
             font-weight: 800;
             padding: 2px 6px;
             border-radius: 4px;
+            z-index: 10;
         }
 
-        .product-img-box {
+        /* CARRUSEL DE IMÁGENES DESLIZABLE EN FICHA DE PRODUCTO */
+        .product-slider-container {
+            position: relative;
             width: 100%;
-            height: 160px;
+            height: 180px;
             margin-bottom: 0.8rem;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #ffffff;
+        }
+
+        .product-slider-track {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease-in-out;
         }
 
         .product-img {
-            max-width: 100%;
-            max-height: 100%;
+            min-width: 100%;
+            height: 100%;
             object-fit: contain;
             cursor: pointer;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: #ffffff;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            z-index: 5;
+            transition: background 0.2s;
+        }
+
+        .slider-btn:hover {
+            background: var(--primary-orange);
+        }
+
+        .slider-btn.prev { left: 4px; }
+        .slider-btn.next { right: 4px; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 4px;
+            z-index: 5;
+        }
+
+        .slider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background: var(--primary-orange);
+            width: 12px;
+            border-radius: 4px;
         }
 
         .product-cat-tag {
@@ -465,20 +525,64 @@
             border-color: var(--primary-orange);
         }
 
-        /* MODAL IMÁGENES */
+        /* MODAL IMÁGENES / PANTALLA COMPLETA DESLIZABLE */
         .image-modal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         .image-modal.active { display: flex; }
-        .image-modal-content { max-width: 90%; max-height: 80%; background: #fff; padding: 10px; border-radius: 8px; }
+        
+        .modal-slider-box {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modal-img-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal-img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 20;
+            transition: background 0.2s;
+        }
+
+        .modal-nav-btn:hover { background: var(--primary-orange); }
+        .modal-nav-btn.prev { left: 10px; }
+        .modal-nav-btn.next { right: 10px; }
 
         .view-step { display: none; }
         .view-step.active-view { display: block; }
@@ -550,7 +654,7 @@
                     <option value="Streaming">Streaming / TV</option>
                     <option value="Fotografia">Fotografía</option>
                 </select>
-                <input type="text" id="searchInput" placeholder="Buscar productos electrónicos importados...">
+                <input type="text" id="searchInput" placeholder="Buscar productos electrónicos importados Mercado Libre...">
                 <button type="button" id="btnSearchCatalog">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
@@ -622,7 +726,7 @@
             <!-- PASO 1: CATÁLOGO DE ELECTRÓNICA -->
             <div class="view-step active-view" id="viewCatalog">
                 <div class="section-title">
-                    <span>Catálogo de Electrónica Importada</span>
+                    <span>Catálogo de Electrónica de Mercado Libre</span>
                 </div>
 
                 <div class="catalog-grid" id="catalogContainer">
@@ -742,12 +846,16 @@
         </div>
     </main>
 
-    <!-- MODAL VISTA PREVIA -->
+    <!-- MODAL VISTA PREVIA / PANTALLA COMPLETA SLIDER -->
     <div class="image-modal" id="imageModal">
-        <div class="image-modal-content">
-            <img id="modalImg" src="" alt="Producto" style="max-width: 100%; max-height: 70vh;">
-            <button type="button" class="btn-action" style="width: 100%; margin-top: 10px;" id="closeModal">Cerrar</button>
+        <div class="modal-slider-box">
+            <button class="modal-nav-btn prev" onclick="moveModalSlide(-1)">&#10094;</button>
+            <div class="modal-img-track" id="modalImgTrack">
+                <!-- Imágen(es) inyectadas por JS -->
+            </div>
+            <button class="modal-nav-btn next" onclick="moveModalSlide(1)">&#10095;</button>
         </div>
+        <button type="button" class="btn-action" style="margin-top: 15px; width: 200px;" id="closeModal">Cerrar</button>
     </div>
 
     <footer>
@@ -766,89 +874,157 @@
             }
         };
 
-        // CATÁLOGO COMPLETO Y EXTENDIDO DE ELECTRÓNICA DE LOGÍSTICA NOVA
+        // CATÁLOGO DE ELECTRÓNICOS DE MERCADO LIBRE CON 3 FOTOS CADA UNO
         const PRODUCTS = [
-            // --- LAPTOPS ---
-            { id: 1, category: "Laptops", name: "Apple MacBook Air 15 M3 (8GB RAM, 256GB SSD)", price: 2150000, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500" },
-            { id: 2, category: "Laptops", name: "ASUS ROG Strix G16 i7 RTX 4060", price: 2847000, img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500" },
-            { id: 3, category: "Laptops", name: "Lenovo Legion Pro 5 Gen 8 AMD Ryzen 7", price: 2450000, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500" },
-            { id: 4, category: "Laptops", name: "Dell XPS 13 Intel Core Ultra 7", price: 2310000, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500" },
-            { id: 25, category: "Laptops", name: "Apple MacBook Pro 16 M3 Max 36GB RAM 1TB SSD", price: 4890000, img: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500" },
-            { id: 26, category: "Laptops", name: "Razer Blade 16 Gaming Laptop i9 RTX 4080", price: 4250000, img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500" },
-            { id: 27, category: "Laptops", name: "HP Spectre x360 2-in-1 Intel Core Ultra 5", price: 1980000, img: "https://images.unsplash.com/photo-1544731612-de7f96afe55f?w=500" },
-            { id: 28, category: "Laptops", name: "Acer Predator Helios 16 i7 RTX 4070", price: 2690000, img: "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=500" },
-            { id: 29, category: "Laptops", name: "Lenovo ThinkPad X1 Carbon Gen 11 i7 16GB", price: 2580000, img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500" },
-            { id: 30, category: "Laptops", name: "Microsoft Surface Laptop 6 15\" Snapdragon X Elite", price: 2240000, img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500" },
-
             // --- CELULARES ---
-            { id: 5, category: "Celulares", name: "Apple iPhone 16 Pro Max 256GB Titanio", price: 2280000, img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500" },
-            { id: 6, category: "Celulares", name: "Samsung Galaxy S24 Ultra 512GB", price: 2100000, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500" },
-            { id: 7, category: "Celulares", name: "Google Pixel 9 Pro XL 128GB", price: 1850000, img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500" },
-            { id: 8, category: "Celulares", name: "Xiaomi 14 Ultra 512GB", price: 1650000, img: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=500" },
-            { id: 31, category: "Celulares", name: "Samsung Galaxy Z Fold6 512GB", price: 2950000, img: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=500" },
-            { id: 32, category: "Celulares", name: "Apple iPhone 15 Pro 128GB Titanio Azul", price: 1790000, img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500" },
-            { id: 33, category: "Celulares", name: "Samsung Galaxy Z Flip6 256GB", price: 1620000, img: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=500" },
-            { id: 34, category: "Celulares", name: "OnePlus 12 512GB Emerald Green", price: 1480000, img: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500" },
-            { id: 35, category: "Celulares", name: "Motorola Edge 50 Ultra 512GB", price: 1390000, img: "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=500" },
-
-            // --- CONSOLAS ---
-            { id: 9, category: "Consolas", name: "Sony PlayStation 5 Slim 1TB Disc Edition", price: 980000, img: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500" },
-            { id: 10, category: "Consolas", name: "Xbox Series X 1TB Console", price: 920000, img: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=500" },
-            { id: 11, category: "Consolas", name: "Nintendo Switch OLED Model Mario Red", price: 650000, img: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=500" },
-            { id: 12, category: "Consolas", name: "Steam Deck OLED 512GB Handheld", price: 1150000, img: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=500" },
-            { id: 36, category: "Consolas", name: "ASUS ROG Ally X Handheld Gaming PC 1TB", price: 1320000, img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500" },
-            { id: 37, category: "Consolas", name: "Lenovo Legion Go 8.8\" 144Hz Handheld 512GB", price: 1240000, img: "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=500" },
-            { id: 38, category: "Consolas", name: "PlayStation Portal Remote Player PS5", price: 420000, img: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500" },
-            { id: 39, category: "Consolas", name: "Xbox Series S 1TB Robot White Edition", price: 680000, img: "https://images.unsplash.com/photo-1600861194942-f883de0dfe96?w=500" },
+            { 
+                id: 1, 
+                category: "Celulares", 
+                name: "Samsung Galaxy A16 128GB + 4GB Gray", 
+                price: 284899, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_793382-MLA80126990393_102024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_616499-MLA80126990397_102024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_892831-MLA80126990401_102024-F.webp"
+                ] 
+            },
+            { 
+                id: 2, 
+                category: "Celulares", 
+                name: "Motorola Moto G04s 128GB 4GB RAM Verde", 
+                price: 269999, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_728956-MLA75317424195_032024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_838274-MLA75317424197_032024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_910082-MLA75317424199_032024-F.webp"
+                ] 
+            },
+            { 
+                id: 3, 
+                category: "Celulares", 
+                name: "Apple iPhone 15 128GB Negro", 
+                price: 1549999, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_822268-MLA71782867168_092023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_828620-MLA71782867170_092023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_801041-MLA71782867172_092023-F.webp"
+                ] 
+            },
+            { 
+                id: 4, 
+                category: "Celulares", 
+                name: "Xiaomi Redmi Note 13 Pro 256GB 8GB RAM", 
+                price: 529999, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_656519-MLA74351336040_022024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_912231-MLA74351336042_022024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_789012-MLA74351336044_022024-F.webp"
+                ] 
+            },
 
             // --- AUDIO ---
-            { id: 13, category: "Audio", name: "Apple AirPods Pro 2 USB-C", price: 420000, img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=500" },
-            { id: 14, category: "Audio", name: "Sony WH-1000XM5 Noise Canceling Headphones", price: 610000, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" },
-            { id: 15, category: "Audio", name: "Bose QuietComfort Ultra Headphones", price: 680000, img: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500" },
-            { id: 16, category: "Audio", name: "JBL Boombox 3 Portable Bluetooth Speaker", price: 790000, img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500" },
-            { id: 40, category: "Audio", name: "Apple AirPods Max Wireless Over-Ear Headphones", price: 950000, img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500" },
-            { id: 41, category: "Audio", name: "Sennheiser Momentum 4 Wireless Headphones", price: 590000, img: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500" },
-            { id: 42, category: "Audio", name: "Marshall Stanmore III Bluetooth Speaker", price: 640000, img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500" },
-            { id: 43, category: "Audio", name: "Sony WF-1000XM5 Wireless Noise Canceling Earbuds", price: 440000, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500" },
-            { id: 44, category: "Audio", name: "Shure SM7B Vocal Dynamic Microphone", price: 690000, img: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500" },
-
-            // --- WEARABLES ---
-            { id: 17, category: "Wearables", name: "Apple Watch Ultra 2 GPS + Cellular", price: 1350000, img: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=500" },
-            { id: 18, category: "Wearables", name: "Samsung Galaxy Watch 7 Pro 45mm", price: 580000, img: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=500" },
-            { id: 45, category: "Wearables", name: "Apple Watch Series 9 GPS 45mm Aluminum", price: 740000, img: "https://images.unsplash.com/photo-1510017803434-a899398421b3?w=500" },
-            { id: 46, category: "Wearables", name: "Garmin Fenix 7 Pro Solar Multisport GPS", price: 1280000, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" },
-            { id: 47, category: "Wearables", name: "Garmin Forerunner 965 Premium Running Watch", price: 990000, img: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500" },
-            { id: 48, category: "Wearables", name: "Xiaomi Smart Band 8 Pro Global Version", price: 120000, img: "https://images.unsplash.com/photo-1557180295-76eee20ae8aa?w=500" },
-
-            // --- COMPONENTES ---
-            { id: 19, category: "Componentes", name: "NVIDIA GeForce RTX 4090 24GB GPU", price: 3400000, img: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500" },
-            { id: 20, category: "Componentes", name: "Intel Core i9-14900K Processor", price: 890000, img: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=500" },
-            { id: 49, category: "Componentes", name: "NVIDIA GeForce RTX 4080 Super 16GB GPU", price: 2150000, img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500" },
-            { id: 50, category: "Componentes", name: "AMD Ryzen 7 7800X3D Gaming Processor", price: 690000, img: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=500" },
-            { id: 51, category: "Componentes", name: "Samsung 990 Pro 2TB PCIe 4.0 NVMe SSD", price: 310000, img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=500" },
-            { id: 52, category: "Componentes", name: "Corsair Vengeance DDR5 32GB (2x16GB) 6000MHz", price: 240000, img: "https://images.unsplash.com/photo-1562976540-1502c2145186?w=500" },
-            { id: 53, category: "Componentes", name: "ASUS ROG Maximus Z790 Hero Motherboard", price: 1120000, img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500" },
+            { 
+                id: 5, 
+                category: "Audio", 
+                name: "Xiaomi Redmi Buds 6 Play Bluetooth", 
+                price: 22659, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_750532-MLA78891081546_092024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_981273-MLA78891081548_092024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_612948-MLA78891081550_092024-F.webp"
+                ] 
+            },
+            { 
+                id: 6, 
+                category: "Audio", 
+                name: "Auriculares Bluetooth Sony WH-CH520 Blanco", 
+                price: 84999, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_798032-MLA54923293021_042023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_902183-MLA54923293023_042023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_671239-MLA54923293025_042023-F.webp"
+                ] 
+            },
+            { 
+                id: 7, 
+                category: "Audio", 
+                name: "Parlante Portátil JBL Go 4 Sumergible Bluetooth", 
+                price: 74999, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_632194-MLA76012984102_042024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_812394-MLA76012984104_042024-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_910283-MLA76012984106_042024-F.webp"
+                ] 
+            },
 
             // --- STREAMING / TV ---
-            { id: 21, category: "Streaming", name: "Amazon Fire TV Stick 4K Max", price: 95000, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500" },
-            { id: 22, category: "Streaming", name: "Roku Ultra 4K HDR Streaming Device", price: 140000, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500" },
-            { id: 54, category: "Streaming", name: "Apple TV 4K 128GB Wi-Fi + Ethernet", price: 290000, img: "https://images.unsplash.com/photo-1528928441742-b4ccac1bb04c?w=500" },
-            { id: 55, category: "Streaming", name: "NVIDIA Shield TV Pro 4K HDR Media Player", price: 380000, img: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500" },
-            { id: 56, category: "Streaming", name: "Elgato HD60 X Game Capture Card 4K60", price: 320000, img: "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=500" },
-            { id: 57, category: "Streaming", name: "Logitech Brio 4K Ultra HD Webcam", price: 260000, img: "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=500" },
+            { 
+                id: 8, 
+                category: "Streaming", 
+                name: "Amazon Fire TV Stick 4K 8GB Con Control por Voz", 
+                price: 89990, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_938122-MLA47812903821_102021-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_712983-MLA47812903823_102021-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_819203-MLA47812903825_102021-F.webp"
+                ] 
+            },
+            { 
+                id: 9, 
+                category: "Streaming", 
+                name: "Google Chromecast 4 HD con Google TV Nieve", 
+                price: 78500, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_619023-MLA52083920192_102022-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_789123-MLA52083920194_102022-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_801928-MLA52083920196_102022-F.webp"
+                ] 
+            },
 
-            // --- FOTOGRAFÍA ---
-            { id: 23, category: "Fotografia", name: "Sony Alpha a7 IV Mirrorless Camera Body", price: 3900000, img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500" },
-            { id: 24, category: "Fotografia", name: "GoPro HERO12 Black Action Camera", price: 620000, img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500" },
-            { id: 58, category: "Fotografia", name: "Canon EOS R6 Mark II Mirrorless Camera", price: 4100000, img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500" },
-            { id: 59, category: "Fotografia", name: "DJI Mini 4 Pro Fly More Combo Drone", price: 1850000, img: "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=500" },
-            { id: 60, category: "Fotografia", name: "DJI Osmo Pocket 3 Creator Combo", price: 1120000, img: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=500" },
-            { id: 61, category: "Fotografia", name: "Fujifilm X-T5 Mirrorless Camera Body Black", price: 2980000, img: "https://images.unsplash.com/photo-1512790182412-b19e6d61b39a?w=500" }
+            // --- CONSOLAS ---
+            { 
+                id: 10, 
+                category: "Consolas", 
+                name: "Sony PlayStation 5 Slim 1TB Edición Digital", 
+                price: 1149999, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_702938-MLA73520192831_122023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_890123-MLA73520192833_122023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_918237-MLA73520192835_122023-F.webp"
+                ] 
+            },
+            { 
+                id: 11, 
+                category: "Consolas", 
+                name: "Joystick Inalámbrico Sony DualSense PS5 Blanco", 
+                price: 112999, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_841203-MLA44192039123_112020-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_910293-MLA44192039125_112020-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_719283-MLA44192039127_112020-F.webp"
+                ] 
+            },
+
+            // --- LAPTOPS ---
+            { 
+                id: 12, 
+                category: "Laptops", 
+                name: "Notebook Lenovo V15 G3 Core i5 16GB RAM 512GB SSD", 
+                price: 789999, 
+                images: [
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_619283-MLA71029381023_082023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_789120-MLA71029381025_082023-F.webp",
+                    "https://http2.mlstatic.com/D_NQ_NP_2X_901293-MLA71029381027_082023-F.webp"
+                ] 
+            }
         ];
 
         const cart = {};
         let currentCategoryFilter = "ALL";
         let currentOrderData = null;
+        let slideIndexes = {};
+        let currentModalImages = [];
+        let currentModalIndex = 0;
 
         document.addEventListener("DOMContentLoaded", () => {
             renderCatalog();
@@ -872,24 +1048,95 @@
                 return;
             }
 
-            container.innerHTML = filtered.map(p => `
-                <div class="product-card">
-                    <span class="product-badge">${p.category}</span>
-                    <div class="product-img-box">
-                        <img src="${p.img}" alt="${p.name}" class="product-img" onclick="openModal('${p.img}')">
+            container.innerHTML = filtered.map(p => {
+                if (!(p.id in slideIndexes)) slideIndexes[p.id] = 0;
+                
+                const imgsHtml = p.images.map((img, idx) => 
+                    `<img src="${img}" alt="${p.name}" class="product-img" onclick="openFullscreenModal(${p.id}, ${idx})">`
+                ).join("");
+
+                const dotsHtml = p.images.map((_, idx) => 
+                    `<span class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setProductSlide(${p.id}, ${idx})"></span>`
+                ).join("");
+
+                return `
+                    <div class="product-card">
+                        <span class="product-badge">${p.category}</span>
+                        <div class="product-slider-container">
+                            <button class="slider-btn prev" onclick="moveProductSlide(${p.id}, -1)">&#10094;</button>
+                            <div class="product-slider-track" id="track-${p.id}">
+                                ${imgsHtml}
+                            </div>
+                            <button class="slider-btn next" onclick="moveProductSlide(${p.id}, 1)">&#10095;</button>
+                            <div class="slider-dots" id="dots-${p.id}">
+                                ${dotsHtml}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-cat-tag">${p.category}</div>
+                            <div class="product-title" title="${p.name}">${p.name}</div>
+                            <div class="product-price">$${p.price.toLocaleString("es-AR")}</div>
+                        </div>
+                        <div class="product-actions">
+                            <button type="button" class="qty-btn" onclick="changeQty(${p.id}, -1)">-</button>
+                            <span class="qty-val" id="qty-${p.id}">${cart[p.id] || 0}</span>
+                            <button type="button" class="qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="product-cat-tag">${p.category}</div>
-                        <div class="product-title" title="${p.name}">${p.name}</div>
-                        <div class="product-price">$${p.price.toLocaleString("es-AR")}</div>
-                    </div>
-                    <div class="product-actions">
-                        <button type="button" class="qty-btn" onclick="changeQty(${p.id}, -1)">-</button>
-                        <span class="qty-val" id="qty-${p.id}">${cart[p.id] || 0}</span>
-                        <button type="button" class="qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
-                    </div>
-                </div>
-            `).join("");
+                `;
+            }).join("");
+        }
+
+        window.moveProductSlide = (id, direction) => {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+            let idx = slideIndexes[id] + direction;
+            if (idx < 0) idx = product.images.length - 1;
+            if (idx >= product.images.length) idx = 0;
+            setProductSlide(id, idx);
+        };
+
+        window.setProductSlide = (id, index) => {
+            slideIndexes[id] = index;
+            const track = document.getElementById(`track-${id}`);
+            const dots = document.getElementById(`dots-${id}`);
+            if (track) {
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }
+            if (dots) {
+                Array.from(dots.children).forEach((dot, i) => {
+                    dot.classList.toggle("active", i === index);
+                });
+            }
+        };
+
+        window.openFullscreenModal = (id, initialIndex = 0) => {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+            currentModalImages = product.images;
+            currentModalIndex = initialIndex;
+
+            const modalTrack = document.getElementById("modalImgTrack");
+            modalTrack.innerHTML = currentModalImages.map(img => 
+                `<img src="${img}" class="modal-img">`
+            ).join("");
+
+            updateModalSlide();
+            document.getElementById("imageModal").classList.add("active");
+        };
+
+        window.moveModalSlide = (dir) => {
+            currentModalIndex += dir;
+            if (currentModalIndex < 0) currentModalIndex = currentModalImages.length - 1;
+            if (currentModalIndex >= currentModalImages.length) currentModalIndex = 0;
+            updateModalSlide();
+        };
+
+        function updateModalSlide() {
+            const modalTrack = document.getElementById("modalImgTrack");
+            if (modalTrack) {
+                modalTrack.style.transform = `translateX(-${currentModalIndex * 100}%)`;
+            }
         }
 
         window.filterCategory = (cat) => {
@@ -990,11 +1237,6 @@
             document.getElementById("closeModal").addEventListener("click", () => document.getElementById("imageModal").classList.remove("active"));
         }
 
-        window.openModal = (src) => {
-            document.getElementById("modalImg").src = src;
-            document.getElementById("imageModal").classList.add("active");
-        };
-
         function switchView(viewId, step) {
             document.querySelectorAll(".view-step").forEach(v => v.classList.remove("active-view"));
             document.getElementById(viewId).classList.add("active-view");
@@ -1043,7 +1285,7 @@
                             nombre: product.name,
                             cantidad: qty,
                             precio: product.price,
-                            foto: product.img
+                            foto: product.images[0]
                         });
                     }
                 }
@@ -1063,7 +1305,6 @@
             document.getElementById("resGrandTotal").innerText = `$${grandTotal.toLocaleString("es-AR")}`;
             document.getElementById("resSecCode").innerText = secCode;
 
-            // Almacenamos los datos globales de la orden para WhatsApp
             currentOrderData = {
                 guia: trackingCode,
                 codigoSeguridad: secCode,
