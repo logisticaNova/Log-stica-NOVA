@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGÍSTICA NOVA | Compras Internacionales y Envíos</title>
+    <title>LOGÍSTICA NOVA | Electrónica & Electrodomésticos</title>
     <style>
         :root {
             --primary-orange: #ff6b00;
@@ -33,7 +33,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- BARRA SUPERIOR DE ANUNCIOS --- */
+        /* BARRA SUPERIOR DE ANUNCIOS */
         .top-bar {
             background-color: #1e293b;
             color: #ffffff;
@@ -44,7 +44,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- MENÚ PRINCIPAL --- */
+        /* MENÚ PRINCIPAL */
         header {
             background-color: #ffffff;
             border-bottom: 2px solid var(--border-color);
@@ -75,14 +75,12 @@
             white-space: nowrap;
         }
 
-        .logo span {
-            color: var(--primary-orange);
-        }
+        .logo span { color: var(--primary-orange); }
 
         /* BARRA DE BÚSQUEDA DEL MENÚ */
         .header-search {
             flex-grow: 1;
-            max-width: 600px;
+            max-width: 550px;
             display: flex;
             border: 2px solid var(--primary-orange);
             border-radius: 6px;
@@ -93,7 +91,7 @@
         .header-search select {
             background: #f8fafc;
             border: none;
-            padding: 0.5rem 0.5rem;
+            padding: 0.5rem;
             font-size: 0.8rem;
             color: var(--text-dark);
             outline: none;
@@ -117,31 +115,16 @@
             color: white;
             padding: 0 1rem;
             cursor: pointer;
-            transition: background 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .header-search button:hover {
-            background: var(--primary-hover);
-        }
-
-        /* CONTROLES DERECHA DEL MENÚ */
+        /* CONTROLES DERECHA */
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 1rem;
-        }
-
-        .country-flag {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            white-space: nowrap;
+            gap: 0.8rem;
         }
 
         .cart-widget {
@@ -153,7 +136,6 @@
             border-radius: 20px;
             border: 1px solid #ffe0cc;
             cursor: pointer;
-            text-decoration: none;
             color: var(--primary-orange);
             font-weight: 700;
             font-size: 0.85rem;
@@ -180,15 +162,14 @@
 
         .nav-item {
             color: var(--text-dark);
-            text-decoration: none;
             font-size: 0.8rem;
             font-weight: 600;
-            padding: 0.3rem 0.8rem;
+            padding: 0.38rem 0.8rem;
             border-radius: 20px;
-            transition: all 0.2s;
             cursor: pointer;
             background: #ffffff;
             border: 1px solid var(--border-color);
+            transition: all 0.2s;
         }
 
         .nav-item:hover, .nav-item.active {
@@ -197,7 +178,65 @@
             border-color: var(--primary-orange);
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        /* CARRITO LATERAL SLIDE-OVER */
+        .cart-drawer-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cart-drawer-overlay.active { display: block; opacity: 1; }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: -400px; width: 380px; max-width: 100vw; height: 100vh;
+            background: #ffffff;
+            z-index: 201;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active { right: 0; }
+
+        .drawer-header {
+            padding: 1rem;
+            background: #1e293b;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-body {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .drawer-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+            background: #f8fafc;
+        }
+
+        .cart-item-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-img { width: 50px; height: 50px; object-fit: contain; }
+
+        /* CONTENEDOR PRINCIPAL */
         main {
             flex-grow: 1;
             max-width: 1200px;
@@ -229,41 +268,21 @@
             gap: 0.5rem;
         }
 
-        /* RASTREO */
-        .search-box {
+        /* BARRA DE FILTROS / ORDENAMIENTO */
+        .filter-bar {
             display: flex;
-            gap: 8px;
-            margin-top: 0.5rem;
-        }
-
-        .search-box input {
-            flex-grow: 1;
-            padding: 0.6rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            outline: none;
-        }
-
-        .btn-search {
-            background: var(--text-dark);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .tracking-result {
-            display: none;
-            margin-top: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
             background: #f8fafc;
-            border: 1px solid var(--border-color);
+            padding: 0.6rem 1rem;
             border-radius: 8px;
-            padding: 1rem;
+            border: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        /* BARRA DE PASOS */
+        /* PASOS Y RASTREO */
         .step-indicator {
             display: flex;
             justify-content: space-between;
@@ -275,9 +294,7 @@
         .step-indicator::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
+            top: 50%; left: 0; right: 0;
             height: 2px;
             background: var(--border-color);
             z-index: 1;
@@ -337,8 +354,7 @@
 
         .product-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 10px; left: 10px;
             background: var(--primary-orange);
             color: #fff;
             font-size: 0.65rem;
@@ -348,11 +364,11 @@
             z-index: 10;
         }
 
-        /* CARRUSEL DE IMÁGENES DE PRODUCTO */
+        /* CARRUSEL DE IMÁGENES */
         .product-slider-container {
             position: relative;
             width: 100%;
-            height: 190px;
+            height: 180px;
             margin-bottom: 0.8rem;
             overflow: hidden;
             border-radius: 6px;
@@ -381,8 +397,7 @@
             background: rgba(0, 0, 0, 0.4);
             color: #ffffff;
             border: none;
-            width: 26px;
-            height: 26px;
+            width: 26px; height: 26px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -390,11 +405,6 @@
             justify-content: center;
             font-size: 0.8rem;
             z-index: 5;
-            transition: background 0.2s;
-        }
-
-        .slider-btn:hover {
-            background: var(--primary-orange);
         }
 
         .slider-btn.prev { left: 4px; }
@@ -402,8 +412,7 @@
 
         .slider-dots {
             position: absolute;
-            bottom: 4px;
-            left: 50%;
+            bottom: 4px; left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 4px;
@@ -411,8 +420,7 @@
         }
 
         .slider-dot {
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.2);
             cursor: pointer;
@@ -475,13 +483,11 @@
             background: #f1f5f9;
             color: var(--text-dark);
             border: 1px solid var(--border-color);
-            width: 34px;
-            height: 34px;
+            width: 32px; height: 32px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -509,7 +515,6 @@
             font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
         .page-btn:hover, .page-btn.active {
@@ -522,10 +527,9 @@
             background: #f1f5f9;
             color: var(--text-muted);
             cursor: not-allowed;
-            border-color: var(--border-color);
         }
 
-        /* RESUMEN BARRA INFERIOR */
+        /* RESUMEN BARRA INFERIOR DE CATALOGO */
         .cart-bar {
             background: #1e293b;
             color: white;
@@ -560,7 +564,7 @@
 
         .btn-secondary:hover { background: #f1f5f9; color: var(--text-dark); }
 
-        /* FORMULARIO DE ENVÍO */
+        /* FORMULARIO */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -578,7 +582,7 @@
             color: var(--text-dark);
         }
 
-        input[type="text"], input[type="email"], input[type="tel"], select {
+        input, select {
             width: 100%;
             padding: 0.75rem;
             background-color: #ffffff;
@@ -634,142 +638,80 @@
 
         .modal-nav-btn {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 50%; transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            width: 48px;
-            height: 48px;
+            color: white; border: none;
+            width: 44px; height: 44px;
             border-radius: 50%;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             cursor: pointer;
             z-index: 20;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .modal-nav-btn:hover { background: var(--primary-orange); }
         .modal-nav-btn.prev { left: 10px; }
         .modal-nav-btn.next { right: 10px; }
 
         .modal-close-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
+            top: 15px; right: 20px;
             background: var(--primary-orange);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
+            color: white; border: none;
+            width: 40px; height: 40px;
             border-radius: 50%;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 30;
+            font-size: 1.2rem; font-weight: bold;
+            cursor: pointer; z-index: 30;
         }
 
         .view-step { display: none; }
         .view-step.active-view { display: block; }
 
-        /* BOTÓN WHATSAPP */
         .btn-whatsapp {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
+            display: flex; justify-content: center; align-items: center; gap: 8px;
             width: 100%;
-            background-color: #16a34a;
-            color: white;
-            text-decoration: none;
-            padding: 1rem;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 1rem;
-            margin-top: 1rem;
-            cursor: pointer;
-            border: none;
+            background-color: #16a34a; color: white;
+            padding: 1rem; border-radius: 8px;
+            font-weight: 800; font-size: 1rem;
+            margin-top: 1rem; cursor: pointer; border: none;
         }
 
         footer {
-            background-color: #0f172a;
-            color: #94a3b8;
-            text-align: center;
-            padding: 2rem 1rem;
-            font-size: 0.8rem;
-            margin-top: auto;
+            background-color: #0f172a; color: #94a3b8;
+            text-align: center; padding: 2rem 1rem;
+            font-size: 0.8rem; margin-top: auto;
         }
 
-        /* ADAPTABILIDAD COMPLETA A CELULARES Y TABLETS */
+        /* ADAPTABILIDAD MOBILE */
         @media (max-width: 992px) {
             .catalog-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .header-main {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .header-actions {
-                justify-content: space-between;
-            }
-            .catalog-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 0.75rem; 
-            }
-            .product-card {
-                padding: 0.6rem;
-            }
-            .product-slider-container {
-                height: 140px;
-            }
-            .cart-bar {
-                flex-direction: column;
-                align-items: stretch;
-                text-align: center;
-            }
-            .btn-action {
-                width: 100%;
-            }
-            .form-grid { 
-                grid-template-columns: 1fr; 
-            }
-            .form-group.full-width { 
-                grid-column: span 1; 
-            }
-            .modal-slider-box {
-                height: 60vh;
-            }
-            .modal-nav-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 1.1rem;
-            }
+            .header-main { flex-direction: column; align-items: stretch; }
+            .header-actions { justify-content: space-between; }
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .product-card { padding: 0.6rem; }
+            .product-slider-container { height: 140px; }
+            .cart-bar { flex-direction: column; align-items: stretch; text-align: center; }
+            .btn-action { width: 100%; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .modal-slider-box { height: 60vh; }
         }
 
         @media (max-width: 480px) {
-            .catalog-grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-            .step-indicator {
-                flex-direction: column;
-            }
-            .step-indicator::before {
-                display: none;
-            }
-            .step-item {
-                width: 100%;
-            }
+            .catalog-grid { grid-template-columns: repeat(1, 1fr); }
+            .step-indicator { flex-direction: column; }
+            .step-indicator::before { display: none; }
+            .step-item { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR -->
+    <!-- BARRA SUPERIOR DE ANUNCIOS -->
     <div class="top-bar">
-        ENVÍOS DIRECTOS A DOMICILIO CON LOGÍSTICA NOVA — SIN TRÁMITES NI COMPLICACIONES
+        🚛 ENVÍOS A TODO EL PAÍS — ENVÍO GRATIS EN COMPRAS MAYORES A $800.000 — 15% OFF EN TRANSFERENCIA
     </div>
 
     <!-- MENÚ PRINCIPAL -->
@@ -781,18 +723,19 @@
 
             <div class="header-search">
                 <select id="searchCategory">
-                    <option value="ALL">Todas las Categorías</option>
-                    <option value="Lavarropas">Lavarropas y Secarropas</option>
-                    <option value="Heladeras">Heladeras y Freezers</option>
-                    <option value="Cocinas">Cocinas y Hornos</option>
-                    <option value="Sommiers">Sommiers y Colchones</option>
+                    <option value="ALL">Categorías</option>
+                    <option value="Lavarropas">Lavarropas & Secarropas</option>
+                    <option value="Heladeras">Heladeras & Freezers</option>
+                    <option value="Cocinas">Cocinas & Hornos</option>
+                    <option value="Sommiers">Sommiers & Colchones</option>
+                    <option value="TVs">Smart TVs & Audio</option>
+                    <option value="Electrodomesticos">Pequeños Electros</option>
                     <option value="Climatizacion">Climatización</option>
-                    <option value="Laptops">Laptops y Computación</option>
-                    <option value="Celulares">Celulares y Smartwatches</option>
-                    <option value="Consolas">Consolas y Gaming</option>
-                    <option value="Audio">Audio y Auriculares</option>
+                    <option value="Laptops">Laptops & PC</option>
+                    <option value="Celulares">Celulares</option>
+                    <option value="Consolas">Consolas & Gaming</option>
                 </select>
-                <input type="text" id="searchInput" placeholder="Buscar electrodomésticos o tecnología...">
+                <input type="text" id="searchInput" placeholder="Buscar por producto, marca o modelo...">
                 <button type="button" id="btnSearchCatalog">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
@@ -800,53 +743,66 @@
 
             <div class="header-actions">
                 <div class="country-flag">
-                    <span style="font-size: 1.2rem;">🇦🇷</span> Argentina
+                    <span style="font-size: 1.1rem;">🇦🇷</span> Argentina
                 </div>
-                <div class="cart-widget" id="cartWidgetBtn">
+                <div class="cart-widget" id="openCartDrawerBtn">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"></path></svg>
                     <span id="cartCountBadge">0</span>
                 </div>
             </div>
         </div>
 
-        <!-- NAVEGACIÓN CATEGORÍAS EN BARRA -->
+        <!-- NAVEGACIÓN CATEGORÍAS -->
         <nav class="nav-categories">
             <div class="nav-container">
                 <span class="nav-item active" onclick="filterCategory('ALL')">Ver Todo</span>
                 <span class="nav-item" onclick="filterCategory('Lavarropas')">Lavarropas</span>
                 <span class="nav-item" onclick="filterCategory('Heladeras')">Heladeras</span>
                 <span class="nav-item" onclick="filterCategory('Cocinas')">Cocinas</span>
+                <span class="nav-item" onclick="filterCategory('TVs')">Smart TVs</span>
+                <span class="nav-item" onclick="filterCategory('Electrodomesticos')">Pequeños Electros</span>
                 <span class="nav-item" onclick="filterCategory('Sommiers')">Sommiers</span>
                 <span class="nav-item" onclick="filterCategory('Climatizacion')">Climatización</span>
                 <span class="nav-item" onclick="filterCategory('Celulares')">Celulares</span>
                 <span class="nav-item" onclick="filterCategory('Laptops')">Laptops</span>
-                <span class="nav-item" onclick="filterCategory('Consolas')">Consolas</span>
-                <span class="nav-item" onclick="filterCategory('Audio')">Audio</span>
             </div>
         </nav>
     </header>
 
+    <!-- CARRITO LATERAL SLIDE-OVER (DRAWER) -->
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="drawer-header">
+            <h3>Tu Carrito de Compra</h3>
+            <button id="closeCartDrawerBtn" style="background:none; border:none; color:white; font-size:1.4rem; cursor:pointer;">✕</button>
+        </div>
+        <div class="drawer-body" id="drawerItemsContainer">
+            <!-- Ítems del carrito -->
+        </div>
+        <div class="drawer-footer">
+            <div style="display:flex; justify-style:space-between; justify-content:space-between; font-weight:800; font-size:1.1rem; margin-bottom:1rem;">
+                <span>Subtotal:</span>
+                <span id="drawerSubtotal">$0</span>
+            </div>
+            <button type="button" class="btn-action" id="drawerCheckoutBtn" style="width:100%;">Proceder al Pago →</button>
+        </div>
+    </div>
+
     <main>
-        <!-- RASTREO RÁPIDO -->
+        <!-- RASTREO RÁPIDO DE GUÍAS -->
         <div class="main-card">
             <div class="section-title">
                 <span>Rastrear Envío</span>
-                <small style="font-weight: 400; font-size: 0.75rem; color: var(--text-muted);">Consulta el estado de tu paquete en tiempo real</small>
+                <small style="font-weight: 400; font-size: 0.75rem; color: var(--text-muted);">Seguimiento de paquete en tiempo real</small>
             </div>
-            <div class="search-box">
+            <div style="display: flex; gap: 8px;">
                 <input type="text" id="trackInput" placeholder="Ej: NV-8492-2026">
-                <button type="button" class="btn-search" id="btnSearchTrack">Consultar</button>
+                <button type="button" class="btn-action" id="btnSearchTrack" style="padding:0.6rem 1.2rem;">Consultar</button>
             </div>
-            <div class="tracking-result" id="trackingResult">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">Guía:</span>
-                        <strong id="trackCodeDisplay">-</strong>
-                    </div>
-                    <div>
-                        <span style="font-size: 0.75rem; color: var(--text-muted);">Estado:</span>
-                        <strong id="trackStatusDisplay" style="color: var(--accent-green);">-</strong>
-                    </div>
+            <div id="trackingResult" style="display:none; margin-top:1rem; background:#f8fafc; padding:1rem; border-radius:8px; border:1px solid var(--border-color);">
+                <div style="display:flex; justify-content:space-between;">
+                    <span>Guía: <strong id="trackCodeDisplay">-</strong></span>
+                    <span>Estado: <strong id="trackStatusDisplay" style="color:var(--accent-green);">-</strong></span>
                 </div>
             </div>
         </div>
@@ -854,17 +810,26 @@
         <!-- INDICADOR DE PASOS -->
         <div class="step-indicator">
             <div class="step-item active" id="badgeStep1">1. Selección de Productos</div>
-            <div class="step-item" id="badgeStep2">2. Envío y Financiación</div>
+            <div class="step-item" id="badgeStep2">2. Datos y Método de Pago</div>
             <div class="step-item" id="badgeStep3">3. Confirmación de Orden</div>
         </div>
 
         <!-- TARJETA PRINCIPAL DEL FLUJO -->
         <div class="main-card">
             
-            <!-- PASO 1: CATÁLOGO DE PRODUCTOS -->
+            <!-- PASO 1: CATÁLOGO -->
             <div class="view-step active-view" id="viewCatalog">
-                <div class="section-title">
-                    <span>Catálogo de Electrónica y Electrodomésticos</span>
+                
+                <div class="filter-bar">
+                    <span style="font-size:0.85rem; font-weight:700;" id="catalogCounterText">Cargando productos...</span>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <label for="sortSelect" style="margin:0; font-size:0.8rem;">Ordenar por:</label>
+                        <select id="sortSelect" style="width:auto; padding:0.3rem 0.6rem;">
+                            <option value="default">Destacados</option>
+                            <option value="price-asc">Menor Precio</option>
+                            <option value="price-desc">Mayor Precio</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="catalog-grid" id="catalogContainer">
@@ -872,20 +837,18 @@
                 </div>
 
                 <!-- CONTENEDOR DE PAGINACIÓN -->
-                <div class="pagination-container" id="paginationContainer">
-                    <!-- Botones de páginas inyectados dinámicamente -->
-                </div>
+                <div class="pagination-container" id="paginationContainer"></div>
 
                 <div class="cart-bar">
                     <div>
-                        <span style="font-size: 0.85rem; color: #94a3b8; display: block;">Total Seleccionado:</span>
+                        <span style="font-size: 0.85rem; color: #94a3b8; display: block;">Total Productos:</span>
                         <strong id="productsTotal" style="font-size: 1.4rem; color: #ffffff;">$0</strong>
                     </div>
-                    <button type="button" class="btn-action" id="btnGoToCheckout">Continuar a Datos de Envío →</button>
+                    <button type="button" class="btn-action" id="btnGoToCheckout">Continuar a Datos y Pago →</button>
                 </div>
             </div>
 
-            <!-- PASO 2: FORMULARIO DE ENVÍO -->
+            <!-- PASO 2: FORMULARIO Y PAGO -->
             <div class="view-step" id="viewShipping">
                 <form id="shippingForm">
                     <div class="section-title">1. Datos Personales y de Contacto</div>
@@ -895,7 +858,7 @@
                             <input type="text" id="fullName" required placeholder="Ej: Juan Pérez">
                         </div>
                         <div class="form-group">
-                            <label for="dni">DNI / Documento Nacional *</label>
+                            <label for="dni">DNI / CUIL *</label>
                             <input type="text" id="dni" required placeholder="Ej: 38123456">
                         </div>
                         <div class="form-group">
@@ -908,82 +871,127 @@
                         </div>
                     </div>
 
-                    <div class="section-title">2. Dirección de Entrega</div>
+                    <div class="section-title">2. Dirección de Entrega y Cálculo de Envío</div>
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="province">Provincia *</label>
-                            <input type="text" id="province" required placeholder="Ej: Buenos Aires">
+                            <label for="province">Provincia / Región de Envío *</label>
+                            <select id="province" required>
+                                <option value="">Selecciona tu provincia...</option>
+                                <option value="CABA_GBA">CABA / Gran Buenos Aires ($8.500)</option>
+                                <option value="BUENOS_AIRES">Provincia de Buenos Aires ($12.500)</option>
+                                <option value="INTERIOR">Resto del País / Interior ($18.500)</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="city">Localidad / Ciudad *</label>
-                            <input type="text" id="city" required placeholder="Ej: Quilmes">
+                            <input type="text" id="city" required placeholder="Ej: Rosario / Morón">
                         </div>
                         <div class="form-group full-width">
                             <label for="address">Dirección Completa (Calle, Número, Piso/Dpto) *</label>
-                            <input type="text" id="address" required placeholder="Ej: Av. Rivadavia 1234, Piso 4 B">
+                            <input type="text" id="address" required placeholder="Ej: Av. San Martín 450, Piso 2 A">
                         </div>
                         <div class="form-group">
                             <label for="postalCode">Código Postal *</label>
-                            <input type="text" id="postalCode" required placeholder="Ej: C1043">
+                            <input type="text" id="postalCode" required placeholder="Ej: 1708">
                         </div>
                     </div>
 
-                    <!-- OPCIÓN DE CUOTAS -->
-                    <div class="section-title">3. Financiación y Plan de Pagos</div>
+                    <div class="section-title">3. Forma de Pago</div>
                     <div class="form-grid">
                         <div class="form-group full-width">
-                            <label for="globalInstallments">Selecciona el plan de financiación para tu compra total:</label>
-                            <select id="globalInstallments" style="padding: 0.8rem; font-weight: 700; border-color: var(--primary-orange);">
+                            <label for="paymentMethod">Selecciona el Método de Pago *</label>
+                            <select id="paymentMethod" required style="font-weight:700; border-color:var(--primary-orange);">
+                                <option value="TRANSFER">Transferencia Bancaria / Efectivo (15% DE DESCUENTO DIRECTO)</option>
+                                <option value="CARD">Tarjeta de Crédito (Cuotas con Tasa del 7% por cuota)</option>
+                            </select>
+                        </div>
+
+                        <!-- SUB-OPCIÓN SI ELIGE TARJETA DE CRÉDITO -->
+                        <div class="form-group full-width" id="creditCardInstallmentsGroup" style="display:none;">
+                            <label for="cardInstallments">Planes de Cuotas en Tarjeta de Crédito:</label>
+                            <select id="cardInstallments">
                                 <!-- Opciones inyectadas dinámicamente -->
                             </select>
                         </div>
                     </div>
 
+                    <div style="background:#f8fafc; border:1px solid var(--border-color); padding:1rem; border-radius:8px; margin:1rem 0;">
+                        <div style="display:flex; justify-style:space-between; justify-content:space-between; margin-bottom:0.4rem;">
+                            <span>Subtotal Productos:</span>
+                            <span id="formSubtotalDisplay">$0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                            <span>Descuento / Recargo:</span>
+                            <span id="formDiscountDisplay">$0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                            <span>Costo de Envío:</span>
+                            <span id="formShippingDisplay">$0</span>
+                        </div>
+                        <hr style="margin:0.5rem 0; border:none; border-top:1px solid var(--border-color);">
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.2rem; color:var(--primary-orange);">
+                            <span>Total Final:</span>
+                            <span id="formGrandTotalDisplay">$0</span>
+                        </div>
+                    </div>
+
                     <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
                         <button type="button" class="btn-action btn-secondary" id="btnBackToCatalog" style="flex: 1;">← Volver al Catálogo</button>
-                        <button type="submit" class="btn-action" style="flex: 1;">Generar Orden de Compra</button>
+                        <button type="submit" class="btn-action" style="flex: 1;">Confirmar y Generar Orden</button>
                     </div>
                 </form>
             </div>
 
-            <!-- PASO 3: CONFIRMACIÓN DE ORDEN -->
+            <!-- PASO 3: CONFIRMACIÓN Y CBU -->
             <div class="view-step" id="viewResults">
-                <div class="section-title">Orden Generada Exitosamente</div>
+                <div class="section-title">¡Orden Registrada con Éxito!</div>
                 
                 <div style="background: #f8fafc; border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap;">
-                        <span>Número de Guía / Rastreo:</span>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Guía / Código de Pedido:</span>
                         <strong id="resTrackingCode" style="color: var(--primary-orange);">-</strong>
                     </div>
-                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                    <div style="display: flex; justify-content: space-between;">
                         <span>Estado:</span>
-                        <strong style="color: var(--accent-green);">Pendiente de Pago</strong>
+                        <strong style="color: var(--accent-green);">Pendiente de Pago / Confirmación</strong>
                     </div>
                 </div>
 
                 <div style="background: #ffffff; border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                    <h4 style="margin-bottom: 0.5rem; font-size: 0.9rem;">Resumen de Productos:</h4>
+                    <h4 style="margin-bottom: 0.5rem; font-size: 0.9rem;">Resumen de Artículos:</h4>
                     <div id="resItemsList"></div>
                 </div>
 
+                <!-- TARJETA CBU (MUESTRA CUANDO SE ELIGE TRANSFERENCIA) -->
+                <div id="cbuDetailsBox" style="display:none; background:#e0f2fe; border:2px dashed #0284c7; padding:1.2rem; border-radius:8px; margin-bottom:1rem;">
+                    <h4 style="color:#0369a1; margin-bottom:0.5rem;">🏦 DATOS BANCARIOS PARA TRANSFERIR (15% OFF APLICADO)</h4>
+                    <p style="font-size:0.85rem; color:#0c4a6e; margin-bottom:0.5rem;">Realizá la transferencia a la siguiente cuenta y enviá el comprobante por WhatsApp:</p>
+                    <div style="font-size:0.9rem; background:#ffffff; padding:0.8rem; border-radius:6px; border:1px solid #bae6fd;">
+                        <p><strong>Banco:</strong> Banco Galicia / Mercado Pago</p>
+                        <p><strong>Titular:</strong> LOGÍSTICA NOVA S.A.</p>
+                        <p><strong>CBU:</strong> <code style="font-weight:bold; color:#0284c7;">[AGREGAR_TU_CBU_AQUÍ]</code></p>
+                        <p><strong>Alias:</strong> <code style="font-weight:bold; color:#0284c7;">[AGREGAR_TU_ALIAS_AQUÍ]</code></p>
+                    </div>
+                </div>
+
                 <div style="background: #fff3eb; border: 1px solid #ffe0cc; padding: 1.2rem; border-radius: 8px; text-align: center; margin-bottom: 1rem;">
-                    <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Plan de Pago Seleccionado:</span>
-                    <strong id="resInstallmentsDetail" style="font-size: 1.1rem; color: var(--text-dark); display: block; margin: 0.2rem 0;">-</strong>
-                    <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 0.5rem;">TOTAL FINAL A PAGAR:</span>
+                    <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Detalle del Pago:</span>
+                    <strong id="resInstallmentsDetail" style="font-size: 1.05rem; color: var(--text-dark); display: block; margin: 0.2rem 0;">-</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-top: 0.5rem;">TOTAL FINAL A ABONAR:</span>
                     <strong id="resGrandTotal" style="font-size: 1.6rem; color: var(--primary-orange);">$0</strong>
                 </div>
 
-                <div style="background: #f1f5f9; border: 1px dashed var(--border-color); padding: 1rem; border-radius: 8px; text-align: center;">
-                    <span style="font-size: 0.75rem; color: var(--text-muted);">CÓDIGO DE SEGURIDAD DINÁMICO</span>
-                    <h2 id="resSecCode" style="letter-spacing: 4px; color: var(--text-dark);">000000</h2>
+                <div style="background: #f1f5f9; border: 1px dashed var(--border-color); padding: 0.8rem; border-radius: 8px; text-align: center;">
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">CÓDIGO DE VALIDACIÓN UNICO</span>
+                    <h3 id="resSecCode" style="letter-spacing: 4px; color: var(--text-dark);">000000</h3>
                 </div>
 
                 <button id="whatsappBtn" type="button" class="btn-whatsapp">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.124.553 4.195 1.603 6.01L.226 23.774l5.882-1.543A11.968 11.968 0 0012.031 24c6.645 0 12.031-5.385 12.031-12.031S18.676 0 12.031 0zm0 22.012c-1.8 0-3.565-.483-5.114-1.401l-.367-.217-3.799.996.996-3.799-.217-.367c-.918-1.549-1.401-3.314-1.401-5.114 0-5.551 4.517-10.068 10.068-10.068s10.068 4.517 10.068 10.068-4.517 10.068-10.068 10.068zm5.525-7.552c-.303-.152-1.792-.885-2.07-.987-.278-.101-.48-.152-.682.152-.202.303-.783.987-.96 1.189-.177.202-.354.227-.657.076-1.353-.666-2.317-1.258-3.197-2.738-.227-.379.227-.379.808-1.54.076-.152.038-.278-.038-.43-.076-.152-.682-1.642-.935-2.248-.246-.593-.497-.512-.682-.522-.177-.01-.379-.01-.581-.01-.202 0-.53.076-.808.379-.278.303-1.061 1.036-1.061 2.526 0 1.491 1.086 2.93 1.238 3.133.152.202 2.135 3.26 5.174 4.575 2.051.884 2.829.96 3.966.808 1.137-.152 2.317-.987 2.645-1.945.328-.96.328-1.794.227-1.945-.101-.152-.379-.227-.682-.379z"/></svg>
-                    Confirmar Pedido vía WhatsApp con LOGÍSTICA NOVA
+                    Enviar Confirmación de Pedido por WhatsApp
                 </button>
 
-                <button type="button" class="btn-action btn-secondary" id="btnRestart" style="width: 100%; margin-top: 1rem;">Realizar Otro Pedido</button>
+                <button type="button" class="btn-action btn-secondary" id="btnRestart" style="width: 100%; margin-top: 1rem;">Realizar Otra Compra</button>
             </div>
 
         </div>
@@ -994,232 +1002,191 @@
         <button class="modal-close-btn" id="closeModal">✕</button>
         <div class="modal-slider-box">
             <button class="modal-nav-btn prev" onclick="moveModalSlide(-1)">&#10094;</button>
-            <div class="modal-img-track" id="modalImgTrack">
-                <!-- Imagen(es) inyectadas por JS -->
-            </div>
+            <div class="modal-img-track" id="modalImgTrack"></div>
             <button class="modal-nav-btn next" onclick="moveModalSlide(1)">&#10095;</button>
         </div>
     </div>
 
     <footer>
-        LOGÍSTICA NOVA &copy; 2026 — Servicio de Gestión de Compras e Importación Directa. Todos los derechos reservados.
+        LOGÍSTICA NOVA &copy; 2026 — Envíos e Importaciones Directas. Todos los derechos reservados.
     </footer>
 
     <script type="module">
         const CONFIG = {
             TARGET_WHATSAPP: "5491155012447",
-            BASE_SHIPPING_FEE: 12500,
+            FREE_SHIPPING_THRESHOLD: 800000,
+            SHIPPING_RATES: {
+                "CABA_GBA": 8500,
+                "BUENOS_AIRES": 12500,
+                "INTERIOR": 18500
+            },
             ITEMS_PER_PAGE: 8,
-            INTEREST_RATES: {
-                1: 0,
-                3: 0.12,
-                6: 0.24,
-                12: 0.45
-            }
+            CARD_INTEREST_PER_INSTALLMENT: 0.07, // 7% por cuota
+            TRANSFER_DISCOUNT: 0.15 // 15% Descuento
         };
 
-        // CATÁLOGO DE PRODUCTOS (ELECTRÓNICA + ELECTRODOMÉSTICOS Y HOGAR)
+        // CATÁLOGOS COMPLETO DE PRODUCTOS CON OPCIONES ECONÓMICAS E IMÁGENES REALES
         const PRODUCTS = [
-            // --- LAVARROPAS Y SECARROPAS ---
+            // --- LAVARROPAS A PALETA (ECONÓMICOS) Y AUTOMÁTICOS ---
             {
                 id: 101,
                 category: "Lavarropas",
+                name: "Lavarropas a Paleta Codini 6kg Carga Superior Semiautomático",
+                price: 189999,
+                description: "Lavarropas súper económico a paleta con sistema de lavado por turbina de alto rendimiento. Mínimo consumo de agua y electricidad.",
+                images: [
+                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 102,
+                category: "Lavarropas",
+                name: "Lavarropas a Paleta Columbia 7kg Carga Superior",
+                price: 219999,
+                description: "Gabinete inalterable de alta resistencia, agitador central de doble acción y timer con apagado automático.",
+                images: [
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 103,
+                category: "Lavarropas",
                 name: "Lavarropas Inverter Drean 8kg 1200 RPM Carga Frontal",
                 price: 689999,
-                description: "Motor Inverter súper silencioso y de bajo consumo A+++. 29 programas de lavado, display LED táctil y sistema Autoload para optimizar agua.",
+                description: "Motor Inverter silencioso A+++, display táctil y sistema Autoload automático de agua.",
                 images: [
                     "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80",
                     "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80"
                 ]
             },
             {
-                id: 102,
+                id: 104,
                 category: "Lavarropas",
                 name: "Lavarropas Samsung 9.5kg EcoBubble Carga Frontal Silver",
                 price: 949999,
-                description: "Tecnología EcoBubble que convierte el detergente en burbujas para penetrar más rápido en las prendas. Lavado a vapor e Inverter Digital.",
+                description: "Burbujas EcoBubble que limpian profundamente a baja temperatura. Lavado a vapor higiénico.",
                 images: [
-                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80"
-                ]
-            },
-            {
-                id: 103,
-                category: "Lavarropas",
-                name: "Secarropas por Calor Whirlpool 8kg Blanco",
-                price: 729999,
-                description: "Secado por condensación de alta eficiencia con sensores de humedad automáticos para proteger tus prendas sin sobrecalentar.",
-                images: [
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=80"
                 ]
             },
 
             // --- HELADERAS Y FREEZERS ---
             {
-                id: 104,
+                id: 105,
                 category: "Heladeras",
                 name: "Heladera No Frost Samsung 382L Inverter Inox",
                 price: 1149999,
-                description: "Tecnología Digital Inverter con 10 años de garantía. Twin Cooling Plus que conserva los alimentos frescos por más tiempo sin mezclar olores.",
+                description: "Tecnología Digital Inverter con Twin Cooling Plus que evita mezcla de olores y ahorra energía.",
                 images: [
                     "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&auto=format&fit=crop&q=80",
                     "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&auto=format&fit=crop&q=80"
                 ]
             },
             {
-                id: 105,
+                id: 106,
                 category: "Heladeras",
                 name: "Heladera Gafa 360L Cycle Defrost Blanca",
                 price: 789999,
-                description: "Gran capacidad de almacenaje con crisper de verduras XXL, estantes regulables de alta resistencia y clasificación energética A.",
+                description: "Espacio de guardado optimizado, crisper de verduras XXL y clasificación energética A.",
                 images: [
                     "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&auto=format&fit=crop&q=80"
                 ]
             },
+
+            // --- SMART TVS & AUDIO ---
             {
-                id: 106,
-                category: "Heladeras",
-                name: "Freezer Horizontal Gafa 280L Doble Función",
-                price: 589999,
-                description: "Función dual para congelar o conservar bebidas/alimentos. Sistema de drenaje frontal y canasto interior incluido.",
+                id: 107,
+                category: "TVs",
+                name: "Smart TV LG 55' 4K UHD ThinQ AI Nanocell",
+                price: 749999,
+                description: "Procesador α5 AI Gen6, HDR10 Pro, WebOS con Inteligencia Artificial integrada y Magic Remote.",
                 images: [
-                    "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 108,
+                category: "TVs",
+                name: "Smart TV Philips 43' Full HD Google TV",
+                price: 429999,
+                description: "Sistema operativo Google TV con control por voz, Chromecast integrado y diseño sin bordes.",
+                images: [
+                    "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+
+            // --- PEQUEÑOS ELECTRODOMÉSTICOS ---
+            {
+                id: 109,
+                category: "Electrodomesticos",
+                name: "Freidora de Aire / Airfryer Philips Walita 4.1L Digital",
+                price: 189999,
+                description: "Cocina hasta con 90% menos de grasa. Tecnología RapidAir con pantalla táctil y 7 programas preprogramados.",
+                images: [
+                    "https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 110,
+                category: "Electrodomesticos",
+                name: "Cafetera Express Oster Prima Latte II Espresso y Capuchino",
+                price: 289999,
+                description: "Bomba de 15 bares de presión, depósito de leche desmontable de 600ml y selector de bebida táctil.",
+                images: [
+                    "https://images.unsplash.com/photo-1517668808822-9ebd02f2a888?w=800&auto=format&fit=crop&q=80"
                 ]
             },
 
             // --- COCINAS Y HORNOS ---
             {
-                id: 107,
+                id: 111,
                 category: "Cocinas",
-                name: "Cocina a Gas Patrick 56cm Acero Inoxidable Multigas",
+                name: "Cocina a Gas Patrick 56cm Acero Inoxidable",
                 price: 499999,
-                description: "4 hornallas de alta potencia, encendido electrónico, horno de gran volumen con luz interior y puerta de doble vidrio templado.",
+                description: "4 hornallas multigas, encendido electrónico, puerta de doble vidrio templado y grill superior.",
                 images: [
-                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1590725140246-20acdee442be?w=800&auto=format&fit=crop&q=80"
-                ]
-            },
-            {
-                id: 108,
-                category: "Cocinas",
-                name: "Horno Eléctrico Emputable Longvie Convección 60cm",
-                price: 649999,
-                description: "Capacidad de 68 litros con turbo convección para una cocción pareja, grill eléctrico superior y temporizador digital.",
-                images: [
-                    "https://images.unsplash.com/photo-1590725140246-20acdee442be?w=800&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80"
                 ]
             },
 
-            // --- SOMMIERS Y DORMITORIO ---
+            // --- SOMMIERS ---
             {
-                id: 109,
+                id: 112,
                 category: "Sommiers",
                 name: "Sommier y Colchón 2 Plazas Queen Memory Foam",
                 price: 629999,
-                description: "Espuma de alta densidad con capa superior Memory Foam de adaptación anatómica. Incluye base de madera reforzada tapizada en ecocuero.",
+                description: "Espuma de alta densidad anatómica con base de madera reforzada tapizada en ecocuero.",
                 images: [
-                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&auto=format&fit=crop&q=80"
-                ]
-            },
-            {
-                id: 110,
-                category: "Sommiers",
-                name: "Sommier King Size Resortes Pocket Independientes 180x200",
-                price: 899999,
-                description: "Estructura de resortes enfundados que evitan la transferencia de movimiento. Pillow Top mullido de máximo confort y tela de punto hipoalergénica.",
-                images: [
-                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&auto=format&fit=crop&q=80"
+                    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=80"
                 ]
             },
 
-            // --- CLIMATIZACIÓN ---
+            // --- CELULARES & TECNOLOGÍA ---
             {
-                id: 111,
-                category: "Climatizacion",
-                name: "Aire Acondicionado Split Inverter BGH 3500W Frío/Calor",
-                price: 799999,
-                description: "Ahorro de hasta un 50% de energía con compresor Inverter, filtro antipolvo Lavable y funcionamiento ultra silencioso.",
-                images: [
-                    "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80"
-                ]
-            },
-
-            // --- CELULARES ---
-            { 
-                id: 1, 
-                category: "Celulares", 
-                name: "Samsung Galaxy A16 128GB Gray", 
-                price: 284899,
-                description: "Pantalla Super AMOLED de 6.7p FHD+, triple cámara de 50MP y batería de 5000 mAh de larga duración.",
-                images: [
-                    "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=80"
-                ] 
-            },
-            { 
-                id: 3, 
-                category: "Celulares", 
-                name: "Apple iPhone 15 128GB Negro", 
+                id: 113,
+                category: "Celulares",
+                name: "Apple iPhone 15 128GB Negro",
                 price: 1549999,
-                description: "Dynamic Island, chip A16 Bionic súper veloz, cámara avanzada de 48MP y conector USB-C universal.",
+                description: "Dynamic Island, chip A16 Bionic, cámara de 48MP con conector universal USB-C.",
                 images: [
-                    "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=800&auto=format&fit=crop&q=80"
-                ] 
+                    "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=80"
+                ]
             },
-            { 
-                id: 5, 
-                category: "Celulares", 
-                name: "Samsung Galaxy S24 Ultra 256GB Titanium", 
-                price: 2199999,
-                description: "Marco de titanio premium, Galaxy AI integrada para traducción en vivo, S Pen e increíble cámara de 200MP.",
+            {
+                id: 114,
+                category: "Celulares",
+                name: "Samsung Galaxy A16 128GB Gray",
+                price: 284899,
+                description: "Pantalla Super AMOLED de 6.7p, triple cámara de 50MP y batería de 5000 mAh.",
                 images: [
                     "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&auto=format&fit=crop&q=80"
-                ] 
-            },
-
-            // --- CONSOLAS ---
-            { 
-                id: 14, 
-                category: "Consolas", 
-                name: "Sony PlayStation 5 Slim 1TB Edición Digital", 
-                price: 1149999,
-                description: "Diseño ultracompacto con 1TB de almacenamiento SSD NVMe de ultra velocidad, Ray Tracing y mando DualSense.",
-                images: [
-                    "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800&auto=format&fit=crop&q=80"
-                ] 
-            },
-
-            // --- LAPTOPS ---
-            { 
-                id: 18, 
-                category: "Laptops", 
-                name: "Apple MacBook Air 13 M2 256GB SSD 8GB RAM", 
-                price: 1699999,
-                description: "Diseño ultradelgado de aluminio, chip M2 súper potente y eficiente, pantalla Liquid Retina y hasta 18 hs de autonomía.",
-                images: [
-                    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=80"
-                ] 
-            },
-
-            // --- AUDIO ---
-            { 
-                id: 10, 
-                category: "Audio", 
-                name: "Apple AirPods Pro (2.ª Generación) USB-C", 
-                price: 449999,
-                description: "Cancelación Activa de Ruido de última generación, Audio Espacial personalizado y estuche MagSafe USB-C.",
-                images: [
-                    "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80"
-                ] 
+                ]
             }
         ];
 
         const cart = {};
         let currentCategoryFilter = "ALL";
+        let currentSortOrder = "default";
         let currentOrderData = null;
         let slideIndexes = {};
         let currentModalImages = [];
@@ -1237,15 +1204,24 @@
             const searchVal = document.getElementById("searchInput").value.toLowerCase();
             const selectCategoryVal = document.getElementById("searchCategory").value;
 
-            const filtered = PRODUCTS.filter(p => {
+            let filtered = PRODUCTS.filter(p => {
                 const navMatch = currentCategoryFilter === "ALL" || p.category === currentCategoryFilter;
                 const selectMatch = selectCategoryVal === "ALL" || p.category === selectCategoryVal;
                 const matchSearch = p.name.toLowerCase().includes(searchVal) || (p.description && p.description.toLowerCase().includes(searchVal));
                 return navMatch && selectMatch && matchSearch;
             });
 
+            // ORDENAMIENTO
+            if (currentSortOrder === "price-asc") {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (currentSortOrder === "price-desc") {
+                filtered.sort((a, b) => b.price - a.price);
+            }
+
+            document.getElementById("catalogCounterText").innerText = `Mostrando ${filtered.length} productos`;
+
             if (filtered.length === 0) {
-                container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">No se encontraron artículos en esta categoría.</div>`;
+                container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">No se encontraron productos para tu búsqueda.</div>`;
                 paginationContainer.innerHTML = "";
                 return;
             }
@@ -1254,8 +1230,7 @@
             if (currentPage > totalPages) currentPage = 1;
 
             const startIndex = (currentPage - 1) * CONFIG.ITEMS_PER_PAGE;
-            const endIndex = startIndex + CONFIG.ITEMS_PER_PAGE;
-            const paginatedItems = filtered.slice(startIndex, endIndex);
+            const paginatedItems = filtered.slice(startIndex, startIndex + CONFIG.ITEMS_PER_PAGE);
 
             container.innerHTML = paginatedItems.map(p => {
                 if (!(p.id in slideIndexes)) slideIndexes[p.id] = 0;
@@ -1288,7 +1263,7 @@
                         <div>
                             <div class="product-cat-tag">${p.category}</div>
                             <div class="product-title" title="${p.name}">${p.name}</div>
-                            <div class="product-description" title="${p.description}">${p.description}</div>
+                            <div class="product-description">${p.description}</div>
                             <div class="product-price">$${p.price.toLocaleString("es-AR")}</div>
                         </div>
                         <div class="product-actions">
@@ -1301,11 +1276,9 @@
             }).join("");
 
             let pageBtnsHtml = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="changePage(${currentPage - 1})">« Anterior</button>`;
-            
             for (let i = 1; i <= totalPages; i++) {
                 pageBtnsHtml += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">Pág ${i}</button>`;
             }
-            
             pageBtnsHtml += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="changePage(${currentPage + 1})">Siguiente »</button>`;
 
             paginationContainer.innerHTML = totalPages > 1 ? pageBtnsHtml : "";
@@ -1330,9 +1303,7 @@
             slideIndexes[id] = index;
             const track = document.getElementById(`track-${id}`);
             const dots = document.getElementById(`dots-${id}`);
-            if (track) {
-                track.style.transform = `translateX(-${index * 100}%)`;
-            }
+            if (track) track.style.transform = `translateX(-${index * 100}%)`;
             if (dots) {
                 Array.from(dots.children).forEach((dot, i) => {
                     dot.classList.toggle("active", i === index);
@@ -1340,7 +1311,7 @@
             }
         };
 
-        // APERTURA DE IMAGEN A PANTALLA COMPLETA
+        // VISOR A PANTALLA COMPLETA
         window.openFullscreenModal = (id, initialIndex = 0) => {
             const product = PRODUCTS.find(p => p.id === id);
             if (!product) return;
@@ -1354,7 +1325,7 @@
 
             updateModalSlide();
             document.getElementById("imageModal").classList.add("active");
-            document.body.style.overflow = "hidden"; // Deshabilita el scroll del fondo
+            document.body.style.overflow = "hidden";
         };
 
         window.moveModalSlide = (dir) => {
@@ -1366,9 +1337,7 @@
 
         function updateModalSlide() {
             const modalTrack = document.getElementById("modalImgTrack");
-            if (modalTrack) {
-                modalTrack.style.transform = `translateX(-${currentModalIndex * 100}%)`;
-            }
+            if (modalTrack) modalTrack.style.transform = `translateX(-${currentModalIndex * 100}%)`;
         }
 
         function closeModalWindow() {
@@ -1393,6 +1362,7 @@
             if (badge) badge.innerText = cart[id];
             
             updateCartSummary();
+            renderDrawerItems();
         };
 
         function updateCartSummary() {
@@ -1411,27 +1381,102 @@
             });
 
             document.getElementById("productsTotal").innerText = `$${total.toLocaleString("es-AR")}`;
+            document.getElementById("drawerSubtotal").innerText = `$${total.toLocaleString("es-AR")}`;
             document.getElementById("cartCountBadge").innerText = count;
-            
-            updateGlobalInstallmentsOptions(total);
+
+            recalculateFormTotals();
         }
 
-        function updateGlobalInstallmentsOptions(subtotal) {
-            const select = document.getElementById("globalInstallments");
-            if (!select) return;
+        function renderDrawerItems() {
+            const container = document.getElementById("drawerItemsContainer");
+            let html = "";
+            let count = 0;
 
-            if (subtotal === 0) {
-                select.innerHTML = `<option value="1">1 pago de $0</option>`;
-                return;
+            Object.keys(cart).forEach(id => {
+                const qty = cart[id];
+                if (qty > 0) {
+                    const p = PRODUCTS.find(prod => prod.id === parseInt(id));
+                    if (p) {
+                        count += qty;
+                        html += `
+                            <div class="cart-item-row">
+                                <img src="${p.images[0]}" class="cart-item-img">
+                                <div style="flex-grow:1;">
+                                    <div style="font-size:0.8rem; font-weight:700;">${p.name}</div>
+                                    <div style="font-size:0.75rem; color:var(--text-muted);">$${p.price.toLocaleString("es-AR")} c/u</div>
+                                </div>
+                                <div style="display:flex; align-items:center; gap:4px;">
+                                    <button class="qty-btn" onclick="changeQty(${p.id}, -1)">-</button>
+                                    <span style="font-size:0.85rem; font-weight:bold;">${qty}</span>
+                                    <button class="qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            });
+
+            if (count === 0) {
+                container.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:2rem 0;">Tu carrito está vacío.</div>`;
+            } else {
+                container.innerHTML = html;
+            }
+        }
+
+        function recalculateFormTotals() {
+            let subtotalProds = 0;
+            Object.keys(cart).forEach(id => {
+                const qty = cart[id];
+                if (qty > 0) {
+                    const p = PRODUCTS.find(prod => prod.id === parseInt(id));
+                    if (p) subtotalProds += p.price * qty;
+                }
+            });
+
+            const provKey = document.getElementById("province").value;
+            let shippingFee = 0;
+            if (provKey && CONFIG.SHIPPING_RATES[provKey]) {
+                shippingFee = subtotalProds >= CONFIG.FREE_SHIPPING_THRESHOLD ? 0 : CONFIG.SHIPPING_RATES[provKey];
             }
 
+            const paymentMethod = document.getElementById("paymentMethod").value;
+            let discountOrSurcharge = 0;
+            let textAdjustment = "$0";
+
+            if (paymentMethod === "TRANSFER") {
+                discountOrSurcharge = -(subtotalProds * CONFIG.TRANSFER_DISCOUNT);
+                textAdjustment = `-$${Math.abs(Math.round(discountOrSurcharge)).toLocaleString("es-AR")} (15% OFF)`;
+            } else if (paymentMethod === "CARD") {
+                const inst = parseInt(document.getElementById("cardInstallments").value || "1");
+                const interestRate = inst * CONFIG.CARD_INTEREST_PER_INSTALLMENT;
+                discountOrSurcharge = subtotalProds * interestRate;
+                textAdjustment = `+$${Math.round(discountOrSurcharge).toLocaleString("es-AR")} (${inst * 7}% Tasa)`;
+            }
+
+            const grandTotal = Math.max(0, Math.round(subtotalProds + shippingFee + discountOrSurcharge));
+
+            document.getElementById("formSubtotalDisplay").innerText = `$${subtotalProds.toLocaleString("es-AR")}`;
+            document.getElementById("formShippingDisplay").innerText = shippingFee === 0 && provKey ? "¡GRATIS!" : `$${shippingFee.toLocaleString("es-AR")}`;
+            document.getElementById("formDiscountDisplay").innerText = textAdjustment;
+            document.getElementById("formGrandTotalDisplay").innerText = `$${grandTotal.toLocaleString("es-AR")}`;
+
+            // Actualizar opciones de cuotas de tarjeta
+            updateCardInstallmentsDropdown(subtotalProds);
+        }
+
+        function updateCardInstallmentsDropdown(subtotal) {
+            const select = document.getElementById("cardInstallments");
+            if (!select) return;
+
+            const currentVal = select.value;
             select.innerHTML = [1, 3, 6, 12].map(inst => {
-                const interest = CONFIG.INTEREST_RATES[inst];
-                const totalWithInterest = subtotal * (1 + interest);
+                const interestRate = inst * CONFIG.CARD_INTEREST_PER_INSTALLMENT;
+                const totalWithInterest = subtotal * (1 + interestRate);
                 const perMonth = Math.round(totalWithInterest / inst);
-                const desc = inst === 1 ? "1 pago directo (Sin Interés)" : `${inst} cuotas fijas de $${perMonth.toLocaleString("es-AR")} /mes`;
-                return `<option value="${inst}">${desc} - Total: $${Math.round(totalWithInterest).toLocaleString("es-AR")}</option>`;
+                return `<option value="${inst}">${inst} cuota(s) de $${perMonth.toLocaleString("es-AR")} /mes (Total: $${Math.round(totalWithInterest).toLocaleString("es-AR")})</option>`;
             }).join("");
+
+            if (currentVal) select.value = currentVal;
         }
 
         function setupEvents() {
@@ -1439,10 +1484,39 @@
             document.getElementById("searchCategory").addEventListener("change", () => { currentPage = 1; renderCatalog(); });
             document.getElementById("btnSearchCatalog").addEventListener("click", () => { currentPage = 1; renderCatalog(); });
 
+            document.getElementById("sortSelect").addEventListener("change", (e) => {
+                currentSortOrder = e.target.value;
+                renderCatalog();
+            });
+
+            // CART DRAWER TOGGLE
+            const toggleDrawer = (open) => {
+                document.getElementById("cartDrawer").classList.toggle("active", open);
+                document.getElementById("cartOverlay").classList.toggle("active", open);
+            };
+
+            document.getElementById("openCartDrawerBtn").addEventListener("click", () => { renderDrawerItems(); toggleDrawer(true); });
+            document.getElementById("closeCartDrawerBtn").addEventListener("click", () => toggleDrawer(false));
+            document.getElementById("cartOverlay").addEventListener("click", () => toggleDrawer(false));
+
+            document.getElementById("drawerCheckoutBtn").addEventListener("click", () => {
+                toggleDrawer(false);
+                document.getElementById("btnGoToCheckout").click();
+            });
+
+            document.getElementById("paymentMethod").addEventListener("change", (e) => {
+                const isCard = e.target.value === "CARD";
+                document.getElementById("creditCardInstallmentsGroup").style.display = isCard ? "block" : "none";
+                recalculateFormTotals();
+            });
+
+            document.getElementById("province").addEventListener("change", recalculateFormTotals);
+            document.getElementById("cardInstallments").addEventListener("change", recalculateFormTotals);
+
             document.getElementById("btnGoToCheckout").addEventListener("click", () => {
                 const count = Object.values(cart).reduce((a, b) => a + b, 0);
                 if (count === 0) {
-                    alert("Por favor agrega al menos un artículo a tu carrito.");
+                    alert("Agrega al menos un artículo a tu carrito para continuar.");
                     return;
                 }
                 switchView("viewShipping", 2);
@@ -1496,9 +1570,9 @@
             const email = document.getElementById("email").value;
             const address = document.getElementById("address").value;
             const city = document.getElementById("city").value;
-            const province = document.getElementById("province").value;
+            const provKey = document.getElementById("province").value;
             const postalCode = document.getElementById("postalCode").value;
-            const chosenInstallment = parseInt(document.getElementById("globalInstallments").value);
+            const paymentMethod = document.getElementById("paymentMethod").value;
 
             let prodSubtotal = 0;
             let itemsHtml = "";
@@ -1529,17 +1603,30 @@
                 }
             });
 
-            const interestRate = CONFIG.INTEREST_RATES[chosenInstallment];
-            const grandTotal = Math.round((prodSubtotal + CONFIG.BASE_SHIPPING_FEE) * (1 + interestRate));
-            const perMonth = Math.round(grandTotal / chosenInstallment);
+            let shippingFee = CONFIG.SHIPPING_RATES[provKey] || 0;
+            if (prodSubtotal >= CONFIG.FREE_SHIPPING_THRESHOLD) shippingFee = 0;
 
-            const planLabel = chosenInstallment === 1 
-                ? "1 Pago Directo (Sin Interés)" 
-                : `${chosenInstallment} cuotas de $${perMonth.toLocaleString("es-AR")} /mes`;
+            let paymentDetailText = "";
+            let grandTotal = 0;
+
+            if (paymentMethod === "TRANSFER") {
+                const discount = prodSubtotal * CONFIG.TRANSFER_DISCOUNT;
+                grandTotal = Math.round(prodSubtotal - discount + shippingFee);
+                paymentDetailText = "Transferencia Bancaria / Efectivo (15% OFF Aplicado)";
+                document.getElementById("cbuDetailsBox").style.display = "block";
+            } else {
+                const inst = parseInt(document.getElementById("cardInstallments").value || "1");
+                const interestRate = inst * CONFIG.CARD_INTEREST_PER_INSTALLMENT;
+                const totalWithInterest = prodSubtotal * (1 + interestRate);
+                grandTotal = Math.round(totalWithInterest + shippingFee);
+                const perMonth = Math.round(grandTotal / inst);
+                paymentDetailText = `${inst} cuotas fijas de $${perMonth.toLocaleString("es-AR")} /mes (Tarjeta de Crédito)`;
+                document.getElementById("cbuDetailsBox").style.display = "none";
+            }
 
             document.getElementById("resTrackingCode").innerText = trackingCode;
             document.getElementById("resItemsList").innerHTML = itemsHtml;
-            document.getElementById("resInstallmentsDetail").innerText = planLabel;
+            document.getElementById("resInstallmentsDetail").innerText = paymentDetailText;
             document.getElementById("resGrandTotal").innerText = `$${grandTotal.toLocaleString("es-AR")}`;
             document.getElementById("resSecCode").innerText = secCode;
 
@@ -1550,9 +1637,9 @@
                 dni: dni,
                 telefono: phone,
                 email: email,
-                direccion: `${address}, ${city}, ${province} (CP: ${postalCode})`,
+                direccion: `${address}, ${city}, ${provKey} (CP: ${postalCode})`,
                 productos: productosSeleccionados,
-                cuotas: planLabel,
+                metodoPago: paymentDetailText,
                 total: grandTotal.toLocaleString("es-AR")
             };
 
@@ -1568,25 +1655,24 @@
 *LOGÍSTICA NOVA*
 ----------------------------------------
 *N° de Guía:* ${datosOrden.guia}
-*Código de Seguridad:* ${datosOrden.codigoSeguridad}
+*Código de Validación:* ${datosOrden.codigoSeguridad}
 
 *DATOS DEL COMPRADOR*
 • Nombre: ${datosOrden.nombre}
 • DNI/CUIL: ${datosOrden.dni}
 • Teléfono: ${datosOrden.telefono}
 • Email: ${datosOrden.email}
-• Dirección: ${datosOrden.direccion}
+• Dirección de Entrega: ${datosOrden.direccion}
 
-*PRODUCTOS SELECCIONADOS*
+*PRODUCTOS SOLICITADOS*
 ${detalleProductos}
 
-*PLAN DE PAGO*
-• ${datosOrden.cuotas}
+*MÉTODO Y PLAN DE PAGO*
+• ${datosOrden.metodoPago}
 
-*RESUMEN TOTAL*
-• *TOTAL A FACTURAR:* $${datosOrden.total}
+*TOTAL A PAGAR:* $${datosOrden.total}
 
-Solicito datos bancarios (CBU / Alias) o link de pago para finalizar el pedido.`;
+Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
 
             const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
             window.open(url, '_blank');
