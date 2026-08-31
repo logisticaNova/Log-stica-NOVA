@@ -998,691 +998,2556 @@
 
     <script>
         const productos = [
-          {
-            "id": 1,
-            "sku": "TV-TCL-55C655",
-            "ean": "",
-            "marca": "TCL",
-            "modelo": "55C655",
-            "nombre": "Smart TV TCL 55 C655 QLED 4K",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Televisor QLED 4K con Google TV y Dolby Vision Atmos.",
-            "especificaciones": { "pulgadas": 55, "resolucion": "4K UHD", "tecnologia": "QLED", "sistemaOperativo": "Google TV" },
-            "precio": 650000,
-            "precioOferta": 599000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=TCL+55+QLED"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.tcl.com/ar/es/" }
-          },
-          {
-            "id": 2,
-            "sku": "TV-TCL-65C755",
-            "ean": "",
-            "marca": "TCL",
-            "modelo": "65C755",
-            "nombre": "Smart TV TCL 65 C755 QD-Mini LED 4K",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento.",
-            "especificaciones": { "pulgadas": 65, "resolucion": "4K UHD", "tecnologia": "QD-Mini LED", "sistemaOperativo": "Google TV" },
-            "precio": 980000,
-            "precioOferta": 899000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=TCL+65+MiniLED"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.tcl.com/ar/es/" }
-          },
-          {
-            "id": 3,
-            "sku": "TV-TCL-50P755",
-            "ean": "",
-            "marca": "TCL",
-            "modelo": "50P755",
-            "nombre": "Smart TV TCL 50 P755 4K UHD",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Smart TV 4K UHD con diseño delgado y tecnología HDR.",
-            "especificaciones": { "pulgadas": 50, "resolucion": "4K UHD", "tecnologia": "LED", "sistemaOperativo": "Google TV" },
-            "precio": 520000,
-            "precioOferta": 479000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=TCL+50+UHD"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.tcl.com/ar/es/" }
-          },
-          {
-            "id": 4,
-            "sku": "TV-SAM-QN55S90C",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "QN55S90C",
-            "nombre": "Smart TV Samsung 55 OLED 4K S90C",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Televisor OLED 4K con procesador avanzado y excelente contraste.",
-            "especificaciones": { "pulgadas": 55, "resolucion": "4K UHD", "tecnologia": "OLED", "sistemaOperativo": "Tizen" },
-            "precio": 1250000,
-            "precioOferta": 1150000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=Samsung+OLED+55"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
-          },
-          {
-            "id": 5,
-            "sku": "CEL-SAM-S24ULTRA",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "Galaxy S24 Ultra",
-            "nombre": "Celular Samsung Galaxy S24 Ultra 5G 256GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "Smartphone premium con Galaxy AI, cámara de 200 MP y almacenamiento de 256GB.",
-            "especificaciones": { "pantalla": "6.8 pulgadas AMOLED", "memoriaRAM": "12GB", "almacenamiento": "256GB", "camaraPrincipal": "200 MP" },
-            "precio": 1650000,
-            "precioOferta": 1550000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Galaxy+S24+Ultra"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/smartphones/galaxy-s/" }
-          },
-          {
-            "id": 6,
-            "sku": "CEL-XIA-NOTE13PRO",
-            "ean": "",
-            "marca": "Xiaomi",
-            "modelo": "Redmi Note 13 Pro",
-            "nombre": "Celular Xiaomi Redmi Note 13 Pro 256GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "Smartphone con cámara de 200 MP, pantalla AMOLED y carga rápida.",
-            "especificaciones": { "pantalla": "6.67 pulgadas AMOLED", "memoriaRAM": "8GB", "almacenamiento": "256GB", "camaraPrincipal": "200 MP" },
-            "precio": 480000,
-            "precioOferta": 440000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Redmi+Note+13+Pro"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.mi.com/ar/" }
-          },
-          {
-            "id": 7,
-            "sku": "LAV-WHIRL-WNQ65A",
-            "ean": "",
-            "marca": "Whirlpool",
-            "modelo": "WNQ65A",
-            "nombre": "Lavarropas Automático Whirlpool 6.5 Kg",
-            "categoria": "Lavarropas",
-            "subcategoria": "Carga Frontal",
-            "descripcion": "Lavarropas automático con múltiples programas de lavado.",
-            "especificaciones": { "capacidad": "6.5 kg", "tipoCarga": "Frontal", "velocidadCentrifugado": "1000 RPM" },
-            "precio": 610000,
-            "precioOferta": 570000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=Lavarropas+Whirlpool"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.whirlpool.com.ar/" }
-          },
-          {
-            "id": 8,
-            "sku": "HEL-PHIL-PHMD350",
-            "ean": "",
-            "marca": "Philco",
-            "modelo": "PHMD350",
-            "nombre": "Heladera Cíclica Philco 270L Blanca",
-            "categoria": "Heladeras",
-            "subcategoria": "Con Freezer",
-            "descripcion": "Heladera con freezer, estantes ajustables y bajo consumo.",
-            "especificaciones": { "capacidadTotal": "270 Litros", "sistemaFrio": "Cíclico", "eficienciaEnergetica": "A" },
-            "precio": 580000,
-            "precioOferta": 530000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=Heladera+Philco"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.philco.com.ar/" }
-          },
-          {
-            "id": 9,
-            "sku": "COC-PAT-5000",
-            "ean": "",
-            "marca": "Patrick",
-            "modelo": "PCC5000",
-            "nombre": "Cocina a Gas Patrick Multigas 50cm",
-            "categoria": "Cocinas",
-            "subcategoria": "A Gas",
-            "descripcion": "Cocina convencional de 4 hornallas con horno y válvula de seguridad.",
-            "especificaciones": { "hornallas": 4, "tipoGas": "Multigas", "valvulaSeguridad": "Sí" },
-            "precio": 340000,
-            "precioOferta": 310000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Cocina+Patrick"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.patrick.com.ar/" }
-          },
-          {
-            "id": 10,
-            "sku": "AC-HIS-3200",
-            "ean": "",
-            "marca": "Hisense",
-            "modelo": "AS-12UW4",
-            "nombre": "Aire Acondicionado Split Inverter Hisense 3200W F/C",
-            "categoria": "Aires acondicionados",
-            "subcategoria": "Split Inverter",
-            "descripcion": "Aire acondicionado Inverter frío/calor para climatización eficiente.",
-            "especificaciones": { "frigorias": "2750", "potenciaW": "3200", "tipoClima": "Frío/Calor", "tecnologia": "Inverter" },
-            "precio": 720000,
-            "precioOferta": 660000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Aire+Hisense"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.hisense.com.ar/" }
-          },
-          {
-            "id": 11,
-            "sku": "TV-LG-50UR7800",
-            "ean": "",
-            "marca": "LG",
-            "modelo": "50UR7800",
-            "nombre": "Smart TV LG 50 4K UHD",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Smart TV 4K UHD con plataforma webOS.",
-            "especificaciones": { "pulgadas": 50, "resolucion": "4K UHD", "tecnologia": "LED", "sistemaOperativo": "webOS" },
-            "precio": 540000,
-            "precioOferta": 499000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=LG+50+UHD"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.lg.com/ar/" }
-          },
-          {
-            "id": 12,
-            "sku": "TV-LG-55UR7800",
-            "ean": "",
-            "marca": "LG",
-            "modelo": "55UR7800",
-            "nombre": "Smart TV LG 55 4K UHD",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Smart TV LG de 55 pulgadas con resolución 4K UHD.",
-            "especificaciones": { "pulgadas": 55, "resolucion": "4K UHD", "tecnologia": "LED", "sistemaOperativo": "webOS" },
-            "precio": 640000,
-            "precioOferta": 589000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=LG+55+UHD"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.lg.com/ar/" }
-          },
-          {
-            "id": 13,
-            "sku": "TV-SAM-55CU7000",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "55CU7000",
-            "nombre": "Smart TV Samsung 55 Crystal UHD 4K",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Smart TV Crystal UHD 4K con sistema Tizen.",
-            "especificaciones": { "pulgadas": 55, "resolucion": "4K UHD", "tecnologia": "Crystal UHD", "sistemaOperativo": "Tizen" },
-            "precio": 670000,
-            "precioOferta": 610000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Samsung+55+Crystal"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
-          },
-          {
-            "id": 14,
-            "sku": "TV-SAM-65CU7000",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "65CU7000",
-            "nombre": "Smart TV Samsung 65 Crystal UHD 4K",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Smart TV Samsung de 65 pulgadas con resolución 4K.",
-            "especificaciones": { "pulgadas": 65, "resolucion": "4K UHD", "tecnologia": "Crystal UHD", "sistemaOperativo": "Tizen" },
-            "precio": 950000,
-            "precioOferta": 870000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Samsung+65+Crystal"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
-          },
-          {
-            "id": 15,
-            "sku": "TV-SONY-55X80L",
-            "ean": "",
-            "marca": "Sony",
-            "modelo": "55X80L",
-            "nombre": "Smart TV Sony 55 4K Google TV",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Smart TV Sony 4K con Google TV y procesamiento de imagen avanzado.",
-            "especificaciones": { "pulgadas": 55, "resolucion": "4K UHD", "tecnologia": "LED", "sistemaOperativo": "Google TV" },
-            "precio": 990000,
-            "precioOferta": 910000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=Sony+55+GoogleTV"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.sony.com.ar/" }
-          },
-          {
-            "id": 16,
-            "sku": "TV-CAIXUN-50CAI",
-            "ean": "",
-            "marca": "Caixun",
-            "modelo": "50",
-            "nombre": "Smart TV Caixun 50 4K UHD",
-            "categoria": "Televisores",
-            "subcategoria": "Smart TV",
-            "descripcion": "Smart TV 4K de 50 pulgadas para entretenimiento doméstico.",
-            "especificaciones": { "pulgadas": 50, "resolucion": "4K UHD", "tecnologia": "LED", "sistemaOperativo": "Smart TV" },
-            "precio": 410000,
-            "precioOferta": 379000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=Caixun+50"],
-            "fuente": { "tipo": "fabricante", "url": "" }
-          },
-          {
-            "id": 17,
-            "sku": "CEL-SAM-A55",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "Galaxy A55",
-            "nombre": "Celular Samsung Galaxy A55 5G 128GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "Smartphone 5G con pantalla Super AMOLED y cámara avanzada.",
-            "especificaciones": { "pantalla": "6.6 pulgadas Super AMOLED", "memoriaRAM": "8GB", "almacenamiento": "128GB", "camaraPrincipal": "50 MP" },
-            "precio": 650000,
-            "precioOferta": 599000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Galaxy+A55"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
-          },
-          {
-            "id": 18,
-            "sku": "CEL-SAM-A35",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "Galaxy A35",
-            "nombre": "Celular Samsung Galaxy A35 5G 128GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "Smartphone 5G con pantalla Super AMOLED y almacenamiento amplio.",
-            "especificaciones": { "pantalla": "6.6 pulgadas Super AMOLED", "memoriaRAM": "8GB", "almacenamiento": "128GB", "camaraPrincipal": "50 MP" },
-            "precio": 530000,
-            "precioOferta": 489000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Galaxy+A35"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
-          },
-          {
-            "id": 19,
-            "sku": "CEL-MOT-G84",
-            "ean": "",
-            "marca": "Motorola",
-            "modelo": "Moto G84",
-            "nombre": "Celular Motorola Moto G84 5G 256GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "Smartphone 5G con pantalla pOLED y almacenamiento de 256GB.",
-            "especificaciones": { "pantalla": "6.55 pulgadas pOLED", "memoriaRAM": "8GB", "almacenamiento": "256GB", "camaraPrincipal": "50 MP" },
-            "precio": 460000,
-            "precioOferta": 419000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=Moto+G84"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.motorola.com.ar/" }
-          },
-          {
-            "id": 20,
-            "sku": "CEL-MOT-EDGE50",
-            "ean": "",
-            "marca": "Motorola",
-            "modelo": "Edge 50",
-            "nombre": "Celular Motorola Edge 50 5G",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "Smartphone premium con pantalla OLED y conectividad 5G.",
-            "especificaciones": { "pantalla": "6.7 pulgadas OLED", "memoriaRAM": "12GB", "almacenamiento": "256GB", "camaraPrincipal": "50 MP" },
-            "precio": 990000,
-            "precioOferta": 920000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=Moto+Edge+50"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.motorola.com.ar/" }
-          },
-          {
-            "id": 21,
-            "sku": "CEL-XIA-REDMI13C",
-            "ean": "",
-            "marca": "Xiaomi",
-            "modelo": "Redmi 13C",
-            "nombre": "Celular Xiaomi Redmi 13C 256GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "Smartphone con pantalla amplia y almacenamiento de 256GB.",
-            "especificaciones": { "pantalla": "6.74 pulgadas", "memoriaRAM": "8GB", "almacenamiento": "256GB", "camaraPrincipal": "50 MP" },
-            "precio": 290000,
-            "precioOferta": 259000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Redmi+13C"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.mi.com/ar/" }
-          },
-          {
-            "id": 22,
-            "sku": "CEL-XIA-POCOX6",
-            "ean": "",
-            "marca": "Xiaomi",
-            "modelo": "Poco X6",
-            "nombre": "Celular Xiaomi Poco X6 5G 256GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "Smartphone 5G con pantalla AMOLED de alta resolución.",
-            "especificaciones": { "pantalla": "6.67 pulgadas AMOLED", "memoriaRAM": "12GB", "almacenamiento": "256GB", "camaraPrincipal": "64 MP" },
-            "precio": 590000,
-            "precioOferta": 540000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Poco+X6"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.mi.com/ar/" }
-          },
-          {
-            "id": 23,
-            "sku": "CEL-IPH-13-128",
-            "ean": "",
-            "marca": "Apple",
-            "modelo": "iPhone 13",
-            "nombre": "Apple iPhone 13 128GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "iPhone con chip A15 Bionic y sistema de cámaras dual.",
-            "especificaciones": { "pantalla": "6.1 pulgadas OLED", "memoriaRAM": "4GB", "almacenamiento": "128GB", "camaraPrincipal": "12 MP" },
-            "precio": 1150000,
-            "precioOferta": 1050000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=iPhone+13"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.apple.com/la/" }
-          },
-          {
-            "id": 24,
-            "sku": "CEL-IPH-15-128",
-            "ean": "",
-            "marca": "Apple",
-            "modelo": "iPhone 15",
-            "nombre": "Apple iPhone 15 128GB",
-            "categoria": "Celulares",
-            "subcategoria": "Smartphones",
-            "descripcion": "iPhone con USB-C, cámara principal de 48 MP y chip A16 Bionic.",
-            "especificaciones": { "pantalla": "6.1 pulgadas OLED", "memoriaRAM": "6GB", "almacenamiento": "128GB", "camaraPrincipal": "48 MP" },
-            "precio": 1550000,
-            "precioOferta": 1420000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=iPhone+15"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.apple.com/la/" }
-          },
-          {
-            "id": 25,
-            "sku": "LAV-LG-WM10",
-            "ean": "",
-            "marca": "LG",
-            "modelo": "WM10",
-            "nombre": "Lavarropas LG Automático 10.5 Kg",
-            "categoria": "Lavarropas",
-            "subcategoria": "Carga Frontal",
-            "descripcion": "Lavarropas automático de gran capacidad con motor eficiente.",
-            "especificaciones": { "capacidad": "10.5 kg", "tipoCarga": "Frontal", "velocidadCentrifugado": "1400 RPM" },
-            "precio": 950000,
-            "precioOferta": 880000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Lavarropas+LG"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.lg.com/ar/" }
-          },
-          {
-            "id": 26,
-            "sku": "LAV-SAM-WA80",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "WA80",
-            "nombre": "Lavarropas Samsung Carga Superior 8 Kg",
-            "categoria": "Lavarropas",
-            "subcategoria": "Carga Superior",
-            "descripcion": "Lavarropas de carga superior con programas de lavado.",
-            "especificaciones": { "capacidad": "8 kg", "tipoCarga": "Superior", "velocidadCentrifugado": "700 RPM" },
-            "precio": 590000,
-            "precioOferta": 540000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Lavarropas+Samsung"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
-          },
-          {
-            "id": 27,
-            "sku": "LAV-DREAN-NEXT8",
-            "ean": "",
-            "marca": "Drean",
-            "modelo": "Next 8.12",
-            "nombre": "Lavarropas Drean Next 8.12 8 Kg",
-            "categoria": "Lavarropas",
-            "subcategoria": "Carga Frontal",
-            "descripcion": "Lavarropas automático de carga frontal con múltiples programas.",
-            "especificaciones": { "capacidad": "8 kg", "tipoCarga": "Frontal", "velocidadCentrifugado": "1200 RPM" },
-            "precio": 710000,
-            "precioOferta": 650000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=Drean+Next"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.drean.com.ar/" }
-          },
-          {
-            "id": 28,
-            "sku": "LAV-ESLABON-EWT",
-            "ean": "",
-            "marca": "Eslabón de Lujo",
-            "modelo": "EWT",
-            "nombre": "Lavarropas Eslabón de Lujo Automático",
-            "categoria": "Lavarropas",
-            "subcategoria": "Carga Superior",
-            "descripcion": "Lavarropas automático práctico para uso familiar.",
-            "especificaciones": { "capacidad": "7 kg", "tipoCarga": "Superior", "velocidadCentrifugado": "800 RPM" },
-            "precio": 550000,
-            "precioOferta": 499000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=Eslabon+de+Lujo"],
-            "fuente": { "tipo": "fabricante", "url": "" }
-          },
-          {
-            "id": 29,
-            "sku": "HEL-GE-HGE300",
-            "ean": "",
-            "marca": "GE Appliances",
-            "modelo": "HGE300",
-            "nombre": "Heladera GE No Frost 300L",
-            "categoria": "Heladeras",
-            "subcategoria": "No Frost",
-            "descripcion": "Heladera No Frost de capacidad familiar.",
-            "especificaciones": { "capacidadTotal": "300 Litros", "sistemaFrio": "No Frost", "eficienciaEnergetica": "A" },
-            "precio": 850000,
-            "precioOferta": 780000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Heladera+GE"],
-            "fuente": { "tipo": "fabricante", "url": "" }
-          },
-          {
-            "id": 30,
-            "sku": "HEL-SAM-RT38",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "RT38",
-            "nombre": "Heladera Samsung No Frost 382L",
-            "categoria": "Heladeras",
-            "subcategoria": "No Frost",
-            "descripcion": "Heladera No Frost con gran capacidad y tecnología de conservación.",
-            "especificaciones": { "capacidadTotal": "382 Litros", "sistemaFrio": "No Frost", "eficienciaEnergetica": "A" },
-            "precio": 1050000,
-            "precioOferta": 960000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Heladera+Samsung"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
-          },
-          {
-            "id": 31,
-            "sku": "HEL-LG-GN400",
-            "ean": "",
-            "marca": "LG",
-            "modelo": "GN400",
-            "nombre": "Heladera LG No Frost 400L",
-            "categoria": "Heladeras",
-            "subcategoria": "No Frost",
-            "descripcion": "Heladera familiar con sistema No Frost.",
-            "especificaciones": { "capacidadTotal": "400 Litros", "sistemaFrio": "No Frost", "eficienciaEnergetica": "A" },
-            "precio": 1120000,
-            "precioOferta": 1020000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=Heladera+LG"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.lg.com/ar/" }
-          },
-          {
-            "id": 32,
-            "sku": "HEL-WHIRL-WR350",
-            "ean": "",
-            "marca": "Whirlpool",
-            "modelo": "WR350",
-            "nombre": "Heladera Whirlpool No Frost 350L",
-            "categoria": "Heladeras",
-            "subcategoria": "No Frost",
-            "descripcion": "Heladera No Frost con distribución uniforme del frío.",
-            "especificaciones": { "capacidadTotal": "350 Litros", "sistemaFrio": "No Frost", "eficienciaEnergetica": "A" },
-            "precio": 990000,
-            "precioOferta": 910000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=Heladera+Whirlpool"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.whirlpool.com.ar/" }
-          },
-          {
-            "id": 33,
-            "sku": "HEL-PHIL-300",
-            "ean": "",
-            "marca": "Philco",
-            "modelo": "PH300",
-            "nombre": "Heladera Philco No Frost 300L",
-            "categoria": "Heladeras",
-            "subcategoria": "No Frost",
-            "descripcion": "Heladera No Frost de 300 litros para uso familiar.",
-            "especificaciones": { "capacidadTotal": "300 Litros", "sistemaFrio": "No Frost", "eficienciaEnergetica": "A" },
-            "precio": 790000,
-            "precioOferta": 720000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Heladera+Philco+NoFrost"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.philco.com.ar/" }
-          },
-          {
-            "id": 34,
-            "sku": "COC-LONGVIE-550",
-            "ean": "",
-            "marca": "Longvie",
-            "modelo": "550",
-            "nombre": "Cocina Longvie Multigas 55cm",
-            "categoria": "Cocinas",
-            "subcategoria": "A Gas",
-            "descripcion": "Cocina multigas con horno y cuatro hornallas.",
-            "especificaciones": { "hornallas": 4, "tipoGas": "Multigas", "valvulaSeguridad": "Sí" },
-            "precio": 520000,
-            "precioOferta": 479000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Cocina+Longvie"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.longvie.com/" }
-          },
-          {
-            "id": 35,
-            "sku": "COC-LONGVIE-560",
-            "ean": "",
-            "marca": "Longvie",
-            "modelo": "560",
-            "nombre": "Cocina Longvie 4 Hornallas Multigas",
-            "categoria": "Cocinas",
-            "subcategoria": "A Gas",
-            "descripcion": "Cocina familiar con horno y sistema de seguridad.",
-            "especificaciones": { "hornallas": 4, "tipoGas": "Multigas", "valvulaSeguridad": "Sí" },
-            "precio": 580000,
-            "precioOferta": 530000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/16a34a/ffffff?text=Cocina+Longvie+560"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.longvie.com/" }
-          },
-          {
-            "id": 36,
-            "sku": "COC-ESCORIAL-550",
-            "ean": "",
-            "marca": "Escorial",
-            "modelo": "550",
-            "nombre": "Cocina Escorial Multigas 50cm",
-            "categoria": "Cocinas",
-            "subcategoria": "A Gas",
-            "descripcion": "Cocina compacta de cuatro hornallas con horno.",
-            "especificaciones": { "hornallas": 4, "tipoGas": "Multigas", "valvulaSeguridad": "Sí" },
-            "precio": 280000,
-            "precioOferta": 249000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/334155/ffffff?text=Cocina+Escorial"],
-            "fuente": { "tipo": "fabricante", "url": "" }
-          },
-          {
-            "id": 37,
-            "sku": "COC-PATRICK-550",
-            "ean": "",
-            "marca": "Patrick",
-            "modelo": "550",
-            "nombre": "Cocina Patrick Multigas 55cm",
-            "categoria": "Cocinas",
-            "subcategoria": "A Gas",
-            "descripcion": "Cocina de cuatro hornallas con horno a gas.",
-            "especificaciones": { "hornallas": 4, "tipoGas": "Multigas", "valvulaSeguridad": "Sí" },
-            "precio": 360000,
-            "precioOferta": 329000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Cocina+Patrick+55"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.patrick.com.ar/" }
-          },
-          {
-            "id": 38,
-            "sku": "AC-SAMSUNG-3000",
-            "ean": "",
-            "marca": "Samsung",
-            "modelo": "3000",
-            "nombre": "Aire Acondicionado Samsung Inverter 3000W",
-            "categoria": "Aires acondicionados",
-            "subcategoria": "Split Inverter",
-            "descripcion": "Aire acondicionado Split Inverter frío/calor.",
-            "especificaciones": { "frigorias": "2600", "potenciaW": "3000", "tipoClima": "Frío/Calor", "tecnologia": "Inverter" },
-            "precio": 890000,
-            "precioOferta": 810000,
-            "cuotas": 3,
-            "stock": true,
-            "imagenes": ["https://via.placeholder.com/300/0284c7/ffffff?text=Aire+Samsung"],
-            "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
-          }
-        ];
+  {
+    "id": 1,
+    "sku": "TV-TCL-55C655",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "55C655",
+    "nombre": "Smart TV TCL 55 C655 QLED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor QLED 4K con Google TV y Dolby Vision Atmos.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "QLED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es/"
+    }
+  },
+  {
+    "id": 2,
+    "sku": "TV-TCL-65C755",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "65C755",
+    "nombre": "Smart TV TCL 65 C755 QD-Mini LED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento.",
+    "especificaciones": {
+      "pulgadas": 65,
+      "resolucion": "4K UHD",
+      "tecnologia": "QD-Mini LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es/"
+    }
+  },
+  {
+    "id": 3,
+    "sku": "TV-TCL-50P755",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "50P755",
+    "nombre": "Smart TV TCL 50 P755 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV 4K UHD con diseño delgado y tecnología HDR.",
+    "especificaciones": {
+      "pulgadas": 50,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es/"
+    }
+  },
+  {
+    "id": 4,
+    "sku": "TV-SAM-QN55S90C",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "QN55S90C",
+    "nombre": "Smart TV Samsung 55 OLED 4K S90C",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor OLED 4K con procesador avanzado y excelente contraste.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "OLED",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 5,
+    "sku": "CEL-SAM-S24ULTRA",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy S24 Ultra",
+    "nombre": "Celular Samsung Galaxy S24 Ultra 5G 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone premium con Galaxy AI, cámara de 200 MP y almacenamiento de 256GB.",
+    "especificaciones": {
+      "pantalla": "6.8 pulgadas AMOLED",
+      "memoriaRAM": "12GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "200 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/smartphones/galaxy-s/"
+    }
+  },
+  {
+    "id": 6,
+    "sku": "CEL-XIA-NOTE13PRO",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi Note 13 Pro",
+    "nombre": "Celular Xiaomi Redmi Note 13 Pro 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone con cámara de 200 MP, pantalla AMOLED y carga rápida.",
+    "especificaciones": {
+      "pantalla": "6.67 pulgadas AMOLED",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "200 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 7,
+    "sku": "LAV-WHIRL-WNQ65A",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WNQ65A",
+    "nombre": "Lavarropas Automático Whirlpool 6.5 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Lavarropas automático con múltiples programas de lavado.",
+    "especificaciones": {
+      "capacidad": "6.5 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1000 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
+  },
+  {
+    "id": 8,
+    "sku": "HEL-PHIL-PHMD350",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHMD350",
+    "nombre": "Heladera Cíclica Philco 270L Blanca",
+    "categoria": "Heladeras",
+    "subcategoria": "Con Freezer",
+    "descripcion": "Heladera con freezer, estantes ajustables y bajo consumo.",
+    "especificaciones": {
+      "capacidadTotal": "270 Litros",
+      "sistemaFrio": "Cíclico",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 9,
+    "sku": "COC-PAT-5000",
+    "ean": "",
+    "marca": "Patrick",
+    "modelo": "PCC5000",
+    "nombre": "Cocina a Gas Patrick Multigas 50cm",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina convencional de 4 hornallas con horno y válvula de seguridad.",
+    "especificaciones": {
+      "hornallas": 4,
+      "tipoGas": "Multigas",
+      "valvulaSeguridad": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.patrick.com.ar/"
+    }
+  },
+  {
+    "id": 10,
+    "sku": "AC-HIS-3200",
+    "ean": "",
+    "marca": "Hisense",
+    "modelo": "AS-12UW4",
+    "nombre": "Aire Acondicionado Split Inverter Hisense 3200W F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Aire acondicionado Inverter frío/calor para climatización eficiente.",
+    "especificaciones": {
+      "frigorias": "2750",
+      "potenciaW": "3200",
+      "tipoClima": "Frío/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.hisense.com.ar/"
+    }
+  },
+  {
+    "id": 11,
+    "sku": "TV-LG-50UR7800",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "50UR7800",
+    "nombre": "Smart TV LG 50 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV 4K UHD con plataforma webOS.",
+    "especificaciones": {
+      "pulgadas": 50,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "webOS"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 12,
+    "sku": "TV-LG-55UR7800",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "55UR7800",
+    "nombre": "Smart TV LG 55 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV LG de 55 pulgadas con resolución 4K UHD.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "webOS"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 13,
+    "sku": "TV-SAM-55CU7000",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "55CU7000",
+    "nombre": "Smart TV Samsung 55 Crystal UHD 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV Crystal UHD 4K con sistema Tizen.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "Crystal UHD",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 14,
+    "sku": "TV-SAM-65CU7000",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "65CU7000",
+    "nombre": "Smart TV Samsung 65 Crystal UHD 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV Samsung de 65 pulgadas con resolución 4K.",
+    "especificaciones": {
+      "pulgadas": 65,
+      "resolucion": "4K UHD",
+      "tecnologia": "Crystal UHD",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 15,
+    "sku": "TV-SONY-55X80L",
+    "ean": "",
+    "marca": "Sony",
+    "modelo": "55X80L",
+    "nombre": "Smart TV Sony 55 4K Google TV",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV Sony 4K con Google TV y procesamiento de imagen avanzado.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.sony.com.ar/"
+    }
+  },
+  {
+    "id": 16,
+    "sku": "TV-CAIXUN-50CAI",
+    "ean": "",
+    "marca": "Caixun",
+    "modelo": "50",
+    "nombre": "Smart TV Caixun 50 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV 4K de 50 pulgadas para entretenimiento doméstico.",
+    "especificaciones": {
+      "pulgadas": 50,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Smart TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 17,
+    "sku": "CEL-SAM-A55",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy A55",
+    "nombre": "Celular Samsung Galaxy A55 5G 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone 5G con pantalla Super AMOLED y cámara avanzada.",
+    "especificaciones": {
+      "pantalla": "6.6 pulgadas Super AMOLED",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "128GB",
+      "camaraPrincipal": "50 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 18,
+    "sku": "CEL-SAM-A35",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy A35",
+    "nombre": "Celular Samsung Galaxy A35 5G 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone 5G con pantalla Super AMOLED y almacenamiento amplio.",
+    "especificaciones": {
+      "pantalla": "6.6 pulgadas Super AMOLED",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "128GB",
+      "camaraPrincipal": "50 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 19,
+    "sku": "CEL-MOT-G84",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Moto G84",
+    "nombre": "Celular Motorola Moto G84 5G 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone 5G con pantalla pOLED y almacenamiento de 256GB.",
+    "especificaciones": {
+      "pantalla": "6.55 pulgadas pOLED",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "50 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 20,
+    "sku": "CEL-MOT-EDGE50",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Edge 50",
+    "nombre": "Celular Motorola Edge 50 5G",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone premium con pantalla OLED y conectividad 5G.",
+    "especificaciones": {
+      "pantalla": "6.7 pulgadas OLED",
+      "memoriaRAM": "12GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "50 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 21,
+    "sku": "CEL-XIA-REDMI13C",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi 13C",
+    "nombre": "Celular Xiaomi Redmi 13C 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone con pantalla amplia y almacenamiento de 256GB.",
+    "especificaciones": {
+      "pantalla": "6.74 pulgadas",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "50 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 22,
+    "sku": "CEL-XIA-POCOX6",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Poco X6",
+    "nombre": "Celular Xiaomi Poco X6 5G 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone 5G con pantalla AMOLED de alta resolución.",
+    "especificaciones": {
+      "pantalla": "6.67 pulgadas AMOLED",
+      "memoriaRAM": "12GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "64 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 23,
+    "sku": "CEL-IPH-13-128",
+    "ean": "",
+    "marca": "Apple",
+    "modelo": "iPhone 13",
+    "nombre": "Apple iPhone 13 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "iPhone con chip A15 Bionic y sistema de cámaras dual.",
+    "especificaciones": {
+      "pantalla": "6.1 pulgadas OLED",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "128GB",
+      "camaraPrincipal": "12 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.apple.com/la/"
+    }
+  },
+  {
+    "id": 24,
+    "sku": "CEL-IPH-15-128",
+    "ean": "",
+    "marca": "Apple",
+    "modelo": "iPhone 15",
+    "nombre": "Apple iPhone 15 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "iPhone con USB-C, cámara principal de 48 MP y chip A16 Bionic.",
+    "especificaciones": {
+      "pantalla": "6.1 pulgadas OLED",
+      "memoriaRAM": "6GB",
+      "almacenamiento": "128GB",
+      "camaraPrincipal": "48 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.apple.com/la/"
+    }
+  },
+  {
+    "id": 25,
+    "sku": "LAV-LG-WM10",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "WM10",
+    "nombre": "Lavarropas LG Automático 10.5 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Lavarropas automático de gran capacidad con motor eficiente.",
+    "especificaciones": {
+      "capacidad": "10.5 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1400 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 26,
+    "sku": "LAV-SAM-WA80",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "WA80",
+    "nombre": "Lavarropas Samsung Carga Superior 8 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Superior",
+    "descripcion": "Lavarropas de carga superior con programas de lavado.",
+    "especificaciones": {
+      "capacidad": "8 kg",
+      "tipoCarga": "Superior",
+      "velocidadCentrifugado": "700 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 27,
+    "sku": "LAV-DREAN-NEXT8",
+    "ean": "",
+    "marca": "Drean",
+    "modelo": "Next 8.12",
+    "nombre": "Lavarropas Drean Next 8.12 8 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Lavarropas automático de carga frontal con múltiples programas.",
+    "especificaciones": {
+      "capacidad": "8 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1200 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.drean.com.ar/"
+    }
+  },
+  {
+    "id": 28,
+    "sku": "LAV-ESLABON-EWT",
+    "ean": "",
+    "marca": "Eslabón de Lujo",
+    "modelo": "EWT",
+    "nombre": "Lavarropas Eslabón de Lujo Automático",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Superior",
+    "descripcion": "Lavarropas automático práctico para uso familiar.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipoCarga": "Superior",
+      "velocidadCentrifugado": "800 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 29,
+    "sku": "HEL-GE-HGE300",
+    "ean": "",
+    "marca": "GE Appliances",
+    "modelo": "HGE300",
+    "nombre": "Heladera GE No Frost 300L",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Heladera No Frost de capacidad familiar.",
+    "especificaciones": {
+      "capacidadTotal": "300 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 30,
+    "sku": "HEL-SAM-RT38",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "RT38",
+    "nombre": "Heladera Samsung No Frost 382L",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Heladera No Frost con gran capacidad y tecnología de conservación.",
+    "especificaciones": {
+      "capacidadTotal": "382 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 31,
+    "sku": "HEL-LG-GN400",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "GN400",
+    "nombre": "Heladera LG No Frost 400L",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Heladera familiar con sistema No Frost.",
+    "especificaciones": {
+      "capacidadTotal": "400 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 32,
+    "sku": "HEL-WHIRL-WR350",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WR350",
+    "nombre": "Heladera Whirlpool No Frost 350L",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Heladera No Frost con distribución uniforme del frío.",
+    "especificaciones": {
+      "capacidadTotal": "350 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
+  },
+  {
+    "id": 33,
+    "sku": "HEL-PHIL-300",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PH300",
+    "nombre": "Heladera Philco No Frost 300L",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Heladera No Frost de 300 litros para uso familiar.",
+    "especificaciones": {
+      "capacidadTotal": "300 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 34,
+    "sku": "COC-LONGVIE-550",
+    "ean": "",
+    "marca": "Longvie",
+    "modelo": "550",
+    "nombre": "Cocina Longvie Multigas 55cm",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina multigas con horno y cuatro hornallas.",
+    "especificaciones": {
+      "hornallas": 4,
+      "tipoGas": "Multigas",
+      "valvulaSeguridad": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.longvie.com/"
+    }
+  },
+  {
+    "id": 35,
+    "sku": "COC-LONGVIE-560",
+    "ean": "",
+    "marca": "Longvie",
+    "modelo": "560",
+    "nombre": "Cocina Longvie 4 Hornallas Multigas",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina familiar con horno y sistema de seguridad.",
+    "especificaciones": {
+      "hornallas": 4,
+      "tipoGas": "Multigas",
+      "valvulaSeguridad": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.longvie.com/"
+    }
+  },
+  {
+    "id": 36,
+    "sku": "COC-ESCORIAL-550",
+    "ean": "",
+    "marca": "Escorial",
+    "modelo": "550",
+    "nombre": "Cocina Escorial Multigas 50cm",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina compacta de cuatro hornallas con horno.",
+    "especificaciones": {
+      "hornallas": 4,
+      "tipoGas": "Multigas",
+      "valvulaSeguridad": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 37,
+    "sku": "COC-PATRICK-550",
+    "ean": "",
+    "marca": "Patrick",
+    "modelo": "550",
+    "nombre": "Cocina Patrick Multigas 55cm",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina de cuatro hornallas con horno a gas.",
+    "especificaciones": {
+      "hornallas": 4,
+      "tipoGas": "Multigas",
+      "valvulaSeguridad": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.patrick.com.ar/"
+    }
+  },
+  {
+    "id": 38,
+    "sku": "AC-SAMSUNG-3000",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "3000",
+    "nombre": "Aire Acondicionado Samsung Inverter 3000W",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Aire acondicionado Split Inverter frío/calor.",
+    "especificaciones": {
+      "frigorias": "2600",
+      "potenciaW": "3000",
+      "tipoClima": "Frío/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 39,
+    "sku": "AC-LG-3000",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "3000",
+    "nombre": "Aire Acondicionado LG Dual Inverter 3000W",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Aire acondicionado Dual Inverter frío/calor.",
+    "especificaciones": {
+      "frigorias": "2600",
+      "potenciaW": "3000",
+      "tipoClima": "Frío/Calor",
+      "tecnologia": "Dual Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 40,
+    "sku": "AC-TCL-3200",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "3200",
+    "nombre": "Aire Acondicionado TCL Inverter 3200W",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Aire acondicionado Inverter frío/calor con alta eficiencia.",
+    "especificaciones": {
+      "frigorias": "2750",
+      "potenciaW": "3200",
+      "tipoClima": "Frío/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es/"
+    }
+  },
+  {
+    "id": 41,
+    "sku": "AC-BGH-3000",
+    "ean": "",
+    "marca": "BGH",
+    "modelo": "3000",
+    "nombre": "Aire Acondicionado BGH Inverter 3000W",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Aire acondicionado frío/calor con tecnología Inverter.",
+    "especificaciones": {
+      "frigorias": "2600",
+      "potenciaW": "3000",
+      "tipoClima": "Frío/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.bgh.com.ar/"
+    }
+  },
+  {
+    "id": 42,
+    "sku": "AC-HIS-4500",
+    "ean": "",
+    "marca": "Hisense",
+    "modelo": "4500",
+    "nombre": "Aire Acondicionado Hisense Inverter 4500W",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Aire acondicionado de mayor potencia para ambientes amplios.",
+    "especificaciones": {
+      "frigorias": "3800",
+      "potenciaW": "4500",
+      "tipoClima": "Frío/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.hisense.com.ar/"
+    }
+  },
+  {
+    "id": 43,
+    "sku": "ASP-DREAN-ASP01",
+    "ean": "",
+    "marca": "Drean",
+    "modelo": "ASP01",
+    "nombre": "Aspiradora Drean 1600W",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Aspiradoras",
+    "descripcion": "Aspiradora de potencia elevada para limpieza del hogar.",
+    "especificaciones": {
+      "potenciaW": "1600",
+      "tipo": "Trineo",
+      "filtro": "Lavable"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.drean.com.ar/"
+    }
+  },
+  {
+    "id": 44,
+    "sku": "ASP-ATMA-ASP02",
+    "ean": "",
+    "marca": "Atma",
+    "modelo": "ASP02",
+    "nombre": "Aspiradora Atma 1400W",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Aspiradoras",
+    "descripcion": "Aspiradora compacta para limpieza diaria.",
+    "especificaciones": {
+      "potenciaW": "1400",
+      "tipo": "Trineo",
+      "filtro": "Lavable"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 45,
+    "sku": "MIC-ATMA-MO20",
+    "ean": "",
+    "marca": "Atma",
+    "modelo": "MO20",
+    "nombre": "Microondas Atma 20 Litros",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Microondas",
+    "descripcion": "Microondas compacto para cocinar y calentar alimentos.",
+    "especificaciones": {
+      "capacidad": "20 Litros",
+      "potenciaW": "700",
+      "tipo": "Digital"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 46,
+    "sku": "MIC-BGH-MO23",
+    "ean": "",
+    "marca": "BGH",
+    "modelo": "MO23",
+    "nombre": "Microondas BGH 23 Litros",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Microondas",
+    "descripcion": "Microondas digital de 23 litros.",
+    "especificaciones": {
+      "capacidad": "23 Litros",
+      "potenciaW": "800",
+      "tipo": "Digital"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.bgh.com.ar/"
+    }
+  },
+  {
+    "id": 47,
+    "sku": "CAF-OSTER-12",
+    "ean": "",
+    "marca": "Oster",
+    "modelo": "12 Tazas",
+    "nombre": "Cafetera Oster 12 Tazas",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Cafeteras",
+    "descripcion": "Cafetera eléctrica con jarra de gran capacidad.",
+    "especificaciones": {
+      "capacidad": "12 tazas",
+      "potenciaW": "900",
+      "tipo": "Filtro"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.oster.com.ar/"
+    }
+  },
+  {
+    "id": 48,
+    "sku": "LIC-OSTER-2L",
+    "ean": "",
+    "marca": "Oster",
+    "modelo": "2L",
+    "nombre": "Licuadora Oster 2 Litros",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Licuadoras",
+    "descripcion": "Licuadora de gran capacidad para preparaciones domésticas.",
+    "especificaciones": {
+      "capacidad": "2 Litros",
+      "potenciaW": "600",
+      "velocidades": 3
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.oster.com.ar/"
+    }
+  },
+  {
+    "id": 49,
+    "sku": "FRE-PHIL-8KG",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHF8",
+    "nombre": "Freidora de Aire Philco 8 Litros",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Freidoras de Aire",
+    "descripcion": "Freidora de aire de gran capacidad para cocinar con poco aceite.",
+    "especificaciones": {
+      "capacidad": "8 Litros",
+      "potenciaW": "1700",
+      "temperaturaMaxima": "200°C"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 50,
+    "sku": "FRE-ATMA-6L",
+    "ean": "",
+    "marca": "Atma",
+    "modelo": "FR6",
+    "nombre": "Freidora de Aire Atma 6 Litros",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Freidoras de Aire",
+    "descripcion": "Freidora de aire digital de 6 litros.",
+    "especificaciones": {
+      "capacidad": "6 Litros",
+      "potenciaW": "1500",
+      "temperaturaMaxima": "200°C"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 51,
+    "sku": "MON-LG-24FHD",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "24FHD",
+    "nombre": "Monitor LG 24 Full HD",
+    "categoria": "Informática",
+    "subcategoria": "Monitores",
+    "descripcion": "Monitor Full HD de 24 pulgadas para trabajo y entretenimiento.",
+    "especificaciones": {
+      "pulgadas": 24,
+      "resolucion": "1920x1080",
+      "tipoPanel": "IPS",
+      "frecuencia": "75 Hz"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 52,
+    "sku": "MON-SAM-24FHD",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "24FHD",
+    "nombre": "Monitor Samsung 24 Full HD",
+    "categoria": "Informática",
+    "subcategoria": "Monitores",
+    "descripcion": "Monitor Full HD de 24 pulgadas.",
+    "especificaciones": {
+      "pulgadas": 24,
+      "resolucion": "1920x1080",
+      "tipoPanel": "VA",
+      "frecuencia": "75 Hz"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 53,
+    "sku": "NOTE-LEN-IDEA3",
+    "ean": "",
+    "marca": "Lenovo",
+    "modelo": "IdeaPad 3",
+    "nombre": "Notebook Lenovo IdeaPad 3",
+    "categoria": "Informática",
+    "subcategoria": "Notebooks",
+    "descripcion": "Notebook versátil para estudio, trabajo y uso cotidiano.",
+    "especificaciones": {
+      "pantalla": "15.6 pulgadas",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB SSD",
+      "sistemaOperativo": "Windows"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lenovo.com/ar/"
+    }
+  },
+  {
+    "id": 54,
+    "sku": "NOTE-HP-15",
+    "ean": "",
+    "marca": "HP",
+    "modelo": "15",
+    "nombre": "Notebook HP 15",
+    "categoria": "Informática",
+    "subcategoria": "Notebooks",
+    "descripcion": "Notebook de 15 pulgadas para productividad y estudio.",
+    "especificaciones": {
+      "pantalla": "15.6 pulgadas",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB SSD",
+      "sistemaOperativo": "Windows"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.hp.com/ar-es/"
+    }
+  },
+  {
+    "id": 55,
+    "sku": "NOTE-ASUS-VIVO15",
+    "ean": "",
+    "marca": "ASUS",
+    "modelo": "VivoBook 15",
+    "nombre": "Notebook ASUS VivoBook 15",
+    "categoria": "Informática",
+    "subcategoria": "Notebooks",
+    "descripcion": "Notebook liviana para trabajo, estudio y entretenimiento.",
+    "especificaciones": {
+      "pantalla": "15.6 pulgadas",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "512GB SSD",
+      "sistemaOperativo": "Windows"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.asus.com/ar/"
+    }
+  },
+  {
+    "id": 56,
+    "sku": "TAB-SAM-A9",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy Tab A9",
+    "nombre": "Tablet Samsung Galaxy Tab A9",
+    "categoria": "Informática",
+    "subcategoria": "Tablets",
+    "descripcion": "Tablet compacta para entretenimiento, estudio y navegación.",
+    "especificaciones": {
+      "pantalla": "8.7 pulgadas",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "64GB",
+      "conectividad": "Wi-Fi"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 57,
+    "sku": "TAB-LEN-M10",
+    "ean": "",
+    "marca": "Lenovo",
+    "modelo": "Tab M10",
+    "nombre": "Tablet Lenovo Tab M10",
+    "categoria": "Informática",
+    "subcategoria": "Tablets",
+    "descripcion": "Tablet de pantalla amplia para entretenimiento y tareas cotidianas.",
+    "especificaciones": {
+      "pantalla": "10.1 pulgadas",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "64GB",
+      "conectividad": "Wi-Fi"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lenovo.com/ar/"
+    }
+  },
+  {
+    "id": 58,
+    "sku": "AUD-JBL-FLIP6",
+    "ean": "",
+    "marca": "JBL",
+    "modelo": "Flip 6",
+    "nombre": "Parlante Bluetooth JBL Flip 6",
+    "categoria": "Audio",
+    "subcategoria": "Parlantes",
+    "descripcion": "Parlante Bluetooth portátil resistente al agua.",
+    "especificaciones": {
+      "potenciaW": "30",
+      "conectividad": "Bluetooth",
+      "bateria": "12 horas"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.jbl.com.ar/"
+    }
+  },
+  {
+    "id": 59,
+    "sku": "AUD-JBL-CHARGE5",
+    "ean": "",
+    "marca": "JBL",
+    "modelo": "Charge 5",
+    "nombre": "Parlante Bluetooth JBL Charge 5",
+    "categoria": "Audio",
+    "subcategoria": "Parlantes",
+    "descripcion": "Parlante portátil con gran autonomía y sonido potente.",
+    "especificaciones": {
+      "potenciaW": "40",
+      "conectividad": "Bluetooth",
+      "bateria": "20 horas"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.jbl.com.ar/"
+    }
+  },
+  {
+    "id": 60,
+    "sku": "AUD-SAM-BUDSFE",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy Buds FE",
+    "nombre": "Auriculares Samsung Galaxy Buds FE",
+    "categoria": "Audio",
+    "subcategoria": "Auriculares",
+    "descripcion": "Auriculares inalámbricos con cancelación activa de ruido.",
+    "especificaciones": {
+      "tipo": "In Ear",
+      "conectividad": "Bluetooth",
+      "cancelacionRuido": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 61,
+    "sku": "AUD-XIA-REDMIBUDS",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi Buds",
+    "nombre": "Auriculares Xiaomi Redmi Buds",
+    "categoria": "Audio",
+    "subcategoria": "Auriculares",
+    "descripcion": "Auriculares inalámbricos compactos con Bluetooth.",
+    "especificaciones": {
+      "tipo": "In Ear",
+      "conectividad": "Bluetooth",
+      "cancelacionRuido": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 62,
+    "sku": "HOR-CASIO-WS",
+    "ean": "",
+    "marca": "Casio",
+    "modelo": "WS",
+    "nombre": "Reloj Casio Digital",
+    "categoria": "Tecnología",
+    "subcategoria": "Relojes",
+    "descripcion": "Reloj digital clásico y resistente para uso diario.",
+    "especificaciones": {
+      "tipo": "Digital",
+      "resistenciaAgua": "Sí",
+      "material": "Resina"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.casio.com/ar/"
+    }
+  },
+  {
+    "id": 63,
+    "sku": "SMART-XIA-REDMIWATCH",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi Watch",
+    "nombre": "Smartwatch Xiaomi Redmi Watch",
+    "categoria": "Tecnología",
+    "subcategoria": "Smartwatches",
+    "descripcion": "Smartwatch con monitoreo deportivo y notificaciones inteligentes.",
+    "especificaciones": {
+      "pantalla": "LCD",
+      "conectividad": "Bluetooth",
+      "resistenciaAgua": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 64,
+    "sku": "SMART-SAM-WATCH6",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy Watch6",
+    "nombre": "Smartwatch Samsung Galaxy Watch6",
+    "categoria": "Tecnología",
+    "subcategoria": "Smartwatches",
+    "descripcion": "Reloj inteligente con funciones deportivas y monitoreo de actividad.",
+    "especificaciones": {
+      "pantalla": "Super AMOLED",
+      "conectividad": "Bluetooth",
+      "resistenciaAgua": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 65,
+    "sku": "CAF-NESP-ESSENZA",
+    "ean": "",
+    "marca": "Nespresso",
+    "modelo": "Essenza",
+    "nombre": "Cafetera Nespresso Essenza Mini",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Cafeteras",
+    "descripcion": "Cafetera compacta para cápsulas de café.",
+    "especificaciones": {
+      "sistema": "Cápsulas",
+      "potenciaW": "1260",
+      "presionBar": "19"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.nespresso.com/ar/"
+    }
+  },
+  {
+    "id": 66,
+    "sku": "CAF-OSTER-ESPRESSO",
+    "ean": "",
+    "marca": "Oster",
+    "modelo": "Espresso",
+    "nombre": "Cafetera Espresso Oster",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Cafeteras",
+    "descripcion": "Cafetera espresso para preparar café con espuma y crema.",
+    "especificaciones": {
+      "tipo": "Espresso",
+      "potenciaW": "1050",
+      "presionBar": "15"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.oster.com.ar/"
+    }
+  },
+  {
+    "id": 67,
+    "sku": "LIC-ATMA-LI700",
+    "ean": "",
+    "marca": "Atma",
+    "modelo": "LI700",
+    "nombre": "Licuadora Atma 700W",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Licuadoras",
+    "descripcion": "Licuadora doméstica con varias velocidades.",
+    "especificaciones": {
+      "potenciaW": "700",
+      "velocidades": 3,
+      "jarra": "Vidrio"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 68,
+    "sku": "BAT-OSTER-BLENDER",
+    "ean": "",
+    "marca": "Oster",
+    "modelo": "Blender",
+    "nombre": "Batidora de Mano Oster",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Batidoras",
+    "descripcion": "Batidora de mano para preparaciones domésticas.",
+    "especificaciones": {
+      "potenciaW": "250",
+      "velocidades": 5,
+      "accesorios": "Batidores"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.oster.com.ar/"
+    }
+  },
+  {
+    "id": 69,
+    "sku": "PLAN-PHIL-1200",
+    "ean": "",
+    "marca": "Philips",
+    "modelo": "1200",
+    "nombre": "Plancha Philips 1200W",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Planchas",
+    "descripcion": "Plancha a vapor para uso doméstico.",
+    "especificaciones": {
+      "potenciaW": "1200",
+      "tipo": "Vapor",
+      "suela": "Antiadherente"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philips.com.ar/"
+    }
+  },
+  {
+    "id": 70,
+    "sku": "SEC-ATMA-2000",
+    "ean": "",
+    "marca": "Atma",
+    "modelo": "2000",
+    "nombre": "Secador de Pelo Atma 2000W",
+    "categoria": "Cuidado personal",
+    "subcategoria": "Secadores",
+    "descripcion": "Secador de pelo de alta potencia con varias velocidades.",
+    "especificaciones": {
+      "potenciaW": "2000",
+      "velocidades": 2,
+      "temperaturas": 3
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 71,
+    "sku": "TV-TCL-43P755",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "43P755",
+    "nombre": "Smart TV TCL 43 P755 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV 4K de 43 pulgadas con Google TV.",
+    "especificaciones": {
+      "pulgadas": 43,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es/"
+    }
+  },
+  {
+    "id": 72,
+    "sku": "TV-LG-65UR7800",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "65UR7800",
+    "nombre": "Smart TV LG 65 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV LG de 65 pulgadas con resolución 4K.",
+    "especificaciones": {
+      "pulgadas": 65,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "webOS"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 73,
+    "sku": "TV-SAM-43CU7000",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "43CU7000",
+    "nombre": "Smart TV Samsung 43 Crystal UHD 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV Crystal UHD de 43 pulgadas.",
+    "especificaciones": {
+      "pulgadas": 43,
+      "resolucion": "4K UHD",
+      "tecnologia": "Crystal UHD",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 74,
+    "sku": "TV-SAM-75CU7000",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "75CU7000",
+    "nombre": "Smart TV Samsung 75 Crystal UHD 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV de gran formato con resolución 4K.",
+    "especificaciones": {
+      "pulgadas": 75,
+      "resolucion": "4K UHD",
+      "tecnologia": "Crystal UHD",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 75,
+    "sku": "TV-TCL-75C655",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "75C655",
+    "nombre": "Smart TV TCL 75 C655 QLED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV QLED 4K de 75 pulgadas con Google TV.",
+    "especificaciones": {
+      "pulgadas": 75,
+      "resolucion": "4K UHD",
+      "tecnologia": "QLED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es/"
+    }
+  },
+  {
+    "id": 76,
+    "sku": "CEL-SAM-A25",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy A25",
+    "nombre": "Celular Samsung Galaxy A25 5G 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone 5G con pantalla Super AMOLED.",
+    "especificaciones": {
+      "pantalla": "6.5 pulgadas Super AMOLED",
+      "memoriaRAM": "6GB",
+      "almacenamiento": "128GB",
+      "camaraPrincipal": "50 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 77,
+    "sku": "CEL-MOT-G54",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Moto G54",
+    "nombre": "Celular Motorola Moto G54 5G 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone 5G con batería de gran capacidad.",
+    "especificaciones": {
+      "pantalla": "6.5 pulgadas",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "50 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 78,
+    "sku": "CEL-XIA-REDMI12",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi 12",
+    "nombre": "Celular Xiaomi Redmi 12 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone con pantalla amplia y almacenamiento de 256GB.",
+    "especificaciones": {
+      "pantalla": "6.79 pulgadas",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "50 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 79,
+    "sku": "LAV-WHIRL-8KG",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "8KG",
+    "nombre": "Lavarropas Whirlpool Automático 8 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Lavarropas automático de 8 kg con múltiples programas.",
+    "especificaciones": {
+      "capacidad": "8 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1200 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
+  },
+  {
+    "id": 80,
+    "sku": "LAV-LG-9KG",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "9KG",
+    "nombre": "Lavarropas LG Automático 9 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Lavarropas LG de carga frontal con motor eficiente.",
+    "especificaciones": {
+      "capacidad": "9 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1200 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 81,
+    "sku": "HEL-SAM-RT29",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "RT29",
+    "nombre": "Heladera Samsung No Frost 290L",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Heladera No Frost compacta para hogares pequeños.",
+    "especificaciones": {
+      "capacidadTotal": "290 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 82,
+    "sku": "HEL-LG-350",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "350",
+    "nombre": "Heladera LG No Frost 350L",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Heladera No Frost de capacidad intermedia.",
+    "especificaciones": {
+      "capacidadTotal": "350 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 83,
+    "sku": "AC-BGH-4500",
+    "ean": "",
+    "marca": "BGH",
+    "modelo": "4500",
+    "nombre": "Aire Acondicionado BGH Inverter 4500W",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Aire acondicionado Inverter frío/calor de alta potencia.",
+    "especificaciones": {
+      "frigorias": "3800",
+      "potenciaW": "4500",
+      "tipoClima": "Frío/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.bgh.com.ar/"
+    }
+  },
+  {
+    "id": 84,
+    "sku": "AC-LG-4500",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "4500",
+    "nombre": "Aire Acondicionado LG Dual Inverter 4500W",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Aire acondicionado Dual Inverter para ambientes grandes.",
+    "especificaciones": {
+      "frigorias": "3800",
+      "potenciaW": "4500",
+      "tipoClima": "Frío/Calor",
+      "tecnologia": "Dual Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 85,
+    "sku": "COC-LONGVIE-4H",
+    "ean": "",
+    "marca": "Longvie",
+    "modelo": "4H",
+    "nombre": "Cocina Longvie 4 Hornallas",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina multigas con cuatro hornallas y horno.",
+    "especificaciones": {
+      "hornallas": 4,
+      "tipoGas": "Multigas",
+      "valvulaSeguridad": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.longvie.com/"
+    }
+  },
+  {
+    "id": 86,
+    "sku": "COC-PATRICK-4H",
+    "ean": "",
+    "marca": "Patrick",
+    "modelo": "4H",
+    "nombre": "Cocina Patrick 4 Hornallas Multigas",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina de cuatro hornallas con horno a gas.",
+    "especificaciones": {
+      "hornallas": 4,
+      "tipoGas": "Multigas",
+      "valvulaSeguridad": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.patrick.com.ar/"
+    }
+  },
+  {
+    "id": 87,
+    "sku": "MIC-PHIL-20L",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "20L",
+    "nombre": "Microondas Philco 20 Litros",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Microondas",
+    "descripcion": "Microondas compacto para cocinar y recalentar.",
+    "especificaciones": {
+      "capacidad": "20 Litros",
+      "potenciaW": "700",
+      "tipo": "Digital"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 88,
+    "sku": "FRE-OSTER-5L",
+    "ean": "",
+    "marca": "Oster",
+    "modelo": "5L",
+    "nombre": "Freidora de Aire Oster 5 Litros",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Freidoras de Aire",
+    "descripcion": "Freidora de aire digital para cocinar con menos aceite.",
+    "especificaciones": {
+      "capacidad": "5 Litros",
+      "potenciaW": "1500",
+      "temperaturaMaxima": "200°C"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.oster.com.ar/"
+    }
+  },
+  {
+    "id": 89,
+    "sku": "ASP-ATMA-1800",
+    "ean": "",
+    "marca": "Atma",
+    "modelo": "1800",
+    "nombre": "Aspiradora Atma 1800W",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Aspiradoras",
+    "descripcion": "Aspiradora de 1800W para limpieza general.",
+    "especificaciones": {
+      "potenciaW": "1800",
+      "tipo": "Trineo",
+      "filtro": "Lavable"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": ""
+    }
+  },
+  {
+    "id": 90,
+    "sku": "ASP-PHIL-1600",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "1600",
+    "nombre": "Aspiradora Philco 1600W",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Aspiradoras",
+    "descripcion": "Aspiradora doméstica de 1600W.",
+    "especificaciones": {
+      "potenciaW": "1600",
+      "tipo": "Trineo",
+      "filtro": "Lavable"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 91,
+    "sku": "AUD-JBL-GO4",
+    "ean": "",
+    "marca": "JBL",
+    "modelo": "Go 4",
+    "nombre": "Parlante Bluetooth JBL Go 4",
+    "categoria": "Audio",
+    "subcategoria": "Parlantes",
+    "descripcion": "Parlante Bluetooth compacto y portátil.",
+    "especificaciones": {
+      "potenciaW": "4.2",
+      "conectividad": "Bluetooth",
+      "resistenciaAgua": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.jbl.com.ar/"
+    }
+  },
+  {
+    "id": 92,
+    "sku": "AUD-JBL-XTREME3",
+    "ean": "",
+    "marca": "JBL",
+    "modelo": "Xtreme 3",
+    "nombre": "Parlante Bluetooth JBL Xtreme 3",
+    "categoria": "Audio",
+    "subcategoria": "Parlantes",
+    "descripcion": "Parlante Bluetooth portátil de alta potencia.",
+    "especificaciones": {
+      "potenciaW": "100",
+      "conectividad": "Bluetooth",
+      "bateria": "15 horas"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.jbl.com.ar/"
+    }
+  },
+  {
+    "id": 93,
+    "sku": "MON-LG-27FHD",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "27FHD",
+    "nombre": "Monitor LG 27 Full HD",
+    "categoria": "Informática",
+    "subcategoria": "Monitores",
+    "descripcion": "Monitor de 27 pulgadas para trabajo y entretenimiento.",
+    "especificaciones": {
+      "pulgadas": 27,
+      "resolucion": "1920x1080",
+      "tipoPanel": "IPS",
+      "frecuencia": "75 Hz"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 94,
+    "sku": "MON-SAM-27FHD",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "27FHD",
+    "nombre": "Monitor Samsung 27 Full HD",
+    "categoria": "Informática",
+    "subcategoria": "Monitores",
+    "descripcion": "Monitor de 27 pulgadas con resolución Full HD.",
+    "especificaciones": {
+      "pulgadas": 27,
+      "resolucion": "1920x1080",
+      "tipoPanel": "VA",
+      "frecuencia": "75 Hz"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 95,
+    "sku": "NOTE-LEN-IDEA5",
+    "ean": "",
+    "marca": "Lenovo",
+    "modelo": "IdeaPad 5",
+    "nombre": "Notebook Lenovo IdeaPad 5",
+    "categoria": "Informática",
+    "subcategoria": "Notebooks",
+    "descripcion": "Notebook potente para productividad y uso profesional.",
+    "especificaciones": {
+      "pantalla": "15.6 pulgadas",
+      "memoriaRAM": "16GB",
+      "almacenamiento": "512GB SSD",
+      "sistemaOperativo": "Windows"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lenovo.com/ar/"
+    }
+  },
+  {
+    "id": 96,
+    "sku": "NOTE-ASUS-VIVO14",
+    "ean": "",
+    "marca": "ASUS",
+    "modelo": "VivoBook 14",
+    "nombre": "Notebook ASUS VivoBook 14",
+    "categoria": "Informática",
+    "subcategoria": "Notebooks",
+    "descripcion": "Notebook compacta y liviana para estudio y trabajo.",
+    "especificaciones": {
+      "pantalla": "14 pulgadas",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "512GB SSD",
+      "sistemaOperativo": "Windows"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.asus.com/ar/"
+    }
+  },
+  {
+    "id": 97,
+    "sku": "TAB-SAM-S6LITE",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy Tab S6 Lite",
+    "nombre": "Tablet Samsung Galaxy Tab S6 Lite",
+    "categoria": "Informática",
+    "subcategoria": "Tablets",
+    "descripcion": "Tablet con pantalla amplia y soporte para S Pen.",
+    "especificaciones": {
+      "pantalla": "10.4 pulgadas",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "128GB",
+      "conectividad": "Wi-Fi"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 98,
+    "sku": "SMART-XIA-WATCH2",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Watch 2",
+    "nombre": "Smartwatch Xiaomi Watch 2",
+    "categoria": "Tecnología",
+    "subcategoria": "Smartwatches",
+    "descripcion": "Smartwatch con funciones deportivas y conectividad inteligente.",
+    "especificaciones": {
+      "pantalla": "AMOLED",
+      "conectividad": "Bluetooth",
+      "resistenciaAgua": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 99,
+    "sku": "SMART-SAM-WATCH7",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy Watch7",
+    "nombre": "Smartwatch Samsung Galaxy Watch7",
+    "categoria": "Tecnología",
+    "subcategoria": "Smartwatches",
+    "descripcion": "Smartwatch avanzado para actividad física y uso diario.",
+    "especificaciones": {
+      "pantalla": "Super AMOLED",
+      "conectividad": "Bluetooth",
+      "resistenciaAgua": "Sí"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 100,
+    "sku": "CAF-OSTER-12PRO",
+    "ean": "",
+    "marca": "Oster",
+    "modelo": "12PRO",
+    "nombre": "Cafetera Oster 12 Tazas Programable",
+    "categoria": "Pequeños electrodomésticos",
+    "subcategoria": "Cafeteras",
+    "descripcion": "Cafetera programable de 12 tazas para uso doméstico.",
+    "especificaciones": {
+      "capacidad": "12 tazas",
+      "potenciaW": "900",
+      "tipo": "Programable"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.oster.com.ar/"
+    }
+  }
+];
+
 
         const CONFIG = {
             TARGET_WHATSAPP: "5491155012447",
