@@ -1009,7 +1009,7 @@
         LOGÍSTICA NOVA &copy; 2026 — Envíos e Importaciones Directas. Todos los derechos reservados.
     </footer>
 
-    <!-- Cargamos el archivo con la variable global "productos" -->
+    <!-- Archivo externo con la variable global "productos" -->
     <script src="productos.js"></script>
 
     <script>
@@ -1044,18 +1044,17 @@
 
         function initApp() {
             try {
-                // Aquí usamos directamente la variable global "productos" proveniente de productos.js
                 if (typeof productos !== 'undefined' && Array.isArray(productos)) {
                     PRODUCTS = productos;
                     renderCatalog();
                 } else {
-                    throw new Error('La variable "productos" no está definida o no es un arreglo.');
+                    throw new Error('La variable "productos" no está definida o no es un arreglo en productos.js.');
                 }
             } catch (error) {
                 console.error("Error al inicializar productos:", error);
                 document.getElementById("catalogContainer").innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #dc2626;">
-                        <strong>Error:</strong> No se pudo leer la variable <code>productos</code> desde <code>productos.js</code>. Asegúrate de que el archivo exista y esté estructurado correctamente.
+                        <strong>Error de carga:</strong> No se pudo leer la variable <code>productos</code> desde <code>productos.js</code>. Verifica que el archivo exista en la misma carpeta y no tenga errores de sintaxis.
                     </div>
                 `;
             }
