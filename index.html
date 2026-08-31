@@ -1041,7 +1041,7 @@
 
         async function loadProductsFromJson() {
             try {
-                const response = await fetch('productos.json');
+                const response = await fetch('./productos.json');
                 if (!response.ok) throw new Error('No se pudo cargar productos.json');
                 PRODUCTS = await response.json();
                 renderCatalog();
@@ -1092,7 +1092,6 @@
             container.innerHTML = paginatedItems.map(p => {
                 if (!(p.id in slideIndexes)) slideIndexes[p.id] = 0;
                 
-                // Soporta tanto array "images" como propiedad única "image"
                 const imgList = p.images && p.images.length > 0 ? p.images : (p.image ? [p.image] : ["https://via.placeholder.com/300"]);
 
                 const imgsHtml = imgList.map((img, idx) => 
