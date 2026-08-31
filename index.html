@@ -229,8 +229,6 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .cart-item-img { width: 50px; height: 50px; object-fit: contain; }
-
         main {
             flex-grow: 1;
             max-width: 1200px;
@@ -318,6 +316,7 @@
             color: var(--accent-green);
         }
 
+        /* Estilo tipo Coppel: grilla limpia con tarjetas verticales, imagen arriba y datos claros */
         .catalog-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -328,31 +327,32 @@
         .product-card {
             background-color: #ffffff;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 0.9rem;
+            border-radius: 8px;
+            padding: 1rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s ease;
             position: relative;
         }
 
         .product-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            border-color: var(--primary-orange);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
         }
 
         .product-badge {
             position: absolute;
             top: 10px; left: 10px;
-            background: var(--primary-orange);
+            background: #e11d48;
             color: #fff;
             font-size: 0.65rem;
             font-weight: 800;
             padding: 2px 6px;
             border-radius: 4px;
             z-index: 10;
+            text-transform: uppercase;
         }
 
         .gama-badge {
@@ -369,121 +369,68 @@
         .gama-badge.media { background: #e2e8f0; color: #334155; }
         .gama-badge.alta { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
 
-        .product-slider-container {
-            position: relative;
+        .product-image-container {
             width: 100%;
-            height: 180px;
-            margin-bottom: 0.8rem;
-            overflow: hidden;
+            height: 160px;
+            background: #f8fafc;
             border-radius: 6px;
-            background: #ffffff;
-        }
-
-        .product-slider-track {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .product-img {
-            min-width: 100%;
-            height: 100%;
-            object-fit: contain;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.4);
-            color: #ffffff;
-            border: none;
-            width: 26px; height: 26px;
-            border-radius: 50%;
-            cursor: pointer;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            z-index: 5;
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
         }
 
-        .slider-btn.prev { left: 4px; }
-        .slider-btn.next { right: 4px; }
-
-        .slider-dots {
-            position: absolute;
-            bottom: 4px; left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 4px;
-            z-index: 5;
+        .product-image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
 
-        .slider-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-
-        .slider-dot.active {
-            background: var(--primary-orange);
-            width: 12px;
-            border-radius: 4px;
-        }
-
-        .product-cat-tag {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            font-weight: 700;
-            margin-bottom: 0.2rem;
+        .product-card:hover .product-image-container img {
+            transform: scale(1.05);
         }
 
         .product-title {
-            font-size: 0.85rem;
-            font-weight: 700;
+            font-size: 0.9rem;
+            font-weight: 600;
             color: var(--text-dark);
             margin-bottom: 0.4rem;
             line-height: 1.3;
-            height: 2.6em;
-            overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .product-description {
             font-size: 0.75rem;
             color: var(--text-muted);
-            margin-bottom: 0.6rem;
-            line-height: 1.3;
-            height: 3.9em;
-            overflow: hidden;
+            margin-bottom: 0.8rem;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .product-price-box {
-            margin-bottom: 0.8rem;
+            margin: 0.4rem 0 0.8rem 0;
         }
 
         .old-price {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             text-decoration: line-through;
-            margin-right: 6px;
+            display: block;
         }
 
         .product-price {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 900;
-            color: var(--text-dark);
+            color: #0f172a;
         }
 
         .product-actions {
@@ -491,16 +438,18 @@
             align-items: center;
             justify-content: space-between;
             gap: 6px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
         }
 
         .qty-btn {
             background: #f1f5f9;
             color: var(--text-dark);
             border: 1px solid var(--border-color);
-            width: 32px; height: 32px;
+            width: 30px; height: 30px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -508,7 +457,7 @@
         }
 
         .qty-btn:hover { background: var(--primary-orange); color: white; border-color: var(--primary-orange); }
-        .qty-val { font-size: 0.9rem; font-weight: 700; width: 24px; text-align: center; }
+        .qty-val { font-size: 0.85rem; font-weight: 700; width: 20px; text-align: center; }
 
         .pagination-container {
             display: flex;
@@ -607,72 +556,6 @@
             border-color: var(--primary-orange);
         }
 
-        .image-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 1rem;
-        }
-
-        .image-modal.active { display: flex; }
-        
-        .modal-slider-box {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            height: 75vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .modal-img-track {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .modal-img {
-            min-width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .modal-nav-btn {
-            position: absolute;
-            top: 50%; transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            color: white; border: none;
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            font-size: 1.4rem;
-            cursor: pointer;
-            z-index: 20;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .modal-nav-btn.prev { left: 10px; }
-        .modal-nav-btn.next { right: 10px; }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 15px; right: 20px;
-            background: var(--primary-orange);
-            color: white; border: none;
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            font-size: 1.2rem; font-weight: bold;
-            cursor: pointer; z-index: 30;
-        }
-
         .view-step { display: none; }
         .view-step.active-view { display: block; }
 
@@ -699,13 +582,11 @@
             .header-main { flex-direction: column; align-items: stretch; }
             .header-actions { justify-content: space-between; }
             .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-            .product-card { padding: 0.6rem; }
-            .product-slider-container { height: 140px; }
+            .product-card { padding: 0.8rem; }
             .cart-bar { flex-direction: column; align-items: stretch; text-align: center; }
             .btn-action { width: 100%; }
             .form-grid { grid-template-columns: 1fr; }
             .form-group.full-width { grid-column: span 1; }
-            .modal-slider-box { height: 60vh; }
         }
 
         @media (max-width: 480px) {
@@ -996,15 +877,6 @@
         </div>
     </main>
 
-    <div class="image-modal" id="imageModal">
-        <button class="modal-close-btn" id="closeModal">✕</button>
-        <div class="modal-slider-box">
-            <button class="modal-nav-btn prev" onclick="moveModalSlide(-1)">&#10094;</button>
-            <div class="modal-img-track" id="modalImgTrack"></div>
-            <button class="modal-nav-btn next" onclick="moveModalSlide(1)">&#10095;</button>
-        </div>
-    </div>
-
     <footer>
         LOGÍSTICA NOVA &copy; 2026 — Envíos e Importaciones Directas. Todos los derechos reservados.
     </footer>
@@ -1023,453 +895,370 @@
             TRANSFER_DISCOUNT: 0.15
         };
 
+        // El catálogo completo manejado en formato JSON con Títulos, Descripciones y Fotos (URLs de ejemplo)
         const PRODUCTS = [
             {
                 id: 1,
                 category: "Electrodomésticos",
                 subcategory: "Lavarropas",
-                brand: "Marca A",
+                brand: "Drean",
                 gama: "media",
-                name: "Producto 1",
+                name: "Lavarropas Automático Drean Next 8.14 P",
                 oldPrice: 780000,
                 price: 650000,
-                description: "Descripción del producto 1 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Carga frontal de 8 kg, 1400 RPM, tecnología inteligente y eficiencia energética A++.",
+                images: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 2,
                 category: "Electrodomésticos",
                 subcategory: "Lavarropas",
-                brand: "Marca B",
+                brand: "Samsung",
                 gama: "alta",
-                name: "Producto 2",
+                name: "Lavarropas Samsung Inverter 9kg AddWash",
                 oldPrice: 1150000,
                 price: 999000,
-                description: "Descripción del producto 2 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Permite agregar prendas olvidadas durante el lavado. Motor Digital Inverter con garantía.",
+                images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&auto=format&fit=crop&q=60"],
                 badge: "DESTACADO"
             },
             {
                 id: 3,
                 category: "Electrodomésticos",
                 subcategory: "Secarropas",
-                brand: "Marca C",
+                brand: "Koh-i-noor",
                 gama: "baja",
-                name: "Producto 3",
+                name: "Secarropas Centrífugo Koh-i-noor Aika",
                 oldPrice: 140000,
                 price: 119000,
-                description: "Descripción del producto 3 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Capacidad de 6.5 kg, sistema de seguro en tapa y alta velocidad de centrifugado.",
+                images: ["https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=400&auto=format&fit=crop&q=60"],
                 badge: "NUEVO"
             },
             {
                 id: 4,
                 category: "Electrodomésticos",
                 subcategory: "Heladeras",
-                brand: "Marca D",
+                brand: "Gafa",
                 gama: "media",
-                name: "Producto 4",
+                name: "Heladera Cíclica Gafa HGF380 Black",
                 oldPrice: 720000,
                 price: 599000,
-                description: "Descripción del producto 4 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1571175354924-1188330777e4?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Capacidad de 340 litros, freezer independiente, anaqueles regulables y cajón de vegetales.",
+                images: ["https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 5,
                 category: "Electrodomésticos",
                 subcategory: "Cocinas",
-                brand: "Marca E",
+                brand: "Longvie",
                 gama: "alta",
-                name: "Producto 5",
+                name: "Cocina Multigas Longvie Acero Inoxidable",
                 oldPrice: 850000,
                 price: 749000,
-                description: "Descripción del producto 5 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Encendido electrónico total en hornallas y horno, válvula de seguridad y visor amplio.",
+                images: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=400&auto=format&fit=crop&q=60"],
                 badge: "ENVÍO GRATIS"
             },
             {
                 id: 6,
                 category: "TV y Audio",
                 subcategory: "Smart TV",
-                brand: "Marca F",
+                brand: "LG",
                 gama: "alta",
-                name: "Producto 6",
+                name: "Smart TV 55 Pulgadas LG 4K UHD ThinQ AI",
                 oldPrice: 950000,
                 price: 820000,
-                description: "Descripción del producto 6 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Procesador α5 Gen5 AI 4K, HDR10 Pro, webOS y control remoto Magic Remote incluido.",
+                images: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&auto=format&fit=crop&q=60"],
                 badge: "DESTACADO"
             },
             {
                 id: 7,
                 category: "TV y Audio",
                 subcategory: "Smart TV",
-                brand: "Marca G",
+                brand: "Noblex",
                 gama: "media",
-                name: "Producto 7",
+                name: "Smart TV 43 Pulgadas Full HD LED",
                 oldPrice: 430000,
                 price: 379000,
-                description: "Descripción del producto 7 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Acceso directo a Netflix, YouTube y aplicaciones de streaming con sonido Dolby Digital.",
+                images: ["https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 8,
                 category: "Celulares",
                 subcategory: "Smartphones",
-                brand: "Marca H",
+                brand: "Motorola",
                 gama: "media",
-                name: "Producto 8",
+                name: "Smartphone Motorola Moto G54 5G 256GB",
                 oldPrice: 550000,
                 price: 489000,
-                description: "Descripción del producto 8 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Cámara principal de 50 MP con estabilización óptica (OIS) y batería de 5000 mAh.",
+                images: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 9,
                 category: "Celulares",
                 subcategory: "Smartphones",
-                brand: "Marca I",
+                brand: "Xiaomi",
                 gama: "media",
-                name: "Producto 9",
+                name: "Xiaomi Redmi Note 13 128GB Midnight Black",
                 oldPrice: 480000,
                 price: 419000,
-                description: "Descripción del producto 9 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Pantalla AMOLED de 120Hz, carga rápida de 33W y procesador de alto rendimiento.",
+                images: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&auto=format&fit=crop&q=60"],
                 badge: "NUEVO"
             },
             {
                 id: 10,
                 category: "Tecnología",
                 subcategory: "Notebooks",
-                brand: "Marca J",
+                brand: "HP",
                 gama: "media",
-                name: "Producto 10",
+                name: "Notebook HP 15.6 Pulgadas Core i5 8GB 256GB SSD",
                 oldPrice: 890000,
                 price: 770000,
-                description: "Descripción del producto 10 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Diseño delgado y portátil, ideal para productividad y estudio con Windows 11 Home.",
+                images: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&auto=format&fit=crop&q=60"],
                 badge: "DESTACADO"
             },
             {
                 id: 11,
                 category: "Electrodomésticos",
                 subcategory: "Climatización",
-                brand: "Marca K",
+                brand: "Philco",
                 gama: "media",
-                name: "Producto 11",
+                name: "Aire Acondicionado Split Inverter Frío/Calor 3000 frigorías",
                 oldPrice: 920000,
                 price: 810000,
-                description: "Descripción del producto 11 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1615873968403-89e0676297c6?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Tecnología Inverter que ahorra hasta un 35% de energía, gas ecológico R410a.",
+                images: ["https://images.unsplash.com/photo-1631545725965-0c7f716c3176?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 12,
                 category: "Herramientas",
                 subcategory: "Herramientas Eléctricas",
-                brand: "Marca L",
+                brand: "Black+Decker",
                 gama: "baja",
-                name: "Producto 12",
+                name: "Taladro Atornillador Percutor Inalámbrico 18V",
                 oldPrice: 160000,
                 price: 135000,
-                description: "Descripción del producto 12 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Incluye batería de litio intercambiable, cargador rápido y maletín de transporte.",
+                images: ["https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&auto=format&fit=crop&q=60"],
                 badge: "NUEVO"
             },
             {
                 id: 13,
                 category: "Hogar",
                 subcategory: "Pequeños Electrodomésticos",
-                brand: "Marca M",
+                brand: "Oster",
                 gama: "media",
-                name: "Producto 13",
+                name: "Freidora de Aire Oster Digital 4 Litros",
                 oldPrice: 520000,
                 price: 459000,
-                description: "Descripción del producto 13 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1570222094114-d074f7e21b5e?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Cocina con hasta un 99% menos de aceite, panel táctil digital y temporizador programable.",
+                images: ["https://images.unsplash.com/photo-1556911073-381419af27e8?w=400&auto=format&fit=crop&q=60"],
                 badge: "DESTACADO"
             },
             {
                 id: 14,
                 category: "Hogar",
                 subcategory: "Pequeños Electrodomésticos",
-                brand: "Marca N",
+                brand: "Atma",
                 gama: "baja",
-                name: "Producto 14",
+                name: "Pava Eléctrica Digital Atma 1.7 Litros",
                 oldPrice: 220000,
                 price: 185000,
-                description: "Descripción del producto 14 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1585565918259-ec3e618794b1?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1556911261-6bd341186b2f?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Control de temperatura ajustable para diferentes tipos de infusiones y corte automático.",
+                images: ["https://images.unsplash.com/photo-1544253713-2d6a5413f282?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 15,
                 category: "Tecnología",
                 subcategory: "Gaming",
-                brand: "Marca O",
+                brand: "Asus",
                 gama: "alta",
-                name: "Producto 15",
+                name: "Notebook Gamer Asus TUF 15.6 RTX 3050",
                 oldPrice: 1450000,
                 price: 1290000,
-                description: "Descripción del producto 15 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Procesador Ryzen 7, gráficos dedicados NVIDIA GeForce RTX y pantalla de alta tasa de refresco.",
+                images: ["https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&auto=format&fit=crop&q=60"],
                 badge: "MÁS VENDIDO"
             },
             {
                 id: 16,
                 category: "Celulares",
                 subcategory: "Smartphones",
-                brand: "Marca P",
+                brand: "Apple",
                 gama: "alta",
-                name: "Producto 16",
+                name: "Smartphone Apple iPhone 14 128GB",
                 oldPrice: 1750000,
                 price: 1590000,
-                description: "Descripción del producto 16 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1533228876829-65c94e7b5025?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Sistema de doble cámara avanzado, modo cine en 4K Dolby Vision y batería de larga duración.",
+                images: ["https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=400&auto=format&fit=crop&q=60"],
                 badge: "PREMIUM"
             },
             {
                 id: 17,
                 category: "Muebles",
                 subcategory: "Living",
-                brand: "Marca Q",
+                brand: "Confort Plus",
                 gama: "media",
-                name: "Producto 17",
+                name: "Sillón 3 Cuerpos Tapizado Chenille Exclusivo",
                 oldPrice: 680000,
                 price: 580000,
-                description: "Descripción del producto 17 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Estructura de madera maciza saligna, almohadones de alta densidad y patas de madera.",
+                images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 18,
                 category: "Muebles",
                 subcategory: "Dormitorio",
-                brand: "Marca R",
+                brand: "Smooth",
                 gama: "alta",
-                name: "Producto 18",
+                name: "Sommier y Colchón 2 Plazas Resortes 140x190",
                 oldPrice: 990000,
                 price: 850000,
-                description: "Descripción del producto 18 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1540518614846-7ede433c4ef0?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Tecnología Euro Pillow Top, soporte de hasta 110 kg por lado y tratamiento antiácaros.",
+                images: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400&auto=format&fit=crop&q=60"],
                 badge: "ENVÍO GRATIS"
             },
             {
                 id: 19,
                 category: "TV y Audio",
                 subcategory: "Audio Portátil",
-                brand: "Marca S",
+                brand: "JBL",
                 gama: "media",
-                name: "Producto 19",
+                name: "Parlante Bluetooth JBL Charge 5 Waterproof",
                 oldPrice: 240000,
                 price: 205000,
-                description: "Descripción del producto 19 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Sonido potente JBL Pro Sound, batería de hasta 20 horas de reproducción y función Powerbank.",
+                images: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&auto=format&fit=crop&q=60"],
                 badge: "NUEVO"
             },
             {
                 id: 20,
                 category: "Herramientas",
                 subcategory: "Jardinería",
-                brand: "Marca T",
+                brand: "Karcher",
                 gama: "media",
-                name: "Producto 20",
+                name: "Hidrolavadora Alta Presión Kärcher K2 Compact",
                 oldPrice: 320000,
                 price: 275000,
-                description: "Descripción del producto 20 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1617581629397-a72507c3de9e?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Diseño compacto y liviano, perfecta para limpieza de patios, bicicletas y vehículos.",
+                images: ["https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 21,
                 category: "Moda y Calzado",
                 subcategory: "Deportes",
-                brand: "Marca U",
+                brand: "Adidas",
                 gama: "media",
-                name: "Producto 21",
+                name: "Zapatillas Urbanas Adidas Runfalcon 3.0 Hombre",
                 oldPrice: 210000,
                 price: 179000,
-                description: "Descripción del producto 21 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Mediasuela Cloudfoam para máxima amortiguación y pisada confortable durante todo el día.",
+                images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=60"],
                 badge: "DESTACADO"
             },
             {
                 id: 22,
                 category: "Moda y Calzado",
                 subcategory: "Deportes",
-                brand: "Marca V",
+                brand: "Nike",
                 gama: "media",
-                name: "Producto 22",
+                name: "Zapatillas Deportivas Nike Downshifter 12 Mujer",
                 oldPrice: 190000,
                 price: 159000,
-                description: "Descripción del producto 22 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1539185441755-769473a23570?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Sujeción estable en el mediopié y parte superior de malla ligera altamente respirable.",
+                images: ["https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 23,
                 category: "Tecnología",
                 subcategory: "Movilidad Urbana",
-                brand: "Marca W",
+                brand: "Xiaomi",
                 gama: "alta",
-                name: "Producto 23",
+                name: "Monopatín Eléctrico Xiaomi Electric Scooter Essential",
                 oldPrice: 750000,
                 price: 649000,
-                description: "Descripción del producto 23 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Velocidad máxima de 20 km/h, sistema de doble frenado y diseño plegable en 3 segundos.",
+                images: ["https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400&auto=format&fit=crop&q=60"],
                 badge: "NUEVO"
             },
             {
                 id: 24,
                 category: "Electrodomésticos",
                 subcategory: "Lavavajillas",
-                brand: "Marca X",
+                brand: "Whirlpool",
                 gama: "media",
-                name: "Producto 24",
+                name: "Lavavajillas Whirlpool 13 Cubiertos Acero",
                 oldPrice: 880000,
                 price: 760000,
-                description: "Descripción del producto 24 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Programas de lavado inteligente, bajo consumo de agua y cesto superior regulable en altura.",
+                images: ["https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&auto=format&fit=crop&q=60"],
                 badge: "DESTACADO"
             },
             {
                 id: 25,
                 category: "Electrodomésticos",
                 subcategory: "Microondas",
-                brand: "Marca Y",
+                brand: "BcrollView",
                 gama: "baja",
-                name: "Producto 25",
+                name: "Microondas Digital 20 Litros con Grill",
                 oldPrice: 210000,
                 price: 179000,
-                description: "Descripción del producto 25 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1585565918259-ec3e618794b1?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Función de descongelamiento por peso y tiempo, traba de seguridad para niños.",
+                images: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             },
             {
                 id: 26,
                 category: "Celulares",
                 subcategory: "Smartphones",
-                brand: "Marca Z",
+                brand: "Samsung",
                 gama: "media",
-                name: "Producto 26",
+                name: "Smartphone Samsung Galaxy A15 128GB",
                 oldPrice: 460000,
                 price: 399000,
-                description: "Descripción del producto 26 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1530319067432-f2a729c03db5?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Pantalla Super AMOLED de 6.5 pulgadas y triple cámara trasera de alta definición.",
+                images: ["https://images.unsplash.com/photo-1537589376225-5405c60a5bd8?w=400&auto=format&fit=crop&q=60"],
                 badge: "NUEVO"
             },
             {
                 id: 27,
                 category: "Tecnología",
                 subcategory: "Audio",
-                brand: "Marca AA",
+                brand: "Sony",
                 gama: "alta",
-                name: "Producto 27",
+                name: "Auriculares Inalámbricos Sony WH-1000XM4 Canción de Ruido",
                 oldPrice: 790000,
                 price: 689000,
-                description: "Descripción del producto 27 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Cancelación de ruido líder en la industria, audio de alta resolución y 30 horas de batería.",
+                images: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=60"],
                 badge: "PREMIUM"
             },
             {
                 id: 28,
                 category: "Hogar",
                 subcategory: "Limpieza",
-                brand: "Marca AB",
+                brand: "Atma",
                 gama: "media",
-                name: "Producto 28",
+                name: "Aspiradora Robot Inteligente Atma",
                 oldPrice: 280000,
                 price: 239000,
-                description: "Descripción del producto 28 para rellenar características principales.",
-                images: [
-                    "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60",
-                    "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=500&auto=format&fit=crop&q=60"
-                ],
+                description: "Limpieza automatizada con sensores anti-caída, mopa integrada y base de carga autónoma.",
+                images: ["https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&auto=format&fit=crop&q=60"],
                 badge: "OFERTA"
             }
         ];
@@ -1479,9 +1268,6 @@
         let currentGamaFilter = "ALL";
         let currentSortOrder = "default";
         let currentOrderData = null;
-        let slideIndexes = {};
-        let currentModalImages = [];
-        let currentModalIndex = 0;
         let currentPage = 1;
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -1524,49 +1310,33 @@
             const paginatedItems = filtered.slice(startIndex, startIndex + CONFIG.ITEMS_PER_PAGE);
 
             container.innerHTML = paginatedItems.map(p => {
-                if (!(p.id in slideIndexes)) slideIndexes[p.id] = 0;
-                
-                const imgsHtml = p.images.map((img, idx) => 
-                    `<img src="${img}" alt="${p.name}" class="product-img" referrerpolicy="no-referrer" onclick="openFullscreenModal(${p.id}, ${idx})">`
-                ).join("");
-
-                const dotsHtml = p.images.length > 1 ? p.images.map((_, idx) => 
-                    `<span class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setProductSlide(${p.id}, ${idx})"></span>`
-                ).join("") : "";
-
-                const navBtnsHtml = p.images.length > 1 ? `
-                    <button class="slider-btn prev" onclick="moveProductSlide(${p.id}, -1)">&#10094;</button>
-                    <button class="slider-btn next" onclick="moveProductSlide(${p.id}, 1)">&#10095;</button>
-                ` : "";
-
                 let gamaLabel = "Gama Media";
                 if (p.gama === "baja") gamaLabel = "Gama Baja";
                 if (p.gama === "alta") gamaLabel = "Gama Alta";
 
                 const oldPriceHtml = p.oldPrice ? `<span class="old-price">$${p.oldPrice.toLocaleString("es-AR")}</span>` : "";
+                const imageUrl = (p.images && p.images.length > 0) ? p.images[0] : "https://via.placeholder.com/200";
 
                 return `
                     <div class="product-card">
                         <span class="product-badge">${p.badge || p.category}</span>
                         <span class="gama-badge ${p.gama}">${gamaLabel}</span>
-                        <div class="product-slider-container">
-                            ${navBtnsHtml}
-                            <div class="product-slider-track" id="track-${p.id}">
-                                ${imgsHtml}
-                            </div>
-                            <div class="slider-dots" id="dots-${p.id}">
-                                ${dotsHtml}
-                            </div>
+                        
+                        <div class="product-image-container">
+                            <img src="${imageUrl}" alt="${p.name}" loading="lazy">
                         </div>
+
                         <div>
-                            <div class="product-cat-tag">${p.category} — ${p.brand}</div>
-                            <div class="product-title" title="${p.name}">${p.name}</div>
-                            <div class="product-description">${p.description}</div>
+                            <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.2rem;">${p.category} — ${p.brand}</div>
+                            <h3 class="product-title">${p.name}</h3>
+                            <p class="product-description">${p.description}</p>
+                            
                             <div class="product-price-box">
                                 ${oldPriceHtml}
                                 <span class="product-price">$${p.price.toLocaleString("es-AR")}</span>
                             </div>
                         </div>
+
                         <div class="product-actions">
                             <button type="button" class="qty-btn" onclick="changeQty(${p.id}, -1)">-</button>
                             <span class="qty-val" id="qty-${p.id}">${cart[p.id] || 0}</span>
@@ -1599,60 +1369,6 @@
             renderCatalog();
             window.scrollTo({ top: 300, behavior: 'smooth' });
         };
-
-        window.moveProductSlide = (id, direction) => {
-            const product = PRODUCTS.find(p => p.id === id);
-            if (!product) return;
-            let idx = slideIndexes[id] + direction;
-            if (idx < 0) idx = product.images.length - 1;
-            if (idx >= product.images.length) idx = 0;
-            setProductSlide(id, idx);
-        };
-
-        window.setProductSlide = (id, index) => {
-            slideIndexes[id] = index;
-            const track = document.getElementById(`track-${id}`);
-            const dots = document.getElementById(`dots-${id}`);
-            if (track) track.style.transform = `translateX(-${index * 100}%)`;
-            if (dots) {
-                Array.from(dots.children).forEach((dot, i) => {
-                    dot.classList.toggle("active", i === index);
-                });
-            }
-        };
-
-        window.openFullscreenModal = (id, initialIndex = 0) => {
-            const product = PRODUCTS.find(p => p.id === id);
-            if (!product) return;
-            currentModalImages = product.images;
-            currentModalIndex = initialIndex;
-
-            const modalTrack = document.getElementById("modalImgTrack");
-            modalTrack.innerHTML = currentModalImages.map(img => 
-                `<img src="${img}" class="modal-img" referrerpolicy="no-referrer">`
-            ).join("");
-
-            updateModalSlide();
-            document.getElementById("imageModal").classList.add("active");
-            document.body.style.overflow = "hidden";
-        };
-
-        window.moveModalSlide = (dir) => {
-            currentModalIndex += dir;
-            if (currentModalIndex < 0) currentModalIndex = currentModalImages.length - 1;
-            if (currentModalIndex >= currentModalImages.length) currentModalIndex = 0;
-            updateModalSlide();
-        };
-
-        function updateModalSlide() {
-            const modalTrack = document.getElementById("modalImgTrack");
-            if (modalTrack) modalTrack.style.transform = `translateX(-${currentModalIndex * 100}%)`;
-        }
-
-        function closeModalWindow() {
-            document.getElementById("imageModal").classList.remove("active");
-            document.body.style.overflow = "auto";
-        }
 
         window.filterCategory = (cat) => {
             currentCategoryFilter = cat;
@@ -1709,7 +1425,6 @@
                         count += qty;
                         html += `
                             <div class="cart-item-row">
-                                <img src="${p.images[0]}" class="cart-item-img">
                                 <div style="flex-grow:1;">
                                     <div style="font-size:0.8rem; font-weight:700;">${p.name}</div>
                                     <div style="font-size:0.75rem; color:var(--text-muted);">$${p.price.toLocaleString("es-AR")} c/u</div>
@@ -1859,7 +1574,6 @@
             });
 
             document.getElementById("btnRestart").addEventListener("click", () => location.reload());
-            document.getElementById("closeModal").addEventListener("click", closeModalWindow);
         }
 
         function switchView(viewId, step) {
@@ -1909,8 +1623,7 @@
                         productosSeleccionados.push({
                             nombre: product.name,
                             cantidad: qty,
-                            precio: product.price,
-                            foto: product.images[0]
+                            precio: product.price
                         });
                     }
                 }
@@ -1961,8 +1674,8 @@
 
         function enviarWhatsAppDinamico(datosOrden, numeroTelefono) {
             let detalleProductos = datosOrden.productos.map(p => 
-                `• ${p.cantidad}x ${p.nombre}\n  🖼️ Foto: ${p.foto}`
-            ).join('\n\n');
+                `• ${p.cantidad}x ${p.nombre}`
+            ).join('\n');
 
             const mensaje = `*NUEVA ORDEN DE COMPRA Y ENVÍO*
 *LOGÍSTICA NOVA*
