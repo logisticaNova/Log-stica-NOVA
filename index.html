@@ -1009,6 +1009,9 @@
         LOGÍSTICA NOVA &copy; 2026 — Envíos e Importaciones Directas. Todos los derechos reservados.
     </footer>
 
+    <!-- Cargamos el archivo con la variable global "productos" -->
+    <script src="productos.js"></script>
+
     <script>
         const CONFIG = {
             TARGET_WHATSAPP: "5491155012447",
@@ -1035,21 +1038,24 @@
         let currentPage = 1;
 
         document.addEventListener("DOMContentLoaded", () => {
-            loadProductsFromJson();
+            initApp();
             setupEvents();
         });
 
-        async function loadProductsFromJson() {
+        function initApp() {
             try {
-                const response = await fetch('./productos.json');
-                if (!response.ok) throw new Error('No se pudo cargar productos.json');
-                PRODUCTS = await response.json();
-                renderCatalog();
+                // Aquí usamos directamente la variable global "productos" proveniente de productos.js
+                if (typeof productos !== 'undefined' && Array.isArray(productos)) {
+                    PRODUCTS = productos;
+                    renderCatalog();
+                } else {
+                    throw new Error('La variable "productos" no está definida o no es un arreglo.');
+                }
             } catch (error) {
-                console.error("Error cargando el JSON:", error);
+                console.error("Error al inicializar productos:", error);
                 document.getElementById("catalogContainer").innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #dc2626;">
-                        <strong>Error:</strong> No se pudo cargar el archivo <code>productos.json</code>. Asegúrate de que el archivo esté en la misma carpeta que este HTML.
+                        <strong>Error:</strong> No se pudo leer la variable <code>productos</code> desde <code>productos.js</code>. Asegúrate de que el archivo exista y esté estructurado correctamente.
                     </div>
                 `;
             }
