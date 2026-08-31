@@ -997,7 +997,6 @@
     </footer>
 
     <script>
-        // Array de productos actualizado e integrado con precios estimativos de mercado en ARS y soporte de imágenes predeterminadas
         const productos = [
           {
             "id": 1,
@@ -1716,7 +1715,6 @@
         function initApp() {
             try {
                 if (typeof productos !== 'undefined' && Array.isArray(productos)) {
-                    // Mapeamos los campos nuevos (precioOferta / precio) para que el sistema funcione perfectamente
                     PRODUCTS = productos.map(p => ({
                         ...p,
                         precio: p.precioOferta > 0 ? p.precioOferta : (p.precio > 0 ? p.precio : 450000),
@@ -2241,4 +2239,3 @@ Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
     </script>
 </body>
 </html>
-
