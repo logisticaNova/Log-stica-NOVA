@@ -731,14 +731,13 @@
             <div class="header-search">
                 <select id="searchCategory">
                     <option value="ALL">Categorías</option>
-                    <option value="Electrodomésticos">Electrodomésticos</option>
-                    <option value="Tecnología">Tecnología</option>
+                    <option value="Televisores">Televisores</option>
                     <option value="Celulares">Celulares</option>
-                    <option value="TV y Audio">TV y Audio</option>
-                    <option value="Hogar">Hogar</option>
-                    <option value="Muebles">Muebles</option>
-                    <option value="Herramientas">Herramientas</option>
-                    <option value="Moda y Calzado">Moda y Calzado</option>
+                    <option value="Lavarropas">Lavarropas</option>
+                    <option value="Heladeras">Heladeras</option>
+                    <option value="Cocinas">Cocinas</option>
+                    <option value="Aires acondicionados">Aires acondicionados</option>
+                    <option value="Pequeños electrodomésticos">Pequeños electrodomésticos</option>
                 </select>
                 <input type="text" id="searchInput" placeholder="Buscar por producto, marca o modelo...">
                 <button type="button" id="btnSearchCatalog">
@@ -760,14 +759,13 @@
         <nav class="nav-categories">
             <div class="nav-container">
                 <span class="nav-item active" onclick="filterCategory('ALL')">Ver Todo</span>
-                <span class="nav-item" onclick="filterCategory('Electrodomésticos')">Electrodomésticos</span>
-                <span class="nav-item" onclick="filterCategory('Tecnología')">Tecnología</span>
+                <span class="nav-item" onclick="filterCategory('Televisores')">Televisores</span>
                 <span class="nav-item" onclick="filterCategory('Celulares')">Celulares</span>
-                <span class="nav-item" onclick="filterCategory('TV y Audio')">TV y Audio</span>
-                <span class="nav-item" onclick="filterCategory('Hogar')">Hogar</span>
-                <span class="nav-item" onclick="filterCategory('Muebles')">Muebles</span>
-                <span class="nav-item" onclick="filterCategory('Herramientas')">Herramientas</span>
-                <span class="nav-item" onclick="filterCategory('Moda y Calzado')">Moda y Calzado</span>
+                <span class="nav-item" onclick="filterCategory('Lavarropas')">Lavarropas</span>
+                <span class="nav-item" onclick="filterCategory('Heladeras')">Heladeras</span>
+                <span class="nav-item" onclick="filterCategory('Cocinas')">Cocinas</span>
+                <span class="nav-item" onclick="filterCategory('Aires acondicionados')">Aires acondicionados</span>
+                <span class="nav-item" onclick="filterCategory('Pequeños electrodomésticos')">Pequeños electrodomésticos</span>
             </div>
         </nav>
     </header>
@@ -820,15 +818,6 @@
                     <span style="font-size:0.85rem; font-weight:700;" id="catalogCounterText">Cargando productos...</span>
                     
                     <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-                        <div style="display:flex; align-items:center; gap:6px;">
-                            <label for="gamaSelect" style="margin:0; font-size:0.8rem;">Gama:</label>
-                            <select id="gamaSelect" style="width:auto; padding:0.3rem 0.6rem;">
-                                <option value="ALL">Todas las Gamas</option>
-                                <option value="baja">Gama Baja</option>
-                                <option value="media">Gama Media</option>
-                                <option value="alta">Gama Alta</option>
-                            </select>
-                        </div>
                         <div style="display:flex; align-items:center; gap:6px;">
                             <label for="sortSelect" style="margin:0; font-size:0.8rem;">Ordenar por:</label>
                             <select id="sortSelect" style="width:auto; padding:0.3rem 0.6rem;">
@@ -1009,10 +998,191 @@
         LOGÍSTICA NOVA &copy; 2026 — Envíos e Importaciones Directas. Todos los derechos reservados.
     </footer>
 
-    <!-- Archivo externo con la variable global "productos" -->
-    <script src="productos.js"></script>
-
     <script>
+        // Array de productos integrado directamente sin modificar ningún artículo
+        const productos = [
+          {
+            "id": 1,
+            "sku": "TV-TCL-55C655",
+            "ean": "",
+            "marca": "TCL",
+            "modelo": "55C655",
+            "nombre": "Smart TV TCL 55 C655 QLED 4K",
+            "categoria": "Televisores",
+            "subcategoria": "Smart TV",
+            "descripcion": "Televisor QLED 4K con Google TV y Dolby Vision Atmos.",
+            "especificaciones": { "pulgadas": 55, "resolucion": "4K UHD", "tecnologia": "QLED", "sistemaOperativo": "Google TV" },
+            "precio": 650000,
+            "oldPrice": 750000,
+            "gama": "media",
+            "badge": "Ofertón",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/ff6b00/ffffff?text=TCL+55"]
+          },
+          {
+            "id": 2,
+            "sku": "TV-TCL-65C755",
+            "ean": "",
+            "marca": "TCL",
+            "modelo": "65C755",
+            "nombre": "Smart TV TCL 65 C755 QD-Mini LED 4K",
+            "categoria": "Televisores",
+            "subcategoria": "Smart TV",
+            "descripcion": "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento.",
+            "especificaciones": { "pulgadas": 65, "resolucion": "4K UHD", "tecnologia": "QD-Mini LED", "sistemaOperativo": "Google TV" },
+            "precio": 980000,
+            "oldPrice": 1100000,
+            "gama": "alta",
+            "badge": "Destacado",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/0284c7/ffffff?text=TCL+65"]
+          },
+          {
+            "id": 3,
+            "sku": "TV-TCL-50P755",
+            "ean": "",
+            "marca": "TCL",
+            "modelo": "50P755",
+            "nombre": "Smart TV TCL 50 P755 4K UHD",
+            "categoria": "Televisores",
+            "subcategoria": "Smart TV",
+            "descripcion": "Smart TV 4K UHD con diseño delgado y tecnología HDR.",
+            "especificaciones": { "pulgadas": 50, "resolucion": "4K UHD", "tecnologia": "LED", "sistemaOperativo": "Google TV" },
+            "precio": 520000,
+            "oldPrice": 590000,
+            "gama": "baja",
+            "badge": "Promo",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/16a34a/ffffff?text=TCL+50"]
+          },
+          {
+            "id": 4,
+            "sku": "TV-SAM-QN55S90C",
+            "ean": "",
+            "marca": "Samsung",
+            "modelo": "QN55S90C",
+            "nombre": "Smart TV Samsung 55 OLED 4K S90C",
+            "categoria": "Televisores",
+            "subcategoria": "Smart TV",
+            "descripcion": "Televisor OLED 4K con procesador avanzado y excelente contraste.",
+            "especificaciones": { "pulgadas": 55, "resolucion": "4K UHD", "tecnologia": "OLED", "sistemaOperativo": "Tizen" },
+            "precio": 1250000,
+            "oldPrice": 1400000,
+            "gama": "alta",
+            "badge": "Premium",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/334155/ffffff?text=Samsung+OLED"]
+          },
+          {
+            "id": 5,
+            "sku": "CEL-SAM-S24ULTRA",
+            "ean": "",
+            "marca": "Samsung",
+            "modelo": "Galaxy S24 Ultra",
+            "nombre": "Celular Samsung Galaxy S24 Ultra 5G 256GB",
+            "categoria": "Celulares",
+            "subcategoria": "Smartphones",
+            "descripcion": "Smartphone premium con Galaxy AI, cámara de 200 MP y almacenamiento de 256GB.",
+            "especificaciones": { "pantalla": "6.8 pulgadas AMOLED", "memoriaRAM": "12GB", "almacenamiento": "256GB", "camaraPrincipal": "200 MP" },
+            "precio": 1650000,
+            "oldPrice": 1850000,
+            "gama": "alta",
+            "badge": "Top Ventas",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/ff6b00/ffffff?text=S24+Ultra"]
+          },
+          {
+            "id": 6,
+            "sku": "CEL-XIA-NOTE13PRO",
+            "ean": "",
+            "marca": "Xiaomi",
+            "modelo": "Redmi Note 13 Pro",
+            "nombre": "Celular Xiaomi Redmi Note 13 Pro 256GB",
+            "categoria": "Celulares",
+            "subcategoria": "Smartphones",
+            "descripcion": "Smartphone con cámara de 200 MP, pantalla AMOLED y carga rápida.",
+            "especificaciones": { "pantalla": "6.67 pulgadas AMOLED", "memoriaRAM": "8GB", "almacenamiento": "256GB", "camaraPrincipal": "200 MP" },
+            "precio": 480000,
+            "oldPrice": 550000,
+            "gama": "media",
+            "badge": "Oferta",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/0284c7/ffffff?text=Redmi+Note+13"]
+          },
+          {
+            "id": 7,
+            "sku": "LAV-WHIRL-WNQ65A",
+            "ean": "",
+            "marca": "Whirlpool",
+            "modelo": "WNQ65A",
+            "nombre": "Lavarropas Automático Whirlpool 6.5 Kg",
+            "categoria": "Lavarropas",
+            "subcategoria": "Carga Frontal",
+            "descripcion": "Lavarropas automático con múltiples programas de lavado.",
+            "especificaciones": { "capacidad": "6.5 kg", "tipoCarga": "Frontal", "velocidadCentrifugado": "1000 RPM" },
+            "precio": 610000,
+            "oldPrice": 690000,
+            "gama": "media",
+            "badge": "Hogar",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/16a34a/ffffff?text=Lavarropas+6.5"]
+          },
+          {
+            "id": 8,
+            "sku": "HEL-PHIL-PHMD350",
+            "ean": "",
+            "marca": "Philco",
+            "modelo": "PHMD350",
+            "nombre": "Heladera Cíclica Philco 270L Blanca",
+            "categoria": "Heladeras",
+            "subcategoria": "Con Freezer",
+            "descripcion": "Heladera con freezer, estantes ajustables y bajo consumo.",
+            "especificaciones": { "capacidadTotal": "270 Litros", "sistemaFrio": "Cíclico", "eficienciaEnergetica": "A" },
+            "precio": 580000,
+            "oldPrice": 640000,
+            "gama": "baja",
+            "badge": "Económico",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/334155/ffffff?text=Heladera+Philco"]
+          },
+          {
+            "id": 9,
+            "sku": "COC-PAT-5000",
+            "ean": "",
+            "marca": "Patrick",
+            "modelo": "PCC5000",
+            "nombre": "Cocina a Gas Patrick Multigas 50cm",
+            "categoria": "Cocinas",
+            "subcategoria": "A Gas",
+            "descripcion": "Cocina convencional de 4 hornallas con horno y válvula de seguridad.",
+            "especificaciones": { "hornallas": 4, "tipoGas": "Multigas", "valvulaSeguridad": "Sí" },
+            "precio": 340000,
+            "oldPrice": 390000,
+            "gama": "baja",
+            "badge": "Promo",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/ff6b00/ffffff?text=Cocina+Patrick"]
+          },
+          {
+            "id": 10,
+            "sku": "AC-HIS-3200",
+            "ean": "",
+            "marca": "Hisense",
+            "modelo": "AS-12UW4",
+            "nombre": "Aire Acondicionado Split Inverter Hisense 3200W F/C",
+            "categoria": "Aires acondicionados",
+            "subcategoria": "Split Inverter",
+            "descripcion": "Aire acondicionado Inverter frío/calor para climatización eficiente.",
+            "especificaciones": { "frigorias": "2750", "potenciaW": "3200", "tipoClima": "Frío/Calor", "tecnologia": "Inverter" },
+            "precio": 720000,
+            "oldPrice": 810000,
+            "gama": "media",
+            "badge": "Inverter",
+            "stock": true,
+            "images": ["https://via.placeholder.com/300/0284c7/ffffff?text=Aire+Hisense"]
+          }
+        ];
+
         const CONFIG = {
             TARGET_WHATSAPP: "5491155012447",
             FREE_SHIPPING_THRESHOLD: 800000,
@@ -1029,7 +1199,6 @@
         let PRODUCTS = [];
         const cart = {};
         let currentCategoryFilter = "ALL";
-        let currentGamaFilter = "ALL";
         let currentSortOrder = "default";
         let currentOrderData = null;
         let slideIndexes = {};
@@ -1048,13 +1217,13 @@
                     PRODUCTS = productos;
                     renderCatalog();
                 } else {
-                    throw new Error('La variable "productos" no está definida o no es un arreglo en productos.js.');
+                    throw new Error('La variable "productos" no está definida.');
                 }
             } catch (error) {
                 console.error("Error al inicializar productos:", error);
                 document.getElementById("catalogContainer").innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #dc2626;">
-                        <strong>Error de carga:</strong> No se pudo leer la variable <code>productos</code> desde <code>productos.js</code>. Verifica que el archivo exista en la misma carpeta y no tenga errores de sintaxis.
+                        <strong>Error de carga:</strong> No se pudo leer la variable <code>productos</code>.
                     </div>
                 `;
             }
@@ -1067,17 +1236,16 @@
             const selectCategoryVal = document.getElementById("searchCategory").value;
 
             let filtered = PRODUCTS.filter(p => {
-                const navMatch = currentCategoryFilter === "ALL" || p.category === currentCategoryFilter;
-                const selectMatch = selectCategoryVal === "ALL" || p.category === selectCategoryVal;
-                const gamaMatch = currentGamaFilter === "ALL" || p.gama === currentGamaFilter;
-                const matchSearch = p.name.toLowerCase().includes(searchVal) || (p.description && p.description.toLowerCase().includes(searchVal)) || p.brand.toLowerCase().includes(searchVal);
-                return navMatch && selectMatch && gamaMatch && matchSearch;
+                const navMatch = currentCategoryFilter === "ALL" || p.categoria === currentCategoryFilter;
+                const selectMatch = selectCategoryVal === "ALL" || p.categoria === selectCategoryVal;
+                const matchSearch = p.nombre.toLowerCase().includes(searchVal) || (p.descripcion && p.descripcion.toLowerCase().includes(searchVal)) || p.marca.toLowerCase().includes(searchVal);
+                return navMatch && selectMatch && matchSearch;
             });
 
             if (currentSortOrder === "price-asc") {
-                filtered.sort((a, b) => a.price - b.price);
+                filtered.sort((a, b) => a.precio - b.precio);
             } else if (currentSortOrder === "price-desc") {
-                filtered.sort((a, b) => b.price - a.price);
+                filtered.sort((a, b) => b.precio - a.precio);
             }
 
             document.getElementById("catalogCounterText").innerText = `Mostrando ${filtered.length} productos`;
@@ -1097,10 +1265,10 @@
             container.innerHTML = paginatedItems.map(p => {
                 if (!(p.id in slideIndexes)) slideIndexes[p.id] = 0;
                 
-                const imgList = p.images && p.images.length > 0 ? p.images : (p.image ? [p.image] : ["https://via.placeholder.com/300"]);
+                const imgList = p.imagenes && p.imagenes.length > 0 ? p.imagenes : ["https://via.placeholder.com/300/ff6b00/ffffff?text=Producto"];
 
                 const imgsHtml = imgList.map((img, idx) => 
-                    `<img src="${img}" alt="${p.name}" class="product-img" referrerpolicy="no-referrer" onclick="openFullscreenModal(${p.id}, ${idx})">`
+                    `<img src="${img}" alt="${p.nombre}" class="product-img" referrerpolicy="no-referrer" onclick="openFullscreenModal(${p.id}, ${idx})">`
                 ).join("");
 
                 const dotsHtml = imgList.length > 1 ? imgList.map((_, idx) => 
@@ -1120,8 +1288,8 @@
 
                 return `
                     <div class="product-card">
-                        <span class="product-badge">${p.badge || p.category}</span>
-                        <span class="gama-badge ${p.gama}">${gamaLabel}</span>
+                        <span class="product-badge">${p.badge || p.categoria}</span>
+                        <span class="gama-badge ${p.gama || 'media'}">${gamaLabel}</span>
                         <div class="product-slider-container">
                             ${navBtnsHtml}
                             <div class="product-slider-track" id="track-${p.id}">
@@ -1132,12 +1300,12 @@
                             </div>
                         </div>
                         <div>
-                            <div class="product-cat-tag">${p.category} — ${p.brand}</div>
-                            <div class="product-title" title="${p.name}">${p.name}</div>
-                            <div class="product-description">${p.description}</div>
+                            <div class="product-cat-tag">${p.categoria} — ${p.marca}</div>
+                            <div class="product-title" title="${p.nombre}">${p.nombre}</div>
+                            <div class="product-description">${p.descripcion}</div>
                             <div class="product-price-box">
                                 ${oldPriceHtml}
-                                <span class="product-price">$${p.price.toLocaleString("es-AR")}</span>
+                                <span class="product-price">$${p.precio.toLocaleString("es-AR")}</span>
                             </div>
                         </div>
                         <div class="product-actions">
@@ -1176,7 +1344,7 @@
         window.moveProductSlide = (id, direction) => {
             const product = PRODUCTS.find(p => p.id === id);
             if (!product) return;
-            const imgList = product.images && product.images.length > 0 ? product.images : [product.image];
+            const imgList = product.imagenes && product.imagenes.length > 0 ? product.imagenes : ["https://via.placeholder.com/300"];
             let idx = slideIndexes[id] + direction;
             if (idx < 0) idx = imgList.length - 1;
             if (idx >= imgList.length) idx = 0;
@@ -1198,7 +1366,7 @@
         window.openFullscreenModal = (id, initialIndex = 0) => {
             const product = PRODUCTS.find(p => p.id === id);
             if (!product) return;
-            currentModalImages = product.images && product.images.length > 0 ? product.images : [product.image];
+            currentModalImages = product.imagenes && product.imagenes.length > 0 ? product.imagenes : ["https://via.placeholder.com/300"];
             currentModalIndex = initialIndex;
 
             const modalTrack = document.getElementById("modalImgTrack");
@@ -1257,7 +1425,7 @@
                 if (qty > 0) {
                     const product = PRODUCTS.find(p => p.id === parseInt(id));
                     if (product) {
-                        total += product.price * qty;
+                        total += product.precio * qty;
                         count += qty;
                     }
                 }
@@ -1281,13 +1449,13 @@
                     const p = PRODUCTS.find(prod => prod.id === parseInt(id));
                     if (p) {
                         count += qty;
-                        const img = p.images && p.images.length > 0 ? p.images[0] : p.image;
+                        const img = p.imagenes && p.imagenes.length > 0 ? p.imagenes[0] : "https://via.placeholder.com/300";
                         html += `
                             <div class="cart-item-row">
                                 <img src="${img}" class="cart-item-img">
                                 <div style="flex-grow:1;">
-                                    <div style="font-size:0.8rem; font-weight:700;">${p.name}</div>
-                                    <div style="font-size:0.75rem; color:var(--text-muted);">$${p.price.toLocaleString("es-AR")} c/u</div>
+                                    <div style="font-size:0.8rem; font-weight:700;">${p.nombre}</div>
+                                    <div style="font-size:0.75rem; color:var(--text-muted);">$${p.precio.toLocaleString("es-AR")} c/u</div>
                                 </div>
                                 <div style="display:flex; align-items:center; gap:4px;">
                                     <button class="qty-btn" onclick="changeQty(${p.id}, -1)">-</button>
@@ -1313,7 +1481,7 @@
                 const qty = cart[id];
                 if (qty > 0) {
                     const p = PRODUCTS.find(prod => prod.id === parseInt(id));
-                    if (p) subtotalProds += p.price * qty;
+                    if (p) subtotalProds += p.precio * qty;
                 }
             });
 
@@ -1366,12 +1534,6 @@
             document.getElementById("searchInput").addEventListener("input", () => { currentPage = 1; renderCatalog(); });
             document.getElementById("searchCategory").addEventListener("change", () => { currentPage = 1; renderCatalog(); });
             document.getElementById("btnSearchCatalog").addEventListener("click", () => { currentPage = 1; renderCatalog(); });
-
-            document.getElementById("gamaSelect").addEventListener("change", (e) => {
-                currentGamaFilter = e.target.value;
-                currentPage = 1;
-                renderCatalog();
-            });
 
             document.getElementById("sortSelect").addEventListener("change", (e) => {
                 currentSortOrder = e.target.value;
@@ -1471,21 +1633,21 @@
                 if (qty > 0) {
                     const product = PRODUCTS.find(p => p.id === parseInt(id));
                     if (product) {
-                        const lineTotal = product.price * qty;
+                        const lineTotal = product.precio * qty;
                         prodSubtotal += lineTotal;
 
                         itemsHtml += `
                             <div style="display:flex; justify-content:space-between; font-size:0.8rem; padding:0.3rem 0; border-bottom:1px dashed #e2e8f0;">
-                                <span>${qty}x ${product.name}</span>
+                                <span>${qty}x ${product.nombre}</span>
                                 <strong>$${lineTotal.toLocaleString("es-AR")}</strong>
                             </div>
                         `;
 
-                        const foto = product.images && product.images.length > 0 ? product.images[0] : product.image;
+                        const foto = product.imagenes && product.imagenes.length > 0 ? product.imagenes[0] : "https://via.placeholder.com/300";
                         productosSeleccionados.push({
-                            nombre: product.name,
+                            nombre: product.nombre,
                             cantidad: qty,
-                            precio: product.price,
+                            precio: product.precio,
                             foto: foto
                         });
                     }
@@ -1569,3 +1731,5 @@ Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
     </script>
 </body>
 </html>
+
+
