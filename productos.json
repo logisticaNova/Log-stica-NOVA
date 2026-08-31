@@ -1,0 +1,422 @@
+[
+  {
+    "id": 1,
+    "category": "Electrodomésticos",
+    "subcategory": "Lavarropas",
+    "brand": "Codini",
+    "gama": "media",
+    "name": "Lavarropas Automático Codini EWT07",
+    "oldPrice": 780000,
+    "price": 650000,
+    "description": "Lavarropas automático de carga superior, ideal para el uso diario y con programas prácticos de lavado.",
+    "images": [
+      "https://placehold.co/600x600?text=Lavarropas+Codini+EWT07"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 2,
+    "category": "Electrodomésticos",
+    "subcategory": "Lavarropas",
+    "brand": "Drean",
+    "gama": "alta",
+    "name": "Lavarropas Drean Next 8.14 ECO",
+    "oldPrice": 1150000,
+    "price": 999000,
+    "description": "Lavarropas automático de gran capacidad, diseñado para familias y uso frecuente.",
+    "images": [
+      "https://placehold.co/600x600?text=Lavarropas+Drean+Next+8.14"
+    ],
+    "badge": "DESTACADO"
+  },
+  {
+    "id": 3,
+    "category": "Electrodomésticos",
+    "subcategory": "Secarropas",
+    "brand": "Codini",
+    "gama": "baja",
+    "name": "Secarropas Centrífugo Codini 5,2 kg",
+    "oldPrice": 140000,
+    "price": 119000,
+    "description": "Secarropas centrífugo compacto, práctico y de rápida utilización para el hogar.",
+    "images": [
+      "https://placehold.co/600x600?text=Secarropas+Codini+5.2kg"
+    ],
+    "badge": "NUEVO"
+  },
+  {
+    "id": 4,
+    "category": "Electrodomésticos",
+    "subcategory": "Heladeras",
+    "brand": "Patrick",
+    "gama": "media",
+    "name": "Heladera con Freezer Patrick HPK151",
+    "oldPrice": 720000,
+    "price": 599000,
+    "description": "Heladera con freezer independiente y espacio pensado para organizar los alimentos.",
+    "images": [
+      "https://placehold.co/600x600?text=Heladera+Patrick+HPK151"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 5,
+    "category": "Electrodomésticos",
+    "subcategory": "Cocinas",
+    "brand": "Longvie",
+    "gama": "alta",
+    "name": "Cocina Longvie 56 cm Multigas",
+    "oldPrice": 850000,
+    "price": 749000,
+    "description": "Cocina de uso doméstico con horno y hornallas, pensada para equipar cocinas modernas.",
+    "images": [
+      "https://placehold.co/600x600?text=Cocina+Longvie"
+    ],
+    "badge": "ENVÍO GRATIS"
+  },
+  {
+    "id": 6,
+    "category": "TV y Audio",
+    "subcategory": "Smart TV",
+    "brand": "Samsung",
+    "gama": "alta",
+    "name": "Smart TV Samsung Crystal UHD 55 pulgadas",
+    "oldPrice": 950000,
+    "price": 820000,
+    "description": "Televisor inteligente 4K de 55 pulgadas con acceso a aplicaciones y contenido online.",
+    "images": [
+      "https://placehold.co/600x600?text=Samsung+Smart+TV+55"
+    ],
+    "badge": "DESTACADO"
+  },
+  {
+    "id": 7,
+    "category": "TV y Audio",
+    "subcategory": "Smart TV",
+    "brand": "Hisense",
+    "gama": "media",
+    "name": "Smart TV Hisense 32 pulgadas HD",
+    "oldPrice": 430000,
+    "price": 379000,
+    "description": "Smart TV compacto de 32 pulgadas, ideal para dormitorios, oficinas o ambientes pequeños.",
+    "images": [
+      "https://placehold.co/600x600?text=Hisense+Smart+TV+32"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 8,
+    "category": "Celulares",
+    "subcategory": "Smartphones",
+    "brand": "Samsung",
+    "gama": "media",
+    "name": "Samsung Galaxy A35 5G",
+    "oldPrice": 550000,
+    "price": 489000,
+    "description": "Smartphone 5G con pantalla amplia, buen rendimiento y cámaras versátiles.",
+    "images": [
+      "https://placehold.co/600x600?text=Samsung+Galaxy+A35+5G"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 9,
+    "category": "Celulares",
+    "subcategory": "Smartphones",
+    "brand": "Motorola",
+    "gama": "media",
+    "name": "Motorola Moto G85 5G",
+    "oldPrice": 480000,
+    "price": 419000,
+    "description": "Celular con conectividad 5G, pantalla amplia y autonomía para acompañarte durante el día.",
+    "images": [
+      "https://placehold.co/600x600?text=Motorola+Moto+G85+5G"
+    ],
+    "badge": "NUEVO"
+  },
+  {
+    "id": 10,
+    "category": "Tecnología",
+    "subcategory": "Notebooks",
+    "brand": "Lenovo",
+    "gama": "media",
+    "name": "Notebook Lenovo IdeaPad",
+    "oldPrice": 890000,
+    "price": 770000,
+    "description": "Notebook versátil para estudio, trabajo, navegación y tareas cotidianas.",
+    "images": [
+      "https://placehold.co/600x600?text=Notebook+Lenovo+IdeaPad"
+    ],
+    "badge": "DESTACADO"
+  },
+  {
+    "id": 11,
+    "category": "Electrodomésticos",
+    "subcategory": "Climatización",
+    "brand": "Philco",
+    "gama": "media",
+    "name": "Aire Acondicionado Split Philco 3000 frigorías",
+    "oldPrice": 920000,
+    "price": 810000,
+    "description": "Equipo split para climatizar ambientes y disfrutar mayor confort durante todo el año.",
+    "images": [
+      "https://placehold.co/600x600?text=Aire+Philco+3000"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 12,
+    "category": "Herramientas",
+    "subcategory": "Herramientas Eléctricas",
+    "brand": "Black+Decker",
+    "gama": "baja",
+    "name": "Taladro Percutor Black+Decker",
+    "oldPrice": 160000,
+    "price": 135000,
+    "description": "Herramienta eléctrica práctica para trabajos de perforación y tareas de bricolaje.",
+    "images": [
+      "https://placehold.co/600x600?text=Taladro+Black+Decker"
+    ],
+    "badge": "NUEVO"
+  },
+  {
+    "id": 13,
+    "category": "Hogar",
+    "subcategory": "Pequeños Electrodomésticos",
+    "brand": "Peabody",
+    "gama": "media",
+    "name": "Freidora de Aire Peabody",
+    "oldPrice": 520000,
+    "price": 459000,
+    "description": "Freidora de aire para preparar comidas utilizando poco o nada de aceite.",
+    "images": [
+      "https://placehold.co/600x600?text=Freidora+de+Aire+Peabody"
+    ],
+    "badge": "DESTACADO"
+  },
+  {
+    "id": 14,
+    "category": "Hogar",
+    "subcategory": "Pequeños Electrodomésticos",
+    "brand": "Atma",
+    "gama": "baja",
+    "name": "Licuadora Atma",
+    "oldPrice": 220000,
+    "price": 185000,
+    "description": "Licuadora para preparar bebidas, salsas, licuados y distintas recetas.",
+    "images": [
+      "https://placehold.co/600x600?text=Licuadora+Atma"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 15,
+    "category": "Tecnología",
+    "subcategory": "Gaming",
+    "brand": "Sony",
+    "gama": "alta",
+    "name": "Consola PlayStation 5",
+    "oldPrice": 1450000,
+    "price": 1290000,
+    "description": "Consola de videojuegos de última generación con gran potencia y experiencias inmersivas.",
+    "images": [
+      "https://placehold.co/600x600?text=PlayStation+5"
+    ],
+    "badge": "MÁS VENDIDO"
+  },
+  {
+    "id": 16,
+    "category": "Celulares",
+    "subcategory": "Smartphones",
+    "brand": "Apple",
+    "gama": "alta",
+    "name": "Apple iPhone 16",
+    "oldPrice": 1750000,
+    "price": 1590000,
+    "description": "Smartphone premium con alto rendimiento, cámaras avanzadas y sistema iOS.",
+    "images": [
+      "https://placehold.co/600x600?text=iPhone+16"
+    ],
+    "badge": "PREMIUM"
+  },
+  {
+    "id": 17,
+    "category": "Muebles",
+    "subcategory": "Living",
+    "brand": "Nova Home",
+    "gama": "media",
+    "name": "Sofá Living 3 Cuerpos",
+    "oldPrice": 680000,
+    "price": 580000,
+    "description": "Sofá cómodo para living y espacios sociales, pensado para el uso cotidiano.",
+    "images": [
+      "https://placehold.co/600x600?text=Sofa+Living+3+Cuerpos"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 18,
+    "category": "Muebles",
+    "subcategory": "Dormitorio",
+    "brand": "Sommier Center",
+    "gama": "alta",
+    "name": "Sommier y Colchón Queen",
+    "oldPrice": 990000,
+    "price": 850000,
+    "description": "Conjunto de descanso tamaño queen para renovar el dormitorio.",
+    "images": [
+      "https://placehold.co/600x600?text=Sommier+Queen"
+    ],
+    "badge": "ENVÍO GRATIS"
+  },
+  {
+    "id": 19,
+    "category": "TV y Audio",
+    "subcategory": "Audio Portátil",
+    "brand": "JBL",
+    "gama": "media",
+    "name": "Parlante Bluetooth JBL Flip",
+    "oldPrice": 240000,
+    "price": 205000,
+    "description": "Parlante portátil con conexión inalámbrica para escuchar música en distintos ambientes.",
+    "images": [
+      "https://placehold.co/600x600?text=Parlante+JBL+Flip"
+    ],
+    "badge": "NUEVO"
+  },
+  {
+    "id": 20,
+    "category": "Herramientas",
+    "subcategory": "Jardinería",
+    "brand": "Gamma",
+    "gama": "media",
+    "name": "Cortadora de Césped Eléctrica Gamma",
+    "oldPrice": 320000,
+    "price": 275000,
+    "description": "Cortadora eléctrica para mantenimiento y cuidado de jardines.",
+    "images": [
+      "https://placehold.co/600x600?text=Cortadora+de+Cesped+Gamma"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 21,
+    "category": "Moda y Calzado",
+    "subcategory": "Deportes",
+    "brand": "Adidas",
+    "gama": "media",
+    "name": "Zapatillas Adidas Running",
+    "oldPrice": 210000,
+    "price": 179000,
+    "description": "Zapatillas deportivas para entrenamiento y uso diario.",
+    "images": [
+      "https://placehold.co/600x600?text=Zapatillas+Adidas"
+    ],
+    "badge": "DESTACADO"
+  },
+  {
+    "id": 22,
+    "category": "Moda y Calzado",
+    "subcategory": "Deportes",
+    "brand": "Nike",
+    "gama": "media",
+    "name": "Zapatillas Nike Deportivas",
+    "oldPrice": 190000,
+    "price": 159000,
+    "description": "Calzado deportivo cómodo para actividades cotidianas y entrenamiento.",
+    "images": [
+      "https://placehold.co/600x600?text=Zapatillas+Nike"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 23,
+    "category": "Tecnología",
+    "subcategory": "Movilidad Urbana",
+    "brand": "Xiaomi",
+    "gama": "alta",
+    "name": "Monopatín Eléctrico Xiaomi",
+    "oldPrice": 750000,
+    "price": 649000,
+    "description": "Monopatín eléctrico para traslados urbanos y movilidad personal.",
+    "images": [
+      "https://placehold.co/600x600?text=Monopatin+Electrico"
+    ],
+    "badge": "NUEVO"
+  },
+  {
+    "id": 24,
+    "category": "Electrodomésticos",
+    "subcategory": "Lavavajillas",
+    "brand": "Drean",
+    "gama": "media",
+    "name": "Lavavajillas Drean Compacto",
+    "oldPrice": 880000,
+    "price": 760000,
+    "description": "Lavavajillas para simplificar la limpieza diaria de vajilla y utensilios.",
+    "images": [
+      "https://placehold.co/600x600?text=Lavavajillas+Drean"
+    ],
+    "badge": "DESTACADO"
+  },
+  {
+    "id": 25,
+    "category": "Electrodomésticos",
+    "subcategory": "Microondas",
+    "brand": "BGH",
+    "gama": "baja",
+    "name": "Microondas BGH",
+    "oldPrice": 210000,
+    "price": 179000,
+    "description": "Microondas práctico para calentar, cocinar y descongelar alimentos.",
+    "images": [
+      "https://placehold.co/600x600?text=Microondas+BGH"
+    ],
+    "badge": "OFERTA"
+  },
+  {
+    "id": 26,
+    "category": "Celulares",
+    "subcategory": "Smartphones",
+    "brand": "Xiaomi",
+    "gama": "media",
+    "name": "Xiaomi Redmi Note 14",
+    "oldPrice": 460000,
+    "price": 399000,
+    "description": "Smartphone con pantalla amplia, buen rendimiento y características modernas.",
+    "images": [
+      "https://placehold.co/600x600?text=Xiaomi+Redmi+Note+14"
+    ],
+    "badge": "NUEVO"
+  },
+  {
+    "id": 27,
+    "category": "Tecnología",
+    "subcategory": "Audio",
+    "brand": "Sony",
+    "gama": "alta",
+    "name": "Auriculares Sony Inalámbricos",
+    "oldPrice": 790000,
+    "price": 689000,
+    "description": "Auriculares inalámbricos diseñados para disfrutar música y contenido multimedia.",
+    "images": [
+      "https://placehold.co/600x600?text=Auriculares+Sony"
+    ],
+    "badge": "PREMIUM"
+  },
+  {
+    "id": 28,
+    "category": "Hogar",
+    "subcategory": "Limpieza",
+    "brand": "Philips",
+    "gama": "media",
+    "name": "Aspiradora Philips",
+    "oldPrice": 280000,
+    "price": 239000,
+    "description": "Aspiradora práctica para la limpieza de pisos y distintos espacios del hogar.",
+    "images": [
+      "https://placehold.co/600x600?text=Aspiradora+Philips"
+    ],
+    "badge": "OFERTA"
+  }
+]
