@@ -1,422 +1,2525 @@
 [
   {
     "id": 1,
-    "category": "Electrodomésticos",
-    "subcategory": "Lavarropas",
-    "brand": "Codini",
-    "gama": "media",
-    "name": "Lavarropas Automático Codini EWT07",
-    "oldPrice": 780000,
-    "price": 650000,
-    "description": "Lavarropas automático de carga superior, ideal para el uso diario y con programas prácticos de lavado.",
-    "images": [
-      "https://placehold.co/600x600?text=Lavarropas+Codini+EWT07"
-    ],
-    "badge": "OFERTA"
+    "sku": "TV-TCL-55C655",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "55C655",
+    "nombre": "Smart TV TCL 55 C655 QLED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor QLED 4K con tecnología Google TV y Dolby Vision Atmos.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "QLED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es/support-tv/model-tv/55c655"
+    }
   },
   {
     "id": 2,
-    "category": "Electrodomésticos",
-    "subcategory": "Lavarropas",
-    "brand": "Drean",
-    "gama": "alta",
-    "name": "Lavarropas Drean Next 8.14 ECO",
-    "oldPrice": 1150000,
-    "price": 999000,
-    "description": "Lavarropas automático de gran capacidad, diseñado para familias y uso frecuente.",
-    "images": [
-      "https://placehold.co/600x600?text=Lavarropas+Drean+Next+8.14"
-    ],
-    "badge": "DESTACADO"
+    "sku": "TV-TCL-65C755",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "65C755",
+    "nombre": "Smart TV TCL 65 C755 QD-Mini LED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor QD-Mini LED 4K con alta tasa de refresco para gaming.",
+    "especificaciones": {
+      "pulgadas": 65,
+      "resolucion": "4K UHD",
+      "tecnologia": "QD-Mini LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es"
+    }
   },
   {
     "id": 3,
-    "category": "Electrodomésticos",
-    "subcategory": "Secarropas",
-    "brand": "Codini",
-    "gama": "baja",
-    "name": "Secarropas Centrífugo Codini 5,2 kg",
-    "oldPrice": 140000,
-    "price": 119000,
-    "description": "Secarropas centrífugo compacto, práctico y de rápida utilización para el hogar.",
-    "images": [
-      "https://placehold.co/600x600?text=Secarropas+Codini+5.2kg"
-    ],
-    "badge": "NUEVO"
+    "sku": "TV-TCL-50P755",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "50P755",
+    "nombre": "Smart TV TCL 50 P755 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV 4K UHD con diseño delgado y HDR10+.",
+    "especificaciones": {
+      "pulgadas": 50,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es"
+    }
   },
   {
     "id": 4,
-    "category": "Electrodomésticos",
-    "subcategory": "Heladeras",
-    "brand": "Patrick",
-    "gama": "media",
-    "name": "Heladera con Freezer Patrick HPK151",
-    "oldPrice": 720000,
-    "price": 599000,
-    "description": "Heladera con freezer independiente y espacio pensado para organizar los alimentos.",
-    "images": [
-      "https://placehold.co/600x600?text=Heladera+Patrick+HPK151"
-    ],
-    "badge": "OFERTA"
+    "sku": "TV-TCL-43S5400",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "43S5400",
+    "nombre": "Smart TV TCL 43 Full HD Android TV",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor compacto Full HD con Android TV incorporado.",
+    "especificaciones": {
+      "pulgadas": 43,
+      "resolucion": "Full HD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Android TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es"
+    }
   },
   {
     "id": 5,
-    "category": "Electrodomésticos",
-    "subcategory": "Cocinas",
-    "brand": "Longvie",
-    "gama": "alta",
-    "name": "Cocina Longvie 56 cm Multigas",
-    "oldPrice": 850000,
-    "price": 749000,
-    "description": "Cocina de uso doméstico con horno y hornallas, pensada para equipar cocinas modernas.",
-    "images": [
-      "https://placehold.co/600x600?text=Cocina+Longvie"
-    ],
-    "badge": "ENVÍO GRATIS"
+    "sku": "TV-TCL-75C845",
+    "ean": "",
+    "marca": "TCL",
+    "modelo": "75C845",
+    "nombre": "Smart TV TCL 75 Mini LED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Pantalla gigante Mini LED con máximo brillo y contraste avanzado.",
+    "especificaciones": {
+      "pulgadas": 75,
+      "resolucion": "4K UHD",
+      "tecnologia": "Mini LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.tcl.com/ar/es"
+    }
   },
   {
     "id": 6,
-    "category": "TV y Audio",
-    "subcategory": "Smart TV",
-    "brand": "Samsung",
-    "gama": "alta",
-    "name": "Smart TV Samsung Crystal UHD 55 pulgadas",
-    "oldPrice": 950000,
-    "price": 820000,
-    "description": "Televisor inteligente 4K de 55 pulgadas con acceso a aplicaciones y contenido online.",
-    "images": [
-      "https://placehold.co/600x600?text=Samsung+Smart+TV+55"
-    ],
-    "badge": "DESTACADO"
+    "sku": "TV-SAM-QN55S90C",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "QN55S90C",
+    "nombre": "Smart TV Samsung 55 OLED 4K S90C",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Pantalla OLED autoluminiscente con procesador Neural Quantum 4K.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "OLED",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
   },
   {
     "id": 7,
-    "category": "TV y Audio",
-    "subcategory": "Smart TV",
-    "brand": "Hisense",
-    "gama": "media",
-    "name": "Smart TV Hisense 32 pulgadas HD",
-    "oldPrice": 430000,
-    "price": 379000,
-    "description": "Smart TV compacto de 32 pulgadas, ideal para dormitorios, oficinas o ambientes pequeños.",
-    "images": [
-      "https://placehold.co/600x600?text=Hisense+Smart+TV+32"
-    ],
-    "badge": "OFERTA"
+    "sku": "TV-SAM-UN65CU7000",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "UN65CU7000",
+    "nombre": "Smart TV Samsung 65 Crystal UHD 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Crystal UHD con PurColor y diseño ultra delgado AirSlim.",
+    "especificaciones": {
+      "pulgadas": 65,
+      "resolucion": "4K UHD",
+      "tecnologia": "Crystal UHD",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
   },
   {
     "id": 8,
-    "category": "Celulares",
-    "subcategory": "Smartphones",
-    "brand": "Samsung",
-    "gama": "media",
-    "name": "Samsung Galaxy A35 5G",
-    "oldPrice": 550000,
-    "price": 489000,
-    "description": "Smartphone 5G con pantalla amplia, buen rendimiento y cámaras versátiles.",
-    "images": [
-      "https://placehold.co/600x600?text=Samsung+Galaxy+A35+5G"
-    ],
-    "badge": "OFERTA"
+    "sku": "TV-SAM-QN65QN85C",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "QN65QN85C",
+    "nombre": "Smart TV Samsung 65 Neo QLED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Tecnología Quantum Mini LED con sonido OTS y diseño elegante.",
+    "especificaciones": {
+      "pulgadas": 65,
+      "resolucion": "4K UHD",
+      "tecnologia": "Neo QLED",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
   },
   {
     "id": 9,
-    "category": "Celulares",
-    "subcategory": "Smartphones",
-    "brand": "Motorola",
-    "gama": "media",
-    "name": "Motorola Moto G85 5G",
-    "oldPrice": 480000,
-    "price": 419000,
-    "description": "Celular con conectividad 5G, pantalla amplia y autonomía para acompañarte durante el día.",
-    "images": [
-      "https://placehold.co/600x600?text=Motorola+Moto+G85+5G"
-    ],
-    "badge": "NUEVO"
+    "sku": "TV-SAM-UN50CU8000",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "UN50CU8000",
+    "nombre": "Smart TV Samsung 50 Crystal UHD 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Colores optimizados y contraste mejorado con Dynamic Crystal Color.",
+    "especificaciones": {
+      "pulgadas": 50,
+      "resolucion": "4K UHD",
+      "tecnologia": "Crystal UHD",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
   },
   {
     "id": 10,
-    "category": "Tecnología",
-    "subcategory": "Notebooks",
-    "brand": "Lenovo",
-    "gama": "media",
-    "name": "Notebook Lenovo IdeaPad",
-    "oldPrice": 890000,
-    "price": 770000,
-    "description": "Notebook versátil para estudio, trabajo, navegación y tareas cotidianas.",
-    "images": [
-      "https://placehold.co/600x600?text=Notebook+Lenovo+IdeaPad"
-    ],
-    "badge": "DESTACADO"
+    "sku": "TV-SAM-QN75QN90C",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "QN75QN90C",
+    "nombre": "Smart TV Samsung 75 Neo QLED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Máximo exponente de Neo QLED con Quantum Matrix Technology.",
+    "especificaciones": {
+      "pulgadas": 75,
+      "resolucion": "4K UHD",
+      "tecnologia": "Neo QLED",
+      "sistemaOperativo": "Tizen"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
   },
   {
     "id": 11,
-    "category": "Electrodomésticos",
-    "subcategory": "Climatización",
-    "brand": "Philco",
-    "gama": "media",
-    "name": "Aire Acondicionado Split Philco 3000 frigorías",
-    "oldPrice": 920000,
-    "price": 810000,
-    "description": "Equipo split para climatizar ambientes y disfrutar mayor confort durante todo el año.",
-    "images": [
-      "https://placehold.co/600x600?text=Aire+Philco+3000"
-    ],
-    "badge": "OFERTA"
+    "sku": "TV-LGP-55UR8750",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "55UR8750",
+    "nombre": "Smart TV LG 55 4K UHD webOS",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor 4K real con procesador de alta potencia y ThinQ AI.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "webOS"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
   },
   {
     "id": 12,
-    "category": "Herramientas",
-    "subcategory": "Herramientas Eléctricas",
-    "brand": "Black+Decker",
-    "gama": "baja",
-    "name": "Taladro Percutor Black+Decker",
-    "oldPrice": 160000,
-    "price": 135000,
-    "description": "Herramienta eléctrica práctica para trabajos de perforación y tareas de bricolaje.",
-    "images": [
-      "https://placehold.co/600x600?text=Taladro+Black+Decker"
-    ],
-    "badge": "NUEVO"
+    "sku": "TV-LGP-65OLEDC3",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "OLED65C3",
+    "nombre": "Smart TV LG 65 OLED evo 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "OLED evo con brillo potenciado y procesador α9 AI Gen6.",
+    "especificaciones": {
+      "pulgadas": 65,
+      "resolucion": "4K UHD",
+      "tecnologia": "OLED evo",
+      "sistemaOperativo": "webOS"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
   },
   {
     "id": 13,
-    "category": "Hogar",
-    "subcategory": "Pequeños Electrodomésticos",
-    "brand": "Peabody",
-    "gama": "media",
-    "name": "Freidora de Aire Peabody",
-    "oldPrice": 520000,
-    "price": 459000,
-    "description": "Freidora de aire para preparar comidas utilizando poco o nada de aceite.",
-    "images": [
-      "https://placehold.co/600x600?text=Freidora+de+Aire+Peabody"
-    ],
-    "badge": "DESTACADO"
+    "sku": "TV-LGP-50UR7800",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "50UR7800",
+    "nombre": "Smart TV LG 50 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Entretenimiento inteligente 4K con HDR10 Pro y optimizador de juegos.",
+    "especificaciones": {
+      "pulgadas": 50,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "webOS"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
   },
   {
     "id": 14,
-    "category": "Hogar",
-    "subcategory": "Pequeños Electrodomésticos",
-    "brand": "Atma",
-    "gama": "baja",
-    "name": "Licuadora Atma",
-    "oldPrice": 220000,
-    "price": 185000,
-    "description": "Licuadora para preparar bebidas, salsas, licuados y distintas recetas.",
-    "images": [
-      "https://placehold.co/600x600?text=Licuadora+Atma"
-    ],
-    "badge": "OFERTA"
+    "sku": "TV-PHI-55PUD7408",
+    "ean": "",
+    "marca": "Philips",
+    "modelo": "55PUD7408",
+    "nombre": "Smart TV Philips 55 4K UHD con Saphi/Google",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Imagen nítida y sonido Dolby Atmos para disfrutar en familia.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philips.com.ar/"
+    }
   },
   {
     "id": 15,
-    "category": "Tecnología",
-    "subcategory": "Gaming",
-    "brand": "Sony",
-    "gama": "alta",
-    "name": "Consola PlayStation 5",
-    "oldPrice": 1450000,
-    "price": 1290000,
-    "description": "Consola de videojuegos de última generación con gran potencia y experiencias inmersivas.",
-    "images": [
-      "https://placehold.co/600x600?text=PlayStation+5"
-    ],
-    "badge": "MÁS VENDIDO"
+    "sku": "TV-PHI-65PUD7908",
+    "ean": "",
+    "marca": "Philips",
+    "modelo": "65PUD7908",
+    "nombre": "Smart TV Philips 65 4K UHD con Ambilight",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor 4K con tecnología Ambilight de 3 lados para una experiencia inmersiva.",
+    "especificaciones": {
+      "pulgadas": 65,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED + Ambilight",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philips.com.ar/"
+    }
   },
   {
     "id": 16,
-    "category": "Celulares",
-    "subcategory": "Smartphones",
-    "brand": "Apple",
-    "gama": "alta",
-    "name": "Apple iPhone 16",
-    "oldPrice": 1750000,
-    "price": 1590000,
-    "description": "Smartphone premium con alto rendimiento, cámaras avanzadas y sistema iOS.",
-    "images": [
-      "https://placehold.co/600x600?text=iPhone+16"
-    ],
-    "badge": "PREMIUM"
+    "sku": "TV-HIS-50A6K",
+    "ean": "",
+    "marca": "Hisense",
+    "modelo": "50A6K",
+    "nombre": "Smart TV Hisense 50 4K UHD VIDAA",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV con sistema VIDAA U7, HDR y control por voz.",
+    "especificaciones": {
+      "pulgadas": 50,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "VIDAA"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.hisense.com.ar/"
+    }
   },
   {
     "id": 17,
-    "category": "Muebles",
-    "subcategory": "Living",
-    "brand": "Nova Home",
-    "gama": "media",
-    "name": "Sofá Living 3 Cuerpos",
-    "oldPrice": 680000,
-    "price": 580000,
-    "description": "Sofá cómodo para living y espacios sociales, pensado para el uso cotidiano.",
-    "images": [
-      "https://placehold.co/600x600?text=Sofa+Living+3+Cuerpos"
-    ],
-    "badge": "OFERTA"
+    "sku": "TV-HIS-55U7K",
+    "ean": "",
+    "marca": "Hisense",
+    "modelo": "55U7K",
+    "nombre": "Smart TV Hisense 55 ULED 4K",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Tecnología ULED con Full Array Local Dimming y Quantum Dot.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "ULED",
+      "sistemaOperativo": "VIDAA"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.hisense.com.ar/"
+    }
   },
   {
     "id": 18,
-    "category": "Muebles",
-    "subcategory": "Dormitorio",
-    "brand": "Sommier Center",
-    "gama": "alta",
-    "name": "Sommier y Colchón Queen",
-    "oldPrice": 990000,
-    "price": 850000,
-    "description": "Conjunto de descanso tamaño queen para renovar el dormitorio.",
-    "images": [
-      "https://placehold.co/600x600?text=Sommier+Queen"
-    ],
-    "badge": "ENVÍO GRATIS"
+    "sku": "TV-NOI-32S2400",
+    "ean": "",
+    "marca": "Noblex",
+    "modelo": "DK32X5000",
+    "nombre": "Smart TV Noblex 32 HD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Televisor HD compacto ideal para espacios reducidos o habitaciones.",
+    "especificaciones": {
+      "pulgadas": 32,
+      "resolucion": "HD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "VIDAA / Android"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.noblex.com.ar/"
+    }
   },
   {
     "id": 19,
-    "category": "TV y Audio",
-    "subcategory": "Audio Portátil",
-    "brand": "JBL",
-    "gama": "media",
-    "name": "Parlante Bluetooth JBL Flip",
-    "oldPrice": 240000,
-    "price": 205000,
-    "description": "Parlante portátil con conexión inalámbrica para escuchar música en distintos ambientes.",
-    "images": [
-      "https://placehold.co/600x600?text=Parlante+JBL+Flip"
-    ],
-    "badge": "NUEVO"
+    "sku": "TV-NOI-50EOG",
+    "ean": "",
+    "marca": "Noblex",
+    "modelo": "50DK4000",
+    "nombre": "Smart TV Noblex 50 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Smart TV 4K con sonido envolvente y aplicaciones preinstaladas.",
+    "especificaciones": {
+      "pulgadas": 50,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Google TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.noblex.com.ar/"
+    }
   },
   {
     "id": 20,
-    "category": "Herramientas",
-    "subcategory": "Jardinería",
-    "brand": "Gamma",
-    "gama": "media",
-    "name": "Cortadora de Césped Eléctrica Gamma",
-    "oldPrice": 320000,
-    "price": 275000,
-    "description": "Cortadora eléctrica para mantenimiento y cuidado de jardines.",
-    "images": [
-      "https://placehold.co/600x600?text=Cortadora+de+Cesped+Gamma"
-    ],
-    "badge": "OFERTA"
+    "sku": "TV-RCA-55R6300",
+    "ean": "",
+    "marca": "RCA",
+    "modelo": "AND55P",
+    "nombre": "Smart TV RCA 55 4K UHD",
+    "categoria": "Televisores",
+    "subcategoria": "Smart TV",
+    "descripcion": "Entretenimiento accesible con resolución 4K y plataforma inteligente.",
+    "especificaciones": {
+      "pulgadas": 55,
+      "resolucion": "4K UHD",
+      "tecnologia": "LED",
+      "sistemaOperativo": "Android TV"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.rca.com.ar/"
+    }
   },
   {
     "id": 21,
-    "category": "Moda y Calzado",
-    "subcategory": "Deportes",
-    "brand": "Adidas",
-    "gama": "media",
-    "name": "Zapatillas Adidas Running",
-    "oldPrice": 210000,
-    "price": 179000,
-    "description": "Zapatillas deportivas para entrenamiento y uso diario.",
-    "images": [
-      "https://placehold.co/600x600?text=Zapatillas+Adidas"
-    ],
-    "badge": "DESTACADO"
+    "sku": "LAV-WHIRL-WNQ65A",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WNQ65A",
+    "nombre": "Lavarropas Automático Whirlpool 6.5 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Lavarropas automático eficiente con múltiples programas de lavado.",
+    "especificaciones": {
+      "capacidad": "6.5 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1000 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
   },
   {
     "id": 22,
-    "category": "Moda y Calzado",
-    "subcategory": "Deportes",
-    "brand": "Nike",
-    "gama": "media",
-    "name": "Zapatillas Nike Deportivas",
-    "oldPrice": 190000,
-    "price": 159000,
-    "description": "Calzado deportivo cómodo para actividades cotidianas y entrenamiento.",
-    "images": [
-      "https://placehold.co/600x600?text=Zapatillas+Nike"
-    ],
-    "badge": "OFERTA"
+    "sku": "LAV-WHIRL-WFE71",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WFE71AB",
+    "nombre": "Lavarropas Automático Whirlpool 7 Kg White",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Tecnología Clean+ para remover manchas difíciles con menor consumo de energía.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1000 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
   },
   {
     "id": 23,
-    "category": "Tecnología",
-    "subcategory": "Movilidad Urbana",
-    "brand": "Xiaomi",
-    "gama": "alta",
-    "name": "Monopatín Eléctrico Xiaomi",
-    "oldPrice": 750000,
-    "price": 649000,
-    "description": "Monopatín eléctrico para traslados urbanos y movilidad personal.",
-    "images": [
-      "https://placehold.co/600x600?text=Monopatin+Electrico"
-    ],
-    "badge": "NUEVO"
+    "sku": "LAV-WHIRL-WLC85",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WLC85AB",
+    "nombre": "Lavarropas Automático Whirlpool 8.5 Kg Carga Superior",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Superior",
+    "descripcion": "Panel digital intuitivo y diseño ergonómico de carga superior.",
+    "especificaciones": {
+      "capacidad": "8.5 kg",
+      "tipoCarga": "Superior",
+      "velocidadCentrifugado": "750 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
   },
   {
     "id": 24,
-    "category": "Electrodomésticos",
-    "subcategory": "Lavavajillas",
-    "brand": "Drean",
-    "gama": "media",
-    "name": "Lavavajillas Drean Compacto",
-    "oldPrice": 880000,
-    "price": 760000,
-    "description": "Lavavajillas para simplificar la limpieza diaria de vajilla y utensilios.",
-    "images": [
-      "https://placehold.co/600x600?text=Lavavajillas+Drean"
-    ],
-    "badge": "DESTACADO"
+    "sku": "LAV-SAM-WW80",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "WW80",
+    "nombre": "Lavarropas Samsung Inverter 8 Kg AddWash",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Tecnología EcoBubble y compuerta AddWash para agregar ropa olvidada.",
+    "especificaciones": {
+      "capacidad": "8 kg",
+      "tipoCarga": "Frontal",
+      "tecnologia": "Inverter / EcoBubble",
+      "velocidadCentrifugado": "1200 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
   },
   {
     "id": 25,
-    "category": "Electrodomésticos",
-    "subcategory": "Microondas",
-    "brand": "BGH",
-    "gama": "baja",
-    "name": "Microondas BGH",
-    "oldPrice": 210000,
-    "price": 179000,
-    "description": "Microondas práctico para calentar, cocinar y descongelar alimentos.",
-    "images": [
-      "https://placehold.co/600x600?text=Microondas+BGH"
-    ],
-    "badge": "OFERTA"
+    "sku": "LAV-SAM-WW90",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "WW90",
+    "nombre": "Lavarropas Samsung Inverter 9 Kg Digital Inverter",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Gran capacidad, lavado con vapor y motor con garantía extendida.",
+    "especificaciones": {
+      "capacidad": "9 kg",
+      "tipoCarga": "Frontal",
+      "tecnologia": "Inverter",
+      "velocidadCentrifugado": "1400 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
   },
   {
     "id": 26,
-    "category": "Celulares",
-    "subcategory": "Smartphones",
-    "brand": "Xiaomi",
-    "gama": "media",
-    "name": "Xiaomi Redmi Note 14",
-    "oldPrice": 460000,
-    "price": 399000,
-    "description": "Smartphone con pantalla amplia, buen rendimiento y características modernas.",
-    "images": [
-      "https://placehold.co/600x600?text=Xiaomi+Redmi+Note+14"
-    ],
-    "badge": "NUEVO"
+    "sku": "LAV-LGP-F14",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "CV90",
+    "nombre": "Lavarropas Carga Frontal LG AI DD 9 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Inteligencia artificial que detecta las características del tejido para un cuidado óptimo.",
+    "especificaciones": {
+      "capacidad": "9 kg",
+      "tipoCarga": "Frontal",
+      "tecnologia": "AI DD Inverter",
+      "velocidadCentrifugado": "1400 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
   },
   {
     "id": 27,
-    "category": "Tecnología",
-    "subcategory": "Audio",
-    "brand": "Sony",
-    "gama": "alta",
-    "name": "Auriculares Sony Inalámbricos",
-    "oldPrice": 790000,
-    "price": 689000,
-    "description": "Auriculares inalámbricos diseñados para disfrutar música y contenido multimedia.",
-    "images": [
-      "https://placehold.co/600x600?text=Auriculares+Sony"
-    ],
-    "badge": "PREMIUM"
+    "sku": "LAV-DRE-GO8",
+    "ean": "",
+    "marca": "Drean",
+    "modelo": "Concept 5.05",
+    "nombre": "Lavarropas Drean Concept 5.05 Carga Superior",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Superior",
+    "descripcion": "El clásico lavarropas nacional de carga superior, práctico y confiable.",
+    "especificaciones": {
+      "capacidad": "5 kg",
+      "tipoCarga": "Superior",
+      "velocidadCentrifugado": "500 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.drean.com.ar/"
+    }
   },
   {
     "id": 28,
-    "category": "Hogar",
-    "subcategory": "Limpieza",
-    "brand": "Philips",
-    "gama": "media",
-    "name": "Aspiradora Philips",
-    "oldPrice": 280000,
-    "price": 239000,
-    "description": "Aspiradora práctica para la limpieza de pisos y distintos espacios del hogar.",
-    "images": [
-      "https://placehold.co/600x600?text=Aspiradora+Philips"
-    ],
-    "badge": "OFERTA"
+    "sku": "LAV-DRE-NEXT8",
+    "ean": "",
+    "marca": "Drean",
+    "modelo": "Next 8.14",
+    "nombre": "Lavarropas Automático Drean Next 8 Kg Inverter",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Tecnología europea con interfaz táctil y máxima eficiencia.",
+    "especificaciones": {
+      "capacidad": "8 kg",
+      "tipoCarga": "Frontal",
+      "tecnologia": "Inverter",
+      "velocidadCentrifugado": "1400 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.drean.com.ar/"
+    }
+  },
+  {
+    "id": 29,
+    "sku": "LAV-DRE-GOLD",
+    "ean": "",
+    "marca": "Drean",
+    "modelo": "Gold 10.7",
+    "nombre": "Lavarropas Carga Superior Drean Gold 7 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Superior",
+    "descripcion": "Carga superior con excelente prestación y ciclos específicos de lavado.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipoCarga": "Superior",
+      "velocidadCentrifugado": "1000 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.drean.com.ar/"
+    }
+  },
+  {
+    "id": 30,
+    "sku": "LAV-CAN-M65",
+    "ean": "",
+    "marca": "Candy",
+    "modelo": "CS 148",
+    "nombre": "Lavarropas Candy Smart 8 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Conectividad NFC y programas rápidos para el día a día.",
+    "especificaciones": {
+      "capacidad": "8 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1400 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.candy-home.com/ar/"
+    }
+  },
+  {
+    "id": 31,
+    "sku": "LAV-PHI-PHLF07",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHLF071",
+    "nombre": "Lavarropas Philco Carga Frontal 7 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Lavado eficiente con programas económicos y display LED.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1000 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 32,
+    "sku": "LAV-PAT-PLV8",
+    "ean": "",
+    "marca": "Patrick",
+    "modelo": "PKF70",
+    "nombre": "Lavarropas Patrick Carga Frontal 7 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Resistente, fácil de usar y con tambor de acero inoxidable.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "800 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.patrick.com.ar/"
+    }
+  },
+  {
+    "id": 33,
+    "sku": "LAV-HIS-HWF7",
+    "ean": "",
+    "marca": "Hisense",
+    "modelo": "WFVC7010",
+    "nombre": "Lavarropas Hisense Inverter 7 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Funcionamiento silencioso con motor Inverter y lavado con vapor anti-alergias.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipoCarga": "Frontal",
+      "tecnologia": "Inverter",
+      "velocidadCentrifugado": "1000 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.hisense.com.ar/"
+    }
+  },
+  {
+    "id": 34,
+    "sku": "LAV-WHIRL-WWI10",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WWI10AB",
+    "nombre": "Lavarropas Automático Whirlpool 10 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Superior",
+    "descripcion": "Gran capacidad de carga con ciclos especiales para ropa delicada.",
+    "especificaciones": {
+      "capacidad": "10 kg",
+      "tipoCarga": "Superior",
+      "velocidadCentrifugado": "750 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
+  },
+  {
+    "id": 35,
+    "sku": "LAV-DRE-NEXT9",
+    "ean": "",
+    "marca": "Drean",
+    "modelo": "Next 10.12",
+    "nombre": "Lavarropas Automático Drean 10 Kg",
+    "categoria": "Lavarropas",
+    "subcategoria": "Carga Frontal",
+    "descripcion": "Máxima capacidad de la línea Next para familias numerosas.",
+    "especificaciones": {
+      "capacidad": "10 kg",
+      "tipoCarga": "Frontal",
+      "velocidadCentrifugado": "1200 RPM"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.drean.com.ar/"
+    }
+  },
+  {
+    "id": 36,
+    "sku": "SEC-DRE-Q55",
+    "ean": "",
+    "marca": "Drean",
+    "modelo": "QV 5.5",
+    "nombre": "Secarropas Centrífugo Drean QV 5.5 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Secarropas centrífugo de alta velocidad, cuida las prendas y reduce el tiempo de tendido.",
+    "especificaciones": {
+      "capacidad": "5.5 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.drean.com.ar/"
+    }
+  },
+  {
+    "id": 37,
+    "sku": "SEC-SIF-SC6",
+    "ean": "",
+    "marca": "Siam",
+    "modelo": "SC60",
+    "nombre": "Secarropas Centrífugo Siam 6.5 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Tambor de acero inoxidable y traba de seguridad en puerta.",
+    "especificaciones": {
+      "capacidad": "6.5 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.siam.com.ar/"
+    }
+  },
+  {
+    "id": 38,
+    "sku": "SEC-KOH-SK5",
+    "ean": "",
+    "marca": "Koh-i-Noor",
+    "modelo": "B-655",
+    "nombre": "Secarropas Centrífugo Koh-i-Noor 6.5 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Máxima durabilidad y estabilidad con sistema de amortiguación propio.",
+    "especificaciones": {
+      "capacidad": "6.5 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.kohinoor.com.ar/"
+    }
+  },
+  {
+    "id": 39,
+    "sku": "SEC-PHI-PSV7",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHSC07",
+    "nombre": "Secarropas Centrífugo Philco 7 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Extracción rápida de agua con sistema anti-escurrimiento.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 40,
+    "sku": "SEC-PAT-SC5",
+    "ean": "",
+    "marca": "Patrick",
+    "modelo": "PSCA5",
+    "nombre": "Secarropas Centrífugo Patrick 5.2 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Diseño compacto y eficiente para cualquier espacio de lavado.",
+    "especificaciones": {
+      "capacidad": "5.2 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.patrick.com.ar/"
+    }
+  },
+  {
+    "id": 41,
+    "sku": "SEC-SAM-DV90",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "DV90",
+    "nombre": "Secarropas por Bomba de Calor Samsung 9 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Por Calor / Condensación",
+    "descripcion": "Secado avanzado por bomba de calor con máxima protección de prendas y menor consumo eléctrico.",
+    "especificaciones": {
+      "capacidad": "9 kg",
+      "tipo": "Bomba de Calor",
+      "eficiencia": "A++"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 42,
+    "sku": "SEC-WHIRL-WSR8",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WSR80",
+    "nombre": "Secarropas Centrífugo Whirlpool 8 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Gran capacidad de centrifugado con pie antivibración.",
+    "especificaciones": {
+      "capacidad": "8 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
+  },
+  {
+    "id": 43,
+    "sku": "SEC-KOH-A7",
+    "ean": "",
+    "marca": "Koh-i-Noor",
+    "modelo": "A-665",
+    "nombre": "Secarropas Centrífugo Koh-i-Noor 7 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Cesto de acero y componentes de máxima calidad industrial.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.kohinoor.com.ar/"
+    }
+  },
+  {
+    "id": 44,
+    "sku": "SEC-DRE-Q6",
+    "ean": "",
+    "marca": "Drean",
+    "modelo": "QV 6.5",
+    "nombre": "Secarropas Centrífugo Drean 6.5 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Eficiencia en la extracción de agua con sistema de seguridad integral.",
+    "especificaciones": {
+      "capacidad": "6.5 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.drean.com.ar/"
+    }
+  },
+  {
+    "id": 45,
+    "sku": "SEC-SIF-SC7",
+    "ean": "",
+    "marca": "Siam",
+    "modelo": "SC70",
+    "nombre": "Secarropas Centrífugo Siam 7 Kg",
+    "categoria": "Secarropas",
+    "subcategoria": "Centrífugo",
+    "descripcion": "Salida de agua orientable y manijas de transporte ergonómicas.",
+    "especificaciones": {
+      "capacidad": "7 kg",
+      "tipo": "Centrífugo",
+      "rpm": "2800"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.siam.com.ar/"
+    }
+  },
+  {
+    "id": 46,
+    "sku": "HEL-PHAB-KTM350",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHMD350",
+    "nombre": "Heladera Cíclica Philco 270L Blanca",
+    "categoria": "Heladeras",
+    "subcategoria": "Con Freezer",
+    "descripcion": "Heladera con freezer superior, anaqueles ajustables y bajo consumo.",
+    "especificaciones": {
+      "capacidadTotal": "270 Litros",
+      "sistemaFrio": "Ciclico",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 47,
+    "sku": "HEL-WHIRL-WRM45",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WRM45",
+    "nombre": "Heladera No Frost Whirlpool 375L Inox",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Tecnología Evox anti-corrosión y sistema No Frost de alta eficiencia.",
+    "especificaciones": {
+      "capacidadTotal": "375 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A+"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
+  },
+  {
+    "id": 48,
+    "sku": "HEL-SAM-RT38",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "RT38",
+    "nombre": "Heladera Samsung Inverter No Frost 385L",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Compresor Digital Inverter con 20 años de garantía y tecnología SpaceMax.",
+    "especificaciones": {
+      "capacidadTotal": "385 Litros",
+      "sistemaFrio": "No Frost",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 49,
+    "sku": "HEL-GFA-G34",
+    "ean": "",
+    "marca": "Gafa",
+    "modelo": "HGF350",
+    "nombre": "Heladera Cíclica Gafa HGF350 Blanca",
+    "categoria": "Heladeras",
+    "subcategoria": "Con Freezer",
+    "descripcion": "Amplio espacio interior, anaqueles porta botellas y freezer independiente.",
+    "especificaciones": {
+      "capacidadTotal": "282 Litros",
+      "sistemaFrio": "Ciclico",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.gafa.com.ar/"
+    }
+  },
+  {
+    "id": 50,
+    "sku": "HEL-GFA-HGF400",
+    "ean": "",
+    "marca": "Gafa",
+    "modelo": "HGF388",
+    "nombre": "Heladera Gafa Cíclica 333L Inox",
+    "categoria": "Heladeras",
+    "subcategoria": "Con Freezer",
+    "descripcion": "Diseño moderno en acabado símil acero con control de temperatura mecánico.",
+    "especificaciones": {
+      "capacidadTotal": "333 Litros",
+      "sistemaFrio": "Ciclico",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.gafa.com.ar/"
+    }
+  },
+  {
+    "id": 51,
+    "sku": "HEL-PAT-PHP36",
+    "ean": "",
+    "marca": "Patrick",
+    "modelo": "HPK351",
+    "nombre": "Heladera Cíclica Patrick 275L Blanca",
+    "categoria": "Heladeras",
+    "subcategoria": "Con Freezer",
+    "descripcion": "Eficiente distribución de espacio con anaqueles antiderrame.",
+    "especificaciones": {
+      "capacidadTotal": "275 Litros",
+      "sistemaFrio": "Ciclico",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.patrick.com.ar/"
+    }
+  },
+  {
+    "id": 52,
+    "sku": "HEL-MAI-MD37",
+    "ean": "",
+    "marca": "Mabe",
+    "modelo": "RMA400",
+    "nombre": "Heladera No Frost Mabe 400L Inox",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Tecnología Home Energy Saver y cajón verdulero con control de humedad.",
+    "especificaciones": {
+      "capacidadTotal": "400 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mabe.com.ar/"
+    }
+  },
+  {
+    "id": 53,
+    "sku": "HEL-LGP-GB45",
+    "ean": "",
+    "marca": "LG",
+    "modelo": "GC-B509",
+    "nombre": "Heladera Inverter No Frost LG 451L Inox",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Smart Inverter Compressor y flujo de aire Multi Air Flow para frescura prolongada.",
+    "especificaciones": {
+      "capacidadTotal": "451 Litros",
+      "sistemaFrio": "No Frost",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.lg.com/ar/"
+    }
+  },
+  {
+    "id": 54,
+    "sku": "HEL-WHIRL-WRM57",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WRM57",
+    "nombre": "Heladera No Frost Whirlpool 500L Inox",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Gran capacidad con compartimiento Frost Free y tecnología Turbo Ice.",
+    "especificaciones": {
+      "capacidadTotal": "500 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A+"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
+  },
+  {
+    "id": 55,
+    "sku": "HEL-SAM-RS65",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "RS65",
+    "nombre": "Heladera Side by Side Samsung Inverter 602L",
+    "categoria": "Heladeras",
+    "subcategoria": "Side by Side",
+    "descripcion": "Diseño de dos puertas verticales, dispenser de agua y hielo, tecnología SpaceMax.",
+    "especificaciones": {
+      "capacidadTotal": "602 Litros",
+      "sistemaFrio": "No Frost",
+      "tipo": "Side by Side"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 56,
+    "sku": "HEL-PHI-PHMD380",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHMD380",
+    "nombre": "Heladera No Frost Philco 320L Inox",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Sin escarcha, iluminación LED interior y estantes de vidrio templado.",
+    "especificaciones": {
+      "capacidadTotal": "320 Litros",
+      "sistemaFrio": "No Frost",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 57,
+    "sku": "HEL-GFA-G38",
+    "ean": "",
+    "marca": "Gafa",
+    "modelo": "HGF420",
+    "nombre": "Heladera Cíclica Gafa 360L Blanca",
+    "categoria": "Heladeras",
+    "subcategoria": "Con Freezer",
+    "descripcion": "Gran espacio de guardado y congelamiento rápido en freezer.",
+    "especificaciones": {
+      "capacidadTotal": "360 Litros",
+      "sistemaFrio": "Ciclico",
+      "eficienciaEnergetica": "A"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.gafa.com.ar/"
+    }
+  },
+  {
+    "id": 58,
+    "sku": "HEL-HIS-RD43",
+    "ean": "",
+    "marca": "Hisense",
+    "modelo": "RT439",
+    "nombre": "Heladera No Frost Hisense 350L Inox",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Sistema Total No Frost y control electrónico táctil en puerta.",
+    "especificaciones": {
+      "capacidadTotal": "350 Litros",
+      "sistemaFrio": "No Frost"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.hisense.com.ar/"
+    }
+  },
+  {
+    "id": 59,
+    "sku": "HEL-MAI-RMA30",
+    "ean": "",
+    "marca": "Mabe",
+    "modelo": "RMA300",
+    "nombre": "Heladera Cíclica Mabe 300L Blanca",
+    "categoria": "Heladeras",
+    "subcategoria": "Con Freezer",
+    "descripcion": "Tecnología de conservación avanzada y bandejas de vidrio removibles.",
+    "especificaciones": {
+      "capacidadTotal": "300 Litros",
+      "sistemaFrio": "Ciclico"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mabe.com.ar/"
+    }
+  },
+  {
+    "id": 60,
+    "sku": "HEL-WHIRL-WRE54",
+    "ean": "",
+    "marca": "Whirlpool",
+    "modelo": "WRE54",
+    "nombre": "Heladera No Frost Whirlpool 443L Inox",
+    "categoria": "Heladeras",
+    "subcategoria": "No Frost",
+    "descripcion": "Diseño Bottom Freezer (freezer abajo) y tecnología Inverter.",
+    "especificaciones": {
+      "capacidadTotal": "443 Litros",
+      "sistemaFrio": "No Frost",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.whirlpool.com.ar/"
+    }
+  },
+  {
+    "id": 61,
+    "sku": "COC-PAT-5000",
+    "ean": "",
+    "marca": "Patrick",
+    "modelo": "PCC5000",
+    "nombre": "Cocina a Gas Patrick Multigas 50cm",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina convencional de 4 hornallas con horno autolimpiante.",
+    "especificaciones": {
+      "hornallas": 4,
+      "tipoGas": "Multigas",
+      "valvulaSeguridad": "Si"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.patrick.com.ar/"
+    }
+  },
+  {
+    "id": 62,
+    "sku": "COC-LON-56",
+    "ean": "",
+    "marca": "Longvie",
+    "modelo": "13501BR",
+    "nombre": "Cocina a Gas Longvie 56cm Multigas Blanca",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Encendido electrónico en hornallas y horno, puerta con visor de doble vidrio templado.",
+    "especificaciones": {
+      "ancho": "56 cm",
+      "hornallas": 4,
+      "encendido": "Electrónico"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.longvie.com/"
+    }
+  },
+  {
+    "id": 63,
+    "sku": "COC-LON-60",
+    "ean": "",
+    "marca": "Longvie",
+    "modelo": "18501X",
+    "nombre": "Cocina a Gas Longvie 60cm Acero Inoxidable",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Diseño profesional en acero inoxidable con timer digital y grill a gas.",
+    "especificaciones": {
+      "ancho": "60 cm",
+      "hornallas": 4,
+      "material": "Acero Inoxidable"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.longvie.com/"
+    }
+  },
+  {
+    "id": 64,
+    "sku": "COC-ORBIS-90",
+    "ean": "",
+    "marca": "Orbis",
+    "modelo": "988H6",
+    "nombre": "Cocina Multigas Orbis 88cm Inoxidable",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Cocina de gran formato con horno gigante y válvula de seguridad en todas las hornallas.",
+    "especificaciones": {
+      "ancho": "88 cm",
+      "hornallas": 5,
+      "valvulaSeguridad": "Si"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.orbis.com.ar/"
+    }
+  },
+  {
+    "id": 65,
+    "sku": "COC-ESL-56",
+    "ean": "",
+    "marca": "Eslabon de Lujo",
+    "modelo": "ET60",
+    "nombre": "Cocina a Gas Eslabón de Lujo 56cm Blanca",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Horno visor con luz interior y rejillas enlozadas de fácil limpieza.",
+    "especificaciones": {
+      "ancho": "56 cm",
+      "hornallas": 4,
+      "tipoGas": "Multigas"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.eslabondelujo.com.ar/"
+    }
+  },
+  {
+    "id": 66,
+    "sku": "COC-PHI-PHC50",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHC5022",
+    "nombre": "Cocina Philco 50cm Multigas",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Modelo compacto con quemadores de alta eficiencia y horno autolimpiante.",
+    "especificaciones": {
+      "ancho": "50 cm",
+      "hornallas": 4,
+      "valvulaSeguridad": "Si"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 67,
+    "sku": "COC-ATMA-AC56",
+    "ean": "",
+    "marca": "Atma",
+    "modelo": "AG5620",
+    "nombre": "Cocina a Gas Atma 56cm Inoxidable",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Acabado en acero, encendido a una mano y doble visor en horno.",
+    "especificaciones": {
+      "ancho": "56 cm",
+      "hornallas": 4,
+      "encendido": "Electrónico"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.atma.com.ar/"
+    }
+  },
+  {
+    "id": 68,
+    "sku": "COC-CLOD-56",
+    "ean": "",
+    "marca": "Climax",
+    "modelo": "CL56",
+    "nombre": "Cocina Climax Multigas 56cm Blanca",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Económica, funcional y segura para el hogar.",
+    "especificaciones": {
+      "ancho": "56 cm",
+      "hornallas": 4,
+      "valvulaSeguridad": "Si"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.climax.com.ar/"
+    }
+  },
+  {
+    "id": 69,
+    "sku": "COC-LON-1360",
+    "ean": "",
+    "marca": "Longvie",
+    "modelo": "13601BR",
+    "nombre": "Cocina a Gas Longvie 60cm Blanca",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Quemadores de alta potencia, plancha hermética y robustez asegurada.",
+    "especificaciones": {
+      "ancho": "60 cm",
+      "hornallas": 4,
+      "valvulaSeguridad": "Si"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.longvie.com/"
+    }
+  },
+  {
+    "id": 70,
+    "sku": "COC-ESL-60",
+    "ean": "",
+    "marca": "Eslabon de Lujo",
+    "modelo": "ET960",
+    "nombre": "Cocina a Gas Eslabón de Lujo 60cm Inox",
+    "categoria": "Cocinas",
+    "subcategoria": "A Gas",
+    "descripcion": "Estética moderna y excelente distribución del calor en el horno.",
+    "especificaciones": {
+      "ancho": "60 cm",
+      "hornallas": 4,
+      "material": "Acero Inoxidable"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.eslabondelujo.com.ar/"
+    }
+  },
+  {
+    "id": 71,
+    "sku": "CEL-SAM-S24ULTRA",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy S24 Ultra",
+    "nombre": "Celular Samsung Galaxy S24 Ultra 5G 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Smartphone insignia con Galaxy AI, marco de titanio y cámara de 200 MP.",
+    "especificaciones": {
+      "pantalla": "6.8 pulgadas AMOLED",
+      "memoriaRAM": "12GB",
+      "almacenamiento": "256GB",
+      "camaraPrincipal": "200 MP"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/smartphones/galaxy-s/"
+    }
+  },
+  {
+    "id": 72,
+    "sku": "CEL-SAM-A55",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy A55 5G",
+    "nombre": "Celular Samsung Galaxy A55 5G 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Diseño prémium en metal y vidrio, resistencia al agua IP67 y gran batería.",
+    "especificaciones": {
+      "pantalla": "6.6 pulgadas Super AMOLED",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/smartphones/galaxy-a/"
+    }
+  },
+  {
+    "id": 73,
+    "sku": "CEL-SAM-A35",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy A35 5G",
+    "nombre": "Celular Samsung Galaxy A35 5G 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smart smartphones",
+    "descripcion": "Pantalla fluida de 120Hz, cámara principal con estabilización óptica OIS.",
+    "especificaciones": {
+      "pantalla": "6.6 pulgadas Super AMOLED",
+      "memoriaRAM": "6GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/smartphones/galaxy-a/"
+    }
+  },
+  {
+    "id": 74,
+    "sku": "CEL-SAM-ZFLIP5",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy Z Flip5",
+    "nombre": "Celular Samsung Galaxy Z Flip5 512GB",
+    "categoria": "Celulares",
+    "subcategoria": "Plegables",
+    "descripcion": "Smartphone plegable compacto con pantalla exterior grande Flex Window.",
+    "especificaciones": {
+      "pantallaPrincipal": "6.7 pulgadas Dynamic AMOLED",
+      "almacenamiento": "512GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/smartphones/galaxy-z/"
+    }
+  },
+  {
+    "id": 75,
+    "sku": "CEL-SAM-S24PLUS",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy S24+",
+    "nombre": "Celular Samsung Galaxy S24+ 5G 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Rendimiento superior con procesador potente y funciones avanzadas de IA.",
+    "especificaciones": {
+      "pantalla": "6.7 pulgadas QHD+",
+      "memoriaRAM": "12GB",
+      "almacenamiento": "256GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/smartphones/galaxy-s/"
+    }
+  },
+  {
+    "id": 76,
+    "sku": "CEL-XIA-NOTE13PRO",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi Note 13 Pro",
+    "nombre": "Celular Xiaomi Redmi Note 13 Pro 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Dispositivo con cámara ultra nítida de 200 MP y carga rápida de 67W.",
+    "especificaciones": {
+      "pantalla": "6.67 pulgadas AMOLED",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 77,
+    "sku": "CEL-XIA-NOTE13",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi Note 13",
+    "nombre": "Celular Xiaomi Redmi Note 13 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Pantalla AMOLED de 120Hz y triple cámara de 108 MP.",
+    "especificaciones": {
+      "pantalla": "6.67 pulgadas AMOLED",
+      "memoriaRAM": "6GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 78,
+    "sku": "CEL-XIA-13C",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi 13C",
+    "nombre": "Celular Xiaomi Redmi 13C 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smart smartphones",
+    "descripcion": "Excelente relación calidad-precio, pantalla fluida y batería de larga duración.",
+    "especificaciones": {
+      "pantalla": "6.74 pulgadas",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 79,
+    "sku": "CEL-XIA-NOTE13PROPLUS",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi Note 13 Pro+ 5G",
+    "nombre": "Celular Xiaomi Redmi Note 13 Pro+ 5G 512GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Diseño curvo premium, resistencia al agua IP68 y cámara de 200 MP con OIS.",
+    "especificaciones": {
+      "pantalla": "6.67 pulgadas Curved AMOLED",
+      "memoriaRAM": "12GB",
+      "almacenamiento": "512GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 80,
+    "sku": "CEL-XIA-POCOM6",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "POCO M6 Pro",
+    "nombre": "Celular Xiaomi POCO M6 Pro 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Enfocado en rendimiento multimedia y fluidez para juegos.",
+    "especificaciones": {
+      "pantalla": "6.67 pulgadas Flow AMOLED",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 81,
+    "sku": "CEL-MOT-G54",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Moto G54 5G",
+    "nombre": "Celular Motorola Moto G54 5G 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Conectividad 5G, cámara con estabilización óptica y sonido Dolby Atmos.",
+    "especificaciones": {
+      "pantalla": "6.5 pulgadas FHD+ 120Hz",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 82,
+    "sku": "CEL-MOT-G84",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Moto G84 5G",
+    "nombre": "Celular Motorola Moto G84 5G 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Diseño elegante en cuero vegano, pantalla pOLED y 256GB de almacenamiento.",
+    "especificaciones": {
+      "pantalla": "6.55 pulgadas pOLED",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 83,
+    "sku": "CEL-MOT-EDGE50",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Edge 50 Pro",
+    "nombre": "Celular Motorola Edge 50 Pro 512GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Cámara validada por Pantone, carga ultrarrápida de 125W y diseño sofisticado.",
+    "especificaciones": {
+      "pantalla": "6.7 pulgadas pOLED Curva",
+      "memoriaRAM": "12GB",
+      "almacenamiento": "512GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 84,
+    "sku": "CEL-MOT-G24",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Moto G24",
+    "nombre": "Celular Motorola Moto G24 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Rendimiento confiable, diseño liviano y cámara con tecnología Quad Pixel.",
+    "especificaciones": {
+      "pantalla": "6.56 pulgadas HD+ 90Hz",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 85,
+    "sku": "CEL-MOT-G14",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Moto G14",
+    "nombre": "Celular Motorola Moto G14 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Pantalla Full HD+ con gran nitidez y batería de 5000 mAh.",
+    "especificaciones": {
+      "pantalla": "6.5 pulgadas FHD+",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 86,
+    "sku": "CEL-ZTE-BLADEV",
+    "ean": "",
+    "marca": "ZTE",
+    "modelo": "Blade V50",
+    "nombre": "Celular ZTE Blade V50 Design 256GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Diseño ultra fino con amplio espacio de almacenamiento interno.",
+    "especificaciones": {
+      "pantalla": "6.6 pulgadas FHD+",
+      "memoriaRAM": "8GB",
+      "almacenamiento": "256GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.ztedevices.com/ar/"
+    }
+  },
+  {
+    "id": 87,
+    "sku": "CEL-ALC-50",
+    "ean": "",
+    "marca": "Alcatel",
+    "modelo": "1S",
+    "nombre": "Celular Alcatel 1S 64GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Dispositivo accesible de entrada con fluidez para tareas cotidianas.",
+    "especificaciones": {
+      "pantalla": "6.52 pulgadas",
+      "memoriaRAM": "3GB",
+      "almacenamiento": "64GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.alcatelmobile.com/"
+    }
+  },
+  {
+    "id": 88,
+    "sku": "CEL-SAM-A15",
+    "ean": "",
+    "marca": "Samsung",
+    "modelo": "Galaxy A15",
+    "nombre": "Celular Samsung Galaxy A15 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Pantalla Super AMOLED brillante y triple cámara trasera.",
+    "especificaciones": {
+      "pantalla": "6.5 pulgadas Super AMOLED",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.samsung.com/ar/"
+    }
+  },
+  {
+    "id": 89,
+    "sku": "CEL-XIA-NOTE12",
+    "ean": "",
+    "marca": "Xiaomi",
+    "modelo": "Redmi Note 12",
+    "nombre": "Celular Xiaomi Redmi Note 12 128GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smartphones",
+    "descripcion": "Pantalla AMOLED de 120Hz con procesador Snapdragon de buen rendimiento.",
+    "especificaciones": {
+      "pantalla": "6.67 pulgadas AMOLED",
+      "memoriaRAM": "4GB",
+      "almacenamiento": "128GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.mi.com/ar/"
+    }
+  },
+  {
+    "id": 90,
+    "sku": "CEL-MOT-E13",
+    "ean": "",
+    "marca": "Motorola",
+    "modelo": "Moto E13",
+    "nombre": "Celular Motorola Moto E13 64GB",
+    "categoria": "Celulares",
+    "subcategoria": "Smart smartphones",
+    "descripcion": "Diseño estilizado y liviano con sonido espacial Dolby Atmos.",
+    "especificaciones": {
+      "pantalla": "6.5 pulgadas HD+",
+      "memoriaRAM": "2GB",
+      "almacenamiento": "64GB"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.motorola.com.ar/"
+    }
+  },
+  {
+    "id": 91,
+    "sku": "AC-HIS-3200",
+    "ean": "",
+    "marca": "Hisense",
+    "modelo": "AS-12UW4",
+    "nombre": "Aire Acondicionado Split Inverter Hisense 3200W F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Tecnología Inverter para mayor ahorro energético y climatización rápida.",
+    "especificaciones": {
+      "frigorias": "2750",
+      "potenciaW": "3200",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.hisense.com.ar/"
+    }
+  },
+  {
+    "id": 92,
+    "sku": "AC-PHI-3000",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHIN30W",
+    "nombre": "Aire Acondicionado Split Inverter Philco 3000F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Eficiencia energética superior con gas ecológico R410a.",
+    "especificaciones": {
+      "frigorias": "3000",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 93,
+    "sku": "AC-MAC-2200",
+    "ean": "",
+    "marca": "Midea",
+    "modelo": "MSFA-12",
+    "nombre": "Aire Acondicionado Split Midea Inverter 2250F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Funcionamiento ultrasilencioso y control mediante Wi-Fi opcional.",
+    "especificaciones": {
+      "frigorias": "2250",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.midea.com.ar/"
+    }
+  },
+  {
+    "id": 94,
+    "sku": "AC-CAR-4500",
+    "ean": "",
+    "marca": "Carrier",
+    "modelo": "53HCV",
+    "nombre": "Aire Acondicionado Split Carrier Inverter 4500F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Climatización de alta gama con filtros purificadores de aire.",
+    "especificaciones": {
+      "frigorias": "4500",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.carrier.com.ar/"
+    }
+  },
+  {
+    "id": 95,
+    "sku": "AC-YORK-3000",
+    "ean": "",
+    "marca": "York",
+    "modelo": "YHFE30",
+    "nombre": "Aire Acondicionado Split York 3000F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Tradicional",
+    "descripcion": "Diseño clásico con display digital oculto y función de deshumidificación.",
+    "especificaciones": {
+      "frigorias": "3000",
+      "tipoClima": "Frio/Calor"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.york.com/"
+    }
+  },
+  {
+    "id": 96,
+    "sku": "AC-SUR-2500",
+    "ean": "",
+    "marca": "Surrey",
+    "modelo": "553PHQ12",
+    "nombre": "Aire Acondicionado Split Surrey Inverter 3000F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Tecnología Inverter avanzada con máximo confort y menor variación térmica.",
+    "especificaciones": {
+      "frigorias": "3000",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.surrey.com.ar/"
+    }
+  },
+  {
+    "id": 97,
+    "sku": "AC-BGH-3000",
+    "ean": "",
+    "marca": "BGH",
+    "modelo": "BSIN30",
+    "nombre": "Aire Acondicionado Split BGH Silent Air Inverter 3000F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Bajo nivel sonoro y máxima eficiencia energética clase A.",
+    "especificaciones": {
+      "frigorias": "3000",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.bgh.com.ar/"
+    }
+  },
+  {
+    "id": 98,
+    "sku": "AC-BGH-6000",
+    "ean": "",
+    "marca": "BGH",
+    "modelo": "BSIN60",
+    "nombre": "Aire Acondicionado Split BGH Inverter 6000F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Gran potencia para ambientes amplios, salones u oficinas.",
+    "especificaciones": {
+      "frigorias": "6000",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.bgh.com.ar/"
+    }
+  },
+  {
+    "id": 99,
+    "sku": "AC-PHI-4500",
+    "ean": "",
+    "marca": "Philco",
+    "modelo": "PHIN45W",
+    "nombre": "Aire Acondicionado Split Inverter Philco 4500F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Climatización eficiente para espacios medianos a grandes con función I Feel.",
+    "especificaciones": {
+      "frigorias": "4500",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.philco.com.ar/"
+    }
+  },
+  {
+    "id": 100,
+    "sku": "AC-MAC-3000",
+    "ean": "",
+    "marca": "Midea",
+    "modelo": "MSFA-18",
+    "nombre": "Aire Acondicionado Split Midea Inverter 4500F/C",
+    "categoria": "Aires acondicionados",
+    "subcategoria": "Split Inverter",
+    "descripcion": "Tecnología Quattro Inverter para ahorro extremo y enfriamiento instantáneo.",
+    "especificaciones": {
+      "frigorias": "4500",
+      "tipoClima": "Frio/Calor",
+      "tecnologia": "Inverter"
+    },
+    "precio": 0,
+    "precioOferta": 0,
+    "cuotas": 3,
+    "stock": true,
+    "imagenes": [],
+    "fuente": {
+      "tipo": "fabricante",
+      "url": "https://www.midea.com.ar/"
+    }
   }
 ]
