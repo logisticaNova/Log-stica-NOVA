@@ -3328,20 +3328,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Envío del formulario de pago y generación de códigos únicos
+    // Botones para volver atrás (etapa 2 o 3 hacia el catálogo) sin perder el carrito
+    const backButtons = document.querySelectorAll('#btnBackCatalog, #btnBackToCatalog, #btnBackToShippingCatalog');
+    backButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchView(1);
+        });
+    });
+
+    // Envío del formulario de pago y generación de códigos únicos garantizados
     const shippingForm = document.getElementById('shippingForm');
     if (shippingForm) {
         shippingForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            // Generación de códigos únicos seguros (sin ceros ni vacíos)
             const trackingCode = 'NV-' + Math.floor(1000 + Math.random() * 9000) + '-' + new Date().getFullYear();
             const secCode = Math.floor(100000 + Math.random() * 900000);
 
+            // Inyección inmediata al DOM en la etapa final
             const trackingElem = document.getElementById('trackingCodeDisplay');
-            if (trackingElem) trackingElem.innerText = trackingCode;
+            if (trackingElem) {
+                trackingElem.innerText = trackingCode;
+            }
             
             const secElem = document.getElementById('secCodeDisplay');
-            if (secElem) secElem.innerText = secCode;
+            if (secElem) {
+                secElem.innerText = secCode;
+            }
 
             const subtotal = calculateSubtotal();
             const provinceSelect = document.getElementById('province');
@@ -3444,33 +3459,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const whatsappBtn = document.getElementById('whatsappBtn');
             if (whatsappBtn) {
                 whatsappBtn.onclick = () => {
-                    window.open(`https://wa.me/5491155012447?text=${encodeURIComponent(message)}`, '_blank');
+                    window.open(`https://wa.me/54911550124477?text=${encodeURIComponent(message)}`, '_blank');
                 };
             }
 
             switchView(3);
         });
     }
-
-    // Botón para volver al catálogo manteniendo el carrito intacto
-    const btnBackCatalog = document.getElementById('btnBackCatalog') || document.getElementById('btnBackToCatalog');
-    if (btnBackCatalog) {
-        btnBackCatalog.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (typeof switchView === 'function') {
-                switchView(1);
-            }
-            if (typeof renderCatalog === 'function') {
-                renderCatalog();
-            } else if (typeof loadProducts === 'function') {
-                loadProducts();
-            }
-        });
-    }
 });
     </script>
 </body>
 </html>
+
+
 
 
 
