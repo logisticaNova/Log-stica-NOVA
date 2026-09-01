@@ -3337,7 +3337,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Envío del formulario de pago y generación de códigos únicos garantizados
+        // Envío del formulario de pago y generación de códigos únicos garantizados
     const shippingForm = document.getElementById('shippingForm');
     if (shippingForm) {
         shippingForm.addEventListener('submit', (e) => {
@@ -3347,13 +3347,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const trackingCode = 'NV-' + Math.floor(1000 + Math.random() * 9000) + '-' + new Date().getFullYear();
             const secCode = Math.floor(100000 + Math.random() * 900000);
 
-            // Inyección inmediata al DOM en la etapa final
-            const trackingElem = document.getElementById('trackingCodeDisplay');
+            // Inyección inmediata al DOM en la etapa final (con validación de existencia)
+            const trackingElem = document.getElementById('trackingCodeDisplay') || document.getElementById('trackingCode') || document.getElementById('nroGuia');
             if (trackingElem) {
                 trackingElem.innerText = trackingCode;
             }
             
-            const secElem = document.getElementById('secCodeDisplay');
+            const secElem = document.getElementById('secCodeDisplay') || document.getElementById('secCode') || document.getElementById('codigoValidacion');
             if (secElem) {
                 secElem.innerText = secCode;
             }
@@ -3466,6 +3466,7 @@ document.addEventListener('DOMContentLoaded', () => {
             switchView(3);
         });
     }
+
 });
     </script>
 </body>
