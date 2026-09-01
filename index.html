@@ -3394,14 +3394,17 @@
             }
         });
 
-        // Botón para volver al catálogo sin borrar el carrito (Permite agregar más productos)
-        const btnBackCatalog = document.getElementById('btnBackCatalog') || document.getElementById('btnBackToCatalog');
-        if (btnBackCatalog) {
-            btnBackCatalog.addEventListener('click', () => {
-                if (typeof switchView === 'function') {
-                    switchView(1); // Vuelve a la vista del catálogo manteniendo los productos seleccionados en el carrito
-                }
-            });
+        // Botón para volver al catálogo sin borrar el carrito (Captura global de clics)
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('#btnBackCatalog, #btnBackToCatalog, [id*="Catalog"], [id*="catalog"]');
+    if (btn) {
+        e.preventDefault();
+        if (typeof switchView === 'function') {
+            switchView(1); // Vuelve a la vista del catálogo manteniendo los productos seleccionados
+        }
+    }
+});
+
         }
     </script>
 </body>
