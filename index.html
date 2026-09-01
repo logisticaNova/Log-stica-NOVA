@@ -3272,12 +3272,17 @@ document.getElementById('shippingForm').addEventListener('submit', (e) => {
     const trackingCode = 'NV-' + Math.floor(1000 + Math.random() * 9000) + '-' + new Date().getFullYear();
     const secCode = Math.floor(100000 + Math.random() * 900000);
 
-    document.getElementById('trackingCodeDisplay').innerText = trackingCode;
-    document.getElementById('secCodeDisplay').innerText = secCode;
+    const trackingElem = document.getElementById('trackingCodeDisplay');
+    if (trackingElem) trackingElem.innerText = trackingCode;
+    
+    const secElem = document.getElementById('secCodeDisplay');
+    if (secElem) secElem.innerText = secCode;
 
-    const subtotal = calculateSubtotal();
-    const provinceVal = document.getElementById('province').value;
+    const subtotal = typeof calculateSubtotal === 'function' ? calculateSubtotal() : 0;
+    const provinceSelect = document.getElementById('province');
+    const provinceVal = provinceSelect ? provinceSelect.value : '';
     let shippingCost = 0;
+    
     if (provinceVal === 'CABA_GBA') shippingCost = 8500;
     else if (provinceVal === 'BUENOS_AIRES') shippingCost = 12500;
     else if (provinceVal === 'INTERIOR') shippingCost = 18500;
@@ -3286,53 +3291,69 @@ document.getElementById('shippingForm').addEventListener('submit', (e) => {
         shippingCost = 0;
     }
 
-    const paymentMethod = document.getElementById('paymentMethod').value;
+    const paymentMethodElem = document.getElementById('paymentMethod');
+    const paymentMethod = paymentMethodElem ? paymentMethodElem.value : 'TRANSFER';
     let finalTotal = 0;
     let paymentDesc = '';
+
+    const cbuBox = document.getElementById('cbuDetailsBox');
 
     if (paymentMethod === 'TRANSFER') {
         finalTotal = subtotal - (subtotal * 0.15) + shippingCost;
         paymentDesc = 'Transferencia Bancaria / Efectivo (15% OFF Aplicado)';
-        document.getElementById('cbuDetailsBox').style.display = 'block';
+        if (cbuBox) cbuBox.style.display = 'block';
     } else {
-        document.getElementById('cbuDetailsBox').style.display = 'none';
-        const installments = parseInt(document.getElementById('cardInstallments').value);
+        if (cbuBox) cbuBox.style.display = 'none';
+        const installmentsElem = document.getElementById('cardInstallments');
+        const installments = installmentsElem ? parseInt(installmentsElem.value) || 1 : 1;
         let surchargeRate = installments * 0.07;
         finalTotal = subtotal + (subtotal * surchargeRate) + shippingCost;
         paymentDesc = `Tarjeta de Crédito en ${installments} cuotas fijas`;
     }
 
-    document.getElementById('resGrandTotal').innerText = formatCurrency(finalTotal);
-    document.getElementById('resInstallmentsDetail').innerText = paymentDesc;
+    const grandTotalElem = document.getElementById('resGrandTotal');
+    if (grandTotalElem) grandTotalElem.innerText = typeof formatCurrency === 'function' ? formatCurrency(finalTotal) : '$' + finalTotal;
+
+    const installmentsDetailElem = document.getElementById('resInstallmentsDetail');
+    if (installmentsDetailElem) installmentsDetailElem.innerText = paymentDesc;
 
     // Renderizar resumen de ítems
     const resItemsContainer = document.getElementById('resItemsList');
-    resItemsContainer.innerHTML = '';
+    if (resItemsContainer) {
+        resItemsContainer.innerHTML = '';
+    }
     
     let productosTexto = "";
 
     for (let id in carrito) {
         let prod = productos.find(p => p.id === Number(id));
         if (prod) {
-            const div = document.createElement('div');
-            div.style.cssText = 'display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;';
-            div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${formatCurrency(prod.precioOferta * carrito[id])}</strong>`;
-            resItemsContainer.appendChild(div);
+            if (resItemsContainer) {
+                const div = document.createElement('div');
+                div.style.cssText = 'display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;';
+                div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${typeof formatCurrency === 'function' ? formatCurrency(prod.precioOferta * carrito[id]) : '$' + (prod.precioOferta * carrito[id])}</strong>`;
+                resItemsContainer.appendChild(div);
+            }
 
             const imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/300/0284c7/ffffff?text=Producto';
             productosTexto += `• ${carrito[id]}x ${prod.nombre}\n  🖼️ Foto: ${imgUrl}\n`;
         }
     }
 
-    // WhatsApp link generator (Incluyendo DNI, Código Postal y texto de provincia)
-    const fullName = document.getElementById('fullName').value;
-    const dni = document.getElementById('dni').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
-    const address = document.getElementById('address').value;
-    const city = document.getElementById('city').value;
-    const provinceText = document.getElementById('province').options[document.getElementById('province').selectedIndex].text;
-    const cp = document.getElementById('cp') ? document.getElementById('cp').value : '';
+    // Captura segura de datos del formulario con valores por defecto si no existen
+    const getVal = (id) => {
+        const el = document.getElementById(id);
+        return el ? el.value : '';
+    };
+
+    const fullName = getVal('fullName');
+    const dni = getVal('dni') || getVal('cuil') || 'No especificado';
+    const phone = getVal('phone');
+    const email = getVal('email');
+    const address = getVal('address');
+    const city = getVal('city');
+    const provinceText = provinceSelect && provinceSelect.selectedIndex >= 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : provinceVal;
+    const cp = getVal('cp');
 
     let direccionCompleta = `${address}, ${city}, ${provinceText}`;
     if (cp) {
@@ -3354,35 +3375,20 @@ document.getElementById('shippingForm').addEventListener('submit', (e) => {
                   productosTexto + `\n` +
                   `*MÉTODO Y PLAN DE PAGO*\n` +
                   `• ${paymentDesc}\n\n` +
-                  `*TOTAL A PAGAR:* ${formatCurrency(finalTotal)}\n\n` +
+                  `*TOTAL A PAGAR:* ${typeof formatCurrency === 'function' ? formatCurrency(finalTotal) : '$' + finalTotal}\n\n` +
                   `Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
 
-    document.getElementById('whatsappBtn').onclick = () => {
-        window.open(`https://wa.me/54911550124477?text=${encodeURIComponent(message)}`, '_blank');
-    };
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    if (whatsappBtn) {
+        whatsappBtn.onclick = () => {
+            window.open(`https://wa.me/54911550124477?text=${encodeURIComponent(message)}`, '_blank');
+        };
+    }
 
-    switchView(3);
+    if (typeof switchView === 'function') {
+        switchView(3);
+    }
 });
-
-        // Rastreo de envío simple
-        document.getElementById('btnSearchTrack').addEventListener('click', () => {
-            const val = document.getElementById('trackInput').value.trim();
-            const resBox = document.getElementById('trackingResult');
-            if (val) {
-                document.getElementById('trackCodeDisplay').innerText = val;
-                document.getElementById('trackStatusDisplay').innerText = 'En preparación / Despachado';
-                resBox.style.display = 'block';
-            } else {
-                alert('Por favor ingresa un código de seguimiento válido.');
-            }
-        });
-
-        document.getElementById('btnRestart').addEventListener('click', () => {
-            carrito = {};
-            updateCartSummary();
-            document.getElementById('shippingForm').reset();
-            switchView(1);
-        });
 
         // Inicialización
         populateInstallments();
