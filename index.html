@@ -3265,73 +3265,98 @@
             renderCatalog();
         });
 
-        // Envío del formulario de pago
-        document.getElementById('shippingForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const trackingCode = 'NV-' + Math.floor(1000 + Math.random() * 9000) + '-2026';
-            const secCode = Math.floor(100000 + Math.random() * 900000);
-            
-            document.getElementById('resTrackingCode').innerText = trackingCode;
-            document.getElementById('resSecCode').innerText = secCode;
+        // Envio del formulario de pago
+document.getElementById('shippingForm').addEventListener('submit', (e) => {
+    e.preventDefault();
 
-            const subtotal = calculateSubtotal();
-            const provinceVal = document.getElementById('province').value;
-            let shippingCost = subtotal >= 800000 ? 0 : (provinceVal === 'CABA_GBA' ? 8500 : (provinceVal === 'BUENOS_AIRES' ? 12500 : 18500));
-            const paymentMethod = document.getElementById('paymentMethod').value;
-            
-            let finalTotal = 0;
-            let paymentDesc = '';
+    const trackingCode = 'NV-' + Math.floor(1000 + Math.random() * 9000) + '-' + new Date().getFullYear();
+    const secCode = Math.floor(100000 + Math.random() * 900000);
 
-            if (paymentMethod === 'TRANSFER') {
-                finalTotal = subtotal - (subtotal * 0.15) + shippingCost;
-                paymentDesc = 'Transferencia Bancaria / Efectivo (15% OFF aplicado)';
-                document.getElementById('cbuDetailsBox').style.display = 'block';
-            } else {
-                document.getElementById('cbuDetailsBox').style.display = 'none';
-                const installments = parseInt(document.getElementById('cardInstallments').value);
-                let surchargeRate = installments * 0.07;
-                finalTotal = subtotal + (subtotal * surchargeRate) + shippingCost;
-                paymentDesc = `Tarjeta de Crédito en ${installments} cuotas fijas`;
-            }
+    document.getElementById('trackingCodeDisplay').innerText = trackingCode;
+    document.getElementById('secCodeDisplay').innerText = secCode;
 
-            document.getElementById('resGrandTotal').innerText = formatCurrency(finalTotal);
-            document.getElementById('resInstallmentsDetail').innerText = paymentDesc;
+    const subtotal = calculateSubtotal();
+    const provinceVal = document.getElementById('province').value;
+    let shippingCost = 0;
+    if (provinceVal === 'CABA_GBA') shippingCost = 8500;
+    else if (provinceVal === 'BUENOS_AIRES') shippingCost = 12500;
+    else if (provinceVal === 'INTERIOR') shippingCost = 18500;
 
-            // Renderizar resumen de items
-            const resItemsContainer = document.getElementById('resItemsList');
-            resItemsContainer.innerHTML = '';
-            for (let id in carrito) {
-                const prod = productos.find(p => p.id == id);
-                if (prod) {
-                    const div = document.createElement('div');
-                    div.style.cssText = 'display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.3rem;';
-                    div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${formatCurrency(prod.precioOferta * carrito[id])}</strong>`;
-                    resItemsContainer.appendChild(div);
-                }
-            }
+    if (subtotal >= 200000) {
+        shippingCost = 0;
+    }
 
-            // WhatsApp link generator
-            const fullName = document.getElementById('fullName').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            
-            let message = `Hola, acabo de registrar una orden en Logística Nova.%0A` +
-                          `*Código:* ${trackingCode}%0A` +
-                          `*Cliente:* ${fullName}%0A` +
-                          `*Teléfono:* ${phone}%0A` +
-                          `*Dirección:* ${address}, ${city}%0A` +
-                          `*Método de Pago:* ${paymentDesc}%0A` +
-                          `*Total Final:* ${formatCurrency(finalTotal)}%0A` +
-                          `*Código de Validación:* ${secCode}`;
+    const paymentMethod = document.getElementById('paymentMethod').value;
+    let finalTotal = 0;
+    let paymentDesc = '';
 
-            document.getElementById('whatsappBtn').onclick = () => {
-                window.open(`https://wa.me/5491155012447?text=${message}`, '_blank');
-            };
+    if (paymentMethod === 'TRANSFER') {
+        finalTotal = subtotal - (subtotal * 0.15) + shippingCost;
+        paymentDesc = 'Transferencia Bancaria / Efectivo (15% OFF Aplicado)';
+        document.getElementById('cbuDetailsBox').style.display = 'block';
+    } else {
+        document.getElementById('cbuDetailsBox').style.display = 'none';
+        const installments = parseInt(document.getElementById('cardInstallments').value);
+        let surchargeRate = installments * 0.07;
+        finalTotal = subtotal + (subtotal * surchargeRate) + shippingCost;
+        paymentDesc = `Tarjeta de Crédito en ${installments} cuotas fijas`;
+    }
 
-            switchView(3);
-        });
+    document.getElementById('resGrandTotal').innerText = formatCurrency(finalTotal);
+    document.getElementById('resInstallmentsDetail').innerText = paymentDesc;
+
+    // Renderizar resumen de ítems
+    const resItemsContainer = document.getElementById('resItemsList');
+    resItemsContainer.innerHTML = '';
+    
+    let productosTexto = "";
+
+    for (let id in carrito) {
+        let prod = productos.find(p => p.id === Number(id));
+        if (prod) {
+            const div = document.createElement('div');
+            div.style.cssText = 'display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;';
+            div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${formatCurrency(prod.precioOferta * carrito[id])}</strong>`;
+            resItemsContainer.appendChild(div);
+
+            const imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/300/0284c7/ffffff?text=Producto';
+            productosTexto += `• ${carrito[id]}x ${prod.nombre}\n  🖼️ Foto: ${imgUrl}\n`;
+        }
+    }
+
+    // WhatsApp link generator
+    const fullName = document.getElementById('fullName').value;
+    const dni = document.getElementById('dni').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    const provinceText = document.getElementById('province').options[document.getElementById('province').selectedIndex].text;
+
+    let message = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n` +
+                  `*LOGÍSTICA NOVA*\n` +
+                  `----------------------------------------\n` +
+                  `*N° de Guía:* ${trackingCode}\n` +
+                  `*Código de Validación:* ${secCode}\n\n` +
+                  `*DATOS DEL COMPRADOR*\n` +
+                  `• Nombre: ${fullName}\n` +
+                  `• DNI/CUIL: ${dni}\n` +
+                  `• Teléfono: ${phone}\n` +
+                  `• Email: ${email}\n` +
+                  `• Dirección de Entrega: ${address}, ${city}, ${provinceText}\n\n` +
+                  `*PRODUCTOS SOLICITADOS*\n` +
+                  productosTexto + `\n` +
+                  `*MÉTODO Y PLAN DE PAGO*\n` +
+                  `• ${paymentDesc}\n\n` +
+                  `*TOTAL A PAGAR:* ${formatCurrency(finalTotal)}\n\n` +
+                  `Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
+
+    document.getElementById('whatsappBtn').onclick = () => {
+        window.open(`https://wa.me/54911550124477?text=${encodeURIComponent(message)}`, '_blank');
+    };
+
+    switchView(3);
+});
 
         // Rastreo de envío simple
         document.getElementById('btnSearchTrack').addEventListener('click', () => {
