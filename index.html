@@ -3324,7 +3324,7 @@ document.getElementById('shippingForm').addEventListener('submit', (e) => {
         }
     }
 
-    // WhatsApp link generator
+    // WhatsApp link generator (Incluyendo DNI, Código Postal y texto de provincia)
     const fullName = document.getElementById('fullName').value;
     const dni = document.getElementById('dni').value;
     const phone = document.getElementById('phone').value;
@@ -3332,6 +3332,12 @@ document.getElementById('shippingForm').addEventListener('submit', (e) => {
     const address = document.getElementById('address').value;
     const city = document.getElementById('city').value;
     const provinceText = document.getElementById('province').options[document.getElementById('province').selectedIndex].text;
+    const cp = document.getElementById('cp') ? document.getElementById('cp').value : '';
+
+    let direccionCompleta = `${address}, ${city}, ${provinceText}`;
+    if (cp) {
+        direccionCompleta += ` (CP: ${cp})`;
+    }
 
     let message = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n` +
                   `*LOGÍSTICA NOVA*\n` +
@@ -3343,7 +3349,7 @@ document.getElementById('shippingForm').addEventListener('submit', (e) => {
                   `• DNI/CUIL: ${dni}\n` +
                   `• Teléfono: ${phone}\n` +
                   `• Email: ${email}\n` +
-                  `• Dirección de Entrega: ${address}, ${city}, ${provinceText}\n\n` +
+                  `• Dirección de Entrega: ${direccionCompleta}\n\n` +
                   `*PRODUCTOS SOLICITADOS*\n` +
                   productosTexto + `\n` +
                   `*MÉTODO Y PLAN DE PAGO*\n` +
