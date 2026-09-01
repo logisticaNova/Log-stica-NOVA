@@ -3328,7 +3328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Botones para volver atrás (etapa 2 o 3 hacia el catálogo) sin perder el carrito
+    // Botones para volver atrás sin perder el carrito
     const backButtons = document.querySelectorAll('#btnBackCatalog, #btnBackToCatalog, #btnBackToShippingCatalog');
     backButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -3337,17 +3337,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-        // Envío del formulario de pago y generación de códigos únicos garantizados
+    // Envío del formulario de pago y generación de códigos únicos aleatorios visibles en pantalla
     const shippingForm = document.getElementById('shippingForm');
     if (shippingForm) {
         shippingForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Generación de códigos únicos seguros (sin ceros ni vacíos)
+            // Generación de códigos aleatorios únicos para cada pedido
             const trackingCode = 'NV-' + Math.floor(1000 + Math.random() * 9000) + '-' + new Date().getFullYear();
             const secCode = Math.floor(100000 + Math.random() * 900000);
 
-            // Inyección inmediata al DOM en la etapa final (con validación de existencia)
+            // Inyección en pantalla (busca cualquiera de los IDs comunes para evitar errores)
             const trackingElem = document.getElementById('trackingCodeDisplay') || document.getElementById('trackingCode') || document.getElementById('nroGuia');
             if (trackingElem) {
                 trackingElem.innerText = trackingCode;
@@ -3466,9 +3466,8 @@ document.addEventListener('DOMContentLoaded', () => {
             switchView(3);
         });
     }
-
 });
-    </script>
+
 </body>
 </html>
 
