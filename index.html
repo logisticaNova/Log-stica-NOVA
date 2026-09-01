@@ -3394,18 +3394,26 @@
             }
         });
 
-        // Botón para volver al catálogo sin borrar el carrito (Captura global de clics)
+        // Botón para volver al catálogo y recargar los productos de forma segura
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('#btnBackCatalog, #btnBackToCatalog, [id*="Catalog"], [id*="catalog"]');
     if (btn) {
         e.preventDefault();
+        
+        // Cambia a la vista 1 (catálogo)
         if (typeof switchView === 'function') {
-            switchView(1); // Vuelve a la vista del catálogo manteniendo los productos seleccionados
+            switchView(1);
+        }
+        
+        // Fuerza la recarga o renderizado del catálogo para quitar el mensaje de "Cargando..."
+        if (typeof renderCatalog === 'function') {
+            renderCatalog();
+        } else if (typeof loadProducts === 'function') {
+            loadProducts();
         }
     }
 });
 
-        }
     </script>
 </body>
 </html>
