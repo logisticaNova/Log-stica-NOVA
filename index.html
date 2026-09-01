@@ -2939,342 +2939,403 @@
   }
 ];
 
-        let carrito = {};
-        let currentFilter = 'ALL';
-        let currentSearchQuery = '';
-        let currentSort = 'default';
-        let currentPage = 1;
-        const itemsPerPage = 12;
+        // Configuración y variables iniciales
+let carrito = {};
+let currentFilter = 'ALL';
+let currentSearchQuery = '';
+let currentSort = 'default';
+let currentPage = 1;
+const itemsPerPage = 12;
 
-        function formatCurrency(amount) {
-            return '$' + amount.toLocaleString('es-AR');
+function formatCurrency(amount) {
+    return '$' + amount.toLocaleString('es-AR');
+}
+
+// Lógica de Renderizado del Catálogo
+function renderCatalog() {
+    const container = document.getElementById('catalogContainer');
+    const counterText = document.getElementById('catalogCounterText');
+
+    if (!container) return;
+
+    // Filtrado
+    let filtered = productos.filter(p => {
+        const matchesCategory = currentFilter === 'ALL' || p.categoria === currentFilter;
+        const query = currentSearchQuery.toLowerCase();
+        const matchesSearch = !query || 
+            p.nombre.toLowerCase().includes(query) || 
+            (p.marca && p.marca.toLowerCase().includes(query)) || 
+            (p.modelo && p.modelo.toLowerCase().includes(query)) || 
+            p.categoria.toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+    });
+
+    // Ordenamiento
+    if (currentSort === 'price-asc') {
+        filtered.sort((a, b) => a.precioOferta - b.precioOferta);
+    } else if (currentSort === 'price-desc') {
+        filtered.sort((a, b) => b.precioOferta - a.precioOferta);
+    }
+
+    if (counterText) {
+        counterText.innerText = `Mostrando ${filtered.length} productos`;
+    }
+
+    // Paginación
+    const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
+    if (currentPage > totalPages) currentPage = 1;
+    const start = (currentPage - 1) * itemsPerPage;
+    const paginatedItems = filtered.slice(start, start + itemsPerPage);
+
+    container.innerHTML = '';
+
+    if (paginatedItems.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron productos disponibles.</div>`;
+        if (typeof renderPagination === 'function') renderPagination(1, 1);
+        return;
+    }
+
+    paginatedItems.forEach(p => {
+        const qty = carrito[p.id] || 0;
+        const card = document.createElement('div');
+        card.className = 'product-card';
+
+        // Generar imágenes por defecto si está vacío
+        let imgList = (p.imagenes && p.imagenes.length > 0) ? p.imagenes : ['https://via.placeholder.com/300/0284c7/ffffff?text=Producto'];
+
+        card.innerHTML = `
+            <div class="product-badge">OFERTA</div>
+            <div class="product-slider-container">
+                <div class="product-slider-track" id="track-${p.id}">
+                    ${imgList.map(img => `<img src="${img}" class="product-img" alt="${p.nombre}">`).join('')}
+                </div>
+            </div>
+            <div class="product-cat-tag">${p.categoria}</div>
+            <div class="product-title">${p.nombre}</div>
+            <div class="product-description">${p.descripcion}</div>
+            <div class="product-price-box">
+                <span class="old-price">${formatCurrency(p.precio)}</span>
+                <span class="product-price">${formatCurrency(p.precioOferta)}</span>
+            </div>
+            <div class="product-actions">
+                <button type="button" class="qty-btn" onclick="updateQty(${p.id}, -1)">-</button>
+                <span class="qty-val" id="qty-${p.id}">${qty}</span>
+                <button type="button" class="qty-btn" onclick="updateQty(${p.id}, 1)">+</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+
+    if (typeof renderPagination === 'function') {
+        renderPagination(currentPage, totalPages);
+    }
+    if (typeof updateCartSummary === 'function') {
+        updateCartSummary();
+    }
+}
+
+function renderPagination(current, total) {
+    const container = document.getElementById('paginationContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    if (total <= 1) return;
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'page-btn';
+    prevBtn.innerText = '‹ Anterior';
+    prevBtn.disabled = current === 1;
+    prevBtn.onclick = () => { if (current > 1) { currentPage--; renderCatalog(); window.scrollTo({ top: 0, behavior: 'smooth' }); } };
+    container.appendChild(prevBtn);
+
+    for (let i = 1; i <= total; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === current ? 'active' : ''}`;
+        pageBtn.innerText = i;
+        pageBtn.onclick = () => { currentPage = i; renderCatalog(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+        container.appendChild(pageBtn);
+    }
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'page-btn';
+    nextBtn.innerText = 'Siguiente ›';
+    nextBtn.disabled = current === total;
+    nextBtn.onclick = () => { if (current < total) { currentPage++; renderCatalog(); window.scrollTo({ top: 0, behavior: 'smooth' }); } };
+    container.appendChild(nextBtn);
+}
+
+function filterCategory(cat) {
+    currentFilter = cat;
+    currentPage = 1;
+    document.querySelectorAll('.nav-item').forEach(el => {
+        el.classList.toggle('active', el.innerText.toLowerCase() === cat.toLowerCase() || (cat === 'ALL' && el.innerText.toLowerCase() === 'ver todo'));
+    });
+    renderCatalog();
+}
+
+function updateQty(id, change) {
+    if (!carrito[id]) carrito[id] = 0;
+    carrito[id] += change;
+    if (carrito[id] <= 0) delete carrito[id];
+
+    const qlySpan = document.getElementById(`qty-${id}`);
+    if (qlySpan) qlySpan.innerText = carrito[id] || 0;
+
+    updateCartSummary();
+    renderDrawerItems();
+}
+
+function calculateSubtotal() {
+    let subtotal = 0;
+    for (let id in carrito) {
+        let prod = productos.find(p => p.id == id);
+        if (prod) {
+            subtotal += prod.precioOferta * carrito[id];
         }
+    }
+    return subtotal;
+}
 
-        // Lógica de Renderizado del Catálogo
-        function renderCatalog() {
-            const container = document.getElementById('catalogContainer');
-            const counterText = document.getElementById('catalogCounterText');
-            
-            // Filtrado
-            let filtered = productos.filter(p => {
-                const matchesCategory = currentFilter === 'ALL' || p.categoria === currentFilter;
-                const query = currentSearchQuery.toLowerCase();
-                const matchesSearch = !query || 
-                    p.nombre.toLowerCase().includes(query) || 
-                    p.marca.toLowerCase().includes(query) || 
-                    p.modelo.toLowerCase().includes(query) ||
-                    p.categoria.toLowerCase().includes(query);
-                return matchesCategory && matchesSearch;
-            });
+function updateCartSummary() {
+    let totalCount = 0;
+    for (let id in carrito) {
+        totalCount += carrito[id];
+    }
+    const badge = document.getElementById('cartCountBadge');
+    if (badge) badge.innerText = totalCount;
 
-            // Ordenamiento
-            if (currentSort === 'price-asc') {
-                filtered.sort((a, b) => a.precioOferta - b.precioOferta);
-            } else if (currentSort === 'price-desc') {
-                filtered.sort((a, b) => b.precioOferta - a.precioOferta);
-            }
+    const subtotal = calculateSubtotal();
+    const prodTotalElem = document.getElementById('productsTotal');
+    if (prodTotalElem) prodTotalElem.innerText = formatCurrency(subtotal);
+    const drawerSubtotal = document.getElementById('drawerSubtotal');
+    if (drawerSubtotal) drawerSubtotal.innerText = formatCurrency(subtotal);
+}
 
-            counterText.innerText = `Mostrando ${filtered.length} productos`;
+function renderDrawerItems() {
+    const container = document.getElementById('drawerItemsContainer');
+    if (!container) return;
+    container.innerHTML = '';
 
-            // Paginación
-            const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
-            if (currentPage > totalPages) currentPage = 1;
-            const start = (currentPage - 1) * itemsPerPage;
-            const paginatedItems = filtered.slice(start, start + itemsPerPage);
+    if (Object.keys(carrito).length === 0) {
+        container.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 2rem;">Tu carrito está vacío.</p>`;
+        return;
+    }
 
-            container.innerHTML = '';
+    for (let id in carrito) {
+        let prod = productos.find(p => p.id == id);
+        if (!prod) continue;
 
-            if (paginatedItems.length === 0) {
-                container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">No se encontraron productos con los filtros seleccionados.</div>`;
-                renderPagination(1, 1);
-                return;
-            }
+        const row = document.createElement('div');
+        row.className = 'cart-item-row';
+        let imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/50';
+        
+        row.innerHTML = `
+            <img src="${imgUrl}" class="cart-item-img" alt="">
+            <div style="flex-grow: 1;">
+                <div style="font-size: 0.8rem; font-weight: 700; line-height: 1.2;">${prod.nombre}</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">${carrito[id]} x ${formatCurrency(prod.precioOferta)}</div>
+            </div>
+            <button type="button" onclick="updateQty(${prod.id}, -${carrito[id]})" style="background: none; border: none; color: #ef4444; cursor: pointer;">🗑️</button>
+        `;
+        container.appendChild(row);
+    }
+}
 
-            paginatedItems.forEach(p => {
-                const qty = carrito[p.id] || 0;
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                
-                // Generar imágenes por defecto si está vacío
-                let imgList = p.imagenes.length > 0 ? p.imagenes : ['https://via.placeholder.com/200x180?text=' + encodeURIComponent(p.marca)];
-                
-                card.innerHTML = `
-                    <div class="product-badge">OFERTA</div>
-                    <div class="product-slider-container">
-                        <div class="product-slider-track" id="track-${p.id}">
-                            ${imgList.map(img => `<img src="${img}" class="product-img" alt="${p.nombre}">`).join('')}
-                        </div>
-                    </div>
-                    <div class="product-cat-tag">${p.categoria}</div>
-                    <div class="product-title">${p.nombre}</div>
-                    <div class="product-description">${p.descripcion}</div>
-                    <div class="product-price-box">
-                        <span class="old-price">${formatCurrency(p.precio)}</span>
-                        <span class="product-price">${formatCurrency(p.precioOferta)}</span>
-                    </div>
-                    <div class="product-actions">
-                        <button type="button" class="qty-btn" onclick="updateQty(${p.id}, -1)">-</button>
-                        <span class="qty-val" id="qty-${p.id}">${qty}</span>
-                        <button type="button" class="qty-btn" onclick="updateQty(${p.id}, 1)">+</button>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+// Navegación entre vistas
+function switchView(step) {
+    document.querySelectorAll('.view-step').forEach(v => v.classList.remove('active-view'));
+    const b1 = document.getElementById('badgeStep1');
+    const b2 = document.getElementById('badgeStep2');
+    const b3 = document.getElementById('badgeStep3');
+    if (b1) b1.className = 'step-item';
+    if (b2) b2.className = 'step-item';
+    if (b3) b3.className = 'step-item';
 
-            renderPagination(currentPage, totalPages);
-            updateCartSummary();
+    if (step === 1) {
+        const view = document.getElementById('viewCatalog');
+        if (view) view.classList.add('active-view');
+        if (b1) b1.classList.add('active');
+        renderCatalog();
+    } else if (step === 2) {
+        const view = document.getElementById('viewShipping');
+        if (view) view.classList.add('active-view');
+        if (b1) b1.classList.add('completed');
+        if (b2) b2.classList.add('active');
+        updateCheckoutCalculations();
+    } else if (step === 3) {
+        const view = document.getElementById('viewResults');
+        if (view) view.classList.add('active-view');
+        if (b1) b1.classList.add('completed');
+        if (b2) b2.classList.add('completed');
+        if (b3) b3.classList.add('active');
+    }
+}
+
+// Cálculos del Formulario de Pago
+function updateCheckoutCalculations() {
+    const subtotal = calculateSubtotal();
+    const provinceSelect = document.getElementById('province');
+    const provinceVal = provinceSelect ? provinceSelect.value : '';
+    let shippingCost = 0;
+
+    if (provinceVal === 'CABA_GBA') shippingCost = 8500;
+    else if (provinceVal === 'BUENOS_AIRES') shippingCost = 12500;
+    else if (provinceVal === 'INTERIOR') shippingCost = 18500;
+
+    if (subtotal >= 200000) {
+        shippingCost = 0;
+    }
+
+    const paymentMethodElem = document.getElementById('paymentMethod');
+    const paymentMethod = paymentMethodElem ? paymentMethodElem.value : 'TRANSFER';
+    let discountOrSurcharge = 0;
+    let grandTotal = 0;
+
+    const cardGroup = document.getElementById('creditCardInstallmentsGroup');
+    if (paymentMethod === 'TRANSFER') {
+        if (cardGroup) cardGroup.style.display = 'none';
+        discountOrSurcharge = -(subtotal * 0.15);
+        grandTotal = subtotal + discountOrSurcharge + shippingCost;
+        const discDisp = document.getElementById('formDiscountDisplay');
+        if (discDisp) {
+            discDisp.innerText = `- ${formatCurrency(Math.abs(discountOrSurcharge))}`;
+            discDisp.style.color = 'var(--accent-green)';
         }
-
-        function renderPagination(current, total) {
-            const container = document.getElementById('paginationContainer');
-            container.innerHTML = '';
-            
-            if (total <= 1) return;
-
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'page-btn';
-            prevBtn.innerText = '← Anterior';
-            prevBtn.disabled = current === 1;
-            prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderCatalog(); window.scrollTo({top: 0, behavior: 'smooth'}); } };
-            container.appendChild(prevBtn);
-
-            for (let i = 1; i <= total; i++) {
-                const pageBtn = document.createElement('button');
-                pageBtn.className = `page-btn ${i === current ? 'active' : ''}`;
-                pageBtn.innerText = i;
-                pageBtn.onclick = () => { currentPage = i; renderCatalog(); window.scrollTo({top: 0, behavior: 'smooth'}); };
-                container.appendChild(pageBtn);
-            }
-
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'page-btn';
-            nextBtn.innerText = 'Siguiente →';
-            nextBtn.disabled = current === total;
-            nextBtn.onclick = () => { if (currentPage < total) { currentPage++; renderCatalog(); window.scrollTo({top: 0, behavior: 'smooth'}); } };
-            container.appendChild(nextBtn);
+    } else {
+        if (cardGroup) cardGroup.style.display = 'block';
+        const installmentsElem = document.getElementById('cardInstallments');
+        const installments = installmentsElem ? parseInt(installmentsElem.value) || 3 : 3;
+        let surchargeRate = installments * 0.07;
+        discountOrSurcharge = subtotal * surchargeRate;
+        grandTotal = subtotal + discountOrSurcharge + shippingCost;
+        const discDisp = document.getElementById('formDiscountDisplay');
+        if (discDisp) {
+            discDisp.innerText = `+ ${formatCurrency(discountOrSurcharge)}`;
+            discDisp.style.color = 'var(--primary-orange)';
         }
+    }
 
-        function filterCategory(cat) {
-            currentFilter = cat;
-            currentPage = 1;
-            document.querySelectorAll('.nav-item').forEach(el => {
-                el.classList.toggle('active', el.innerText.toLowerCase() === cat.toLowerCase() || (cat === 'ALL' && el.innerText === 'Ver Todo'));
-            });
-            renderCatalog();
-        }
+    const subElem = document.getElementById('formSubtotalDisplay');
+    if (subElem) subElem.innerText = formatCurrency(subtotal);
+    const shipElem = document.getElementById('formShippingDisplay');
+    if (shipElem) shipElem.innerText = shippingCost === 0 ? '¡GRATIS!' : formatCurrency(shippingCost);
+    const grandElem = document.getElementById('formGrandTotalDisplay');
+    if (grandElem) grandElem.innerText = formatCurrency(grandTotal);
+}
 
-        function updateQty(id, change) {
-            if (!carrito[id]) carrito[id] = 0;
-            carrito[id] += change;
-            if (carrito[id] <= 0) delete carrito[id];
-            
-            const qtySpan = document.getElementById(`qty-${id}`);
-            if (qtySpan) qtySpan.innerText = carrito[id] || 0;
-            
-            updateCartSummary();
+function populateInstallments() {
+    const select = document.getElementById('cardInstallments');
+    if (!select) return;
+    select.innerHTML = '';
+    [3, 6, 9, 12].forEach(num => {
+        const opt = document.createElement('option');
+        opt.value = num;
+        opt.innerText = `${num} Cuotas Fijas (Recargo total del ${num * 7}%)`;
+        select.appendChild(opt);
+    });
+}
+
+// Event Listeners generales del DOM
+document.addEventListener('DOMContentLoaded', () => {
+    populateInstallments();
+    if (typeof renderCatalog === 'function') renderCatalog();
+
+    const openCartBtn = document.getElementById('openCartDrawerBtn');
+    if (openCartBtn) {
+        openCartBtn.addEventListener('click', () => {
+            document.getElementById('cartDrawer')?.classList.add('active');
+            document.getElementById('cartOverlay')?.classList.add('active');
             renderDrawerItems();
-        }
-
-        function calculateSubtotal() {
-            let subtotal = 0;
-            for (let id in carrito) {
-                const prod = productos.find(p => p.id == id);
-                if (prod) {
-                    subtotal += prod.precioOferta * carrito[id];
-                }
-            }
-            return subtotal;
-        }
-
-        function updateCartSummary() {
-            let totalCount = 0;
-            for (let id in carrito) {
-                totalCount += carrito[id];
-            }
-            document.getElementById('cartCountBadge').innerText = totalCount;
-            const subtotal = calculateSubtotal();
-            document.getElementById('productsTotal').innerText = formatCurrency(subtotal);
-            document.getElementById('drawerSubtotal').innerText = formatCurrency(subtotal);
-        }
-
-        function renderDrawerItems() {
-            const container = document.getElementById('drawerItemsContainer');
-            container.innerHTML = '';
-            
-            if (Object.keys(carrito).length === 0) {
-                container.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding:2rem 0;">Tu carrito está vacío.</p>`;
-                return;
-            }
-
-            for (let id in carrito) {
-                const prod = productos.find(p => p.id == id);
-                if (!prod) continue;
-                const row = document.createElement('div');
-                row.className = 'cart-item-row';
-                let imgUrl = prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/50';
-                row.innerHTML = `
-                    <img src="${imgUrl}" class="cart-item-img" alt="">
-                    <div style="flex-grow:1;">
-                        <div style="font-size:0.8rem; font-weight:700; line-height:1.2;">${prod.nombre}</div>
-                        <div style="font-size:0.75rem; color:var(--text-muted);">${carrito[id]} x ${formatCurrency(prod.precioOferta)}</div>
-                    </div>
-                    <button type="button" onclick="updateQty(${prod.id}, -${carrito[prod.id]})" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1rem;">✕</button>
-                `;
-                container.appendChild(row);
-            }
-        }
-
-        // Navegación entre vistas
-        function switchView(step) {
-            document.querySelectorAll('.view-step').forEach(v => v.classList.remove('active-view'));
-            document.getElementById('badgeStep1').className = 'step-item';
-            document.getElementById('badgeStep2').className = 'step-item';
-            document.getElementById('badgeStep3').className = 'step-item';
-
-            if (step === 1) {
-                document.getElementById('viewCatalog').classList.add('active-view');
-                document.getElementById('badgeStep1').classList.add('active');
-            } else if (step === 2) {
-                document.getElementById('viewShipping').classList.add('active-view');
-                document.getElementById('badgeStep1').classList.add('completed');
-                document.getElementById('badgeStep2').classList.add('active');
-                updateCheckoutCalculations();
-            } else if (step === 3) {
-                document.getElementById('viewResults').classList.add('active-view');
-                document.getElementById('badgeStep1').classList.add('completed');
-                document.getElementById('badgeStep2').classList.add('completed');
-                document.getElementById('badgeStep3').classList.add('active');
-            }
-        }
-
-        // Cálculos del Formulario de Pago
-        function updateCheckoutCalculations() {
-            const subtotal = calculateSubtotal();
-            const provinceVal = document.getElementById('province').value;
-            let shippingCost = 0;
-            if (provinceVal === 'CABA_GBA') shippingCost = 8500;
-            else if (provinceVal === 'BUENOS_AIRES') shippingCost = 12500;
-            else if (provinceVal === 'INTERIOR') shippingCost = 18500;
-
-            // Envío gratis si supera 800.000
-            if (subtotal >= 800000) {
-                shippingCost = 0;
-            }
-
-            const paymentMethod = document.getElementById('paymentMethod').value;
-            let discountOrSurcharge = 0;
-            let grandTotal = 0;
-
-            const cardGroup = document.getElementById('creditCardInstallmentsGroup');
-            if (paymentMethod === 'TRANSFER') {
-                cardGroup.style.display = 'none';
-                discountOrSurcharge = - (subtotal * 0.15); // 15% descuento
-                grandTotal = subtotal + discountOrSurcharge + shippingCost;
-                document.getElementById('formDiscountDisplay').innerText = `- ${formatCurrency(Math.abs(discountOrSurcharge))} (15% OFF Transferencia)`;
-                document.getElementById('formDiscountDisplay').style.color = 'var(--accent-green)';
-            } else {
-                cardGroup.style.display = 'block';
-                const installments = parseInt(document.getElementById('cardInstallments').value) || 3;
-                // Recargo del 7% por cuota sobre el subtotal
-                let surchargeRate = installments * 0.07;
-                discountOrSurcharge = subtotal * surchargeRate;
-                grandTotal = subtotal + discountOrSurcharge + shippingCost;
-                document.getElementById('formDiscountDisplay').innerText = `+ ${formatCurrency(discountOrSurcharge)} (Financiación ${installments} cuotas)`;
-                document.getElementById('formDiscountDisplay').style.color = 'var(--primary-orange)';
-            }
-
-            document.getElementById('formSubtotalDisplay').innerText = formatCurrency(subtotal);
-            document.getElementById('formShippingDisplay').innerText = shippingCost === 0 ? '¡GRATIS!' : formatCurrency(shippingCost);
-            document.getElementById('formGrandTotalDisplay').innerText = formatCurrency(grandTotal);
-        }
-
-        // Rellenar opciones de cuotas
-        function populateInstallments() {
-            const select = document.getElementById('cardInstallments');
-            select.innerHTML = '';
-            [3, 6, 9, 12].forEach(num => {
-                const opt = document.createElement('option');
-                opt.value = num;
-                opt.innerText = `${num} Cuotas fijas (Recargo total del ${num * 7}%)`;
-                select.appendChild(opt);
-            });
-        }
-
-        // Event Listeners generales
-        document.getElementById('openCartDrawerBtn').addEventListener('click', () => {
-            document.getElementById('cartDrawer').classList.add('active');
-            document.getElementById('cartOverlay').classList.add('active');
-            renderDrawerItems();
         });
+    }
 
-        document.getElementById('closeCartDrawerBtn').addEventListener('click', () => {
-            document.getElementById('cartDrawer').classList.remove('active');
-            document.getElementById('cartOverlay').classList.remove('active');
+    const closeCartBtn = document.getElementById('closeCartDrawerBtn');
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', () => {
+            document.getElementById('cartDrawer')?.classList.remove('active');
+            document.getElementById('cartOverlay')?.classList.remove('active');
         });
+    }
 
-        document.getElementById('cartOverlay').addEventListener('click', () => {
-            document.getElementById('cartDrawer').classList.remove('active');
-            document.getElementById('cartOverlay').classList.remove('active');
+    const cartOverlay = document.getElementById('cartOverlay');
+    if (cartOverlay) {
+        cartOverlay.addEventListener('click', () => {
+            document.getElementById('cartDrawer')?.classList.remove('active');
+            document.getElementById('cartOverlay')?.classList.remove('active');
         });
+    }
 
-        document.getElementById('drawerCheckoutBtn').addEventListener('click', () => {
+    const drawerCheckoutBtn = document.getElementById('drawerCheckoutBtn');
+    if (drawerCheckoutBtn) {
+        drawerCheckoutBtn.addEventListener('click', () => {
             if (Object.keys(carrito).length === 0) {
                 alert('Tu carrito está vacío.');
                 return;
             }
-            document.getElementById('cartDrawer').classList.remove('active');
-            document.getElementById('cartOverlay').classList.remove('active');
+            document.getElementById('cartDrawer')?.classList.remove('active');
+            document.getElementById('cartOverlay')?.classList.remove('active');
             switchView(2);
         });
+    }
 
-        document.getElementById('btnGoToCheckout').addEventListener('click', () => {
+    const btnGoToCheckout = document.getElementById('btnGoToCheckout');
+    if (btnGoToCheckout) {
+        btnGoToCheckout.addEventListener('click', () => {
             if (Object.keys(carrito).length === 0) {
                 alert('Por favor selecciona al menos un producto para continuar.');
                 return;
             }
             switchView(2);
         });
+    }
 
-        document.getElementById('btnBackToCatalog').addEventListener('click', () => {
-            switchView(1);
-        });
+    const provinceSel = document.getElementById('province');
+    if (provinceSel) provinceSel.addEventListener('change', updateCheckoutCalculations);
+    
+    const payMethodSel = document.getElementById('paymentMethod');
+    if (payMethodSel) payMethodSel.addEventListener('change', updateCheckoutCalculations);
+    
+    const cardInstSel = document.getElementById('cardInstallments');
+    if (cardInstSel) cardInstSel.addEventListener('change', updateCheckoutCalculations);
 
-        document.getElementById('province').addEventListener('change', updateCheckoutCalculations);
-        document.getElementById('paymentMethod').addEventListener('change', updateCheckoutCalculations);
-        document.getElementById('cardInstallments').addEventListener('change', updateCheckoutCalculations);
-
-        // Búsqueda en catálogo
-        document.getElementById('btnSearchCatalog').addEventListener('click', () => {
-            currentSearchQuery = document.getElementById('searchInput').value;
-            currentFilter = document.getElementById('searchCategory').value;
+    const btnSearch = document.getElementById('btnSearchCatalog');
+    if (btnSearch) {
+        btnSearch.addEventListener('click', () => {
+            currentSearchQuery = document.getElementById('searchInput')?.value || '';
+            currentFilter = document.getElementById('searchCategory')?.value || 'ALL';
             currentPage = 1;
             renderCatalog();
         });
+    }
 
-        document.getElementById('searchInput').addEventListener('keyup', (e) => {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', (e) => {
             if (e.key === 'Enter') {
-                currentSearchQuery = document.getElementById('searchInput').value;
-                currentFilter = document.getElementById('searchCategory').value;
+                currentSearchQuery = searchInput.value;
+                currentFilter = document.getElementById('searchCategory')?.value || 'ALL';
                 currentPage = 1;
                 renderCatalog();
             }
         });
+    }
 
-        document.getElementById('sortSelect').addEventListener('change', (e) => {
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
             currentSort = e.target.value;
             renderCatalog();
         });
+    }
 
-        // Envio del formulario de pago
-        
-    <!-- Contenedor principal de cierre e inclusión de scripts con la lógica unificada -->
-    <script>
-        // Envío del formulario de pago (Genera nuevo código de guía y validación único por cada envío)
-        document.getElementById('shippingForm').addEventListener('submit', (e) => {
+    // Envío del formulario de pago y generación de códigos únicos
+    const shippingForm = document.getElementById('shippingForm');
+    if (shippingForm) {
+        shippingForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const trackingCode = 'NV-' + Math.floor(1000 + Math.random() * 9000) + '-' + new Date().getFullYear();
-            const secCode = Math.floor(100000 + Math.random() * 900000); // Código de validación único y aleatorio por cliente
+            const secCode = Math.floor(100000 + Math.random() * 900000);
 
             const trackingElem = document.getElementById('trackingCodeDisplay');
             if (trackingElem) trackingElem.innerText = trackingCode;
@@ -3282,7 +3343,7 @@
             const secElem = document.getElementById('secCodeDisplay');
             if (secElem) secElem.innerText = secCode;
 
-            const subtotal = typeof calculateSubtotal === 'function' ? calculateSubtotal() : 0;
+            const subtotal = calculateSubtotal();
             const provinceSelect = document.getElementById('province');
             const provinceVal = provinceSelect ? provinceSelect.value : '';
             let shippingCost = 0;
@@ -3309,19 +3370,18 @@
             } else {
                 if (cbuBox) cbuBox.style.display = 'none';
                 const installmentsElem = document.getElementById('cardInstallments');
-                const installments = installmentsElem ? parseInt(installmentsElem.value) || 1 : 1;
+                const installments = installmentsElem ? parseInt(installmentsElem.value) || 3 : 3;
                 let surchargeRate = installments * 0.07;
                 finalTotal = subtotal + (subtotal * surchargeRate) + shippingCost;
                 paymentDesc = `Tarjeta de Crédito en ${installments} cuotas fijas`;
             }
 
             const grandTotalElem = document.getElementById('resGrandTotal');
-            if (grandTotalElem) grandTotalElem.innerText = typeof formatCurrency === 'function' ? formatCurrency(finalTotal) : '$' + finalTotal;
+            if (grandTotalElem) grandTotalElem.innerText = formatCurrency(finalTotal);
 
             const installmentsDetailElem = document.getElementById('resInstallmentsDetail');
             if (installmentsDetailElem) installmentsDetailElem.innerText = paymentDesc;
 
-            // Renderizar resumen de ítems
             const resItemsContainer = document.getElementById('resItemsList');
             if (resItemsContainer) {
                 resItemsContainer.innerHTML = '';
@@ -3330,12 +3390,12 @@
             let productosTexto = "";
 
             for (let id in carrito) {
-                let prod = productos.find(p => p.id === Number(id));
+                let prod = productos.find(p => p.id == id);
                 if (prod) {
                     if (resItemsContainer) {
                         const div = document.createElement('div');
                         div.style.cssText = 'display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;';
-                        div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${typeof formatCurrency === 'function' ? formatCurrency(prod.precioOferta * carrito[id]) : '$' + (prod.precioOferta * carrito[id])}</strong>`;
+                        div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${formatCurrency(prod.precioOferta * carrito[id])}</strong>`;
                         resItemsContainer.appendChild(div);
                     }
 
@@ -3344,7 +3404,6 @@
                 }
             }
 
-            // Captura segura de datos del formulario
             const getVal = (id) => {
                 const el = document.getElementById(id);
                 return el ? el.value : '';
@@ -3379,7 +3438,7 @@
                           productosTexto + `\n` +
                           `*MÉTODO Y PLAN DE PAGO*\n` +
                           `• ${paymentDesc}\n\n` +
-                          `*TOTAL A PAGAR:* ${typeof formatCurrency === 'function' ? formatCurrency(finalTotal) : '$' + finalTotal}\n\n` +
+                          `*TOTAL A PAGAR:* ${formatCurrency(finalTotal)}\n\n` +
                           `Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
 
             const whatsappBtn = document.getElementById('whatsappBtn');
@@ -3389,32 +3448,29 @@
                 };
             }
 
+            switchView(3);
+        });
+    }
+
+    // Botón para volver al catálogo manteniendo el carrito intacto
+    const btnBackCatalog = document.getElementById('btnBackCatalog') || document.getElementById('btnBackToCatalog');
+    if (btnBackCatalog) {
+        btnBackCatalog.addEventListener('click', (e) => {
+            e.preventDefault();
             if (typeof switchView === 'function') {
-                switchView(3);
+                switchView(1);
+            }
+            if (typeof renderCatalog === 'function') {
+                renderCatalog();
+            } else if (typeof loadProducts === 'function') {
+                loadProducts();
             }
         });
-
-        // Selección directa del botón para volver al catálogo
-const btnBackCatalog = document.getElementById('btnBackCatalog') || document.getElementById('btnBackToCatalog');
-if (btnBackCatalog) {
-    btnBackCatalog.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        // Cambia a la vista del catálogo (Vista 1)
-        if (typeof switchView === 'function') {
-            switchView(1);
-        }
-        
-        // Vuelve a renderizar o cargar los productos para evitar que quede cargando
-        if (typeof renderCatalog === 'function') {
-            renderCatalog();
-        } else if (typeof loadProducts === 'function') {
-            loadProducts();
-        }
-    });
-}
+    }
+});
     </script>
 </body>
 </html>
+
 
 
