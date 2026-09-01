@@ -3348,12 +3348,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const secCode = Math.floor(100000 + Math.random() * 900000);
 
             // Inyección en pantalla (busca cualquiera de los IDs comunes para evitar errores)
-            const trackingElem = document.getElementById('trackingCodeDisplay') || document.getElementById('trackingCode') || document.getElementById('nroGuia');
+                        const trackingElem = document.getElementById('resTrackingCode') || document.getElementById('trackingCodeDisplay') || document.getElementById('trackingCode') || document.getElementById('nroGuia');
             if (trackingElem) {
                 trackingElem.innerText = trackingCode;
             }
             
-            const secElem = document.getElementById('secCodeDisplay') || document.getElementById('secCode') || document.getElementById('codigoValidacion');
+            const secElem = document.getElementById('resSecCode') || document.getElementById('secCodeDisplay') || document.getElementById('secCode') || document.getElementById('codigoValidacion');
             if (secElem) {
                 secElem.innerText = secCode;
             }
