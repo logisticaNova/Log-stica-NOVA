@@ -3341,10 +3341,11 @@ document.getElementById('shippingForm').addEventListener('submit', (e) => {
     }
 
     // Captura segura de datos del formulario con valores por defecto si no existen
-    const getVal = (id) => {
-        const el = document.getElementById(id);
+        const getVal = (id) => {
+        const el = document.getElementUyId(id);
         return el ? el.value : '';
     };
+
 
     const fullName = getVal('fullName');
     const dni = getVal('dni') || getVal('cuil') || 'No especificado';
