@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logística Nova - Catálogo y Orden de Compra</title>
-    <!-- Google Fonts para una tipografía moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* Navbar Superior */
         .navbar {
             background-color: white;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -254,7 +252,6 @@
             background-color: var(--primary-dark);
         }
 
-        /* Modal del Carrito / Formularios */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -413,7 +410,6 @@
             background-color: #059669;
         }
 
-        /* Estilos del Formulario de Envío y Pago */
         .form-group {
             margin-bottom: 10px;
         }
@@ -496,7 +492,6 @@
 </head>
 <body>
 
-    <!-- Navbar con botón de Carrito -->
     <nav class="navbar">
         <div class="navbar-brand">📦 Logística Nova</div>
         <button class="cart-btn" onclick="toggleCart()">
@@ -510,12 +505,9 @@
             <p>Selecciona tus productos, provincia de destino y método de pago preferido</p>
         </header>
 
-        <div class="grid-productos" id="gridProductos">
-            <!-- Inyectado por JavaScript -->
-        </div>
+        <div class="grid-productos" id="gridProductos"></div>
     </div>
 
-    <!-- Modal / Drawer del Carrito y Checkout -->
     <div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
         <div class="cart-drawer">
             <div class="cart-header">
@@ -523,14 +515,11 @@
                 <button class="close-cart" onclick="toggleCart()">&times;</button>
             </div>
             
-            <div class="cart-body" id="cartBodyContent">
-                <!-- Se llena dinámicamente -->
-            </div>
+            <div class="cart-body" id="cartBodyContent"></div>
         </div>
     </div>
 
     <script>
-        // Tarifas y demoras por provincia
         const tarifasProvincias = {
             "CABA": { costo: 9500, demora: "24 a 48 hs hábiles", nombre: "Capital Federal (CABA)" },
             "Buenos Aires": { costo: 12500, demora: "2 a 3 días hábiles", nombre: "Provincia de Buenos Aires" },
@@ -542,7 +531,6 @@
             "RestoPais": { costo: 21000, demora: "5 a 6 días hábiles", nombre: "Resto del País" }
         };
 
-        // Listado completo de los 76 productos
         const productos = [
             { id: 1, sku: "TV-TCL-55C655", marca: "TCL", modelo: "55C655", nombre: "Smart TV TCL 55 C655 QLED 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Televisor QLED 4K con Google TV y Dolby Vision Atmos.", especificaciones: { pulgadas: 55, resolucion: "4K UHD" }, precio: 899999, precioOferta: 764999, cuotas: 3, stock: true },
             { id: 2, sku: "TV-TCL-65C755", marca: "TCL", modelo: "65C755", nombre: "Smart TV TCL 65 C755 QD-Mini LED 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento.", especificaciones: { pulgadas: 65, resolucion: "4K UHD" }, precio: 1499999, precioOferta: 1274999, cuotas: 3, stock: true },
