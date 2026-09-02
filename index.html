@@ -65,6 +65,16 @@ transition: var(--transition);
 .nav-links a:hover {
 color: var(--primary-color);
 }
+.nav-btn-store {
+background-color: var(--accent-color);
+color: white !important;
+padding: 8px 16px;
+border-radius: 8px;
+font-weight: 600 !important;
+}
+.nav-btn-store:hover {
+background-color: #ea580c !important;
+}
 /* Hero / Buscador Principal */
 .hero-section {
 background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
@@ -204,6 +214,48 @@ color: var(--text-main);
 color: var(--text-muted);
 font-size: 0.95rem;
 }
+/* Sección de Compra de Productos / Tienda */
+.store-banner {
+background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+color: white;
+border-radius: var(--radius);
+padding: 50px 40px;
+margin-top: 60px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 30px;
+flex-wrap: wrap;
+box-shadow: 0 10px 25px rgba(249, 115, 22, 0.2);
+}
+.store-banner-content {
+max-width: 600px;
+}
+.store-banner h2 {
+font-size: 2rem;
+margin-bottom: 12px;
+}
+.store-banner p {
+font-size: 1.05rem;
+opacity: 0.95;
+line-height: 1.5;
+}
+.store-btn {
+background-color: white;
+color: var(--accent-color);
+padding: 14px 28px;
+border-radius: 8px;
+text-decoration: none;
+font-weight: 700;
+font-size: 1.05rem;
+display: inline-block;
+transition: var(--transition);
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.store-btn:hover {
+background-color: #f8fafc;
+transform: translateY(-2px);
+}
 /* Footer */
 footer {
 background-color: #111827;
@@ -216,11 +268,12 @@ font-size: 0.9rem;
 footer strong {
 color: white;
 }
-@media (max-width: 640px) {
+@media (max-width: 768px) {
 .hero-section h1 { font-size: 2.1rem; }
 .tracking-box { flex-direction: column; }
 .tracking-btn { padding: 14px; }
 .navbar { padding: 15px 20px; }
+.store-banner { flex-direction: column; text-align: center; }
 }
 </style>
 </head>
@@ -234,6 +287,7 @@ color: white;
 <a href="#seguimiento">Seguimiento</a>
 <a href="#quienes-somos">Quiénes Somos</a>
 <a href="#servicios">Servicios</a>
+<a href="[https://logisticanova.github.io/Log-stica-NOVA/productos.html](https://logisticanova.github.io/Log-stica-NOVA/productos.html)" class="nav-btn-store" target="_blank">🛒 Ver Productos</a>
 </div>
 </nav>
 <!-- Sección Hero y Rastreo de Envío -->
@@ -296,6 +350,16 @@ Nuestra plataforma automatiza los procesos de despacho, ofrece control de stock 
 <h3>Logística Última Milla</h3>
 <p>Entregas urbanas de alta eficiencia optimizadas para e-commerce, reduciendo tiempos de entrega y mejorando la experiencia del cliente final.</p>
 </div>
+</div>
+</div>
+<!-- Banner Explicativo e Interactivo para Comprar Productos -->
+<div class="store-banner">
+<div class="store-banner-content">
+<h2>¿Buscas adquirir tecnología o electrodomésticos?</h2>
+<p>Explora nuestro catálogo de productos en línea. Selecciona tus artículos favoritos, elige el medio de pago ideal (con descuentos exclusivos por transferencia) y coordina la entrega automática directo por WhatsApp con nuestro operador logístico.</p>
+</div>
+<div>
+<a href="[https://logisticanova.github.io/Log-stica-NOVA/productos.html](https://logisticanova.github.io/Log-stica-NOVA/productos.html)" class="store-btn" target="_blank">Ir al Catálogo de Productos</a>
 </div>
 </div>
 </main>
