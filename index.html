@@ -996,9 +996,11 @@
         LOGÍSTICA NOVA &copy; 2026 — Envíos e Importaciones Directas. Todos los derechos reservados.
     </footer>
 
+    <!-- Aquí empieza el bloque de JavaScript -->
     <script>
+        // 1. Declaras el catálogo de productos primero
         const productos = [
-  {
+            {
     "id": 1,
     "sku": "TV-TCL-55C655",
     "ean": "",
@@ -2939,7 +2941,8 @@
   }
 ];
 
-        // Configuración y variables iniciales
+        
+// Configuración y variables iniciales
 let carrito = {};
 let currentFilter = 'ALL';
 let currentSearchQuery = '';
@@ -3516,6 +3519,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let direccionCompleta = `${address}, ${city}, ${provinceText}`;
             if (cp) direccionCompleta += ` (CP: ${cp})`;
 
+            // Se corrigió el error '\55' reemplazándolo por '\n'
             let message = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n` +
                           `*LOGÍSTICA NOVA (Origen: Ezeiza, CABA/Bs.As.)*\n` +
                           `----------------------------------------\n` +
@@ -3534,7 +3538,7 @@ document.addEventListener('DOMContentLoaded', () => {
                           `• Tiempo Estimado: ${shippingTime}\n\n` +
                           `*DESGLOSE DE PAGOS Y ENVÍO*\n` +
                           `• Subproductos: ${formatCurrency(subtotal)}\n` +
-                          `• Envío: ${formatCurrency(shippingCost)}\55` +
+                          `• Envío: ${formatCurrency(shippingCost)}\n` +
                           `• Recargo/Descuento: ${formatCurrency(recargoDescuentoMonto)}\n` +
                           `• Método: ${paymentDesc}\n` +
                           cuotasTexto + `\n` +
