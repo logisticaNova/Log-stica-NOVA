@@ -122,7 +122,7 @@
             border-radius: var(--radius);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Por defecto vertical en celulares */
             gap: 10px;
             max-width: 600px;
             margin: 0 auto;
@@ -181,7 +181,7 @@
 
         .result-header {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Apilado en móvil para evitar que se pisen los textos */
             gap: 12px;
             align-items: flex-start;
             border-bottom: 1px solid var(--border-color);
@@ -222,7 +222,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* Una columna por defecto en celulares */
             gap: 20px;
         }
 
@@ -251,7 +251,7 @@
             font-size: 0.9rem;
         }
 
-        /* Banner de Compra simulada con formulario integrado */
+        /* Sección de Compra de Productos / Tienda */
         .store-banner {
             background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
             color: white;
@@ -259,7 +259,7 @@
             padding: 30px 20px;
             margin-top: 40px;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Siempre vertical en celulares para mejor lectura */
             align-items: center;
             text-align: center;
             gap: 20px;
@@ -276,106 +276,25 @@
             font-size: 0.95rem;
             opacity: 0.95;
             line-height: 1.5;
-            margin-bottom: 20px;
         }
 
-        /* Contenedor del Formulario de Orden de Compra */
-        .order-card {
-            background: white;
-            color: var(--text-main);
-            border-radius: var(--radius);
-            padding: 25px 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin-top: 40px;
-            text-align: left;
-            border: 1px solid var(--border-color);
-        }
-
-        .order-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            text-align: center;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .form-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .form-group input, .form-group select {
-            padding: 10px 12px;
-            border: 1px solid var(--border-color);
+        .store-btn {
+            background-color: white;
+            color: var(--accent-color);
+            padding: 12px 24px;
             border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: inherit;
-            outline: none;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary-color);
-        }
-
-        .order-summary-box {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .order-summary-box div {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .order-summary-box div.total {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            border-top: 1px solid var(--border-color);
-            padding-top: 8px;
-            margin-top: 8px;
-        }
-
-        .btn-whatsapp {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
+            text-decoration: none;
             font-weight: 700;
             font-size: 1rem;
-            width: 100%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            display: inline-block;
             transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 280px;
         }
 
-        .btn-whatsapp:hover {
-            background-color: #128c7e;
+        .store-btn:hover {
+            background-color: #f8fafc;
         }
 
         /* Footer */
@@ -393,9 +312,10 @@
             color: white;
         }
 
+        /* Media Queries para pantallas medianas y escritorios (Escritorio en adelante) */
         @media (min-width: 640px) {
             .tracking-box {
-                flex-direction: row;
+                flex-direction: row; /* Vuelve a ponerse horizontal en pantallas más anchas */
             }
             .tracking-btn {
                 width: auto;
@@ -405,15 +325,15 @@
                 align-items: center;
             }
             .features-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cuadrícula múltiple */
             }
             .store-banner {
                 flex-direction: row;
                 text-align: left;
                 padding: 40px;
             }
-            .form-grid {
-                grid-template-columns: 1fr 1fr;
+            .store-btn {
+                width: auto;
             }
             .navbar {
                 padding: 15px 40px;
@@ -438,7 +358,7 @@
             <a href="#seguimiento">Seguimiento</a>
             <a href="#quienes-somos">Quiénes Somos</a>
             <a href="#servicios">Servicios</a>
-            <a href="#orden-compra" class="nav-btn-store">🛍️ Generar Orden</a>
+            <a href="https://logisticanova.github.io/Log-stica-NOVA/productos.html" class="nav-btn-store" target="_blank">🛒 Ver Productos</a>
         </div>
     </nav>
 
@@ -449,7 +369,7 @@
             <p>Ingresa tu número de guía, código de seguimiento o SKU para conocer el estado actual de tu paquete en tiempo real.</p>
             
             <div class="tracking-box">
-                <input type="text" id="trackingInput" class="tracking-input" placeholder="Ej. NV-6032-2026 o Código...">
+                <input type="text" id="trackingInput" class="tracking-input" placeholder="Ej. NOVA-84920 o Código...">
                 <button class="tracking-btn" onclick="buscarEnvio()">Rastrear</button>
             </div>
         </div>
@@ -513,93 +433,15 @@
             </div>
         </div>
 
-        <!-- Formulario de Orden de Compra y Envío con provincias interactivas -->
-        <div class="order-card" id="orden-compra">
-            <h3>NUEVA ORDEN DE COMPRA Y ENVÍO - LOGÍSTICA NOVA</h3>
-            <form id="purchaseForm" onsubmit="enviarPedidoWhatsApp(event)">
-                
-                <div style="margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted); background: #f8fafc; padding: 10px; border-radius: 6px;">
-                    <strong>N° de Guía:</strong> <span id="lblGuia">NV-6032-2026</span> | 
-                    <strong>Código de Validación:</strong> <span id="lblValidacion">594710</span>
-                </div>
-
-                <h4 style="font-size: 1rem; margin-bottom: 10px; color: var(--primary-color);">DATOS DEL COMPRADOR</h4>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="nombre">Nombre y Apellido *</label>
-                        <input type="text" id="nombre" required placeholder="Ej. Juan Pérez" value="Juan Pérez">
-                    </div>
-                    <div class="form-group">
-                        <label for="dni">DNI / CUIL *</label>
-                        <input type="text" id="dni" required placeholder="Ej. 37897087" value="37897087">
-                    </div>
-                    <div class="form-group">
-                        <label for="telefono">Teléfono / WhatsApp *</label>
-                        <input type="tel" id="telefono" required placeholder="Ej. 1166788997" value="1166788997">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" required placeholder="Ej. iarita@gmail.com" value="iarita@gmail.com">
-                    </div>
-                </div>
-
-                <div class="form-grid" style="grid-template-columns: 1fr;">
-                    <div class="form-group">
-                        <label for="direccion">Dirección de Entrega (Calle y Número) *</label>
-                        <input type="text" id="direccion" required placeholder="Ej. Calletin 78, Lomas de Zamora" value="Calletin 78, Lomas de Zamora">
-                    </div>
-                </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="provincia">Provincia de Destino *</label>
-                        <select id="provincia" required onchange="actualizarCalculosEnvio()">
-                            <option value="CABA">Capital Federal (CABA)</option>
-                            <option value="Buenos Aires" selected>Provincia de Buenos Aires</option>
-                            <option value="Cordoba">Córdoba</option>
-                            <option value="Santa Fe">Santa Fe</option>
-                            <option value="Mendoza">Mendoza</option>
-                            <option value="Tucuman">Tucumán</option>
-                            <option value="Patagonia">Provincias Patagónicas (Río Negro, Chubut, etc.)</option>
-                            <option value="RestoPais">Resto del País (NEA / NOA)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="metodoPago">Método de Pago *</label>
-                        <select id="metodoPago" required onchange="actualizarCalculosEnvio()">
-                            <option value="transferencia" selected>Transferencia Bancaria / Efectivo (15% OFF)</option>
-                            <option value="tarjeta">Tarjeta de Crédito (Precio Regular)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Info Dinámica de Envío -->
-                <div id="envioInfoBox" style="font-size: 0.85rem; color: var(--accent-color); font-weight: 600; margin-bottom: 15px;">
-                    ⏱️ Demora estimada: 2 a 3 días hábiles | Costo de envío: $12.500
-                </div>
-
-                <h4 style="font-size: 1rem; margin-bottom: 10px; color: var(--primary-color);">PRODUCTO SOLICITADO</h4>
-                <div style="display: flex; align-items: center; gap: 12px; background: #f8fafc; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem;">
-                    <span style="font-size: 1.5rem;">📺</span>
-                    <div>
-                        <strong>1x Smart TV LG 50 4K UHD</strong><br>
-                        <a href="https://via.placeholder.com/300/0284c7/ffffff?text=Producto" target="_blank" style="color: var(--primary-color); font-size: 0.8rem; text-decoration: none;">🖼️ Ver Foto del Producto</a>
-                    </div>
-                </div>
-
-                <!-- Desglose de Pagos -->
-                <div class="order-summary-box">
-                    <div><span>Subproductos:</span> <span id="lblSubtotal">$603.500</span></div>
-                    <div><span>Envío (<span id="lblProvinciaNombre">Provincia de Buenos Aires</span>):</span> <span id="lblEnvio">$12.500</span></div>
-                    <div><span>Recargo / Descuento:</span> <span id="lblDescuento" style="color: #10b981;">$-90.525</span></div>
-                    <div class="total"><span>TOTAL A PAGAR:</span> <span id="lblTotal">$525.475</span></div>
-                </div>
-
-                <button type="submit" class="btn-whatsapp">
-                    💬 Enviar Pedido por WhatsApp (1155012447)
-                </button>
-            </form>
+        <!-- Banner Explicativo e Interactivo para Comprar Productos -->
+        <div class="store-banner">
+            <div>
+                <h2>¿Buscas adquirir tecnología o electrodomésticos?</h2>
+                <p>Explora nuestro catálogo en línea. Selecciona tus artículos, elige tu medio de pago con descuentos exclusivos y coordina la entrega automática directo por WhatsApp.</p>
+            </div>
+            <div>
+                <a href="https://logisticanova.github.io/Log-stica-NOVA/productos.html" class="store-btn" target="_blank">Ir al Catálogo</a>
+            </div>
         </div>
     </main>
 
@@ -609,47 +451,6 @@
     </footer>
 
     <script>
-        // Tarifas y demoras por provincia
-        const tarifasProvincias = {
-            "CABA": { costo: 9500, demora: "24 a 48 hs hábiles", nombre: "CABA" },
-            "Buenos Aires": { costo: 12500, demora: "2 a 3 días hábiles", nombre: "Provincia de Buenos Aires" },
-            "Cordoba": { costo: 16000, demora: "3 a 4 días hábiles", nombre: "Córdoba" },
-            "Santa Fe": { costo: 15000, demora: "3 a 4 días hábiles", nombre: "Santa Fe" },
-            "Mendoza": { costo: 18500, demora: "4 a 5 días hábiles", nombre: "Mendoza" },
-            "Tucuman": { costo: 19000, demora: "4 a 5 días hábiles", nombre: "Tucumán" },
-            "Patagonia": { costo: 24000, demora: "6 a 8 días hábiles", nombre: "Provincias Patagónicas" },
-            "RestoPais": { costo: 21000, demora: "5 a 6 días hábiles", nombre: "Resto del País" }
-        };
-
-        const precioBaseProducto = 603500;
-
-        function actualizarCalculosEnvio() {
-            const provinciaKey = document.getElementById('provincia').value;
-            const metodoPago = document.getElementById('metodoPago').value;
-            
-            const datosProvincia = tarifasProvincias[provinciaKey];
-            const costoEnvio = datosProvincia.costo;
-
-            // Actualizar textos de info
-            document.getElementById('envioInfoBox').innerText = `⏱️ Demora estimada: ${datosProvincia.demora} | Costo de envío: $${costoEnvio.toLocaleString('es-AR')}`;
-            document.getElementById('lblProvinciaNombre').innerText = datosProvincia.nombre;
-            document.getElementById('lblEnvio').innerText = `$${costoEnvio.toLocaleString('es-AR')}`;
-
-            let descuentoRecargo = 0;
-            if (metodoPago === 'transferencia') {
-                descuentoRecargo = -(precioBaseProducto * 0.15);
-                document.getElementById('lblDescuento').style.color = "#10b981";
-                document.getElementById('lblDescuento').innerText = `-$${Math.abs(descuentoRecargo).toLocaleString('es-AR', {maximumFractionDigits: 0})} (15% OFF)`;
-            } else {
-                descuentoRecargo = 0;
-                document.getElementById('lblDescuento').style.color = "var(--text-muted)";
-                document.getElementById('lblDescuento').innerText = `$0 (Sin descuento)`;
-            }
-
-            const totalFinal = precioBaseProducto + costoEnvio + descuentoRecargo;
-            document.getElementById('lblTotal').innerText = `$${totalFinal.toLocaleString('es-AR', {maximumFractionDigits: 0})}`;
-        }
-
         function buscarEnvio() {
             const input = document.getElementById('trackingInput').value.trim();
             const resultCard = document.getElementById('resultCard');
@@ -662,8 +463,10 @@
                 return;
             }
 
+            // Simulación de búsqueda de envío con datos dinámicos según el código ingresado
             resultCode.innerText = input.toUpperCase();
             
+            // Simular estados aleatorios o basados en texto
             if(input.toLowerCase().includes('err')) {
                 resultStatus.innerText = "Dirección Incorrecta / Demorado";
                 resultStatus.style.backgroundColor = "#ef4444";
@@ -676,71 +479,10 @@
             }
 
             resultCard.classList.add('active');
+            
+            // Desplazarse suavemente hacia el resultado
             resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-
-        function enviarPedidoWhatsApp(event) {
-            event.preventDefault();
-
-            // Recopilar datos
-            const guia = document.getElementById('lblGuia').innerText;
-            const validacion = document.getElementById('lblValidacion').innerText;
-            const nombre = document.getElementById('nombre').value;
-            const dni = document.getElementById('dni').value;
-            const telefono = document.getElementById('telefono').value;
-            const email = document.getElementById('email').value;
-            const direccion = document.getElementById('direccion').value;
-            
-            const provinciaKey = document.getElementById('provincia').value;
-            const datosProvincia = tarifasProvincias[provinciaKey];
-            const costoEnvio = datosProvincia.costo;
-            const metodoPago = document.getElementById('metodoPago').value;
-
-            let textoMetodo = "Transferencia Bancaria / Efectivo (15% OFF Aplicado)";
-            let descuentoValor = -90525;
-            if(metodoPago === 'tarjeta') {
-                textoMetodo = "Tarjeta de Crédito (Precio Regular)";
-                descuentoValor = 0;
-            }
-
-            const totalPagar = precioBaseProducto + costoEnvio + descuentoValor;
-
-            // Construir mensaje exacto solicitado
-            let mensaje = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
-            mensaje += `*LOGÍSTICA NOVA*\n`;
-            mensaje += `----------------------------------------\n`;
-            mensaje += `*N° de Guía:* ${guia}\n`;
-            mensaje += `*Código de Validación:* ${validacion}\n\n`;
-            
-            mensaje += `*DATOS DEL COMPRADOR*\n`;
-            mensaje += `• Nombre: ${nombre}\n`;
-            mensaje += `• DNI/CUIL: ${dni}\n`;
-            mensaje += `• Teléfono: ${telefono}\n`;
-            mensaje += `• Email: ${email}\n`;
-            mensaje += `• Dirección de Entrega: ${direccion}, ${datosProvincia.nombre} ($${costoEnvio.toLocaleString('es-AR')})\n\n`;
-            
-            mensaje += `*PRODUCTOS SOLICITADOS*\n`;
-            mensaje += `• 1x Smart TV LG 50 4K UHD\n`;
-            mensaje += `  🖼️ Foto: https://via.placeholder.com/300/0284c7/ffffff?text=Producto\n\n`;
-            
-            mensaje += `*DESGLOSE DE PAGOS Y ENVÍO*\n`;
-            mensaje += `• Subproductos: $603.500\n`;
-            mensaje += `• Envío (${datosProvincia.nombre} - Demora: ${datosProvincia.demora}): $${costoEnvio.toLocaleString('es-AR')}\n`;
-            mensaje += `• Recargo/Descuento: $${descuentoValor.toLocaleString('es-AR')}\n`;
-            mensaje += `• Método: ${textoMetodo}\n\n`;
-            
-            mensaje += `*TOTAL A PAGAR:* $${totalPagar.toLocaleString('es-AR', {maximumFractionDigits: 0})}\n\n`;
-            mensaje += `Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
-
-            // Codificar e ir a WhatsApp (5491155012447)
-            const mensajeCodificado = encodeURIComponent(mensaje);
-            const numeroWhatsApp = "5491155012447";
-
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
-        }
-
-        // Ejecutar inicialización de costos al cargar
-        actualizarCalculosEnvio();
     </script>
 </body>
 </html>
