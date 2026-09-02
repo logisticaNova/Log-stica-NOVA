@@ -553,6 +553,8 @@
 
         let carrito = [];
         let vistaActual = 'carrito'; 
+        let metodoPagoGlobal = 'transferencia';
+        let cuotasGlobal = 1;
 
         function formatearMoneda(valor) {
             return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(valor);
@@ -703,9 +705,9 @@
                         <div class="payment-methods">
                             <label for="paymentMethodSelect">Método de Pago:</label>
                             <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
-                                <option value="transferencia" selected>Transferencia Bancaria / Efectivo (15% OFF)</option>
-                                <option value="creditoDni">Crédito con DNI (Hasta 6 pagos, +4% por pago)</option>
-                                <option value="tarjeta">Tarjeta de Crédito (Hasta 12 cuotas, +8% por cuota)</option>
+                                <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria / Efectivo (15% OFF)</option>
+                                <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (Hasta 6 pagos, +4% por pago)</option>
+                                <option value="tarjeta" ${metodoPagoGlobal === 'tarjeta' ? 'selected' : ''}>Tarjeta de Crédito (Hasta 12 cuotas, +8% por cuota)</option>
                             </select>
                         </div>
                         <div id="cuotasContainer" style="margin-bottom: 10px; display: none;">
@@ -772,34 +774,38 @@
                         </div>
                     </div>
                 `;
-                updateCartUI();
             }
         }
 
         function onPaymentMethodChange() {
-            const metodo = document.getElementById('paymentMethodSelect').value;
+            const selectElement = document.getElementById('paymentMethodSelect');
+            if (!selectElement) return;
+
+            metodoPagoGlobal = selectElement.value;
             const cuotasContainer = document.getElementById('cuotasContainer');
             const cuotasSelect = document.getElementById('cuotasSelect');
             const labelCuotas = document.getElementById('labelCuotas');
 
             cuotasSelect.innerHTML = '';
 
-            if (metodo === 'creditoDni') {
+            if (metodoPagoGlobal === 'creditoDni') {
                 cuotasContainer.style.display = 'block';
                 labelCuotas.innerText = "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
                 for (let i = 1; i <= 6; i++) {
                     const opt = document.createElement('option');
                     opt.value = i;
                     opt.innerText = `${i} pago${i > 1 ? 's' : ''} (+${(i*4)}% recargo)`;
+                    if (i === cuotasGlobal) opt.selected = true;
                     cuotasSelect.appendChild(opt);
                 }
-            } else if (metodo === 'tarjeta') {
+            } else if (metodoPagoGlobal === 'tarjeta') {
                 cuotasContainer.style.display = 'block';
                 labelCuotas.innerText = "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
                 for (let i = 1; i <= 12; i++) {
                     const opt = document.createElement('option');
                     opt.value = i;
                     opt.innerText = `${i} cuota${i > 1 ? 's' : ''} (+${(i*8)}% recargo)`;
+                    if (i === cuotasGlobal) opt.selected = true;
                     cuotasSelect.appendChild(opt);
                 }
             } else {
@@ -810,23 +816,27 @@
 
         function updateCartUI() {
             const paymentMethodSelect = document.getElementById('paymentMethodSelect');
-            if (!paymentMethodSelect) return;
+            if (paymentMethodSelect) {
+                metodoPagoGlobal = paymentMethodSelect.value;
+            }
 
-            const paymentMethod = paymentMethodSelect.value;
+            const cuotasSelect = document.getElementById('cuotasSelect');
+            if (cuotasSelect && cuotasSelect.value) {
+                cuotasGlobal = parseInt(cuotasSelect.value) || 1;
+            }
+
             const detailsContainer = document.getElementById('paymentDetailsContainer');
             
             let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
             let recargoDescuentoValor = 0;
 
-            if (paymentMethod === 'transferencia') {
+            if (metodoPagoGlobal === 'transferencia') {
                 recargoDescuentoValor = -(subtotal * 0.15);
-            } else if (paymentMethod === 'creditoDni') {
-                const numCuotas = parseInt(document.getElementById('cuotasSelect').value) || 1;
-                const porcentajeRecargo = numCuotas * 0.04;
+            } else if (metodoPagoGlobal === 'creditoDni') {
+                const porcentajeRecargo = cuotasGlobal * 0.04;
                 recargoDescuentoValor = subtotal * porcentajeRecargo;
-            } else if (paymentMethod === 'tarjeta') {
-                const numCuotas = parseInt(document.getElementById('cuotasSelect').value) || 1;
-                const porcentajeRecargo = numCuotas * 0.08;
+            } else if (metodoPagoGlobal === 'tarjeta') {
+                const porcentajeRecargo = cuotasGlobal * 0.08;
                 recargoDescuentoValor = subtotal * porcentajeRecargo;
             }
 
@@ -885,23 +895,20 @@
             const datosProvincia = tarifasProvincias[provinciaKey];
             const costoEnvio = datosProvincia.costo;
 
-            const paymentMethod = document.getElementById('paymentMethodSelect').value;
             let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
             
             let recargoDescuentoValor = 0;
             let textoMetodo = "";
 
-            if (paymentMethod === 'transferencia') {
+            if (metodoPagoGlobal === 'transferencia') {
                 recargoDescuentoValor = -(subtotal * 0.15);
                 textoMetodo = "Transferencia Bancaria / Efectivo (15% OFF Aplicado)";
-            } else if (paymentMethod === 'creditoDni') {
-                const numCuotas = parseInt(document.getElementById('cuotasSelect').value) || 1;
-                recargoDescuentoValor = subtotal * (numCuotas * 0.04);
-                textoMetodo = `Crédito con DNI (${numCuotas} pago${numCuotas > 1 ? 's' : ''}, +${numCuotas*4}% recargo)`;
-            } else if (paymentMethod === 'tarjeta') {
-                const numCuotas = parseInt(document.getElementById('cuotasSelect').value) || 1;
-                recargoDescuentoValor = subtotal * (numCuotas * 0.08);
-                textoMetodo = `Tarjeta de Crédito (${numCuotas} cuota${numCuotas > 1 ? 's' : ''}, +${numCuotas*8}% recargo)`;
+            } else if (metodoPagoGlobal === 'creditoDni') {
+                recargoDescuentoValor = subtotal * (cuotasGlobal * 0.04);
+                textoMetodo = `Crédito con DNI (${cuotasGlobal} pago${cuotasGlobal > 1 ? 's' : ''}, +${cuotasGlobal*4}% recargo)`;
+            } else if (metodoPagoGlobal === 'tarjeta') {
+                recargoDescuentoValor = subtotal * (cuotasGlobal * 0.08);
+                textoMetodo = `Tarjeta de Crédito (${cuotasGlobal} cuota${cuotasGlobal > 1 ? 's' : ''}, +${cuotasGlobal*8}% recargo)`;
             }
 
             const totalFinal = subtotal + costoEnvio + recargoDescuentoValor;
