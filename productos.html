@@ -549,7 +549,6 @@
             { id: 8, sku: "NOTE-LEN-IDEA3", marca: "Lenovo", modelo: "IdeaPad 3", nombre: "Notebook Lenovo IdeaPad 3", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Notebook versátil para estudio, trabajo y uso cotidiano.", especificaciones: { pantalla: "15.6 pulgadas", memoriaRAM: "8GB" }, precio: 890000, precioOferta: 756500, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80" },
             { id: 9, sku: "AUD-JBL-FLIP6", marca: "JBL", modelo: "Flip 6", nombre: "Parlante Bluetooth JBL Flip 6", categoria: "Audio", subcategoria: "Parlantes", descripcion: "Parlante Bluetooth portátil resistente al agua.", especificaciones: { potenciaW: "30", conectividad: "Bluetooth" }, precio: 210000, precioOferta: 178500, cuotas: 3, stock: true, imagen: "" },
             { id: 10, sku: "REF-GAFA-H300", marca: "Gafa", modelo: "H300", nombre: "Heladera con Freezer Gafa H300", categoria: "Heladeras", subcategoria: "Con Freezer", descripcion: "Heladera cíclica con gran capacidad y eficiencia energética.", especificaciones: { capacidad: "282 L", sistema: "Cíclico" }, precio: 980000, precioOferta: 833000, cuotas: 3, stock: true, imagen: "" }
-            // (Puedes seguir agregando la propiedad `imagen: "URL_DE_LA_IMAGEN"` a los demás productos que desees)
         ];
 
         let carrito = [];
@@ -574,7 +573,6 @@
                     `;
                 }
 
-                // Genera la etiqueta img si el producto tiene un enlace de imagen
                 let imagenHTML = '';
                 if (producto.imagen && producto.imagen.trim() !== "") {
                     imagenHTML = `<img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.style.display='none'">`;
@@ -870,7 +868,7 @@
             renderizarContenidoDrawer();
         }
 
-                function enviarPedidoWhatsApp(event) {
+        function enviarPedidoWhatsApp(event) {
             event.preventDefault();
 
             const nombre = document.getElementById('nombreCliente').value;
@@ -940,18 +938,11 @@
             const numeroWhatsApp = "5491155012447";
             const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
-            // Vaciamos el carrito antes de la redirección
             carrito = [];
             actualizarContadorCarrito();
 
-            // Redirección directa garantizada para evitar bloqueadores de pop-ups
+            // Redirección directa garantizada
             window.location.href = urlWhatsApp;
-        }
-
-            toggleCart();
-
-            // Método seguro y directo para abrir WhatsApp
-            window.open(urlWhatsApp, '_blank');
         }
 
         renderizarProductos();
