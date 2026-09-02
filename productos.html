@@ -31,13 +31,58 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.5;
-            padding: 20px;
+            padding-bottom: 60px;
+        }
+
+        /* Navbar Superior */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .cart-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .cart-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .cart-badge {
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.75rem;
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
+            margin: 40px 0 30px;
+            padding: 0 20px;
         }
 
         header h1 {
@@ -54,6 +99,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .grid-productos {
@@ -192,6 +238,23 @@
             color: var(--accent-color);
             font-weight: 600;
             margin-top: 4px;
+            margin-bottom: 12px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--primary-dark);
         }
 
         .brand-footer {
@@ -213,6 +276,170 @@
             text-decoration: underline;
         }
 
+        /* Modal del Carrito */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: flex-end;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            background-color: white;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .cart-drawer {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .cart-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background-color: var(--bg-body);
+            border: 1px solid var(--border-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-left: 8px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background-color: #f9fafb;
+        }
+
+        .payment-methods {
+            margin-bottom: 15px;
+        }
+
+        .payment-methods label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .payment-select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: white;
+            font-family: inherit;
+        }
+
+        .cart-summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 15px 0;
+            color: var(--text-main);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background-color: #059669;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 40px;
+        }
+
         @media (max-width: 640px) {
             header h1 {
                 font-size: 2rem;
@@ -221,6 +448,14 @@
     </style>
 </head>
 <body>
+
+    <!-- Navbar con botón de Carrito -->
+    <nav class="navbar">
+        <div class="navbar-brand">Electro & Tecnología</div>
+        <button class="cart-btn" onclick="toggleCart()">
+            🛒 Carrito <span class="cart-badge" id="cartCount">0</span>
+        </button>
+    </nav>
 
     <div class="container">
         <header>
@@ -233,8 +468,41 @@
         </div>
     </div>
 
+    <!-- Modal / Drawer del Carrito -->
+    <div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
+        <div class="cart-drawer">
+            <div class="cart-header">
+                <h3>Tu Carrito de Compras</h3>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            
+            <div class="cart-body" id="cartItemsContainer">
+                <!-- Se llena dinámicamente -->
+            </div>
+
+            <div class="cart-footer" id="cartFooterSection" style="display: none;">
+                <div class="payment-methods">
+                    <label for="paymentMethodSelect">Método de Pago:</label>
+                    <select id="paymentMethodSelect" class="payment-select" onchange="updateCartUI()">
+                        <option value="tarjeta">Tarjeta de Crédito (3 cuotas sin interés)</option>
+                        <option value="transferencia">Transferencia Bancaria (10% de descuento)</option>
+                    </select>
+                </div>
+
+                <div id="paymentDetailsContainer"></div>
+
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalPrice">$0</span>
+                </div>
+
+                <button class="checkout-btn" onclick="finalizarCompra()">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // 1. Catálogo de productos proporcionado
+        // Catálogo de productos
         const productos = [
             {
                 "id": 1,
@@ -257,10 +525,7 @@
                 "cuotas": 3,
                 "stock": true,
                 "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.tcl.com/ar/es/"
-                }
+                "fuente": { "tipo": "fabricante", "url": "https://www.tcl.com/ar/es/" }
             },
             {
                 "id": 2,
@@ -283,10 +548,7 @@
                 "cuotas": 3,
                 "stock": true,
                 "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.tcl.com/ar/es/"
-                }
+                "fuente": { "tipo": "fabricante", "url": "https://www.tcl.com/ar/es/" }
             },
             {
                 "id": 3,
@@ -309,10 +571,7 @@
                 "cuotas": 3,
                 "stock": true,
                 "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.samsung.com/ar/"
-                }
+                "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
             },
             {
                 "id": 7,
@@ -334,10 +593,7 @@
                 "cuotas": 3,
                 "stock": true,
                 "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.whirlpool.com.ar/"
-                }
+                "fuente": { "tipo": "fabricante", "url": "https://www.whirlpool.com.ar/" }
             },
             {
                 "id": 20,
@@ -360,110 +616,7 @@
                 "cuotas": 3,
                 "stock": true,
                 "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.motorola.com.ar/"
-                }
-            },
-            {
-                "id": 28,
-                "sku": "LAV-ESLABON-EWT",
-                "ean": "",
-                "marca": "Eslabón de Lujo",
-                "modelo": "EWT",
-                "nombre": "Lavarropas Eslabón de Lujo Automático",
-                "categoria": "Lavarropas",
-                "subcategoria": "Carga Superior",
-                "descripcion": "Lavarropas automático práctico para uso familiar.",
-                "especificaciones": {
-                    "capacidad": "7 kg",
-                    "tipoCarga": "Superior",
-                    "velocidadCentrifugado": "800 RPM"
-                },
-                "precio": 620000,
-                "precioOferta": 527000,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "#"
-                }
-            },
-            {
-                "id": 29,
-                "sku": "HEL-GE-HGE300",
-                "ean": "",
-                "marca": "GE Appliances",
-                "modelo": "HGE300",
-                "nombre": "Heladera GE No Frost 300L",
-                "categoria": "Heladeras",
-                "subcategoria": "No Frost",
-                "descripcion": "Heladera No Frost de capacidad familiar.",
-                "especificaciones": {
-                    "capacidadTotal": "300 Litros",
-                    "sistemaFrio": "No Frost",
-                    "eficienciaEnergetica": "A"
-                },
-                "precio": 990000,
-                "precioOferta": 841500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "#"
-                }
-            },
-            {
-                "id": 30,
-                "sku": "HEL-SAM-RT38",
-                "ean": "",
-                "marca": "Samsung",
-                "modelo": "RT38",
-                "nombre": "Heladera Samsung No Frost 382L",
-                "categoria": "Heladeras",
-                "subcategoria": "No Frost",
-                "descripcion": "Heladera No Frost con gran capacidad y tecnología de conservación.",
-                "especificaciones": {
-                    "capacidadTotal": "382 Litros",
-                    "sistemaFrio": "No Frost",
-                    "eficienciaEnergetica": "A"
-                },
-                "precio": 1250000,
-                "precioOferta": 1062500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.samsung.com/ar/"
-                }
-            },
-            {
-                "id": 37,
-                "sku": "COC-PATRICK-550",
-                "ean": "",
-                "marca": "Patrick",
-                "modelo": "550",
-                "nombre": "Cocina Patrick Multigas 55cm",
-                "categoria": "Cocinas",
-                "subcategoria": "A Gas",
-                "descripcion": "Cocina de cuatro hornallas con horno a gas.",
-                "especificaciones": {
-                    "hornallas": 4,
-                    "tipoGas": "Multigas",
-                    "valvulaSeguridad": "Sí"
-                },
-                "precio": 410000,
-                "precioOferta": 348500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.patrick.com.ar/"
-                }
+                "fuente": { "tipo": "fabricante", "url": "https://www.motorola.com.ar/" }
             },
             {
                 "id": 38,
@@ -486,241 +639,7 @@
                 "cuotas": 3,
                 "stock": true,
                 "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.samsung.com/ar/"
-                }
-            },
-            {
-                "id": 39,
-                "sku": "AC-LG-3000",
-                "ean": "",
-                "marca": "LG",
-                "modelo": "3000",
-                "nombre": "Aire Acondicionado LG Dual Inverter 3000W",
-                "categoria": "Aires acondicionados",
-                "subcategoria": "Split Inverter",
-                "descripcion": "Aire acondicionado Dual Inverter frío/calor.",
-                "especificaciones": {
-                    "frigorias": "2600",
-                    "potenciaW": "3000",
-                    "tipoClima": "Frío/Calor",
-                    "tecnologia": "Dual Inverter"
-                },
-                "precio": 999999,
-                "precioOferta": 849999,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.lg.com/ar/"
-                }
-            },
-            {
-                "id": 40,
-                "sku": "AC-TCL-3200",
-                "ean": "",
-                "marca": "TCL",
-                "modelo": "3200",
-                "nombre": "Aire Acondicionado TCL Inverter 3200W",
-                "categoria": "Aires acondicionados",
-                "subcategoria": "Split Inverter",
-                "descripcion": "Aire acondicionado Inverter frío/calor con alta eficiencia.",
-                "especificaciones": {
-                    "frigorias": "2750",
-                    "potenciaW": "3200",
-                    "tipoClima": "Frío/Calor",
-                    "tecnologia": "Inverter"
-                },
-                "precio": 790000,
-                "precioOferta": 671500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.tcl.com/ar/es/"
-                }
-            },
-            {
-                "id": 41,
-                "sku": "AC-BGH-3000",
-                "ean": "",
-                "marca": "BGH",
-                "modelo": "3000",
-                "nombre": "Aire Acondicionado BGH Inverter 3000W",
-                "categoria": "Aires acondicionados",
-                "subcategoria": "Split Inverter",
-                "descripcion": "Aire acondicionado frío/calor con tecnología Inverter.",
-                "especificaciones": {
-                    "frigorias": "2600",
-                    "potenciaW": "3000",
-                    "tipoClima": "Frío/Calor",
-                    "tecnologia": "Inverter"
-                },
-                "precio": 850000,
-                "precioOferta": 722500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.bgh.com.ar/"
-                }
-            },
-            {
-                "id": 42,
-                "sku": "AC-HIS-4500",
-                "ean": "",
-                "marca": "Hisense",
-                "modelo": "4500",
-                "nombre": "Aire Acondicionado Hisense Inverter 4500W",
-                "categoria": "Aires acondicionados",
-                "subcategoria": "Split Inverter",
-                "descripcion": "Aire acondicionado de mayor potencia para ambientes amplios.",
-                "especificaciones": {
-                    "frigorias": "3800",
-                    "potenciaW": "4500",
-                    "tipoClima": "Frío/Calor",
-                    "tecnologia": "Inverter"
-                },
-                "precio": 1150000,
-                "precioOferta": 977500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.hisense.com.ar/"
-                }
-            },
-            {
-                "id": 43,
-                "sku": "ASP-DREAN-ASP01",
-                "ean": "",
-                "marca": "Drean",
-                "modelo": "ASP01",
-                "nombre": "Aspiradora Drean 1600W",
-                "categoria": "Pequeños electrodomésticos",
-                "subcategoria": "Aspiradoras",
-                "descripcion": "Aspiradora de potencia elevada para limpieza del hogar.",
-                "especificaciones": {
-                    "potenciaW": "1600",
-                    "tipo": "Trineo",
-                    "filtro": "Lavable"
-                },
-                "precio": 190000,
-                "precioOferta": 161500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.drean.com.ar/"
-                }
-            },
-            {
-                "id": 44,
-                "sku": "ASP-ATMA-ASP02",
-                "ean": "",
-                "marca": "Atma",
-                "modelo": "ASP02",
-                "nombre": "Aspiradora Atma 1400W",
-                "categoria": "Pequeños electrodomésticos",
-                "subcategoria": "Aspiradoras",
-                "descripcion": "Aspiradora compacta para limpieza diaria.",
-                "especificaciones": {
-                    "potenciaW": "1400",
-                    "tipo": "Trineo",
-                    "filtro": "Lavable"
-                },
-                "precio": 175000,
-                "precioOferta": 148750,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "#"
-                }
-            },
-            {
-                "id": 45,
-                "sku": "MIC-ATMA-MO20",
-                "ean": "",
-                "marca": "Atma",
-                "modelo": "MO20",
-                "nombre": "Microondas Atma 20 Litros",
-                "categoria": "Pequeños electrodomésticos",
-                "subcategoria": "Microondas",
-                "descripcion": "Microondas compacto para cocinar y calentar alimentos.",
-                "especificaciones": {
-                    "capacidad": "20 Litros",
-                    "potenciaW": "700",
-                    "tipo": "Digital"
-                },
-                "precio": 210000,
-                "precioOferta": 178500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "#"
-                }
-            },
-            {
-                "id": 51,
-                "sku": "MON-LG-24FHD",
-                "ean": "",
-                "marca": "LG",
-                "modelo": "24FHD",
-                "nombre": "Monitor LG 24 Full HD",
-                "categoria": "Informática",
-                "subcategoria": "Monitores",
-                "descripcion": "Monitor Full HD de 24 pulgadas para trabajo y entretenimiento.",
-                "especificaciones": {
-                    "pulgadas": 24,
-                    "resolucion": "1920x1080",
-                    "tipoPanel": "IPS",
-                    "frecuencia": "75 Hz"
-                },
-                "precio": 270000,
-                "precioOferta": 229500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.lg.com/ar/"
-                }
-            },
-            {
-                "id": 52,
-                "sku": "MON-SAM-24FHD",
-                "ean": "",
-                "marca": "Samsung",
-                "modelo": "24FHD",
-                "nombre": "Monitor Samsung 24 Full HD",
-                "categoria": "Informática",
-                "subcategoria": "Monitores",
-                "descripcion": "Monitor Full HD de 24 pulgadas.",
-                "especificaciones": {
-                    "pulgadas": 24,
-                    "resolucion": "1920x1080",
-                    "tipoPanel": "VA",
-                    "frecuencia": "75 Hz"
-                },
-                "precio": 260000,
-                "precioOferta": 221000,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.samsung.com/ar/"
-                }
+                "fuente": { "tipo": "fabricante", "url": "https://www.samsung.com/ar/" }
             },
             {
                 "id": 53,
@@ -743,114 +662,7 @@
                 "cuotas": 3,
                 "stock": true,
                 "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.lenovo.com/ar/"
-                }
-            },
-            {
-                "id": 54,
-                "sku": "NOTE-HP-15",
-                "ean": "",
-                "marca": "HP",
-                "modelo": "15",
-                "nombre": "Notebook HP 15",
-                "categoria": "Informática",
-                "subcategoria": "Notebooks",
-                "descripcion": "Notebook de 15 pulgadas para productividad y estudio.",
-                "especificaciones": {
-                    "pantalla": "15.6 pulgadas",
-                    "memoriaRAM": "8GB",
-                    "almacenamiento": "256GB SSD",
-                    "sistemaOperativo": "Windows"
-                },
-                "precio": 920000,
-                "precioOferta": 782000,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.hp.com/ar-es/"
-                }
-            },
-            {
-                "id": 55,
-                "sku": "NOTE-ASUS-VIVO15",
-                "ean": "",
-                "marca": "ASUS",
-                "modelo": "VivoBook 15",
-                "nombre": "Notebook ASUS VivoBook 15",
-                "categoria": "Informática",
-                "subcategoria": "Notebooks",
-                "descripcion": "Notebook liviana para trabajo, estudio y entretenimiento.",
-                "especificaciones": {
-                    "pantalla": "15.6 pulgadas",
-                    "memoriaRAM": "8GB",
-                    "almacenamiento": "512GB SSD",
-                    "sistemaOperativo": "Windows"
-                },
-                "precio": 1050000,
-                "precioOferta": 892500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.asus.com/ar/"
-                }
-            },
-            {
-                "id": 56,
-                "sku": "TAB-SAM-A9",
-                "ean": "",
-                "marca": "Samsung",
-                "modelo": "Galaxy Tab A9",
-                "nombre": "Tablet Samsung Galaxy Tab A9",
-                "categoria": "Informática",
-                "subcategoria": "Tablets",
-                "descripcion": "Tablet compacta para entretenimiento, estudio y navegación.",
-                "especificaciones": {
-                    "pantalla": "8.7 pulgadas",
-                    "memoriaRAM": "4GB",
-                    "almacenamiento": "64GB",
-                    "conectividad": "Wi-Fi"
-                },
-                "precio": 290000,
-                "precioOferta": 246500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.samsung.com/ar/"
-                }
-            },
-            {
-                "id": 57,
-                "sku": "TAB-LEN-M10",
-                "ean": "",
-                "marca": "Lenovo",
-                "modelo": "Tab M10",
-                "nombre": "Tablet Lenovo Tab M10",
-                "categoria": "Informática",
-                "subcategoria": "Tablets",
-                "descripcion": "Tablet de pantalla amplia para entretenimiento y tareas cotidianas.",
-                "especificaciones": {
-                    "pantalla": "10.1 pulgadas",
-                    "memoriaRAM": "4GB",
-                    "almacenamiento": "64GB",
-                    "conectividad": "Wi-Fi"
-                },
-                "precio": 330000,
-                "precioOferta": 280500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.lenovo.com/ar/"
-                }
+                "fuente": { "tipo": "fabricante", "url": "https://www.lenovo.com/ar/" }
             },
             {
                 "id": 58,
@@ -872,248 +684,183 @@
                 "cuotas": 3,
                 "stock": true,
                 "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.jbl.com.ar/"
-                }
-            },
-            {
-                "id": 59,
-                "sku": "AUD-JBL-CHARGE5",
-                "ean": "",
-                "marca": "JBL",
-                "modelo": "Charge 5",
-                "nombre": "Parlante Bluetooth JBL Charge 5",
-                "categoria": "Audio",
-                "subcategoria": "Parlantes",
-                "descripcion": "Parlante portátil con gran autonomía y sonido potente.",
-                "especificaciones": {
-                    "potenciaW": "40",
-                    "conectividad": "Bluetooth",
-                    "bateria": "20 horas"
-                },
-                "precio": 280000,
-                "precioOferta": 238000,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.jbl.com.ar/"
-                }
-            },
-            {
-                "id": 60,
-                "sku": "AUD-SAM-BUDSFE",
-                "ean": "",
-                "marca": "Samsung",
-                "modelo": "Galaxy Buds FE",
-                "nombre": "Auriculares Samsung Galaxy Buds FE",
-                "categoria": "Audio",
-                "subcategoria": "Auriculares",
-                "descripcion": "Auriculares inalámbricos con cancelación activa de ruido.",
-                "especificaciones": {
-                    "tipo": "In Ear",
-                    "conectividad": "Bluetooth",
-                    "cancelacionRuido": "Sí"
-                },
-                "precio": 150000,
-                "precioOferta": 127500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.samsung.com/ar/"
-                }
-            },
-            {
-                "id": 61,
-                "sku": "AUD-XIA-REDMIBUDS",
-                "ean": "",
-                "marca": "Xiaomi",
-                "modelo": "Redmi Buds",
-                "nombre": "Auriculares Xiaomi Redmi Buds",
-                "categoria": "Audio",
-                "subcategoria": "Auriculares",
-                "descripcion": "Auriculares inalámbricos compactos con Bluetooth.",
-                "especificaciones": {
-                    "tipo": "In Ear",
-                    "conectividad": "Bluetooth",
-                    "cancelacionRuido": "Sí"
-                },
-                "precio": 65000,
-                "precioOferta": 55250,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.mi.com/ar/"
-                }
-            },
-            {
-                "id": 62,
-                "sku": "SEC-ATMA-2000",
-                "ean": "",
-                "marca": "Atma",
-                "modelo": "2000",
-                "nombre": "Secador de Pelo Atma 2000W",
-                "categoria": "Pequeños electrodomésticos",
-                "subcategoria": "Secadores",
-                "descripcion": "Secador de pelo de alta potencia con varias velocidades.",
-                "especificaciones": {
-                    "potenciaW": "2000",
-                    "velocidades": 2,
-                    "temperaturas": 3
-                },
-                "precio": 78000,
-                "precioOferta": 66300,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "#"
-                }
-            },
-            {
-                "id": 71,
-                "sku": "TV-TCL-43P755",
-                "ean": "",
-                "marca": "TCL",
-                "modelo": "43P755",
-                "nombre": "Smart TV TCL 43 P755 4K",
-                "categoria": "Televisores",
-                "subcategoria": "Smart TV",
-                "descripcion": "Smart TV 4K de 43 pulgadas con Google TV.",
-                "especificaciones": {
-                    "pulgadas": 43,
-                    "resolucion": "4K UHD",
-                    "tecnologia": "LED",
-                    "sistemaOperativo": "Google TV"
-                },
-                "precio": 490000,
-                "precioOferta": 416500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.tcl.com/ar/es/"
-                }
-            },
-            {
-                "id": 72,
-                "sku": "TV-LG-65UR7800",
-                "ean": "",
-                "marca": "LG",
-                "modelo": "65UR7800",
-                "nombre": "Smart TV LG 65 4K UHD",
-                "categoria": "Televisores",
-                "subcategoria": "Smart TV",
-                "descripcion": "Smart TV LG de 65 pulgadas con resolución 4K.",
-                "especificaciones": {
-                    "pulgadas": 65,
-                    "resolucion": "4K UHD",
-                    "tecnologia": "LED",
-                    "sistemaOperativo": "webOS"
-                },
-                "precio": 1290000,
-                "precioOferta": 1096500,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.lg.com/ar/"
-                }
-            },
-            {
-                "id": 73,
-                "sku": "CEL-SAM-A55",
-                "ean": "",
-                "marca": "Samsung",
-                "modelo": "Galaxy A55",
-                "nombre": "Celular Samsung Galaxy A55 5G",
-                "categoria": "Celulares",
-                "subcategoria": "Smartphones",
-                "descripcion": "Smartphone gama media-alta con gran rendimiento y cámaras.",
-                "especificaciones": {
-                    "pantalla": "6.5 pulgadas Super AMOLED",
-                    "memoriaRAM": "6GB",
-                    "almacenamiento": "128GB",
-                    "camaraPrincipal": "50 MP"
-                },
-                "precio": 520000,
-                "precioOferta": 442000,
-                "cuotas": 3,
-                "stock": true,
-                "imagenes": [],
-                "fuente": {
-                    "tipo": "fabricante",
-                    "url": "https://www.samsung.com/ar/"
-                }
+                "fuente": { "tipo": "fabricante", "url": "https://www.jbl.com.ar/" }
             }
         ];
 
-        // 2. Función para formatear números como moneda (ARS)
+        // Estado del Carrito
+        let carrito = [];
+
+        // Formatear moneda (ARS)
         function formatearMoneda(valor) {
             return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(valor);
         }
 
-        // 3. Renderizar los productos en el DOM
+        // Renderizar Catálogo
         const gridContainer = document.getElementById('gridProductos');
 
-        productos.forEach(producto => {
-            // Crear especificaciones en HTML dinámicamente
-            let specsHTML = '';
-            for (const [key, value] of Object.entries(producto.especificaciones)) {
-                if(value !== "" && value !== 0) {
-                    specsHTML += `
-                        <div>
-                            <span class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
-                            <span class="spec-value">${value}</span>
-                        </div>
-                    `;
+        function renderizarProductos() {
+            gridContainer.innerHTML = '';
+            productos.forEach(producto => {
+                let specsHTML = '';
+                for (const [key, value] of Object.entries(producto.especificaciones)) {
+                    if(value !== "" && value !== 0) {
+                        specsHTML += `
+                            <div>
+                                <span class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                                <span class="spec-value">${value}</span>
+                            </div>
+                        `;
+                    }
                 }
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    ${producto.stock ? '<span class="badge-stock">Stock</span>' : ''}
+                    <div class="card-img-placeholder">
+                        <span>${producto.marca}</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-category">${producto.categoria} &bull; ${producto.subcategoria}</span>
+                        <h3 class="card-title">${producto.nombre}</h3>
+                        <p class="card-desc">${producto.descripcion}</p>
+                        
+                        <div class="specs-list">
+                            ${specsHTML}
+                        </div>
+
+                        <div class="pricing">
+                            <div class="price-original">${formatearMoneda(producto.precio)}</div>
+                            <div class="price-container">
+                                <span class="price-offer">${formatearMoneda(producto.precioOferta)}</span>
+                            </div>
+                            <div class="cuotas-badge">${producto.cuotas} cuotas sin interés de ${formatearMoneda(producto.precioOferta / producto.cuotas)}</div>
+                            
+                            <button class="btn-add-cart" onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
+
+                            <div class="brand-footer">
+                                <span>Marca: <strong>${producto.marca}</strong></span>
+                                ${producto.fuente.url !== "#" ? `<a href="${producto.fuente.url}" target="_blank">Ver web</a>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        // Funciones del Carrito
+        function agregarAlCarrito(id) {
+            const producto = productos.find(p => p.id === id);
+            const itemExistente = carrito.find(item => item.id === id);
+
+            if (itemExistente) {
+                itemExistente.cantidad++;
+            } else {
+                carrito.push({ ...producto, cantidad: 1 });
             }
 
-            // Construir la tarjeta
-            const card = document.createElement('div');
-            card.className = 'card';
+            actualizarContadorCarrito();
+            toggleCart(); // Abre el carrito automáticamente al agregar
+        }
+
+        function cambiarCantidad(id, cambio) {
+            const item = carrito.find(i => i.id === id);
+            if (item) {
+                item.cantidad += cambio;
+                if (item.cantidad <= 0) {
+                    carrito = carrito.filter(i => i.id !== id);
+                }
+            }
+            actualizarContadorCarrito();
+            renderizarCarrito();
+        }
+
+        function eliminarDelCarrito(id) {
+            carrito = carrito.filter(i => i.id !== id);
+            actualizarContadorCarrito();
+            renderizarCarrito();
+        }
+
+        function actualizarContadorCarrito() {
+            const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            document.getElementById('cartCount').innerText = totalItems;
+            renderizarCarrito();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+        }
+
+        function handleOutsideClick(event) {
+            if (event.target.id === 'cartModal') {
+                toggleCart();
+            }
+        }
+
+        function renderizarCarrito() {
+            const container = document.getElementById('cartItemsContainer');
+            const footerSection = document.getElementById('cartFooterSection');
+
+            if (carrito.length === 0) {
+                container.innerHTML = `<div class="empty-cart">Tu carrito está vacío.</div>`;
+                footerSection.style.display = 'none';
+                return;
+            }
+
+            footerSection.style.display = 'block';
+            container.innerHTML = '';
+
+            carrito.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.nombre}</h4>
+                        <div class="cart-item-price">${formatearMoneda(item.precioOferta)} c/u</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, -1)">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                        <button class="remove-btn" onclick="eliminarDelCarrito(${item.id})">🗑️</button>
+                    </div>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const paymentMethod = document.getElementById('paymentMethodSelect').value;
+            const detailsContainer = document.getElementById('paymentDetailsContainer');
             
-            card.innerHTML = `
-                ${producto.stock ? '<span class="badge-stock">Stock</span>' : ''}
-                <div class="card-img-placeholder">
-                    <span>${producto.marca}</span>
-                </div>
-                <div class="card-body">
-                    <span class="card-category">${producto.categoria} &bull; ${producto.subcategoria}</span>
-                    <h3 class="card-title">${producto.nombre}</h3>
-                    <p class="card-desc">${producto.descripcion}</p>
-                    
-                    <div class="specs-list">
-                        ${specsHTML}
-                    </div>
+            let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
+            let totalFinal = subtotal;
 
-                    <div class="pricing">
-                        <div class="price-original">${formatearMoneda(producto.precio)}</div>
-                        <div class="price-container">
-                            <span class="price-offer">${formatearMoneda(producto.precioOferta)}</span>
-                        </div>
-                        <div class="cuotas-badge">${producto.cuotas} cuotas sin interés</div>
-                        
-                        <div class="brand-footer">
-                            <span>Marca: <strong>${producto.marca}</strong></span>
-                            ${producto.fuente.url !== "#" ? `<a href="${producto.fuente.url}" target="_blank">Ver web</a>` : ''}
-                        </div>
-                    </div>
-                </div>
-            `;
+            if (paymentMethod === 'tarjeta') {
+                const valorCuota = subtotal / 3;
+                detailsContainer.innerHTML = `<div class="cart-summary-line" style="color: var(--accent-color); font-weight:600;"><span>Plan de pago:</span> <span>3 cuotas sin interés de ${formatearMoneda(valorCuota)}</span></div>`;
+            } else if (paymentMethod === 'transferencia') {
+                const descuento = subtotal * 0.10;
+                totalFinal = subtotal - descuento;
+                detailsContainer.innerHTML = `<div class="cart-summary-line" style="color: #10b981; font-weight:600;"><span>Descuento 10% por transferencia:</span> <span>-${formatearMoneda(descuento)}</span></div>`;
+            }
 
-            gridContainer.appendChild(card);
-        });
+            document.getElementById('cartTotalPrice').innerText = formatearMoneda(totalFinal);
+        }
+
+        function finalizarCompra() {
+            alert('¡Gracias por tu compra! Tu pedido ha sido procesado con éxito.');
+            carrito = [];
+            actualizarContadorCarrito();
+            toggleCart();
+        }
+
+        // Inicializar la vista de productos al cargar
+        renderizarProductos();
     </script>
 </body>
 </html>
