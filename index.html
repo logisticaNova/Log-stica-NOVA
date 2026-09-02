@@ -3462,17 +3462,25 @@ document.addEventListener('DOMContentLoaded', () => {
                           `*TOTAL A PAGAR:* ${formatCurrency(finalTotal)}\n\n` +
                           `Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
 
-                        const whatsappBtn = document.getElementById('whatsappBtn');
+                                    const whatsappBtn = document.getElementById('whatsappBtn');
             if (whatsappBtn) {
                 whatsappBtn.onclick = () => {
-                    window.open(`https://api.whatsapp.com/send?phone=5491155012447&text=${encodeURIComponent(message)}`, '_blank');
+                    const phoneNumber = "5491155012447";
+                    const textEncoded = encodeURIComponent(message);
+                    
+                    // Intenta forzar la apertura mediante el esquema directo para móviles y respaldo web
+                    const whatsappBusinessUrl = `whatsapp://send?phone=${phoneNumber}&text=${textEncoded}`;
+                    const fallbackUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${textEncoded}`;
+
+                    // Intento de abrir la app directamente
+                    window.location.href = whatsappBusinessUrl;
+
+                    // Si en un breve lapso la app no intercepta el esquema, abre la opción web/api
+                    setTimeout(() => {
+                        window.open(fallbackUrl, '_blank');
+                    }, 500);
                 };
             }
-
-
-            switchView(3);
-        });
-    }
 });
     </script>
 </body>
