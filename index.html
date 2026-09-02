@@ -1,401 +1,488 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Logística Nova - Seguimiento de Envíos y Soluciones Logísticas</title>
-<!-- Google Fonts para una tipografía moderna -->
-<link href="[https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
-<style>
-:root {
---primary-color: #2563eb;
---primary-dark: #1d4ed8;
---accent-color: #f97316;
---text-main: #1f2937;
---text-muted: #6b7280;
---bg-body: #f3f4f6;
---bg-card: #ffffff;
---border-color: #e5e7eb;
---radius: 12px;
---transition: all 0.3s ease;
-}
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
-body {
-font-family: 'Inter', sans-serif;
-background-color: var(--bg-body);
-color: var(--text-main);
-line-height: 1.6;
-}
-/* Navbar Superior */
-.navbar {
-background-color: white;
-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-position: sticky;
-top: 0;
-z-index: 100;
-padding: 15px 40px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-.navbar-brand {
-font-size: 1.25rem;
-font-weight: 700;
-color: var(--primary-color);
-display: flex;
-align-items: center;
-gap: 8px;
-}
-.nav-links {
-display: flex;
-gap: 20px;
-align-items: center;
-}
-.nav-links a {
-text-decoration: none;
-color: var(--text-muted);
-font-weight: 500;
-font-size: 0.95rem;
-transition: var(--transition);
-}
-.nav-links a:hover {
-color: var(--primary-color);
-}
-.nav-btn-store {
-background-color: var(--accent-color);
-color: white !important;
-padding: 8px 16px;
-border-radius: 8px;
-font-weight: 600 !important;
-}
-.nav-btn-store:hover {
-background-color: #ea580c !important;
-}
-/* Hero / Buscador Principal */
-.hero-section {
-background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-color: white;
-text-align: center;
-padding: 80px 20px;
-}
-.hero-container {
-max-width: 800px;
-margin: 0 auto;
-}
-.hero-section h1 {
-font-size: 2.8rem;
-margin-bottom: 15px;
-font-weight: 700;
-}
-.hero-section p {
-font-size: 1.15rem;
-margin-bottom: 35px;
-opacity: 0.9;
-}
-/* Caja de Seguimiento */
-.tracking-box {
-background: white;
-padding: 15px;
-border-radius: var(--radius);
-box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-display: flex;
-gap: 12px;
-max-width: 650px;
-margin: 0 auto;
-}
-.tracking-input {
-flex-grow: 1;
-padding: 14px 18px;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-font-size: 1rem;
-outline: none;
-font-family: inherit;
-}
-.tracking-input:focus {
-border-color: var(--primary-color);
-}
-.tracking-btn {
-background-color: var(--accent-color);
-color: white;
-border: none;
-padding: 0 28px;
-border-radius: 8px;
-font-weight: 600;
-cursor: pointer;
-font-size: 1rem;
-transition: var(--transition);
-}
-.tracking-btn:hover {
-background-color: #ea580c;
-}
-/* Resultado del Rastreo */
-.tracking-result-container {
-max-width: 800px;
-margin: -30px auto 40px auto;
-padding: 0 20px;
-}
-.result-card {
-background: white;
-border-radius: var(--radius);
-padding: 25px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-border: 1px solid var(--border-color);
-display: none;
-}
-.result-card.active {
-display: block;
-}
-.result-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 1px solid var(--border-color);
-padding-bottom: 15px;
-margin-bottom: 20px;
-}
-.status-badge {
-background-color: #10b981;
-color: white;
-padding: 6px 14px;
-border-radius: 20px;
-font-size: 0.85rem;
-font-weight: 600;
-}
-/* Contenido Institucional y Servicios */
-.container {
-max-width: 1100px;
-margin: 60px auto;
-padding: 0 20px;
-}
-.section-title {
-text-align: center;
-font-size: 2.2rem;
-margin-bottom: 12px;
-color: var(--text-main);
-}
-.section-subtitle {
-text-align: center;
-color: var(--text-muted);
-margin-bottom: 45px;
-font-size: 1.1rem;
-}
-.features-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-gap: 30px;
-}
-.feature-card {
-background: white;
-padding: 30px;
-border-radius: var(--radius);
-box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-border: 1px solid var(--border-color);
-transition: var(--transition);
-}
-.feature-card:hover {
-transform: translateY(-5px);
-box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-}
-.feature-icon {
-font-size: 2.5rem;
-margin-bottom: 15px;
-}
-.feature-card h3 {
-font-size: 1.3rem;
-margin-bottom: 10px;
-color: var(--text-main);
-}
-.feature-card p {
-color: var(--text-muted);
-font-size: 0.95rem;
-}
-/* Sección de Compra de Productos / Tienda */
-.store-banner {
-background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-color: white;
-border-radius: var(--radius);
-padding: 50px 40px;
-margin-top: 60px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 30px;
-flex-wrap: wrap;
-box-shadow: 0 10px 25px rgba(249, 115, 22, 0.2);
-}
-.store-banner-content {
-max-width: 600px;
-}
-.store-banner h2 {
-font-size: 2rem;
-margin-bottom: 12px;
-}
-.store-banner p {
-font-size: 1.05rem;
-opacity: 0.95;
-line-height: 1.5;
-}
-.store-btn {
-background-color: white;
-color: var(--accent-color);
-padding: 14px 28px;
-border-radius: 8px;
-text-decoration: none;
-font-weight: 700;
-font-size: 1.05rem;
-display: inline-block;
-transition: var(--transition);
-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-.store-btn:hover {
-background-color: #f8fafc;
-transform: translateY(-2px);
-}
-/* Footer */
-footer {
-background-color: #111827;
-color: #9ca3af;
-text-align: center;
-padding: 40px 20px;
-margin-top: 80px;
-font-size: 0.9rem;
-}
-footer strong {
-color: white;
-}
-@media (max-width: 768px) {
-.hero-section h1 { font-size: 2.1rem; }
-.tracking-box { flex-direction: column; }
-.tracking-btn { padding: 14px; }
-.navbar { padding: 15px 20px; }
-.store-banner { flex-direction: column; text-align: center; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logística Nova - Seguimiento de Envíos y Soluciones Logísticas</title>
+    <!-- Google Fonts para una tipografía moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent-color: #f97316;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --border-color: #e5e7eb;
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Superior Flexible */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .navbar-brand {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-btn-store {
+            background-color: var(--accent-color);
+            color: white !important;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600 !important;
+        }
+
+        .nav-btn-store:hover {
+            background-color: #ea580c !important;
+        }
+
+        /* Hero / Buscador Principal */
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 16px;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-section h1 {
+            font-size: 2.1rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-section p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        /* Caja de Seguimiento Adaptable */
+        .tracking-box {
+            background: white;
+            padding: 10px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column; /* Por defecto vertical en celulares */
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tracking-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .tracking-input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .tracking-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .tracking-btn:hover {
+            background-color: #ea580c;
+        }
+
+        /* Resultado del Rastreo */
+        .tracking-result-container {
+            max-width: 800px;
+            margin: -20px auto 30px auto;
+            padding: 0 16px;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .result-card.active {
+            display: block;
+        }
+
+        .result-header {
+            display: flex;
+            flex-direction: column; /* Apilado en móvil para evitar que se pisen los textos */
+            gap: 12px;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .status-badge {
+            background-color: #10b981;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Contenido Institucional y Servicios */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 16px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Una columna por defecto en celulares */
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 24px 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Sección de Compra de Productos / Tienda */
+        .store-banner {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            border-radius: var(--radius);
+            padding: 30px 20px;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column; /* Siempre vertical en celulares para mejor lectura */
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.2);
+        }
+
+        .store-banner h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .store-banner p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .store-btn {
+            background-color: white;
+            color: var(--accent-color);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-block;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .store-btn:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 30px 16px;
+            margin-top: 50px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Media Queries para pantallas medianas y escritorios (Escritorio en adelante) */
+        @media (min-width: 640px) {
+            .tracking-box {
+                flex-direction: row; /* Vuelve a ponerse horizontal en pantallas más anchas */
+            }
+            .tracking-btn {
+                width: auto;
+            }
+            .result-header {
+                flex-direction: row;
+                align-items: center;
+            }
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cuadrícula múltiple */
+            }
+            .store-banner {
+                flex-direction: row;
+                text-align: left;
+                padding: 40px;
+            }
+            .store-btn {
+                width: auto;
+            }
+            .navbar {
+                padding: 15px 40px;
+            }
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- Navbar Institucional -->
-<nav class="navbar">
-<div class="navbar-brand">
-📦 Logística Nova
-</div>
-<div class="nav-links">
-<a href="#seguimiento">Seguimiento</a>
-<a href="#quienes-somos">Quiénes Somos</a>
-<a href="#servicios">Servicios</a>
-<a href="[https://logisticanova.github.io/Log-stica-NOVA/productos.html](https://logisticanova.github.io/Log-stica-NOVA/productos.html)" class="nav-btn-store" target="_blank">🛒 Ver Productos</a>
-</div>
-</nav>
-<!-- Sección Hero y Rastreo de Envío -->
-<header class="hero-section" id="seguimiento">
-<div class="hero-container">
-<h1>Seguimiento de Envíos</h1>
-<p>Ingresa tu número de guía, código de seguimiento o SKU para conocer el estado actual de tu paquete en tiempo real.</p>
-<div class="tracking-box">
-<input type="text" id="trackingInput" class="tracking-input" placeholder="Ej. NOVA-84920 o Código de Envío...">
-<button class="tracking-btn" onclick="buscarEnvio()">Rastrear</button>
-</div>
-</div>
-</header>
-<!-- Contenedor del Resultado de Rastreo -->
-<div class="tracking-result-container">
-<div class="result-card" id="resultCard">
-<div class="result-header">
-<div>
-<h3 id="resultTitle" style="font-size: 1.1rem; color: var(--text-muted);">Información de Guía</h3>
-<p id="resultCode" style="font-size: 1.3rem; font-weight: 700; color: var(--text-main);">--</p>
-</div>
-<span class="status-badge" id="resultStatus">En Tránsito</span>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 0.95rem;">
-<div><strong>Destino:</strong> <span id="resultDestino" style="color: var(--text-muted);">Buenos Aires, Argentina</span></div>
-<div><strong>Última Actualización:</strong> <span id="resultFecha" style="color: var(--text-muted);">Hoy, 10:30 hs</span></div>
-<div><strong>Operador Logístico:</strong> <span style="color: var(--text-muted);">Logística Nova Central</span></div>
-</div>
-</div>
-</div>
-<!-- Sección Institucional: ¿Qué es Logística Nova? -->
-<main class="container" id="quienes-somos">
-<h2 class="section-title">¿Qué es Logística Nova?</h2>
-<p class="section-subtitle">Somos una empresa líder en gestión integral de envíos, almacenamiento y distribución corporativa y particular.</p>
-<div style="background: white; padding: 40px; border-radius: var(--radius); border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.02); margin-bottom: 60px;">
-<p style="margin-bottom: 15px; font-size: 1.05rem; color: var(--text-main);">
-<strong>Logística Nova</strong> nace para simplificar el flujo de mercaderías en todo el país. Brindamos infraestructura tecnológica y operativa avanzada para que PyMEs, grandes comercios y particulares puedan tercerizar su cadena de suministro con absoluta tranquilidad.
-</p>
-<p style="font-size: 1.05rem; color: var(--text-main);">
-Nuestra plataforma automatiza los procesos de despacho, ofrece control de stock centralizado y garantiza trazabilidad absoluta mediante códigos de rastreo inteligentes actualizados al instante.
-</p>
-</div>
-<!-- Sección de Capacidades / Servicios -->
-<div id="servicios">
-<h2 class="section-title">¿Qué podemos realizar por ti?</h2>
-<p class="section-subtitle">Conoce las soluciones logísticas que ponemos a tu disposición.</p>
-<div class="features-grid">
-<div class="feature-card">
-<div class="feature-icon">🚚</div>
-<h3>Distribución Nacional</h3>
-<p>Envíos puerta a puerta rápidos y seguros a lo largo de todo el territorio nacional, con flota propia y monitoreo satelital permanente.</p>
-</div>
-<div class="feature-card">
-<div class="feature-icon">🏭</div>
-<h3>Almacenamiento y Fulfillment</h3>
-<p>Gestión integral de depósitos: recepción de mercadería, control de inventario en tiempo real, armado de pedidos (picking) y empaque profesional.</p>
-</div>
-<div class="feature-card">
-<div class="feature-icon">⏱️</div>
-<h3>Logística Última Milla</h3>
-<p>Entregas urbanas de alta eficiencia optimizadas para e-commerce, reduciendo tiempos de entrega y mejorando la experiencia del cliente final.</p>
-</div>
-</div>
-</div>
-<!-- Banner Explicativo e Interactivo para Comprar Productos -->
-<div class="store-banner">
-<div class="store-banner-content">
-<h2>¿Buscas adquirir tecnología o electrodomésticos?</h2>
-<p>Explora nuestro catálogo de productos en línea. Selecciona tus artículos favoritos, elige el medio de pago ideal (con descuentos exclusivos por transferencia) y coordina la entrega automática directo por WhatsApp con nuestro operador logístico.</p>
-</div>
-<div>
-<a href="[https://logisticanova.github.io/Log-stica-NOVA/productos.html](https://logisticanova.github.io/Log-stica-NOVA/productos.html)" class="store-btn" target="_blank">Ir al Catálogo de Productos</a>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<footer>
-<p>© 2026 <strong>Logística Nova</strong>. Todos los derechos reservados. | Soporte y consultas: 11-5501-2447</p>
-</footer>
-<script>
-function buscarEnvio() {
-const input = document.getElementById('trackingInput').value.trim();
-const resultCard = document.getElementById('resultCard');
-const resultCode = document.getElementById('resultCode');
-const resultStatus = document.getElementById('resultStatus');
-if (input === "") {
-alert("Por favor, ingresa un número de guía o código de seguimiento válido.");
-resultCard.classList.remove('active');
-return;
-}
-// Simulación de búsqueda de envío con datos dinámicos según el código ingresado
-resultCode.innerText = input.toUpperCase();
-// Simular estados aleatorios o basados en texto
-if(input.toLowerCase().includes('err')) {
-resultStatus.innerText = "Dirección Incorrecta / Demorado";
-resultStatus.style.backgroundColor = "#ef4444";
-} else if(input.toLowerCase().includes('ent')) {
-resultStatus.innerText = "Entregado con Éxito";
-resultStatus.style.backgroundColor = "#2563eb";
-} else {
-resultStatus.innerText = "En Tránsito hacia Destino";
-resultStatus.style.backgroundColor = "#10b981";
-}
-resultCard.classList.add('active');
-// Desplazarse suavemente hacia el resultado
-resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-</script>
+
+    <!-- Navbar Institucional -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            📦 Logística Nova
+        </div>
+        <div class="nav-links">
+            <a href="#seguimiento">Seguimiento</a>
+            <a href="#quienes-somos">Quiénes Somos</a>
+            <a href="#servicios">Servicios</a>
+            <a href="https://logisticanova.github.io/Log-stica-NOVA/productos.html" class="nav-btn-store" target="_blank">🛒 Ver Productos</a>
+        </div>
+    </nav>
+
+    <!-- Sección Hero y Rastreo de Envío -->
+    <header class="hero-section" id="seguimiento">
+        <div class="hero-container">
+            <h1>Seguimiento de Envíos</h1>
+            <p>Ingresa tu número de guía, código de seguimiento o SKU para conocer el estado actual de tu paquete en tiempo real.</p>
+            
+            <div class="tracking-box">
+                <input type="text" id="trackingInput" class="tracking-input" placeholder="Ej. NOVA-84920 o Código...">
+                <button class="tracking-btn" onclick="buscarEnvio()">Rastrear</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor del Resultado de Rastreo -->
+    <div class="tracking-result-container">
+        <div class="result-card" id="resultCard">
+            <div class="result-header">
+                <div>
+                    <h3 id="resultTitle" style="font-size: 0.95rem; color: var(--text-muted);">Información de Guía</h3>
+                    <p id="resultCode" style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">--</p>
+                </div>
+                <span class="status-badge" id="resultStatus">En Tránsito</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 10px; font-size: 0.9rem;">
+                <div><strong>Destino:</strong> <span id="resultDestino" style="color: var(--text-muted);">Buenos Aires, Argentina</span></div>
+                <div><strong>Última Actualización:</strong> <span id="resultFecha" style="color: var(--text-muted);">Hoy, 10:30 hs</span></div>
+                <div><strong>Operador Logístico:</strong> <span style="color: var(--text-muted);">Logística Nova Central</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Institucional: ¿Qué es Logística Nova? -->
+    <main class="container" id="quienes-somos">
+        <h2 class="section-title">¿Qué es Logística Nova?</h2>
+        <p class="section-subtitle">Somos una empresa líder en gestión integral de envíos, almacenamiento y distribución.</p>
+        
+        <div style="background: white; padding: 25px 20px; border-radius: var(--radius); border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.02); margin-bottom: 40px;">
+            <p style="margin-bottom: 12px; font-size: 0.95rem; color: var(--text-main);">
+                <strong>Logística Nova</strong> nace para simplificar el flujo de mercaderías en todo el país. Brindamos infraestructura tecnológica y operativa avanzada para que PyMEs, grandes comercios y particulares puedan tercerizar su cadena de suministro.
+            </p>
+            <p style="font-size: 0.95rem; color: var(--text-main);">
+                Nuestra plataforma automatiza los procesos de despacho, ofrece control de stock centralizado y garantiza trazabilidad absoluta mediante códigos de rastreo inteligentes.
+            </p>
+        </div>
+
+        <!-- Sección de Capacidades / Servicios -->
+        <div id="servicios">
+            <h2 class="section-title">¿Qué podemos realizar por ti?</h2>
+            <p class="section-subtitle">Conoce las soluciones logísticas que ponemos a tu disposición.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Distribución Nacional</h3>
+                    <p>Envíos puerta a puerta rápidos y seguros a lo largo de todo el territorio nacional, con flota propia y monitoreo satelital.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏭</div>
+                    <h3>Almacenamiento y Fulfillment</h3>
+                    <p>Gestión integral de depósitos: recepción, control de inventario en tiempo real, armado de pedidos (picking) y empaque.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Logística Última Milla</h3>
+                    <p>Entregas urbanas de alta eficiencia optimizadas para e-commerce, reduciendo tiempos de entrega al cliente final.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner Explicativo e Interactivo para Comprar Productos -->
+        <div class="store-banner">
+            <div>
+                <h2>¿Buscas adquirir tecnología o electrodomésticos?</h2>
+                <p>Explora nuestro catálogo en línea. Selecciona tus artículos, elige tu medio de pago con descuentos exclusivos y coordina la entrega automática directo por WhatsApp.</p>
+            </div>
+            <div>
+                <a href="https://logisticanova.github.io/Log-stica-NOVA/productos.html" class="store-btn" target="_blank">Ir al Catálogo</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <strong>Logística Nova</strong>. Todos los derechos reservados.<br>Soporte y consultas: 11-5501-2447</p>
+    </footer>
+
+    <script>
+        function buscarEnvio() {
+            const input = document.getElementById('trackingInput').value.trim();
+            const resultCard = document.getElementById('resultCard');
+            const resultCode = document.getElementById('resultCode');
+            const resultStatus = document.getElementById('resultStatus');
+
+            if (input === "") {
+                alert("Por favor, ingresa un número de guía o código de seguimiento válido.");
+                resultCard.classList.remove('active');
+                return;
+            }
+
+            // Simulación de búsqueda de envío con datos dinámicos según el código ingresado
+            resultCode.innerText = input.toUpperCase();
+            
+            // Simular estados aleatorios o basados en texto
+            if(input.toLowerCase().includes('err')) {
+                resultStatus.innerText = "Dirección Incorrecta / Demorado";
+                resultStatus.style.backgroundColor = "#ef4444";
+            } else if(input.toLowerCase().includes('ent')) {
+                resultStatus.innerText = "Entregado con Éxito";
+                resultStatus.style.backgroundColor = "#2563eb";
+            } else {
+                resultStatus.innerText = "En Tránsito hacia Destino";
+                resultStatus.style.backgroundColor = "#10b981";
+            }
+
+            resultCard.classList.add('active');
+            
+            // Desplazarse suavemente hacia el resultado
+            resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
 </body>
 </html>
-
