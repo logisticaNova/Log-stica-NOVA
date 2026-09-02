@@ -728,7 +728,7 @@
                 drawerTitle.innerText = "Datos del Comprador y Envío";
                 
                 bodyContent.innerHTML = `
-                    <form id="checkoutForm" onsubmit="enviarPedidoWhatsApp(event)">
+                    <div id="checkoutForm">
                         <div class="form-group">
                             <label for="nombreCliente">Nombre y Apellido *</label>
                             <input type="text" id="nombreCliente" required placeholder="Ej. Juan Pérez" value="Juan Pérez">
@@ -768,9 +768,9 @@
 
                         <div class="form-buttons">
                             <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
-                            <button type="submit" class="btn-submit-order">💬 Enviar Pedido WhatsApp</button>
+                            <button type="button" class="btn-submit-order" onclick="enviarPedidoWhatsApp()">💬 Enviar Pedido WhatsApp</button>
                         </div>
-                    </form>
+                    </div>
                 `;
                 updateCartUI();
             }
@@ -868,15 +868,18 @@
             renderizarContenidoDrawer();
         }
 
-        function enviarPedidoWhatsApp(event) {
-            event.preventDefault();
+        function enviarPedidoWhatsApp() {
+            const nombre = document.getElementById('nombreCliente').value.trim();
+            const dni = document.getElementById('dniCliente').value.trim();
+            const telefono = document.getElementById('telefonoCliente').value.trim();
+            const email = document.getElementById('emailCliente').value.trim();
+            const direccion = document.getElementById('direccionCliente').value.trim();
+            const localidad = document.getElementById('localidadCliente').value.trim();
 
-            const nombre = document.getElementById('nombreCliente').value;
-            const dni = document.getElementById('dniCliente').value;
-            const telefono = document.getElementById('telefonoCliente').value;
-            const email = document.getElementById('emailCliente').value;
-            const direccion = document.getElementById('direccionCliente').value;
-            const localidad = document.getElementById('localidadCliente').value;
+            if (!nombre || !dni || !telefono || !email || !direccion || !localidad) {
+                alert("Por favor, completa todos los datos obligatorios de entrega.");
+                return;
+            }
             
             const provinciaKey = document.getElementById('provinciaSelect').value;
             const datosProvincia = tarifasProvincias[provinciaKey];
@@ -941,7 +944,6 @@
             carrito = [];
             actualizarContadorCarrito();
 
-            // Redirección directa garantizada
             window.location.href = urlWhatsApp;
         }
 
