@@ -131,18 +131,36 @@
             padding: 3px 8px;
             border-radius: 20px;
             text-transform: uppercase;
+            z-index: 2;
         }
 
-        .card-img-placeholder {
+        .card-img-container {
             width: 100%;
             height: 160px;
             background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card-img-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .card-img-placeholder {
             color: var(--text-muted);
             font-size: 0.9rem;
             font-weight: 500;
+            position: absolute;
         }
 
         .card-body {
@@ -514,7 +532,6 @@
     </div>
 
     <script>
-        // Tarifas actualizadas según tus indicaciones exactas
         const tarifasProvincias = {
             "CABA": { costo: 8500, demora: "12 a 24 hs", nombre: "Capital Federal (CABA)" },
             "Buenos Aires": { costo: 12500, demora: "24 a 48 hs", nombre: "Provincia de Buenos Aires" },
@@ -522,82 +539,17 @@
         };
 
         const productos = [
-            { id: 1, sku: "TV-TCL-55C655", marca: "TCL", modelo: "55C655", nombre: "Smart TV TCL 55 C655 QLED 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Televisor QLED 4K con Google TV y Dolby Vision Atmos.", especificaciones: { pulgadas: 55, resolucion: "4K UHD" }, precio: 899999, precioOferta: 764999, cuotas: 3, stock: true },
-            { id: 2, sku: "TV-TCL-65C755", marca: "TCL", modelo: "65C755", nombre: "Smart TV TCL 65 C755 QD-Mini LED 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento.", especificaciones: { pulgadas: 65, resolucion: "4K UHD" }, precio: 1499999, precioOferta: 1274999, cuotas: 3, stock: true },
-            { id: 3, sku: "TV-SAM-55CU7000", marca: "Samsung", modelo: "55CU7000", nombre: "Smart TV Samsung 55 Crystal UHD 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Smart TV Crystal UHD 4K con sistema Tizen.", especificaciones: { pulgadas: 55, resolucion: "4K UHD" }, precio: 920000, precioOferta: 782000, cuotas: 3, stock: true },
-            { id: 4, sku: "TV-LG-504K", marca: "LG", modelo: "50 4K UHD", nombre: "Smart TV LG 50 4K UHD", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Calidad de imagen superior y sonido envolvente inteligente.", especificaciones: { pulgadas: 50, resolucion: "4K UHD" }, precio: 710000, precioOferta: 603500, cuotas: 3, stock: true },
-            { id: 5, sku: "LAV-WHIRL-WNQ65A", marca: "Whirlpool", modelo: "WNQ65A", nombre: "Lavarropas Automático Whirlpool 6.5 Kg", categoria: "Lavarropas", subcategoria: "Carga Frontal", descripcion: "Lavarropas automático con múltiples programas de lavado.", especificaciones: { capacidad: "6.5 kg", tipoCarga: "Frontal" }, precio: 850000, precioOferta: 722500, cuotas: 3, stock: true },
-            { id: 6, sku: "CEL-MOT-EDGE50", marca: "Motorola", modelo: "Edge 50", nombre: "Celular Motorola Edge 50 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Smartphone premium con pantalla OLED y conectividad 5G.", especificaciones: { pantalla: "6.7 pulgadas", memoriaRAM: "12GB" }, precio: 850000, precioOferta: 722500, cuotas: 3, stock: true },
-            { id: 7, sku: "AC-SAMSUNG-3000", marca: "Samsung", modelo: "3000", nombre: "Aire Acondicionado Samsung Inverter 3000W", categoria: "Aires acondicionados", subcategoria: "Split Inverter", descripcion: "Aire acondicionado Split Inverter frío/calor.", especificaciones: { frigorias: "2600", potenciaW: "3000" }, precio: 950000, precioOferta: 807500, cuotas: 3, stock: true },
-            { id: 8, sku: "NOTE-LEN-IDEA3", marca: "Lenovo", modelo: "IdeaPad 3", nombre: "Notebook Lenovo IdeaPad 3", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Notebook versátil para estudio, trabajo y uso cotidiano.", especificaciones: { pantalla: "15.6 pulgadas", memoriaRAM: "8GB" }, precio: 890000, precioOferta: 756500, cuotas: 3, stock: true },
-            { id: 9, sku: "AUD-JBL-FLIP6", marca: "JBL", modelo: "Flip 6", nombre: "Parlante Bluetooth JBL Flip 6", categoria: "Audio", subcategoria: "Parlantes", descripcion: "Parlante Bluetooth portátil resistente al agua.", especificaciones: { potenciaW: "30", conectividad: "Bluetooth" }, precio: 210000, precioOferta: 178500, cuotas: 3, stock: true },
-            { id: 10, sku: "REF-GAFA-H300", marca: "Gafa", modelo: "H300", nombre: "Heladera con Freezer Gafa H300", categoria: "Heladeras", subcategoria: "Con Freezer", descripcion: "Heladera cíclica con gran capacidad y eficiencia energética.", especificaciones: { capacidad: "282 L", sistema: "Cíclico" }, precio: 980000, precioOferta: 833000, cuotas: 3, stock: true },
-            { id: 11, sku: "COC-ATMA-50CM", marca: "Atma", modelo: "A50CM", nombre: "Cocina a Gas Atma Multigas 50cm", categoria: "Cocinas", subcategoria: "Gas", descripcion: "Cocina con horno autolimpiante y encendido electrónico.", especificaciones: { hornallas: "4", tipo: "Gas" }, precio: 540000, precioOferta: 459000, cuotas: 3, stock: true },
-            { id: 12, sku: "MICRO-WHIRL-20L", marca: "Whirlpool", modelo: "WM20", nombre: "Microondas Whirlpool 20 Litros Digital", categoria: "Cocción", subcategoria: "Microondas", descripcion: "Microondas digital con grill y múltiples niveles de potencia.", especificaciones: { capacidad: "20 L", tipo: "Digital" }, precio: 290000, precioOferta: 246500, cuotas: 3, stock: true },
-            { id: 13, sku: "ASP-ROBO-XIAOMI", marca: "Xiaomi", modelo: "Robot Vac E10", nombre: "Aspiradora Robot Xiaomi Vacuum E10", categoria: "Electrodomésticos", subcategoria: "Limpieza", descripcion: "Aspiradora y mopa robot inteligente con control por app.", especificaciones: { potencia: "35W", navegacion: "Inteligente" }, precio: 410000, precioOferta: 348500, cuotas: 3, stock: true },
-            { id: 14, sku: "MON-LG-27", marca: "LG", modelo: "27MK400", nombre: "Monitor Gamer LG 27 Pulgadas Full HD", categoria: "Informática", subcategoria: "Monitores", descripcion: "Monitor optimizado para gaming y trabajo con tecnología FreeSync.", especificaciones: { pulgadas: 27, resolucion: "Full HD" }, precio: 380000, precioOferta: 323000, cuotas: 3, stock: true },
-            { id: 15, sku: "CAF-NESP-INISSIA", marca: "Nespresso", modelo: "Inissia", nombre: "Cafetera Nespresso Inissia Capsule System", categoria: "Pequeños Electrodomésticos", subcategoria: "Cafeteras", descripcion: "Cafetera de cápsulas compacta y de rápida preparación.", especificaciones: { presion: "19 bar", sistema: "Cápsulas" }, precio: 220000, precioOferta: 187000, cuotas: 3, stock: true },
-            { id: 16, sku: "PARR-ELEC-MOUL", marca: "Moulinex", modelo: "Easy Grill", nombre: "Parrilla Eléctrica Moulinex Easy Grill", categoria: "Cocción", subcategoria: "Parrillas", descripcion: "Parrilla eléctrica sin humo ideal para interiores y balcones.", especificaciones: { potencia: "2000W", uso: "Interior" }, precio: 155000, precioOferta: 131750, cuotas: 3, stock: true },
-            { id: 17, sku: "HORNO-ELEC-PAT", marca: "Peabody", modelo: "PE-HE45N", nombre: "Horno Eléctrico Peabody 45 Litros", categoria: "Cocción", subcategoria: "Hornos", descripcion: "Horno eléctrico convector con spiedo y timer programable.", especificaciones: { capacidad: "45 L", funcion: "Convector" }, precio: 270000, precioOferta: 229500, cuotas: 3, stock: true },
-            { id: 18, sku: "LIC-PHILIPS-PRO", marca: "Philips", modelo: "HR2139", nombre: "Licuadora Philips Daily Collection", categoria: "Pequeños Electrodomésticos", subcategoria: "Licuadoras", descripcion: "Jarra de vidrio resistente y cuchillas ProBlend de 5 estrellas.", especificaciones: { potencia: "750W", jarra: "Vidrio" }, precio: 135000, precioOferta: 114750, cuotas: 3, stock: true },
-            { id: 19, sku: "SEC-CAB-GA.MA", marca: "GA.MA", modelo: "Legend", nombre: "Secador de Cabello GA.MA Professional", categoria: "Cuidado Personal", subcategoria: "Secadores", descripcion: "Secador de alto rendimiento con tecnología cerámica ion.", especificaciones: { potencia: "2200W", tecnologia: "Ion" }, precio: 95000, precioOferta: 80750, cuotas: 3, stock: true },
-            { id: 20, sku: "AFI-PHILIPS-AIR", marca: "Philips", modelo: "Airfryer Essential", nombre: "Freidora sin Aceite Philips Airfryer", categoria: "Cocción", subcategoria: "Freidoras", descripcion: "Cocina con hasta 90% menos grasa gracias a la tecnología Rapid Air.", especificaciones: { capacidad: "4.1 L", tecnologia: "Rapid Air" }, precio: 340000, precioOferta: 289000, cuotas: 3, stock: true },
-            { id: 21, sku: "CONV-PEAB-1500", marca: "Peabody", modelo: "PE-CV15", nombre: "Convector eléctrico Peabody 1500W", categoria: "Climatización", subcategoria: "Calefacción", descripcion: "Calefactor convector de diseño moderno con termostato regulable.", especificaciones: { potencia: "1500W", tipo: "Convector" }, precio: 125000, precioOferta: 106250, cuotas: 3, stock: true },
-            { id: 22, sku: "BAR-SONY-HT", marca: "Sony", modelo: "HT-S200R", nombre: "Barra de Sonido Sony 2.1 Canales Bluetooth", categoria: "Audio", subcategoria: "Soundbars", descripcion: "Sonido cinematográfico para tu televisor con subwoofer integrado.", especificaciones: { canales: "2.1", potencia: "300W" }, precio: 450000, precioOferta: 382500, cuotas: 3, stock: true },
-            { id: 23, sku: "CON-PS5-SLIM", marca: "Sony", modelo: "PlayStation 5 Slim", nombre: "Consola Sony PlayStation 5 Slim 1TB", categoria: "Gaming", subcategoria: "Consolas", descripcion: "La experiencia de juego de nueva generación más compacta.", especificaciones: { almacenamiento: "1TB SSD", resolucion: "4K" }, precio: 1350000, precioOferta: 1147500, cuotas: 3, stock: true },
-            { id: 24, sku: "TAB-SAM-A9", marca: "Samsung", modelo: "Galaxy Tab A9", nombre: "Tablet Samsung Galaxy Tab A9+ 11\"", categoria: "Informática", subcategoria: "Tablets", descripcion: "Pantalla fluida de 90Hz y rendimiento ideal multitarea.", especificaciones: { pantalla: "11 pulgadas", memoriaRAM: "4GB" }, precio: 390000, precioOferta: 331500, cuotas: 3, stock: true },
-            { id: 25, sku: "LAV-DWH-AUT", marca: "Drean", modelo: "Next 8.14", nombre: "Lavarropas Automático Drean Next 8kg", categoria: "Lavarropas", subcategoria: "Carga Frontal", descripcion: "Eficiencia energética A+++ y tecnología inteligente.", especificaciones: { capacidad: "8 kg", centrifugado: "1400 RPM" }, precio: 990000, precioOferta: 841500, cuotas: 3, stock: true },
-            { id: 26, sku: "LAV-PATRICK-SEC", marca: "Patrick", modelo: "LPA60", nombre: "Secarropas Centrífugo Patrick 5.5 Kg", categoria: "Lavarropas", subcategoria: "Secarropas", descripcion: "Secarropas centrifugo de alta velocidad y tambor de acero.", especificaciones: { capacidad: "5.5 kg", velocidad: "2800 RPM" }, precio: 210000, precioOferta: 178500, cuotas: 3, stock: true },
-            { id: 27, sku: "REF-NOST-COL", marca: "Philco", modelo: "PHFR100", nombre: "Minibar Philco Retro 90 Litros", categoria: "Heladeras", subcategoria: "Minibar", descripcion: "Heladera estilo vintage ideal para oficinas o dormitorios.", especificaciones: { capacidad: "90 L", estilo: "Retro" }, precio: 430000, precioOferta: 365500, cuotas: 3, stock: true },
-            { id: 28, sku: "COC-ORBIS-GAS", marca: "Orbis", modelo: "988M2", nombre: "Cocina Orbis Multigas 4 Hornallas", categoria: "Cocinas", subcategoria: "Gas", descripcion: "Termostato en el horno y válvulas de seguridad cortagas.", especificaciones: { hornallas: "4", seguridad: "Válvula Total" }, precio: 780000, precioOferta: 663000, cuotas: 3, stock: true },
-            { id: 29, sku: "TER-GARANT-50L", marca: "Longvie", modelo: "T50P", nombre: "Termotanque a Gas Longvie 50 Litros", categoria: "Climatización", subcategoria: "Termotanques", descripcion: "Alta recuperación multigas para instalación de pie o colgar.", especificaciones: { capacidad: "50 L", tipo: "Gas" }, precio: 620000, precioOferta: 527000, cuotas: 3, stock: true },
-            { id: 30, sku: "CAL-ELEC-ORBIS", marca: "Orbis", modelo: "315FKD", nombre: "Calefón a Gas Orbis Botón Inteligente", categoria: "Climatización", subcategoria: "Calefones", descripcion: "Calefón sin piloto de encendido automático por tiraje natural.", especificaciones: { tiraje: "Natural", litrosMinuto: "14 L" }, precio: 590000, precioOferta: 501500, cuotas: 3, stock: true },
-            { id: 31, sku: "VEN-PEAB-PIE", marca: "Peabody", modelo: "PE-VP20", nombre: "Ventilador de Pie Peabody 20 Pulgadas", categoria: "Climatización", subcategoria: "Ventilación", descripcion: "Aspas metálicas y motor potente de 3 velocidades.", especificaciones: { pulgadas: 20, potencia: "100W" }, precio: 110000, precioOferta: 93500, cuotas: 3, stock: true },
-            { id: 32, sku: "PLA-PHILIPS-VAP", marca: "Philips", modelo: "Azur GC4567", nombre: "Plancha a Vapor Philips Azur", categoria: "Pequeños Electrodomésticos", subcategoria: "Planchas", descripcion: "Sistema antical y suela SteamGlide Plus antiadherente.", especificaciones: { potencia: "2600W", vapor: "50g/min" }, precio: 98000, precioOferta: 83300, cuotas: 3, stock: true },
-            { id: 33, sku: "ASP-MANO-BLACK", marca: "Black+Decker", modelo: "Dustbuster", nombre: "Aspiradora de Mano Inalámbrica Black+Decker", categoria: "Electrodomésticos", subcategoria: "Limpieza", descripcion: "Ideal para limpieza rápida de autos y superficies difíciles.", especificaciones: { tecnologia: "Ciclónica", bateria: "Litio" }, precio: 92000, precioOferta: 78200, cuotas: 3, stock: true },
-            { id: 34, sku: "MIX-OSTER-PRO", marca: "Oster", modelo: "Triblade 3 en 1", nombre: "Mixer Oster Multifunción 3 en 1", categoria: "Pequeños Electrodomésticos", subcategoria: "Mixers", descripcion: "Incluye vaso medidor, picador y batidor de alambre.", especificaciones: { potencia: "800W", cuchillas: "Acero Inoxidable" }, precio: 115000, precioOferta: 97750, cuotas: 3, stock: true },
-            { id: 35, sku: "EXPR-OSTER-JUIC", marca: "Oster", modelo: "FPSTJE9000", nombre: "Exprimidor y Extractor de Jugos Oster", categoria: "Pequeños Electrodomésticos", subcategoria: "Extractores", descripcion: "Boca de entrada extra grande para frutas enteras.", especificaciones: { potencia: "600W", jarra: "1.2L" }, precio: 165000, precioOferta: 140250, cuotas: 3, stock: true },
-            { id: 36, sku: "MAQ-CORTE-REM", marca: "Remington", modelo: "HC5035", nombre: "Cortadora de Cabello Remington Con Cable", categoria: "Cuidado Personal", subcategoria: "Cortadoras", descripcion: "Cuchillas de acero quirúrgico autoafilables.", especificaciones: { peines: "9 guías", cuchillas: "Acero Quirúrgico" }, precio: 68000, precioOferta: 57800, cuotas: 3, stock: true },
-            { id: 37, sku: "AFI-PHILIPS-TRIM", marca: "Philips", modelo: "Multigroom 7000", nombre: "Afeitadora y Recortadora Philips 14 en 1", categoria: "Cuidado Personal", subcategoria: "Afeitadoras", descripcion: "Versatilidad total para rostro, cabello y cuerpo.", especificaciones: { autonomia: "120 min", impermeable: "Sí" }, precio: 145000, precioOferta: 123250, cuotas: 3, stock: true },
-            { id: 38, sku: "SEC-PEL-REM", marca: "Remington", modelo: "Silk D9600", nombre: "Secador Remington Silk con Tecnología Cerámica", categoria: "Cuidado Personal", subcategoria: "Secadores", descripcion: "Generador de iones y potencia profesional.", especificaciones: { potencia: "2400W", velocidad: "2 ajustes" }, precio: 128000, precioOferta: 108800, cuotas: 3, stock: true },
-            { id: 39, sku: "LISA-GA.MA-ION", marca: "GA.MA", modelo: "Elegance Led", nombre: "Alisador de Cabello GA.MA Elegance", categoria: "Cuidado Personal", subcategoria: "Alisadores", descripcion: "Patines ultra anchos con patín flotante y temperatura máxima 230°C.", especificaciones: { temperatura: "230°C", tecnologia: "Thermal Plus" }, precio: 79000, precioOferta: 67150, cuotas: 3, stock: true },
-            { id: 40, sku: "PAR-PORT-JBL-EXT", marca: "JBL", modelo: "Extreme 4", nombre: "Parlante Portátil JBL Xtreme 4", categoria: "Audio", subcategoria: "Parlantes", descripcion: "Sonido Pro Sound masivo con correa para hombro y resistencia IP67.", especificaciones: { autonomia: "24 horas", certificacion: "IP67" }, precio: 510000, precioOferta: 433500, cuotas: 3, stock: true },
-            { id: 41, sku: "AUR-SONY-WH1000", marca: "Sony", modelo: "WH-1000XM5", nombre: "Auriculares Sony Inalámbricos con Cancelación de Ruido", categoria: "Audio", subcategoria: "Auriculares", descripcion: "Cancelación de ruido líder en la industria y alta resolución de audio.", especificaciones: { tipo: "Over-ear", conectividad: "Bluetooth / ANC" }, precio: 890000, precioOferta: 756500, cuotas: 3, stock: true },
-            { id: 42, sku: "AUR-JBL-TUNE", marca: "JBL", modelo: "Tune 520BT", nombre: "Auriculares On-Ear Inalámbricos JBL Tune 520BT", categoria: "Audio", subcategoria: "Auriculares", descripcion: "Sonido JBL Pure Bass y hasta 57 horas de batería.", especificaciones: { autonomia: "57 hs", cargaRapida: "5 min = 3 hs" }, precio: 115000, precioOferta: 97750, cuotas: 3, stock: true },
-            { id: 43, sku: "PROY-EPSON-FULL", marca: "Epson", modelo: "EpiqVision Nano", nombre: "Proyector Smart Epson Full HD Portátil", categoria: "Televisores y Video", subcategoria: "Proyectores", descripcion: "Lumenes elevados y sistema Android TV integrado.", especificaciones: { resolucion: "Full HD", tecnologia: "3LCD" }, precio: 1100000, precioOferta: 935000, cuotas: 3, stock: true },
-            { id: 44, sku: "CAM-GO-HERO12", marca: "GoPro", modelo: "Hero 12 Black", nombre: "Cámara de Acción GoPro Hero 12", categoria: "Fotografía", subcategoria: "Cámaras", descripcion: "Video HDR 5.3K y estabilización HyperSmooth 6.0.", especificaciones: { resolucionVideo: "5.3K HDR", sumergible: "10m" }, precio: 950000, precioOferta: 807500, cuotas: 3, stock: true },
-            { id: 45, sku: "SMA-WATCH-SAM", marca: "Samsung", modelo: "Galaxy Watch 6", nombre: "Smartwatch Samsung Galaxy Watch6 44mm", categoria: "Wearables", subcategoria: "Relojes", descripcion: "Monitoreo avanzado de sueño, salud y diseño elegante.", especificaciones: { pantalla: "Sapphire Crystal", resistencia: "IP68 / 5ATM" }, precio: 450000, precioOferta: 382500, cuotas: 3, stock: true },
-            { id: 46, sku: "SMA-BAND-XIAOMI", marca: "Xiaomi", modelo: "Smart Band 8", nombre: "Pulsera Inteligente Xiaomi Smart Band 8", categoria: "Wearables", subcategoria: "Smartbands", descripcion: "Diseño versátil de correa intercambiable y seguimiento deportivo.", especificaciones: { pantalla: "AMOLED 1.62\"", autonomia: "16 días" }, precio: 85000, precioOferta: 72250, cuotas: 3, stock: true },
-            { id: 47, sku: "NOTE-ASUS-ROG", marca: "Asus", modelo: "ROG Strix G16", nombre: "Notebook Gamer Asus ROG Strix G16 i7", categoria: "Informática", subcategoria: "Notebooks Gamer", descripcion: "Potencia gráfica extrema con RTX y procesador Intel Core i7.", especificaciones: { memoriaRAM: "16GB", placaGrafica: "RTX 4060" }, precio: 2400000, precioOferta: 2040000, cuotas: 3, stock: true },
-            { id: 48, sku: "TEC-LOGI-MECH", marca: "Logitech", modelo: "G213 Prodigy", nombre: "Teclado Mecánico Gaming Logitech G", categoria: "Informática", subcategoria: "Periféricos", descripcion: "Teclado con iluminación RGB Lightsync y resistencia a salpicaduras.", especificaciones: { tipo: "Membrana táctil", iluminacion: "RGB" }, precio: 95000, precioOferta: 80750, cuotas: 3, stock: true },
-            { id: 49, sku: "MOU-LOGI-HERO", marca: "Logitech", modelo: "G305 Lightspeed", nombre: "Mouse Inalámbrico Gaming Logitech G305", categoria: "Informática", subcategoria: "Periféricos", descripcion: "Sensor Hero óptico de alta precisión y ultra bajo consumo.", especificaciones: { dpi: "12000 DPI", conectividad: "Wireless" }, precio: 75000, precioOferta: 63750, cuotas: 3, stock: true },
-            { id: 50, sku: "IMP-EPSON-ECO", marca: "Epson", modelo: "EcoTank L3250", nombre: "Impresora Multifunción Epson EcoTank L3250", categoria: "Informática", subcategoria: "Impresoras", descripcion: "Sistema de tanque de tinta continuo Wi-Fi de costo por impresión ultra bajo.", especificaciones: { tipo: "Color multifunción", conectividad: "Wi-Fi / USB" }, precio: 430000, precioOferta: 365500, cuotas: 3, stock: true },
-            { id: 51, sku: "ROU-TP-AX3000", marca: "TP-Link", modelo: "Archer AX3000", nombre: "Router Wi-Fi 6 TP-Link Archer Gigabit", categoria: "Conectividad", subcategoria: "Routers", descripcion: "Tecnología Wi-Fi 6 de alta velocidad para múltiples dispositivos conectados.", especificaciones: { velocidad: "3000 Mbps", bandas: "Dual Band" }, precio: 180000, precioOferta: 153000, cuotas: 3, stock: true },
-            { id: 52, sku: "DISC-EXT-WD-1TB", marca: "Western Digital", modelo: "Elements 1TB", nombre: "Disco Rígido Externo Portátil WD Elements 1TB", categoria: "Informática", subcategoria: "Almacenamiento", descripcion: "Almacenamiento portátil de alta velocidad con USB 3.0.", especificaciones: { capacidad: "1 TB", interfaz: "USB 3.0" }, precio: 120000, precioOferta: 102000, cuotas: 3, stock: true },
-            { id: 53, sku: "MEM-KING-500GB", marca: "Kingston", modelo: "NV2 500GB NVMe", nombre: "Disco Sólido SSD NVMe M.2 Kingston 500GB", categoria: "Informática", subcategoria: "Componentes", descripcion: "Velocidades de lectura de hasta 3500 MB/s para rendimiento superior.", especificaciones: { formato: "M.2 2280", lectura: "3500 MB/s" }, precio: 85000, precioOferta: 72250, cuotas: 3, stock: true },
-            { id: 54, sku: "FON-PANAS-DECT", marca: "Panasonic", modelo: "KX-TGC350", nombre: "Teléfono Inalámbrico Panasonic DECT", categoria: "Telefonía", subcategoria: "Inalámbricos", descripcion: "Pantalla iluminada y agenda para 50 contactos con modo eco.", especificaciones: { tipo: "Inalámbrico", agenda: "50 nombres" }, precio: 65000, precioOferta: 55250, cuotas: 3, stock: true },
-            { id: 55, sku: "LAV-PHILCO-AUT", marca: "Philco", modelo: "PHWM71", nombre: "Lavarropas Semiautomático Philco 7 Kg", categoria: "Lavarropas", subcategoria: "Semiautomático", descripcion: "Sistema de lavado por turbina con práctico dispenser de jabón.", especificaciones: { capacidad: "7 kg", sistema: "Semiautomático" }, precio: 320000, precioOferta: 272000, cuotas: 3, stock: true },
-            { id: 56, sku: "LUC-LED-INT", marca: "Philips", modelo: "Hue Starter Kit", nombre: "Kit de Iluminación Inteligente Philips Hue", categoria: "Smart Home", subcategoria: "Iluminación", descripcion: "Focos inteligentes conectables por puente con espectro de luz RGB.", especificaciones: { conectividad: "Zigbee / Bluetooth", luz: "Multicolor" }, precio: 210000, precioOferta: 178500, cuotas: 3, stock: true },
-            { id: 57, sku: "CEN-HUB-GOOGLE", marca: "Google", modelo: "Nest Hub Gen 2", nombre: "Pantalla Inteligente Google Nest Hub 2da Gen", categoria: "Smart Home", subcategoria: "Asistentes", descripcion: "Controla tu casa inteligente y reproduce contenidos multimedia con Google Assistant.", especificaciones: { pantalla: "7 pulgadas táctil", sonido: "Envolvente" }, precio: 280000, precioOferta: 238000, cuotas: 3, stock: true },
-            { id: 58, sku: "CAM-SEG-TP-C200", marca: "TP-Link", modelo: "Tapo C200", nombre: "Cámara de Seguridad Wi-Fi Tapo Pan/Tilt", categoria: "Smart Home", subcategoria: "Seguridad", descripcion: "Visión nocturna infrarroja y audio bidireccional con rotación 360.", especificaciones: { resolucion: "Full HD 1080p", visionNocturna: "Hasta 9m" }, precio: 65000, precioOferta: 55250, cuotas: 3, stock: true },
-            { id: 59, sku: "PUR-AGUA-PSA", marca: "PSA", modelo: "Senior Purificador", nombre: "Purificador de Agua sobre Mesada PSA", categoria: "Electrodomésticos", subcategoria: "Agua", descripcion: "Agua pura y segura libre de cloro y partículas en tu hogar.", especificaciones: { instalacion: "Sobre mesada", rendimiento: "Alto caudal" }, precio: 240000, precioOferta: 204000, cuotas: 3, stock: true },
-            { id: 60, sku: "SOP-TV-FIXED", marca: "Skan", modelo: "Universal 32 a 75", nombre: "Soporte Pared Fijo para TV LED / Smart", categoria: "Accesorios TV", subcategoria: "Soportes", descripcion: "Estructura de acero reforzado con kit completo de instalación.", especificaciones: { pulgadas: "32 a 75 pulgadas", tipo: "Fijo" }, precio: 25000, precioOferta: 21250, cuotas: 3, stock: true },
-            { id: 61, sku: "CABLE-HDMI-2M", marca: "Ugreen", modelo: "HDMI 2.1 4K/8K", nombre: "Cable HDMI 2.1 Ultra High Speed 2 Metros", categoria: "Accesorios", subcategoria: "Cables", descripcion: "Soporta resoluciones 8K a 60Hz y 4K a 120Hz para gaming.", especificaciones: { largo: "2 metros", version: "HDMI 2.1" }, precio: 18000, precioOferta: 15300, cuotas: 3, stock: true },
-            { id: 62, sku: "CARG-PAG-AN_KER", marca: "Anker", modelo: "PowerCore 20000", nombre: "Batería Portátil Powerbank Anker 20000 mAh", categoria: "Accesorios", subcategoria: "Cargadores", descripcion: "Carga rápida PowerIQ para múltiples dispositivos simultáneos.", especificaciones: { capacidad: "20000 mAh", puertos: "USB Dual" }, precio: 89000, precioOferta: 75650, cuotas: 3, stock: true },
-            { id: 63, sku: "CARR-MATE-TERM", marca: "Stanley", modelo: "Classic 1.4L", nombre: "Termo Stanley Classic con Tapón Matero 1.4 Lts", categoria: "Camping", subcategoria: "Termos", descripcion: "Aislamiento al vacío de doble pared que mantiene caliente por 40 horas.", especificaciones: { capacidad: "1.4 Litros", material: "Acero Inoxidable" }, precio: 160000, precioOferta: 136000, cuotas: 3, stock: true },
-            { id: 64, sku: "MAT-AUTO-STAN", marca: "Stanley", modelo: "Mate System 0.3L", nombre: "Mate Térmico Stanley System con Bombilla", categoria: "Camping", subcategoria: "Mates", descripcion: "Conserva la temperatura de tu mate por más tiempo sin quemar la mano.", especificaciones: { capacidad: "236 ml", aislamiento: "Vacío doble pared" }, precio: 65000, precioOferta: 55250, cuotas: 3, stock: true },
-            { id: 65, sku: "LINTER-LED-FENIX", marca: "Fenix", modelo: "PD35 V3.0", nombre: "Linterna LED Táctica Recargable Alta Potencia", categoria: "Camping", subcategoria: "Linternas", descripcion: "Haz de luz ultra potente de 1700 lúmenes con cuerpo de aluminio aeroespacial.", especificaciones: { potencia: "1700 lúmenes", alcance: "357 metros" }, precio: 135000, precioOferta: 114750, cuotas: 3, stock: true },
-            { id: 66, sku: "GAB-GAMER-COR", marca: "Corsair", modelo: "Carbide Spec-Delta", nombre: "Gabinete Gamer Corsair RGB Vidrio Templado", categoria: "Informática", subcategoria: "Gabinetes", descripcion: "Diseño angular con flujo de aire optimizado y ventiladores RGB frontales.", especificaciones: { formato: "Mid-Tower", lateral: "Vidrio Templado" }, precio: 150000, precioOferta: 127500, cuotas: 3, stock: true },
-            { id: 67, sku: "FUEN-GIGAB-650", marca: "Gigabyte", modelo: "GP-P650B", nombre: "Fuente de Alimentación 650W 80 Plus Bronze", categoria: "Informática", subcategoria: "Fuentes", descripcion: "Certificación 80 Plus Bronze con ventilador silencioso de 120mm.", especificaciones: { potencia: "650W", certificacion: "80+ Bronze" }, precio: 110000, precioOferta: 93500, cuotas: 3, stock: true },
-            { id: 68, sku: "MOT-GALAXY-A55", marca: "Samsung", modelo: "Galaxy A55 5G", nombre: "Celular Samsung Galaxy A55 5G 256GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Cámara con Nightography avanzada y diseño metálico resistente.", especificaciones: { pantalla: "6.6 pulgadas AMOLED", memoriaRAM: "8GB" }, precio: 750000, precioOferta: 637500, cuotas: 3, stock: true },
-            { id: 69, sku: "XIAOMI-REDMI-NOTE13", marca: "Xiaomi", modelo: "Redmi Note 13", nombre: "Celular Xiaomi Redmi Note 13 Pro", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Cámara principal ultra nítida de 200 MP con estabilización óptica OIS.", especificaciones: { pantalla: "120Hz AMOLED", camara: "200 MP" }, precio: 620000, precioOferta: 527000, cuotas: 3, stock: true },
-            { id: 70, sku: "NOTE-HP-245", marca: "HP", modelo: "245 G9", nombre: "Notebook HP 14 Pulgadas AMD Ryzen 5", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Procesador Ryzen rápido para multitarea corporativa y educativa.", especificaciones: { procesador: "AMD Ryzen 5", almacenamiento: "256GB SSD" }, precio: 810000, precioOferta: 688500, cuotas: 3, stock: true },
-            { id: 71, sku: "PAR-AUDIOPHILE-EDF", marca: "Edifier", modelo: "R1280T", nombre: "Parlantes Monitores de Estudio Edifier R1280T", categoria: "Audio", subcategoria: "Monitores", descripcion: "Sonido de alta fidelidad activo de estantería con control de graves y agudos.", especificaciones: { potencia: "42W RMS", madera: "MDF de alta calidad" }, precio: 210000, precioOferta: 178500, cuotas: 3, stock: true },
-            { id: 72, sku: "COC-ATMA-IND", marca: "Atma", modelo: "Anafe Inducción 2 Hornallas", categoria: "Cocinas", subcategoria: "Anafes", descripcion: "Anafe eléctrico portátil por inducción magnética de alta eficiencia.", especificaciones: { hornallas: "2", tecnologia: "Inducción" }, precio: 220000, precioOferta: 187000, cuotas: 3, stock: true },
-            { id: 73, sku: "LAV-DREAN-NEXT6", marca: "Drean", modelo: "Next 6.06", nombre: "Lavarropas Automático Drean Next 6kg", categoria: "Lavarropas", subcategoria: "Carga Frontal", descripcion: "Sistema de carga frontal compacto con selector de programas digital.", especificaciones: { capacidad: "6 kg", centrifugado: "600 RPM" }, precio: 750000, precioOferta: 637500, cuotas: 3, stock: true },
-            { id: 74, sku: "HEL-GAFA-H380", marca: "Gafa", modelo: "H380", nombre: "Heladera Gafa Con Freezer Cíclica 360L", categoria: "Heladeras", subcategoria: "Con Freezer", descripcion: "Mayor espacio interior y cajón especial para vegetales.", especificaciones: { capacidad: "360 L", sistema: "Cíclico" }, precio: 1150000, precioOferta: 977500, cuotas: 3, stock: true },
-            { id: 75, sku: "MICRO-BODU-23L", marca: "BGH", modelo: "B2320MD", nombre: "Microondas BGH Quick Chef 23 Litros", categoria: "Cocción", subcategoria: "Microondas", descripcion: "Diseño elegante en espejo con menú autococinado.", especificaciones: { capacidad: "23 L", potencia: "800W" }, precio: 310000, precioOferta: 263500, cuotas: 3, stock: true },
-            { id: 76, sku: "AIRE-SPLIT-HISENSE", marca: "Hisense", modelo: "Inverter 3500W", nombre: "Aire Acondicionado Split Hisense Inverter Frío/Calor", categoria: "Aires acondicionados", subcategoria: "Split", descripcion: "Tecnología Inverter para máximo ahorro de energía y bajo nivel sonoro.", especificaciones: { frigorias: "3000", tecnologia: "Inverter" }, precio: 990000, precioOferta: 841500, cuotas: 3, stock: true }
+            { id: 1, sku: "TV-TCL-55C655", marca: "TCL", modelo: "55C655", nombre: "Smart TV TCL 55 C655 QLED 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Televisor QLED 4K con Google TV y Dolby Vision Atmos.", especificaciones: { pulgadas: 55, resolucion: "4K UHD" }, precio: 899999, precioOferta: 764999, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=500&q=80" },
+            { id: 2, sku: "TV-TCL-65C755", marca: "TCL", modelo: "65C755", nombre: "Smart TV TCL 65 C755 QD-Mini LED 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento.", especificaciones: { pulgadas: 65, resolucion: "4K UHD" }, precio: 1499999, precioOferta: 1274999, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=500&q=80" },
+            { id: 3, sku: "TV-SAM-55CU7000", marca: "Samsung", modelo: "55CU7000", nombre: "Smart TV Samsung 55 Crystal UHD 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Smart TV Crystal UHD 4K con sistema Tizen.", especificaciones: { pulgadas: 55, resolucion: "4K UHD" }, precio: 920000, precioOferta: 782000, cuotas: 3, stock: true, imagen: "" },
+            { id: 4, sku: "TV-LG-504K", marca: "LG", modelo: "50 4K UHD", nombre: "Smart TV LG 50 4K UHD", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Calidad de imagen superior y sonido envolvente inteligente.", especificaciones: { pulgadas: 50, resolucion: "4K UHD" }, precio: 710000, precioOferta: 603500, cuotas: 3, stock: true, imagen: "" },
+            { id: 5, sku: "LAV-WHIRL-WNQ65A", marca: "Whirlpool", modelo: "WNQ65A", nombre: "Lavarropas Automático Whirlpool 6.5 Kg", categoria: "Lavarropas", subcategoria: "Carga Frontal", descripcion: "Lavarropas automático con múltiples programas de lavado.", especificaciones: { capacidad: "6.5 kg", tipoCarga: "Frontal" }, precio: 850000, precioOferta: 722500, cuotas: 3, stock: true, imagen: "" },
+            { id: 6, sku: "CEL-MOT-EDGE50", marca: "Motorola", modelo: "Edge 50", nombre: "Celular Motorola Edge 50 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Smartphone premium con pantalla OLED y conectividad 5G.", especificaciones: { pantalla: "6.7 pulgadas", memoriaRAM: "12GB" }, precio: 850000, precioOferta: 722500, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80" },
+            { id: 7, sku: "AC-SAMSUNG-3000", marca: "Samsung", modelo: "3000", nombre: "Aire Acondicionado Samsung Inverter 3000W", categoria: "Aires acondicionados", subcategoria: "Split Inverter", descripcion: "Aire acondicionado Split Inverter frío/calor.", especificaciones: { frigorias: "2600", potenciaW: "3000" }, precio: 950000, precioOferta: 807500, cuotas: 3, stock: true, imagen: "" },
+            { id: 8, sku: "NOTE-LEN-IDEA3", marca: "Lenovo", modelo: "IdeaPad 3", nombre: "Notebook Lenovo IdeaPad 3", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Notebook versátil para estudio, trabajo y uso cotidiano.", especificaciones: { pantalla: "15.6 pulgadas", memoriaRAM: "8GB" }, precio: 890000, precioOferta: 756500, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80" },
+            { id: 9, sku: "AUD-JBL-FLIP6", marca: "JBL", modelo: "Flip 6", nombre: "Parlante Bluetooth JBL Flip 6", categoria: "Audio", subcategoria: "Parlantes", descripcion: "Parlante Bluetooth portátil resistente al agua.", especificaciones: { potenciaW: "30", conectividad: "Bluetooth" }, precio: 210000, precioOferta: 178500, cuotas: 3, stock: true, imagen: "" },
+            { id: 10, sku: "REF-GAFA-H300", marca: "Gafa", modelo: "H300", nombre: "Heladera con Freezer Gafa H300", categoria: "Heladeras", subcategoria: "Con Freezer", descripcion: "Heladera cíclica con gran capacidad y eficiencia energética.", especificaciones: { capacidad: "282 L", sistema: "Cíclico" }, precio: 980000, precioOferta: 833000, cuotas: 3, stock: true, imagen: "" }
+            // (Puedes seguir agregando la propiedad `imagen: "URL_DE_LA_IMAGEN"` a los demás productos que desees)
         ];
 
         let carrito = [];
@@ -622,12 +574,19 @@
                     `;
                 }
 
+                // Genera la etiqueta img si el producto tiene un enlace de imagen
+                let imagenHTML = '';
+                if (producto.imagen && producto.imagen.trim() !== "") {
+                    imagenHTML = `<img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.style.display='none'">`;
+                }
+
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
                     ${producto.stock ? '<span class="badge-stock">Stock</span>' : ''}
-                    <div class="card-img-placeholder">
-                        <span>${producto.marca}</span>
+                    <div class="card-img-container">
+                        ${imagenHTML}
+                        <span class="card-img-placeholder">${producto.marca}</span>
                     </div>
                     <div class="card-body">
                         <span class="card-category">${producto.categoria}</span>
@@ -977,25 +936,17 @@
             mensaje += `*TOTAL A PAGAR:* ${formatearMoneda(totalFinal)}\n\n`;
             mensaje += `Solicito confirmación del pedido y datos para el pago.`;
 
-                        const mensajeCodificado = encodeURIComponent(mensaje);
+            const mensajeCodificado = encodeURIComponent(mensaje);
             const numeroWhatsApp = "5491155012447";
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
             carrito = [];
             actualizarContadorCarrito();
             toggleCart();
 
-            // Método infalible que evita bloqueos de pop-ups en móviles y PC
-            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
-            
-            // Si estás en móvil, redirige directamente; si prefieres pestaña nueva de forma segura:
-            const link = document.createElement('a');
-            link.href = urlWhatsApp;
-            link.target = '_blank';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            // Método seguro y directo para abrir WhatsApp
+            window.open(urlWhatsApp, '_blank');
         }
-
 
         renderizarProductos();
     </script>
