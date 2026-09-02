@@ -870,7 +870,7 @@
             renderizarContenidoDrawer();
         }
 
-        function enviarPedidoWhatsApp(event) {
+                function enviarPedidoWhatsApp(event) {
             event.preventDefault();
 
             const nombre = document.getElementById('nombreCliente').value;
@@ -940,8 +940,14 @@
             const numeroWhatsApp = "5491155012447";
             const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
+            // Vaciamos el carrito antes de la redirección
             carrito = [];
             actualizarContadorCarrito();
+
+            // Redirección directa garantizada para evitar bloqueadores de pop-ups
+            window.location.href = urlWhatsApp;
+        }
+
             toggleCart();
 
             // Método seguro y directo para abrir WhatsApp
