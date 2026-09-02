@@ -2951,14 +2951,12 @@ function formatCurrency(amount) {
     return '$' + amount.toLocaleString('es-AR');
 }
 
-// Función auxiliar robusta para obtener los productos de cualquier fuente
 function getSourceProducts() {
     return (typeof productos !== 'undefined' && productos) ? productos : 
            ((typeof listaProductos !== 'undefined' && listaProductos) ? listaProductos : 
            (window.productos || window.listaProductos || []));
 }
 
-// Lógica de Renderizado del Catálogo
 function renderCatalog() {
     const container = document.getElementById('catalogContainer');
     const counterText = document.getElementById('catalogCounterText');
@@ -3077,7 +3075,7 @@ function renderPagination(current, total) {
 function filterCategory(cat) {
     currentFilter = cat;
     currentPage = 1;
-    document.querySelectorAll('.nav-item, [data-category]').forEach(el => {
+    document.querySelectorAll('.nav-item, [data-category], [onclick*="filterCategory"]').forEach(el => {
         const catAttr = el.getAttribute('data-category') || el.innerText.trim();
         el.classList.toggle('active', catAttr.toLowerCase() === cat.toLowerCase() || (cat === 'ALL' && (catAttr.toLowerCase() === 'ver todo' || catAttr.toLowerCase() === 'all')));
     });
@@ -3183,7 +3181,6 @@ function switchView(step) {
     }
 }
 
-// Rellenar dinámicamente las 24 provincias de Argentina con costos y tiempos desde Ezeiza/CABA
 function populateProvinces() {
     const provinceSelect = document.getElementById('province');
     if (!provinceSelect) return;
@@ -3245,7 +3242,6 @@ function updateCheckoutCalculations() {
     let shippingData = getShippingDetailsForProvince(provinceVal);
     let shippingCost = provinceVal ? shippingData.cost : 0;
 
-    // Mostrar tiempo estimado en pantalla si existe un contenedor para ello
     const timeElem = document.getElementById('shippingTimeDisplay');
     if (timeElem) {
         timeElem.innerText = provinceVal ? `⏱️ Tiempo estimado desde Ezeiza: ${shippingData.time}` : 'Seleccione provincia para ver tiempo estimado';
@@ -3395,13 +3391,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Manejo de botones de categorías (Navbar y selects)
-    document.querySelectorAll('.nav-item, [onclick*="filterCategory"]').forEach(item => {
+    document.querySelectorAll('.nav-item, [data-category]').forEach(item => {
         item.addEventListener('click', function(e) {
+            e.preventDefault();
             const cat = this.getAttribute('data-category') || this.innerText.trim();
-            if (cat && cat.toLowerCase() !== 'ver todo' && cat !== 'ALL') {
-                // Si es categoría específica
-                // filterCategory(cat);
+            if (cat) {
+                if (cat.toLowerCase() === 'ver todo' || cat.toLowerCase() === 'all') {
+                    filterCategory('ALL');
+                } else {
+                    filterCategory(cat);
+                }
             }
         });
     });
@@ -3414,7 +3413,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Botón corregido "Realizar Otra Compra" para volver al catálogo limpiando la sesión
     const btnRealizarOtraCompra = document.getElementById('btnRealizarOtraCompra') || document.getElementById('btnBackToCatalog');
     if (btnRealizarOtraCompra) {
         btnRealizarOtraCompra.addEventListener('click', (e) => {
@@ -3560,25 +3558,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             switchView(3);
         });
-    }
-});
-    <!-- 1. PRIMERO van tus productos -->
-    <script>
-        const productos = [
-            {
-                "id": 1,
-                "sku": "TV-TCL-55C655",
-                // ... el resto de tus productos ...
-            }
-        ];
-    </script>
-
-    <!-- 2. DESPUÉS va todo el código de lógica que te pasé (carrito, filtros, provincias, etc.) -->
-    <script>
-        // Pegá todo el código grande de funciones aquí abajo
-    </script>
+            </script>
 </body>
 </html>
+
+    }
+});
 
 
 
