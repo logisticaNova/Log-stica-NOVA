@@ -3077,8 +3077,9 @@ function renderPagination(current, total) {
 function filterCategory(cat) {
     currentFilter = cat;
     currentPage = 1;
-    document.querySelectorAll('.nav-item').forEach(el => {
-        el.classList.toggle('active', el.innerText.toLowerCase() === cat.toLowerCase() || (cat === 'ALL' && el.innerText.toLowerCase() === 'ver todo'));
+    document.querySelectorAll('.nav-item, [data-category]').forEach(el => {
+        const catAttr = el.getAttribute('data-category') || el.innerText.trim();
+        el.classList.toggle('active', catAttr.toLowerCase() === cat.toLowerCase() || (cat === 'ALL' && (catAttr.toLowerCase() === 'ver todo' || catAttr.toLowerCase() === 'all')));
     });
     renderCatalog();
 }
@@ -3182,15 +3183,73 @@ function switchView(step) {
     }
 }
 
+// Rellenar dinámicamente las 24 provincias de Argentina con costos y tiempos desde Ezeiza/CABA
+function populateProvinces() {
+    const provinceSelect = document.getElementById('province');
+    if (!provinceSelect) return;
+
+    const provinciasArgentina = [
+        { val: 'CABA', name: 'Ciudad Autónoma de Buenos Aires (CABA)', cost: 7500, time: '24 a 48 hs hábiles' },
+        { val: 'GBA', name: 'Buenos Aires - GBA (Conurbano)', cost: 9500, time: '24 a 48 hs hábiles' },
+        { val: 'BA_INTERIOR', name: 'Buenos Aires - Interior', cost: 13500, time: '2 a 4 días hábiles' },
+        { val: 'CATAMARCA', name: 'Catamarca', cost: 18500, time: '4 a 6 días hábiles' },
+        { val: 'CHACO', name: 'Chaco', cost: 17500, time: '4 a 5 días hábiles' },
+        { val: 'CHUBUT', name: 'Chubut', cost: 21000, time: '5 a 7 días hábiles' },
+        { val: 'CORDOBA', name: 'Córdoba', cost: 14500, time: '3 a 4 días hábiles' },
+        { val: 'CORRIENTES', name: 'Corrientes', cost: 16500, time: '4 a 5 días hábiles' },
+        { val: 'ENTRE_RIOS', name: 'Entre Ríos', cost: 14500, time: '3 a 4 días hábiles' },
+        { val: 'FORMOSA', name: 'Formosa', cost: 18500, time: '5 a 6 días hábiles' },
+        { val: 'JUJUY', name: 'Jujuy', cost: 19500, time: '5 a 7 días hábiles' },
+        { val: 'LA_PAMPA', name: 'La Pampa', cost: 15500, time: '3 a 5 días hábiles' },
+        { val: 'LA_RIOJA', name: 'La Rioja', cost: 18500, time: '4 a 6 días hábiles' },
+        { val: 'MENDOZA', name: 'Mendoza', cost: 16500, time: '4 a 5 días hábiles' },
+        { val: 'MISIONES', name: 'Misiones', cost: 17500, time: '4 a 5 días hábiles' },
+        { val: 'NEUQUEN', name: 'Neuquén', cost: 18500, time: '4 a 6 días hábiles' },
+        { val: 'RIO_NEGRO', name: 'Río Negro', cost: 18500, time: '4 a 6 días hábiles' },
+        { val: 'SALTA', name: 'Salta', cost: 19500, time: '5 a 7 días hábiles' },
+        { val: 'SAN_JUAN', name: 'San Juan', cost: 17500, time: '4 a 5 días hábiles' },
+        { val: 'SAN_LUIS', name: 'San Luis', cost: 16500, time: '4 a 5 días hábiles' },
+        { val: 'SANTA_CRUZ', name: 'Santa Cruz', cost: 23000, time: '6 a 8 días hábiles' },
+        { val: 'SANTA_FE', name: 'Santa Fe', cost: 14500, time: '3 a 4 días hábiles' },
+        { val: 'SANTIAGO_DEL_ESTERO', name: 'Santiago del Estero', cost: 17500, time: '4 a 5 días hábiles' },
+        { val: 'TIERRA_DEL_FUEGO', name: 'Tierra del Fuego', cost: 26000, time: '7 a 10 días hábiles' },
+        { val: 'TUCUMAN', name: 'Tucumán', cost: 17500, time: '4 a 5 días hábiles' }
+    ];
+
+    provinceSelect.innerHTML = '<option value="">Selecciona tu provincia...</option>';
+    provincesDataStore = {};
+
+    provincesArgentina.forEach(p => {
+        provincesDataStore[p.val] = { cost: p.cost, time: p.time, name: p.name };
+        const opt = document.createElement('option');
+        opt.value = p.val;
+        opt.innerText = p.name;
+        provinceSelect.appendChild(opt);
+    });
+}
+
+let provincesDataStore = {};
+
+function getShippingDetailsForProvince(provinceVal) {
+    if (provincesDataStore[provinceVal]) {
+        return provincesDataStore[provinceVal];
+    }
+    return { cost: 15000, time: '4 a 6 días hábiles', name: provinceVal };
+}
+
 function updateCheckoutCalculations() {
     const subtotal = calculateSubtotal();
     const provinceSelect = document.getElementById('province');
     const provinceVal = provinceSelect ? provinceSelect.value : '';
-    let shippingCost = 0;
+    
+    let shippingData = getShippingDetailsForProvince(provinceVal);
+    let shippingCost = provinceVal ? shippingData.cost : 0;
 
-    if (provinceVal === 'CABA_GBA') shippingCost = 8500;
-    else if (provinceVal === 'BUENOS_AIRES') shippingCost = 12500;
-    else if (provinceVal === 'INTERIOR') shippingCost = 18500;
+    // Mostrar tiempo estimado en pantalla si existe un contenedor para ello
+    const timeElem = document.getElementById('shippingTimeDisplay');
+    if (timeElem) {
+        timeElem.innerText = provinceVal ? `⏱️ Tiempo estimado desde Ezeiza: ${shippingData.time}` : 'Seleccione provincia para ver tiempo estimado';
+    }
 
     const paymentMethodElem = document.getElementById('paymentMethod');
     const paymentMethod = paymentMethodElem ? paymentMethodElem.value : 'TRANSFER';
@@ -3241,20 +3300,8 @@ function populateInstallments() {
     });
 }
 
-function handleProvinceChange() {
-    const provinceSelect = document.getElementById('province');
-    const interiorGroup = document.getElementById('interiorProvinceGroup');
-    if (provinceSelect && interiorGroup) {
-        if (provinceSelect.value === 'INTERIOR') {
-            interiorGroup.style.display = 'block';
-        } else {
-            interiorGroup.style.display = 'none';
-        }
-    }
-    updateCheckoutCalculations();
-}
-
 document.addEventListener('DOMContentLoaded', () => {
+    populateProvinces();
     populateInstallments();
     if (typeof renderCatalog === 'function') renderCatalog();
 
@@ -3309,7 +3356,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const provinceSel = document.getElementById('province');
     if (provinceSel) {
-        provinceSel.addEventListener('change', handleProvinceChange);
+        provinceSel.addEventListener('change', updateCheckoutCalculations);
     }
     
     const payMethodSel = document.getElementById('paymentMethod');
@@ -3348,7 +3395,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const backButtons = document.querySelectorAll('#btnBackCatalog, #btnBackToCatalog, #btnBackToShippingCatalog');
+    // Manejo de botones de categorías (Navbar y selects)
+    document.querySelectorAll('.nav-item, [onclick*="filterCategory"]').forEach(item => {
+        item.addEventListener('click', function(e) {
+            const cat = this.getAttribute('data-category') || this.innerText.trim();
+            if (cat && cat.toLowerCase() !== 'ver todo' && cat !== 'ALL') {
+                // Si es categoría específica
+                // filterCategory(cat);
+            }
+        });
+    });
+
+    const backButtons = document.querySelectorAll('#btnBackCatalog, #btnBackToShippingCatalog');
     backButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -3356,6 +3414,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Botón corregido "Realizar Otra Compra" para volver al catálogo limpiando la sesión
     const btnRealizarOtraCompra = document.getElementById('btnRealizarOtraCompra') || document.getElementById('btnBackToCatalog');
     if (btnRealizarOtraCompra) {
         btnRealizarOtraCompra.addEventListener('click', (e) => {
@@ -3376,23 +3435,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const secCode = Math.floor(100000 + Math.random() * 900000);
 
             const trackingElem = document.getElementById('resTrackingCode') || document.getElementById('trackingCodeDisplay') || document.getElementById('trackingCode') || document.getElementById('nroGuia');
-            if (trackingElem) {
-                trackingElem.innerText = trackingCode;
-            }
+            if (trackingElem) trackingElem.innerText = trackingCode;
             
             const secElem = document.getElementById('resSecCode') || document.getElementById('secCodeDisplay') || document.getElementById('secCode') || document.getElementById('codigoValidacion');
-            if (secElem) {
-                secElem.innerText = secCode;
-            }
+            if (secElem) secElem.innerText = secCode;
 
             const subtotal = calculateSubtotal();
             const provinceSelect = document.getElementById('province');
             const provinceVal = provinceSelect ? provinceSelect.value : '';
-            let shippingCost = 0;
-            
-            if (provinceVal === 'CABA_GBA') shippingCost = 8500;
-            else if (provinceVal === 'BUENOS_AIRES') shippingCost = 12500;
-            else if (provinceVal === 'INTERIOR') shippingCost = 18500;
+            const shippingData = getShippingDetailsForProvince(provinceVal);
+            let shippingCost = provinceVal ? shippingData.cost : 0;
+            let shippingTime = provinceVal ? shippingData.time : 'A coordinar';
 
             const paymentMethodElem = document.getElementById('paymentMethod');
             const paymentMethod = paymentMethodElem ? paymentMethodElem.value : 'TRANSFER';
@@ -3427,9 +3480,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (installmentsDetailElem) installmentsDetailElem.innerText = paymentDesc;
 
             const resItemsContainer = document.getElementById('resItemsList');
-            if (resItemsContainer) {
-                resItemsContainer.innerHTML = '';
-            }
+            if (resItemsContainer) resItemsContainer.innerHTML = '';
             
             let productosTexto = "";
             const sourceProducts = getSourceProducts();
@@ -3443,7 +3494,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${formatCurrency(prod.precioOferta * carrito[id])}</strong>`;
                         resItemsContainer.appendChild(div);
                     }
-
                     const imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/300/0284c7/ffffff?text=Producto';
                     productosTexto += `• ${carrito[id]}x ${prod.nombre}\n  🖼️ Foto: ${imgUrl}\n`;
                 }
@@ -3460,24 +3510,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = getVal('email');
             const address = getVal('address');
             const city = getVal('city');
-            
-            let provinceText = provinceSelect && provinceSelect.selectedIndex >= 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : provinceVal;
-            if (provinceVal === 'INTERIOR') {
-                const interiorSelect = document.getElementById('interiorProvinceSelect');
-                if (interiorSelect && interiorSelect.value) {
-                    provinceText = `Interior - ${interiorSelect.options[interiorSelect.selectedIndex].text}`;
-                }
-            }
-
+            const provinceText = provinceSelect && provinceSelect.selectedIndex >= 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : provinceVal;
             const cp = getVal('cp');
 
             let direccionCompleta = `${address}, ${city}, ${provinceText}`;
-            if (cp) {
-                direccionCompleta += ` (CP: ${cp})`;
-            }
+            if (cp) direccionCompleta += ` (CP: ${cp})`;
 
             let message = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n` +
-                          `*LOGÍSTICA NOVA*\n` +
+                          `*LOGÍSTICA NOVA (Origen: Ezeiza, CABA/Bs.As.)*\n` +
                           `----------------------------------------\n` +
                           `*N° de Guía:* ${trackingCode}\n` +
                           `*Código de Validación:* ${secCode}\n\n` +
@@ -3489,6 +3529,9 @@ document.addEventListener('DOMContentLoaded', () => {
                           `• Dirección de Entrega: ${direccionCompleta}\n\n` +
                           `*PRODUCTOS SOLICITADOS*\n` +
                           productosTexto + `\n` +
+                          `*LOGÍSTICA Y TIEMPOS*\n` +
+                          `• Origen: Ezeiza / CABA\n` +
+                          `• Tiempo Estimado: ${shippingTime}\n\n` +
                           `*DESGLOSE DE PAGOS Y ENVÍO*\n` +
                           `• Subproductos: ${formatCurrency(subtotal)}\n` +
                           `• Envío: ${formatCurrency(shippingCost)}\n` +
@@ -3522,6 +3565,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 </body>
 </html>
+
 
 
 
