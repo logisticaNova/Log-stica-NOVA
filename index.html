@@ -3192,10 +3192,6 @@ function updateCheckoutCalculations() {
     else if (provinceVal === 'BUENOS_AIRES') shippingCost = 12500;
     else if (provinceVal === 'INTERIOR') shippingCost = 18500;
 
-    if (subtotal >= 200000) {
-        shippingCost = 0;
-    }
-
     const paymentMethodElem = document.getElementById('paymentMethod');
     const paymentMethod = paymentMethodElem ? paymentMethodElem.value : 'TRANSFER';
     let discountOrSurcharge = 0;
@@ -3228,7 +3224,7 @@ function updateCheckoutCalculations() {
     const subElem = document.getElementById('formSubtotalDisplay');
     if (subElem) subElem.innerText = formatCurrency(subtotal);
     const shipElem = document.getElementById('formShippingDisplay');
-    if (shipElem) shipElem.innerText = shippingCost === 0 ? '¡GRATIS!' : formatCurrency(shippingCost);
+    if (shipElem) shipElem.innerText = formatCurrency(shippingCost);
     const grandElem = document.getElementById('formGrandTotalDisplay');
     if (grandElem) grandElem.innerText = formatCurrency(grandTotal);
 }
@@ -3243,6 +3239,19 @@ function populateInstallments() {
         opt.innerText = `${num} Cuotas Fijas (Recargo total del ${num * 7}%)`;
         select.appendChild(opt);
     });
+}
+
+function handleProvinceChange() {
+    const provinceSelect = document.getElementById('province');
+    const interiorGroup = document.getElementById('interiorProvinceGroup');
+    if (provinceSelect && interiorGroup) {
+        if (provinceSelect.value === 'INTERIOR') {
+            interiorGroup.style.display = 'block';
+        } else {
+            interiorGroup.style.display = 'none';
+        }
+    }
+    updateCheckoutCalculations();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -3299,7 +3308,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const provinceSel = document.getElementById('province');
-    if (provinceSel) provinceSel.addEventListener('change', updateCheckoutCalculations);
+    if (provinceSel) {
+        provinceSel.addEventListener('change', handleProvinceChange);
+    }
     
     const payMethodSel = document.getElementById('paymentMethod');
     if (payMethodSel) payMethodSel.addEventListener('change', updateCheckoutCalculations);
@@ -3345,6 +3356,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const btnRealizarOtraCompra = document.getElementById('btnRealizarOtraCompra') || document.getElementById('btnBackToCatalog');
+    if (btnRealizarOtraCompra) {
+        btnRealizarOtraCompra.addEventListener('click', (e) => {
+            e.preventDefault();
+            carrito = {};
+            updateCartSummary();
+            switchView(1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
     const shippingForm = document.getElementById('shippingForm');
     if (shippingForm) {
         shippingForm.addEventListener('submit', (e) => {
@@ -3372,19 +3394,18 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (provinceVal === 'BUENOS_AIRES') shippingCost = 12500;
             else if (provinceVal === 'INTERIOR') shippingCost = 18500;
 
-            if (subtotal >= 200000) {
-                shippingCost = 0;
-            }
-
             const paymentMethodElem = document.getElementById('paymentMethod');
             const paymentMethod = paymentMethodElem ? paymentMethodElem.value : 'TRANSFER';
             let finalTotal = 0;
             let paymentDesc = '';
+            let recargoDescuentoMonto = 0;
+            let cuotasTexto = '';
 
             const cbuBox = document.getElementById('cbuDetailsBox');
 
             if (paymentMethod === 'TRANSFER') {
-                finalTotal = subtotal - (subtotal * 0.15) + shippingCost;
+                recargoDescuentoMonto = -(subtotal * 0.15);
+                finalTotal = subtotal + recargoDescuentoMonto + shippingCost;
                 paymentDesc = 'Transferencia Bancaria / Efectivo (15% OFF Aplicado)';
                 if (cbuBox) cbuBox.style.display = 'block';
             } else {
@@ -3392,8 +3413,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const installmentsElem = document.getElementById('cardInstallments');
                 const installments = installmentsElem ? parseInt(installmentsElem.value) || 3 : 3;
                 let surchargeRate = installments * 0.07;
-                finalTotal = subtotal + (subtotal * surchargeRate) + shippingCost;
+                recargoDescuentoMonto = subtotal * surchargeRate;
+                finalTotal = subtotal + recargoDescuentoMonto + shippingCost;
+                let valorCuota = finalTotal / installments;
                 paymentDesc = `Tarjeta de Crédito en ${installments} cuotas fijas`;
+                cuotasTexto = `• Detalle de Cuotas: ${installments} cuotas de ${formatCurrency(valorCuota)}\n`;
             }
 
             const grandTotalElem = document.getElementById('resGrandTotal');
@@ -3436,7 +3460,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = getVal('email');
             const address = getVal('address');
             const city = getVal('city');
-            const provinceText = provinceSelect && provinceSelect.selectedIndex >= 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : provinceVal;
+            
+            let provinceText = provinceSelect && provinceSelect.selectedIndex >= 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : provinceVal;
+            if (provinceVal === 'INTERIOR') {
+                const interiorSelect = document.getElementById('interiorProvinceSelect');
+                if (interiorSelect && interiorSelect.value) {
+                    provinceText = `Interior - ${interiorSelect.options[interiorSelect.selectedIndex].text}`;
+                }
+            }
+
             const cp = getVal('cp');
 
             let direccionCompleta = `${address}, ${city}, ${provinceText}`;
@@ -3457,8 +3489,12 @@ document.addEventListener('DOMContentLoaded', () => {
                           `• Dirección de Entrega: ${direccionCompleta}\n\n` +
                           `*PRODUCTOS SOLICITADOS*\n` +
                           productosTexto + `\n` +
-                          `*MÉTODO Y PLAN DE PAGO*\n` +
-                          `• ${paymentDesc}\n\n` +
+                          `*DESGLOSE DE PAGOS Y ENVÍO*\n` +
+                          `• Subproductos: ${formatCurrency(subtotal)}\n` +
+                          `• Envío: ${formatCurrency(shippingCost)}\n` +
+                          `• Recargo/Descuento: ${formatCurrency(recargoDescuentoMonto)}\n` +
+                          `• Método: ${paymentDesc}\n` +
+                          cuotasTexto + `\n` +
                           `*TOTAL A PAGAR:* ${formatCurrency(finalTotal)}\n\n` +
                           `Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
 
@@ -3486,6 +3522,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 </body>
 </html>
+
 
 
 
