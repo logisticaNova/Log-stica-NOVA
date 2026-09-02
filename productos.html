@@ -276,7 +276,7 @@
             text-decoration: underline;
         }
 
-        /* Modal del Carrito */
+        /* Modal del Carrito / Formularios */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -434,6 +434,64 @@
             background-color: #059669;
         }
 
+        /* Estilos del Formulario de Envío */
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-back {
+            background-color: var(--text-muted);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 35%;
+        }
+
+        .btn-submit-order {
+            background-color: #25d366; /* Color verde WhatsApp */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 65%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-submit-order:hover {
+            background-color: #128c7e;
+        }
+
         .empty-cart {
             text-align: center;
             color: var(--text-muted);
@@ -468,35 +526,16 @@
         </div>
     </div>
 
-    <!-- Modal / Drawer del Carrito -->
+    <!-- Modal / Drawer del Carrito y Checkout -->
     <div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
         <div class="cart-drawer">
             <div class="cart-header">
-                <h3>Tu Carrito de Compras</h3>
+                <h3 id="drawerTitle">Tu Carrito de Compras</h3>
                 <button class="close-cart" onclick="toggleCart()">&times;</button>
             </div>
             
-            <div class="cart-body" id="cartItemsContainer">
-                <!-- Se llena dinámicamente -->
-            </div>
-
-            <div class="cart-footer" id="cartFooterSection" style="display: none;">
-                <div class="payment-methods">
-                    <label for="paymentMethodSelect">Método de Pago:</label>
-                    <select id="paymentMethodSelect" class="payment-select" onchange="updateCartUI()">
-                        <option value="tarjeta">Tarjeta de Crédito (3 cuotas sin interés)</option>
-                        <option value="transferencia">Transferencia Bancaria (10% de descuento)</option>
-                    </select>
-                </div>
-
-                <div id="paymentDetailsContainer"></div>
-
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span id="cartTotalPrice">$0</span>
-                </div>
-
-                <button class="checkout-btn" onclick="finalizarCompra()">Finalizar Compra</button>
+            <div class="cart-body" id="cartBodyContent">
+                <!-- Se llena dinámicamente entre carrito o formulario -->
             </div>
         </div>
     </div>
@@ -688,8 +727,9 @@
             }
         ];
 
-        // Estado del Carrito
+        // Estado del Carrito y vista actual ("carrito" o "formulario")
         let carrito = [];
+        let vistaActual = 'carrito'; 
 
         // Formatear moneda (ARS)
         function formatearMoneda(valor) {
@@ -762,7 +802,8 @@
             }
 
             actualizarContadorCarrito();
-            toggleCart(); // Abre el carrito automáticamente al agregar
+            vistaActual = 'carrito';
+            toggleCart(true); // Abre el carrito automáticamente
         }
 
         function cambiarCantidad(id, cambio) {
@@ -774,23 +815,31 @@
                 }
             }
             actualizarContadorCarrito();
-            renderizarCarrito();
+            renderizarContenidoDrawer();
         }
 
         function eliminarDelCarrito(id) {
             carrito = carrito.filter(i => i.id !== id);
             actualizarContadorCarrito();
-            renderizarCarrito();
+            renderizarContenidoDrawer();
         }
 
         function actualizarContadorCarrito() {
             const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
             document.getElementById('cartCount').innerText = totalItems;
-            renderizarCarrito();
         }
 
-        function toggleCart() {
-            document.getElementById('cartModal').classList.toggle('active');
+        function toggleCart(forceOpen = false) {
+            const modal = document.getElementById('cartModal');
+            if (forceOpen) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.toggle('active');
+                if(!modal.classList.contains('active')) {
+                    vistaActual = 'carrito'; // Reset al cerrar
+                }
+            }
+            renderizarContenidoDrawer();
         }
 
         function handleOutsideClick(event) {
@@ -799,42 +848,107 @@
             }
         }
 
-        function renderizarCarrito() {
-            const container = document.getElementById('cartItemsContainer');
-            const footerSection = document.getElementById('cartFooterSection');
+        function renderizarContenidoDrawer() {
+            const drawerTitle = document.getElementById('drawerTitle');
+            const bodyContent = document.getElementById('cartBodyContent');
 
             if (carrito.length === 0) {
-                container.innerHTML = `<div class="empty-cart">Tu carrito está vacío.</div>`;
-                footerSection.style.display = 'none';
+                drawerTitle.innerText = "Tu Carrito de Compras";
+                bodyContent.innerHTML = `<div class="empty-cart">Tu carrito está vacío.</div>`;
+                vistaActual = 'carrito';
                 return;
             }
 
-            footerSection.style.display = 'block';
-            container.innerHTML = '';
+            if (vistaActual === 'carrito') {
+                drawerTitle.innerText = "Tu Carrito de Compras";
+                let htmlItems = '<div style="flex-grow:1; overflow-y:auto; max-height: 55vh;">';
+                
+                carrito.forEach(item => {
+                    htmlItems += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <h4>${item.nombre}</h4>
+                                <div class="cart-item-price">${formatearMoneda(item.precioOferta)} c/u</div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <button class="qty-btn" onclick="cambiarCantidad(${item.id}, -1)">-</button>
+                                <span>${item.cantidad}</span>
+                                <button class="qty-btn" onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                                <button class="remove-btn" onclick="eliminarDelCarrito(${item.id})">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                htmlItems += '</div>';
 
-            carrito.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'cart-item';
-                itemDiv.innerHTML = `
-                    <div class="cart-item-info">
-                        <h4>${item.nombre}</h4>
-                        <div class="cart-item-price">${formatearMoneda(item.precioOferta)} c/u</div>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, -1)">-</button>
-                        <span>${item.cantidad}</span>
-                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, 1)">+</button>
-                        <button class="remove-btn" onclick="eliminarDelCarrito(${item.id})">🗑️</button>
+                // Footer del carrito
+                htmlItems += `
+                    <div class="cart-footer" style="margin-top: 15px;">
+                        <div class="payment-methods">
+                            <label for="paymentMethodSelect">Método de Pago:</label>
+                            <select id="paymentMethodSelect" class="payment-select" onchange="updateCartUI()">
+                                <option value="tarjeta">Tarjeta de Crédito (3 cuotas sin interés)</option>
+                                <option value="transferencia">Transferencia Bancaria (10% de descuento)</option>
+                            </select>
+                        </div>
+                        <div id="paymentDetailsContainer"></div>
+                        <div class="cart-total">
+                            <span>Total:</span>
+                            <span id="cartTotalPrice">$0</span>
+                        </div>
+                        <button class="checkout-btn" onclick="irAlFormularioEnvio()">Continuar con la Entrega</button>
                     </div>
                 `;
-                container.appendChild(itemDiv);
-            });
 
-            updateCartUI();
+                bodyContent.innerHTML = htmlItems;
+                updateCartUI();
+
+            } else if (vistaActual === 'formulario') {
+                drawerTitle.innerText = "Datos de Envío y Entrega";
+                
+                bodyContent.innerHTML = `
+                    <form id="checkoutForm" onsubmit="enviarPedidoWhatsApp(event)">
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Completa tus datos para coordinar el envío de tu pedido:</p>
+                        
+                        <div class="form-group">
+                            <label for="nombreCliente">Nombre y Apellido *</label>
+                            <input type="text" id="nombreCliente" required placeholder="Ej. Juan Pérez">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefonoCliente">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="telefonoCliente" required placeholder="Ej. 11XXXXXXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccionCliente">Dirección de Entrega *</label>
+                            <input type="text" id="direccionCliente" required placeholder="Calle, Número, Piso/Depto">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="localidadCliente">Localidad / Ciudad *</label>
+                            <input type="text" id="localidadCliente" required placeholder="Ej. CABA / GBA">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notasCliente">Observaciones (Opcional)</label>
+                            <textarea id="notasCliente" rows="2" placeholder="Indicaciones adicionales..."></textarea>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
+                            <button type="submit" class="btn-submit-order">💬 Enviar a WhatsApp</button>
+                        </div>
+                    </form>
+                `;
+            }
         }
 
         function updateCartUI() {
-            const paymentMethod = document.getElementById('paymentMethodSelect').value;
+            const paymentMethodSelect = document.getElementById('paymentMethodSelect');
+            if (!paymentMethodSelect) return;
+
+            const paymentMethod = paymentMethodSelect.value;
             const detailsContainer = document.getElementById('paymentDetailsContainer');
             
             let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
@@ -849,14 +963,72 @@
                 detailsContainer.innerHTML = `<div class="cart-summary-line" style="color: #10b981; font-weight:600;"><span>Descuento 10% por transferencia:</span> <span>-${formatearMoneda(descuento)}</span></div>`;
             }
 
-            document.getElementById('cartTotalPrice').innerText = formatearMoneda(totalFinal);
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+            if (totalPriceEl) {
+                totalPriceEl.innerText = formatearMoneda(totalFinal);
+            }
         }
 
-        function finalizarCompra() {
-            alert('¡Gracias por tu compra! Tu pedido ha sido procesado con éxito.');
+        function irAlFormularioEnvio() {
+            vistaActual = 'formulario';
+            renderizarContenidoDrawer();
+        }
+
+        function volverAlCarrito() {
+            vistaActual = 'carrito';
+            renderizarContenidoDrawer();
+        }
+
+        function enviarPedidoWhatsApp(event) {
+            event.preventDefault();
+
+            // Recolectar datos del formulario
+            const nombre = document.getElementById('nombreCliente').value;
+            const telefono = document.getElementById('telefonoCliente').value;
+            const direccion = document.getElementById('direccionCliente').value;
+            const localidad = document.getElementById('localidadCliente').value;
+            const notas = document.getElementById('notasCliente').value;
+            const metodoPago = document.getElementById('paymentMethodSelect').value;
+
+            // Calcular totales
+            let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
+            let totalFinal = subtotal;
+            let textoPago = "Tarjeta de Crédito (3 cuotas sin interés)";
+
+            if (metodoPago === 'transferencia') {
+                totalFinal = subtotal - (subtotal * 0.10);
+                textoPago = "Transferencia Bancaria (10% de descuento)";
+            }
+
+            // Construir detalle de productos
+            let detalleProductos = "";
+            carrito.forEach(item => {
+                detalleProductos += `• ${item.cantidad}x ${item.nombre} - ${formatearMoneda(item.precioOferta * item.cantidad)}\n`;
+            });
+
+            // Armar mensaje para WhatsApp
+            let mensaje = `*¡Hola! Quiero confirmar mi compra en Electro & Tecnología:* 🛍️\n\n`;
+            mensaje += `*--- PRODUCTOS ---*\n${detalleProductos}\n`;
+            mensaje += `*Método de Pago:* ${textoPago}\n`;
+            mensaje += `*TOTAL FINAL:* ${formatearMoneda(totalFinal)}\n\n`;
+            mensaje += `*--- DATOS DE ENTREGA ---*\n`;
+            mensaje += `👤 *Nombre:* ${nombre}\n`;
+            mensaje += `📞 *Teléfono:* ${telefono}\n`;
+            mensaje += `🏠 *Dirección:* ${direccion}\n`;
+            mensaje += `📍 *Localidad:* ${localidad}\n`;
+            if (notas) mensaje += `📝 *Notas:* ${notas}\n`;
+
+            // Codificar mensaje para URL
+            const mensajeCodificado = encodeURIComponent(mensaje);
+            const numeroWhatsApp = "5491155012447"; // Número indicado con característica de Argentina (+54 9)
+
+            // Limpiar carrito y cerrar modal
             carrito = [];
             actualizarContadorCarrito();
             toggleCart();
+
+            // Abrir WhatsApp
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
         }
 
         // Inicializar la vista de productos al cargar
