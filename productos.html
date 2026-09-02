@@ -351,12 +351,6 @@
             margin-left: 6px;
         }
 
-        .cart-footer {
-            padding: 16px;
-            border-top: 1px solid var(--border-color);
-            background-color: #f9fafb;
-        }
-
         .payment-methods {
             margin-bottom: 12px;
         }
@@ -520,16 +514,11 @@
     </div>
 
     <script>
+        // Tarifas actualizadas según tus indicaciones exactas
         const tarifasProvincias = {
-            "CABA": { costo: 6500, demora: "12 a 24 hs", nombre: "Capital Federal (CABA)" },
-            "Buenos Aires": { costo: 9500, demora: "24 a 48 hs", nombre: "Provincia de Buenos Aires (Cercano / GBA)" },
-            "Buenos Aires Interior": { costo: 14000, demora: "2 a 4 días hábiles", nombre: "Provincia de Buenos Aires (Interior)" },
-            "Cordoba": { costo: 18000, demora: "3 a 5 días hábiles", nombre: "Córdoba" },
-            "Santa Fe": { costo: 16500, demora: "3 a 4 días hábiles", nombre: "Santa Fe" },
-            "Mendoza": { costo: 22000, demora: "4 a 6 días hábiles", nombre: "Mendoza" },
-            "Tucuman": { costo: 23000, demora: "4 a 6 días hábiles", nombre: "Tucumán" },
-            "Patagonia": { costo: 29000, demora: "6 a 9 días hábiles", nombre: "Provincias Patagónicas" },
-            "RestoPais": { costo: 25000, demora: "5 a 7 días hábiles", nombre: "Resto del País" }
+            "CABA": { costo: 8500, demora: "12 a 24 hs", nombre: "Capital Federal (CABA)" },
+            "Buenos Aires": { costo: 12500, demora: "24 a 48 hs", nombre: "Provincia de Buenos Aires" },
+            "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Otras Provincias / Resto del País" }
         };
 
         const productos = [
@@ -753,7 +742,7 @@
                 htmlItems += '</div>';
 
                 htmlItems += `
-                    <div class="cart-footer" style="margin-top: 10px;">
+                    <div style="margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 12px;">
                         <div class="payment-methods">
                             <label for="paymentMethodSelect">Método de Pago:</label>
                             <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
@@ -808,22 +797,16 @@
                             <input type="text" id="localidadCliente" required placeholder="Ej. Lomas de Zamora" value="Lomas de Zamora">
                         </div>
                         <div class="form-group">
-                            <label for="provinciaSelect">Provincia de Destino *</label>
+                            <label for="provinciaSelect">Zona de Envío *</label>
                             <select id="provinciaSelect" class="payment-select" onchange="updateCartUI()">
-                                <option value="CABA">Capital Federal (CABA)</option>
-                                <option value="Buenos Aires" selected>Provincia de Buenos Aires (Cercano / GBA)</option>
-                                <option value="Buenos Aires Interior">Provincia de Buenos Aires (Interior)</option>
-                                <option value="Cordoba">Córdoba</option>
-                                <option value="Santa Fe">Santa Fe</option>
-                                <option value="Mendoza">Mendoza</option>
-                                <option value="Tucuman">Tucumán</option>
-                                <option value="Patagonia">Provincias Patagónicas</option>
-                                <option value="RestoPais">Resto del País</option>
+                                <option value="CABA">Capital Federal (CABA) - $8.500</option>
+                                <option value="Buenos Aires" selected>Provincia de Buenos Aires - $12.500</option>
+                                <option value="Provincias">Otras Provincias / Resto del País - $18.500</option>
                             </select>
                         </div>
 
                         <div id="envioInfoResumen" style="background: #f8fafc; border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; font-size: 0.8rem; color: var(--accent-color); font-weight: 600; margin-bottom: 12px;">
-                            ⏱️ Demora: 24 a 48 hs | Envío: $9.500
+                            ⏱️ Demora: 24 a 48 hs | Envío: $12.500
                         </div>
 
                         <div class="form-buttons">
@@ -890,7 +873,7 @@
                 recargoDescuentoValor = subtotal * porcentajeRecargo;
             }
 
-            let costoEnvio = 9500;
+            let costoEnvio = 12500;
             const provinciaSelect = document.getElementById('provinciaSelect');
             if (provinciaSelect) {
                 const provKey = provinciaSelect.value;
@@ -965,7 +948,7 @@
 
             let detalleProductosTexto = "";
             carrito.forEach(item => {
-                detalleProductosTexto += `• ${item.cantidad}x ${item.nombre}\n  🖼️ Foto: https://via.placeholder.com/300/0284c7/ffffff?text=Producto\n`;
+                detalleProductosTexto += `• ${item.cantidad}x ${item.nombre}\n`;
             });
 
             let mensaje = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
@@ -979,7 +962,8 @@
             mensaje += `• DNI/CUIL: ${dni}\n`;
             mensaje += `• Teléfono: ${telefono}\n`;
             mensaje += `• Email: ${email}\n`;
-            mensaje += `• Dirección de Entrega: ${direccion}, ${localidad}, ${datosProvincia.nombre} (${formatearMoneda(costoEnvio)})\n\n`;
+            mensaje += `• Dirección: ${direccion}, ${localidad}\n`;
+            mensaje += `• Zona de Envío: ${datosProvincia.nombre} (${formatearMoneda(costoEnvio)})\n\n`;
             
             mensaje += `*PRODUCTOS SOLICITADOS*\n`;
             mensaje += `${detalleProductosTexto}\n`;
@@ -991,7 +975,7 @@
             mensaje += `• Método: ${textoMetodo}\n\n`;
             
             mensaje += `*TOTAL A PAGAR:* ${formatearMoneda(totalFinal)}\n\n`;
-            mensaje += `Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
+            mensaje += `Solicito confirmación del pedido y datos para el pago.`;
 
             const mensajeCodificado = encodeURIComponent(mensaje);
             const numeroWhatsApp = "5491155012447";
@@ -1000,8 +984,8 @@
             actualizarContadorCarrito();
             toggleCart();
 
-            // Solución aplicada: se cambió a 'https://api.whatsapp.com/send' que asegura la redirección correcta en escritorio y dispositivos móviles
-            window.location.href = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensajeCodificado}`;
+            // Solución de apertura definitiva compatible con navegadores móviles y de PC
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
         }
 
         renderizarProductos();
