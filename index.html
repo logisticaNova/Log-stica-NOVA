@@ -719,7 +719,7 @@
 <body>
 
     <div class="top-bar">
-        🚛 ENVÍOS A TODO EL PAÍS — ENVÍO GRATIS EN COMPRAS MAYORES A $800.000 — 15% OFF EN TRANSFERENCIA
+        💡 ENVÍOS A TODO EL PAÍS — ENVÍO GRATIS EN COMPRAS MAYORES A $800.000 — 15% OFF EN TRANSFERENCIA
     </div>
 
     <header>
@@ -868,9 +868,6 @@
                             <label for="province">Provincia / Región de Envío *</label>
                             <select id="province" required>
                                 <option value="">Selecciona tu provincia...</option>
-                                <option value="CABA_GBA">CABA / Gran Buenos Aires ($8.500)</option>
-                                <option value="BUENOS_AIRES">Provincia de Buenos Aires ($12.500)</option>
-                                <option value="INTERIOR">Resto del País / Interior ($18.500)</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -998,9 +995,9 @@
 
     <!-- Aquí empieza el bloque de JavaScript -->
     <script>
-        // 1. Declaras el catálogo de productos primero
+        // 1. Declaración del catálogo de productos primero
         const productos = [
-            {
+  {
     "id": 1,
     "sku": "TV-TCL-55C655",
     "ean": "",
@@ -1448,7 +1445,7 @@
     "nombre": "Celular Samsung Galaxy A35 5G 128GB",
     "categoria": "Celulares",
     "subcategoria": "Smartphones",
-    "descripcion": "Smartphone 5G con pantalla Super AMOLED y almacenamiento amplio.",
+    "descripcion": "Smartphone 5G con pantalla Super AMOLED and almacenamiento amplio.",
     "especificaciones": {
       "pantalla": "6.6 pulgadas Super AMOLED",
       "memoriaRAM": "8GB",
@@ -2009,6 +2006,7 @@
     "subcategoria": "Split Inverter",
     "descripcion": "Aire acondicionado Inverter frío/calor con alta eficiencia.",
     "especificaciones": {
+      "pulgadas": 0,
       "frigorias": "2750",
       "potenciaW": "3200",
       "tipoClima": "Frío/Calor",
@@ -2635,10 +2633,10 @@
   },
   {
     "id": 65,
-    "sku": "CAF-NESP-ESSENZA",
+    "sku": "CAF-COFF-MINI",
     "ean": "",
     "marca": "Nespresso",
-    "modelo": "Essenza",
+    "modelo": "Essenza Mini",
     "nombre": "Cafetera Nespresso Essenza Mini",
     "categoria": "Pequeños electrodomésticos",
     "subcategoria": "Cafeteras",
@@ -2746,7 +2744,7 @@
     "especificaciones": {
       "potenciaW": "1200",
       "tipo": "Vapor",
-      "suela": "Antiadherente"
+      "suela": "Anitadherente"
     },
     "precio": 62000,
     "precioOferta": 52700,
@@ -2765,7 +2763,7 @@
     "marca": "Atma",
     "modelo": "2000",
     "nombre": "Secador de Pelo Atma 2000W",
-    "categoria": "Cuidado personal",
+    "categoria": "Pequeños electrodomésticos",
     "subcategoria": "Secadores",
     "descripcion": "Secador de pelo de alta potencia con varias velocidades.",
     "especificaciones": {
@@ -2950,6 +2948,10 @@ let currentSort = 'default';
 let currentPage = 1;
 const itemsPerPage = 12;
 
+let modalImages = [];
+let currentModalIndex = 0;
+let cardSlideIndexes = {};
+
 function formatCurrency(amount) {
     return '$' + amount.toLocaleString('es-AR');
 }
@@ -2976,7 +2978,7 @@ function renderCatalog() {
     }
 
     let filtered = sourceProducts.filter(p => {
-        const matchesCategory = currentFilter === 'ALL' || p.categoria === currentFilter;
+        const matchesCategory = currentFilter === 'ALL' || p.categoria.toLowerCase() === currentFilter.toLowerCase();
         const query = currentSearchQuery.toLowerCase();
         const matchesSearch = !query || 
             p.nombre.toLowerCase().includes(query) || 
@@ -3014,14 +3016,28 @@ function renderCatalog() {
         const card = document.createElement('div');
         card.className = 'product-card';
 
-        let imgList = (p.imagenes && p.imagenes.length > 0) ? p.imagenes : ['https://via.placeholder.com/300/0284c7/ffffff?text=Producto'];
+        // Placeholder dinámico con Marca y Modelo
+        let placeholderTxt = encodeURIComponent(`${p.marca || 'Producto'} ${p.modelo || ''}`);
+        let imgList = (p.imagenes && p.imagenes.length > 0) ? p.imagenes : [`https://via.placeholder.com/300/0284c7/ffffff?text=${placeholderTxt}`];
+
+        let controlsHtml = '';
+        if (imgList.length > 1) {
+            controlsHtml = `
+                <button type="button" class="slider-btn prev" onclick="moveCardSlide(${p.id}, -1, event)">&#10094;</button>
+                <button type="button" class="slider-btn next" onclick="moveCardSlide(${p.id}, 1, event)">&#10095;</button>
+                <div class="slider-dots">
+                    ${imgList.map((_, i) => `<span class="slider-dot ${i === 0 ? 'active' : ''}" onclick="setCardSlide(${p.id}, ${i}, event)"></span>`).join('')}
+                </div>
+            `;
+        }
 
         card.innerHTML = `
             <div class="product-badge">OFERTA</div>
-            <div class="product-slider-container">
+            <div class="product-slider-container" onclick="openImageModalForProduct(${p.id})">
                 <div class="product-slider-track" id="track-${p.id}">
                     ${imgList.map(img => `<img src="${img}" class="product-img" alt="${p.nombre}">`).join('')}
                 </div>
+                ${controlsHtml}
             </div>
             <div class="product-cat-tag">${p.categoria}</div>
             <div class="product-title">${p.nombre}</div>
@@ -3045,6 +3061,87 @@ function renderCatalog() {
     if (typeof updateCartSummary === 'function') {
         updateCartSummary();
     }
+}
+
+// Control del deslizamiento interactivo de las tarjetas
+function moveCardSlide(productId, dir, event) {
+    if (event) event.stopPropagation();
+    const sourceProducts = getSourceProducts();
+    const prod = sourceProducts.find(p => p.id === productId);
+    if (!prod) return;
+    
+    let placeholderTxt = encodeURIComponent(`${prod.marca || 'Producto'} ${prod.modelo || ''}`);
+    let imgList = (prod.imagenes && prod.imagenes.length > 0) ? prod.imagenes : [`https://via.placeholder.com/300/0284c7/ffffff?text=${placeholderTxt}`];
+
+    if (cardSlideIndexes[productId] === undefined) {
+        cardSlideIndexes[productId] = 0;
+    }
+    cardSlideIndexes[productId] += dir;
+    if (cardSlideIndexes[productId] < 0) cardSlideIndexes[productId] = imgList.length - 1;
+    if (cardSlideIndexes[productId] >= imgList.length) cardSlideIndexes[productId] = 0;
+
+    updateCardSlidePosition(productId);
+}
+
+function setCardSlide(productId, index, event) {
+    if (event) event.stopPropagation();
+    cardSlideIndexes[productId] = index;
+    updateCardSlidePosition(productId);
+}
+
+function updateCardSlidePosition(productId) {
+    const track = document.getElementById(`track-${productId}`);
+    const idx = cardSlideIndexes[productId] || 0;
+    if (track) {
+        track.style.transform = `translateX(-${idx * 100}%)`;
+    }
+    const parent = track?.closest('.product-slider-container');
+    if (parent) {
+        const dots = parent.querySelectorAll('.slider-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === idx);
+        });
+    }
+}
+
+// Visualizador de Imagen Ampliada en Modal Lightbox
+function openImageModalForProduct(id) {
+    const sourceProducts = getSourceProducts();
+    const prod = sourceProducts.find(p => p.id == id);
+    if (!prod) return;
+    let placeholderTxt = encodeURIComponent(`${prod.marca || 'Producto'} ${prod.modelo || ''}`);
+    let imgs = (prod.imagenes && prod.imagenes.length > 0) ? prod.imagenes : [`https://via.placeholder.com/300/0284c7/ffffff?text=${placeholderTxt}`];
+    openImageModal(imgs, 0);
+}
+
+function openImageModal(images, index = 0) {
+    modalImages = images;
+    currentModalIndex = index;
+    const modal = document.getElementById('imageModal');
+    const track = document.getElementById('modalImgTrack');
+    if (!modal || !track) return;
+
+    track.innerHTML = modalImages.map(img => `<img src="${img}" class="modal-img">`).join('');
+    modal.classList.add('active');
+    updateModalSlider();
+}
+
+function moveModalSlide(dir) {
+    currentModalIndex += dir;
+    if (currentModalIndex < 0) currentModalIndex = modalImages.length - 1;
+    if (currentModalIndex >= modalImages.length) currentModalIndex = 0;
+    updateModalSlider();
+}
+
+function updateModalSlider() {
+    const track = document.getElementById('modalImgTrack');
+    if (track) {
+        track.style.transform = `translateX(-${currentModalIndex * 100}%)`;
+    }
+}
+
+function closeModal() {
+    document.getElementById('imageModal')?.classList.remove('active');
 }
 
 function renderPagination(current, total) {
@@ -3080,9 +3177,11 @@ function renderPagination(current, total) {
 function filterCategory(cat) {
     currentFilter = cat;
     currentPage = 1;
-    document.querySelectorAll('.nav-item, [data-category], [onclick*="filterCategory"]').forEach(el => {
-        const catAttr = el.getAttribute('data-category') || el.innerText.trim();
-        el.classList.toggle('active', catAttr.toLowerCase() === cat.toLowerCase() || (cat === 'ALL' && (catAttr.toLowerCase() === 'ver todo' || catAttr.toLowerCase() === 'all')));
+    document.querySelectorAll('.nav-item').forEach(el => {
+        const text = el.innerText.trim().toLowerCase();
+        const matchesAll = cat === 'ALL' && (text === 'ver todo' || text === 'all');
+        const matchesCat = text === cat.toLowerCase();
+        el.classList.toggle('active', matchesAll || matchesCat);
     });
     renderCatalog();
 }
@@ -3143,7 +3242,8 @@ function renderDrawerItems() {
 
         const row = document.createElement('div');
         row.className = 'cart-item-row';
-        let imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/50';
+        let placeholderTxt = encodeURIComponent(`${prod.marca || 'Producto'} ${prod.modelo || ''}`);
+        let imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : `https://via.placeholder.com/50/0284c7/ffffff?text=${placeholderTxt}`;
         
         row.innerHTML = `
             <img src="${imgUrl}" class="cart-item-img" alt="">
@@ -3306,6 +3406,48 @@ document.addEventListener('DOMContentLoaded', () => {
     populateInstallments();
     if (typeof renderCatalog === 'function') renderCatalog();
 
+    // Listener para cerrar modal lightbox
+    const closeModalBtn = document.getElementById('closeModal');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+    }
+    const imageModal = document.getElementById('imageModal');
+    if (imageModal) {
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) closeModal();
+        });
+    }
+
+    // Simulador de Rastreo de Envíos
+    const btnSearchTrack = document.getElementById('btnSearchTrack');
+    if (btnSearchTrack) {
+        btnSearchTrack.addEventListener('click', () => {
+            const query = document.getElementById('trackInput')?.value.trim();
+            const resultBox = document.getElementById('trackingResult');
+            const codeDisp = document.getElementById('trackCodeDisplay');
+            const statusDisp = document.getElementById('trackStatusDisplay');
+
+            if (!query) {
+                alert('Por favor ingrese un número de guía para consultar.');
+                return;
+            }
+
+            if (resultBox && codeDisp && statusDisp) {
+                codeDisp.innerText = query.toUpperCase();
+                const states = [
+                    '📦 Recibido en depósito central (Ezeiza, CABA/Bs.As.)',
+                    '🚚 En tránsito a sucursal de distribución principal',
+                    '🏭 En proceso de clasificación para reparto local',
+                    '🛵 En viaje / En reparto domiciliario en curso',
+                    '✅ Entregado exitosamente'
+                ];
+                const index = Math.abs(query.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % states.length;
+                statusDisp.innerText = states[index];
+                resultBox.style.display = 'block';
+            }
+        });
+    }
+
     const openCartBtn = document.getElementById('openCartDrawerBtn');
     if (openCartBtn) {
         openCartBtn.addEventListener('click', () => {
@@ -3396,21 +3538,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelectorAll('.nav-item, [data-category]').forEach(item => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-            const cat = this.getAttribute('data-category') || this.innerText.trim();
-            if (cat) {
-                if (cat.toLowerCase() === 'ver todo' || cat.toLowerCase() === 'all') {
-                    filterCategory('ALL');
-                } else {
-                    filterCategory(cat);
-                }
-            }
-        });
-    });
-
-    const backButtons = document.querySelectorAll('#btnBackCatalog, #btnBackToShippingCatalog');
+    const backButtons = document.querySelectorAll('#btnBackCatalog, #btnBackToShippingCatalog, #btnBackToCatalog');
     backButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -3418,9 +3546,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const btnRealizarOtraCompra = document.getElementById('btnRealizarOtraCompra') || document.getElementById('btnBackToCatalog');
-    if (btnRealizarOtraCompra) {
-        btnRealizarOtraCompra.addEventListener('click', (e) => {
+    const btnRestart = document.getElementById('btnRestart');
+    if (btnRestart) {
+        btnRestart.addEventListener('click', (e) => {
             e.preventDefault();
             carrito = {};
             updateCartSummary();
@@ -3437,10 +3565,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const trackingCode = 'NV-' + Math.floor(1000 + Math.random() * 9000) + '-' + new Date().getFullYear();
             const secCode = Math.floor(100000 + Math.random() * 900000);
 
-            const trackingElem = document.getElementById('resTrackingCode') || document.getElementById('trackingCodeDisplay') || document.getElementById('trackingCode') || document.getElementById('nroGuia');
+            const trackingElem = document.getElementById('resTrackingCode');
             if (trackingElem) trackingElem.innerText = trackingCode;
             
-            const secElem = document.getElementById('resSecCode') || document.getElementById('secCodeDisplay') || document.getElementById('secCode') || document.getElementById('codigoValidacion');
+            const secElem = document.getElementById('resSecCode');
             if (secElem) secElem.innerText = secCode;
 
             const subtotal = calculateSubtotal();
@@ -3497,7 +3625,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${formatCurrency(prod.precioOferta * carrito[id])}</strong>`;
                         resItemsContainer.appendChild(div);
                     }
-                    const imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/300/0284c7/ffffff?text=Producto';
+                    let placeholderTxt = encodeURIComponent(`${prod.marca || 'Producto'} ${prod.modelo || ''}`);
+                    const imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : `https://via.placeholder.com/300/0284c7/ffffff?text=${placeholderTxt}`;
                     productosTexto += `• ${carrito[id]}x ${prod.nombre}\n  🖼️ Foto: ${imgUrl}\n`;
                 }
             }
@@ -3508,18 +3637,17 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const fullName = getVal('fullName');
-            const dni = getVal('dni') || getVal('cuil') || 'No especificado';
+            const dni = getVal('dni') || 'No especificado';
             const phone = getVal('phone');
             const email = getVal('email');
             const address = getVal('address');
             const city = getVal('city');
             const provinceText = provinceSelect && provinceSelect.selectedIndex >= 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : provinceVal;
-            const cp = getVal('cp');
+            const cp = getVal('postalCode'); // Corregido ID postalCode
 
             let direccionCompleta = `${address}, ${city}, ${provinceText}`;
             if (cp) direccionCompleta += ` (CP: ${cp})`;
 
-            // Se corrigió el error '\55' reemplazándolo por '\n'
             let message = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n` +
                           `*LOGÍSTICA NOVA (Origen: Ezeiza, CABA/Bs.As.)*\n` +
                           `----------------------------------------\n` +
@@ -3538,7 +3666,7 @@ document.addEventListener('DOMContentLoaded', () => {
                           `• Tiempo Estimado: ${shippingTime}\n\n` +
                           `*DESGLOSE DE PAGOS Y ENVÍO*\n` +
                           `• Subproductos: ${formatCurrency(subtotal)}\n` +
-                          `• Envío: ${formatCurrency(shippingCost)}\n` +
+                          `• Envío: ${formatCurrency(shippingCost)}\n` + // Corregido de \55 a \n
                           `• Recargo/Descuento: ${formatCurrency(recargoDescuentoMonto)}\n` +
                           `• Método: ${paymentDesc}\n` +
                           cuotasTexto + `\n` +
@@ -3566,20 +3694,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
     </script>
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    </html>
