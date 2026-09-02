@@ -1,953 +1,1709 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logística Nova - Catálogo y Orden de Compra</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --primary-dark: #1d4ed8;
-            --accent-color: #f97316;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --bg-body: #f3f4f6;
-            --bg-card: #ffffff;
-            --border-color: #e5e7eb;
-            --radius: 12px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.5;
-            padding-bottom: 60px;
-            overflow-x: hidden;
-        }
-
-        .navbar {
-            background-color: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar-brand {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .cart-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: var(--transition);
-        }
-
-        .cart-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .cart-badge {
-            background-color: var(--accent-color);
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 0.75rem;
-        }
-
-        header {
-            text-align: center;
-            margin: 30px 0 20px;
-            padding: 0 16px;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            color: var(--text-main);
-            margin-bottom: 8px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-
-        .grid-productos {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .card {
-            background-color: var(--bg-card);
-            border-radius: var(--radius);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .badge-stock {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background-color: #10b981;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            z-index: 2;
-        }
-
-        .card-img-container {
-            width: 100%;
-            height: 160px;
-            background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .card-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .card-img-container img:hover {
-            transform: scale(1.05);
-        }
-
-        .card-img-placeholder {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 500;
-            position: absolute;
-        }
-
-        .card-body {
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-category {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .card-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-
-        .card-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            flex-grow: 1;
-        }
-
-        .specs-list {
-            background-color: #f9fafb;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 12px;
-            font-size: 0.8rem;
-        }
-
-        .specs-list div {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 4px;
-        }
-
-        .specs-list div:last-child {
-            margin-bottom: 0;
-        }
-
-        .spec-label {
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .spec-value {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .pricing {
-            margin-top: auto;
-            border-top: 1px solid var(--border-color);
-            padding-top: 12px;
-        }
-
-        .price-original {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-
-        .price-container {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-
-        .price-offer {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .cuotas-badge {
-            font-size: 0.75rem;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-top: 2px;
-            margin-bottom: 10px;
-        }
-
-        .btn-add-cart {
-            width: 100%;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-add-cart:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: flex-end;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .cart-drawer {
-            background-color: white;
-            width: 100%;
-            max-width: 480px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .modal-overlay.active .cart-drawer {
-            transform: translateX(0);
-        }
-
-        .cart-header {
-            padding: 16px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-
-        .cart-body {
-            padding: 16px;
-            overflow-y: auto;
-            flex-grow: 1;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .cart-item-info h4 {
-            font-size: 0.9rem;
-            margin-bottom: 2px;
-        }
-
-        .cart-item-price {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .cart-item-actions {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .qty-btn {
-            background-color: var(--bg-body);
-            border: 1px solid var(--border-color);
-            padding: 2px 6px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .remove-btn {
-            background: none;
-            border: none;
-            color: #ef4444;
-            cursor: pointer;
-            font-size: 0.8rem;
-            margin-left: 6px;
-        }
-
-        .payment-methods {
-            margin-bottom: 12px;
-        }
-
-        .payment-methods label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .payment-select {
-            width: 100%;
-            padding: 9px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background-color: white;
-            font-family: inherit;
-            font-size: 0.9rem;
-        }
-
-        .cart-summary-line {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin: 12px 0;
-            color: var(--text-main);
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background-color: #10b981;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .checkout-btn:hover {
-            background-color: #059669;
-        }
-
-        .form-group {
-            margin-bottom: 10px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.82rem;
-            font-weight: 600;
-            margin-bottom: 3px;
-            color: var(--text-main);
-        }
-
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 9px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.9rem;
-            outline: none;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary-color);
-        }
-
-        .form-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .btn-back {
-            background-color: var(--text-muted);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 35%;
-        }
-
-        .btn-submit-order {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 65%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 0.9rem;
-        }
-
-        .btn-submit-order:hover {
-            background-color: #128c7e;
-        }
-
-        .empty-cart {
-            text-align: center;
-            color: var(--text-muted);
-            margin-top: 30px;
-        }
-
-        @media (min-width: 640px) {
-            .grid-productos {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-                gap: 24px;
-            }
-            header h1 {
-                font-size: 2.3rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="PANROD - Sistema de gestión y seguimiento de envíos">
+
+<title>PANROD | Logística y Seguimientos</title>
+
+<style>
+:root{
+    --primary:#111827;
+    --primary-2:#1f2937;
+    --accent:#2563eb;
+    --accent-2:#1d4ed8;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --bg:#f3f4f6;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(135deg,#111827,#1f2937);
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
+}
+
+.header-inner{
+    max-width:1200px;
+    margin:auto;
+    min-height:72px;
+    padding:0 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#fff;
+    color:#111827;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:20px;
+}
+
+nav{
+    display:flex;
+    gap:8px;
+}
+
+nav button{
+    border:0;
+    background:transparent;
+    color:#d1d5db;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+nav button:hover,
+nav button.active{
+    background:rgba(255,255,255,.1);
+    color:white;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#111827 0%,#1e3a8a 100%);
+    color:white;
+    padding:70px 20px 90px;
+}
+
+.hero-content{
+    max-width:1100px;
+    margin:auto;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:clamp(36px,7vw,68px);
+    line-height:1;
+    margin-bottom:20px;
+    letter-spacing:-2px;
+}
+
+.hero p{
+    max-width:680px;
+    margin:0 auto 32px;
+    color:#dbeafe;
+    font-size:18px;
+    line-height:1.6;
+}
+
+.tracking-box{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:10px;
+    border-radius:18px;
+    display:flex;
+    gap:10px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.tracking-box input{
+    flex:1;
+    min-width:0;
+    border:0;
+    outline:0;
+    padding:16px;
+    font-size:16px;
+    color:#111827;
+}
+
+.btn{
+    border:0;
+    border-radius:12px;
+    padding:14px 20px;
+    cursor:pointer;
+    font-weight:800;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:var(--accent);
+    color:white;
+}
+
+.btn-primary:hover{
+    background:var(--accent-2);
+}
+
+.btn-dark{
+    background:#111827;
+    color:white;
+}
+
+.btn-success{
+    background:var(--success);
+    color:white;
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:white;
+}
+
+.btn-light{
+    background:#f3f4f6;
+    color:#111827;
+}
+
+/* MAIN */
+
+main{
+    max-width:1200px;
+    margin:-40px auto 0;
+    padding:0 20px 60px;
+    position:relative;
+}
+
+.section{
+    margin-bottom:50px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px;
+    box-shadow:var(--shadow);
+}
+
+.card-icon{
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    background:#eff6ff;
+    font-size:25px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    margin-bottom:9px;
+    font-size:19px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.5;
+}
+
+/* PANEL */
+
+.panel{
+    background:white;
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    padding:28px;
+}
+
+.panel-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.panel-title h2{
+    font-size:25px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:7px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:900;
+    text-transform:uppercase;
+}
+
+.badge-paid{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.badge-unpaid{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.badge-processing{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+/* TRACKING RESULT */
+
+.tracking-result{
+    display:none;
+    margin-top:30px;
+}
+
+.tracking-result.show{
+    display:block;
+}
+
+.result-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--border);
+}
+
+.code{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:5px;
+}
+
+.code strong{
+    color:#111827;
+    font-size:18px;
+}
+
+/* INFO GRID */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin:25px 0;
+}
+
+.info{
+    background:#f9fafb;
+    border:1px solid var(--border);
+    padding:16px;
+    border-radius:12px;
+}
+
+.info small{
+    color:var(--muted);
+    display:block;
+    margin-bottom:6px;
+}
+
+.info strong{
+    font-size:15px;
+}
+
+/* TIMELINE */
+
+.timeline{
+    position:relative;
+    margin:35px 0 15px;
+    padding-left:34px;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:10px;
+    top:8px;
+    bottom:8px;
+    width:3px;
+    background:#e5e7eb;
+}
+
+.timeline-item{
+    position:relative;
+    padding-bottom:28px;
+}
+
+.timeline-dot{
+    position:absolute;
+    left:-30px;
+    top:2px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:#d1d5db;
+    border:4px solid white;
+    box-shadow:0 0 0 2px #d1d5db;
+}
+
+.timeline-item.completed .timeline-dot{
+    background:var(--success);
+    box-shadow:0 0 0 2px var(--success);
+}
+
+.timeline-item.current .timeline-dot{
+    background:var(--accent);
+    box-shadow:0 0 0 2px var(--accent);
+}
+
+.timeline-item h4{
+    margin-bottom:5px;
+}
+
+.timeline-item p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+}
+
+.timeline-date{
+    font-size:12px;
+    color:#9ca3af;
+    margin-top:4px;
+}
+
+/* ACTIONS */
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:25px;
+}
+
+/* FORM */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    font-size:13px;
+    font-weight:800;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:13px;
+    outline:none;
+    font:inherit;
+    background:white;
+}
+
+.form-group textarea{
+    resize:vertical;
+    min-height:100px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+/* COMBOS */
+
+.combo-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.combo{
+    border:1px solid var(--border);
+    border-radius:15px;
+    overflow:hidden;
+    background:white;
+}
+
+.combo-top{
+    padding:20px;
+    background:#111827;
+    color:white;
+}
+
+.combo-top h3{
+    font-size:18px;
+}
+
+.combo-body{
+    padding:20px;
+}
+
+.combo-body p{
+    color:var(--muted);
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:26px;
+    font-weight:900;
+    margin:10px 0 15px;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:500;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    background:white;
+    width:100%;
+    max-width:560px;
+    max-height:90vh;
+    overflow:auto;
+    border-radius:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,.3);
+}
+
+.modal-header{
+    padding:22px 24px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-header h3{
+    font-size:21px;
+}
+
+.close{
+    border:0;
+    background:#f3f4f6;
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.modal-body{
+    padding:24px;
+}
+
+.bank-box{
+    background:#f9fafb;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:15px;
+    margin-bottom:12px;
+}
+
+.bank-row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+    margin-bottom:9px;
+}
+
+.bank-row:last-child{
+    margin-bottom:0;
+}
+
+.bank-label{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.bank-value{
+    font-weight:800;
+    word-break:break-word;
+}
+
+.copy-btn{
+    border:0;
+    background:#e5e7eb;
+    padding:7px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#111827;
+    color:white;
+    padding:14px 18px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+    z-index:1000;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* FOOTER */
+
+footer{
+    background:#111827;
+    color:#9ca3af;
+    padding:35px 20px;
+    text-align:center;
+}
+
+footer strong{
+    color:white;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .info-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .combo-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    nav{
+        display:none;
+    }
+}
+
+@media(max-width:600px){
+    .hero{
+        padding:50px 15px 75px;
+    }
+
+    .tracking-box{
+        flex-direction:column;
+        padding:8px;
+    }
+
+    .tracking-box input{
+        padding:15px;
+    }
+
+    main{
+        padding:0 12px 40px;
+    }
+
+    .panel{
+        padding:20px;
+    }
+
+    .info-grid,
+    .combo-grid,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .result-header{
+        flex-direction:column;
+    }
+
+    .actions .btn{
+        width:100%;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <nav class="navbar">
-        <div class="navbar-brand">📦 Logística Nova</div>
-        <button class="cart-btn" onclick="toggleCart()">
-            🛒 Carrito <span class="cart-badge" id="cartCount">0</span>
-        </button>
-    </nav>
-
-    <div class="container">
-        <header>
-            <h1>Catálogo de Productos</h1>
-            <p>Selecciona tus productos, provincia de destino y método de pago preferido</p>
-        </header>
-
-        <div class="grid-productos" id="gridProductos"></div>
-    </div>
-
-    <div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
-        <div class="cart-drawer">
-            <div class="cart-header">
-                <h3 id="drawerTitle" style="font-size: 1.1rem;">Tu Carrito de Compras</h3>
-                <button class="close-cart" onclick="toggleCart()">&times;</button>
-            </div>
-            
-            <div class="cart-body" id="cartBodyContent"></div>
+<header>
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-icon">P</div>
+            PANROD
         </div>
+
+        <nav>
+            <button class="active" onclick="scrollToSection('inicio')">Inicio</button>
+            <button onclick="scrollToSection('seguimiento')">Seguimiento</button>
+            <button onclick="scrollToSection('envio')">Solicitar envío</button>
+            <button onclick="scrollToSection('combos')">Combos</button>
+        </nav>
+    </div>
+</header>
+
+<section class="hero" id="inicio">
+    <div class="hero-content">
+
+        <h1>PANROD</h1>
+
+        <p>
+            Gestión, logística y seguimiento de tus envíos.
+            Consultá el estado de tu pedido utilizando tu código de seguimiento.
+        </p>
+
+        <div class="tracking-box">
+            <input
+                type="text"
+                id="trackingInput"
+                placeholder="Ingresá tu código de seguimiento"
+                autocomplete="off"
+            >
+
+            <button class="btn btn-primary" onclick="buscarEnvio()">
+                🔎 Buscar envío
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<main>
+
+    <!-- RESULTADO -->
+
+    <section class="section tracking-result" id="trackingResult">
+
+        <div class="panel">
+
+            <div class="result-header">
+
+                <div>
+                    <div class="code">
+                        Código de seguimiento
+                    </div>
+
+                    <div class="code">
+                        <strong id="resultCode">PAN-000000</strong>
+                    </div>
+                </div>
+
+                <span class="badge badge-processing" id="resultStatus">
+                    En distribución
+                </span>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info">
+                    <small>Remitente</small>
+                    <strong id="resultSender">PANROD</strong>
+                </div>
+
+                <div class="info">
+                    <small>Destinatario</small>
+                    <strong id="resultReceiver">Cliente</strong>
+                </div>
+
+                <div class="info">
+                    <small>Origen</small>
+                    <strong id="resultOrigin">Buenos Aires</strong>
+                </div>
+
+                <div class="info">
+                    <small>Destino</small>
+                    <strong id="resultDestination">Buenos Aires</strong>
+                </div>
+
+            </div>
+
+            <h3>Estado del envío</h3>
+
+            <div class="timeline">
+
+                <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+
+                    <h4>📦 Producto recibido</h4>
+
+                    <p>
+                        El producto fue recibido en las instalaciones de PANROD.
+                    </p>
+
+                    <div class="timeline-date">
+                        01/09/2026 - 09:30
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+
+                    <h4>📋 Datos de envío registrados</h4>
+
+                    <p>
+                        Los datos del destinatario fueron registrados correctamente.
+                    </p>
+
+                    <div class="timeline-date">
+                        01/09/2026 - 11:15
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-dot"></div>
+
+                    <h4>💳 Pago solicitado</h4>
+
+                    <p>
+                        El envío fue habilitado para el proceso de pago.
+                    </p>
+
+                    <div class="timeline-date">
+                        01/09/2026 - 12:00
+                    </div>
+                </div>
+
+                <div class="timeline-item current">
+                    <div class="timeline-dot"></div>
+
+                    <h4>🚚 En distribución</h4>
+
+                    <p>
+                        El envío se encuentra en proceso de distribución.
+                    </p>
+
+                    <div class="timeline-date">
+                        Actualizado recientemente
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+
+                    <h4>🏠 Entregado</h4>
+
+                    <p>
+                        El envío será marcado como entregado una vez recibido.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="abrirPago()"
+                >
+                    💳 Ver pago
+                </button>
+
+                <button
+                    class="btn btn-light"
+                    onclick="mostrarToast('Información del envío actualizada')"
+                >
+                    🔄 Actualizar
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SERVICIOS -->
+
+    <section class="section">
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h3>Recepción</h3>
+                <p>
+                    Recibimos el producto del proveedor y registramos
+                    la información necesaria para iniciar el envío.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🚚</div>
+                <h3>Distribución</h3>
+                <p>
+                    Coordinamos la distribución del producto hasta
+                    el domicilio indicado por el cliente.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔎</div>
+                <h3>Seguimiento</h3>
+                <p>
+                    Consultá en cualquier momento el estado del envío
+                    utilizando el código PANROD.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ENVIO -->
+
+    <section class="section" id="envio">
+
+        <div class="panel">
+
+            <div class="panel-title">
+                <h2>📋 Solicitar envío</h2>
+            </div>
+
+            <form id="shippingForm" onsubmit="crearSolicitud(event)">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Nombre y apellido</label>
+                        <input
+                            type="text"
+                            id="clientName"
+                            required
+                            placeholder="Nombre completo"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input
+                            type="tel"
+                            id="clientPhone"
+                            required
+                            placeholder="Teléfono de contacto"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            id="clientEmail"
+                            placeholder="correo@email.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Provincia</label>
+                        <select id="province" required>
+                            <option value="">Seleccionar</option>
+                            <option>Buenos Aires</option>
+                            <option>Ciudad Autónoma de Buenos Aires</option>
+                            <option>Córdoba</option>
+                            <option>Santa Fe</option>
+                            <option>Entre Ríos</option>
+                            <option>Mendoza</option>
+                            <option>Tucumán</option>
+                            <option>Salta</option>
+                            <option>Jujuy</option>
+                            <option>Misiones</option>
+                            <option>Corrientes</option>
+                            <option>Chaco</option>
+                            <option>Formosa</option>
+                            <option>La Pampa</option>
+                            <option>Neuquén</option>
+                            <option>Río Negro</option>
+                            <option>Chubut</option>
+                            <option>Santa Cruz</option>
+                            <option>Tierra del Fuego</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Dirección de entrega</label>
+                        <input
+                            type="text"
+                            id="address"
+                            required
+                            placeholder="Calle, número, piso/departamento"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Código postal</label>
+                        <input
+                            type="text"
+                            id="postalCode"
+                            required
+                            placeholder="Código postal"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de envío</label>
+                        <select id="shippingType" required>
+                            <option value="">Seleccionar</option>
+                            <option>Envío estándar</option>
+                            <option>Envío prioritario</option>
+                            <option>Envío express</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Información adicional</label>
+                        <textarea
+                            id="notes"
+                            placeholder="Indicaciones para la entrega..."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group full">
+
+                        <button class="btn btn-primary" type="submit">
+                            🚚 Generar solicitud
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- COMBOS -->
+
+    <section class="section" id="combos">
+
+        <div class="panel">
+
+            <div class="panel-title">
+                <h2>🏆 Combos disponibles</h2>
+            </div>
+
+            <div class="combo-grid">
+
+                <div class="combo">
+
+                    <div class="combo-top">
+                        <h3>BRONCE</h3>
+                    </div>
+
+                    <div class="combo-body">
+                        <p>25 sobres</p>
+
+                        <div class="price">
+                            $47.500
+                        </div>
+
+                        <button
+                            class="btn btn-dark"
+                            onclick="seleccionarCombo('BRONCE')"
+                        >
+                            Seleccionar
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="combo">
+
+                    <div class="combo-top">
+                        <h3>PLATA</h3>
+                    </div>
+
+                    <div class="combo-body">
+                        <p>50 sobres</p>
+
+                        <div class="price">
+                            $85.000
+                        </div>
+
+                        <button
+                            class="btn btn-dark"
+                            onclick="seleccionarCombo('PLATA')"
+                        >
+                            Seleccionar
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="combo">
+
+                    <div class="combo-top">
+                        <h3>ORO</h3>
+                    </div>
+
+                    <div class="combo-body">
+                        <p>100 sobres</p>
+
+                        <div class="price">
+                            $155.000
+                        </div>
+
+                        <button
+                            class="btn btn-dark"
+                            onclick="seleccionarCombo('ORO')"
+                        >
+                            Seleccionar
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="combo">
+
+                    <div class="combo-top">
+                        <h3>PLATINO</h3>
+                    </div>
+
+                    <div class="combo-body">
+                        <p>300 sobres</p>
+
+                        <div class="price">
+                            $375.000
+                        </div>
+
+                        <button
+                            class="btn btn-dark"
+                            onclick="seleccionarCombo('PLATINO')"
+                        >
+                            Seleccionar
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <strong>PANROD</strong><br>
+    Gestión y distribución logística.
+    <br><br>
+    © 2026 PANROD. Todos los derechos reservados.
+</footer>
+
+
+<!-- MODAL PAGO -->
+
+<div class="modal" id="paymentModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3>💳 Información de pago</h3>
+
+            <button
+                class="close"
+                onclick="cerrarPago()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <p style="color:#6b7280;margin-bottom:20px;">
+                Realizá la transferencia utilizando los siguientes datos.
+                Una vez efectuado el pago, enviá el comprobante.
+            </p>
+
+            <div class="bank-box">
+
+                <div class="bank-row">
+                    <div>
+                        <div class="bank-label">Banco</div>
+                        <div class="bank-value" id="bank">Banco Nación</div>
+                    </div>
+
+                    <button
+                        class="copy-btn"
+                        onclick="copiar('bank')"
+                    >
+                        Copiar
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="bank-box">
+
+                <div class="bank-row">
+                    <div>
+                        <div class="bank-label">Titular</div>
+                        <div class="bank-value" id="holder">
+                            PANROD
+                        </div>
+                    </div>
+
+                    <button
+                        class="copy-btn"
+                        onclick="copiar('holder')"
+                    >
+                        Copiar
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="bank-box">
+
+                <div class="bank-row">
+                    <div>
+                        <div class="bank-label">CBU</div>
+                        <div class="bank-value" id="cbu">
+                            0000000000000000000000
+                        </div>
+                    </div>
+
+                    <button
+                        class="copy-btn"
+                        onclick="copiar('cbu')"
+                    >
+                        Copiar
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="bank-box">
+
+                <div class="bank-row">
+                    <div>
+                        <div class="bank-label">Alias</div>
+                        <div class="bank-value" id="alias">
+                            PANROD.PAGOS
+                        </div>
+                    </div>
+
+                    <button
+                        class="copy-btn"
+                        onclick="copiar('alias')"
+                    >
+                        Copiar
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="bank-box">
+
+                <div class="bank-row">
+                    <div>
+                        <div class="bank-label">Importe</div>
+                        <div class="bank-value" id="amount">
+                            $0
+                        </div>
+                    </div>
+
+                    <button
+                        class="copy-btn"
+                        onclick="copiar('amount')"
+                    >
+                        Copiar
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-success"
+                    style="width:100%;"
+                    onclick="confirmarPago()"
+                >
+                    ✅ Ya realicé el pago
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <script>
-        const tarifasProvincias = {
-            "CABA": { costo: 8500, demora: "12 a 24 hs", nombre: "Capital Federal (CABA)" },
-            "Buenos Aires": { costo: 12500, demora: "24 a 48 hs", nombre: "Provincia de Buenos Aires" },
-            "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Otras Provincias / Resto del País" }
+</div>
+
+
+<!-- MODAL SOLICITUD -->
+
+<div class="modal" id="requestModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3>✅ Solicitud generada</h3>
+
+            <button
+                class="close"
+                onclick="cerrarSolicitud()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <p>
+                Tu solicitud fue registrada correctamente.
+            </p>
+
+            <div class="bank-box" style="margin-top:20px;">
+
+                <div class="bank-label">
+                    Código de seguimiento
+                </div>
+
+                <div
+                    class="bank-value"
+                    style="font-size:24px;margin-top:8px;"
+                    id="newTrackingCode"
+                >
+                    PAN-000000
+                </div>
+
+            </div>
+
+            <p style="font-size:13px;color:#6b7280;">
+                Guardá este código para consultar posteriormente
+                el estado de tu envío.
+            </p>
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="copiar('newTrackingCode')"
+                >
+                    📋 Copiar código
+                </button>
+
+                <button
+                    class="btn btn-light"
+                    onclick="cerrarSolicitud()"
+                >
+                    Cerrar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="toast" id="toast">
+    Operación realizada correctamente.
+</div>
+
+
+<script>
+
+/* ==========================
+   DATOS DEMO
+========================== */
+
+const envios = {
+
+    "PAN-123456":{
+        code:"PAN-123456",
+        sender:"PANROD",
+        receiver:"Juan Pérez",
+        origin:"Buenos Aires",
+        destination:"Córdoba",
+        status:"En distribución"
+    },
+
+    "PAN-2026001":{
+        code:"PAN-2026001",
+        sender:"Proveedor PANROD",
+        receiver:"María González",
+        origin:"Buenos Aires",
+        destination:"Santa Fe",
+        status:"Pago pendiente"
+    }
+
+};
+
+
+/* ==========================
+   BUSCAR ENVÍO
+========================== */
+
+function buscarEnvio(){
+
+    const input = document
+        .getElementById("trackingInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+    if(!input){
+
+        mostrarToast("Ingresá un código de seguimiento");
+
+        return;
+    }
+
+    let envio = envios[input];
+
+    /*
+       Si no existe en la base demo,
+       se genera una vista de consulta
+       para permitir probar el sistema.
+    */
+
+    if(!envio){
+
+        envio = {
+            code:input,
+            sender:"PANROD",
+            receiver:"Cliente",
+            origin:"Buenos Aires",
+            destination:"Destino",
+            status:"En distribución"
         };
 
-        const productos = [
-            { id: 1, sku: "TV-TCL-55C655", marca: "TCL", modelo: "55C655", nombre: "Smart TV TCL 55 C655 QLED 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Televisor QLED 4K con Google TV y Dolby Vision Atmos.", especificaciones: { pulgadas: 55, resolucion: "4K UHD" }, precio: 899999, precioOferta: 764999, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=500&q=80" },
-            { id: 2, sku: "TV-TCL-65C755", marca: "TCL", modelo: "65C755", nombre: "Smart TV TCL 65 C755 QD-Mini LED 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento.", especificaciones: { pulgadas: 65, resolucion: "4K UHD" }, precio: 1499999, precioOferta: 1274999, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=500&q=80" },
-            { id: 3, sku: "TV-SAM-55CU7000", marca: "Samsung", modelo: "55CU7000", nombre: "Smart TV Samsung 55 Crystal UHD 4K", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Smart TV Crystal UHD 4K con sistema Tizen.", especificaciones: { pulgadas: 55, resolucion: "4K UHD" }, precio: 920000, precioOferta: 782000, cuotas: 3, stock: true, imagen: "" },
-            { id: 4, sku: "TV-LG-504K", marca: "LG", modelo: "50 4K UHD", nombre: "Smart TV LG 50 4K UHD", categoria: "Televisores", subcategoria: "Smart TV", descripcion: "Calidad de imagen superior y sonido envolvente inteligente.", especificaciones: { pulgadas: 50, resolucion: "4K UHD" }, precio: 710000, precioOferta: 603500, cuotas: 3, stock: true, imagen: "" },
-            { id: 5, sku: "LAV-WHIRL-WNQ65A", marca: "Whirlpool", modelo: "WNQ65A", nombre: "Lavarropas Automático Whirlpool 6.5 Kg", categoria: "Lavarropas", subcategoria: "Carga Frontal", descripcion: "Lavarropas automático con múltiples programas de lavado.", especificaciones: { capacidad: "6.5 kg", tipoCarga: "Frontal" }, precio: 850000, precioOferta: 722500, cuotas: 3, stock: true, imagen: "" },
-            { id: 6, sku: "CEL-MOT-EDGE50", marca: "Motorola", modelo: "Edge 50", nombre: "Celular Motorola Edge 50 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Smartphone premium con pantalla OLED y conectividad 5G.", especificaciones: { pantalla: "6.7 pulgadas", memoriaRAM: "12GB" }, precio: 850000, precioOferta: 722500, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80" },
-            { id: 7, sku: "AC-SAMSUNG-3000", marca: "Samsung", modelo: "3000", nombre: "Aire Acondicionado Samsung Inverter 3000W", categoria: "Aires acondicionados", subcategoria: "Split Inverter", descripcion: "Aire acondicionado Split Inverter frío/calor.", especificaciones: { frigorias: "2600", potenciaW: "3000" }, precio: 950000, precioOferta: 807500, cuotas: 3, stock: true, imagen: "" },
-            { id: 8, sku: "NOTE-LEN-IDEA3", marca: "Lenovo", modelo: "IdeaPad 3", nombre: "Notebook Lenovo IdeaPad 3", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Notebook versátil para estudio, trabajo y uso cotidiano.", especificaciones: { pantalla: "15.6 pulgadas", memoriaRAM: "8GB" }, precio: 890000, precioOferta: 756500, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80" },
-            { id: 9, sku: "AUD-JBL-FLIP6", marca: "JBL", modelo: "Flip 6", nombre: "Parlante Bluetooth JBL Flip 6", categoria: "Audio", subcategoria: "Parlantes", descripcion: "Parlante Bluetooth portátil resistente al agua.", especificaciones: { potenciaW: "30", conectividad: "Bluetooth" }, precio: 210000, precioOferta: 178500, cuotas: 3, stock: true, imagen: "" },
-            { id: 10, sku: "REF-GAFA-H300", marca: "Gafa", modelo: "H300", nombre: "Heladera con Freezer Gafa H300", categoria: "Heladeras", subcategoria: "Con Freezer", descripcion: "Heladera cíclica con gran capacidad y eficiencia energética.", especificaciones: { capacidad: "282 L", sistema: "Cíclico" }, precio: 980000, precioOferta: 833000, cuotas: 3, stock: true, imagen: "" }
-        ];
+    }
 
-        let carrito = [];
-        let vistaActual = 'carrito'; 
+    document.getElementById("resultCode").textContent = envio.code;
+    document.getElementById("resultSender").textContent = envio.sender;
+    document.getElementById("resultReceiver").textContent = envio.receiver;
+    document.getElementById("resultOrigin").textContent = envio.origin;
+    document.getElementById("resultDestination").textContent = envio.destination;
+    document.getElementById("resultStatus").textContent = envio.status;
 
-        function formatearMoneda(valor) {
-            return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(valor);
-        }
+    const result = document.getElementById("trackingResult");
 
-        const gridContainer = document.getElementById('gridProductos');
+    result.classList.add("show");
 
-        function renderizarProductos() {
-            gridContainer.innerHTML = '';
-            productos.forEach(producto => {
-                let specsHTML = '';
-                for (const [key, value] of Object.entries(producto.especificaciones)) {
-                    specsHTML += `
-                        <div>
-                            <span class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
-                            <span class="spec-value">${value}</span>
-                        </div>
-                    `;
-                }
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
 
-                let imagenHTML = '';
-                if (producto.imagen && producto.imagen.trim() !== "") {
-                    imagenHTML = `<img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.style.display='none'">`;
-                }
+}
 
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    ${producto.stock ? '<span class="badge-stock">Stock</span>' : ''}
-                    <div class="card-img-container">
-                        ${imagenHTML}
-                        <span class="card-img-placeholder">${producto.marca}</span>
-                    </div>
-                    <div class="card-body">
-                        <span class="card-category">${producto.categoria}</span>
-                        <h3 class="card-title">${producto.nombre}</h3>
-                        <p class="card-desc">${producto.descripcion}</p>
-                        
-                        <div class="specs-list">${specsHTML}</div>
 
-                        <div class="pricing">
-                            <div class="price-original">${formatearMoneda(producto.precio)}</div>
-                            <div class="price-container">
-                                <span class="price-offer">${formatearMoneda(producto.precioOferta)}</span>
-                            </div>
-                            <div class="cuotas-badge">Precio oferta en efectivo/transferencia</div>
-                            
-                            <button class="btn-add-cart" onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
-                        </div>
-                    </div>
-                `;
-                gridContainer.appendChild(card);
-            });
-        }
+/* ==========================
+   MODAL PAGO
+========================== */
 
-        function agregarAlCarrito(id) {
-            const producto = productos.find(p => p.id === id);
-            const itemExistente = carrito.find(item => item.id === id);
+function abrirPago(){
 
-            if (itemExistente) {
-                itemExistente.cantidad++;
-            } else {
-                carrito.push({ ...producto, cantidad: 1 });
-            }
+    document.getElementById("paymentModal")
+        .classList.add("show");
 
-            actualizarContadorCarrito();
-            vistaActual = 'carrito';
-            toggleCart(true);
-        }
+    document.getElementById("amount")
+        .textContent = "$0";
 
-        function cambiarCantidad(id, cambio) {
-            const item = carrito.find(i => i.id === id);
-            if (item) {
-                item.cantidad += cambio;
-                if (item.cantidad <= 0) {
-                    carrito = carrito.filter(i => i.id !== id);
-                }
-            }
-            actualizarContadorCarrito();
-            renderizarContenidoDrawer();
-        }
+}
 
-        function eliminarDelCarrito(id) {
-            carrito = carrito.filter(i => i.id !== id);
-            actualizarContadorCarrito();
-            renderizarContenidoDrawer();
-        }
 
-        function actualizarContadorCarrito() {
-            const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
-            document.getElementById('cartCount').innerText = totalItems;
-        }
+function cerrarPago(){
 
-        function toggleCart(forceOpen = false) {
-            const modal = document.getElementById('cartModal');
-            if (forceOpen) {
-                modal.classList.add('active');
-            } else {
-                modal.classList.toggle('active');
-                if(!modal.classList.contains('active')) {
-                    vistaActual = 'carrito';
-                }
-            }
-            renderizarContenidoDrawer();
-        }
+    document.getElementById("paymentModal")
+        .classList.remove("show");
 
-        function handleOutsideClick(event) {
-            if (event.target.id === 'cartModal') {
-                toggleCart();
-            }
-        }
+}
 
-        function renderizarContenidoDrawer() {
-            const drawerTitle = document.getElementById('drawerTitle');
-            const bodyContent = document.getElementById('cartBodyContent');
 
-            if (carrito.length === 0) {
-                drawerTitle.innerText = "Tu Carrito de Compras";
-                bodyContent.innerHTML = `<div class="empty-cart">Tu carrito está vacío.</div>`;
-                vistaActual = 'carrito';
-                return;
-            }
+function confirmarPago(){
 
-            if (vistaActual === 'carrito') {
-                drawerTitle.innerText = "Tu Carrito de Compras";
-                let htmlItems = '<div style="flex-grow:1; overflow-y:auto; max-height: 45vh;">';
-                
-                carrito.forEach(item => {
-                    htmlItems += `
-                        <div class="cart-item">
-                            <div class="cart-item-info">
-                                <h4>${item.nombre}</h4>
-                                <div class="cart-item-price">${formatearMoneda(item.precioOferta)} c/u</div>
-                            </div>
-                            <div class="cart-item-actions">
-                                <button class="qty-btn" onclick="cambiarCantidad(${item.id}, -1)">-</button>
-                                <span>${item.cantidad}</span>
-                                <button class="qty-btn" onclick="cambiarCantidad(${item.id}, 1)">+</button>
-                                <button class="remove-btn" onclick="eliminarDelCarrito(${item.id})">🗑️</button>
-                            </div>
-                        </div>
-                    `;
-                });
-                htmlItems += '</div>';
+    cerrarPago();
 
-                htmlItems += `
-                    <div style="margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 12px;">
-                        <div class="payment-methods">
-                            <label for="paymentMethodSelect">Método de Pago:</label>
-                            <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
-                                <option value="transferencia" selected>Transferencia Bancaria / Efectivo (15% OFF)</option>
-                                <option value="creditoDni">Crédito con DNI (Hasta 6 pagos, +4% por pago)</option>
-                                <option value="tarjeta">Tarjeta de Crédito (Hasta 12 cuotas, +8% por cuota)</option>
-                            </select>
-                        </div>
-                        <div id="cuotasContainer" style="margin-bottom: 10px; display: none;">
-                            <label for="cuotasSelect" style="font-size: 0.8rem; font-weight:600; margin-bottom:3px; display:block;" id="labelCuotas">Cantidad de pagos:</label>
-                            <select id="cuotasSelect" class="payment-select" onchange="updateCartUI()"></select>
-                        </div>
-                        <div id="paymentDetailsContainer"></div>
-                        <div class="cart-total">
-                            <span>Total:</span>
-                            <span id="cartTotalPrice">$0</span>
-                        </div>
-                        <button class="checkout-btn" onclick="irAlFormularioEnvio()">Continuar con Datos de Envío</button>
-                    </div>
-                `;
+    mostrarToast(
+        "Pago informado. PANROD verificará el comprobante."
+    );
 
-                bodyContent.innerHTML = htmlItems;
-                onPaymentMethodChange();
+}
 
-            } else if (vistaActual === 'formulario') {
-                drawerTitle.innerText = "Datos del Comprador y Envío";
-                
-                bodyContent.innerHTML = `
-                    <div id="checkoutForm">
-                        <div class="form-group">
-                            <label for="nombreCliente">Nombre y Apellido *</label>
-                            <input type="text" id="nombreCliente" required placeholder="Ej. Juan Pérez" value="Juan Pérez">
-                        </div>
-                        <div class="form-group">
-                            <label for="dniCliente">DNI / CUIL *</label>
-                            <input type="text" id="dniCliente" required placeholder="Ej. 37897087" value="37897087">
-                        </div>
-                        <div class="form-group">
-                            <label for="telefonoCliente">Teléfono / WhatsApp *</label>
-                            <input type="tel" id="telefonoCliente" required placeholder="Ej. 1166788997" value="1166788997">
-                        </div>
-                        <div class="form-group">
-                            <label for="emailCliente">Email *</label>
-                            <input type="email" id="emailCliente" required placeholder="Ej. iarita@gmail.com" value="iarita@gmail.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="direccionCliente">Calle y Número de Entrega *</label>
-                            <input type="text" id="direccionCliente" required placeholder="Ej. Calletin 78" value="Calletin 78">
-                        </div>
-                        <div class="form-group">
-                            <label for="localidadCliente">Localidad / Barrio *</label>
-                            <input type="text" id="localidadCliente" required placeholder="Ej. Lomas de Zamora" value="Lomas de Zamora">
-                        </div>
-                        <div class="form-group">
-                            <label for="provinciaSelect">Zona de Envío *</label>
-                            <select id="provinciaSelect" class="payment-select" onchange="updateCartUI()">
-                                <option value="CABA">Capital Federal (CABA) - $8.500</option>
-                                <option value="Buenos Aires" selected>Provincia de Buenos Aires - $12.500</option>
-                                <option value="Provincias">Otras Provincias / Resto del País - $18.500</option>
-                            </select>
-                        </div>
 
-                        <div id="envioInfoResumen" style="background: #f8fafc; border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; font-size: 0.8rem; color: var(--accent-color); font-weight: 600; margin-bottom: 12px;">
-                            ⏱️ Demora: 24 a 48 hs | Envío: $12.500
-                        </div>
+/* ==========================
+   COPIAR DATOS
+========================== */
 
-                        <div class="form-buttons">
-                            <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
-                            <button type="button" class="btn-submit-order" onclick="enviarPedidoWhatsApp()">💬 Enviar Pedido WhatsApp</button>
-                        </div>
-                    </div>
-                `;
-                updateCartUI();
-            }
-        }
+function copiar(id){
 
-        function onPaymentMethodChange() {
-            const metodo = document.getElementById('paymentMethodSelect').value;
-            const cuotasContainer = document.getElementById('cuotasContainer');
-            const cuotasSelect = document.getElementById('cuotasSelect');
-            const labelCuotas = document.getElementById('labelCuotas');
+    const elemento = document.getElementById(id);
 
-            cuotasSelect.innerHTML = '';
+    const texto = elemento.innerText;
 
-            if (metodo === 'creditoDni') {
-                cuotasContainer.style.display = 'block';
-                labelCuotas.innerText = "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
-                for (let i = 1; i <= 6; i++) {
-                    const opt = document.createElement('option');
-                    opt.value = i;
-                    opt.innerText = `${i} pago${i > 1 ? 's' : ''} (+${(i*4)}% recargo)`;
-                    cuotasSelect.appendChild(opt);
-                }
-            } else if (metodo === 'tarjeta') {
-                cuotasContainer.style.display = 'block';
-                labelCuotas.innerText = "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
-                for (let i = 1; i <= 12; i++) {
-                    const opt = document.createElement('option');
-                    opt.value = i;
-                    opt.innerText = `${i} cuota${i > 1 ? 's' : ''} (+${(i*8)}% recargo)`;
-                    cuotasSelect.appendChild(opt);
-                }
-            } else {
-                cuotasContainer.style.display = 'none';
-            }
-            updateCartUI();
-        }
+    if(navigator.clipboard){
 
-        function updateCartUI() {
-            const paymentMethodSelect = document.getElementById('paymentMethodSelect');
-            if (!paymentMethodSelect) return;
-
-            const paymentMethod = paymentMethodSelect.value;
-            const detailsContainer = document.getElementById('paymentDetailsContainer');
-            
-            let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
-            let recargoDescuentoValor = 0;
-
-            if (paymentMethod === 'transferencia') {
-                recargoDescuentoValor = -(subtotal * 0.15);
-            } else if (paymentMethod === 'creditoDni') {
-                const numCuotas = parseInt(document.getElementById('cuotasSelect').value) || 1;
-                const porcentajeRecargo = numCuotas * 0.04;
-                recargoDescuentoValor = subtotal * porcentajeRecargo;
-            } else if (paymentMethod === 'tarjeta') {
-                const numCuotas = parseInt(document.getElementById('cuotasSelect').value) || 1;
-                const porcentajeRecargo = numCuotas * 0.08;
-                recargoDescuentoValor = subtotal * porcentajeRecargo;
-            }
-
-            let costoEnvio = 12500;
-            const provinciaSelect = document.getElementById('provinciaSelect');
-            if (provinciaSelect) {
-                const provKey = provinciaSelect.value;
-                costoEnvio = tarifasProvincias[provKey].costo;
-                const infoRes = document.getElementById('envioInfoResumen');
-                if(infoRes) {
-                    infoRes.innerText = `⏱️ Demora: ${tarifasProvincias[provKey].demora} | Envío: ${formatearMoneda(costoEnvio)}`;
-                }
-            }
-
-            let totalFinal = subtotal + costoEnvio + recargoDescuentoValor;
-
-            if (detailsContainer) {
-                let colorEstilo = recargoDescuentoValor < 0 ? "#10b981" : "var(--text-main)";
-                detailsContainer.innerHTML = `
-                    <div class="cart-summary-line"><span>Subproductos:</span> <span>${formatearMoneda(subtotal)}</span></div>
-                    <div class="cart-summary-line"><span>Envío:</span> <span>${formatearMoneda(costoEnvio)}</span></div>
-                    <div class="cart-summary-line" style="color: ${colorEstilo}; font-weight:600;"><span>Recargo/Descuento:</span> <span>${recargoDescuentoValor < 0 ? '-' : '+'}${formatearMoneda(Math.abs(recargoDescuentoValor))}</span></div>
-                `;
-            }
-
-            const totalPriceEl = document.getElementById('cartTotalPrice');
-            if (totalPriceEl) {
-                totalPriceEl.innerText = formatearMoneda(totalFinal);
-            }
-        }
-
-        function irAlFormularioEnvio() {
-            vistaActual = 'formulario';
-            renderizarContenidoDrawer();
-        }
-
-        function volverAlCarrito() {
-            vistaActual = 'carrito';
-            renderizarContenidoDrawer();
-        }
-
-        function enviarPedidoWhatsApp() {
-            const nombre = document.getElementById('nombreCliente').value.trim();
-            const dni = document.getElementById('dniCliente').value.trim();
-            const telefono = document.getElementById('telefonoCliente').value.trim();
-            const email = document.getElementById('emailCliente').value.trim();
-            const direccion = document.getElementById('direccionCliente').value.trim();
-            const localidad = document.getElementById('localidadCliente').value.trim();
-
-            if (!nombre || !dni || !telefono || !email || !direccion || !localidad) {
-                alert("Por favor, completa todos los datos obligatorios de entrega.");
-                return;
-            }
-            
-            const provinciaKey = document.getElementById('provinciaSelect').value;
-            const datosProvincia = tarifasProvincias[provinciaKey];
-            const costoEnvio = datosProvincia.costo;
-
-            const paymentMethod = document.getElementById('paymentMethodSelect').value;
-            let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
-            
-            let recargoDescuentoValor = 0;
-            let textoMetodo = "";
-
-            if (paymentMethod === 'transferencia') {
-                recargoDescuentoValor = -(subtotal * 0.15);
-                textoMetodo = "Transferencia Bancaria / Efectivo (15% OFF Aplicado)";
-            } else if (paymentMethod === 'creditoDni') {
-                const numCuotas = parseInt(document.getElementById('cuotasSelect').value) || 1;
-                recargoDescuentoValor = subtotal * (numCuotas * 0.04);
-                textoMetodo = `Crédito con DNI (${numCuotas} pago${numCuotas > 1 ? 's' : ''}, +${numCuotas*4}% recargo)`;
-            } else if (paymentMethod === 'tarjeta') {
-                const numCuotas = parseInt(document.getElementById('cuotasSelect').value) || 1;
-                recargoDescuentoValor = subtotal * (numCuotas * 0.08);
-                textoMetodo = `Tarjeta de Crédito (${numCuotas} cuota${numCuotas > 1 ? 's' : ''}, +${numCuotas*8}% recargo)`;
-            }
-
-            const totalFinal = subtotal + costoEnvio + recargoDescuentoValor;
-
-            let detalleProductosTexto = "";
-            carrito.forEach(item => {
-                detalleProductosTexto += `• ${item.cantidad}x ${item.nombre}\n`;
+        navigator.clipboard.writeText(texto)
+            .then(()=>{
+                mostrarToast("Copiado al portapapeles");
             });
 
-            let mensaje = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
-            mensaje += `*LOGÍSTICA NOVA*\n`;
-            mensaje += `----------------------------------------\n`;
-            mensaje += `*N° de Guía:* NV-6032-2026\n`;
-            mensaje += `*Código de Validación:* 594710\n\n`;
-            
-            mensaje += `*DATOS DEL COMPRADOR*\n`;
-            mensaje += `• Nombre: ${nombre}\n`;
-            mensaje += `• DNI/CUIL: ${dni}\n`;
-            mensaje += `• Teléfono: ${telefono}\n`;
-            mensaje += `• Email: ${email}\n`;
-            mensaje += `• Dirección: ${direccion}, ${localidad}\n`;
-            mensaje += `• Zona de Envío: ${datosProvincia.nombre} (${formatearMoneda(costoEnvio)})\n\n`;
-            
-            mensaje += `*PRODUCTOS SOLICITADOS*\n`;
-            mensaje += `${detalleProductosTexto}\n`;
-            
-            mensaje += `*DESGLOSE DE PAGOS Y ENVÍO*\n`;
-            mensaje += `• Subproductos: ${formatearMoneda(subtotal)}\n`;
-            mensaje += `• Envío: ${formatearMoneda(costoEnvio)}\n`;
-            mensaje += `• Recargo/Descuento: ${recargoDescuentoValor < 0 ? '-' : '+'}${formatearMoneda(Math.abs(recargoDescuentoValor))}\n`;
-            mensaje += `• Método: ${textoMetodo}\n\n`;
-            
-            mensaje += `*TOTAL A PAGAR:* ${formatearMoneda(totalFinal)}\n\n`;
-            mensaje += `Solicito confirmación del pedido y datos para el pago.`;
+    }else{
 
-            const mensajeCodificado = encodeURIComponent(mensaje);
-            const numeroWhatsApp = "5491155012447";
-            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+        const area = document.createElement("textarea");
 
-            carrito = [];
-            actualizarContadorCarrito();
+        area.value = texto;
 
-            window.location.href = urlWhatsApp;
-        }
+        document.body.appendChild(area);
 
-        renderizarProductos();
-    </script>
+        area.select();
+
+        document.execCommand("copy");
+
+        area.remove();
+
+        mostrarToast("Copiado al portapapeles");
+
+    }
+
+}
+
+
+/* ==========================
+   SOLICITUD DE ENVÍO
+========================== */
+
+function crearSolicitud(event){
+
+    event.preventDefault();
+
+    const codigo = generarCodigo();
+
+    document.getElementById("newTrackingCode")
+        .textContent = codigo;
+
+    document.getElementById("requestModal")
+        .classList.add("show");
+
+}
+
+
+function generarCodigo(){
+
+    const numero = Math.floor(
+        100000 + Math.random() * 900000
+    );
+
+    return "PAN-" + numero;
+
+}
+
+
+function cerrarSolicitud(){
+
+    document.getElementById("requestModal")
+        .classList.remove("show");
+
+}
+
+
+/* ==========================
+   COMBOS
+========================== */
+
+function seleccionarCombo(combo){
+
+    const combos = {
+
+        BRONCE:"25 sobres - $47.500",
+        PLATA:"50 sobres - $85.000",
+        ORO:"100 sobres - $155.000",
+        PLATINO:"300 sobres - $375.000"
+
+    };
+
+    mostrarToast(
+        "Seleccionaste el combo " +
+        combo +
+        " (" +
+        combos[combo] +
+        ")"
+    );
+
+    scrollToSection("envio");
+
+}
+
+
+/* ==========================
+   NAVEGACIÓN
+========================== */
+
+function scrollToSection(id){
+
+    const elemento = document.getElementById(id);
+
+    if(elemento){
+
+        elemento.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* ==========================
+   TOAST
+========================== */
+
+let toastTimer;
+
+function mostrarToast(mensaje){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = mensaje;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* ==========================
+   CERRAR MODALES
+========================== */
+
+window.addEventListener("click",function(event){
+
+    const payment =
+        document.getElementById("paymentModal");
+
+    const request =
+        document.getElementById("requestModal");
+
+    if(event.target === payment){
+
+        cerrarPago();
+
+    }
+
+    if(event.target === request){
+
+        cerrarSolicitud();
+
+    }
+
+});
+
+
+/* ==========================
+   ENTER EN TRACKING
+========================== */
+
+document
+.getElementById("trackingInput")
+.addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+
+        buscarEnvio();
+
+    }
+
+});
+
+</script>
+
 </body>
-</html>
+    </html>
