@@ -2951,6 +2951,13 @@ function formatCurrency(amount) {
     return '$' + amount.toLocaleString('es-AR');
 }
 
+// Función auxiliar robusta para obtener los productos de cualquier fuente
+function getSourceProducts() {
+    return (typeof productos !== 'undefined' && productos) ? productos : 
+           ((typeof listaProductos !== 'undefined' && listaProductos) ? listaProductos : 
+           (window.productos || window.listaProductos || []));
+}
+
 // Lógica de Renderizado del Catálogo
 function renderCatalog() {
     const container = document.getElementById('catalogContainer');
@@ -2958,7 +2965,7 @@ function renderCatalog() {
 
     if (!container) return;
 
-    const sourceProducts = typeof productos !== 'undefined' ? productos : (typeof listaProductos !== 'undefined' ? listaProductos : []);
+    const sourceProducts = getSourceProducts();
 
     if (!sourceProducts || sourceProducts.length === 0) {
         container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">Cargando productos o catálogo vacío...</div>`;
@@ -3090,7 +3097,7 @@ function updateQty(id, change) {
 
 function calculateSubtotal() {
     let subtotal = 0;
-    const sourceProducts = typeof productos !== 'undefined' ? productos : (typeof listaProductos !== 'undefined' ? listaProductos : []);
+    const sourceProducts = getSourceProducts();
     for (let id in carrito) {
         let prod = sourceProducts.find(p => p.id == id);
         if (prod) {
@@ -3125,7 +3132,7 @@ function renderDrawerItems() {
         return;
     }
 
-    const sourceProducts = typeof productos !== 'undefined' ? productos : (typeof listaProductos !== 'undefined' ? listaProductos : []);
+    const sourceProducts = getSourceProducts();
     for (let id in carrito) {
         let prod = sourceProducts.find(p => p.id == id);
         if (!prod) continue;
@@ -3401,7 +3408,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             let productosTexto = "";
-            const sourceProducts = typeof productos !== 'undefined' ? productos : (typeof listaProductos !== 'undefined' ? listaProductos : []);
+            const sourceProducts = getSourceProducts();
 
             for (let id in carrito) {
                 let prod = sourceProducts.find(p => p.id == id);
@@ -3466,9 +3473,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
+    </script>
 </body>
 </html>
+
 
 
 
