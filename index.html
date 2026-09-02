@@ -2952,9 +2952,11 @@ function formatCurrency(amount) {
 }
 
 function getSourceProducts() {
-    return (typeof productos !== 'undefined' && productos) ? productos : 
-           ((typeof listaProductos !== 'undefined' && listaProductos) ? listaProductos : 
-           (window.productos || window.listaProductos || []));
+    if (typeof productos !== 'undefined' && Array.isArray(productos) && productos.length > 0) return productos;
+    if (typeof listaProductos !== 'undefined' && Array.isArray(listaProductos) && listaProductos.length > 0) return listaProductos;
+    if (window.productos && Array.isArray(window.productos) && window.productos.length > 0) return window.productos;
+    if (window.listaProductos && Array.isArray(window.listaProductos) && window.listaProductos.length > 0) return window.listaProductos;
+    return [];
 }
 
 function renderCatalog() {
@@ -2966,7 +2968,8 @@ function renderCatalog() {
     const sourceProducts = getSourceProducts();
 
     if (!sourceProducts || sourceProducts.length === 0) {
-        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">Cargando productos o catálogo vacío...</div>`;
+        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron productos cargados.</div>`;
+        if (counterText) counterText.innerText = `Mostrando 0 productos`;
         return;
     }
 
@@ -2999,7 +3002,7 @@ function renderCatalog() {
     container.innerHTML = '';
 
     if (paginatedItems.length === 0) {
-        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">No se encontraron productos disponibles.</div>`;
+        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">No hay productos que coincidan con la búsqueda.</div>`;
         if (typeof renderPagination === 'function') renderPagination(1, 1);
         return;
     }
@@ -3009,20 +3012,20 @@ function renderCatalog() {
         const card = document.createElement('div');
         card.className = 'product-card';
 
-        let imgList = (p.imagenes && p.imagenes.length > 0) ? p.imagenes : ['https://via.placeholder.com/300/0284c7/ffffff?text=Producto'];
+        let imgList = (p.imagenes && p.imagenes.length > 0) ? p.imagenes : [];
 
         card.innerHTML = `
             <div class="product-badge">OFERTA</div>
             <div class="product-slider-container">
                 <div class="product-slider-track" id="track-${p.id}">
-                    ${imgList.map(img => `<img src="${img}" class="product-img" alt="${p.nombre}">`).join('')}
+                    ${imgList.length > 0 ? imgList.map(img => `<img src="${img}" class="product-img" alt="${p.nombre}">`).join('') : '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;font-size:0.8rem;">Sin imagen</div>'}
                 </div>
             </div>
             <div class="product-cat-tag">${p.categoria}</div>
             <div class="product-title">${p.nombre}</div>
-            <div class="product-description">${p.descripcion}</div>
+            <div class="product-description">${p.descripcion || ''}</div>
             <div class="product-price-box">
-                <span class="old-price">${formatCurrency(p.precio)}</span>
+                ${p.precio ? `<span class="old-price">${formatCurrency(p.precio)}</span>` : ''}
                 <span class="product-price">${formatCurrency(p.precioOferta)}</span>
             </div>
             <div class="product-actions">
@@ -3138,10 +3141,10 @@ function renderDrawerItems() {
 
         const row = document.createElement('div');
         row.className = 'cart-item-row';
-        let imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/50';
+        let imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : '';
         
         row.innerHTML = `
-            <img src="${imgUrl}" class="cart-item-img" alt="">
+            ${imgUrl ? `<img src="${imgUrl}" class="cart-item-img" alt="">` : ''}
             <div style="flex-grow: 1;">
                 <div style="font-size: 0.8rem; font-weight: 700; line-height: 1.2;">${prod.nombre}</div>
                 <div style="font-size: 0.75rem; color: var(--text-muted);">${carrito[id]} x ${formatCurrency(prod.precioOferta)}</div>
@@ -3492,24 +3495,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         div.innerHTML = `<span>${carrito[id]}x ${prod.nombre}</span> <strong>${formatCurrency(prod.precioOferta * carrito[id])}</strong>`;
                         resItemsContainer.appendChild(div);
                     }
-                    const imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : 'https://via.placeholder.com/300/0284c7/ffffff?text=Producto';
-                    productosTexto += `• ${carrito[id]}x ${prod.nombre}\n  🖼️ Foto: ${imgUrl}\n`;
+                    const imgUrl = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes[0] : '';
+                    productosTexto += `• ${carrito[id]}x ${prod.nombre}\n` + (imgUrl ? `  🖼️ Foto: ${imgUrl}\n` : '');
                 }
             }
 
             const getVal = (id) => {
-                const el = document.getElementById(id);
+                const el = document.getElementById('id');
                 return el ? el.value : '';
             };
 
-            const fullName = getVal('fullName');
-            const dni = getVal('dni') || getVal('cuil') || 'No especificado';
-            const phone = getVal('phone');
-            const email = getVal('email');
-            const address = getVal('address');
-            const city = getVal('city');
+            const fullName = document.getElementById('fullName')?.value || '';
+            const dni = document.getElementById('dni')?.value || document.getElementById('cuil')?.value || 'No especificado';
+            const phone = document.getElementById('phone')?.value || '';
+            const email = document.getElementById('email')?.value || '';
+            const address = document.getElementById('address')?.value || '';
+            const city = document.getElementById('city')?.value || '';
             const provinceText = provinceSelect && provinceSelect.selectedIndex >= 0 ? provinceSelect.options[provinceSelect.selectedIndex].text : provinceVal;
-            const cp = getVal('cp');
+            const cp = document.getElementById('cp')?.value || '';
 
             let direccionCompleta = `${address}, ${city}, ${provinceText}`;
             if (cp) direccionCompleta += ` (CP: ${cp})`;
@@ -3558,12 +3561,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             switchView(3);
         });
-            </script>
+    }
+});
+    </script>
 </body>
 </html>
 
-    }
-});
 
 
 
