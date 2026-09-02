@@ -3462,12 +3462,13 @@ document.addEventListener('DOMContentLoaded', () => {
                           `*TOTAL A PAGAR:* ${formatCurrency(finalTotal)}\n\n` +
                           `Solicito confirmación del pedido y recepción de comprobante/link de pago.`;
 
-            const whatsappBtn = document.getElementById('whatsappBtn');
+                        const whatsappBtn = document.getElementById('whatsappBtn');
             if (whatsappBtn) {
                 whatsappBtn.onclick = () => {
-                    window.open(`https://wa.me/5491155012447?text=${encodeURIComponent(message)}`, '_blank');
+                    window.open(`https://api.whatsapp.com/send?phone=5491155012447&text=${encodeURIComponent(message)}`, '_blank');
                 };
             }
+
 
             switchView(3);
         });
