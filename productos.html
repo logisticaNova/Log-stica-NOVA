@@ -517,6 +517,19 @@
             <p>Selecciona tus productos, provincia de destino y método de pago preferido</p>
         </header>
 
+        <!-- SELECTOR / FILTRO DE CATEGORÍAS -->
+        <div style="margin-bottom: 25px; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px;">
+            <button class="filter-btn active" onclick="filtrarCategoria('Todas', this)" style="background: var(--primary-color); color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Todas</button>
+            <button class="filter-btn" onclick="filtrarCategoria('Televisores', this)" style="background: white; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Televisores</button>
+            <button class="filter-btn" onclick="filtrarCategoria('Heladeras', this)" style="background: white; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Heladeras</button>
+            <button class="filter-btn" onclick="filtrarCategoria('Cocinas', this)" style="background: white; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Cocinas</button>
+            <button class="filter-btn" onclick="filtrarCategoria('Lavarropas', this)" style="background: white; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Lavarropas</button>
+            <button class="filter-btn" onclick="filtrarCategoria('Aires acondicionados', this)" style="background: white; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Aires Acondicionados</button>
+            <button class="filter-btn" onclick="filtrarCategoria('Celulares', this)" style="background: white; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Celulares</button>
+            <button class="filter-btn" onclick="filtrarCategoria('Audio', this)" style="background: white; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Audio</button>
+            <button class="filter-btn" onclick="filtrarCategoria('Informática', this)" style="background: white; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; font-size: 0.85rem;">Informática</button>
+        </div>
+
         <div class="grid-productos" id="gridProductos"></div>
     </div>
 
@@ -548,13 +561,15 @@
             { id: 7, sku: "AC-SAMSUNG-3000", marca: "Samsung", modelo: "3000", nombre: "Aire Acondicionado Samsung Inverter 3000W", categoria: "Aires acondicionados", subcategoria: "Split Inverter", descripcion: "Aire acondicionado Split Inverter frío/calor.", especificaciones: { frigorias: "2600", potenciaW: "3000" }, precio: 950000, precioOferta: 807500, cuotas: 3, stock: true, imagen: "" },
             { id: 8, sku: "NOTE-LEN-IDEA3", marca: "Lenovo", modelo: "IdeaPad 3", nombre: "Notebook Lenovo IdeaPad 3", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Notebook versátil para estudio, trabajo y uso cotidiano.", especificaciones: { pantalla: "15.6 pulgadas", memoriaRAM: "8GB" }, precio: 890000, precioOferta: 756500, cuotas: 3, stock: true, imagen: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80" },
             { id: 9, sku: "AUD-JBL-FLIP6", marca: "JBL", modelo: "Flip 6", nombre: "Parlante Bluetooth JBL Flip 6", categoria: "Audio", subcategoria: "Parlantes", descripcion: "Parlante Bluetooth portátil resistente al agua.", especificaciones: { potenciaW: "30", conectividad: "Bluetooth" }, precio: 210000, precioOferta: 178500, cuotas: 3, stock: true, imagen: "" },
-            { id: 10, sku: "REF-GAFA-H300", marca: "Gafa", modelo: "H300", nombre: "Heladera con Freezer Gafa H300", categoria: "Heladeras", subcategoria: "Con Freezer", descripcion: "Heladera cíclica con gran capacidad y eficiencia energética.", especificaciones: { capacidad: "282 L", sistema: "Cíclico" }, precio: 980000, precioOferta: 833000, cuotas: 3, stock: true, imagen: "" }
+            { id: 10, sku: "REF-GAFA-H300", marca: "Gafa", modelo: "H300", nombre: "Heladera con Freezer Gafa H300", categoria: "Heladeras", subcategoria: "Con Freezer", descripcion: "Heladera cíclica con gran capacidad y eficiencia energética.", especificaciones: { capacidad: "282 L", sistema: "Cíclico" }, precio: 980000, precioOferta: 833000, cuotas: 3, stock: true, imagen: "" },
+            { id: 11, sku: "COC-ORBIS-5F", marca: "Orbis", modelo: "Multigas", nombre: "Cocina Multigas Orbis Acero Inoxidable", categoria: "Cocinas", subcategoria: "Hornallas", descripcion: "Cocina de alta gama con encendido electrónico y hornallas de alta eficiencia.", especificaciones: { hornallas: "4", seguridad: "Válvula cortagas" }, precio: 880000, precioOferta: 748000, cuotas: 3, stock: true, imagen: "" }
         ];
 
         let carrito = [];
         let vistaActual = 'carrito'; 
         let metodoPagoGlobal = 'transferencia';
         let cuotasGlobal = 1;
+        let categoriaSeleccionada = 'Todas';
 
         function formatearMoneda(valor) {
             return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(valor);
@@ -562,9 +577,36 @@
 
         const gridContainer = document.getElementById('gridProductos');
 
+        function filtrarCategoria(categoria, botonElemento) {
+            categoriaSeleccionada = categoria;
+            
+            const botones = document.querySelectorAll('.filter-btn');
+            botones.forEach(btn => {
+                btn.style.backgroundColor = 'white';
+                btn.style.color = 'var(--text-main)';
+                btn.style.borderColor = 'var(--border-color)';
+            });
+            
+            botonElemento.style.backgroundColor = 'var(--primary-color)';
+            botonElemento.style.color = 'white';
+            botonElemento.style.borderColor = 'var(--primary-color)';
+
+            renderizarProductos();
+        }
+
         function renderizarProductos() {
             gridContainer.innerHTML = '';
-            productos.forEach(producto => {
+            
+            const productosFiltrados = categoriaSeleccionada === 'Todas' 
+                ? productos 
+                : productos.filter(p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase());
+
+            if (productosFiltrados.length === 0) {
+                gridContainer.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">No hay productos disponibles en esta categoría.</div>`;
+                return;
+            }
+
+            productosFiltrados.forEach(producto => {
                 let specsHTML = '';
                 for (const [key, value] of Object.entries(producto.especificaciones)) {
                     specsHTML += `
