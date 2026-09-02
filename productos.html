@@ -977,16 +977,25 @@
             mensaje += `*TOTAL A PAGAR:* ${formatearMoneda(totalFinal)}\n\n`;
             mensaje += `Solicito confirmación del pedido y datos para el pago.`;
 
-            const mensajeCodificado = encodeURIComponent(mensaje);
+                        const mensajeCodificado = encodeURIComponent(mensaje);
             const numeroWhatsApp = "5491155012447";
 
             carrito = [];
             actualizarContadorCarrito();
             toggleCart();
 
-            // Solución de apertura definitiva compatible con navegadores móviles y de PC
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
+            // Método infalible que evita bloqueos de pop-ups en móviles y PC
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+            
+            // Si estás en móvil, redirige directamente; si prefieres pestaña nueva de forma segura:
+            const link = document.createElement('a');
+            link.href = urlWhatsApp;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
+
 
         renderizarProductos();
     </script>
