@@ -1,1 +1,1119 @@
-..
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - Electro & Tecnología</title>
+    <!-- Google Fonts para una tipografía moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent-color: #f97316;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --border-color: #e5e7eb;
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .badge-stock {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #10b981;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .card-img-placeholder {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .specs-list {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+        }
+
+        .specs-list div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .specs-list div:last-child {
+            margin-bottom: 0;
+        }
+
+        .spec-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .spec-value {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .pricing {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .price-original {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .price-offer {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .cuotas-badge {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .brand-footer {
+            margin-top: 10px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .brand-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Catálogo de Productos</h1>
+            <p>Explora nuestra selección de tecnología y electrodomésticos</p>
+        </header>
+
+        <div class="grid-productos" id="gridProductos">
+            <!-- Los productos se inyectarán dinámicamente mediante JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // 1. Catálogo de productos proporcionado
+        const productos = [
+            {
+                "id": 1,
+                "sku": "TV-TCL-55C655",
+                "ean": "",
+                "marca": "TCL",
+                "modelo": "55C655",
+                "nombre": "Smart TV TCL 55 C655 QLED 4K",
+                "categoria": "Televisores",
+                "subcategoria": "Smart TV",
+                "descripcion": "Televisor QLED 4K con Google TV y Dolby Vision Atmos.",
+                "especificaciones": {
+                    "pulgadas": 55,
+                    "resolucion": "4K UHD",
+                    "tecnologia": "QLED",
+                    "sistemaOperativo": "Google TV"
+                },
+                "precio": 899999,
+                "precioOferta": 764999,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.tcl.com/ar/es/"
+                }
+            },
+            {
+                "id": 2,
+                "sku": "TV-TCL-65C755",
+                "ean": "",
+                "marca": "TCL",
+                "modelo": "65C755",
+                "nombre": "Smart TV TCL 65 C755 QD-Mini LED 4K",
+                "categoria": "Televisores",
+                "subcategoria": "Smart TV",
+                "descripcion": "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento.",
+                "especificaciones": {
+                    "pulgadas": 65,
+                    "resolucion": "4K UHD",
+                    "tecnologia": "QD-Mini LED",
+                    "sistemaOperativo": "Google TV"
+                },
+                "precio": 1499999,
+                "precioOferta": 1274999,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.tcl.com/ar/es/"
+                }
+            },
+            {
+                "id": 3,
+                "sku": "TV-SAM-55CU7000",
+                "ean": "",
+                "marca": "Samsung",
+                "modelo": "55CU7000",
+                "nombre": "Smart TV Samsung 55 Crystal UHD 4K",
+                "categoria": "Televisores",
+                "subcategoria": "Smart TV",
+                "descripcion": "Smart TV Crystal UHD 4K con sistema Tizen.",
+                "especificaciones": {
+                    "pulgadas": 55,
+                    "resolucion": "4K UHD",
+                    "tecnologia": "Crystal UHD",
+                    "sistemaOperativo": "Tizen"
+                },
+                "precio": 920000,
+                "precioOferta": 782000,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.samsung.com/ar/"
+                }
+            },
+            {
+                "id": 7,
+                "sku": "LAV-WHIRL-WNQ65A",
+                "ean": "",
+                "marca": "Whirlpool",
+                "modelo": "WNQ65A",
+                "nombre": "Lavarropas Automático Whirlpool 6.5 Kg",
+                "categoria": "Lavarropas",
+                "subcategoria": "Carga Frontal",
+                "descripcion": "Lavarropas automático con múltiples programas de lavado.",
+                "especificaciones": {
+                    "capacidad": "6.5 kg",
+                    "tipoCarga": "Frontal",
+                    "velocidadCentrifugado": "1000 RPM"
+                },
+                "precio": 850000,
+                "precioOferta": 722500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.whirlpool.com.ar/"
+                }
+            },
+            {
+                "id": 20,
+                "sku": "CEL-MOT-EDGE50",
+                "ean": "",
+                "marca": "Motorola",
+                "modelo": "Edge 50",
+                "nombre": "Celular Motorola Edge 50 5G",
+                "categoria": "Celulares",
+                "subcategoria": "Smartphones",
+                "descripcion": "Smartphone premium con pantalla OLED y conectividad 5G.",
+                "especificaciones": {
+                    "pantalla": "6.7 pulgadas OLED",
+                    "memoriaRAM": "12GB",
+                    "almacenamiento": "256GB",
+                    "camaraPrincipal": "50 MP"
+                },
+                "precio": 850000,
+                "precioOferta": 722500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.motorola.com.ar/"
+                }
+            },
+            {
+                "id": 28,
+                "sku": "LAV-ESLABON-EWT",
+                "ean": "",
+                "marca": "Eslabón de Lujo",
+                "modelo": "EWT",
+                "nombre": "Lavarropas Eslabón de Lujo Automático",
+                "categoria": "Lavarropas",
+                "subcategoria": "Carga Superior",
+                "descripcion": "Lavarropas automático práctico para uso familiar.",
+                "especificaciones": {
+                    "capacidad": "7 kg",
+                    "tipoCarga": "Superior",
+                    "velocidadCentrifugado": "800 RPM"
+                },
+                "precio": 620000,
+                "precioOferta": 527000,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "#"
+                }
+            },
+            {
+                "id": 29,
+                "sku": "HEL-GE-HGE300",
+                "ean": "",
+                "marca": "GE Appliances",
+                "modelo": "HGE300",
+                "nombre": "Heladera GE No Frost 300L",
+                "categoria": "Heladeras",
+                "subcategoria": "No Frost",
+                "descripcion": "Heladera No Frost de capacidad familiar.",
+                "especificaciones": {
+                    "capacidadTotal": "300 Litros",
+                    "sistemaFrio": "No Frost",
+                    "eficienciaEnergetica": "A"
+                },
+                "precio": 990000,
+                "precioOferta": 841500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "#"
+                }
+            },
+            {
+                "id": 30,
+                "sku": "HEL-SAM-RT38",
+                "ean": "",
+                "marca": "Samsung",
+                "modelo": "RT38",
+                "nombre": "Heladera Samsung No Frost 382L",
+                "categoria": "Heladeras",
+                "subcategoria": "No Frost",
+                "descripcion": "Heladera No Frost con gran capacidad y tecnología de conservación.",
+                "especificaciones": {
+                    "capacidadTotal": "382 Litros",
+                    "sistemaFrio": "No Frost",
+                    "eficienciaEnergetica": "A"
+                },
+                "precio": 1250000,
+                "precioOferta": 1062500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.samsung.com/ar/"
+                }
+            },
+            {
+                "id": 37,
+                "sku": "COC-PATRICK-550",
+                "ean": "",
+                "marca": "Patrick",
+                "modelo": "550",
+                "nombre": "Cocina Patrick Multigas 55cm",
+                "categoria": "Cocinas",
+                "subcategoria": "A Gas",
+                "descripcion": "Cocina de cuatro hornallas con horno a gas.",
+                "especificaciones": {
+                    "hornallas": 4,
+                    "tipoGas": "Multigas",
+                    "valvulaSeguridad": "Sí"
+                },
+                "precio": 410000,
+                "precioOferta": 348500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.patrick.com.ar/"
+                }
+            },
+            {
+                "id": 38,
+                "sku": "AC-SAMSUNG-3000",
+                "ean": "",
+                "marca": "Samsung",
+                "modelo": "3000",
+                "nombre": "Aire Acondicionado Samsung Inverter 3000W",
+                "categoria": "Aires acondicionados",
+                "subcategoria": "Split Inverter",
+                "descripcion": "Aire acondicionado Split Inverter frío/calor.",
+                "especificaciones": {
+                    "frigorias": "2600",
+                    "potenciaW": "3000",
+                    "tipoClima": "Frío/Calor",
+                    "tecnologia": "Inverter"
+                },
+                "precio": 950000,
+                "precioOferta": 807500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.samsung.com/ar/"
+                }
+            },
+            {
+                "id": 39,
+                "sku": "AC-LG-3000",
+                "ean": "",
+                "marca": "LG",
+                "modelo": "3000",
+                "nombre": "Aire Acondicionado LG Dual Inverter 3000W",
+                "categoria": "Aires acondicionados",
+                "subcategoria": "Split Inverter",
+                "descripcion": "Aire acondicionado Dual Inverter frío/calor.",
+                "especificaciones": {
+                    "frigorias": "2600",
+                    "potenciaW": "3000",
+                    "tipoClima": "Frío/Calor",
+                    "tecnologia": "Dual Inverter"
+                },
+                "precio": 999999,
+                "precioOferta": 849999,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.lg.com/ar/"
+                }
+            },
+            {
+                "id": 40,
+                "sku": "AC-TCL-3200",
+                "ean": "",
+                "marca": "TCL",
+                "modelo": "3200",
+                "nombre": "Aire Acondicionado TCL Inverter 3200W",
+                "categoria": "Aires acondicionados",
+                "subcategoria": "Split Inverter",
+                "descripcion": "Aire acondicionado Inverter frío/calor con alta eficiencia.",
+                "especificaciones": {
+                    "frigorias": "2750",
+                    "potenciaW": "3200",
+                    "tipoClima": "Frío/Calor",
+                    "tecnologia": "Inverter"
+                },
+                "precio": 790000,
+                "precioOferta": 671500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.tcl.com/ar/es/"
+                }
+            },
+            {
+                "id": 41,
+                "sku": "AC-BGH-3000",
+                "ean": "",
+                "marca": "BGH",
+                "modelo": "3000",
+                "nombre": "Aire Acondicionado BGH Inverter 3000W",
+                "categoria": "Aires acondicionados",
+                "subcategoria": "Split Inverter",
+                "descripcion": "Aire acondicionado frío/calor con tecnología Inverter.",
+                "especificaciones": {
+                    "frigorias": "2600",
+                    "potenciaW": "3000",
+                    "tipoClima": "Frío/Calor",
+                    "tecnologia": "Inverter"
+                },
+                "precio": 850000,
+                "precioOferta": 722500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.bgh.com.ar/"
+                }
+            },
+            {
+                "id": 42,
+                "sku": "AC-HIS-4500",
+                "ean": "",
+                "marca": "Hisense",
+                "modelo": "4500",
+                "nombre": "Aire Acondicionado Hisense Inverter 4500W",
+                "categoria": "Aires acondicionados",
+                "subcategoria": "Split Inverter",
+                "descripcion": "Aire acondicionado de mayor potencia para ambientes amplios.",
+                "especificaciones": {
+                    "frigorias": "3800",
+                    "potenciaW": "4500",
+                    "tipoClima": "Frío/Calor",
+                    "tecnologia": "Inverter"
+                },
+                "precio": 1150000,
+                "precioOferta": 977500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.hisense.com.ar/"
+                }
+            },
+            {
+                "id": 43,
+                "sku": "ASP-DREAN-ASP01",
+                "ean": "",
+                "marca": "Drean",
+                "modelo": "ASP01",
+                "nombre": "Aspiradora Drean 1600W",
+                "categoria": "Pequeños electrodomésticos",
+                "subcategoria": "Aspiradoras",
+                "descripcion": "Aspiradora de potencia elevada para limpieza del hogar.",
+                "especificaciones": {
+                    "potenciaW": "1600",
+                    "tipo": "Trineo",
+                    "filtro": "Lavable"
+                },
+                "precio": 190000,
+                "precioOferta": 161500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.drean.com.ar/"
+                }
+            },
+            {
+                "id": 44,
+                "sku": "ASP-ATMA-ASP02",
+                "ean": "",
+                "marca": "Atma",
+                "modelo": "ASP02",
+                "nombre": "Aspiradora Atma 1400W",
+                "categoria": "Pequeños electrodomésticos",
+                "subcategoria": "Aspiradoras",
+                "descripcion": "Aspiradora compacta para limpieza diaria.",
+                "especificaciones": {
+                    "potenciaW": "1400",
+                    "tipo": "Trineo",
+                    "filtro": "Lavable"
+                },
+                "precio": 175000,
+                "precioOferta": 148750,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "#"
+                }
+            },
+            {
+                "id": 45,
+                "sku": "MIC-ATMA-MO20",
+                "ean": "",
+                "marca": "Atma",
+                "modelo": "MO20",
+                "nombre": "Microondas Atma 20 Litros",
+                "categoria": "Pequeños electrodomésticos",
+                "subcategoria": "Microondas",
+                "descripcion": "Microondas compacto para cocinar y calentar alimentos.",
+                "especificaciones": {
+                    "capacidad": "20 Litros",
+                    "potenciaW": "700",
+                    "tipo": "Digital"
+                },
+                "precio": 210000,
+                "precioOferta": 178500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "#"
+                }
+            },
+            {
+                "id": 51,
+                "sku": "MON-LG-24FHD",
+                "ean": "",
+                "marca": "LG",
+                "modelo": "24FHD",
+                "nombre": "Monitor LG 24 Full HD",
+                "categoria": "Informática",
+                "subcategoria": "Monitores",
+                "descripcion": "Monitor Full HD de 24 pulgadas para trabajo y entretenimiento.",
+                "especificaciones": {
+                    "pulgadas": 24,
+                    "resolucion": "1920x1080",
+                    "tipoPanel": "IPS",
+                    "frecuencia": "75 Hz"
+                },
+                "precio": 270000,
+                "precioOferta": 229500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.lg.com/ar/"
+                }
+            },
+            {
+                "id": 52,
+                "sku": "MON-SAM-24FHD",
+                "ean": "",
+                "marca": "Samsung",
+                "modelo": "24FHD",
+                "nombre": "Monitor Samsung 24 Full HD",
+                "categoria": "Informática",
+                "subcategoria": "Monitores",
+                "descripcion": "Monitor Full HD de 24 pulgadas.",
+                "especificaciones": {
+                    "pulgadas": 24,
+                    "resolucion": "1920x1080",
+                    "tipoPanel": "VA",
+                    "frecuencia": "75 Hz"
+                },
+                "precio": 260000,
+                "precioOferta": 221000,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.samsung.com/ar/"
+                }
+            },
+            {
+                "id": 53,
+                "sku": "NOTE-LEN-IDEA3",
+                "ean": "",
+                "marca": "Lenovo",
+                "modelo": "IdeaPad 3",
+                "nombre": "Notebook Lenovo IdeaPad 3",
+                "categoria": "Informática",
+                "subcategoria": "Notebooks",
+                "descripcion": "Notebook versátil para estudio, trabajo y uso cotidiano.",
+                "especificaciones": {
+                    "pantalla": "15.6 pulgadas",
+                    "memoriaRAM": "8GB",
+                    "almacenamiento": "256GB SSD",
+                    "sistemaOperativo": "Windows"
+                },
+                "precio": 890000,
+                "precioOferta": 756500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.lenovo.com/ar/"
+                }
+            },
+            {
+                "id": 54,
+                "sku": "NOTE-HP-15",
+                "ean": "",
+                "marca": "HP",
+                "modelo": "15",
+                "nombre": "Notebook HP 15",
+                "categoria": "Informática",
+                "subcategoria": "Notebooks",
+                "descripcion": "Notebook de 15 pulgadas para productividad y estudio.",
+                "especificaciones": {
+                    "pantalla": "15.6 pulgadas",
+                    "memoriaRAM": "8GB",
+                    "almacenamiento": "256GB SSD",
+                    "sistemaOperativo": "Windows"
+                },
+                "precio": 920000,
+                "precioOferta": 782000,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.hp.com/ar-es/"
+                }
+            },
+            {
+                "id": 55,
+                "sku": "NOTE-ASUS-VIVO15",
+                "ean": "",
+                "marca": "ASUS",
+                "modelo": "VivoBook 15",
+                "nombre": "Notebook ASUS VivoBook 15",
+                "categoria": "Informática",
+                "subcategoria": "Notebooks",
+                "descripcion": "Notebook liviana para trabajo, estudio y entretenimiento.",
+                "especificaciones": {
+                    "pantalla": "15.6 pulgadas",
+                    "memoriaRAM": "8GB",
+                    "almacenamiento": "512GB SSD",
+                    "sistemaOperativo": "Windows"
+                },
+                "precio": 1050000,
+                "precioOferta": 892500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.asus.com/ar/"
+                }
+            },
+            {
+                "id": 56,
+                "sku": "TAB-SAM-A9",
+                "ean": "",
+                "marca": "Samsung",
+                "modelo": "Galaxy Tab A9",
+                "nombre": "Tablet Samsung Galaxy Tab A9",
+                "categoria": "Informática",
+                "subcategoria": "Tablets",
+                "descripcion": "Tablet compacta para entretenimiento, estudio y navegación.",
+                "especificaciones": {
+                    "pantalla": "8.7 pulgadas",
+                    "memoriaRAM": "4GB",
+                    "almacenamiento": "64GB",
+                    "conectividad": "Wi-Fi"
+                },
+                "precio": 290000,
+                "precioOferta": 246500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.samsung.com/ar/"
+                }
+            },
+            {
+                "id": 57,
+                "sku": "TAB-LEN-M10",
+                "ean": "",
+                "marca": "Lenovo",
+                "modelo": "Tab M10",
+                "nombre": "Tablet Lenovo Tab M10",
+                "categoria": "Informática",
+                "subcategoria": "Tablets",
+                "descripcion": "Tablet de pantalla amplia para entretenimiento y tareas cotidianas.",
+                "especificaciones": {
+                    "pantalla": "10.1 pulgadas",
+                    "memoriaRAM": "4GB",
+                    "almacenamiento": "64GB",
+                    "conectividad": "Wi-Fi"
+                },
+                "precio": 330000,
+                "precioOferta": 280500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.lenovo.com/ar/"
+                }
+            },
+            {
+                "id": 58,
+                "sku": "AUD-JBL-FLIP6",
+                "ean": "",
+                "marca": "JBL",
+                "modelo": "Flip 6",
+                "nombre": "Parlante Bluetooth JBL Flip 6",
+                "categoria": "Audio",
+                "subcategoria": "Parlantes",
+                "descripcion": "Parlante Bluetooth portátil resistente al agua.",
+                "especificaciones": {
+                    "potenciaW": "30",
+                    "conectividad": "Bluetooth",
+                    "bateria": "12 horas"
+                },
+                "precio": 210000,
+                "precioOferta": 178500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.jbl.com.ar/"
+                }
+            },
+            {
+                "id": 59,
+                "sku": "AUD-JBL-CHARGE5",
+                "ean": "",
+                "marca": "JBL",
+                "modelo": "Charge 5",
+                "nombre": "Parlante Bluetooth JBL Charge 5",
+                "categoria": "Audio",
+                "subcategoria": "Parlantes",
+                "descripcion": "Parlante portátil con gran autonomía y sonido potente.",
+                "especificaciones": {
+                    "potenciaW": "40",
+                    "conectividad": "Bluetooth",
+                    "bateria": "20 horas"
+                },
+                "precio": 280000,
+                "precioOferta": 238000,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.jbl.com.ar/"
+                }
+            },
+            {
+                "id": 60,
+                "sku": "AUD-SAM-BUDSFE",
+                "ean": "",
+                "marca": "Samsung",
+                "modelo": "Galaxy Buds FE",
+                "nombre": "Auriculares Samsung Galaxy Buds FE",
+                "categoria": "Audio",
+                "subcategoria": "Auriculares",
+                "descripcion": "Auriculares inalámbricos con cancelación activa de ruido.",
+                "especificaciones": {
+                    "tipo": "In Ear",
+                    "conectividad": "Bluetooth",
+                    "cancelacionRuido": "Sí"
+                },
+                "precio": 150000,
+                "precioOferta": 127500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.samsung.com/ar/"
+                }
+            },
+            {
+                "id": 61,
+                "sku": "AUD-XIA-REDMIBUDS",
+                "ean": "",
+                "marca": "Xiaomi",
+                "modelo": "Redmi Buds",
+                "nombre": "Auriculares Xiaomi Redmi Buds",
+                "categoria": "Audio",
+                "subcategoria": "Auriculares",
+                "descripcion": "Auriculares inalámbricos compactos con Bluetooth.",
+                "especificaciones": {
+                    "tipo": "In Ear",
+                    "conectividad": "Bluetooth",
+                    "cancelacionRuido": "Sí"
+                },
+                "precio": 65000,
+                "precioOferta": 55250,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.mi.com/ar/"
+                }
+            },
+            {
+                "id": 62,
+                "sku": "SEC-ATMA-2000",
+                "ean": "",
+                "marca": "Atma",
+                "modelo": "2000",
+                "nombre": "Secador de Pelo Atma 2000W",
+                "categoria": "Pequeños electrodomésticos",
+                "subcategoria": "Secadores",
+                "descripcion": "Secador de pelo de alta potencia con varias velocidades.",
+                "especificaciones": {
+                    "potenciaW": "2000",
+                    "velocidades": 2,
+                    "temperaturas": 3
+                },
+                "precio": 78000,
+                "precioOferta": 66300,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "#"
+                }
+            },
+            {
+                "id": 71,
+                "sku": "TV-TCL-43P755",
+                "ean": "",
+                "marca": "TCL",
+                "modelo": "43P755",
+                "nombre": "Smart TV TCL 43 P755 4K",
+                "categoria": "Televisores",
+                "subcategoria": "Smart TV",
+                "descripcion": "Smart TV 4K de 43 pulgadas con Google TV.",
+                "especificaciones": {
+                    "pulgadas": 43,
+                    "resolucion": "4K UHD",
+                    "tecnologia": "LED",
+                    "sistemaOperativo": "Google TV"
+                },
+                "precio": 490000,
+                "precioOferta": 416500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.tcl.com/ar/es/"
+                }
+            },
+            {
+                "id": 72,
+                "sku": "TV-LG-65UR7800",
+                "ean": "",
+                "marca": "LG",
+                "modelo": "65UR7800",
+                "nombre": "Smart TV LG 65 4K UHD",
+                "categoria": "Televisores",
+                "subcategoria": "Smart TV",
+                "descripcion": "Smart TV LG de 65 pulgadas con resolución 4K.",
+                "especificaciones": {
+                    "pulgadas": 65,
+                    "resolucion": "4K UHD",
+                    "tecnologia": "LED",
+                    "sistemaOperativo": "webOS"
+                },
+                "precio": 1290000,
+                "precioOferta": 1096500,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.lg.com/ar/"
+                }
+            },
+            {
+                "id": 73,
+                "sku": "CEL-SAM-A55",
+                "ean": "",
+                "marca": "Samsung",
+                "modelo": "Galaxy A55",
+                "nombre": "Celular Samsung Galaxy A55 5G",
+                "categoria": "Celulares",
+                "subcategoria": "Smartphones",
+                "descripcion": "Smartphone gama media-alta con gran rendimiento y cámaras.",
+                "especificaciones": {
+                    "pantalla": "6.5 pulgadas Super AMOLED",
+                    "memoriaRAM": "6GB",
+                    "almacenamiento": "128GB",
+                    "camaraPrincipal": "50 MP"
+                },
+                "precio": 520000,
+                "precioOferta": 442000,
+                "cuotas": 3,
+                "stock": true,
+                "imagenes": [],
+                "fuente": {
+                    "tipo": "fabricante",
+                    "url": "https://www.samsung.com/ar/"
+                }
+            }
+        ];
+
+        // 2. Función para formatear números como moneda (ARS)
+        function formatearMoneda(valor) {
+            return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(valor);
+        }
+
+        // 3. Renderizar los productos en el DOM
+        const gridContainer = document.getElementById('gridProductos');
+
+        productos.forEach(producto => {
+            // Crear especificaciones en HTML dinámicamente
+            let specsHTML = '';
+            for (const [key, value] of Object.entries(producto.especificaciones)) {
+                if(value !== "" && value !== 0) {
+                    specsHTML += `
+                        <div>
+                            <span class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                            <span class="spec-value">${value}</span>
+                        </div>
+                    `;
+                }
+            }
+
+            // Construir la tarjeta
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            card.innerHTML = `
+                ${producto.stock ? '<span class="badge-stock">Stock</span>' : ''}
+                <div class="card-img-placeholder">
+                    <span>${producto.marca}</span>
+                </div>
+                <div class="card-body">
+                    <span class="card-category">${producto.categoria} &bull; ${producto.subcategoria}</span>
+                    <h3 class="card-title">${producto.nombre}</h3>
+                    <p class="card-desc">${producto.descripcion}</p>
+                    
+                    <div class="specs-list">
+                        ${specsHTML}
+                    </div>
+
+                    <div class="pricing">
+                        <div class="price-original">${formatearMoneda(producto.precio)}</div>
+                        <div class="price-container">
+                            <span class="price-offer">${formatearMoneda(producto.precioOferta)}</span>
+                        </div>
+                        <div class="cuotas-badge">${producto.cuotas} cuotas sin interés</div>
+                        
+                        <div class="brand-footer">
+                            <span>Marca: <strong>${producto.marca}</strong></span>
+                            ${producto.fuente.url !== "#" ? `<a href="${producto.fuente.url}" target="_blank">Ver web</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            gridContainer.appendChild(card);
+        });
+    </script>
+</body>
+</html>
