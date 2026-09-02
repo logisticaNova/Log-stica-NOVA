@@ -521,14 +521,15 @@
 
     <script>
         const tarifasProvincias = {
-            "CABA": { costo: 9500, demora: "24 a 48 hs hábiles", nombre: "Capital Federal (CABA)" },
-            "Buenos Aires": { costo: 12500, demora: "2 a 3 días hábiles", nombre: "Provincia de Buenos Aires" },
-            "Cordoba": { costo: 16000, demora: "3 a 4 días hábiles", nombre: "Córdoba" },
-            "Santa Fe": { costo: 15000, demora: "3 a 4 días hábiles", nombre: "Santa Fe" },
-            "Mendoza": { costo: 18500, demora: "4 a 5 días hábiles", nombre: "Mendoza" },
-            "Tucuman": { costo: 19000, demora: "4 a 5 días hábiles", nombre: "Tucumán" },
-            "Patagonia": { costo: 24000, demora: "6 a 8 días hábiles", nombre: "Provincias Patagónicas" },
-            "RestoPais": { costo: 21000, demora: "5 a 6 días hábiles", nombre: "Resto del País" }
+            "CABA": { costo: 6500, demora: "12 a 24 hs", nombre: "Capital Federal (CABA)" },
+            "Buenos Aires": { costo: 9500, demora: "24 a 48 hs", nombre: "Provincia de Buenos Aires (Cercano / GBA)" },
+            "Buenos Aires Interior": { costo: 14000, demora: "2 a 4 días hábiles", nombre: "Provincia de Buenos Aires (Interior)" },
+            "Cordoba": { costo: 18000, demora: "3 a 5 días hábiles", nombre: "Córdoba" },
+            "Santa Fe": { costo: 16500, demora: "3 a 4 días hábiles", nombre: "Santa Fe" },
+            "Mendoza": { costo: 22000, demora: "4 a 6 días hábiles", nombre: "Mendoza" },
+            "Tucuman": { costo: 23000, demora: "4 a 6 días hábiles", nombre: "Tucumán" },
+            "Patagonia": { costo: 29000, demora: "6 a 9 días hábiles", nombre: "Provincias Patagónicas" },
+            "RestoPais": { costo: 25000, demora: "5 a 7 días hábiles", nombre: "Resto del País" }
         };
 
         const productos = [
@@ -810,7 +811,8 @@
                             <label for="provinciaSelect">Provincia de Destino *</label>
                             <select id="provinciaSelect" class="payment-select" onchange="updateCartUI()">
                                 <option value="CABA">Capital Federal (CABA)</option>
-                                <option value="Buenos Aires" selected>Provincia de Buenos Aires</option>
+                                <option value="Buenos Aires" selected>Provincia de Buenos Aires (Cercano / GBA)</option>
+                                <option value="Buenos Aires Interior">Provincia de Buenos Aires (Interior)</option>
                                 <option value="Cordoba">Córdoba</option>
                                 <option value="Santa Fe">Santa Fe</option>
                                 <option value="Mendoza">Mendoza</option>
@@ -821,7 +823,7 @@
                         </div>
 
                         <div id="envioInfoResumen" style="background: #f8fafc; border: 1px solid var(--border-color); padding: 8px; border-radius: 6px; font-size: 0.8rem; color: var(--accent-color); font-weight: 600; margin-bottom: 12px;">
-                            ⏱️ Demora: 2 a 3 días hábiles | Envío: $12.500
+                            ⏱️ Demora: 24 a 48 hs | Envío: $9.500
                         </div>
 
                         <div class="form-buttons">
@@ -888,7 +890,7 @@
                 recargoDescuentoValor = subtotal * porcentajeRecargo;
             }
 
-            let costoEnvio = 12500;
+            let costoEnvio = 9500;
             const provinciaSelect = document.getElementById('provinciaSelect');
             if (provinciaSelect) {
                 const provKey = provinciaSelect.value;
@@ -998,7 +1000,8 @@
             actualizarContadorCarrito();
             toggleCart();
 
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`, '_blank');
+            // Solución aplicada: se cambió a 'https://api.whatsapp.com/send' que asegura la redirección correcta en escritorio y dispositivos móviles
+            window.location.href = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensajeCodificado}`;
         }
 
         renderizarProductos();
