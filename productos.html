@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Logística Nova - Catálogo y Orden de Compra</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logística Nova - Catálogo y Orden de Compra</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><style>
 :root {
     --primary-color: #2563eb;
     --primary-dark: #1d4ed8;
@@ -54,7 +54,7 @@ body {
 }
 
 /* =========================================
-   NAVBAR
+NAVBAR
 ========================================= */
 
 .navbar {
@@ -109,6 +109,7 @@ body {
 .cart-btn:hover {
     background: var(--primary-dark);
     transform: translateY(-1px);
+
     box-shadow:
         0 5px 12px rgba(37,99,235,0.25);
 }
@@ -133,7 +134,7 @@ body {
 }
 
 /* =========================================
-   HEADER
+HEADER
 ========================================= */
 
 header {
@@ -195,7 +196,7 @@ header p {
 }
 
 /* =========================================
-   CONTAINER
+CONTAINER
 ========================================= */
 
 .container {
@@ -205,7 +206,7 @@ header p {
 }
 
 /* =========================================
-   FILTROS
+FILTROS
 ========================================= */
 
 .filtros-wrapper {
@@ -279,7 +280,7 @@ header p {
 }
 
 /* =========================================
-   GRID
+GRID
 ========================================= */
 
 .grid-productos {
@@ -292,7 +293,7 @@ header p {
 }
 
 /* =========================================
-   CARD
+CARD
 ========================================= */
 
 .card {
@@ -328,7 +329,7 @@ header p {
 }
 
 /* =========================================
-   STOCK
+STOCK
 ========================================= */
 
 .badge-stock {
@@ -361,7 +362,7 @@ header p {
 }
 
 /* =========================================
-   PRODUCT IMAGE / CAROUSEL
+PRODUCT IMAGE / CAROUSEL
 ========================================= */
 
 .product-carousel {
@@ -437,7 +438,7 @@ header p {
 }
 
 /* =========================================
-   CAROUSEL BUTTONS
+CAROUSEL BUTTONS
 ========================================= */
 
 .carousel-btn {
@@ -495,7 +496,7 @@ header p {
 }
 
 /* =========================================
-   DOTS
+DOTS
 ========================================= */
 
 .carousel-dots {
@@ -541,7 +542,7 @@ header p {
 }
 
 /* =========================================
-   CARD BODY
+CARD BODY
 ========================================= */
 
 .card-body {
@@ -554,7 +555,7 @@ header p {
 }
 
 /* =========================================
-   CATEGORY
+CATEGORY
 ========================================= */
 
 .card-category {
@@ -572,7 +573,7 @@ header p {
 }
 
 /* =========================================
-   TITLE
+TITLE
 ========================================= */
 
 .card-title {
@@ -590,7 +591,7 @@ header p {
 }
 
 /* =========================================
-   DESCRIPTION
+DESCRIPTION
 ========================================= */
 
 .card-desc {
@@ -642,7 +643,7 @@ header p {
 }
 
 /* =========================================
-   SPECS
+SPECS
 ========================================= */
 
 .specs-list {
@@ -695,7 +696,7 @@ header p {
 }
 
 /* =========================================
-   PRICING
+PRICING
 ========================================= */
 
 .pricing {
@@ -727,7 +728,7 @@ header p {
 }
 
 /* =========================================
-   TRANSFERENCIA
+TRANSFERENCIA
 ========================================= */
 
 .cuotas-badge {
@@ -757,7 +758,7 @@ header p {
 }
 
 /* =========================================
-   ADD CART
+ADD CART
 ========================================= */
 
 .btn-add-cart {
@@ -809,7 +810,7 @@ header p {
 }
 
 /* =========================================
-   PAGINACIÓN
+PAGINACIÓN
 ========================================= */
 
 .paginacion {
@@ -890,7 +891,7 @@ header p {
 }
 
 /* =========================================
-   CARRITO
+CARRITO
 ========================================= */
 
 .modal-overlay {
@@ -1240,11 +1241,10 @@ header p {
 }
 
 /* =========================================
-   RESPONSIVE
+RESPONSIVE
 ========================================= */
 
 @media (min-width: 640px) {
-
     .grid-productos {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
@@ -1255,22 +1255,18 @@ header p {
     .product-carousel {
         height: 225px;
     }
-
 }
 
 @media (min-width: 960px) {
-
     .grid-productos {
         grid-template-columns:
             repeat(3, minmax(0, 1fr));
 
         gap: 24px;
     }
-
 }
 
 @media (min-width: 1200px) {
-
     .grid-productos {
         grid-template-columns:
             repeat(4, minmax(0, 1fr));
@@ -1285,11 +1281,9 @@ header p {
     .product-carousel {
         height: 225px;
     }
-
 }
 
 @media (max-width: 480px) {
-
     .navbar {
         padding: 11px 14px;
     }
@@ -1360,23 +1354,19 @@ header p {
     .cart-item-actions {
         flex-shrink: 0;
     }
-
 }
-
-</style></head><body><nav class="navbar"><div class="navbar-brand">
-    📦 Logística Nova
-</div>
-
-<button class="cart-btn" onclick="toggleCart()">
+</style></head><body><nav class="navbar">
+    <div class="navbar-brand">
+        📦 Logística Nova
+    </div><button class="cart-btn" onclick="toggleCart()">
     🛒 Carrito
     <span class="cart-badge" id="cartCount">0</span>
 </button>
 
-</nav><div class="container"><header><div class="header-kicker">
-    ✦ Catálogo exclusivo
-</div>
-
-<h1>
+</nav><div class="container"><header>
+    <div class="header-kicker">
+        ✦ Catálogo exclusivo
+    </div><h1>
     Catálogo de Productos
 </h1>
 
@@ -1390,77 +1380,130 @@ header p {
 
 </header><div class="filtros-wrapper"><div class="filtros">
 
-    <button class="filter-btn active"
+    <button
+        class="filter-btn active"
         onclick="filtrarCategoria('Todas', this)">
         Todas
     </button>
 
-    <button class="filter-btn"
-        onclick="filtrarCategoria('Televisores', this)">
-        Televisores
-    </button>
-
-    <button class="filter-btn"
-        onclick="filtrarCategoria('Heladeras', this)">
-        Heladeras
-    </button>
-
-    <button class="filter-btn"
-        onclick="filtrarCategoria('Cocinas', this)">
-        Cocinas
-    </button>
-
-    <button class="filter-btn"
-        onclick="filtrarCategoria('Lavarropas', this)">
-        Lavarropas
-    </button>
-
-    <button class="filter-btn"
-        onclick="filtrarCategoria('Aires acondicionados', this)">
-        Aires Acondicionados
-    </button>
-
-    <button class="filter-btn"
+    <button
+        class="filter-btn"
         onclick="filtrarCategoria('Celulares', this)">
         Celulares
     </button>
 
-    <button class="filter-btn"
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Gaming', this)">
+        Gaming
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Televisores / Monitores', this)">
+        Televisores / Monitores
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Aires Acondicionados', this)">
+        Aires Acondicionados
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Heladeras / Freezers', this)">
+        Heladeras / Freezers
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Cocinas / Hornos', this)">
+        Cocinas / Hornos
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Lavarropas / Secadoras', this)">
+        Lavarropas / Secadoras
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Pequeños Electrodomésticos', this)">
+        Pequeños Electrodomésticos
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Aspiradoras', this)">
+        Aspiradoras
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Termotanques', this)">
+        Termotanques
+    </button>
+
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Notebooks / PC de Escritorio', this)">
+        Notebooks / PC de Escritorio
+    </button>
+
+    <button
+        class="filter-btn"
         onclick="filtrarCategoria('Audio', this)">
         Audio
     </button>
 
-    <button class="filter-btn"
-        onclick="filtrarCategoria('Informática', this)">
-        Informática
+    <button
+        class="filter-btn"
+        onclick="filtrarCategoria('Accesorios', this)">
+        Accesorios
     </button>
 
 </div>
 
-</div><div class="grid-productos" id="gridProductos"></div><div id="paginacion"></div></div><div class="modal-overlay"
-     id="cartModal"
-     onclick="handleOutsideClick(event)"><div class="cart-drawer">
+</div><div
+    class="grid-productos"
+    id="gridProductos">
+</div><div id="paginacion"></div></div><!-- =========================================
+CARRITO
+========================================= --><div
+    class="modal-overlay"
+    id="cartModal"
+    onclick="handleOutsideClick(event)"><div class="cart-drawer">
 
     <div class="cart-header">
 
-        <h3 id="drawerTitle"
+        <h3
+            id="drawerTitle"
             style="font-size:1.1rem;">
             Tu Carrito de Compras
         </h3>
 
-        <button class="close-cart"
-                onclick="toggleCart()">
+        <button
+            class="close-cart"
+            onclick="toggleCart()">
             &times;
         </button>
 
     </div>
 
-    <div class="cart-body"
-         id="cartBodyContent"></div>
+    <div
+        class="cart-body"
+        id="cartBodyContent">
+    </div>
 
 </div>
 
 </div><script>
+
+/* =========================================
+TARIFAS DE ENVÍO
+========================================= */
 
 const tarifasProvincias = {
 
@@ -1484,144 +1527,40 @@ const tarifasProvincias = {
 
 };
 
+
+/* =========================================
+PRODUCTOS
+========================================= */
+
 const productos = [
+
+    /* ================================
+    CELULARES
+    ================================ */
 
     {
         id: 1,
-        sku: "TV-TCL-55C655",
-        marca: "TCL",
-        modelo: "55C655",
-        nombre: "Smart TV TCL 55 C655 QLED 4K",
-        categoria: "Televisores",
-        subcategoria: "Smart TV",
-        descripcion: "Televisor QLED 4K con Google TV y Dolby Vision Atmos. Excelente calidad de imagen, colores intensos y gran experiencia para películas, series y videojuegos.",
-        especificaciones: {
-            pulgadas: 55,
-            resolucion: "4K UHD"
-        },
-        precio: 899999,
-        precioOferta: 764999,
-        cuotas: 3,
-        stock: true,
-        imagenes: [
-            "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-    {
-        id: 2,
-        sku: "TV-TCL-65C755",
-        marca: "TCL",
-        modelo: "65C755",
-        nombre: "Smart TV TCL 65 C755 QD-Mini LED 4K",
-        categoria: "Televisores",
-        subcategoria: "Smart TV",
-        descripcion: "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento. Ofrece gran contraste, excelente brillo y una experiencia cinematográfica.",
-        especificaciones: {
-            pulgadas: 65,
-            resolucion: "4K UHD"
-        },
-        precio: 1499999,
-        precioOferta: 1274999,
-        cuotas: 3,
-        stock: true,
-        imagenes: [
-            "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-    {
-        id: 3,
-        sku: "TV-SAM-55CU7000",
-        marca: "Samsung",
-        modelo: "55CU7000",
-        nombre: "Smart TV Samsung 55 Crystal UHD 4K",
-        categoria: "Televisores",
-        subcategoria: "Smart TV",
-        descripcion: "Smart TV Crystal UHD 4K con sistema Tizen.",
-        especificaciones: {
-            pulgadas: 55,
-            resolucion: "4K UHD"
-        },
-        precio: 920000,
-        precioOferta: 782000,
-        cuotas: 3,
-        stock: true,
-        imagenes: [
-            "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-    {
-        id: 4,
-        sku: "TV-LG-504K",
-        marca: "LG",
-        modelo: "50 4K UHD",
-        nombre: "Smart TV LG 50 4K UHD",
-        categoria: "Televisores",
-        subcategoria: "Smart TV",
-        descripcion: "Calidad de imagen superior y sonido envolvente inteligente.",
-        especificaciones: {
-            pulgadas: 50,
-            resolucion: "4K UHD"
-        },
-        precio: 710000,
-        precioOferta: 603500,
-        cuotas: 3,
-        stock: true,
-        imagenes: [
-            "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-    {
-        id: 5,
-        sku: "LAV-WHIRL-WNQ65A",
-        marca: "Whirlpool",
-        modelo: "WNQ65A",
-        nombre: "Lavarropas Automático Whirlpool 6.5 Kg",
-        categoria: "Lavarropas",
-        subcategoria: "Carga Frontal",
-        descripcion: "Lavarropas automático con múltiples programas de lavado, ideal para el uso cotidiano del hogar.",
-        especificaciones: {
-            capacidad: "6.5 kg",
-            tipoCarga: "Frontal"
-        },
-        precio: 850000,
-        precioOferta: 722500,
-        cuotas: 3,
-        stock: true,
-        imagenes: [
-            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1626806787928-2a0b6f4c9d4e?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-    {
-        id: 6,
         sku: "CEL-MOT-EDGE50",
         marca: "Motorola",
         modelo: "Edge 50",
         nombre: "Celular Motorola Edge 50 5G",
         categoria: "Celulares",
         subcategoria: "Smartphones",
-        descripcion: "Smartphone premium con pantalla OLED y conectividad 5G. Ideal para fotografía, entretenimiento, trabajo y uso diario.",
+
+        descripcion:
+            "Smartphone premium con pantalla OLED y conectividad 5G. Ideal para fotografía, entretenimiento, trabajo y uso diario.",
+
         especificaciones: {
             pantalla: "6.7 pulgadas",
-            memoriaRAM: "12GB"
+            memoriaRAM: "12GB",
+            conectividad: "5G"
         },
+
         precio: 850000,
         precioOferta: 722500,
         cuotas: 3,
         stock: true,
+
         imagenes: [
             "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
@@ -1630,22 +1569,219 @@ const productos = [
     },
 
     {
+        id: 2,
+        sku: "CEL-SAM-A55",
+        marca: "Samsung",
+        modelo: "Galaxy A55",
+        nombre: "Celular Samsung Galaxy A55 5G",
+        categoria: "Celulares",
+        subcategoria: "Smartphones",
+
+        descripcion:
+            "Smartphone con pantalla Super AMOLED, excelente autonomía y conectividad 5G para disfrutar contenido y aplicaciones.",
+
+        especificaciones: {
+            pantalla: "6.6 pulgadas",
+            memoriaRAM: "8GB",
+            almacenamiento: "256GB"
+        },
+
+        precio: 790000,
+        precioOferta: 671500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    GAMING
+    ================================ */
+
+    {
+        id: 3,
+        sku: "GAM-PS5-SLIM",
+        marca: "Sony",
+        modelo: "PS5 Slim",
+        nombre: "Consola Sony PlayStation 5 Slim",
+        categoria: "Gaming",
+        subcategoria: "Consolas",
+
+        descripcion:
+            "Consola de nueva generación para gaming con gráficos de alta calidad, tiempos de carga reducidos y gran catálogo de juegos.",
+
+        especificaciones: {
+            tipo: "Consola",
+            resolucion: "Hasta 4K",
+            almacenamiento: "1TB"
+        },
+
+        precio: 1200000,
+        precioOferta: 1020000,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 4,
+        sku: "GAM-XBOX-SX",
+        marca: "Microsoft",
+        modelo: "Xbox Series X",
+        nombre: "Consola Xbox Series X",
+        categoria: "Gaming",
+        subcategoria: "Consolas",
+
+        descripcion:
+            "Consola de alto rendimiento para disfrutar juegos de última generación con excelente calidad gráfica y velocidad.",
+
+        especificaciones: {
+            tipo: "Consola",
+            resolucion: "Hasta 4K",
+            almacenamiento: "1TB"
+        },
+
+        precio: 1250000,
+        precioOferta: 1062500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    TELEVISores / MONITORES
+    ================================ */
+
+    {
+        id: 5,
+        sku: "TV-TCL-55C655",
+        marca: "TCL",
+        modelo: "55C655",
+        nombre: "Smart TV TCL 55 C655 QLED 4K",
+        categoria: "Televisores / Monitores",
+        subcategoria: "Smart TV",
+
+        descripcion:
+            "Televisor QLED 4K con Google TV y Dolby Vision Atmos. Excelente calidad de imagen, colores intensos y gran experiencia para películas, series y videojuegos.",
+
+        especificaciones: {
+            pulgadas: "55",
+            resolucion: "4K UHD",
+            sistema: "Google TV"
+        },
+
+        precio: 899999,
+        precioOferta: 764999,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 6,
+        sku: "TV-TCL-65C755",
+        marca: "TCL",
+        modelo: "65C755",
+        nombre: "Smart TV TCL 65 C755 QD-Mini LED 4K",
+        categoria: "Televisores / Monitores",
+        subcategoria: "Smart TV",
+
+        descripcion:
+            "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento. Ofrece gran contraste, excelente brillo y una experiencia cinematográfica.",
+
+        especificaciones: {
+            pulgadas: "65",
+            resolucion: "4K UHD",
+            tecnologia: "QD-Mini LED"
+        },
+
+        precio: 1499999,
+        precioOferta: 1274999,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
         id: 7,
+        sku: "MON-LG-27FHD",
+        marca: "LG",
+        modelo: "27 FHD",
+        nombre: "Monitor LG 27 Full HD",
+        categoria: "Televisores / Monitores",
+        subcategoria: "Monitores",
+
+        descripcion:
+            "Monitor de 27 pulgadas pensado para oficina, estudio, entretenimiento y gaming casual.",
+
+        especificaciones: {
+            pulgadas: "27",
+            resolucion: "Full HD",
+            panel: "IPS"
+        },
+
+        precio: 430000,
+        precioOferta: 365500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1616763355548-1b606f439f86?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    AIRES ACONDICIONADOS
+    ================================ */
+
+    {
+        id: 8,
         sku: "AC-SAMSUNG-3000",
         marca: "Samsung",
         modelo: "3000",
         nombre: "Aire Acondicionado Samsung Inverter 3000W",
-        categoria: "Aires acondicionados",
+        categoria: "Aires Acondicionados",
         subcategoria: "Split Inverter",
-        descripcion: "Aire acondicionado Split Inverter frío/calor, diseñado para climatizar ambientes de forma eficiente.",
+
+        descripcion:
+            "Aire acondicionado Split Inverter frío/calor, diseñado para climatizar ambientes de forma eficiente.",
+
         especificaciones: {
             frigorias: "2600",
-            potenciaW: "3000"
+            potenciaW: "3000",
+            tecnologia: "Inverter"
         },
+
         precio: 950000,
         precioOferta: 807500,
         cuotas: 3,
         stock: true,
+
         imagenes: [
             "https://images.unsplash.com/photo-1631545806609-7e8e2c8f5f6c?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1625961332771-7a3c7b3e9b31?auto=format&fit=crop&w=700&q=80"
@@ -1653,51 +1789,38 @@ const productos = [
     },
 
     {
-        id: 8,
-        sku: "NOTE-LEN-IDEA3",
-        marca: "Lenovo",
-        modelo: "IdeaPad 3",
-        nombre: "Notebook Lenovo IdeaPad 3",
-        categoria: "Informática",
-        subcategoria: "Notebooks",
-        descripcion: "Notebook versátil para estudio, trabajo y uso cotidiano. Diseño práctico y excelente equilibrio entre rendimiento y portabilidad.",
+        id: 9,
+        sku: "AC-LG-4500",
+        marca: "LG",
+        modelo: "4500",
+        nombre: "Aire Acondicionado LG Inverter 4500W",
+        categoria: "Aires Acondicionados",
+        subcategoria: "Split Inverter",
+
+        descripcion:
+            "Equipo frío/calor con tecnología Inverter para climatizar ambientes amplios con un funcionamiento eficiente.",
+
         especificaciones: {
-            pantalla: "15.6 pulgadas",
-            memoriaRAM: "8GB"
+            frigorias: "3900",
+            potenciaW: "4500",
+            tecnologia: "Inverter"
         },
-        precio: 890000,
-        precioOferta: 756500,
+
+        precio: 1250000,
+        precioOferta: 1062500,
         cuotas: 3,
         stock: true,
+
         imagenes: [
-            "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1631545806609-7e8e2c8f5f6c?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1625961332771-7a3c7b3e9b31?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
-    {
-        id: 9,
-        sku: "AUD-JBL-FLIP6",
-        marca: "JBL",
-        modelo: "Flip 6",
-        nombre: "Parlante Bluetooth JBL Flip 6",
-        categoria: "Audio",
-        subcategoria: "Parlantes",
-        descripcion: "Parlante Bluetooth portátil resistente al agua, ideal para llevar a cualquier lugar.",
-        especificaciones: {
-            potenciaW: "30",
-            conectividad: "Bluetooth"
-        },
-        precio: 210000,
-        precioOferta: 178500,
-        cuotas: 3,
-        stock: true,
-        imagenes: [
-            "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
+
+    /* ================================
+    HELADERAS / FREEZERS
+    ================================ */
 
     {
         id: 10,
@@ -1705,17 +1828,23 @@ const productos = [
         marca: "Gafa",
         modelo: "H300",
         nombre: "Heladera con Freezer Gafa H300",
-        categoria: "Heladeras",
+        categoria: "Heladeras / Freezers",
         subcategoria: "Con Freezer",
-        descripcion: "Heladera cíclica con gran capacidad y eficiencia energética, ideal para hogares que buscan practicidad.",
+
+        descripcion:
+            "Heladera cíclica con gran capacidad y eficiencia energética, ideal para hogares que buscan practicidad.",
+
         especificaciones: {
             capacidad: "282 L",
-            sistema: "Cíclico"
+            sistema: "Cíclico",
+            freezer: "Sí"
         },
+
         precio: 980000,
         precioOferta: 833000,
         cuotas: 3,
         stock: true,
+
         imagenes: [
             "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=700&q=80"
@@ -1724,39 +1853,586 @@ const productos = [
 
     {
         id: 11,
+        sku: "FREEZER-GAFA-200",
+        marca: "Gafa",
+        modelo: "200L",
+        nombre: "Freezer Horizontal Gafa 200 Litros",
+        categoria: "Heladeras / Freezers",
+        subcategoria: "Freezers",
+
+        descripcion:
+            "Freezer horizontal de gran capacidad para conservar alimentos y productos congelados durante largos períodos.",
+
+        especificaciones: {
+            capacidad: "200 L",
+            tipo: "Horizontal",
+            frio: "Estático"
+        },
+
+        precio: 750000,
+        precioOferta: 637500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    COCINAS / HORNOS
+    ================================ */
+
+    {
+        id: 12,
         sku: "COC-ORBIS-5F",
         marca: "Orbis",
         modelo: "Multigas",
         nombre: "Cocina Multigas Orbis Acero Inoxidable",
-        categoria: "Cocinas",
-        subcategoria: "Hornallas",
-        descripcion: "Cocina de alta gama con encendido electrónico y hornallas de alta eficiencia. Diseño moderno en acero inoxidable.",
+        categoria: "Cocinas / Hornos",
+        subcategoria: "Cocinas",
+
+        descripcion:
+            "Cocina de alta gama con encendido electrónico y hornallas de alta eficiencia. Diseño moderno en acero inoxidable.",
+
         especificaciones: {
             hornallas: "4",
-            seguridad: "Válvula cortagas"
+            seguridad: "Válvula cortagas",
+            material: "Acero inoxidable"
         },
+
         precio: 880000,
         precioOferta: 748000,
         cuotas: 3,
         stock: true,
+
         imagenes: [
             "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=700&q=80"
         ]
+    },
+
+    {
+        id: 13,
+        sku: "HOR-ATMA-60",
+        marca: "Atma",
+        modelo: "60L",
+        nombre: "Horno Eléctrico Atma 60 Litros",
+        categoria: "Cocinas / Hornos",
+        subcategoria: "Hornos Eléctricos",
+
+        descripcion:
+            "Horno eléctrico de gran capacidad con múltiples funciones de cocción para preparar comidas de manera práctica.",
+
+        especificaciones: {
+            capacidad: "60 L",
+            potencia: "2000 W",
+            funciones: "6"
+        },
+
+        precio: 420000,
+        precioOferta: 357000,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    LAVARROPAS / SECADORAS
+    ================================ */
+
+    {
+        id: 14,
+        sku: "LAV-WHIRL-WNQ65A",
+        marca: "Whirlpool",
+        modelo: "WNQ65A",
+        nombre: "Lavarropas Automático Whirlpool 6.5 Kg",
+        categoria: "Lavarropas / Secadoras",
+        subcategoria: "Carga Frontal",
+
+        descripcion:
+            "Lavarropas automático con múltiples programas de lavado, ideal para el uso cotidiano del hogar.",
+
+        especificaciones: {
+            capacidad: "6.5 kg",
+            tipoCarga: "Frontal",
+            programas: "Múltiples"
+        },
+
+        precio: 850000,
+        precioOferta: 722500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 15,
+        sku: "SEC-SAM-8KG",
+        marca: "Samsung",
+        modelo: "8KG",
+        nombre: "Secadora Samsung 8 Kg",
+        categoria: "Lavarropas / Secadoras",
+        subcategoria: "Secadoras",
+
+        descripcion:
+            "Secadora de ropa de gran capacidad, pensada para agilizar el secado y facilitar las tareas del hogar.",
+
+        especificaciones: {
+            capacidad: "8 kg",
+            tipo: "Secadora",
+            programas: "Múltiples"
+        },
+
+        precio: 1050000,
+        precioOferta: 892500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    PEQUEÑOS ELECTRODOMÉSTICOS
+    ================================ */
+
+    {
+        id: 16,
+        sku: "PEQ-ATMA-LICU",
+        marca: "Atma",
+        modelo: "Licuadora",
+        nombre: "Licuadora Atma de 1.5 Litros",
+        categoria: "Pequeños Electrodomésticos",
+        subcategoria: "Licuadoras",
+
+        descripcion:
+            "Licuadora práctica para preparar bebidas, licuados, salsas y distintas preparaciones de forma rápida.",
+
+        especificaciones: {
+            capacidad: "1.5 L",
+            potencia: "600 W",
+            velocidades: "2"
+        },
+
+        precio: 140000,
+        precioOferta: 119000,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 17,
+        sku: "PEQ-PEABODY-AIR",
+        marca: "Peabody",
+        modelo: "Air Fryer",
+        nombre: "Freidora de Aire Peabody",
+        categoria: "Pequeños Electrodomésticos",
+        subcategoria: "Freidoras de Aire",
+
+        descripcion:
+            "Freidora de aire para cocinar una amplia variedad de alimentos con practicidad y menor uso de aceite.",
+
+        especificaciones: {
+            capacidad: "5.5 L",
+            potencia: "1700 W",
+            control: "Digital"
+        },
+
+        precio: 230000,
+        precioOferta: 195500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    ASPIRADORAS
+    ================================ */
+
+    {
+        id: 18,
+        sku: "ASP-ELECTROLUX-2000",
+        marca: "Electrolux",
+        modelo: "2000W",
+        nombre: "Aspiradora Electrolux 2000W",
+        categoria: "Aspiradoras",
+        subcategoria: "Aspiradoras",
+
+        descripcion:
+            "Aspiradora potente para la limpieza cotidiana del hogar, con diseño práctico y excelente capacidad de succión.",
+
+        especificaciones: {
+            potencia: "2000 W",
+            capacidad: "2 L",
+            tipo: "Trineo"
+        },
+
+        precio: 250000,
+        precioOferta: 212500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 19,
+        sku: "ASP-XIAOMI-G10",
+        marca: "Xiaomi",
+        modelo: "G10",
+        nombre: "Aspiradora Inalámbrica Xiaomi",
+        categoria: "Aspiradoras",
+        subcategoria: "Inalámbricas",
+
+        descripcion:
+            "Aspiradora inalámbrica moderna y práctica para realizar limpiezas rápidas en diferentes ambientes del hogar.",
+
+        especificaciones: {
+            autonomia: "Hasta 60 min",
+            tipo: "Inalámbrica",
+            filtro: "HEPA"
+        },
+
+        precio: 480000,
+        precioOferta: 408000,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    TERMOTANQUES
+    ================================ */
+
+    {
+        id: 20,
+        sku: "TER-ESCORIAL-80",
+        marca: "Escorial",
+        modelo: "80L",
+        nombre: "Termotanque Escorial 80 Litros",
+        categoria: "Termotanques",
+        subcategoria: "Eléctricos",
+
+        descripcion:
+            "Termotanque eléctrico de 80 litros diseñado para abastecer de agua caliente a hogares de uso cotidiano.",
+
+        especificaciones: {
+            capacidad: "80 L",
+            energia: "Eléctrico",
+            instalacion: "Vertical"
+        },
+
+        precio: 490000,
+        precioOferta: 416500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 21,
+        sku: "TER-RHEEM-120",
+        marca: "Rheem",
+        modelo: "120L",
+        nombre: "Termotanque Rheem 120 Litros",
+        categoria: "Termotanques",
+        subcategoria: "Eléctricos",
+
+        descripcion:
+            "Termotanque de gran capacidad pensado para hogares que necesitan una mayor disponibilidad de agua caliente.",
+
+        especificaciones: {
+            capacidad: "120 L",
+            energia: "Eléctrico",
+            instalacion: "Vertical"
+        },
+
+        precio: 680000,
+        precioOferta: 578000,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    NOTEBOOKS / PC DE ESCRITORIO
+    ================================ */
+
+    {
+        id: 22,
+        sku: "NOTE-LEN-IDEA3",
+        marca: "Lenovo",
+        modelo: "IdeaPad 3",
+        nombre: "Notebook Lenovo IdeaPad 3",
+        categoria: "Notebooks / PC de Escritorio",
+        subcategoria: "Notebooks",
+
+        descripcion:
+            "Notebook versátil para estudio, trabajo y uso cotidiano. Diseño práctico y excelente equilibrio entre rendimiento y portabilidad.",
+
+        especificaciones: {
+            pantalla: "15.6 pulgadas",
+            memoriaRAM: "8GB",
+            almacenamiento: "512GB SSD"
+        },
+
+        precio: 890000,
+        precioOferta: 756500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 23,
+        sku: "PC-AMD-RYZEN5",
+        marca: "AMD",
+        modelo: "Ryzen 5",
+        nombre: "PC de Escritorio Ryzen 5",
+        categoria: "Notebooks / PC de Escritorio",
+        subcategoria: "PC de Escritorio",
+
+        descripcion:
+            "PC de escritorio equilibrada para trabajo, estudio, entretenimiento y tareas exigentes del día a día.",
+
+        especificaciones: {
+            procesador: "Ryzen 5",
+            memoriaRAM: "16GB",
+            almacenamiento: "512GB SSD"
+        },
+
+        precio: 780000,
+        precioOferta: 663000,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    AUDIO
+    ================================ */
+
+    {
+        id: 24,
+        sku: "AUD-JBL-FLIP6",
+        marca: "JBL",
+        modelo: "Flip 6",
+        nombre: "Parlante Bluetooth JBL Flip 6",
+        categoria: "Audio",
+        subcategoria: "Parlantes",
+
+        descripcion:
+            "Parlante Bluetooth portátil resistente al agua, ideal para llevar a cualquier lugar.",
+
+        especificaciones: {
+            potenciaW: "30",
+            conectividad: "Bluetooth",
+            resistencia: "Agua"
+        },
+
+        precio: 210000,
+        precioOferta: 178500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 25,
+        sku: "AUD-JBL-TUNE",
+        marca: "JBL",
+        modelo: "Tune",
+        nombre: "Auriculares Bluetooth JBL",
+        categoria: "Audio",
+        subcategoria: "Auriculares",
+
+        descripcion:
+            "Auriculares inalámbricos cómodos para disfrutar música, podcasts y llamadas durante todo el día.",
+
+        especificaciones: {
+            conectividad: "Bluetooth",
+            bateria: "Hasta 40 hs",
+            microfono: "Sí"
+        },
+
+        precio: 180000,
+        precioOferta: 153000,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+
+    /* ================================
+    ACCESORIOS
+    ================================ */
+
+    {
+        id: 26,
+        sku: "ACC-LOGI-MOUSE",
+        marca: "Logitech",
+        modelo: "M185",
+        nombre: "Mouse Inalámbrico Logitech",
+        categoria: "Accesorios",
+        subcategoria: "Mouse",
+
+        descripcion:
+            "Mouse inalámbrico compacto y cómodo para notebooks y computadoras de escritorio.",
+
+        especificaciones: {
+            conexion: "Wireless",
+            botones: "3",
+            compatibilidad: "Windows / Mac"
+        },
+
+        precio: 55000,
+        precioOferta: 46750,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 27,
+        sku: "ACC-KING-128",
+        marca: "Kingston",
+        modelo: "128GB",
+        nombre: "Pendrive Kingston 128GB",
+        categoria: "Accesorios",
+        subcategoria: "Almacenamiento",
+
+        descripcion:
+            "Memoria USB portátil para guardar y transportar documentos, fotografías, videos y archivos.",
+
+        especificaciones: {
+            capacidad: "128GB",
+            conexion: "USB",
+            tipo: "Pendrive"
+        },
+
+        precio: 45000,
+        precioOferta: 38250,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 28,
+        sku: "ACC-ANKER-CARGA",
+        marca: "Anker",
+        modelo: "USB-C",
+        nombre: "Cargador USB-C Anker",
+        categoria: "Accesorios",
+        subcategoria: "Cargadores",
+
+        descripcion:
+            "Cargador compacto con conexión USB-C para smartphones, tablets y otros dispositivos compatibles.",
+
+        especificaciones: {
+            potencia: "20W",
+            conexion: "USB-C",
+            carga: "Rápida"
+        },
+
+        precio: 70000,
+        precioOferta: 59500,
+        cuotas: 3,
+        stock: true,
+
+        imagenes: [
+            "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=700&q=80"
+        ]
     }
 
 ];
 
+
+/* =========================================
+VARIABLES
+========================================= */
+
 let carrito = [];
+
 let vistaActual = 'carrito';
+
 let metodoPagoGlobal = 'transferencia';
+
 let cuotasGlobal = 1;
+
 let categoriaSeleccionada = 'Todas';
+
 let estadosCarrusel = {};
 
 const PRODUCTOS_POR_PAGINA = 12;
+
 let paginaActual = 1;
+
+
+/* =========================================
+UTILIDADES
+========================================= */
 
 function formatearMoneda(valor) {
 
@@ -1767,6 +2443,7 @@ function formatearMoneda(valor) {
     }).format(valor);
 
 }
+
 
 function generarCodigoSeguimiento() {
 
@@ -1779,15 +2456,20 @@ function generarCodigoSeguimiento() {
 
         codigo += caracteres.charAt(
             Math.floor(
-                Math.random() * caracteres.length
+                Math.random() *
+                caracteres.length
             )
         );
 
     }
 
     return codigo;
-
 }
+
+
+/* =========================================
+FILTROS
+========================================= */
 
 function filtrarCategoria(categoria, botonElemento) {
 
@@ -1804,8 +2486,12 @@ function filtrarCategoria(categoria, botonElemento) {
     botonElemento.classList.add('active');
 
     renderizarProductos();
-
 }
+
+
+/* =========================================
+CARRUSEL
+========================================= */
 
 function cambiarImagen(productoId, direccion) {
 
@@ -1815,7 +2501,9 @@ function cambiarImagen(productoId, direccion) {
     if (
         !producto ||
         !producto.imagenes.length
-    ) return;
+    ) {
+        return;
+    }
 
     if (!estadosCarrusel[productoId]) {
         estadosCarrusel[productoId] = 0;
@@ -1831,16 +2519,16 @@ function cambiarImagen(productoId, direccion) {
         ) % total;
 
     actualizarCarrusel(productoId);
-
 }
+
 
 function irAImagen(productoId, indice) {
 
     estadosCarrusel[productoId] = indice;
 
     actualizarCarrusel(productoId);
-
 }
+
 
 function actualizarCarrusel(productoId) {
 
@@ -1874,8 +2562,12 @@ function actualizarCarrusel(productoId) {
         );
 
     });
-
 }
+
+
+/* =========================================
+DESCRIPCIÓN
+========================================= */
 
 function alternarDescripcion(id) {
 
@@ -1889,7 +2581,9 @@ function alternarDescripcion(id) {
             `verMas-${id}`
         );
 
-    if (!texto || !boton) return;
+    if (!texto || !boton) {
+        return;
+    }
 
     const expandido =
         texto.classList.contains('expandido');
@@ -1898,29 +2592,40 @@ function alternarDescripcion(id) {
 
         texto.classList.remove('expandido');
 
-        texto.classList.add('descripcion-corta');
+        texto.classList.add(
+            'descripcion-corta'
+        );
 
         boton.innerText = 'Ver más';
 
     } else {
 
-        texto.classList.remove('descripcion-corta');
+        texto.classList.remove(
+            'descripcion-corta'
+        );
 
         texto.classList.add('expandido');
 
         boton.innerText = 'Ver menos';
-
     }
-
 }
+
+
+/* =========================================
+RENDER PRODUCTOS
+========================================= */
 
 function renderizarProductos() {
 
     const gridContainer =
-        document.getElementById('gridProductos');
+        document.getElementById(
+            'gridProductos'
+        );
 
     const paginacionContainer =
-        document.getElementById('paginacion');
+        document.getElementById(
+            'paginacion'
+        );
 
     gridContainer.innerHTML = '';
 
@@ -1944,12 +2649,12 @@ function renderizarProductos() {
                 color:var(--text-muted);
                 padding:30px;
             ">
-                No hay productos disponibles en esta categoría.
+                No hay productos disponibles
+                en esta categoría.
             </div>
         `;
 
         return;
-
     }
 
     const totalPaginas =
@@ -1983,7 +2688,8 @@ function renderizarProductos() {
     productosPagina.forEach(producto => {
 
         if (
-            estadosCarrusel[producto.id] === undefined
+            estadosCarrusel[producto.id] ===
+            undefined
         ) {
             estadosCarrusel[producto.id] = 0;
         }
@@ -1992,16 +2698,27 @@ function renderizarProductos() {
 
         for (
             const [key, value]
-            of Object.entries(producto.especificaciones)
+            of Object.entries(
+                producto.especificaciones
+            )
         ) {
+
+            const etiqueta =
+                key
+                    .replace(
+                        /([A-Z])/g,
+                        ' $1'
+                    )
+                    .replace(
+                        /^./,
+                        letra =>
+                            letra.toUpperCase()
+                    );
 
             specsHTML += `
                 <div>
                     <span class="spec-label">
-                        ${
-                            key.charAt(0).toUpperCase() +
-                            key.slice(1)
-                        }:
+                        ${etiqueta}:
                     </span>
 
                     <span class="spec-value">
@@ -2009,7 +2726,6 @@ function renderizarProductos() {
                     </span>
                 </div>
             `;
-
         }
 
         let slidesHTML = '';
@@ -2036,41 +2752,46 @@ function renderizarProductos() {
 
         } else {
 
-            imagenes.forEach((imagen, index) => {
+            imagenes.forEach(
+                (imagen, index) => {
 
-                slidesHTML += `
-                    <div
-                        class="carousel-slide ${
-                            index === 0
-                                ? 'active'
-                                : ''
-                        }"
-                        data-producto="${producto.id}"
-                    >
-                        <img
-                            src="${imagen}"
-                            alt="${producto.nombre}"
-                            loading="lazy"
-                            onerror="this.style.display='none'"
+                    slidesHTML += `
+                        <div
+                            class="carousel-slide ${
+                                index === 0
+                                    ? 'active'
+                                    : ''
+                            }"
+                            data-producto="${producto.id}"
                         >
-                    </div>
-                `;
+                            <img
+                                src="${imagen}"
+                                alt="${producto.nombre}"
+                                loading="lazy"
+                                onerror="this.style.display='none'"
+                            >
+                        </div>
+                    `;
 
-                dotsHTML += `
-                    <button
-                        class="carousel-dot ${
-                            index === 0
-                                ? 'active'
-                                : ''
-                        }"
-                        data-producto="${producto.id}"
-                        onclick="irAImagen(${producto.id}, ${index})"
-                        aria-label="Ver imagen ${index + 1}">
-                    </button>
-                `;
-
-            });
-
+                    dotsHTML += `
+                        <button
+                            class="carousel-dot ${
+                                index === 0
+                                    ? 'active'
+                                    : ''
+                            }"
+                            data-producto="${producto.id}"
+                            onclick="irAImagen(
+                                ${producto.id},
+                                ${index}
+                            )"
+                            aria-label="Ver imagen ${
+                                index + 1
+                            }">
+                        </button>
+                    `;
+                }
+            );
         }
 
         const mostrarControles =
@@ -2114,14 +2835,20 @@ function renderizarProductos() {
                         ? `
                             <button
                                 class="carousel-btn carousel-prev"
-                                onclick="cambiarImagen(${producto.id}, -1)"
+                                onclick="cambiarImagen(
+                                    ${producto.id},
+                                    -1
+                                )"
                                 aria-label="Imagen anterior">
                                 ‹
                             </button>
 
                             <button
                                 class="carousel-btn carousel-next"
-                                onclick="cambiarImagen(${producto.id}, 1)"
+                                onclick="cambiarImagen(
+                                    ${producto.id},
+                                    1
+                                )"
                                 aria-label="Imagen siguiente">
                                 ›
                             </button>
@@ -2169,7 +2896,9 @@ function renderizarProductos() {
                                 <button
                                     id="verMas-${producto.id}"
                                     class="ver-mas-btn"
-                                    onclick="alternarDescripcion(${producto.id})">
+                                    onclick="alternarDescripcion(
+                                        ${producto.id}
+                                    )">
                                     Ver más
                                 </button>
                             `
@@ -2195,24 +2924,31 @@ function renderizarProductos() {
                     </div>
 
                     <div class="cuotas-badge">
-                        ⚡ Abonando por transferencia 15% OFF
+                        ⚡ Abonando por transferencia
+                        15% OFF
                     </div>
 
                     <button
                         class="btn-add-cart"
-                        onclick="agregarAlCarrito(${producto.id})">
+                        onclick="agregarAlCarrito(
+                            ${producto.id}
+                        )">
                         Agregar al Carrito
                     </button>
 
                 </div>
 
             </div>
-
         `;
 
         gridContainer.appendChild(card);
 
     });
+
+
+    /* =========================================
+    PAGINACIÓN
+    ========================================= */
 
     if (totalPaginas > 1) {
 
@@ -2221,7 +2957,9 @@ function renderizarProductos() {
             <div class="paginacion">
 
                 <button
-                    onclick="cambiarPagina(${paginaActual - 1})"
+                    onclick="cambiarPagina(
+                        ${paginaActual - 1}
+                    )"
                     ${
                         paginaActual === 1
                             ? 'disabled'
@@ -2232,7 +2970,6 @@ function renderizarProductos() {
                     ‹ Anterior
 
                 </button>
-
         `;
 
         for (
@@ -2255,15 +2992,15 @@ function renderizarProductos() {
                     ${i}
 
                 </button>
-
             `;
-
         }
 
         paginacionHTML += `
 
                 <button
-                    onclick="cambiarPagina(${paginaActual + 1})"
+                    onclick="cambiarPagina(
+                        ${paginaActual + 1}
+                    )"
                     ${
                         paginaActual === totalPaginas
                             ? 'disabled'
@@ -2291,15 +3028,17 @@ function renderizarProductos() {
                 </div>
 
             </div>
-
         `;
 
         paginacionContainer.innerHTML =
             paginacionHTML;
-
     }
-
 }
+
+
+/* =========================================
+CAMBIAR PÁGINA
+========================================= */
 
 function cambiarPagina(nuevaPagina) {
 
@@ -2333,16 +3072,28 @@ function cambiarPagina(nuevaPagina) {
         top: 0,
         behavior: 'smooth'
     });
-
 }
+
+
+/* =========================================
+CARRITO
+========================================= */
 
 function agregarAlCarrito(id) {
 
     const producto =
-        productos.find(p => p.id === id);
+        productos.find(
+            p => p.id === id
+        );
+
+    if (!producto) {
+        return;
+    }
 
     const itemExistente =
-        carrito.find(item => item.id === id);
+        carrito.find(
+            item => item.id === id
+        );
 
     if (itemExistente) {
 
@@ -2354,7 +3105,6 @@ function agregarAlCarrito(id) {
             ...producto,
             cantidad: 1
         });
-
     }
 
     actualizarContadorCarrito();
@@ -2362,13 +3112,15 @@ function agregarAlCarrito(id) {
     vistaActual = 'carrito';
 
     toggleCart(true);
-
 }
+
 
 function cambiarCantidad(id, cambio) {
 
     const item =
-        carrito.find(i => i.id === id);
+        carrito.find(
+            i => i.id === id
+        );
 
     if (item) {
 
@@ -2380,16 +3132,14 @@ function cambiarCantidad(id, cambio) {
                 carrito.filter(
                     i => i.id !== id
                 );
-
         }
-
     }
 
     actualizarContadorCarrito();
 
     renderizarContenidoDrawer();
-
 }
+
 
 function eliminarDelCarrito(id) {
 
@@ -2401,8 +3151,8 @@ function eliminarDelCarrito(id) {
     actualizarContadorCarrito();
 
     renderizarContenidoDrawer();
-
 }
+
 
 function actualizarContadorCarrito() {
 
@@ -2416,13 +3166,19 @@ function actualizarContadorCarrito() {
     document.getElementById(
         'cartCount'
     ).innerText = totalItems;
-
 }
+
+
+/* =========================================
+TOGGLE CARRITO
+========================================= */
 
 function toggleCart(forceOpen = false) {
 
     const modal =
-        document.getElementById('cartModal');
+        document.getElementById(
+            'cartModal'
+        );
 
     if (forceOpen) {
 
@@ -2437,14 +3193,12 @@ function toggleCart(forceOpen = false) {
         ) {
 
             vistaActual = 'carrito';
-
         }
-
     }
 
     renderizarContenidoDrawer();
-
 }
+
 
 function handleOutsideClick(event) {
 
@@ -2453,18 +3207,25 @@ function handleOutsideClick(event) {
     ) {
 
         toggleCart();
-
     }
-
 }
+
+
+/* =========================================
+CONTENIDO DEL DRAWER
+========================================= */
 
 function renderizarContenidoDrawer() {
 
     const drawerTitle =
-        document.getElementById('drawerTitle');
+        document.getElementById(
+            'drawerTitle'
+        );
 
     const bodyContent =
-        document.getElementById('cartBodyContent');
+        document.getElementById(
+            'cartBodyContent'
+        );
 
     if (carrito.length === 0) {
 
@@ -2478,14 +3239,17 @@ function renderizarContenidoDrawer() {
                 Tu carrito está vacío.
 
             </div>
-
         `;
 
         vistaActual = 'carrito';
 
         return;
-
     }
+
+
+    /* =========================================
+    VISTA CARRITO
+    ========================================= */
 
     if (vistaActual === 'carrito') {
 
@@ -2499,7 +3263,6 @@ function renderizarContenidoDrawer() {
                 overflow-y:auto;
                 max-height:45vh;
             ">
-
         `;
 
         carrito.forEach(item => {
@@ -2515,10 +3278,13 @@ function renderizarContenidoDrawer() {
                         </h4>
 
                         <div class="cart-item-price">
+
                             ${formatearMoneda(
                                 item.precioOferta
                             )}
+
                             c/u
+
                         </div>
 
                     </div>
@@ -2527,8 +3293,13 @@ function renderizarContenidoDrawer() {
 
                         <button
                             class="qty-btn"
-                            onclick="cambiarCantidad(${item.id}, -1)">
+                            onclick="cambiarCantidad(
+                                ${item.id},
+                                -1
+                            )">
+
                             -
+
                         </button>
 
                         <span>
@@ -2537,22 +3308,29 @@ function renderizarContenidoDrawer() {
 
                         <button
                             class="qty-btn"
-                            onclick="cambiarCantidad(${item.id}, 1)">
+                            onclick="cambiarCantidad(
+                                ${item.id},
+                                1
+                            )">
+
                             +
+
                         </button>
 
                         <button
                             class="remove-btn"
-                            onclick="eliminarDelCarrito(${item.id})">
+                            onclick="eliminarDelCarrito(
+                                ${item.id}
+                            )">
+
                             🗑️
+
                         </button>
 
                     </div>
 
                 </div>
-
             `;
-
         });
 
         htmlItems += `
@@ -2585,7 +3363,8 @@ function renderizarContenidoDrawer() {
                                     : ''
                             }>
 
-                            Transferencia Bancaria (15% OFF)
+                            Transferencia Bancaria
+                            (15% OFF)
 
                         </option>
 
@@ -2598,7 +3377,9 @@ function renderizarContenidoDrawer() {
                                     : ''
                             }>
 
-                            Crédito con DNI (Hasta 6 pagos, +4% por pago)
+                            Crédito con DNI
+                            (Hasta 6 pagos,
+                            +4% por pago)
 
                         </option>
 
@@ -2611,7 +3392,9 @@ function renderizarContenidoDrawer() {
                                     : ''
                             }>
 
-                            Tarjeta de Crédito (Hasta 12 cuotas, +8% por cuota)
+                            Tarjeta de Crédito
+                            (Hasta 12 cuotas,
+                            +8% por cuota)
 
                         </option>
 
@@ -2648,7 +3431,9 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-                <div id="paymentDetailsContainer"></div>
+                <div
+                    id="paymentDetailsContainer">
+                </div>
 
                 <div class="cart-total">
 
@@ -2677,14 +3462,18 @@ function renderizarContenidoDrawer() {
                 </button>
 
             </div>
-
         `;
 
-        bodyContent.innerHTML = htmlItems;
+        bodyContent.innerHTML =
+            htmlItems;
 
         onPaymentMethodChange();
-
     }
+
+
+    /* =========================================
+    FORMULARIO
+    ========================================= */
 
     else if (
         vistaActual === 'formulario'
@@ -2821,20 +3610,24 @@ function renderizarContenidoDrawer() {
                         onchange="updateCartUI()">
 
                         <option value="CABA">
-                            Capital Federal (CABA) - $8.500
+                            Capital Federal (CABA)
+                            - $8.500
                         </option>
 
                         <option
                             value="Buenos Aires"
                             selected>
 
-                            Provincia de Buenos Aires - $12.500
+                            Provincia de Buenos Aires
+                            - $12.500
 
                         </option>
 
                         <option value="Provincias">
 
-                            Otras Provincias / Resto del País - $18.500
+                            Otras Provincias /
+                            Resto del País
+                            - $18.500
 
                         </option>
 
@@ -2883,12 +3676,14 @@ function renderizarContenidoDrawer() {
                 </div>
 
             </div>
-
         `;
-
     }
-
 }
+
+
+/* =========================================
+MÉTODO DE PAGO
+========================================= */
 
 function onPaymentMethodChange() {
 
@@ -2897,7 +3692,9 @@ function onPaymentMethodChange() {
             'paymentMethodSelect'
         );
 
-    if (!selectElement) return;
+    if (!selectElement) {
+        return;
+    }
 
     metodoPagoGlobal =
         selectElement.value;
@@ -2919,6 +3716,7 @@ function onPaymentMethodChange() {
 
     cuotasSelect.innerHTML = '';
 
+
     if (
         metodoPagoGlobal ===
         'creditoDni'
@@ -2930,10 +3728,16 @@ function onPaymentMethodChange() {
         labelCuotas.innerText =
             "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
 
-        for (let i = 1; i <= 6; i++) {
+        for (
+            let i = 1;
+            i <= 6;
+            i++
+        ) {
 
             const opt =
-                document.createElement('option');
+                document.createElement(
+                    'option'
+                );
 
             opt.value = i;
 
@@ -2942,12 +3746,15 @@ function onPaymentMethodChange() {
                     i > 1 ? 's' : ''
                 } (+${i * 4}% recargo)`;
 
-            if (i === cuotasGlobal) {
+            if (
+                i === cuotasGlobal
+            ) {
                 opt.selected = true;
             }
 
-            cuotasSelect.appendChild(opt);
-
+            cuotasSelect.appendChild(
+                opt
+            );
         }
 
     }
@@ -2963,10 +3770,16 @@ function onPaymentMethodChange() {
         labelCuotas.innerText =
             "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
 
-        for (let i = 1; i <= 12; i++) {
+        for (
+            let i = 1;
+            i <= 12;
+            i++
+        ) {
 
             const opt =
-                document.createElement('option');
+                document.createElement(
+                    'option'
+                );
 
             opt.value = i;
 
@@ -2975,12 +3788,15 @@ function onPaymentMethodChange() {
                     i > 1 ? 's' : ''
                 } (+${i * 8}% recargo)`;
 
-            if (i === cuotasGlobal) {
+            if (
+                i === cuotasGlobal
+            ) {
                 opt.selected = true;
             }
 
-            cuotasSelect.appendChild(opt);
-
+            cuotasSelect.appendChild(
+                opt
+            );
         }
 
     }
@@ -2989,12 +3805,15 @@ function onPaymentMethodChange() {
 
         cuotasContainer.style.display =
             'none';
-
     }
 
     updateCartUI();
-
 }
+
+
+/* =========================================
+ACTUALIZAR CARRITO
+========================================= */
 
 function updateCartUI() {
 
@@ -3007,7 +3826,6 @@ function updateCartUI() {
 
         metodoPagoGlobal =
             paymentMethodSelect.value;
-
     }
 
     const cuotasSelect =
@@ -3024,7 +3842,6 @@ function updateCartUI() {
             parseInt(
                 cuotasSelect.value
             ) || 1;
-
     }
 
     const detailsContainer =
@@ -3080,8 +3897,8 @@ function updateCartUI() {
         recargoDescuentoValor =
             subtotal *
             porcentajeRecargo;
-
     }
+
 
     let costoEnvio = 12500;
 
@@ -3095,37 +3912,39 @@ function updateCartUI() {
         const provKey =
             provinciaSelect.value;
 
-        costoEnvio =
-            tarifasProvincias[
-                provKey
-            ].costo;
+        const tarifa =
+            tarifasProvincias[provKey];
 
-        const infoRes =
-            document.getElementById(
-                'envioInfoResumen'
-            );
+        if (tarifa) {
 
-        if (infoRes) {
+            costoEnvio =
+                tarifa.costo;
 
-            infoRes.innerText =
-                `⏱️ Demora: ${
-                    tarifasProvincias[
-                        provKey
-                    ].demora
-                } | Envío: ${
-                    formatearMoneda(
-                        costoEnvio
-                    )
-                }`;
+            const infoRes =
+                document.getElementById(
+                    'envioInfoResumen'
+                );
 
+            if (infoRes) {
+
+                infoRes.innerText =
+                    `⏱️ Demora: ${
+                        tarifa.demora
+                    } | Envío: ${
+                        formatearMoneda(
+                            costoEnvio
+                        )
+                    }`;
+            }
         }
-
     }
+
 
     let totalFinal =
         subtotal +
         costoEnvio +
         recargoDescuentoValor;
+
 
     if (detailsContainer) {
 
@@ -3139,7 +3958,7 @@ function updateCartUI() {
             <div class="cart-summary-line">
 
                 <span>
-                    Subproductos:
+                    Subtotal:
                 </span>
 
                 <span>
@@ -3192,10 +4011,9 @@ function updateCartUI() {
                 </span>
 
             </div>
-
         `;
-
     }
+
 
     const totalPriceEl =
         document.getElementById(
@@ -3208,8 +4026,8 @@ function updateCartUI() {
             formatearMoneda(
                 totalFinal
             );
-
     }
+
 
     const installmentSummary =
         document.getElementById(
@@ -3235,13 +4053,16 @@ function updateCartUI() {
                 💳 <strong>Plan de pago</strong><br>
 
                 Cantidad de pagos:
-                <strong>${cuotasGlobal}</strong><br>
+                <strong>
+                    ${cuotasGlobal}
+                </strong><br>
 
                 Monto de cada pago:
-                <strong>${formatearMoneda(
-                    montoCuota
-                )}</strong>
-
+                <strong>
+                    ${formatearMoneda(
+                        montoCuota
+                    )}
+                </strong>
             `;
 
         }
@@ -3263,13 +4084,16 @@ function updateCartUI() {
                 💳 <strong>Plan de cuotas</strong><br>
 
                 Cantidad de cuotas:
-                <strong>${cuotasGlobal}</strong><br>
+                <strong>
+                    ${cuotasGlobal}
+                </strong><br>
 
                 Monto de cada cuota:
-                <strong>${formatearMoneda(
-                    montoCuota
-                )}</strong>
-
+                <strong>
+                    ${formatearMoneda(
+                        montoCuota
+                    )}
+                </strong>
             `;
 
         }
@@ -3281,12 +4105,14 @@ function updateCartUI() {
 
             installmentSummary.innerHTML =
                 '';
-
         }
-
     }
-
 }
+
+
+/* =========================================
+FORMULARIO
+========================================= */
 
 function irAlFormularioEnvio() {
 
@@ -3294,8 +4120,8 @@ function irAlFormularioEnvio() {
         'formulario';
 
     renderizarContenidoDrawer();
-
 }
+
 
 function volverAlCarrito() {
 
@@ -3303,8 +4129,12 @@ function volverAlCarrito() {
         'carrito';
 
     renderizarContenidoDrawer();
-
 }
+
+
+/* =========================================
+ENVIAR PEDIDO WHATSAPP
+========================================= */
 
 function enviarPedidoWhatsApp() {
 
@@ -3348,6 +4178,7 @@ function enviarPedidoWhatsApp() {
             'codigoPostalCliente'
         ).value.trim();
 
+
     if (
         !nombre ||
         !dni ||
@@ -3364,24 +4195,28 @@ function enviarPedidoWhatsApp() {
         );
 
         return;
-
     }
+
 
     const numeroGuia =
         generarCodigoSeguimiento();
+
 
     const provinciaKey =
         document.getElementById(
             'provinciaSelect'
         ).value;
 
+
     const datosProvincia =
         tarifasProvincias[
             provinciaKey
         ];
 
+
     const costoEnvio =
         datosProvincia.costo;
+
 
     let subtotal =
         carrito.reduce(
@@ -3394,9 +4229,11 @@ function enviarPedidoWhatsApp() {
             0
         );
 
+
     let recargoDescuentoValor = 0;
 
     let textoMetodo = "";
+
 
     if (
         metodoPagoGlobal ===
@@ -3424,11 +4261,15 @@ function enviarPedidoWhatsApp() {
             );
 
         textoMetodo =
-            `Crédito con DNI (${cuotasGlobal} pago${
+            `Crédito con DNI (${
+                cuotasGlobal
+            } pago${
                 cuotasGlobal > 1
                     ? 's'
                     : ''
-            }, +${cuotasGlobal * 4}% recargo)`;
+            }, +${
+                cuotasGlobal * 4
+            }% recargo)`;
 
     }
 
@@ -3445,20 +4286,26 @@ function enviarPedidoWhatsApp() {
             );
 
         textoMetodo =
-            `Tarjeta de Crédito (${cuotasGlobal} cuota${
+            `Tarjeta de Crédito (${
+                cuotasGlobal
+            } cuota${
                 cuotasGlobal > 1
                     ? 's'
                     : ''
-            }, +${cuotasGlobal * 8}% recargo)`;
-
+            }, +${
+                cuotasGlobal * 8
+            }% recargo)`;
     }
+
 
     const totalFinal =
         subtotal +
         costoEnvio +
         recargoDescuentoValor;
 
+
     let textoCuotas = "";
+
 
     if (
         metodoPagoGlobal ===
@@ -3470,10 +4317,15 @@ function enviarPedidoWhatsApp() {
             cuotasGlobal;
 
         textoCuotas =
-            `• Cantidad de pagos: ${cuotasGlobal}\n` +
-            `• Monto de cada pago: ${formatearMoneda(
-                montoPorPago
-            )}\n`;
+            `• Cantidad de pagos: ${
+                cuotasGlobal
+            }\n` +
+
+            `• Monto de cada pago: ${
+                formatearMoneda(
+                    montoPorPago
+                )
+            }\n`;
 
     }
 
@@ -3487,10 +4339,15 @@ function enviarPedidoWhatsApp() {
             cuotasGlobal;
 
         textoCuotas =
-            `• Cantidad de cuotas: ${cuotasGlobal}\n` +
-            `• Monto de cada cuota: ${formatearMoneda(
-                montoPorCuota
-            )}\n`;
+            `• Cantidad de cuotas: ${
+                cuotasGlobal
+            }\n` +
+
+            `• Monto de cada cuota: ${
+                formatearMoneda(
+                    montoPorCuota
+                )
+            }\n`;
 
     }
 
@@ -3498,17 +4355,27 @@ function enviarPedidoWhatsApp() {
 
         textoCuotas =
             `• Forma de pago: Pago único por transferencia\n`;
-
     }
 
+
     let detalleProductosTexto = "";
+
 
     carrito.forEach(item => {
 
         detalleProductosTexto +=
-            `• ${item.cantidad}x ${item.nombre}\n`;
-
+            `• ${
+                item.cantidad
+            }x ${
+                item.nombre
+            } — ${
+                formatearMoneda(
+                    item.precioOferta *
+                    item.cantidad
+                )
+            }\n`;
     });
+
 
     let mensaje =
         `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
@@ -3520,45 +4387,71 @@ function enviarPedidoWhatsApp() {
         `----------------------------------------\n`;
 
     mensaje +=
-        `*N° de Seguimiento:* ${numeroGuia}\n`;
+        `*N° de Seguimiento:* ${
+            numeroGuia
+        }\n`;
 
     mensaje +=
         `----------------------------------------\n\n`;
+
 
     mensaje +=
         `*DATOS DEL COMPRADOR*\n`;
 
     mensaje +=
-        `• Nombre: ${nombre}\n`;
+        `• Nombre: ${
+            nombre
+        }\n`;
 
     mensaje +=
-        `• DNI/CUIL: ${dni}\n`;
+        `• DNI/CUIL: ${
+            dni
+        }\n`;
 
     mensaje +=
-        `• Teléfono: ${telefono}\n`;
+        `• Teléfono: ${
+            telefono
+        }\n`;
 
     mensaje +=
-        `• Email: ${email}\n`;
+        `• Email: ${
+            email
+        }\n`;
 
     mensaje +=
-        `• Dirección: ${direccion}, ${localidad}\n`;
+        `• Dirección: ${
+            direccion
+        }, ${
+            localidad
+        }\n`;
 
     mensaje +=
-        `• Provincia: ${provincia}\n`;
+        `• Provincia: ${
+            provincia
+        }\n`;
 
     mensaje +=
-        `• Código Postal: ${codigoPostal}\n`;
+        `• Código Postal: ${
+            codigoPostal
+        }\n`;
 
     mensaje +=
-        `• Zona de Envío: ${datosProvincia.nombre}\n`;
+        `• Zona de Envío: ${
+            datosProvincia.nombre
+        }\n`;
 
     mensaje +=
-        `• Costo de envío: ${formatearMoneda(
-            costoEnvio
-        )}\n`;
+        `• Costo de envío: ${
+            formatearMoneda(
+                costoEnvio
+            )
+        }\n`;
 
     mensaje +=
-        `• Demora estimada: ${datosProvincia.demora}\n\n`;
+        `• Demora estimada: ${
+            datosProvincia.demora
+        }\n\n`;
+
 
     mensaje +=
         `*PRODUCTOS SOLICITADOS*\n`;
@@ -3566,40 +4459,53 @@ function enviarPedidoWhatsApp() {
     mensaje +=
         `${detalleProductosTexto}\n`;
 
+
     mensaje +=
         `*DESGLOSE DE PAGOS Y ENVÍO*\n`;
 
     mensaje +=
-        `• Subproductos: ${formatearMoneda(
-            subtotal
-        )}\n`;
+        `• Subtotal: ${
+            formatearMoneda(
+                subtotal
+            )
+        }\n`;
 
     mensaje +=
-        `• Envío: ${formatearMoneda(
-            costoEnvio
-        )}\n`;
+        `• Envío: ${
+            formatearMoneda(
+                costoEnvio
+            )
+        }\n`;
 
     mensaje +=
         `• Recargo/Descuento: ${
             recargoDescuentoValor < 0
                 ? '-'
                 : '+'
-        }${formatearMoneda(
-            Math.abs(
-                recargoDescuentoValor
+        }${
+            formatearMoneda(
+                Math.abs(
+                    recargoDescuentoValor
+                )
             )
-        )}\n`;
+        }\n`;
 
     mensaje +=
-        `• Método: ${textoMetodo}\n`;
+        `• Método: ${
+            textoMetodo
+        }\n`;
 
     mensaje +=
         `${textoCuotas}\n`;
 
+
     mensaje +=
-        `*TOTAL A PAGAR:* ${formatearMoneda(
-            totalFinal
-        )}\n\n`;
+        `*TOTAL A PAGAR:* ${
+            formatearMoneda(
+                totalFinal
+            )
+        }\n\n`;
+
 
     mensaje +=
         `*CÓDIGO DE SEGUIMIENTO*\n`;
@@ -3610,14 +4516,29 @@ function enviarPedidoWhatsApp() {
     mensaje +=
         `Solicito confirmación del pedido y datos para el pago.`;
 
+
     const mensajeCodificado =
-        encodeURIComponent(mensaje);
+        encodeURIComponent(
+            mensaje
+        );
+
+
+    /*
+     * CAMBIÁ ESTE NÚMERO POR EL WHATSAPP
+     * QUE RECIBE LOS PEDIDOS.
+     */
 
     const numeroWhatsApp =
         "5491155012447";
 
+
     const urlWhatsApp =
-        `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+        `https://wa.me/${
+            numeroWhatsApp
+        }?text=${
+            mensajeCodificado
+        }`;
+
 
     carrito = [];
 
@@ -3625,10 +4546,14 @@ function enviarPedidoWhatsApp() {
 
     window.location.href =
         urlWhatsApp;
-
 }
+
+
+/* =========================================
+INICIO
+========================================= */
 
 renderizarProductos();
 
 </script></body>
-</html>
+    </html>
