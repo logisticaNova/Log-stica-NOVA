@@ -1501,7 +1501,32 @@
                 id="trackingTimeline"
             >
 
+                <!-- ETAPA 0 -->
+                <div class="timeline-item">
 
+                    <div class="timeline-icon">
+                        🕒
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            En espera a cargar su pedido al sistema
+                        </h4>
+
+                        <p>
+                            El código fue ingresado y aguarda el registro oficial en la plataforma.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- ETAPA 1 -->
                 <div class="timeline-item">
 
                     <div class="timeline-icon">
@@ -1527,7 +1552,7 @@
 
                 </div>
 
-
+                <!-- ETAPA 2 -->
                 <div class="timeline-item">
 
                     <div class="timeline-icon">
@@ -1553,7 +1578,7 @@
 
                 </div>
 
-
+                <!-- ETAPA 3 -->
                 <div class="timeline-item">
 
                     <div class="timeline-icon">
@@ -1579,7 +1604,7 @@
 
                 </div>
 
-
+                <!-- ETAPA 4 -->
                 <div class="timeline-item">
 
                     <div class="timeline-icon">
@@ -1605,7 +1630,7 @@
 
                 </div>
 
-
+                <!-- ETAPA 5 -->
                 <div class="timeline-item">
 
                     <div class="timeline-icon">
@@ -1631,7 +1656,7 @@
 
                 </div>
 
-
+                <!-- ETAPA 6 -->
                 <div class="timeline-item">
 
                     <div class="timeline-icon">
@@ -1657,7 +1682,7 @@
 
                 </div>
 
-
+                <!-- ETAPA 7 -->
                 <div class="timeline-item">
 
                     <div class="timeline-icon">
@@ -1683,7 +1708,7 @@
 
                 </div>
 
-
+                <!-- ETAPA 8 -->
                 <div class="timeline-item">
 
                     <div class="timeline-icon">
@@ -1952,70 +1977,36 @@
 
         /*
         ============================================================
-        BASE LOCAL DE ENVÍOS
-        GUÍA DE ETAPAS (del 1 al 8):
-        1 = Pedido recibido
-        2 = Pago confirmado
-        3 = Pedido confirmado
-        4 = Preparación del envío
-        5 = Envío despachado
-        6 = En tránsito
-        7 = En reparto
-        8 = Entregado
+        BASE LOCAL DE ENVÍOS (Etapa 0 por defecto para nuevos ingresos)
         ============================================================
         */
 
         const envios = {
 
-
             "NV-7GTNQFMN": {
-
                 comprador: "Cliente General",
-
                 destino: "Dirección de destino",
-
                 provincia: "Buenos Aires",
-
                 cp: "1800",
-
                 demora: "24 a 48 hs",
-
                 envio: "$ 12.500",
-
                 total: "$ 45.000",
-
                 producto: "Producto de la orden",
-
                 etapa: 1, 
-
                 fecha: "03/09/2026 - 19:35 hs"
-
             },
 
-                    const envios = {
-
             "NV-NLQ4XMJU": {
-
                 comprador: "Tatuada gonzales",
-
                 destino: "Calletin 78, Lomas de Zamora",
-
                 provincia: "Buenos Aires",
-
                 cp: "1812",
-
                 demora: "3 a 6 días hábiles",
-
                 envio: "$ 18.500",
-
                 total: "$ 690.499",
-
                 producto: '1x Televisor Samsung 55" 4K UHD Smart TV',
-
-                etapa: 1, 
-
+                etapa: 5, // Configurado en Etapa 0 (En espera a cargar su pedido al sistema)
                 fecha: "03/09/2026 - 20:15 hs"
-
             }
 
         };
@@ -2047,7 +2038,7 @@
                 return;
             }
 
-            // Busca primero en la lista predefinida; si no, revisa localStorage, o crea uno genérico
+            // Busca primero en la lista predefinida; si no, revisa localStorage, o crea uno genérico en Etapa 0
             let envio = envios[input];
 
             if (!envio) {
@@ -2058,18 +2049,18 @@
             }
 
             if (!envio) {
-                // Genera datos automáticos para cualquier código nuevo que escribas
+                // Genera datos automáticos y coloca cualquier código de 11 dígitos en la Etapa 0 por defecto
                 envio = {
                     comprador: "Cliente General",
                     destino: "Dirección de destino",
                     provincia: "Buenos Aires",
                     cp: "1800",
-                    demora: "24 a 48 hs",
-                    envio: "$ 12.500",
-                    total: "$ 45.000",
-                    producto: "Pedido registrado por WhatsApp",
-                    etapa: 1,
-                    fecha: "03/09/2026 - Actualizado"
+                    demora: "Pendiente",
+                    envio: "A cotizar",
+                    total: "A confirmar",
+                    producto: "Pedido ingresado al portal",
+                    etapa: 0, // Etapa 0: En espera a cargar su pedido al sistema
+                    fecha: "03/09/2026 - Recién ingresado"
                 };
             }
 
@@ -2121,7 +2112,7 @@
 
             /*
             --------------------------------------------
-            ETAPAS (Conversión del sistema 1 al 8)
+            ETAPAS (Ajustado para índices de 0 a 8)
             --------------------------------------------
             */
 
@@ -2149,6 +2140,7 @@
                         );
 
                     const iconos = [
+                        "🕒",
                         "✓",
                         "💳",
                         "📋",
@@ -2167,9 +2159,9 @@
                 }
             );
 
-            // Obtenemos el número asignado (1 al 8) y lo convertimos a índice interno (0 al 7)
-            const numeroEtapa = (envio.etapa !== undefined) ? envio.etapa : 1;
-            const etapaActual = numeroEtapa - 1;
+            // Obtenemos el número asignado (0 al 8)
+            const numeroEtapa = (envio.etapa !== undefined) ? envio.etapa : 0;
+            const etapaActual = numeroEtapa;
 
             etapas.forEach(
                 (etapa, index) => {
@@ -2214,7 +2206,7 @@
 
             /*
             --------------------------------------------
-            ENTREGADO (Si se selecciona la etapa 8)
+            ENTREGADO (Si se selecciona la última etapa)
             --------------------------------------------
             */
 
@@ -2238,11 +2230,11 @@
                     }
                 );
 
-                etapas[7].classList.add(
+                etapas[8].classList.add(
                     "delivered"
                 );
 
-                etapas[7]
+                etapas[8]
                     .querySelector(
                         ".timeline-date"
                     )
