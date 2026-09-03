@@ -1114,7 +1114,6 @@ RESPONSIVE
             Termotanques
         </button>
 
-        <!-- CAMBIO: categoría Informática -->
         <button
             class="filter-btn"
             onclick="filtrarCategoria('Informática', this)">
@@ -1187,2284 +1186,49 @@ TARIFAS DE ENVÍO
 ========================================= */
 
 const tarifasProvincias = {
-
     "CABA": {
         costo: 8500,
         demora: "12 a 24 hs",
         nombre: "Capital Federal (CABA)"
     },
-
     "Buenos Aires": {
         costo: 12500,
         demora: "24 a 48 hs",
         nombre: "Provincia de Buenos Aires"
     },
-
     "Provincias": {
         costo: 18500,
         demora: "3 a 6 días hábiles",
         nombre: "Otras Provincias / Resto del País"
     }
-
 };
 
+/* =========================================
+PRODUCTOS
+========================================= */
+
 const productos = [
-  {
-    id: 1,
-    sku: "CEL-SAM-S24U",
-    nombre: "Smartphone Samsung Galaxy S24 Ultra 5G 512GB",
-    marca: "Samsung",
-    modelo: "Galaxy S24 Ultra",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 1899999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 15,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Experiencia épica con inteligencia artificial integrada, estructura de titanio y cámara de 200MP.",
-    especificaciones: {
-      pantalla: "6.8 pulgadas Dynamic AMOLED 2X 120Hz",
-      procesador: "Snapdragon 8 Gen 3 for Galaxy",
-      memoriaRam: "12GB",
-      almacenamiento: "512GB",
-      camaraPrincipal: "Cuádruple 200MP + 50MP + 12MP + 10MP",
-      camaraFrontal: "12MP",
-      bateria: "5000 mAh con carga súper rápida"
-    },
-    colores: ["Gris Titanio", "Negro Titanio", "Violeta Titanio"],
-    tags: ["samsung", "s24 ultra", "5g", "celular", "ia"],
-    imagenPrincipal: "https://ejemplo.com/img/s24-ultra.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/s24-ultra-1.jpg",
-      "https://ejemplo.com/img/s24-ultra-2.jpg"
-    ]
-  },
-  {
-    id: 2,
-    sku: "CEL-APL-IP15PRO",
-    nombre: "Apple iPhone 15 Pro Max 256GB",
-    marca: "Apple",
-    modelo: "iPhone 15 Pro Max",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 2199999,
-    moneda: "ARS",
-    descuento: 5,
-    stock: true,
-    cantidadStock: 8,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Diseño de titanio aeroespacial, chip A17 Pro revolucionario y un sistema de cámaras avanzado.",
-    especificaciones: {
-      pantalla: "6.7 pulgadas Super Retina XDR OLED 120Hz",
-      procesador: "Apple A17 Pro",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Triple 48MP + 12MP + 12MP",
-      camaraFrontal: "12MP",
-      bateria: "4422 mAh con carga MagSafe"
-    },
-    colores: ["Titanio Natural", "Titanio Azul", "Titanio Negro"],
-    tags: ["apple", "iphone 15 pro max", "ios", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/iphone-15-pro-max.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/iphone-15-pro-max-1.jpg",
-      "https://ejemplo.com/img/iphone-15-pro-max-2.jpg"
-    ]
-  },
-  {
-    id: 3,
-    sku: "CEL-XIA-RN13P",
-    nombre: "Smartphone Xiaomi Redmi Note 13 Pro 256GB",
-    marca: "Xiaomi",
-    modelo: "Redmi Note 13 Pro",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 649999,
-    moneda: "ARS",
-    descuento: 15,
-    stock: true,
-    cantidadStock: 25,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Cámara ultranítida de 200MP con OIS y pantalla AMOLED de 120Hz.",
-    especificaciones: {
-      pantalla: "6.67 pulgadas AMOLED 120Hz",
-      procesador: "MediaTek Helio G99 Ultra",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Triple 200MP + 8MP + 2MP",
-      camaraFrontal: "16MP",
-      bateria: "5000 mAh con carga turbo de 67W"
-    },
-    colores: ["Negro", "Verde", "Morado"],
-    tags: ["xiaomi", "redmi", "note 13 pro", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/redmi-note-13-pro.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/redmi-note-13-pro-1.jpg"
-    ]
-  },
-  {
-    id: 4,
-    sku: "GAM-CON-PS5SL",
-    nombre: "Consola Sony PlayStation 5 Slim 1TB",
-    marca: "Sony",
-    modelo: "PlayStation 5 Slim",
-    categoria: "Gaming",
-    subcategoria: "Consolas",
-    precio: 1249999,
-    moneda: "ARS",
-    descuento: 8,
-    stock: true,
-    cantidadStock: 12,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Diseño más estilizado y compacto con un almacenamiento SSD ultrarrápido de 1TB.",
-    especificaciones: {
-      procesador: "AMD Zen 2 de 8 núcleos",
-      gpu: "AMD RDNA 2",
-      memoriaRam: "16GB GDDR6",
-      almacenamiento: "1TB SSD",
-      resolucion: "Hasta 4K a 120Hz",
-      conectividad: "Wi-Fi 6, Bluetooth 5.1, Puertos USB-C y USB-A"
-    },
-    colores: ["Blanco"],
-    tags: ["sony", "playstation 5", "ps5 slim", "consola", "gaming"],
-    imagenPrincipal: "https://ejemplo.com/img/ps5-slim.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/ps5-slim-1.jpg",
-      "https://ejemplo.com/img/ps5-slim-2.jpg"
-    ]
-  },
-  {
-    id: 5,
-    sku: "GAM-LAP-ASUSROG",
-    nombre: "Notebook Gamer ASUS ROG Strix G16 i7 RTX 4060",
-    marca: "ASUS",
-    modelo: "ROG Strix G16 G614",
-    categoria: "Gaming",
-    subcategoria: "Laptops Gamer",
-    precio: 2499999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 5,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Rendimiento de nivel profesional para eSports con gráficos de la serie RTX 40.",
-    especificaciones: {
-      pantalla: "16 pulgadas IPS 165Hz (1920 x 1200)",
-      procesador: "Intel Core i7-13650HX",
-      memoriaRam: "16GB DDR5",
-      almacenamiento: "512GB NVMe SSD",
-      tarjetaGrafica: "NVIDIA GeForce RTX 4060 8GB",
-      bateria: "90Whr con carga rápida"
-    },
-    colores: ["Gris Eclipse"],
-    tags: ["asus", "rog", "gamer", "laptop", "rtx 4060"],
-    imagenPrincipal: "https://ejemplo.com/img/rog-strix-g16.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/rog-strix-g16-1.jpg"
-    ]
-  },
-  {
-    id: 6,
-    sku: "TVM-SAM-55QN",
-    nombre: "Televisor Samsung 55'' QLED 4K Smart TV Q60D",
-    marca: "Samsung",
-    modelo: "QN55Q60DA",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 999999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 10,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Volumen de color al 100% con tecnología Quantum Dot y diseño ultra delgado AirSlim.",
-    especificaciones: {
-      pulgadas: "55 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "QLED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Tizen OS",
-      conectividad: "3x HDMI, 2x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro Titán"],
-    tags: ["samsung", "tv", "qled", "55 pulgadas", "4k"],
-    imagenPrincipal: "https://ejemplo.com/img/samsung-q60d-55.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/samsung-q60d-55-1.jpg"
-    ]
-  },
-  {
-    id: 7,
-    sku: "AIR-SPL-LG12",
-    nombre: "Aire Acondicionado Split Inverter LG Dual Cool 3000 frigorías",
-    marca: "LG",
-    modelo: "S4-W12JA3AA",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Inverter",
-    precio: 1050000,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 7,
-    destacado: false,
-    activo: true,
-    garantia: "36 meses en compresor",
-    descripcion: "Ahorro de energía superior y enfriamiento rápido gracias al compresor DUAL Inverter.",
-    especificaciones: {
-      frigorias: "3000 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Inverter",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Control Wi-Fi integrado, Autolimpieza"
-    },
-    colores: ["Blanco"],
-    tags: ["aire acondicionado", "lg", "inverter", "3000 frigorias", "frio calor"],
-    imagenPrincipal: "https://ejemplo.com/img/lg-dual-cool.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/lg-dual-cool-1.jpg"
-    ]
-  },
-  {
-    id: 8,
-    sku: "CEL-MOT-ED50",
-    nombre: "Smartphone Motorola Edge 50 Pro 5G 512GB",
-    marca: "Motorola",
-    modelo: "Edge 50 Pro",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 1199999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 11,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Validación de color Pantone en pantalla y cámara con inteligencia artificial.",
-    especificaciones: {
-      pantalla: "6.7 pulgadas pOLED Curva 144Hz",
-      procesador: "Snapdragon 7 Gen 3",
-      memoriaRam: "12GB",
-      almacenamiento: "512GB",
-      camaraPrincipal: "Triple 50MP + 10MP + 13MP",
-      camaraFrontal: "50MP",
-      bateria: "4500 mAh con carga TurboPower de 125W"
-    },
-    colores: ["Negro", "Lavanda", "Blanco Perlado"],
-    tags: ["motorola", "edge 50 pro", "5g", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/motorola-edge-50-pro.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/motorola-edge-50-pro-1.jpg"
-    ]
-  },
-  {
-    id: 9,
-    sku: "GAM-CON-XSS",
-    nombre: "Consola Microsoft Xbox Series S 512GB",
-    marca: "Microsoft",
-    modelo: "Xbox Series S",
-    categoria: "Gaming",
-    subcategoria: "Consolas",
-    precio: 749999,
-    moneda: "ARS",
-    descuento: 5,
-    stock: true,
-    cantidadStock: 16,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Rendimiento de nueva generación completamente digital en el formato más compacto de Xbox.",
-    especificaciones: {
-      procesador: "CPU Zen 2 de 8 núcleos a 3.6 GHz",
-      gpu: "4 TFLOPS, 20 CUs",
-      memoriaRam: "10GB GDDR6",
-      almacenamiento: "512GB Custom NVME SSD",
-      resolucion: "Hasta 1440p a 120 FPS"
-    },
-    colores: ["Blanco Robot"],
-    tags: ["microsoft", "xbox", "series s", "consola", "gaming"],
-    imagenPrincipal: "https://ejemplo.com/img/xbox-series-s.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/xbox-series-s-1.jpg"
-    ]
-  },
-  {
-    id: 10,
-    sku: "TVM-LG-OLED65",
-    nombre: "Televisor LG 65'' OLED 4K Smart TV C4",
-    marca: "LG",
-    modelo: "OLED65C4PSA",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 2599999,
-    moneda: "ARS",
-    descuento: 8,
-    stock: true,
-    cantidadStock: 4,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Negros perfectos, contraste infinito y procesador inteligente alpha 9 AI 4K Gen7.",
-    especificaciones: {
-      pulgadas: "65 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "OLED Evo",
-      tasaRefresco: "120Hz",
-      sistemaOperativo: "webOS 24",
-      conectividad: "4x HDMI 2.1, 3x USB, Wi-Fi 5, Bluetooth 5.0"
-    },
-    colores: ["Negro Metálico"],
-    tags: ["lg", "oled", "65 pulgadas", "4k", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/lg-oled-c4-65.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/lg-oled-c4-65-1.jpg"
-    ]
-  },
-  {
-    id: 11,
-    sku: "AIR-SPL-HIS35",
-    nombre: "Aire Acondicionado Split Hisense 3500 frigorías Inverter",
-    marca: "Hisense",
-    modelo: "AS-12UW4RXV",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Inverter",
-    precio: 920000,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 9,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Climatización eficiente y silenciosa con tecnología inverter para reducir el consumo eléctrico.",
-    especificaciones: {
-      frigorias: "3500 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Inverter",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Modo Sleep, Display LED oculto"
-    },
-    colores: ["Blanco"],
-    tags: ["hisense", "aire acondicionado", "inverter", "3500 frigorias"],
-    imagenPrincipal: "https://ejemplo.com/img/hisense-3500.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/hisense-3500-1.jpg"
-    ]
-  },
-  {
-    id: 12,
-    sku: "CEL-SAM-A55",
-    nombre: "Smartphone Samsung Galaxy A55 5G 256GB",
-    marca: "Samsung",
-    modelo: "Galaxy A55",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 749999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 20,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Diseño elegante con marco de metal, seguridad avanzada con Samsung Knox Vault.",
-    especificaciones: {
-      pantalla: "6.6 pulgadas Super AMOLED 120Hz",
-      procesador: "Exynos 1480",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Triple 50MP + 12MP + 5MP",
-      camaraFrontal: "32MP",
-      bateria: "5000 mAh"
-    },
-    colores: ["Azul Oscuro", "Celeste", "Lila", "Blanco"],
-    tags: ["samsung", "galaxy a55", "5g", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/galaxy-a55.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/galaxy-a55-1.jpg"
-    ]
-  },
-  {
-    id: 13,
-    sku: "GAM-MON-SAMSUNG27",
-    nombre: "Monitor Gamer Samsung Odyssey G4 27'' FHD 240Hz",
-    marca: "Samsung",
-    modelo: "LS27BG400ELXZB",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Monitores Gamer",
-    precio: 589999,
-    moneda: "ARS",
-    descuento: 15,
-    stock: true,
-    cantidadStock: 13,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Velocidad extrema de 240Hz y tiempo de respuesta de 1ms para una ventaja competitiva.",
-    especificaciones: {
-      pulgadas: "27 pulgadas",
-      resolucion: "1920 x 1080 (FHD)",
-      tipoPanel: "IPS",
-      tasaRefresco: "240Hz",
-      tiempoRespuesta: "1ms (GTG)",
-      conectividad: "2x HDMI 2.0, 1x DisplayPort 1.2",
-      tecnologiaSync: "G-Sync Compatible, AMD FreeSync Premium"
-    },
-    colores: ["Negro"],
-    tags: ["monitor", "gamer", "samsung", "odyssey", "240hz"],
-    imagenPrincipal: "https://ejemplo.com/img/odyssey-g4-27.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/odyssey-g4-27-1.jpg"
-    ]
-  },
-  {
-    id: 14,
-    sku: "CEL-APL-IP14",
-    nombre: "Apple iPhone 14 128GB",
-    marca: "Apple",
-    modelo: "iPhone 14",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 1399999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 10,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Gran duración de batería, sistema de cámaras impresioinante y Detección de Accidentes.",
-    especificaciones: {
-      pantalla: "6.1 pulgadas Super Retina XDR OLED",
-      procesador: "Apple A15 Bionic",
-      memoriaRam: "6GB",
-      almacenamiento: "128GB",
-      camaraPrincipal: "Dual 12MP + 12MP",
-      camaraFrontal: "12MP",
-      bateria: "3279 mAh"
-    },
-    colores: ["Medianoche", "Estelar", "Azul", "Morado", "Rojo"],
-    tags: ["apple", "iphone 14", "celular", "ios"],
-    imagenPrincipal: "https://ejemplo.com/img/iphone-14.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/iphone-14-1.jpg"
-    ]
-  },
-  {
-    id: 15,
-    sku: "GAM-LAP-LENOVO5",
-    nombre: "Notebook Gamer Lenovo LOQ 15.6'' i5 RTX 3050",
-    marca: "Lenovo",
-    modelo: "LOQ 15IRH8",
-    categoria: "Gaming",
-    subcategoria: "Laptops Gamer",
-    precio: 1299999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 7,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Equilibrio perfecto entre rendimiento para juegos y tareas cotidianas con refrigeración optimizada.",
-    especificaciones: {
-      pantalla: "15.6 pulgadas FHD 144Hz",
-      procesador: "Intel Core i5-12450H",
-      memoriaRam: "16GB DDR5",
-      almacenamiento: "512GB SSD M.2",
-      tarjetaGrafica: "NVIDIA GeForce RTX 3050 6GB",
-      bateria: "60Whr"
-    },
-    colores: ["Gris Tormenta"],
-    tags: ["lenovo", "loq", "gamer", "laptop", "rtx 3050"],
-    imagenPrincipal: "https://ejemplo.com/img/lenovo-loq-15.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/lenovo-loq-15-1.jpg"
-    ]
-  },
-  {
-    id: 16,
-    sku: "TVM-TCL-50P755",
-    nombre: "Televisor TCL 50'' LED 4K UHD Smart TV Google TV",
-    marca: "TCL",
-    modelo: "50P755",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 619999,
-    moneda: "ARS",
-    descuento: 15,
-    stock: true,
-    cantidadStock: 18,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Imagen con HDR10+ y la comodidad de Google TV con control por voz manos libres.",
-    especificaciones: {
-      pulgadas: "50 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Google TV",
-      conectividad: "3x HDMI, 2x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro"],
-    tags: ["tcl", "tv", "50 pulgadas", "4k", "google tv"],
-    imagenPrincipal: "https://ejemplo.com/img/tcl-50p755.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/tcl-50p755-1.jpg"
-    ]
-  },
-  {
-    id: 17,
-    sku: "AIR-SPL-PH22",
-    nombre: "Aire Acondicionado Split Philco 2200 frigorías Frío/Calor",
-    marca: "Philco",
-    modelo: "PHIN22B",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Standard",
-    precio: 599999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 12,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Climatización eficiente para ambientes pequeños con función deshumidificación.",
-    especificaciones: {
-      frigorias: "2200 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Standard On/Off",
-      eficienciaEnergetica: "Clase B",
-      gasEcologico: "R410A",
-      funciones: "Timer programable, Función Sleep"
-    },
-    colores: ["Blanco"],
-    tags: ["philco", "aire acondicionado", "2200 frigorias", "frio calor"],
-    imagenPrincipal: "https://ejemplo.com/img/philco-2200.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/philco-2200-1.jpg"
-    ]
-  },
-  {
-    id: 18,
-    sku: "CEL-XIA-POCOM6",
-    nombre: "Smartphone Xiaomi POCO M6 Pro 256GB",
-    marca: "Xiaomi",
-    modelo: "POCO M6 Pro",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 489999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 22,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Pantalla Flow AMOLED de 120Hz con marcos ultrafinos y carga rápida de 67W.",
-    especificaciones: {
-      pantalla: "6.67 pulgadas Flow AMOLED 120Hz",
-      procesador: "MediaTek Helio G99-Ultra",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Triple 64MP con OIS + 8MP + 2MP",
-      camaraFrontal: "16MP",
-      bateria: "5000 mAh"
-    },
-    colores: ["Negro", "Azul", "Morado"],
-    tags: ["xiaomi", "poco", "m6 pro", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/poco-m6-pro.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/poco-m6-pro-1.jpg"
-    ]
-  },
-  {
-    id: 19,
-    sku: "GAM-ACC-CONTPS5",
-    nombre: "Control Inalámbrico Sony DualSense para PS5",
-    marca: "Sony",
-    modelo: "DualSense Wireless Controller",
-    categoria: "Gaming",
-    subcategoria: "Accesorios Gaming",
-    precio: 129999,
-    moneda: "ARS",
-    descuento: 5,
-    stock: true,
-    cantidadStock: 30,
-    destacado: false,
-    activo: true,
-    garantia: "6 meses",
-    descripcion: "Retroalimentación háptica inmersiva y gatillos adaptativos dinámicos.",
-    especificaciones: {
-      conectividad: "Bluetooth 5.1 / USB Tipo-C",
-      audio: "Micrófono integrado y conector jack 3.5mm",
-      bateria: "Batería recargable de ion-litio integrada",
-      compatibilidad: "PlayStation 5, PC, dispositivos móviles"
-    },
-    colores: ["Blanco", "Negro Midnight", "Rojo Cósmico", "Azul Starlight"],
-    tags: ["sony", "dualsense", "control", "ps5", "accesorios"],
-    imagenPrincipal: "https://ejemplo.com/img/dualsense.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/dualsense-1.jpg"
-    ]
-  },
-  {
-    id: 20,
-    sku: "TVM-SAM-75CU",
-    nombre: "Televisor Samsung 75'' Crystal UHD 4K Smart TV",
-    marca: "Samsung",
-    modelo: "UN75CU7100GXZD",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 1599999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 6,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Pantalla gigante con colores cristalinos optimizados y procesador Crystal 4K.",
-    especificaciones: {
-      pulgadas: "75 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED / Crystal UHD",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Tizen OS",
-      conectividad: "3x HDMI, 1x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro Titanio"],
-    tags: ["samsung", "75 pulgadas", "4k", "crystal uhd", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/samsung-75-cu7100.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/samsung-75-cu7100-1.jpg"
-    ]
-  },
-  {
-    id: 21,
-    sku: "AIR-SPL-CAR45",
-    nombre: "Aire Acondicionado Split Carrier 4500 frigorías Inverter",
-    marca: "Carrier",
-    modelo: "53VGHQ12M",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Inverter",
-    precio: 1350000,
-    moneda: "ARS",
-    descuento: 8,
-    stock: true,
-    cantidadStock: 5,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Alta potencia de climatización para espacios grandes con la máxima eficiencia Inverter.",
-    especificaciones: {
-      frigorias: "4500 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Inverter",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Filtro de alta densidad, Follow Me"
-    },
-    colores: ["Blanco"],
-    tags: ["carrier", "aire acondicionado", "4500 frigorias", "inverter"],
-    imagenPrincipal: "https://ejemplo.com/img/carrier-4500.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/carrier-4500-1.jpg"
-    ]
-  },
-  {
-    id: 22,
-    sku: "CEL-SAM-S24",
-    nombre: "Smartphone Samsung Galaxy S24 5G 256GB",
-    marca: "Samsung",
-    modelo: "Galaxy S24",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 1299999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 14,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Galaxy AI integrada, formato compacto y pantalla brillante con Vision Booster.",
-    especificaciones: {
-      pantalla: "6.2 pulgadas Dynamic AMOLED 2X 120Hz",
-      procesador: "Exynos 2400",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Triple 50MP + 10MP + 12MP",
-      camaraFrontal: "12MP",
-      bateria: "4000 mAh"
-    },
-    colores: ["Ámbar Amarillo", "Mármol Gris", "Negro Ónix", "Cobalto Violeta"],
-    tags: ["samsung", "galaxy s24", "5g", "celular", "ia"],
-    imagenPrincipal: "https://ejemplo.com/img/galaxy-s24.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/galaxy-s24-1.jpg"
-    ]
-  },
-  {
-    id: 23,
-    sku: "GAM-LAP-MSI15",
-    nombre: "Notebook Gamer MSI Thin GF63 i7 RTX 4050",
-    marca: "MSI",
-    modelo: "Thin GF63 12VE",
-    categoria: "Gaming",
-    subcategoria: "Laptops Gamer",
-    precio: 1599999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 6,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Diseño delgado y ligero sin sacrificar potencia gracias a la arquitectura Ada Lovelace.",
-    especificaciones: {
-      pantalla: "15.6 pulgadas FHD 144Hz",
-      procesador: "Intel Core i7-12650H",
-      memoriaRam: "16GB DDR4",
-      almacenamiento: "512GB NVMe SSD",
-      tarjetaGrafica: "NVIDIA GeForce RTX 4050 6GB",
-      bateria: "3 celdas 52.4 Whr"
-    },
-    colores: ["Negro"],
-    tags: ["msi", "laptop", "gamer", "rtx 4050", "thin gf63"],
-    imagenPrincipal: "https://ejemplo.com/img/msi-thin-gf63.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/msi-thin-gf63-1.jpg"
-    ]
-  },
-  {
-    id: 24,
-    sku: "TVM-PHILIPS-55",
-    nombre: "Televisor Philips 55'' 4K UHD Smart TV con Ambilight",
-    marca: "Philips",
-    modelo: "55PUS7908",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 779999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 11,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Vive una experiencia inmersiva única con las luces LED Ambilight integradas en la parte trasera.",
-    especificaciones: {
-      pulgadas: "55 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Titan OS",
-      conectividad: "3x HDMI, 2x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro Antracita"],
-    tags: ["philips", "tv", "55 pulgadas", "ambilight", "4k"],
-    imagenPrincipal: "https://ejemplo.com/img/philips-55-ambilight.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/philips-55-ambilight-1.jpg"
-    ]
-  },
-  {
-    id: 25,
-    sku: "AIR-SPL-ECO30",
-    nombre: "Aire Acondicionado Split EcoStream 3000 frigorías Frío/Calor",
-    marca: "EcoStream",
-    modelo: "ECO-30FC",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Standard",
-    precio: 680000,
-    moneda: "ARS",
-    descuento: 15,
-    stock: true,
-    cantidadStock: 14,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Solución económica y confiable para mantener tu hogar a la temperatura ideal todo el año.",
-    especificaciones: {
-      frigorias: "3000 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Standard On/Off",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Control remoto multifunción, Deshumidificación"
-    },
-    colores: ["Blanco"],
-    tags: ["aire acondicionado", "3000 frigorias", "frio calor", "ecostream"],
-    imagenPrincipal: "https://ejemplo.com/img/ecostream-3000.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/ecostream-3000-1.jpg"
-    ]
-  },
-  {
-    id: 26,
-    sku: "CEL-MOT-G54",
-    nombre: "Smartphone Motorola Moto G54 5G 256GB",
-    marca: "Motorola",
-    modelo: "Moto G54",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 429999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 25,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Entretenimiento fluido con pantalla FHD+ de 120Hz y cámara con estabilización óptica (OIS).",
-    especificaciones: {
-      pantalla: "6.5 pulgadas FHD+ 120Hz",
-      procesador: "MediaTek Dimensity 7020",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Dual 50MP con OIS + 8MP",
-      camaraFrontal: "16MP",
-      bateria: "5000 mAh con carga TurboPower"
-    },
-    colores: ["Azul", "Verde", "Negro"],
-    tags: ["motorola", "moto g54", "5g", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/moto-g54.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/moto-g54-1.jpg"
-    ]
-  },
-  {
-    id: 27,
-    sku: "GAM-ACC-HEADHYPER",
-    nombre: "Auriculares Gamer HyperX Cloud Stinger 2",
-    marca: "HyperX",
-    modelo: "Cloud Stinger 2",
-    categoria: "Gaming",
-    subcategoria: "Accesorios Gaming",
-    precio: 79999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 40,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Comodidad ligera excepcional y sonido nítido para largas sesiones de juego.",
-    especificaciones: {
-      tipoAudio: "Estéreo con drivers de 50mm",
-      conectividad: "Cable jack 3.5mm",
-      microfono: "Cancelación de ruido pivotante para silenciar",
-      compatibilidad: "PC, PS4, PS5, Xbox Series X/S, Nintendo Switch, Móviles"
-    },
-    colores: ["Negro"],
-    tags: ["hyperx", "auriculares", "gamer", "cloud stinger", "accesorios"],
-    imagenPrincipal: "https://ejemplo.com/img/hyperx-cloud-stinger-2.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/hyperx-cloud-stinger-2-1.jpg"
-    ]
-  },
-  {
-    id: 28,
-    sku: "TVM-SAMSUNG-32",
-    nombre: "Televisor Smart TV Samsung 32'' HD T4300",
-    marca: "Samsung",
-    modelo: "UN32T4300AGXZD",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 349999,
-    moneda: "ARS",
-    descuento: 8,
-    stock: true,
-    cantidadStock: 19,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Colores más nítidos y vivos con tecnología PurColor para habitaciones pequeñas o cocinas.",
-    especificaciones: {
-      pulgadas: "32 pulgadas",
-      resolucion: "HD (1366 x 768)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Tizen OS",
-      conectividad: "2x HDMI, 1x USB, Wi-Fi"
-    },
-    colores: ["Negro"],
-    tags: ["samsung", "32 pulgadas", "hd", "smart tv", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/samsung-32-t4300.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/samsung-32-t4300-1.jpg"
-    ]
-  },
-  {
-    id: 29,
-    sku: "AIR-SPL-MIG25",
-    nombre: "Aire Acondicionado Split Midea 2500 frigorías Frío/Calor",
-    marca: "Midea",
-    modelo: "MSFA-25",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Standard",
-    precio: 610000,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 11,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Funcionamiento silencioso y gran rendimiento térmico con kit de instalación incluido.",
-    especificaciones: {
-      frigorias: "2500 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Standard On/Off",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Super Ionizador, Modo Eco"
-    },
-    colores: ["Blanco"],
-    tags: ["midea", "aire acondicionado", "2500 frigorias", "frio calor"],
-    imagenPrincipal: "https://ejemplo.com/img/midea-2500.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/midea-2500-1.jpg"
-    ]
-  },
-  {
-    id: 30,
-    sku: "CEL-APL-IP13",
-    nombre: "Apple iPhone 13 128GB",
-    marca: "Apple",
-    modelo: "iPhone 13",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 1199999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 7,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Sistema de dos cámaras avanzado, Modo Cine y el potente chip A15 Bionic.",
-    especificaciones: {
-      pantalla: "6.1 pulgadas Super Retina XDR OLED",
-      procesador: "Apple A15 Bionic",
-      memoriaRam: "4GB",
-      almacenamiento: "128GB",
-      camaraPrincipal: "Dual 12MP + 12MP",
-      camaraFrontal: "12MP",
-      bateria: "3240 mAh"
-    },
-    colores: ["Rosa", "Azul", "Midnight", "Starlight", "Rojo"],
-    tags: ["apple", "iphone 13", "celular", "ios"],
-    imagenPrincipal: "https://ejemplo.com/img/iphone-13.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/iphone-13-1.jpg"
-    ]
-  },
-  {
-    id: 31,
-    sku: "GAM-MON-GIGABYTE27",
-    nombre: "Monitor Gamer Gigabyte 27'' QHD 170Hz IPS",
-    marca: "Gigabyte",
-    modelo: "G27Q",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Monitores Gamer",
-    precio: 529999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 12,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Claridad superior en resolución QHD con panel IPS de gran fidelidad de color y 170Hz.",
-    especificaciones: {
-      pulgadas: "27 pulgadas",
-      resolucion: "2560 x 1440 (QHD)",
-      tipoPanel: "IPS",
-      tasaRefresco: "170Hz",
-      tiempoRespuesta: "1ms (MPRT)",
-      conectividad: "2x HDMI 2.0, 1x DisplayPort 1.2, Hub USB",
-      tecnologiaSync: "AMD FreeSync Premium"
-    },
-    colores: ["Negro"],
-    tags: ["monitor", "gamer", "gigabyte", "qhd", "170hz"],
-    imagenPrincipal: "https://ejemplo.com/img/gigabyte-g27q.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/gigabyte-g27q-1.jpg"
-    ]
-  },
-  {
-    id: 32,
-    sku: "TVM-LG-55UR",
-    nombre: "Televisor LG 55'' 4K UHD Smart TV UR7800",
-    marca: "LG",
-    modelo: "55UR7800PSB",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 729999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 15,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Imágenes 4K reales con colores vivos y detalles precisos impulsados por el procesador a5 AI 4K Gen6.",
-    especificaciones: {
-      pulgadas: "55 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "webOS",
-      conectividad: "3x HDMI, 2x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Ash Blue / Negro"],
-    tags: ["lg", "55 pulgadas", "4k", "smart tv", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/lg-55ur7800.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/lg-55ur7800-1.jpg"
-    ]
-  },
-  {
-    id: 33,
-    sku: "AIR-SPL-PHI30I",
-    nombre: "Aire Acondicionado Split Inverter Philco 3000 frigorías",
-    marca: "Philco",
-    modelo: "PHTIN32W",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Inverter",
-    precio: 890000,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 8,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Tecnología Inverter para mantener la temperatura estable con menor consumo eléctrico.",
-    especificaciones: {
-      frigorias: "3000 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Inverter",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Control de flujo de aire inteligente, Display digital"
-    },
-    colores: ["Blanco"],
-    tags: ["philco", "aire acondicionado", "inverter", "3000 frigorias"],
-    imagenPrincipal: "https://ejemplo.com/img/philco-inverter-3000.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/philco-inverter-3000-1.jpg"
-    ]
-  },
-  {
-    id: 34,
-    sku: "CEL-SAM-A25",
-    nombre: "Smartphone Samsung Galaxy A25 5G 128GB",
-    marca: "Samsung",
-    modelo: "Galaxy A25",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 419999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 24,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Pantalla Super AMOLED fluida y cámara principal de 50MP con estabilización OIS.",
-    especificaciones: {
-      pantalla: "6.5 pulgadas Super AMOLED 120Hz",
-      procesador: "Exynos 1280",
-      memoriaRam: "6GB",
-      almacenamiento: "128GB",
-      camaraPrincipal: "Triple 50MP + 8MP + 2MP",
-      camaraFrontal: "13MP",
-      bateria: "5000 mAh"
-    },
-    colores: ["Negro", "Celeste", "Amarillo"],
-    tags: ["samsung", "galaxy a25", "5g", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/galaxy-a25.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/galaxy-a25-1.jpg"
-    ]
-  },
-  {
-    id: 35,
-    sku: "GAM-LAP-ACERNIRO",
-    nombre: "Notebook Gamer Acer Nitro 5 15.6'' i5 RTX 3050",
-    marca: "Acer",
-    modelo: "AN515-58",
-    categoria: "Gaming",
-    subcategoria: "Laptops Gamer",
-    precio: 1249999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 9,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Dominio absoluto del juego con refrigeración de doble ventilador y chasis optimizado.",
-    especificaciones: {
-      pantalla: "15.6 pulgadas FHD 144Hz",
-      procesador: "Intel Core i5-12500H",
-      memoriaRam: "16GB DDR4",
-      almacenamiento: "512GB SSD M.2",
-      tarjetaGrafica: "NVIDIA GeForce RTX 3050 4GB",
-      bateria: "57.5 Whr"
-    },
-    colores: ["Negro con detalles rojos"],
-    tags: ["acer", "nitro 5", "gamer", "laptop", "rtx 3050"],
-    imagenPrincipal: "https://ejemplo.com/img/acer-nitro-5.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/acer-nitro-5-1.jpg"
-    ]
-  },
-  {
-    id: 36,
-    sku: "TVM-HISENSE-50",
-    nombre: "Televisor Hisense 50'' 4K UHD Smart TV VIDAA",
-    marca: "Hisense",
-    modelo: "50A6H",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 549999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 16,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Excelente relación calidad-precio con soporte Dolby Vision HDR y sistema VIDAA U.",
-    especificaciones: {
-      pulgadas: "50 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "VIDAA U",
-      conectividad: "3x HDMI, 2x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro"],
-    tags: ["hisense", "50 pulgadas", "4k", "smart tv", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/hisense-50a6h.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/hisense-50a6h-1.jpg"
-    ]
-  },
-  {
-    id: 37,
-    sku: "AIR-SPL-YORK45",
-    nombre: "Aire Acondicionado Split York 4500 frigorías Frío/Calor",
-    marca: "York",
-    modelo: "YK-45FC",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Standard",
-    precio: 1150000,
-    moneda: "ARS",
-    descuento: 8,
-    stock: true,
-    cantidadStock: 6,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Climatización robusta y duradera para amplios espacios en el hogar u oficina.",
-    especificaciones: {
-      frigorias: "4500 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Standard On/Off",
-      eficienciaEnergetica: "Clase B",
-      gasEcologico: "R410A",
-      funciones: "Auto-diagnóstico, Función Turbo"
-    },
-    colores: ["Blanco"],
-    tags: ["york", "aire acondicionado", "4500 frigorias", "frio calor"],
-    imagenPrincipal: "https://ejemplo.com/img/york-4500.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/york-4500-1.jpg"
-    ]
-  },
-  {
-    id: 38,
-    sku: "CEL-XIA-REDMI13C",
-    nombre: "Smartphone Xiaomi Redmi 13C 256GB",
-    marca: "Xiaomi",
-    modelo: "Redmi 13C",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 299999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 30,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Pantalla inmersiva de 6.74 pulgadas con tasa de refresco de 90Hz y gran batería.",
-    especificaciones: {
-      pantalla: "6.74 pulgadas HD+ 90Hz",
-      procesador: "MediaTek Helio G85",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Dual 50MP + 2MP",
-      camaraFrontal: "8MP",
-      bateria: "5000 mAh con carga de 18W"
-    },
-    colores: ["Negro", "Verde", "Azul"],
-    tags: ["xiaomi", "redmi 13c", "celular", "economico"],
-    imagenPrincipal: "https://ejemplo.com/img/redmi-13c.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/redmi-13c-1.jpg"
-    ]
-  },
-  {
-    id: 39,
-    sku: "GAM-ACC-MOUSEDESK",
-    nombre: "Mouse Gamer Logitech G205 Lightsync RGB",
-    marca: "Logitech G",
-    modelo: "G203 Lightsync",
-    categoria: "Gaming",
-    subcategoria: "Accesorios Gaming",
-    precio: 49999,
-    moneda: "ARS",
-    descuento: 15,
-    stock: true,
-    cantidadStock: 45,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Sensor de calidad para juegos con iluminación RGB personalizable y diseño clásico.",
-    especificaciones: {
-      sensor: "Óptico de hasta 8,000 DPI",
-      botones: "6 botones programables",
-      conectividad: "Cable USB",
-      iluminacion: "LIGHTSYNC RGB de espectro completo"
-    },
-    colores: ["Negro", "Blanco", "Azul", "Lila"],
-    tags: ["logitech", "mouse gamer", "g203", "rgb", "accesorios"],
-    imagenPrincipal: "https://ejemplo.com/img/logitech-g203.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/logitech-g203-1.jpg"
-    ]
-  },
-  {
-    id: 40,
-    sku: "TVM-SAMSUNG-50",
-    nombre: "Televisor Samsung 50'' Crystal UHD 4K Smart TV",
-    marca: "Samsung",
-    modelo: "UN50CU7000GXZD",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 679999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 12,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Expresión de color optimizada para ofrecer imágenes nítidas y vibrantes en 4K.",
-    especificaciones: {
-      pulgadas: "50 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Tizen OS",
-      conectividad: "3x HDMI, 1x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro"],
-    tags: ["samsung", "50 pulgadas", "4k", "crystal uhd", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/samsung-50-cu7000.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/samsung-50-cu7000-1.jpg"
-    ]
-  },
-  {
-    id: 41,
-    sku: "AIR-SPL-SAMSUNG30",
-    nombre: "Aire Acondicionado Split Samsung WindFree 3000 frigorías Inverter",
-    marca: "Samsung",
-    modelo: "AR12CV",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Inverter",
-    precio: 1250000,
-    moneda: "ARS",
-    descuento: 8,
-    stock: true,
-    cantidadStock: 8,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Enfriamiento sin corrientes de aire molestas gracias a miles de microorificios distribuidos.",
-    especificaciones: {
-      frigorias: "3000 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Digital Inverter WindFree",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Control SmartThings Wi-Fi, IA Auto Cooling"
-    },
-    colores: ["Blanco"],
-    tags: ["samsung", "windfree", "aire acondicionado", "inverter", "3000 frigorias"],
-    imagenPrincipal: "https://ejemplo.com/img/samsung-windfree-3000.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/samsung-windfree-3000-1.jpg"
-    ]
-  },
-  {
-    id: 42,
-    sku: "CEL-MOT-G24",
-    nombre: "Smartphone Motorola Moto G24 128GB",
-    marca: "Motorola",
-    modelo: "Moto G24",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 299999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 28,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Diseño elegante y ligero con procesador octa-core y cámara con tecnología Quad Pixel.",
-    especificaciones: {
-      pantalla: "6.56 pulgadas HD+ 90Hz",
-      procesador: "MediaTek Helio G85",
-      memoriaRam: "4GB",
-      almacenamiento: "128GB",
-      camaraPrincipal: "Dual 50MP + 2MP",
-      camaraFrontal: "8MP",
-      bateria: "5000 mAh con carga TurboPower"
-    },
-    colores: ["Gris", "Rosa", "Verde"],
-    tags: ["motorola", "moto g24", "celular", "economico"],
-    imagenPrincipal: "https://ejemplo.com/img/moto-g24.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/moto-g24-1.jpg"
-    ]
-  },
-  {
-    id: 43,
-    sku: "GAM-MON-ASUS24",
-    nombre: "Monitor Gamer ASUS TUF Gaming 24'' FHD 165Hz",
-    marca: "ASUS",
-    modelo: "VG249Q1R",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Monitores Gamer",
-    precio: 389999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 15,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Diseñado para jugadores profesionales con panel IPS de alta velocidad y 1ms de tiempo de respuesta.",
-    especificaciones: {
-      pulgadas: "23.8 pulgadas",
-      resolucion: "1920 x 1080 (FHD)",
-      tipoPanel: "IPS",
-      tasaRefresco: "165Hz",
-      tiempoRespuesta: "1ms (MPRT)",
-      conectividad: "2x HDMI 1.4, 1x DisplayPort 1.2",
-      tecnologiaSync: "AMD FreeSync Premium, ELMB"
-    },
-    colores: ["Negro"],
-    tags: ["monitor", "gamer", "asus", "tuf", "165hz"],
-    imagenPrincipal: "https://ejemplo.com/img/asus-tuf-vg249q1r.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/asus-tuf-vg249q1r-1.jpg"
-    ]
-  },
-  {
-    id: 44,
-    sku: "TVM-TCL-55P635",
-    nombre: "Televisor TCL 55'' 4K UHD Google TV Frameless",
-    marca: "TCL",
-    modelo: "55P635",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 689999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 10,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Diseño sin bordes (Frameless), calidad de imagen HDR y entretenimiento inteligente con Google TV.",
-    especificaciones: {
-      pulgadas: "55 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Google TV",
-      conectividad: "3x HDMI, 1x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro"],
-    tags: ["tcl", "55 pulgadas", "4k", "google tv", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/tcl-55p635.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/tcl-55p635-1.jpg"
-    ]
-  },
-  {
-    id: 45,
-    sku: "AIR-SPL-AUD30",
-    nombre: "Aire Acondicionado Split Audit 3000 frigorías Frío/Calor",
-    marca: "Audit",
-    modelo: "AUD-30FC",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Standard",
-    precio: 570000,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 16,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Confiabilidad y confort térmico garantizado para cualquier ambiente del hogar.",
-    especificaciones: {
-      frigorias: "3000 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Standard On/Off",
-      eficienciaEnergetica: "Clase B",
-      gasEcologico: "R410A",
-      funciones: "Control remoto con display LCD, Modo Sleep"
-    },
-    colores: ["Blanco"],
-    tags: ["audit", "aire acondicionado", "3000 frigorias", "frio calor"],
-    imagenPrincipal: "https://ejemplo.com/img/audit-3000.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/audit-3000-1.jpg"
-    ]
-  },
-  {
-    id: 46,
-    sku: "CEL-SAM-S24PLUS",
-    nombre: "Smartphone Samsung Galaxy S24+ 5G 512GB",
-    marca: "Samsung",
-    modelo: "Galaxy S24+",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 1599999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 9,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Pantalla QHD+ más grande, mayor rendimiento y herramientas de Galaxy AI avanzadas.",
-    especificaciones: {
-      pantalla: "6.7 pulgadas Dynamic AMOLED 2X 120Hz",
-      procesador: "Exynos 2400",
-      memoriaRam: "12GB",
-      almacenamiento: "512GB",
-      camaraPrincipal: "Triple 50MP + 10MP + 12MP",
-      camaraFrontal: "12MP",
-      bateria: "4900 mAh con carga súper rápida"
-    },
-    colores: ["Negro Ónix", "Mármol Gris", "Cobalto Violeta"],
-    tags: ["samsung", "galaxy s24+", "5g", "celular", "ia"],
-    imagenPrincipal: "https://ejemplo.com/img/galaxy-s24-plus.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/galaxy-s24-plus-1.jpg"
-    ]
-  },
-  {
-    id: 47,
-    sku: "GAM-LAP-HPVICTUS",
-    nombre: "Notebook Gamer HP Victus 15.6'' i5 RTX 2050",
-    marca: "HP",
-    modelo: "Victus 15-fa0031la",
-    categoria: "Gaming",
-    subcategoria: "Laptops Gamer",
-    precio: 1099999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 11,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Diseño elegante y moderno pensado para el gaming diario y la productividad multitarea.",
-    especificaciones: {
-      pantalla: "15.6 pulgadas FHD 144Hz",
-      procesador: "Intel Core i5-12500H",
-      memoriaRam: "8GB DDR4",
-      almacenamiento: "512GB SSD M.2",
-      tarjetaGrafica: "NVIDIA GeForce RTX 2050 4GB",
-      bateria: "52.5 Whr"
-    },
-    colores: ["Azul Mica"],
-    tags: ["hp", "victus", "gamer", "laptop", "rtx 2050"],
-    imagenPrincipal: "https://ejemplo.com/img/hp-victus-15.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/hp-victus-15-1.jpg"
-    ]
-  },
-  {
-    id: 48,
-    sku: "TVM-SAMSUNG-43",
-    nombre: "Televisor Samsung 43'' Crystal UHD 4K Smart TV",
-    marca: "Samsung",
-    modelo: "UN43CU7100GXZD",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 529999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 14,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Resolución 4K nítida en un formato compacto ideal para habitaciones medianas o estudios.",
-    especificaciones: {
-      pulgadas: "43 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Tizen OS",
-      conectividad: "3x HDMI, 1x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro"],
-    tags: ["samsung", "43 pulgadas", "4k", "crystal uhd", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/samsung-43-cu7100.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/samsung-43-cu7100-1.jpg"
-    ]
-  },
-  {
-    id: 49,
-    sku: "AIR-SPL-CAR30I",
-    nombre: "Aire Acondicionado Split Inverter Carrier 3000 frigorías",
-    marca: "Carrier",
-    modelo: "53VGHQ09M",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Inverter",
-    precio: 990000,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 7,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Eficiencia de vanguardia y confort supremo gracias a la tecnología Inverter de Carrier.",
-    especificaciones: {
-      frigorias: "3000 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Inverter",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Filtro purificador, Modo Eco"
-    },
-    colores: ["Blanco"],
-    tags: ["carrier", "aire acondicionado", "inverter", "3000 frigorias"],
-    imagenPrincipal: "https://ejemplo.com/img/carrier-inverter-3000.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/carrier-inverter-3000-1.jpg"
-    ]
-  },
-  {
-    id: 50,
-    sku: "CEL-XIA-NOTE13",
-    nombre: "Smartphone Xiaomi Redmi Note 13 256GB",
-    marca: "Xiaomi",
-    modelo: "Redmi Note 13",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 479999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 20,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Cámara principal de 108MP de alta resolución con pantalla AMOLED de 120Hz.",
-    especificaciones: {
-      pantalla: "6.67 pulgadas AMOLED 120Hz",
-      procesador: "Snapdragon 685",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Triple 108MP + 8MP + 2MP",
-      camaraFrontal: "16MP",
-      bateria: "5000 mAh con carga rápida de 33W"
-    },
-    colores: ["Negro", "Verde", "Azul"],
-    tags: ["xiaomi", "redmi note 13", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/redmi-note-13.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/redmi-note-13-1.jpg"
-    ]
-  },
-  {
-    id: 51,
-    sku: "GAM-ACC-KEYMECH",
-    nombre: "Teclado Mecánico Gamer Redragon Kumara K552 RGB",
-    marca: "Redragon",
-    modelo: "Kumara K552",
-    categoria: "Gaming",
-    subcategoria: "Accesorios Gaming",
-    precio: 64999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 35,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Teclado mecánico formato TKL compacto con switches mecánicos de alta durabilidad e iluminación RGB.",
-    especificaciones: {
-      tipoSwitches: "Outemu Mechanical Switches (Red/Blue)",
-      formato: "TKL (Sin teclado numérico - 87 teclas)",
-      conectividad: "Cable USB removible",
-      iluminacion: "RGB Chroma configurable"
-    },
-    colores: ["Negro", "Blanco", "Rosa"],
-    tags: ["redragon", "teclado mecanico", "kumara", "gamer", "accesorios"],
-    imagenPrincipal: "https://ejemplo.com/img/redragon-kumara.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/redragon-kumara-1.jpg"
-    ]
-  },
-  {
-    id: 52,
-    sku: "TVM-LG-75UR",
-    nombre: "Televisor LG 75'' 4K UHD Smart TV UR8750",
-    marca: "LG",
-    modelo: "75UR8750PSA",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 1499999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 5,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Gran pantalla cinematográfica 4K con funciones inteligentes avanzadas y webOS.",
-    especificaciones: {
-      pulgadas: "75 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "webOS",
-      conectividad: "3x HDMI, 2x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro Titanio"],
-    tags: ["lg", "75 pulgadas", "4k", "smart tv", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/lg-75-ur8750.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/lg-75-ur8750-1.jpg"
-    ]
-  },
-  {
-    id: 53,
-    sku: "AIR-SPL-HIS45",
-    nombre: "Aire Acondicionado Split Hisense 4500 frigorías Frío/Calor",
-    marca: "Hisense",
-    modelo: "AS-18FC",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Standard",
-    precio: 1099999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 8,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Potencia elevada para climatizar rápidamente grandes estancias con total comodidad.",
-    especificaciones: {
-      frigorias: "4500 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Standard On/Off",
-      eficienciaEnergetica: "Clase B",
-      gasEcologico: "R410A",
-      funciones: "Modo Super, Filtro lavable"
-    },
-    colores: ["Blanco"],
-    tags: ["hisense", "aire acondicionado", "4500 frigorias", "frio calor"],
-    imagenPrincipal: "https://ejemplo.com/img/hisense-4500.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/hisense-4500-1.jpg"
-    ]
-  },
-  {
-    id: 54,
-    sku: "CEL-APL-IP15",
-    nombre: "Apple iPhone 15 128GB",
-    marca: "Apple",
-    modelo: "iPhone 15",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 1699999,
-    moneda: "ARS",
-    descuento: 8,
-    stock: true,
-    cantidadStock: 12,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Innovadora Isla Dinámica, cámara principal de 48MP y conector USB-C universal.",
-    especificaciones: {
-      pantalla: "6.1 pulgadas Super Retina XDR OLED",
-      procesador: "Apple A16 Bionic",
-      memoriaRam: "6GB",
-      almacenamiento: "128GB",
-      camaraPrincipal: "Dual 48MP + 12MP",
-      camaraFrontal: "12MP",
-      bateria: "3349 mAh"
-    },
-    colores: ["Rosa", "Amarillo", "Verde", "Azul", "Negro"],
-    tags: ["apple", "iphone 15", "celular", "ios"],
-    imagenPrincipal: "https://ejemplo.com/img/iphone-15.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/iphone-15-1.jpg"
-    ]
-  },
-  {
-    id: 55,
-    sku: "GAM-LAP-LENOVOPRO",
-    nombre: "Notebook Gamer Lenovo Legion Pro 5 i7 RTX 4070",
-    marca: "Lenovo",
-    modelo: "Legion Pro 5 16IRX8",
-    categoria: "Gaming",
-    subcategoria: "Laptops Gamer",
-    precio: 2999999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 4,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Poder puro de rendimiento con inteligencia artificial integrada por el chip LA1 AI.",
-    especificaciones: {
-      pantalla: "16 pulgadas IPS 240Hz (2560 x 1600)",
-      procesador: "Intel Core i7-13700HX",
-      memoriaRam: "32GB DDR5",
-      almacenamiento: "1TB NVMe SSD",
-      tarjetaGrafica: "NVIDIA GeForce RTX 4070 8GB",
-      bateria: "80Whr"
-    },
-    colores: ["Gris Onyx"],
-    tags: ["lenovo", "legion pro 5", "gamer", "laptop", "rtx 4070"],
-    imagenPrincipal: "https://ejemplo.com/img/lenovo-legion-pro-5.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/lenovo-legion-pro-5-1.jpg"
-    ]
-  },
-  {
-    id: 56,
-    sku: "TVM-SAMSUNG-65",
-    nombre: "Televisor Samsung 65'' Crystal UHD 4K Smart TV",
-    marca: "Samsung",
-    modelo: "UN65CU7100GXZD",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 1199999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 8,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Gran formato de 65 pulgadas con resolución 4K y diseño elegante sin marcos.",
-    especificaciones: {
-      pulgadas: "65 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Tizen OS",
-      conectividad: "3x HDMI, 1x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro"],
-    tags: ["samsung", "65 pulgadas", "4k", "crystal uhd", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/samsung-65-cu7100.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/samsung-65-cu7100-1.jpg"
-    ]
-  },
-  {
-    id: 57,
-    sku: "AIR-SPL-MIG30I",
-    nombre: "Aire Acondicionado Split Inverter Midea 3000 frigorías",
-    marca: "Midea",
-    modelo: "MSFA-30IN",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Inverter",
-    precio: 870000,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 10,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Eficiencia energética avanzada Inverter con bajo nivel de ruido operativo.",
-    especificaciones: {
-      frigorias: "3000 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Inverter",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "Air Magic, Seguimiento de temperatura Follow Me"
-    },
-    colores: ["Blanco"],
-    tags: ["midea", "aire acondicionado", "inverter", "3000 frigorias"],
-    imagenPrincipal: "https://ejemplo.com/img/midea-inverter-3000.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/midea-inverter-3000-1.jpg"
-    ]
-  },
-  {
-    id: 58,
-    sku: "CEL-MOT-RAZR40",
-    nombre: "Smartphone Motorola Razr 40 Ultra Plegable 512GB",
-    marca: "Motorola",
-    modelo: "Razr 40 Ultra",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 1799999,
-    moneda: "ARS",
-    descuento: 15,
-    stock: true,
-    cantidadStock: 6,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Pantalla externa interactiva gigantesca y diseño plegable sofisticado.",
-    especificaciones: {
-      pantalla: "Externa 3.6 pulgadas / Interna 6.9 pulgadas pOLED 165Hz",
-      procesador: "Snapdragon 8+ Gen 1",
-      memoriaRam: "12GB",
-      almacenamiento: "512GB",
-      camaraPrincipal: "Dual 12MP + 13MP",
-      camaraFrontal: "32MP",
-      bateria: "3800 mAh con carga TurboPower de 30W"
-    },
-    colores: ["Negro Infinite", "Azul Glacier", "Rojo Viva Magenta"],
-    tags: ["motorola", "razr 40 ultra", "plegable", "celular", "5g"],
-    imagenPrincipal: "https://ejemplo.com/img/motorola-razr-40-ultra.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/motorola-razr-40-ultra-1.jpg"
-    ]
-  },
-  {
-    id: 59,
-    sku: "GAM-ACC-MICRODESK",
-    nombre: "Micrófono Condensador HyperX QuadCast S RGB",
-    marca: "HyperX",
-    modelo: "QuadCast S",
-    categoria: "Gaming",
-    subcategoria: "Accesorios Gaming",
-    precio: 219999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 15,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Micrófono USB para streaming con soporte antivibraciones y deslumbrante iluminación RGB personalizable.",
-    especificaciones: {
-      patronesPolares: "Estéreo, Omnidireccional, Cardioide, Bidireccional",
-      conectividad: "USB Tipo-C a USB",
-      compatibilidad: "PC, PS4, PS5, Mac",
-      extras: "Sensor de toque para silenciar con indicador LED"
-    },
-    colores: ["Negro con RGB"],
-    tags: ["hyperx", "quadcast s", "microfono", "streaming", "gamer"],
-    imagenPrincipal: "https://ejemplo.com/img/hyperx-quadcast-s.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/hyperx-quadcast-s-1.jpg"
-    ]
-  },
-  {
-    id: 60,
-    sku: "TVM-TCL-65P755",
-    nombre: "Televisor TCL 65'' 4K UHD Smart TV Google TV",
-    marca: "TCL",
-    modelo: "65P755",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 999999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 9,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Gran pantalla de 65 pulgadas con tecnología de mejora de movimiento y control por voz.",
-    especificaciones: {
-      pulgadas: "65 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Google TV",
-      conectividad: "3x HDMI, 2x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro"],
-    tags: ["tcl", "65 pulgadas", "4k", "google tv", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/tcl-65p755.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/tcl-65p755-1.jpg"
-    ]
-  },
-  {
-    id: 61,
-    sku: "AIR-SPL-PHR45I",
-    nombre: "Aire Acondicionado Split Inverter Philco 4500 frigorías",
-    marca: "Philco",
-    modelo: "PHTIN45W",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Inverter",
-    precio: 1399999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 6,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Gran potencia con el máximo ahorro eléctrico gracias al compresor Inverter de Philco.",
-    especificaciones: {
-      frigorias: "4500 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Inverter",
-      eficienciaEnergetica: "Clase A",
-      gasEcologico: "R410A",
-      funciones: "I Feel, Auto limpieza"
-    },
-    colores: ["Blanco"],
-    tags: ["philco", "aire acondicionado", "inverter", "4500 frigorias"],
-    imagenPrincipal: "https://ejemplo.com/img/philco-inverter-4500.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/philco-inverter-4500-1.jpg"
-    ]
-  },
-  {
-    id: 62,
-    sku: "CEL-SAM-A15",
-    nombre: "Smartphone Samsung Galaxy A15 128GB",
-    marca: "Samsung",
-    modelo: "Galaxy A15",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 299999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 32,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Pantalla Super AMOLED brillante y versátil sistema de triple cámara trasera.",
-    especificaciones: {
-      pantalla: "6.5 pulgadas Super AMOLED 90Hz",
-      procesador: "MediaTek Helio G99",
-      memoriaRam: "4GB",
-      almacenamiento: "128GB",
-      camaraPrincipal: "Triple 50MP + 5MP + 2MP",
-      camaraFrontal: "13MP",
-      bateria: "5000 mAh"
-    },
-    colores: ["Azul Oscuro", "Celeste", "Amarillo"],
-    tags: ["samsung", "galaxy a15", "celular", "economico"],
-    imagenPrincipal: "https://ejemplo.com/img/galaxy-a15.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/galaxy-a15-1.jpg"
-    ]
-  },
-  {
-    id: 63,
-    sku: "GAM-MON-DELL27",
-    nombre: "Monitor Gamer Dell 27'' QHD 165Hz Curved",
-    marca: "Dell",
-    modelo: "S2722DGM",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Monitores Gamer",
-    precio: 619999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 8,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Curvatura inmersiva 1500R con resolución QHD y tasa de refresco fluida de 165Hz.",
-    especificaciones: {
-      pulgadas: "27 pulgadas (Curvo 1500R)",
-      resolucion: "2560 x 1440 (QHD)",
-      tipoPanel: "VA",
-      tasaRefresco: "165Hz",
-      tiempoRespuesta: "2ms (Gray-to-Gray)",
-      conectividad: "2x HDMI 2.0, 1x DisplayPort 1.2",
-      tecnologiaSync: "AMD FreeSync Premium"
-    },
-    colores: ["Negro / Gris"],
-    tags: ["monitor", "gamer", "dell", "qhd", "curvo"],
-    imagenPrincipal: "https://ejemplo.com/img/dell-s2722dgm.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/dell-s2722dgm-1.jpg"
-    ]
-  },
-  {
-    id: 64,
-    sku: "TVM-PHILIPS-65",
-    nombre: "Televisor Philips 65'' 4K UHD Smart TV Ambilight",
-    marca: "Philips",
-    modelo: "65PUS7908",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 1249999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 7,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Efecto envolvente Ambilight de 3 lados que ilumina tu pared al ritmo de tus contenidos.",
-    especificaciones: {
-      pulgadas: "65 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Titan OS",
-      conectividad: "3x HDMI, 2x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro Antracita"],
-    tags: ["philips", "65 pulgadas", "ambilight", "4k", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/philips-65-ambilight.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/philips-65-ambilight-1.jpg"
-    ]
-  },
-  {
-    id: 65,
-    sku: "AIR-SPL-AUD45",
-    nombre: "Aire Acondicionado Split Audit 4500 frigorías Frío/Calor",
-    marca: "Audit",
-    modelo: "AUD-45FC",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Standard",
-    precio: 1020000,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 9,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Climatización potente para salones o espacios comerciales de gran dimensión.",
-    especificaciones: {
-      frigorias: "4500 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Standard On/Off",
-      eficienciaEnergetica: "Clase B",
-      gasEcologico: "R410A",
-      funciones: "Timer de apagado, Barrido de aire automático"
-    },
-    colores: ["Blanco"],
-    tags: ["audit", "aire acondicionado", "4500 frigorias", "frio calor"],
-    imagenPrincipal: "https://ejemplo.com/img/audit-4500.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/audit-4500-1.jpg"
-    ]
-  },
-  {
-    id: 66,
-    sku: "CEL-XIA-NOTE13PROPLUS",
-    nombre: "Smartphone Xiaomi Redmi Note 13 Pro+ 5G 512GB",
-    marca: "Xiaomi",
-    modelo: "Redmi Note 13 Pro+",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 899999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 14,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Resistencia al agua IP68, pantalla curva AMOLED y carga hiperrápida de 120W.",
-    especificaciones: {
-      pantalla: "6.67 pulgadas AMOLED Curva 120Hz",
-      procesador: "MediaTek Dimensity 7200-Ultra",
-      memoriaRam: "12GB",
-      almacenamiento: "512GB",
-      camaraPrincipal: "Triple 200MP con OIS + 8MP + 2MP",
-      camaraFrontal: "16MP",
-      bateria: "5000 mAh con carga de 120W"
-    },
-    colores: ["Negro", "Blanco", "Morado Claro"],
-    tags: ["xiaomi", "redmi note 13 pro+", "5g", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/redmi-note-13-pro-plus.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/redmi-note-13-pro-plus-1.jpg"
-    ]
-  },
-  {
-    id: 67,
-    sku: "GAM-LAP-GIGABYTEG5",
-    nombre: "Notebook Gamer Gigabyte G5 15.6'' i5 RTX 4060",
-    marca: "Gigabyte",
-    modelo: "G5 KF-E3LA333SH",
-    categoria: "Gaming",
-    subcategoria: "Laptops Gamer",
-    precio: 1699999,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 7,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Alto rendimiento gráfico con gráficos RTX serie 40 y pantalla de alta tasa de refresco.",
-    especificaciones: {
-      pantalla: "15.6 pulgadas FHD 144Hz",
-      procesador: "Intel Core i5-12500H",
-      memoriaRam: "16GB DDR5",
-      almacenamiento: "512GB NVMe SSD",
-      tarjetaGrafica: "NVIDIA GeForce RTX 4060 8GB",
-      bateria: "54Whr"
-    },
-    colores: ["Negro Matriz"],
-    tags: ["gigabyte", "g5", "gamer", "laptop", "rtx 4060"],
-    imagenPrincipal: "https://ejemplo.com/img/gigabyte-g5.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/gigabyte-g5-1.jpg"
-    ]
-  },
-  {
-    id: 68,
-    sku: "TVM-SAMSUNG-85",
-    nombre: "Televisor Samsung 85'' Crystal UHD 4K Smart TV",
-    marca: "Samsung",
-    modelo: "UN85CU7100GXZD",
-    categoria: "Televisores / Monitores",
-    subcategoria: "Smart TVs",
-    precio: 2799999,
-    moneda: "ARS",
-    descuento: 8,
-    stock: true,
-    cantidadStock: 3,
-    destacado: true,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Experiencia de cine en casa inigualable con una pantalla colosal de 85 pulgadas.",
-    especificaciones: {
-      pulgadas: "85 pulgadas",
-      resolucion: "4K UHD (3840 x 2160)",
-      tecnologiaPanel: "LED",
-      tasaRefresco: "60Hz",
-      sistemaOperativo: "Tizen OS",
-      conectividad: "3x HDMI, 1x USB, Wi-Fi, Bluetooth"
-    },
-    colores: ["Negro"],
-    tags: ["samsung", "85 pulgadas", "4k", "crystal uhd", "tv"],
-    imagenPrincipal: "https://ejemplo.com/img/samsung-85-cu7100.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/samsung-85-cu7100-1.jpg"
-    ]
-  },
-  {
-    id: 69,
-    sku: "AIR-SPL-YORK30",
-    nombre: "Aire Acondicionado Split York 3000 frigorías Frío/Calor",
-    marca: "York",
-    modelo: "YK-30FC",
-    categoria: "Aires Acondicionados",
-    subcategoria: "Split Standard",
-    precio: 820000,
-    moneda: "ARS",
-    descuento: 10,
-    stock: true,
-    cantidadStock: 11,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Confort térmico confiable con componentes de alta resistencia y durabilidad.",
-    especificaciones: {
-      frigorias: "3000 frigorías",
-      tipoClimatizacion: "Frío/Calor",
-      tecnologia: "Standard On/Off",
-      eficienciaEnergetica: "Clase B",
-      gasEcologico: "R410A",
-      funciones: "Modo ventilación, Deshumidificador"
-    },
-    colores: ["Blanco"],
-    tags: ["york", "aire acondicionado", "3000 frigorias", "frio calor"],
-    imagenPrincipal: "https://ejemplo.com/img/york-3000.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/york-3000-1.jpg"
-    ]
-  },
-  {
-    id: 70,
-    sku: "CEL-MOT-G84",
-    nombre: "Smartphone Motorola Moto G84 5G 256GB",
-    marca: "Motorola",
-    modelo: "Moto G84",
-    categoria: "Celulares",
-    subcategoria: "Smartphones",
-    precio: 529999,
-    moneda: "ARS",
-    descuento: 12,
-    stock: true,
-    cantidadStock: 17,
-    destacado: false,
-    activo: true,
-    garantia: "12 meses",
-    descripcion: "Acabado en cuero vegano, pantalla pOLED de 120Hz y sonido Dolby Atmos estéreo.",
-    especificaciones: {
-      pantalla: "6.5 pulgadas pOLED FHD+ 120Hz",
-      procesador: "Snapdragon 695 5G",
-      memoriaRam: "8GB",
-      almacenamiento: "256GB",
-      camaraPrincipal: "Dual 50MP con OIS + 8MP",
-      camaraFrontal: "16MP",
-      bateria: "5000 mAh con carga TurboPower de 30W"
-    },
-    colores: ["Azul Viva Magenta", "Negro", "Azul Marshmallow"],
-    tags: ["motorola", "moto g84", "5g", "celular"],
-    imagenPrincipal: "https://ejemplo.com/img/moto-g84.jpg",
-    imagenes: [
-      "https://ejemplo.com/img/moto-g84-1.jpg"
-    ]
-  }
+    {
+        id: 1,
+        sku: "CEL-MOT-EDGE50",
+        marca: "Motorola",
+        modelo: "Edge 50",
+        nombre: "Celular Motorola Edge 50 5G",
+        categoria: "Celulares",
+        subcategoria: "Smartphones",
+        descripcion: "Smartphone premium con pantalla OLED de 6.7 pulgadas, 12GB de RAM, 256GB de almacenamiento, conectividad 5G, cámara principal de 50MP y batería de 5000mAh. Ideal para fotografía, entretenimiento, trabajo y uso diario.",
+        precioOferta: 499999,
+        stock: true,
+        especificaciones: {
+            pantalla: "6.7 Pulgadas OLED",
+            memoriaRam: "12 GB",
+            almacenamiento: "256 GB",
+            camara: "50 MP"
+        },
+        imagenes: [
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"
+        ]
+    }
 ];
 
 /* =========================================
@@ -3472,2140 +1236,618 @@ VARIABLES
 ========================================= */
 
 let carrito = [];
-
 let vistaActual = 'carrito';
-
 let metodoPagoGlobal = 'transferencia';
-
 let cuotasGlobal = 1;
-
 let categoriaSeleccionada = 'Todas';
-
 let estadosCarrusel = {};
-
 const PRODUCTOS_POR_PAGINA = 12;
-
 let paginaActual = 1;
-
 
 /* =========================================
 UTILIDADES
 ========================================= */
 
 function formatearMoneda(valor) {
-
     return new Intl.NumberFormat('es-AR', {
         style: 'currency',
         currency: 'ARS',
         maximumFractionDigits: 0
     }).format(valor);
-
 }
-
 
 function generarCodigoSeguimiento() {
-
-    const caracteres =
-        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
+    const caracteres = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     let codigo = "NV-";
-
     for (let i = 0; i < 8; i++) {
-
-        codigo += caracteres.charAt(
-            Math.floor(
-                Math.random() *
-                caracteres.length
-            )
-        );
-
+        codigo += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
     }
-
     return codigo;
 }
-
 
 /* =========================================
 FILTROS
 ========================================= */
 
 function filtrarCategoria(categoria, botonElemento) {
-
     categoriaSeleccionada = categoria;
-
     paginaActual = 1;
-
-    document
-        .querySelectorAll('.filter-btn')
-        .forEach(btn => {
-            btn.classList.remove('active');
-        });
-
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
     botonElemento.classList.add('active');
-
     renderizarProductos();
 }
-
 
 /* =========================================
 CARRUSEL
 ========================================= */
 
 function cambiarImagen(productoId, direccion) {
-
-    const producto =
-        productos.find(p => p.id === productoId);
-
-    if (
-        !producto ||
-        !producto.imagenes.length
-    ) {
-        return;
-    }
-
-    if (!estadosCarrusel[productoId]) {
-        estadosCarrusel[productoId] = 0;
-    }
-
+    const producto = productos.find(p => p.id === productoId);
+    if (!producto || !producto.imagenes.length) return;
+    if (!estadosCarrusel[productoId]) estadosCarrusel[productoId] = 0;
     const total = producto.imagenes.length;
-
-    estadosCarrusel[productoId] =
-        (
-            estadosCarrusel[productoId] +
-            direccion +
-            total
-        ) % total;
-
+    estadosCarrusel[productoId] = (estadosCarrusel[productoId] + direccion + total) % total;
     actualizarCarrusel(productoId);
 }
-
 
 function irAImagen(productoId, indice) {
-
     estadosCarrusel[productoId] = indice;
-
     actualizarCarrusel(productoId);
 }
 
-
 function actualizarCarrusel(productoId) {
-
-    const indice =
-        estadosCarrusel[productoId] || 0;
-
-    const slides =
-        document.querySelectorAll(
-            `.carousel-slide[data-producto="${productoId}"]`
-        );
-
-    const dots =
-        document.querySelectorAll(
-            `.carousel-dot[data-producto="${productoId}"]`
-        );
-
+    const indice = estadosCarrusel[productoId] || 0;
+    const slides = document.querySelectorAll(`.carousel-slide[data-producto="${productoId}"]`);
+    const dots = document.querySelectorAll(`.carousel-dot[data-producto="${productoId}"]`);
     slides.forEach((slide, i) => {
-
-        slide.classList.toggle(
-            'active',
-            i === indice
-        );
-
+        slide.classList.toggle('active', i === indice);
     });
-
     dots.forEach((dot, i) => {
-
-        dot.classList.toggle(
-            'active',
-            i === indice
-        );
-
+        dot.classList.toggle('active', i === indice);
     });
 }
-
 
 /* =========================================
 DESCRIPCIÓN
 ========================================= */
 
 function alternarDescripcion(id) {
-
-    const texto =
-        document.getElementById(
-            `descripcion-${id}`
-        );
-
-    const boton =
-        document.getElementById(
-            `verMas-${id}`
-        );
-
-    if (!texto || !boton) {
-        return;
-    }
-
-    const expandido =
-        texto.classList.contains('expandido');
-
+    const texto = document.getElementById(`descripcion-${id}`);
+    const boton = document.getElementById(`verMas-${id}`);
+    if (!texto || !boton) return;
+    const expandido = texto.classList.contains('expandido');
     if (expandido) {
-
         texto.classList.remove('expandido');
-
-        texto.classList.add(
-            'descripcion-corta'
-        );
-
+        texto.classList.add('descripcion-corta');
         boton.innerText = 'Ver más';
-
     } else {
-
-        texto.classList.remove(
-            'descripcion-corta'
-        );
-
+        texto.classList.remove('descripcion-corta');
         texto.classList.add('expandido');
-
         boton.innerText = 'Ver menos';
     }
 }
-
 
 /* =========================================
 RENDER PRODUCTOS
 ========================================= */
 
 function renderizarProductos() {
-
-    const gridContainer =
-        document.getElementById(
-            'gridProductos'
-        );
-
-    const paginacionContainer =
-        document.getElementById(
-            'paginacion'
-        );
-
+    const gridContainer = document.getElementById('gridProductos');
+    const paginacionContainer = document.getElementById('paginacion');
     gridContainer.innerHTML = '';
-
     paginacionContainer.innerHTML = '';
 
-    const productosFiltrados =
-        categoriaSeleccionada === 'Todas'
-            ? productos
-            : productos.filter(
-                p =>
-                    p.categoria.toLowerCase() ===
-                    categoriaSeleccionada.toLowerCase()
-            );
+    const productosFiltrados = categoriaSeleccionada === 'Todas'
+        ? productos
+        : productos.filter(p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase());
 
     if (productosFiltrados.length === 0) {
-
         gridContainer.innerHTML = `
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                color:var(--text-muted);
-                padding:30px;
-            ">
-                No hay productos disponibles
-                en esta categoría.
+            <div style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:30px;">
+                No hay productos disponibles en esta categoría.
             </div>
         `;
-
         return;
     }
 
-    const totalPaginas =
-        Math.ceil(
-            productosFiltrados.length /
-            PRODUCTOS_POR_PAGINA
-        );
+    const totalPaginas = Math.ceil(productosFiltrados.length / PRODUCTOS_POR_PAGINA);
+    if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+    if (paginaActual < 1) paginaActual = 1;
 
-    if (paginaActual > totalPaginas) {
-        paginaActual = totalPaginas;
-    }
-
-    if (paginaActual < 1) {
-        paginaActual = 1;
-    }
-
-    const inicio =
-        (paginaActual - 1) *
-        PRODUCTOS_POR_PAGINA;
-
-    const fin =
-        inicio +
-        PRODUCTOS_POR_PAGINA;
-
-    const productosPagina =
-        productosFiltrados.slice(
-            inicio,
-            fin
-        );
+    const inicio = (paginaActual - 1) * PRODUCTOS_POR_PAGINA;
+    const fin = inicio + PRODUCTOS_POR_PAGINA;
+    const productosPagina = productosFiltrados.slice(inicio, fin);
 
     productosPagina.forEach(producto => {
-
-        if (
-            estadosCarrusel[producto.id] ===
-            undefined
-        ) {
+        if (estadosCarrusel[producto.id] === undefined) {
             estadosCarrusel[producto.id] = 0;
         }
 
         let specsHTML = '';
-
-        for (
-            const [key, value]
-            of Object.entries(
-                producto.especificaciones
-            )
-        ) {
-
-            const etiqueta =
-                key
-                    .replace(
-                        /([A-Z])/g,
-                        ' $1'
-                    )
-                    .replace(
-                        /^./,
-                        letra =>
-                            letra.toUpperCase()
-                    );
-
+        for (const [key, value] of Object.entries(producto.especificaciones)) {
+            const etiqueta = key.replace(/([A-Z])/g, ' $1').replace(/^./, letra => letra.toUpperCase());
             specsHTML += `
                 <div>
-                    <span class="spec-label">
-                        ${etiqueta}:
-                    </span>
-
-                    <span class="spec-value">
-                        ${value}
-                    </span>
+                    <span class="spec-label">${etiqueta}:</span>
+                    <span class="spec-value">${value}</span>
                 </div>
             `;
         }
 
         let slidesHTML = '';
         let dotsHTML = '';
-
-        const imagenes =
-            producto.imagenes
-                .filter(
-                    img =>
-                        img &&
-                        img.trim() !== ''
-                )
-                .slice(0, 3);
+        const imagenes = producto.imagenes.filter(img => img && img.trim() !== '').slice(0, 3);
 
         if (imagenes.length === 0) {
-
             slidesHTML = `
                 <div class="carousel-slide active">
-                    <div class="carousel-placeholder">
-                        ${producto.marca}
-                    </div>
+                    <div class="carousel-placeholder">${producto.marca}</div>
                 </div>
             `;
-
         } else {
-
-            imagenes.forEach(
-                (imagen, index) => {
-
-                    slidesHTML += `
-                        <div
-                            class="carousel-slide ${
-                                index === 0
-                                    ? 'active'
-                                    : ''
-                            }"
-                            data-producto="${producto.id}"
-                        >
-                            <img
-                                src="${imagen}"
-                                alt="${producto.nombre}"
-                                loading="lazy"
-                                onerror="this.style.display='none'"
-                            >
-                        </div>
-                    `;
-
-                    dotsHTML += `
-                        <button
-                            class="carousel-dot ${
-                                index === 0
-                                    ? 'active'
-                                    : ''
-                            }"
-                            data-producto="${producto.id}"
-                            onclick="irAImagen(
-                                ${producto.id},
-                                ${index}
-                            )"
-                            aria-label="Ver imagen ${
-                                index + 1
-                            }">
-                        </button>
-                    `;
-                }
-            );
+            imagenes.forEach((imagen, index) => {
+                slidesHTML += `
+                    <div class="carousel-slide ${index === 0 ? 'active' : ''}" data-producto="${producto.id}">
+                        <img src="${imagen}" alt="${producto.nombre}" loading="lazy" onerror="this.style.display='none'">
+                    </div>
+                `;
+                dotsHTML += `
+                    <button class="carousel-dot ${index === 0 ? 'active' : ''}" data-producto="${producto.id}" onclick="irAImagen(${producto.id}, ${index})" aria-label="Ver imagen ${index + 1}"></button>
+                `;
+            });
         }
 
-        const mostrarControles =
-            imagenes.length > 1;
-
+        const mostrarControles = imagenes.length > 1;
         const limiteDescripcion = 100;
+        const descripcionLarga = producto.descripcion.length > limiteDescripcion;
+        const descripcionCorta = descripcionLarga ? producto.descripcion.substring(0, limiteDescripcion) + '...' : producto.descripcion;
 
-        const descripcionLarga =
-            producto.descripcion.length >
-            limiteDescripcion;
-
-        const descripcionCorta =
-            descripcionLarga
-                ? producto.descripcion.substring(
-                    0,
-                    limiteDescripcion
-                ) + '...'
-                : producto.descripcion;
-
-        const card =
-            document.createElement('div');
-
+        const card = document.createElement('div');
         card.className = 'card';
-
         card.innerHTML = `
-
-            ${
-                producto.stock
-                    ? '<span class="badge-stock">✓ Stock</span>'
-                    : ''
-            }
-
+            ${producto.stock ? '<span class="badge-stock">✓ Stock</span>' : ''}
             <div class="product-carousel">
-
-                <div class="carousel-track">
-                    ${slidesHTML}
-                </div>
-
-                ${
-                    mostrarControles
-                        ? `
-                            <button
-                                class="carousel-btn carousel-prev"
-                                onclick="cambiarImagen(
-                                    ${producto.id},
-                                    -1
-                                )"
-                                aria-label="Imagen anterior">
-                                ‹
-                            </button>
-
-                            <button
-                                class="carousel-btn carousel-next"
-                                onclick="cambiarImagen(
-                                    ${producto.id},
-                                    1
-                                )"
-                                aria-label="Imagen siguiente">
-                                ›
-                            </button>
-
-                            <div class="carousel-dots">
-                                ${dotsHTML}
-                            </div>
-                        `
-                        : ''
-                }
-
+                <div class="carousel-track">${slidesHTML}</div>
+                ${mostrarControles ? `
+                    <button class="carousel-btn carousel-prev" onclick="cambiarImagen(${producto.id}, -1)" aria-label="Imagen anterior">‹</button>
+                    <button class="carousel-btn carousel-next" onclick="cambiarImagen(${producto.id}, 1)" aria-label="Imagen siguiente">›</button>
+                    <div class="carousel-dots">${dotsHTML}</div>
+                ` : ''}
             </div>
-
             <div class="card-body">
-
-                <span class="card-category">
-                    ${producto.marca} · ${producto.categoria}
-                </span>
-
-                <h3 class="card-title">
-                    ${producto.nombre}
-                </h3>
-
+                <span class="card-category">${producto.marca} · ${producto.categoria}</span>
+                <h3 class="card-title">${producto.nombre}</h3>
                 <p class="card-desc">
-
-                    <span
-                        id="descripcion-${producto.id}"
-                        class="${
-                            descripcionLarga
-                                ? 'descripcion-texto descripcion-corta'
-                                : 'descripcion-texto'
-                        }">
-
-                        ${
-                            descripcionLarga
-                                ? descripcionCorta
-                                : producto.descripcion
-                        }
-
+                    <span id="descripcion-${producto.id}" class="${descripcionLarga ? 'descripcion-texto descripcion-corta' : 'descripcion-texto'}">
+                        ${descripcionLarga ? descripcionCorta : producto.descripcion}
                     </span>
-
-                    ${
-                        descripcionLarga
-                            ? `
-                                <button
-                                    id="verMas-${producto.id}"
-                                    class="ver-mas-btn"
-                                    onclick="alternarDescripcion(
-                                        ${producto.id}
-                                    )">
-                                    Ver más
-                                </button>
-                            `
-                            : ''
-                    }
-
+                    ${descripcionLarga ? `<button id="verMas-${producto.id}" class="ver-mas-btn" onclick="alternarDescripcion(${producto.id})">Ver más</button>` : ''}
                 </p>
-
-                <div class="specs-list">
-                    ${specsHTML}
-                </div>
-
+                <div class="specs-list">${specsHTML}</div>
                 <div class="pricing">
-
                     <div class="price-container">
-
-                        <span class="price-offer">
-                            ${formatearMoneda(
-                                producto.precioOferta
-                            )}
-                        </span>
-
+                        <span class="price-offer">${formatearMoneda(producto.precioOferta)}</span>
                     </div>
-
-                    <div class="cuotas-badge">
-                        ⚡ Abonando por transferencia
-                        15% OFF
-                    </div>
-
-                    <button
-                        class="btn-add-cart"
-                        onclick="agregarAlCarrito(
-                            ${producto.id}
-                        )">
-                        Agregar al Carrito
-                    </button>
-
+                    <div class="cuotas-badge">⚡ Abonando por transferencia 15% OFF</div>
+                    <button class="btn-add-cart" onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
                 </div>
-
             </div>
         `;
-
         gridContainer.appendChild(card);
-
     });
 
-
-    /* =========================================
-    PAGINACIÓN
-    ========================================= */
-
     if (totalPaginas > 1) {
-
         let paginacionHTML = `
-
             <div class="paginacion">
-
-                <button
-                    onclick="cambiarPagina(
-                        ${paginaActual - 1}
-                    )"
-                    ${
-                        paginaActual === 1
-                            ? 'disabled'
-                            : ''
-                    }
-                    aria-label="Página anterior">
-
-                    ‹ Anterior
-
-                </button>
+                <button onclick="cambiarPagina(${paginaActual - 1})" ${paginaActual === 1 ? 'disabled' : ''} aria-label="Página anterior">‹ Anterior</button>
         `;
-
-        for (
-            let i = 1;
-            i <= totalPaginas;
-            i++
-        ) {
-
-            paginacionHTML += `
-
-                <button
-                    class="${
-                        i === paginaActual
-                            ? 'active'
-                            : ''
-                    }"
-                    onclick="cambiarPagina(${i})"
-                    aria-label="Ir a página ${i}">
-
-                    ${i}
-
-                </button>
-            `;
+        for (let i = 1; i <= totalPaginas; i++) {
+            paginacionHTML += `<button class="${i === paginaActual ? 'active' : ''}" onclick="cambiarPagina(${i})" aria-label="Ir a página ${i}">${i}</button>`;
         }
-
         paginacionHTML += `
-
-                <button
-                    onclick="cambiarPagina(
-                        ${paginaActual + 1}
-                    )"
-                    ${
-                        paginaActual === totalPaginas
-                            ? 'disabled'
-                            : ''
-                    }
-                    aria-label="Página siguiente">
-
-                    Siguiente ›
-
-                </button>
-
-                <div class="paginacion-info">
-
-                    Mostrando
-                    ${inicio + 1}
-                    –
-                    ${Math.min(
-                        fin,
-                        productosFiltrados.length
-                    )}
-                    de
-                    ${productosFiltrados.length}
-                    productos
-
-                </div>
-
+                <button onclick="cambiarPagina(${paginaActual + 1})" ${paginaActual === totalPaginas ? 'disabled' : ''} aria-label="Página siguiente">Siguiente ›</button>
+                <div class="paginacion-info">Mostrando ${inicio + 1} – ${Math.min(fin, productosFiltrados.length)} de ${productosFiltrados.length} productos</div>
             </div>
         `;
-
-        paginacionContainer.innerHTML =
-            paginacionHTML;
+        paginacionContainer.innerHTML = paginacionHTML;
     }
 }
-
 
 /* =========================================
 CAMBIAR PÁGINA
 ========================================= */
 
 function cambiarPagina(nuevaPagina) {
-
-    const productosFiltrados =
-        categoriaSeleccionada === 'Todas'
-            ? productos
-            : productos.filter(
-                p =>
-                    p.categoria.toLowerCase() ===
-                    categoriaSeleccionada.toLowerCase()
-            );
-
-    const totalPaginas =
-        Math.ceil(
-            productosFiltrados.length /
-            PRODUCTOS_POR_PAGINA
-        );
-
-    if (
-        nuevaPagina < 1 ||
-        nuevaPagina > totalPaginas
-    ) {
-        return;
-    }
-
+    const productosFiltrados = categoriaSeleccionada === 'Todas'
+        ? productos
+        : productos.filter(p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase());
+    const totalPaginas = Math.ceil(productosFiltrados.length / PRODUCTOS_POR_PAGINA);
+    if (nuevaPagina < 1 || nuevaPagina > totalPaginas) return;
     paginaActual = nuevaPagina;
-
     renderizarProductos();
-
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
 
 /* =========================================
 CARRITO
 ========================================= */
 
 function agregarAlCarrito(id) {
-
-    const producto =
-        productos.find(
-            p => p.id === id
-        );
-
-    if (!producto) {
-        return;
-    }
-
-    const itemExistente =
-        carrito.find(
-            item => item.id === id
-        );
-
+    const producto = productos.find(p => p.id === id);
+    if (!producto) return;
+    const itemExistente = carrito.find(item => item.id === id);
     if (itemExistente) {
-
         itemExistente.cantidad++;
-
     } else {
-
-        carrito.push({
-            ...producto,
-            cantidad: 1
-        });
+        carrito.push({ ...producto, cantidad: 1 });
     }
-
     actualizarContadorCarrito();
-
     vistaActual = 'carrito';
-
     toggleCart(true);
 }
 
-
 function cambiarCantidad(id, cambio) {
-
-    const item =
-        carrito.find(
-            i => i.id === id
-        );
-
+    const item = carrito.find(i => i.id === id);
     if (item) {
-
         item.cantidad += cambio;
-
         if (item.cantidad <= 0) {
-
-            carrito =
-                carrito.filter(
-                    i => i.id !== id
-                );
+            carrito = carrito.filter(i => i.id !== id);
         }
     }
-
     actualizarContadorCarrito();
-
     renderizarContenidoDrawer();
 }
-
 
 function eliminarDelCarrito(id) {
-
-    carrito =
-        carrito.filter(
-            i => i.id !== id
-        );
-
+    carrito = carrito.filter(i => i.id !== id);
     actualizarContadorCarrito();
-
     renderizarContenidoDrawer();
 }
 
-
 function actualizarContadorCarrito() {
-
-    const totalItems =
-        carrito.reduce(
-            (sum, item) =>
-                sum + item.cantidad,
-            0
-        );
-
-    document.getElementById(
-        'cartCount'
-    ).innerText = totalItems;
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    document.getElementById('cartCount').innerText = totalItems;
 }
-
 
 /* =========================================
 TOGGLE CARRITO
 ========================================= */
 
 function toggleCart(forceOpen = false) {
-
-    const modal =
-        document.getElementById(
-            'cartModal'
-        );
-
+    const modal = document.getElementById('cartModal');
     if (forceOpen) {
-
         modal.classList.add('active');
-
     } else {
-
         modal.classList.toggle('active');
-
-        if (
-            !modal.classList.contains('active')
-        ) {
-
+        if (!modal.classList.contains('active')) {
             vistaActual = 'carrito';
         }
     }
-
     renderizarContenidoDrawer();
 }
 
-
 function handleOutsideClick(event) {
-
-    if (
-        event.target.id === 'cartModal'
-    ) {
-
+    if (event.target.id === 'cartModal') {
         toggleCart();
     }
 }
-
 
 /* =========================================
 CONTENIDO DEL DRAWER
 ========================================= */
 
 function renderizarContenidoDrawer() {
-
-    const drawerTitle =
-        document.getElementById(
-            'drawerTitle'
-        );
-
-    const bodyContent =
-        document.getElementById(
-            'cartBodyContent'
-        );
+    const drawerTitle = document.getElementById('drawerTitle');
+    const bodyContent = document.getElementById('cartBodyContent');
 
     if (carrito.length === 0) {
-
-        drawerTitle.innerText =
-            "Tu Carrito de Compras";
-
-        bodyContent.innerHTML = `
-
-            <div class="empty-cart">
-
-                Tu carrito está vacío.
-
-            </div>
-        `;
-
+        drawerTitle.innerText = "Tu Carrito de Compras";
+        bodyContent.innerHTML = `<div class="empty-cart">Tu carrito está vacío.</div>`;
         vistaActual = 'carrito';
-
         return;
     }
 
-
-    /* =========================================
-    VISTA CARRITO
-    ========================================= */
-
     if (vistaActual === 'carrito') {
-
-        drawerTitle.innerText =
-            "Tu Carrito de Compras";
-
-        let htmlItems = `
-
-            <div style="
-                flex-grow:1;
-                overflow-y:auto;
-                max-height:45vh;
-            ">
-        `;
+        drawerTitle.innerText = "Tu Carrito de Compras";
+        let htmlItems = `<div style="flex-grow:1; overflow-y:auto; max-height:45vh;">`;
 
         carrito.forEach(item => {
-
             htmlItems += `
-
                 <div class="cart-item">
-
                     <div class="cart-item-info">
-
-                        <h4>
-                            ${item.nombre}
-                        </h4>
-
-                        <div class="cart-item-price">
-
-                            ${formatearMoneda(
-                                item.precioOferta
-                            )}
-
-                            c/u
-
-                        </div>
-
+                        <h4>${item.nombre}</h4>
+                        <div class="cart-item-price">${formatearMoneda(item.precioOferta)} c/u</div>
                     </div>
-
                     <div class="cart-item-actions">
-
-                        <button
-                            class="qty-btn"
-                            onclick="cambiarCantidad(
-                                ${item.id},
-                                -1
-                            )">
-
-                            -
-
-                        </button>
-
-                        <span>
-                            ${item.cantidad}
-                        </span>
-
-                        <button
-                            class="qty-btn"
-                            onclick="cambiarCantidad(
-                                ${item.id},
-                                1
-                            )">
-
-                            +
-
-                        </button>
-
-                        <button
-                            class="remove-btn"
-                            onclick="eliminarDelCarrito(
-                                ${item.id}
-                            )">
-
-                            🗑️
-
-                        </button>
-
+                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, -1)">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                        <button class="remove-btn" onclick="eliminarDelCarrito(${item.id})">🗑️</button>
                     </div>
-
                 </div>
             `;
         });
 
-        htmlItems += `
-
-            </div>
-
-            <div style="
-                margin-top:10px;
-                border-top:1px solid var(--border-color);
-                padding-top:12px;
-            ">
-
+        htmlItems += `</div>
+            <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:12px;">
                 <div class="payment-methods">
-
-                    <label for="paymentMethodSelect">
-                        Método de Pago:
-                    </label>
-
-                    <select
-                        id="paymentMethodSelect"
-                        class="payment-select"
-                        onchange="onPaymentMethodChange()">
-
-                        <option
-                            value="transferencia"
-                            ${
-                                metodoPagoGlobal ===
-                                'transferencia'
-                                    ? 'selected'
-                                    : ''
-                            }>
-
-                            Transferencia Bancaria
-                            (15% OFF)
-
-                        </option>
-
-                        <option
-                            value="creditoDni"
-                            ${
-                                metodoPagoGlobal ===
-                                'creditoDni'
-                                    ? 'selected'
-                                    : ''
-                            }>
-
-                            Crédito con DNI
-                            (Hasta 6 pagos,
-                            +4% por pago)
-
-                        </option>
-
-                        <option
-                            value="tarjeta"
-                            ${
-                                metodoPagoGlobal ===
-                                'tarjeta'
-                                    ? 'selected'
-                                    : ''
-                            }>
-
-                            Tarjeta de Crédito
-                            (Hasta 12 cuotas,
-                            +8% por cuota)
-
-                        </option>
-
+                    <label for="paymentMethodSelect">Método de Pago:</label>
+                    <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
+                        <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
+                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (Hasta 6 pagos, +4% por pago)</option>
+                        <option value="tarjeta" ${metodoPagoGlobal === 'tarjeta' ? 'selected' : ''}>Tarjeta de Crédito (Hasta 12 cuotas, +8% por cuota)</option>
                     </select>
-
                 </div>
-
-                <div
-                    id="cuotasContainer"
-                    style="
-                        margin-bottom:10px;
-                        display:none;
-                    ">
-
-                    <label
-                        for="cuotasSelect"
-                        style="
-                            font-size:0.8rem;
-                            font-weight:600;
-                            margin-bottom:3px;
-                            display:block;
-                        "
-                        id="labelCuotas">
-
-                        Cantidad de pagos:
-
-                    </label>
-
-                    <select
-                        id="cuotasSelect"
-                        class="payment-select"
-                        onchange="updateCartUI()">
-                    </select>
-
+                <div id="cuotasContainer" style="margin-bottom:10px; display:none;">
+                    <label for="cuotasSelect" style="font-size:0.8rem; font-weight:600; margin-bottom:3px; display:block;" id="labelCuotas">Cantidad de pagos:</label>
+                    <select id="cuotasSelect" class="payment-select" onchange="updateCartUI()"></select>
                 </div>
-
-                <div
-                    id="paymentDetailsContainer">
-                </div>
-
+                <div id="paymentDetailsContainer"></div>
                 <div class="cart-total">
-
-                    <span>
-                        Total:
-                    </span>
-
-                    <span id="cartTotalPrice">
-                        $0
-                    </span>
-
+                    <span>Total:</span>
+                    <span id="cartTotalPrice">$0</span>
                 </div>
-
-                <div
-                    id="installmentSummary"
-                    class="installment-summary"
-                    style="display:none;">
-                </div>
-
-                <button
-                    class="checkout-btn"
-                    onclick="irAlFormularioEnvio()">
-
-                    Continuar con Datos de Envío
-
-                </button>
-
+                <div id="installmentSummary" class="installment-summary" style="display:none;"></div>
+                <button class="checkout-btn" onclick="irAlFormularioEnvio()">Continuar con Datos de Envío</button>
             </div>
         `;
-
-        bodyContent.innerHTML =
-            htmlItems;
-
+        bodyContent.innerHTML = htmlItems;
         onPaymentMethodChange();
-    }
-
-
-    /* =========================================
-    FORMULARIO
-    ========================================= */
-
-    else if (
-        vistaActual === 'formulario'
-    ) {
-
-        drawerTitle.innerText =
-            "Datos del Comprador y Envío";
-
+    } else if (vistaActual === 'formulario') {
+        drawerTitle.innerText = "Datos del Comprador y Envío";
         bodyContent.innerHTML = `
-
             <div id="checkoutForm">
-
                 <div class="form-group">
-
-                    <label for="nombreCliente">
-                        Nombre y Apellido *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nombreCliente"
-                        required
-                        placeholder="Ej. Juan Pérez">
-
+                    <label for="nombreCliente">Nombre y Apellido *</label>
+                    <input type="text" id="nombreCliente" required placeholder="Ej. Juan Pérez">
                 </div>
-
                 <div class="form-group">
-
-                    <label for="dniCliente">
-                        DNI / CUIL *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="dniCliente"
-                        required
-                        placeholder="Ej. 37897087">
-
+                    <label for="dniCliente">DNI / CUIL *</label>
+                    <input type="text" id="dniCliente" required placeholder="Ej. 37897087">
                 </div>
-
                 <div class="form-group">
-
-                    <label for="telefonoCliente">
-                        Teléfono / WhatsApp *
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="telefonoCliente"
-                        required
-                        placeholder="Ej. 1166788997">
-
+                    <label for="telefonoCliente">Teléfono / WhatsApp *</label>
+                    <input type="tel" id="telefonoCliente" required placeholder="Ej. 1166788997">
                 </div>
-
                 <div class="form-group">
-
-                    <label for="emailCliente">
-                        Email *
-                    </label>
-
-                    <input
-                        type="email"
-                        id="emailCliente"
-                        required
-                        placeholder="Ej. ejemplo@gmail.com">
-
+                    <label for="emailCliente">Email *</label>
+                    <input type="email" id="emailCliente" required placeholder="Ej. ejemplo@gmail.com">
                 </div>
-
                 <div class="form-group">
-
-                    <label for="direccionCliente">
-                        Calle y Número de Entrega *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="direccionCliente"
-                        required
-                        placeholder="Ej. Calle 78">
-
+                    <label for="direccionCliente">Calle y Número de Entrega *</label>
+                    <input type="text" id="direccionCliente" required placeholder="Ej. Calle 78">
                 </div>
-
                 <div class="form-group">
-
-                    <label for="localidadCliente">
-                        Localidad / Barrio *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="localidadCliente"
-                        required
-                        placeholder="Ej. Lomas de Zamora">
-
+                    <label for="localidadCliente">Localidad / Barrio *</label>
+                    <input type="text" id="localidadCliente" required placeholder="Ej. Lomas de Zamora">
                 </div>
-
                 <div class="form-group">
-
-                    <label for="provinciaCliente">
-                        Provincia *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="provinciaCliente"
-                        required
-                        placeholder="Ej. Buenos Aires">
-
+                    <label for="provinciaCliente">Provincia *</label>
+                    <input type="text" id="provinciaCliente" required placeholder="Ej. Buenos Aires">
                 </div>
-
                 <div class="form-group">
-
-                    <label for="codigoPostalCliente">
-                        Código Postal *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="codigoPostalCliente"
-                        required
-                        placeholder="Ej. B1832">
-
+                    <label for="codigoPostalCliente">Código Postal *</label>
+                    <input type="text" id="codigoPostalCliente" required placeholder="Ej. B1832">
                 </div>
-
                 <div class="form-group">
-
-                    <label for="provinciaSelect">
-                        Zona de Envío *
-                    </label>
-
-                    <select
-                        id="provinciaSelect"
-                        class="payment-select"
-                        onchange="updateCartUI()">
-
-                        <option value="CABA">
-                            Capital Federal (CABA)
-                            - $8.500
-                        </option>
-
-                        <option
-                            value="Buenos Aires"
-                            selected>
-
-                            Provincia de Buenos Aires
-                            - $12.500
-
-                        </option>
-
-                        <option value="Provincias">
-
-                            Otras Provincias /
-                            Resto del País
-                            - $18.500
-
-                        </option>
-
+                    <label for="provinciaSelect">Zona de Envío *</label>
+                    <select id="provinciaSelect" class="payment-select" onchange="updateCartUI()">
+                        <option value="CABA">Capital Federal (CABA) - $8.500</option>
+                        <option value="Buenos Aires" selected>Provincia de Buenos Aires - $12.500</option>
+                        <option value="Provincias">Otras Provincias / Resto del País - $18.500</option>
                     </select>
-
                 </div>
-
-                <div
-                    id="envioInfoResumen"
-                    style="
-                        background:#f8fafc;
-                        border:1px solid var(--border-color);
-                        padding:8px;
-                        border-radius:6px;
-                        font-size:0.8rem;
-                        color:var(--accent-color);
-                        font-weight:600;
-                        margin-bottom:12px;
-                    ">
-
-                    ⏱️ Demora: 24 a 48 hs |
-                    Envío: $12.500
-
+                <div id="envioInfoResumen" style="background:#f8fafc; border:1px solid var(--border-color); padding:8px; border-radius:6px; font-size:0.8rem; color:var(--accent-color); font-weight:600; margin-bottom:12px;">
+                    ⏱️ Demora: 24 a 48 hs | Envío: $12.500
                 </div>
-
                 <div class="form-buttons">
-
-                    <button
-                        type="button"
-                        class="btn-back"
-                        onclick="volverAlCarrito()">
-
-                        Volver
-
-                    </button>
-
-                    <button
-                        type="button"
-                        class="btn-submit-order"
-                        onclick="enviarPedidoWhatsApp()">
-
-                        💬 Enviar Pedido WhatsApp
-
-                    </button>
-
+                    <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
+                    <button type="button" class="btn-submit-order" onclick="enviarPedidoWhatsApp()">💬 Enviar Pedido WhatsApp</button>
                 </div>
-
             </div>
         `;
     }
 }
-
 
 /* =========================================
 MÉTODO DE PAGO
 ========================================= */
 
 function onPaymentMethodChange() {
-
-    const selectElement =
-        document.getElementById(
-            'paymentMethodSelect'
-        );
-
-    if (!selectElement) {
-        return;
-    }
-
-    metodoPagoGlobal =
-        selectElement.value;
-
-    const cuotasContainer =
-        document.getElementById(
-            'cuotasContainer'
-        );
-
-    const cuotasSelect =
-        document.getElementById(
-            'cuotasSelect'
-        );
-
-    const labelCuotas =
-        document.getElementById(
-            'labelCuotas'
-        );
-
+    const selectElement = document.getElementById('paymentMethodSelect');
+    if (!selectElement) return;
+    metodoPagoGlobal = selectElement.value;
+    const cuotasContainer = document.getElementById('cuotasContainer');
+    const cuotasSelect = document.getElementById('cuotasSelect');
+    const labelCuotas = document.getElementById('labelCuotas');
     cuotasSelect.innerHTML = '';
 
-
-    if (
-        metodoPagoGlobal ===
-        'creditoDni'
-    ) {
-
-        cuotasContainer.style.display =
-            'block';
-
-        labelCuotas.innerText =
-            "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
-
-        for (
-            let i = 1;
-            i <= 6;
-            i++
-        ) {
-
-            const opt =
-                document.createElement(
-                    'option'
-                );
-
+    if (metodoPagoGlobal === 'creditoDni') {
+        cuotasContainer.style.display = 'block';
+        labelCuotas.innerText = "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
+        for (let i = 1; i <= 6; i++) {
+            const opt = document.createElement('option');
             opt.value = i;
-
-            opt.innerText =
-                `${i} pago${
-                    i > 1 ? 's' : ''
-                } (+${i * 4}% recargo)`;
-
-            if (
-                i === cuotasGlobal
-            ) {
-                opt.selected = true;
-            }
-
-            cuotasSelect.appendChild(
-                opt
-            );
+            opt.innerText = `${i} pago${i > 1 ? 's' : ''} (+${i * 4}% recargo)`;
+            if (i === cuotasGlobal) opt.selected = true;
+            cuotasSelect.appendChild(opt);
         }
-
-    }
-
-    else if (
-        metodoPagoGlobal ===
-        'tarjeta'
-    ) {
-
-        cuotasContainer.style.display =
-            'block';
-
-        labelCuotas.innerText =
-            "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
-
-        for (
-            let i = 1;
-            i <= 12;
-            i++
-        ) {
-
-            const opt =
-                document.createElement(
-                    'option'
-                );
-
+    } else if (metodoPagoGlobal === 'tarjeta') {
+        cuotasContainer.style.display = 'block';
+        labelCuotas.innerText = "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
+        for (let i = 1; i <= 12; i++) {
+            const opt = document.createElement('option');
             opt.value = i;
-
-            opt.innerText =
-                `${i} cuota${
-                    i > 1 ? 's' : ''
-                } (+${i * 8}% recargo)`;
-
-            if (
-                i === cuotasGlobal
-            ) {
-                opt.selected = true;
-            }
-
-            cuotasSelect.appendChild(
-                opt
-            );
+            opt.innerText = `${i} cuota${i > 1 ? 's' : ''} (+${i * 8}% recargo)`;
+            if (i === cuotasGlobal) opt.selected = true;
+            cuotasSelect.appendChild(opt);
         }
-
+    } else {
+        cuotasContainer.style.display = 'none';
     }
-
-    else {
-
-        cuotasContainer.style.display =
-            'none';
-    }
-
     updateCartUI();
 }
-
 
 /* =========================================
 ACTUALIZAR CARRITO
 ========================================= */
 
 function updateCartUI() {
+    const paymentMethodSelect = document.getElementById('paymentMethodSelect');
+    if (paymentMethodSelect) metodoPagoGlobal = paymentMethodSelect.value;
+    const cuotasSelect = document.getElementById('cuotasSelect');
+    if (cuotasSelect && cuotasSelect.value) cuotasGlobal = parseInt(cuotasSelect.value) || 1;
 
-    const paymentMethodSelect =
-        document.getElementById(
-            'paymentMethodSelect'
-        );
-
-    if (paymentMethodSelect) {
-
-        metodoPagoGlobal =
-            paymentMethodSelect.value;
-    }
-
-    const cuotasSelect =
-        document.getElementById(
-            'cuotasSelect'
-        );
-
-    if (
-        cuotasSelect &&
-        cuotasSelect.value
-    ) {
-
-        cuotasGlobal =
-            parseInt(
-                cuotasSelect.value
-            ) || 1;
-    }
-
-    const detailsContainer =
-        document.getElementById(
-            'paymentDetailsContainer'
-        );
-
-    let subtotal =
-        carrito.reduce(
-            (sum, item) =>
-                sum +
-                (
-                    item.precioOferta *
-                    item.cantidad
-                ),
-            0
-        );
-
+    const detailsContainer = document.getElementById('paymentDetailsContainer');
+    let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
     let recargoDescuentoValor = 0;
 
-    if (
-        metodoPagoGlobal ===
-        'transferencia'
-    ) {
-
-        recargoDescuentoValor =
-            -(subtotal * 0.15);
-
+    if (metodoPagoGlobal === 'transferencia') {
+        recargoDescuentoValor = -(subtotal * 0.15);
+    } else if (metodoPagoGlobal === 'creditoDni') {
+        recargoDescuentoValor = subtotal * (cuotasGlobal * 0.04);
+    } else if (metodoPagoGlobal === 'tarjeta') {
+        recargoDescuentoValor = subtotal * (cuotasGlobal * 0.08);
     }
-
-    else if (
-        metodoPagoGlobal ===
-        'creditoDni'
-    ) {
-
-        const porcentajeRecargo =
-            cuotasGlobal * 0.04;
-
-        recargoDescuentoValor =
-            subtotal *
-            porcentajeRecargo;
-
-    }
-
-    else if (
-        metodoPagoGlobal ===
-        'tarjeta'
-    ) {
-
-        const porcentajeRecargo =
-            cuotasGlobal * 0.08;
-
-        recargoDescuentoValor =
-            subtotal *
-            porcentajeRecargo;
-    }
-
 
     let costoEnvio = 12500;
-
-    const provinciaSelect =
-        document.getElementById(
-            'provinciaSelect'
-        );
-
+    const provinciaSelect = document.getElementById('provinciaSelect');
     if (provinciaSelect) {
-
-        const provKey =
-            provinciaSelect.value;
-
-        const tarifa =
-            tarifasProvincias[provKey];
-
+        const provKey = provinciaSelect.value;
+        const tarifa = tarifasProvincias[provKey];
         if (tarifa) {
-
-            costoEnvio =
-                tarifa.costo;
-
-            const infoRes =
-                document.getElementById(
-                    'envioInfoResumen'
-                );
-
+            costoEnvio = tarifa.costo;
+            const infoRes = document.getElementById('envioInfoResumen');
             if (infoRes) {
-
-                infoRes.innerText =
-                    `⏱️ Demora: ${
-                        tarifa.demora
-                    } | Envío: ${
-                        formatearMoneda(
-                            costoEnvio
-                        )
-                    }`;
+                infoRes.innerText = `⏱️ Demora: ${tarifa.demora} | Envío: ${formatearMoneda(costoEnvio)}`;
             }
         }
     }
 
-
-    let totalFinal =
-        subtotal +
-        costoEnvio +
-        recargoDescuentoValor;
-
+    let totalFinal = subtotal + costoEnvio + recargoDescuentoValor;
 
     if (detailsContainer) {
-
-        const colorEstilo =
-            recargoDescuentoValor < 0
-                ? "#10b981"
-                : "var(--text-main)";
-
+        const colorEstilo = recargoDescuentoValor < 0 ? "#10b981" : "var(--text-main)";
         detailsContainer.innerHTML = `
-
             <div class="cart-summary-line">
-
-                <span>
-                    Subtotal:
-                </span>
-
-                <span>
-                    ${formatearMoneda(
-                        subtotal
-                    )}
-                </span>
-
+                <span>Subtotal:</span>
+                <span>${formatearMoneda(subtotal)}</span>
             </div>
-
             <div class="cart-summary-line">
-
-                <span>
-                    Envío:
-                </span>
-
-                <span>
-                    ${formatearMoneda(
-                        costoEnvio
-                    )}
-                </span>
-
+                <span>Envío:</span>
+                <span>${formatearMoneda(costoEnvio)}</span>
             </div>
-
-            <div
-                class="cart-summary-line"
-                style="
-                    color:${colorEstilo};
-                    font-weight:600;
-                ">
-
-                <span>
-                    Recargo/Descuento:
-                </span>
-
-                <span>
-
-                    ${
-                        recargoDescuentoValor < 0
-                            ? '-'
-                            : '+'
-                    }
-
-                    ${formatearMoneda(
-                        Math.abs(
-                            recargoDescuentoValor
-                        )
-                    )}
-
-                </span>
-
+            <div class="cart-summary-line" style="color:${colorEstilo}; font-weight:600;">
+                <span>Recargo/Descuento:</span>
+                <span>${recargoDescuentoValor < 0 ? '-' : '+'}${formatearMoneda(Math.abs(recargoDescuentoValor))}</span>
             </div>
         `;
     }
 
+    const totalPriceEl = document.getElementById('cartTotalPrice');
+    if (totalPriceEl) totalPriceEl.innerText = formatearMoneda(totalFinal);
 
-    const totalPriceEl =
-        document.getElementById(
-            'cartTotalPrice'
-        );
-
-    if (totalPriceEl) {
-
-        totalPriceEl.innerText =
-            formatearMoneda(
-                totalFinal
-            );
-    }
-
-
-    const installmentSummary =
-        document.getElementById(
-            'installmentSummary'
-        );
-
+    const installmentSummary = document.getElementById('installmentSummary');
     if (installmentSummary) {
-
-        if (
-            metodoPagoGlobal ===
-            'creditoDni'
-        ) {
-
-            const montoCuota =
-                totalFinal /
-                cuotasGlobal;
-
-            installmentSummary.style.display =
-                'block';
-
+        if (metodoPagoGlobal === 'creditoDni' || metodoPagoGlobal === 'tarjeta') {
+            const montoCuota = totalFinal / cuotasGlobal;
+            installmentSummary.style.display = 'block';
             installmentSummary.innerHTML = `
-
-                💳 <strong>Plan de pago</strong><br>
-
-                Cantidad de pagos:
-                <strong>
-                    ${cuotasGlobal}
-                </strong><br>
-
-                Monto de cada pago:
-                <strong>
-                    ${formatearMoneda(
-                        montoCuota
-                    )}
-                </strong>
+                💳 <strong>Plan de ${metodoPagoGlobal === 'tarjeta' ? 'cuotas' : 'pago'}</strong><br>
+                Cantidad: <strong>${cuotasGlobal}</strong><br>
+                Monto de cada uno: <strong>${formatearMoneda(montoCuota)}</strong>
             `;
-
-        }
-
-        else if (
-            metodoPagoGlobal ===
-            'tarjeta'
-        ) {
-
-            const montoCuota =
-                totalFinal /
-                cuotasGlobal;
-
-            installmentSummary.style.display =
-                'block';
-
-            installmentSummary.innerHTML = `
-
-                💳 <strong>Plan de cuotas</strong><br>
-
-                Cantidad de cuotas:
-                <strong>
-                    ${cuotasGlobal}
-                </strong><br>
-
-                Monto de cada cuota:
-                <strong>
-                    ${formatearMoneda(
-                        montoCuota
-                    )}
-                </strong>
-            `;
-
-        }
-
-        else {
-
-            installmentSummary.style.display =
-                'none';
-
-            installmentSummary.innerHTML =
-                '';
+        } else {
+            installmentSummary.style.display = 'none';
+            installmentSummary.innerHTML = '';
         }
     }
 }
-
 
 /* =========================================
 FORMULARIO
 ========================================= */
 
 function irAlFormularioEnvio() {
-
-    vistaActual =
-        'formulario';
-
+    vistaActual = 'formulario';
     renderizarContenidoDrawer();
 }
-
 
 function volverAlCarrito() {
-
-    vistaActual =
-        'carrito';
-
+    vistaActual = 'carrito';
     renderizarContenidoDrawer();
 }
-
 
 /* =========================================
 ENVIAR PEDIDO WHATSAPP
 ========================================= */
 
 function enviarPedidoWhatsApp() {
+    const nombre = document.getElementById('nombreCliente').value.trim();
+    const dni = document.getElementById('dniCliente').value.trim();
+    const telefono = document.getElementById('telefonoCliente').value.trim();
+    const email = document.getElementById('emailCliente').value.trim();
+    const direccion = document.getElementById('direccionCliente').value.trim();
+    const localidad = document.getElementById('localidadCliente').value.trim();
+    const provincia = document.getElementById('provinciaCliente').value.trim();
+    const codigoPostal = document.getElementById('codigoPostalCliente').value.trim();
 
-    const nombre =
-        document.getElementById(
-            'nombreCliente'
-        ).value.trim();
-
-    const dni =
-        document.getElementById(
-            'dniCliente'
-        ).value.trim();
-
-    const telefono =
-        document.getElementById(
-            'telefonoCliente'
-        ).value.trim();
-
-    const email =
-        document.getElementById(
-            'emailCliente'
-        ).value.trim();
-
-    const direccion =
-        document.getElementById(
-            'direccionCliente'
-        ).value.trim();
-
-    const localidad =
-        document.getElementById(
-            'localidadCliente'
-        ).value.trim();
-
-    const provincia =
-        document.getElementById(
-            'provinciaCliente'
-        ).value.trim();
-
-    const codigoPostal =
-        document.getElementById(
-            'codigoPostalCliente'
-        ).value.trim();
-
-
-    if (
-        !nombre ||
-        !dni ||
-        !telefono ||
-        !email ||
-        !direccion ||
-        !localidad ||
-        !provincia ||
-        !codigoPostal
-    ) {
-
-        alert(
-            "Por favor, completa todos los datos obligatorios de entrega."
-        );
-
+    if (!nombre || !dni || !telefono || !email || !direccion || !localidad || !provincia || !codigoPostal) {
+        alert("Por favor, completa todos los datos obligatorios de entrega.");
         return;
     }
 
+    const numeroGuia = generarCodigoSeguimiento();
+    const provinciaKey = document.getElementById('provinciaSelect').value;
+    const datosProvincia = tarifasProvincias[provinciaKey];
+    const costoEnvio = datosProvincia.costo;
 
-    const numeroGuia =
-        generarCodigoSeguimiento();
-
-
-    const provinciaKey =
-        document.getElementById(
-            'provinciaSelect'
-        ).value;
-
-
-    const datosProvincia =
-        tarifasProvincias[
-            provinciaKey
-        ];
-
-
-    const costoEnvio =
-        datosProvincia.costo;
-
-
-    let subtotal =
-        carrito.reduce(
-            (sum, item) =>
-                sum +
-                (
-                    item.precioOferta *
-                    item.cantidad
-                ),
-            0
-        );
-
-
+    let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
     let recargoDescuentoValor = 0;
-
     let textoMetodo = "";
 
-
-    if (
-        metodoPagoGlobal ===
-        'transferencia'
-    ) {
-
-        recargoDescuentoValor =
-            -(subtotal * 0.15);
-
-        textoMetodo =
-            "Transferencia Bancaria (15% OFF aplicado)";
-
+    if (metodoPagoGlobal === 'transferencia') {
+        recargoDescuentoValor = -(subtotal * 0.15);
+        textoMetodo = "Transferencia Bancaria (15% OFF aplicado)";
+    } else if (metodoPagoGlobal === 'creditoDni') {
+        recargoDescuentoValor = subtotal * (cuotasGlobal * 0.04);
+        textoMetodo = `Crédito con DNI (${cuotasGlobal} pago${cuotasGlobal > 1 ? 's' : ''}, +${cuotasGlobal * 4}% recargo)`;
+    } else if (metodoPagoGlobal === 'tarjeta') {
+        recargoDescuentoValor = subtotal * (cuotasGlobal * 0.08);
+        textoMetodo = `Tarjeta de Crédito (${cuotasGlobal} cuota${cuotasGlobal > 1 ? 's' : ''}, +${cuotasGlobal * 8}% recargo)`;
     }
 
-    else if (
-        metodoPagoGlobal ===
-        'creditoDni'
-    ) {
-
-        recargoDescuentoValor =
-            subtotal *
-            (
-                cuotasGlobal *
-                0.04
-            );
-
-        textoMetodo =
-            `Crédito con DNI (${
-                cuotasGlobal
-            } pago${
-                cuotasGlobal > 1
-                    ? 's'
-                    : ''
-            }, +${
-                cuotasGlobal * 4
-            }% recargo)`;
-
-    }
-
-    else if (
-        metodoPagoGlobal ===
-        'tarjeta'
-    ) {
-
-        recargoDescuentoValor =
-            subtotal *
-            (
-                cuotasGlobal *
-                0.08
-            );
-
-        textoMetodo =
-            `Tarjeta de Crédito (${
-                cuotasGlobal
-            } cuota${
-                cuotasGlobal > 1
-                    ? 's'
-                    : ''
-            }, +${
-                cuotasGlobal * 8
-            }% recargo)`;
-    }
-
-
-    const totalFinal =
-        subtotal +
-        costoEnvio +
-        recargoDescuentoValor;
-
-
+    let totalFinal = subtotal + costoEnvio + recargoDescuentoValor;
     let textoCuotas = "";
 
-
-    if (
-        metodoPagoGlobal ===
-        'creditoDni'
-    ) {
-
-        const montoPorPago =
-            totalFinal /
-            cuotasGlobal;
-
-        textoCuotas =
-            `• Cantidad de pagos: ${
-                cuotasGlobal
-            }\n` +
-
-            `• Monto de cada pago: ${
-                formatearMoneda(
-                    montoPorPago
-                )
-            }\n`;
-
+    if (metodoPagoGlobal === 'creditoDni' || metodoPagoGlobal === 'tarjeta') {
+        const montoPorPago = totalFinal / cuotasGlobal;
+        textoCuotas = `• Cantidad: ${cuotasGlobal}\n• Monto por cuota/pago: ${formatearMoneda(montoPorPago)}\n`;
+    } else {
+        textoCuotas = `• Forma de pago: Pago único por transferencia\n`;
     }
-
-    else if (
-        metodoPagoGlobal ===
-        'tarjeta'
-    ) {
-
-        const montoPorCuota =
-            totalFinal /
-            cuotasGlobal;
-
-        textoCuotas =
-            `• Cantidad de cuotas: ${
-                cuotasGlobal
-            }\n` +
-
-            `• Monto de cada cuota: ${
-                formatearMoneda(
-                    montoPorCuota
-                )
-            }\n`;
-
-    }
-
-    else {
-
-        textoCuotas =
-            `• Forma de pago: Pago único por transferencia\n`;
-    }
-
 
     let detalleProductosTexto = "";
-
-
     carrito.forEach(item => {
-
-        detalleProductosTexto +=
-            `• ${
-                item.cantidad
-            }x ${
-                item.nombre
-            } — ${
-                formatearMoneda(
-                    item.precioOferta *
-                    item.cantidad
-                )
-            }\n`;
+        detalleProductosTexto += `• ${item.cantidad}x ${item.nombre} — ${formatearMoneda(item.precioOferta * item.cantidad)}\n`;
     });
 
+    let mensaje = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n*LOGÍSTICA NOVA*\n----------------------------------------\n*N° de Seguimiento:* ${numeroGuia}\n----------------------------------------\n\n`;
+    mensaje += `*DATOS DEL COMPRADOR*\n• Nombre: ${nombre}\n• DNI/CUIL: ${dni}\n• Teléfono: ${telefono}\n• Email: ${email}\n• Dirección: ${direccion}, ${localidad}\n• Provincia: ${provincia}\n• Código Postal: ${codigoPostal}\n• Zona de Envío: ${datosProvincia.nombre}\n• Costo de envío: ${formatearMoneda(costoEnvio)}\n• Demora estimada: ${datosProvincia.demora}\n\n`;
+    mensaje += `*PRODUCTOS SOLICITADOS*\n${detalleProductosTexto}\n`;
+    mensaje += `*DESGLOSE DE PAGOS Y ENVÍO*\n• Subtotal: ${formatearMoneda(subtotal)}\n• Envío: ${formatearMoneda(costoEnvio)}\n• Recargo/Descuento: ${recargoDescuentoValor < 0 ? '-' : '+'}${formatearMoneda(Math.abs(recargoDescuentoValor))}\n• Método: ${textoMetodo}\n${textoCuotas}\n`;
+    mensaje += `*TOTAL A PAGAR:* ${formatearMoneda(totalFinal)}\n\n*CÓDIGO DE SEGUIMIENTO*\n${numeroGuia}\n\nSolicito confirmación del pedido y datos para el pago.`;
 
-    let mensaje =
-        `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
-
-    mensaje +=
-        `*LOGÍSTICA NOVA*\n`;
-
-    mensaje +=
-        `----------------------------------------\n`;
-
-    mensaje +=
-        `*N° de Seguimiento:* ${
-            numeroGuia
-        }\n`;
-
-    mensaje +=
-        `----------------------------------------\n\n`;
-
-
-    mensaje +=
-        `*DATOS DEL COMPRADOR*\n`;
-
-    mensaje +=
-        `• Nombre: ${
-            nombre
-        }\n`;
-
-    mensaje +=
-        `• DNI/CUIL: ${
-            dni
-        }\n`;
-
-    mensaje +=
-        `• Teléfono: ${
-            telefono
-        }\n`;
-
-    mensaje +=
-        `• Email: ${
-            email
-        }\n`;
-
-    mensaje +=
-        `• Dirección: ${
-            direccion
-        }, ${
-            localidad
-        }\n`;
-
-    mensaje +=
-        `• Provincia: ${
-            provincia
-        }\n`;
-
-    mensaje +=
-        `• Código Postal: ${
-            codigoPostal
-        }\n`;
-
-    mensaje +=
-        `• Zona de Envío: ${
-            datosProvincia.nombre
-        }\n`;
-
-    mensaje +=
-        `• Costo de envío: ${
-            formatearMoneda(
-                costoEnvio
-            )
-        }\n`;
-
-    mensaje +=
-        `• Demora estimada: ${
-            datosProvincia.demora
-        }\n\n`;
-
-
-    mensaje +=
-        `*PRODUCTOS SOLICITADOS*\n`;
-
-    mensaje +=
-        `${detalleProductosTexto}\n`;
-
-
-    mensaje +=
-        `*DESGLOSE DE PAGOS Y ENVÍO*\n`;
-
-    mensaje +=
-        `• Subtotal: ${
-            formatearMoneda(
-                subtotal
-            )
-        }\n`;
-
-    mensaje +=
-        `• Envío: ${
-            formatearMoneda(
-                costoEnvio
-            )
-        }\n`;
-
-    mensaje +=
-        `• Recargo/Descuento: ${
-            recargoDescuentoValor < 0
-                ? '-'
-                : '+'
-        }${
-            formatearMoneda(
-                Math.abs(
-                    recargoDescuentoValor
-                )
-            )
-        }\n`;
-
-    mensaje +=
-        `• Método: ${
-            textoMetodo
-        }\n`;
-
-    mensaje +=
-        `${textoCuotas}\n`;
-
-
-    mensaje +=
-        `*TOTAL A PAGAR:* ${
-            formatearMoneda(
-                totalFinal
-            )
-        }\n\n`;
-
-
-    mensaje +=
-        `*CÓDIGO DE SEGUIMIENTO*\n`;
-
-    mensaje +=
-        `${numeroGuia}\n\n`;
-
-    mensaje +=
-        `Solicito confirmación del pedido y datos para el pago.`;
-
-
-    const mensajeCodificado =
-        encodeURIComponent(
-            mensaje
-        );
-
-
-    /*
-     * CAMBIÁ ESTE NÚMERO POR EL WHATSAPP
-     * QUE RECIBE LOS PEDIDOS.
-     */
-
-    const numeroWhatsApp =
-        "5491155012447";
-
-
-    const urlWhatsApp =
-        `https://wa.me/${
-            numeroWhatsApp
-        }?text=${
-            mensajeCodificado
-        }`;
-
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    const numeroWhatsApp = "5491155012447";
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
     carrito = [];
-
     actualizarContadorCarrito();
-
-    window.location.href =
-        urlWhatsApp;
+    window.location.href = urlWhatsApp;
 }
-
 
 /* =========================================
 INICIO
