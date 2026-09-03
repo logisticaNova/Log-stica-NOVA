@@ -423,6 +423,64 @@ header p {
     background-color: var(--primary-dark);
 }
 
+
+/* =========================================
+   PAGINACIÓN AGREGADA
+========================================= */
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 30px 0 10px;
+}
+
+.paginacion button {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    background: white;
+    color: var(--text-main);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.paginacion button:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.paginacion button.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.paginacion button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.paginacion-info {
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+
+/* =========================================
+   CARRITO
+========================================= */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -689,6 +747,16 @@ header p {
     .cart-item-actions {
         flex-shrink: 0;
     }
+
+    .paginacion {
+        gap: 5px;
+    }
+
+    .paginacion button {
+        min-width: 36px;
+        height: 36px;
+        padding: 0 9px;
+    }
 }
 
 </style>
@@ -698,96 +766,99 @@ header p {
 
 <nav class="navbar">
 
-    <div class="navbar-brand">
-        📦 Logística Nova
-    </div>
+<div class="navbar-brand">
+    📦 Logística Nova
+</div>
 
-    <button class="cart-btn" onclick="toggleCart()">
-        🛒 Carrito
-        <span class="cart-badge" id="cartCount">0</span>
-    </button>
+<button class="cart-btn" onclick="toggleCart()">
+    🛒 Carrito
+    <span class="cart-badge" id="cartCount">0</span>
+</button>
 
 </nav>
 
 
 <div class="container">
 
-    <header>
+<header>
 
-        <h1>Catálogo de Productos</h1>
+    <h1>Catálogo de Productos</h1>
 
-        <p>
-            Selecciona tus productos, provincia de destino y método de pago preferido
-        </p>
+    <p>
+        Selecciona tus productos, provincia de destino y método de pago preferido
+    </p>
 
-    </header>
-
-
-    <div class="filtros">
-
-        <button class="filter-btn active" onclick="filtrarCategoria('Todas', this)">
-            Todas
-        </button>
-
-        <button class="filter-btn" onclick="filtrarCategoria('Televisores', this)">
-            Televisores
-        </button>
-
-        <button class="filter-btn" onclick="filtrarCategoria('Heladeras', this)">
-            Heladeras
-        </button>
-
-        <button class="filter-btn" onclick="filtrarCategoria('Cocinas', this)">
-            Cocinas
-        </button>
-
-        <button class="filter-btn" onclick="filtrarCategoria('Lavarropas', this)">
-            Lavarropas
-        </button>
-
-        <button class="filter-btn" onclick="filtrarCategoria('Aires acondicionados', this)">
-            Aires Acondicionados
-        </button>
-
-        <button class="filter-btn" onclick="filtrarCategoria('Celulares', this)">
-            Celulares
-        </button>
-
-        <button class="filter-btn" onclick="filtrarCategoria('Audio', this)">
-            Audio
-        </button>
-
-        <button class="filter-btn" onclick="filtrarCategoria('Informática', this)">
-            Informática
-        </button>
-
-    </div>
+</header>
 
 
-    <div class="grid-productos" id="gridProductos"></div>
+<div class="filtros">
+
+    <button class="filter-btn active" onclick="filtrarCategoria('Todas', this)">
+        Todas
+    </button>
+
+    <button class="filter-btn" onclick="filtrarCategoria('Televisores', this)">
+        Televisores
+    </button>
+
+    <button class="filter-btn" onclick="filtrarCategoria('Heladeras', this)">
+        Heladeras
+    </button>
+
+    <button class="filter-btn" onclick="filtrarCategoria('Cocinas', this)">
+        Cocinas
+    </button>
+
+    <button class="filter-btn" onclick="filtrarCategoria('Lavarropas', this)">
+        Lavarropas
+    </button>
+
+    <button class="filter-btn" onclick="filtrarCategoria('Aires acondicionados', this)">
+        Aires Acondicionados
+    </button>
+
+    <button class="filter-btn" onclick="filtrarCategoria('Celulares', this)">
+        Celulares
+    </button>
+
+    <button class="filter-btn" onclick="filtrarCategoria('Audio', this)">
+        Audio
+    </button>
+
+    <button class="filter-btn" onclick="filtrarCategoria('Informática', this)">
+        Informática
+    </button>
+
+</div>
+
+
+<div class="grid-productos" id="gridProductos"></div>
+
+<!-- PAGINACIÓN AGREGADA -->
+<div id="paginacion"></div>
 
 </div>
 
 
 <div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
 
-    <div class="cart-drawer">
+<div class="cart-drawer">
 
-        <div class="cart-header">
+    <div class="cart-header">
 
-            <h3 id="drawerTitle" style="font-size:1.1rem;">
-                Tu Carrito de Compras
-            </h3>
+        <h3 id="drawerTitle" style="font-size:1.1rem;">
+            Tu Carrito de Compras
+        </h3>
 
-            <button class="close-cart" onclick="toggleCart()">
-                &times;
-            </button>
-
-        </div>
-
-        <div class="cart-body" id="cartBodyContent"></div>
+        <button class="close-cart" onclick="toggleCart()">
+            &times;
+        </button>
 
     </div>
+
+    <div class="cart-body" id="cartBodyContent"></div>
+
+</div>
 
 </div>
 
@@ -1082,6 +1153,10 @@ const productos = [
 ];
 
 
+/* =========================================
+   VARIABLES
+========================================= */
+
 let carrito = [];
 let vistaActual = 'carrito';
 let metodoPagoGlobal = 'transferencia';
@@ -1089,6 +1164,14 @@ let cuotasGlobal = 1;
 let categoriaSeleccionada = 'Todas';
 let estadosCarrusel = {};
 
+/* PAGINACIÓN AGREGADA */
+const PRODUCTOS_POR_PAGINA = 12;
+let paginaActual = 1;
+
+
+/* =========================================
+   FUNCIONES
+========================================= */
 
 function formatearMoneda(valor) {
 
@@ -1125,9 +1208,17 @@ function generarCodigoSeguimiento() {
 }
 
 
+/* =========================================
+   FILTROS
+========================================= */
+
 function filtrarCategoria(categoria, botonElemento) {
 
     categoriaSeleccionada = categoria;
+
+    /* PAGINACIÓN:
+       volver a la página 1 al cambiar categoría */
+    paginaActual = 1;
 
     document
         .querySelectorAll('.filter-btn')
@@ -1141,6 +1232,10 @@ function filtrarCategoria(categoria, botonElemento) {
 
 }
 
+
+/* =========================================
+   CARRUSEL
+========================================= */
 
 function cambiarImagen(productoId, direccion) {
 
@@ -1221,6 +1316,10 @@ function actualizarCarrusel(productoId) {
 }
 
 
+/* =========================================
+   DESCRIPCIÓN
+========================================= */
+
 function alternarDescripcion(id) {
 
     const texto =
@@ -1269,6 +1368,10 @@ function alternarDescripcion(id) {
 }
 
 
+/* =========================================
+   RENDERIZAR PRODUCTOS
+========================================= */
+
 function renderizarProductos() {
 
     const gridContainer =
@@ -1276,7 +1379,19 @@ function renderizarProductos() {
             'gridProductos'
         );
 
+    const paginacionContainer =
+        document.getElementById(
+            'paginacion'
+        );
+
     gridContainer.innerHTML = '';
+
+    paginacionContainer.innerHTML = '';
+
+
+    /* =====================================
+       FILTRAR PRODUCTOS
+    ===================================== */
 
     const productosFiltrados =
         categoriaSeleccionada === 'Todas'
@@ -1286,6 +1401,11 @@ function renderizarProductos() {
                     p.categoria.toLowerCase() ===
                     categoriaSeleccionada.toLowerCase()
             );
+
+
+    /* =====================================
+       SIN PRODUCTOS
+    ===================================== */
 
     if (
         productosFiltrados.length === 0
@@ -1306,7 +1426,53 @@ function renderizarProductos() {
 
     }
 
-    productosFiltrados.forEach(
+
+    /* =====================================
+       CALCULAR PÁGINAS
+    ===================================== */
+
+    const totalPaginas =
+        Math.ceil(
+            productosFiltrados.length /
+            PRODUCTOS_POR_PAGINA
+        );
+
+
+    /* Evitar páginas inexistentes */
+
+    if (paginaActual > totalPaginas) {
+        paginaActual = totalPaginas;
+    }
+
+    if (paginaActual < 1) {
+        paginaActual = 1;
+    }
+
+
+    /* =====================================
+       OBTENER PRODUCTOS DE LA PÁGINA
+    ===================================== */
+
+    const inicio =
+        (paginaActual - 1) *
+        PRODUCTOS_POR_PAGINA;
+
+    const fin =
+        inicio +
+        PRODUCTOS_POR_PAGINA;
+
+    const productosPagina =
+        productosFiltrados.slice(
+            inicio,
+            fin
+        );
+
+
+    /* =====================================
+       CREAR TARJETAS
+    ===================================== */
+
+    productosPagina.forEach(
         producto => {
 
             if (
@@ -1314,10 +1480,13 @@ function renderizarProductos() {
                     producto.id
                 ] === undefined
             ) {
+
                 estadosCarrusel[
                     producto.id
                 ] = 0;
+
             }
+
 
             let specsHTML = '';
 
@@ -1345,8 +1514,10 @@ function renderizarProductos() {
 
             }
 
+
             let slidesHTML = '';
             let dotsHTML = '';
+
 
             const imagenes =
                 producto.imagenes
@@ -1356,6 +1527,7 @@ function renderizarProductos() {
                             img.trim() !== ''
                     )
                     .slice(0, 3);
+
 
             if (
                 imagenes.length === 0
@@ -1392,6 +1564,7 @@ function renderizarProductos() {
                             </div>
                         `;
 
+
                         dotsHTML += `
                             <button
                                 class="carousel-dot ${
@@ -1410,14 +1583,18 @@ function renderizarProductos() {
 
             }
 
+
             const mostrarControles =
                 imagenes.length > 1;
 
+
             const limiteDescripcion = 100;
+
 
             const descripcionLarga =
                 producto.descripcion.length >
                 limiteDescripcion;
+
 
             const descripcionCorta =
                 descripcionLarga
@@ -1427,13 +1604,16 @@ function renderizarProductos() {
                     ) + '...'
                     : producto.descripcion;
 
+
             const card =
                 document.createElement(
                     'div'
                 );
 
+
             card.className =
                 'card';
+
 
             card.innerHTML = `
 
@@ -1443,11 +1623,13 @@ function renderizarProductos() {
                         : ''
                 }
 
+
                 <div class="product-carousel">
 
                     <div class="carousel-track">
                         ${slidesHTML}
                     </div>
+
 
                     ${
                         mostrarControles
@@ -1475,15 +1657,18 @@ function renderizarProductos() {
 
                 </div>
 
+
                 <div class="card-body">
 
                     <span class="card-category">
                         ${producto.categoria}
                     </span>
 
+
                     <h3 class="card-title">
                         ${producto.nombre}
                     </h3>
+
 
                     <p class="card-desc">
 
@@ -1494,12 +1679,15 @@ function renderizarProductos() {
                                     ? 'descripcion-texto descripcion-corta'
                                     : 'descripcion-texto'
                             }">
+
                             ${
                                 descripcionLarga
                                     ? descripcionCorta
                                     : producto.descripcion
                             }
+
                         </span>
+
 
                         ${
                             descripcionLarga
@@ -1516,9 +1704,11 @@ function renderizarProductos() {
 
                     </p>
 
+
                     <div class="specs-list">
                         ${specsHTML}
                     </div>
+
 
                     <div class="pricing">
 
@@ -1527,6 +1717,7 @@ function renderizarProductos() {
                                 producto.precio
                             )}
                         </div>
+
 
                         <div class="price-container">
 
@@ -1538,9 +1729,11 @@ function renderizarProductos() {
 
                         </div>
 
+
                         <div class="cuotas-badge">
                             Precio oferta en transferencia
                         </div>
+
 
                         <button
                             class="btn-add-cart"
@@ -1551,7 +1744,9 @@ function renderizarProductos() {
                     </div>
 
                 </div>
+
             `;
+
 
             gridContainer.appendChild(
                 card
@@ -1560,8 +1755,152 @@ function renderizarProductos() {
         }
     );
 
+
+    /* =====================================
+       CREAR PAGINACIÓN
+    ===================================== */
+
+    if (totalPaginas > 1) {
+
+        let paginacionHTML = `
+
+            <div class="paginacion">
+
+                <button
+                    onclick="cambiarPagina(${paginaActual - 1})"
+                    ${
+                        paginaActual === 1
+                            ? 'disabled'
+                            : ''
+                    }
+                    aria-label="Página anterior">
+
+                    ‹
+
+                </button>
+
+        `;
+
+
+        for (
+            let i = 1;
+            i <= totalPaginas;
+            i++
+        ) {
+
+            paginacionHTML += `
+
+                <button
+                    class="${
+                        i === paginaActual
+                            ? 'active'
+                            : ''
+                    }"
+                    onclick="cambiarPagina(${i})"
+                    aria-label="Ir a página ${i}">
+
+                    ${i}
+
+                </button>
+
+            `;
+
+        }
+
+
+        paginacionHTML += `
+
+                <button
+                    onclick="cambiarPagina(${paginaActual + 1})"
+                    ${
+                        paginaActual === totalPaginas
+                            ? 'disabled'
+                            : ''
+                    }
+                    aria-label="Página siguiente">
+
+                    ›
+
+                </button>
+
+
+                <div class="paginacion-info">
+
+                    Mostrando
+                    ${inicio + 1}
+                    -
+                    ${Math.min(
+                        fin,
+                        productosFiltrados.length
+                    )}
+                    de
+                    ${productosFiltrados.length}
+                    productos
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        paginacionContainer.innerHTML =
+            paginacionHTML;
+
+    }
+
 }
 
+
+/* =========================================
+   CAMBIAR PÁGINA
+========================================= */
+
+function cambiarPagina(nuevaPagina) {
+
+    const productosFiltrados =
+        categoriaSeleccionada === 'Todas'
+            ? productos
+            : productos.filter(
+                p =>
+                    p.categoria.toLowerCase() ===
+                    categoriaSeleccionada.toLowerCase()
+            );
+
+
+    const totalPaginas =
+        Math.ceil(
+            productosFiltrados.length /
+            PRODUCTOS_POR_PAGINA
+        );
+
+
+    if (
+        nuevaPagina < 1 ||
+        nuevaPagina > totalPaginas
+    ) {
+        return;
+    }
+
+
+    paginaActual =
+        nuevaPagina;
+
+
+    renderizarProductos();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+}
+
+
+/* =========================================
+   CARRITO
+========================================= */
 
 function agregarAlCarrito(id) {
 
@@ -1570,10 +1909,12 @@ function agregarAlCarrito(id) {
             p => p.id === id
         );
 
+
     const itemExistente =
         carrito.find(
             item => item.id === id
         );
+
 
     if (itemExistente) {
 
@@ -1587,6 +1928,7 @@ function agregarAlCarrito(id) {
         });
 
     }
+
 
     actualizarContadorCarrito();
 
@@ -1604,9 +1946,11 @@ function cambiarCantidad(id, cambio) {
             i => i.id === id
         );
 
+
     if (item) {
 
         item.cantidad += cambio;
+
 
         if (
             item.cantidad <= 0
@@ -1621,6 +1965,7 @@ function cambiarCantidad(id, cambio) {
 
     }
 
+
     actualizarContadorCarrito();
 
     renderizarContenidoDrawer();
@@ -1634,6 +1979,7 @@ function eliminarDelCarrito(id) {
         carrito.filter(
             i => i.id !== id
         );
+
 
     actualizarContadorCarrito();
 
@@ -1650,6 +1996,7 @@ function actualizarContadorCarrito() {
                 sum + item.cantidad,
             0
         );
+
 
     document.getElementById(
         'cartCount'
@@ -1668,6 +2015,7 @@ function toggleCart(
             'cartModal'
         );
 
+
     if (forceOpen) {
 
         modal.classList.add(
@@ -1679,6 +2027,7 @@ function toggleCart(
         modal.classList.toggle(
             'active'
         );
+
 
         if (
             !modal.classList.contains(
@@ -1692,6 +2041,7 @@ function toggleCart(
         }
 
     }
+
 
     renderizarContenidoDrawer();
 
@@ -1712,6 +2062,10 @@ function handleOutsideClick(event) {
 }
 
 
+/* =========================================
+   CONTENIDO DRAWER
+========================================= */
+
 function renderizarContenidoDrawer() {
 
     const drawerTitle =
@@ -1719,10 +2073,12 @@ function renderizarContenidoDrawer() {
             'drawerTitle'
         );
 
+
     const bodyContent =
         document.getElementById(
             'cartBodyContent'
         );
+
 
     if (
         carrito.length === 0
@@ -1731,18 +2087,26 @@ function renderizarContenidoDrawer() {
         drawerTitle.innerText =
             "Tu Carrito de Compras";
 
+
         bodyContent.innerHTML = `
+
             <div class="empty-cart">
+
                 Tu carrito está vacío.
+
             </div>
+
         `;
+
 
         vistaActual =
             'carrito';
 
+
         return;
 
     }
+
 
     if (
         vistaActual === 'carrito'
@@ -1751,18 +2115,23 @@ function renderizarContenidoDrawer() {
         drawerTitle.innerText =
             "Tu Carrito de Compras";
 
+
         let htmlItems = `
+
             <div style="
                 flex-grow:1;
                 overflow-y:auto;
                 max-height:45vh;
             ">
+
         `;
+
 
         carrito.forEach(
             item => {
 
                 htmlItems += `
+
                     <div class="cart-item">
 
                         <div class="cart-item-info">
@@ -1780,40 +2149,54 @@ function renderizarContenidoDrawer() {
 
                         </div>
 
+
                         <div class="cart-item-actions">
 
                             <button
                                 class="qty-btn"
                                 onclick="cambiarCantidad(${item.id}, -1)">
+
                                 -
+
                             </button>
+
 
                             <span>
                                 ${item.cantidad}
                             </span>
 
+
                             <button
                                 class="qty-btn"
                                 onclick="cambiarCantidad(${item.id}, 1)">
+
                                 +
+
                             </button>
+
 
                             <button
                                 class="remove-btn"
                                 onclick="eliminarDelCarrito(${item.id})">
+
                                 🗑️
+
                             </button>
 
                         </div>
 
                     </div>
+
                 `;
 
             }
         );
 
+
         htmlItems += `
+
             </div>
+
 
             <div style="
                 margin-top:10px;
@@ -1821,16 +2204,19 @@ function renderizarContenidoDrawer() {
                 padding-top:12px;
             ">
 
+
                 <div class="payment-methods">
 
                     <label for="paymentMethodSelect">
                         Método de Pago:
                     </label>
 
+
                     <select
                         id="paymentMethodSelect"
                         class="payment-select"
                         onchange="onPaymentMethodChange()">
+
 
                         <option
                             value="transferencia"
@@ -1840,8 +2226,11 @@ function renderizarContenidoDrawer() {
                                     ? 'selected'
                                     : ''
                             }>
+
                             Transferencia Bancaria (15% OFF)
+
                         </option>
+
 
                         <option
                             value="creditoDni"
@@ -1851,8 +2240,11 @@ function renderizarContenidoDrawer() {
                                     ? 'selected'
                                     : ''
                             }>
+
                             Crédito con DNI (Hasta 6 pagos, +4% por pago)
+
                         </option>
+
 
                         <option
                             value="tarjeta"
@@ -1862,12 +2254,16 @@ function renderizarContenidoDrawer() {
                                     ? 'selected'
                                     : ''
                             }>
+
                             Tarjeta de Crédito (Hasta 12 cuotas, +8% por cuota)
+
                         </option>
+
 
                     </select>
 
                 </div>
+
 
                 <div
                     id="cuotasContainer"
@@ -1875,6 +2271,7 @@ function renderizarContenidoDrawer() {
                         margin-bottom:10px;
                         display:none;
                     ">
+
 
                     <label
                         for="cuotasSelect"
@@ -1885,8 +2282,11 @@ function renderizarContenidoDrawer() {
                             display:block;
                         "
                         id="labelCuotas">
+
                         Cantidad de pagos:
+
                     </label>
+
 
                     <select
                         id="cuotasSelect"
@@ -1896,7 +2296,9 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+
                 <div id="paymentDetailsContainer"></div>
+
 
                 <div class="cart-total">
 
@@ -1904,11 +2306,13 @@ function renderizarContenidoDrawer() {
                         Total:
                     </span>
 
+
                     <span id="cartTotalPrice">
                         $0
                     </span>
 
                 </div>
+
 
                 <div
                     id="installmentSummary"
@@ -1916,21 +2320,29 @@ function renderizarContenidoDrawer() {
                     style="display:none;">
                 </div>
 
+
                 <button
                     class="checkout-btn"
                     onclick="irAlFormularioEnvio()">
+
                     Continuar con Datos de Envío
+
                 </button>
 
+
             </div>
+
         `;
+
 
         bodyContent.innerHTML =
             htmlItems;
 
+
         onPaymentMethodChange();
 
     }
+
 
     else if (
         vistaActual ===
@@ -1940,15 +2352,18 @@ function renderizarContenidoDrawer() {
         drawerTitle.innerText =
             "Datos del Comprador y Envío";
 
+
         bodyContent.innerHTML = `
 
             <div id="checkoutForm">
+
 
                 <div class="form-group">
 
                     <label for="nombreCliente">
                         Nombre y Apellido *
                     </label>
+
 
                     <input
                         type="text"
@@ -1958,11 +2373,13 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+
                 <div class="form-group">
 
                     <label for="dniCliente">
                         DNI / CUIL *
                     </label>
+
 
                     <input
                         type="text"
@@ -1972,11 +2389,13 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+
                 <div class="form-group">
 
                     <label for="telefonoCliente">
                         Teléfono / WhatsApp *
                     </label>
+
 
                     <input
                         type="tel"
@@ -1986,11 +2405,13 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+
                 <div class="form-group">
 
                     <label for="emailCliente">
                         Email *
                     </label>
+
 
                     <input
                         type="email"
@@ -2000,11 +2421,13 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+
                 <div class="form-group">
 
                     <label for="direccionCliente">
                         Calle y Número de Entrega *
                     </label>
+
 
                     <input
                         type="text"
@@ -2014,11 +2437,13 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+
                 <div class="form-group">
 
                     <label for="localidadCliente">
                         Localidad / Barrio *
                     </label>
+
 
                     <input
                         type="text"
@@ -2028,13 +2453,13 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-                <!-- AGREGADO: PROVINCIA -->
 
                 <div class="form-group">
 
                     <label for="provinciaCliente">
                         Provincia *
                     </label>
+
 
                     <input
                         type="text"
@@ -2044,13 +2469,13 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-                <!-- AGREGADO: CODIGO POSTAL -->
 
                 <div class="form-group">
 
                     <label for="codigoPostalCliente">
                         Código Postal *
                     </label>
+
 
                     <input
                         type="text"
@@ -2060,34 +2485,45 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+
                 <div class="form-group">
 
                     <label for="provinciaSelect">
                         Zona de Envío *
                     </label>
 
+
                     <select
                         id="provinciaSelect"
                         class="payment-select"
                         onchange="updateCartUI()">
 
+
                         <option value="CABA">
                             Capital Federal (CABA) - $8.500
                         </option>
 
+
                         <option
                             value="Buenos Aires"
                             selected>
+
                             Provincia de Buenos Aires - $12.500
+
                         </option>
 
+
                         <option value="Provincias">
+
                             Otras Provincias / Resto del País - $18.500
+
                         </option>
+
 
                     </select>
 
                 </div>
+
 
                 <div
                     id="envioInfoResumen"
@@ -2107,23 +2543,32 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+
                 <div class="form-buttons">
+
 
                     <button
                         type="button"
                         class="btn-back"
                         onclick="volverAlCarrito()">
+
                         Volver
+
                     </button>
+
 
                     <button
                         type="button"
                         class="btn-submit-order"
                         onclick="enviarPedidoWhatsApp()">
+
                         💬 Enviar Pedido WhatsApp
+
                     </button>
 
+
                 </div>
+
 
             </div>
 
@@ -2134,6 +2579,10 @@ function renderizarContenidoDrawer() {
 }
 
 
+/* =========================================
+   MÉTODO DE PAGO
+========================================= */
+
 function onPaymentMethodChange() {
 
     const selectElement =
@@ -2141,27 +2590,34 @@ function onPaymentMethodChange() {
             'paymentMethodSelect'
         );
 
+
     if (!selectElement) return;
+
 
     metodoPagoGlobal =
         selectElement.value;
+
 
     const cuotasContainer =
         document.getElementById(
             'cuotasContainer'
         );
 
+
     const cuotasSelect =
         document.getElementById(
             'cuotasSelect'
         );
+
 
     const labelCuotas =
         document.getElementById(
             'labelCuotas'
         );
 
+
     cuotasSelect.innerHTML = '';
+
 
     if (
         metodoPagoGlobal ===
@@ -2171,8 +2627,10 @@ function onPaymentMethodChange() {
         cuotasContainer.style.display =
             'block';
 
+
         labelCuotas.innerText =
             "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
+
 
         for (
             let i = 1;
@@ -2185,12 +2643,15 @@ function onPaymentMethodChange() {
                     'option'
                 );
 
+
             opt.value = i;
+
 
             opt.innerText =
                 `${i} pago${
                     i > 1 ? 's' : ''
                 } (+${i * 4}% recargo)`;
+
 
             if (
                 i === cuotasGlobal
@@ -2201,6 +2662,7 @@ function onPaymentMethodChange() {
 
             }
 
+
             cuotasSelect.appendChild(
                 opt
             );
@@ -2208,6 +2670,7 @@ function onPaymentMethodChange() {
         }
 
     }
+
 
     else if (
         metodoPagoGlobal ===
@@ -2217,8 +2680,10 @@ function onPaymentMethodChange() {
         cuotasContainer.style.display =
             'block';
 
+
         labelCuotas.innerText =
             "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
+
 
         for (
             let i = 1;
@@ -2231,12 +2696,15 @@ function onPaymentMethodChange() {
                     'option'
                 );
 
+
             opt.value = i;
+
 
             opt.innerText =
                 `${i} cuota${
                     i > 1 ? 's' : ''
                 } (+${i * 8}% recargo)`;
+
 
             if (
                 i === cuotasGlobal
@@ -2247,6 +2715,7 @@ function onPaymentMethodChange() {
 
             }
 
+
             cuotasSelect.appendChild(
                 opt
             );
@@ -2255,6 +2724,7 @@ function onPaymentMethodChange() {
 
     }
 
+
     else {
 
         cuotasContainer.style.display =
@@ -2262,10 +2732,15 @@ function onPaymentMethodChange() {
 
     }
 
+
     updateCartUI();
 
 }
 
+
+/* =========================================
+   ACTUALIZAR CARRITO
+========================================= */
 
 function updateCartUI() {
 
@@ -2273,6 +2748,7 @@ function updateCartUI() {
         document.getElementById(
             'paymentMethodSelect'
         );
+
 
     if (
         paymentMethodSelect
@@ -2283,10 +2759,12 @@ function updateCartUI() {
 
     }
 
+
     const cuotasSelect =
         document.getElementById(
             'cuotasSelect'
         );
+
 
     if (
         cuotasSelect &&
@@ -2300,10 +2778,12 @@ function updateCartUI() {
 
     }
 
+
     const detailsContainer =
         document.getElementById(
             'paymentDetailsContainer'
         );
+
 
     let subtotal =
         carrito.reduce(
@@ -2316,7 +2796,9 @@ function updateCartUI() {
             0
         );
 
+
     let recargoDescuentoValor = 0;
+
 
     if (
         metodoPagoGlobal ===
@@ -2328,6 +2810,7 @@ function updateCartUI() {
 
     }
 
+
     else if (
         metodoPagoGlobal ===
         'creditoDni'
@@ -2336,11 +2819,13 @@ function updateCartUI() {
         const porcentajeRecargo =
             cuotasGlobal * 0.04;
 
+
         recargoDescuentoValor =
             subtotal *
             porcentajeRecargo;
 
     }
+
 
     else if (
         metodoPagoGlobal ===
@@ -2350,33 +2835,40 @@ function updateCartUI() {
         const porcentajeRecargo =
             cuotasGlobal * 0.08;
 
+
         recargoDescuentoValor =
             subtotal *
             porcentajeRecargo;
 
     }
 
+
     let costoEnvio = 12500;
+
 
     const provinciaSelect =
         document.getElementById(
             'provinciaSelect'
         );
 
+
     if (provinciaSelect) {
 
         const provKey =
             provinciaSelect.value;
+
 
         costoEnvio =
             tarifasProvincias[
                 provKey
             ].costo;
 
+
         const infoRes =
             document.getElementById(
                 'envioInfoResumen'
             );
+
 
         if (infoRes) {
 
@@ -2395,10 +2887,12 @@ function updateCartUI() {
 
     }
 
+
     let totalFinal =
         subtotal +
         costoEnvio +
         recargoDescuentoValor;
+
 
     if (detailsContainer) {
 
@@ -2406,6 +2900,7 @@ function updateCartUI() {
             recargoDescuentoValor < 0
                 ? "#10b981"
                 : "var(--text-main)";
+
 
         detailsContainer.innerHTML = `
 
@@ -2415,6 +2910,7 @@ function updateCartUI() {
                     Subproductos:
                 </span>
 
+
                 <span>
                     ${formatearMoneda(
                         subtotal
@@ -2423,11 +2919,13 @@ function updateCartUI() {
 
             </div>
 
+
             <div class="cart-summary-line">
 
                 <span>
                     Envío:
                 </span>
+
 
                 <span>
                     ${formatearMoneda(
@@ -2436,6 +2934,7 @@ function updateCartUI() {
                 </span>
 
             </div>
+
 
             <div
                 class="cart-summary-line"
@@ -2448,6 +2947,7 @@ function updateCartUI() {
                     Recargo/Descuento:
                 </span>
 
+
                 <span>
 
                     ${
@@ -2455,6 +2955,7 @@ function updateCartUI() {
                             ? '-'
                             : '+'
                     }
+
 
                     ${formatearMoneda(
                         Math.abs(
@@ -2470,10 +2971,12 @@ function updateCartUI() {
 
     }
 
+
     const totalPriceEl =
         document.getElementById(
             'cartTotalPrice'
         );
+
 
     if (totalPriceEl) {
 
@@ -2484,10 +2987,12 @@ function updateCartUI() {
 
     }
 
+
     const installmentSummary =
         document.getElementById(
             'installmentSummary'
         );
+
 
     if (installmentSummary) {
 
@@ -2500,8 +3005,10 @@ function updateCartUI() {
                 totalFinal /
                 cuotasGlobal;
 
+
             installmentSummary.style.display =
                 'block';
+
 
             installmentSummary.innerHTML = `
 
@@ -2519,6 +3026,7 @@ function updateCartUI() {
 
         }
 
+
         else if (
             metodoPagoGlobal ===
             'tarjeta'
@@ -2528,8 +3036,10 @@ function updateCartUI() {
                 totalFinal /
                 cuotasGlobal;
 
+
             installmentSummary.style.display =
                 'block';
+
 
             installmentSummary.innerHTML = `
 
@@ -2547,10 +3057,12 @@ function updateCartUI() {
 
         }
 
+
         else {
 
             installmentSummary.style.display =
                 'none';
+
 
             installmentSummary.innerHTML =
                 '';
@@ -2562,10 +3074,15 @@ function updateCartUI() {
 }
 
 
+/* =========================================
+   FORMULARIO
+========================================= */
+
 function irAlFormularioEnvio() {
 
     vistaActual =
         'formulario';
+
 
     renderizarContenidoDrawer();
 
@@ -2577,10 +3094,15 @@ function volverAlCarrito() {
     vistaActual =
         'carrito';
 
+
     renderizarContenidoDrawer();
 
 }
 
+
+/* =========================================
+   WHATSAPP
+========================================= */
 
 function enviarPedidoWhatsApp() {
 
@@ -2589,44 +3111,48 @@ function enviarPedidoWhatsApp() {
             'nombreCliente'
         ).value.trim();
 
+
     const dni =
         document.getElementById(
             'dniCliente'
         ).value.trim();
+
 
     const telefono =
         document.getElementById(
             'telefonoCliente'
         ).value.trim();
 
+
     const email =
         document.getElementById(
             'emailCliente'
         ).value.trim();
+
 
     const direccion =
         document.getElementById(
             'direccionCliente'
         ).value.trim();
 
+
     const localidad =
         document.getElementById(
             'localidadCliente'
         ).value.trim();
 
-    /* AGREGADO: PROVINCIA */
 
     const provincia =
         document.getElementById(
             'provinciaCliente'
         ).value.trim();
 
-    /* AGREGADO: CODIGO POSTAL */
 
     const codigoPostal =
         document.getElementById(
             'codigoPostalCliente'
         ).value.trim();
+
 
     if (
         !nombre ||
@@ -2643,25 +3169,31 @@ function enviarPedidoWhatsApp() {
             "Por favor, completa todos los datos obligatorios de entrega."
         );
 
+
         return;
 
     }
 
+
     const numeroGuia =
         generarCodigoSeguimiento();
+
 
     const provinciaKey =
         document.getElementById(
             'provinciaSelect'
         ).value;
 
+
     const datosProvincia =
         tarifasProvincias[
             provinciaKey
         ];
 
+
     const costoEnvio =
         datosProvincia.costo;
+
 
     let subtotal =
         carrito.reduce(
@@ -2674,9 +3206,11 @@ function enviarPedidoWhatsApp() {
             0
         );
 
+
     let recargoDescuentoValor = 0;
 
     let textoMetodo = "";
+
 
     if (
         metodoPagoGlobal ===
@@ -2686,10 +3220,12 @@ function enviarPedidoWhatsApp() {
         recargoDescuentoValor =
             -(subtotal * 0.15);
 
+
         textoMetodo =
             "Transferencia Bancaria (15% OFF aplicado)";
 
     }
+
 
     else if (
         metodoPagoGlobal ===
@@ -2703,6 +3239,7 @@ function enviarPedidoWhatsApp() {
                 0.04
             );
 
+
         textoMetodo =
             `Crédito con DNI (${cuotasGlobal} pago${
                 cuotasGlobal > 1
@@ -2711,6 +3248,7 @@ function enviarPedidoWhatsApp() {
             }, +${cuotasGlobal * 4}% recargo)`;
 
     }
+
 
     else if (
         metodoPagoGlobal ===
@@ -2724,6 +3262,7 @@ function enviarPedidoWhatsApp() {
                 0.08
             );
 
+
         textoMetodo =
             `Tarjeta de Crédito (${cuotasGlobal} cuota${
                 cuotasGlobal > 1
@@ -2733,12 +3272,15 @@ function enviarPedidoWhatsApp() {
 
     }
 
+
     const totalFinal =
         subtotal +
         costoEnvio +
         recargoDescuentoValor;
 
+
     let textoCuotas = "";
+
 
     if (
         metodoPagoGlobal ===
@@ -2749,6 +3291,7 @@ function enviarPedidoWhatsApp() {
             totalFinal /
             cuotasGlobal;
 
+
         textoCuotas =
             `• Cantidad de pagos: ${cuotasGlobal}\n` +
             `• Monto de cada pago: ${formatearMoneda(
@@ -2756,6 +3299,7 @@ function enviarPedidoWhatsApp() {
             )}\n`;
 
     }
+
 
     else if (
         metodoPagoGlobal ===
@@ -2766,6 +3310,7 @@ function enviarPedidoWhatsApp() {
             totalFinal /
             cuotasGlobal;
 
+
         textoCuotas =
             `• Cantidad de cuotas: ${cuotasGlobal}\n` +
             `• Monto de cada cuota: ${formatearMoneda(
@@ -2774,6 +3319,7 @@ function enviarPedidoWhatsApp() {
 
     }
 
+
     else {
 
         textoCuotas =
@@ -2781,8 +3327,10 @@ function enviarPedidoWhatsApp() {
 
     }
 
+
     let detalleProductosTexto =
         "";
+
 
     carrito.forEach(
         item => {
@@ -2793,76 +3341,96 @@ function enviarPedidoWhatsApp() {
         }
     );
 
+
     let mensaje =
         `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
+
 
     mensaje +=
         `*LOGÍSTICA NOVA*\n`;
 
+
     mensaje +=
         `----------------------------------------\n`;
+
 
     mensaje +=
         `*N° de Seguimiento:* ${numeroGuia}\n`;
 
+
     mensaje +=
         `----------------------------------------\n\n`;
+
 
     mensaje +=
         `*DATOS DEL COMPRADOR*\n`;
 
+
     mensaje +=
         `• Nombre: ${nombre}\n`;
+
 
     mensaje +=
         `• DNI/CUIL: ${dni}\n`;
 
+
     mensaje +=
         `• Teléfono: ${telefono}\n`;
+
 
     mensaje +=
         `• Email: ${email}\n`;
 
+
     mensaje +=
         `• Dirección: ${direccion}, ${localidad}\n`;
 
-    /* AGREGADO: PROVINCIA Y CODIGO POSTAL */
 
     mensaje +=
         `• Provincia: ${provincia}\n`;
 
+
     mensaje +=
         `• Código Postal: ${codigoPostal}\n`;
 
+
     mensaje +=
         `• Zona de Envío: ${datosProvincia.nombre}\n`;
+
 
     mensaje +=
         `• Costo de envío: ${formatearMoneda(
             costoEnvio
         )}\n`;
 
+
     mensaje +=
         `• Demora estimada: ${datosProvincia.demora}\n\n`;
+
 
     mensaje +=
         `*PRODUCTOS SOLICITADOS*\n`;
 
+
     mensaje +=
         `${detalleProductosTexto}\n`;
 
+
     mensaje +=
         `*DESGLOSE DE PAGOS Y ENVÍO*\n`;
+
 
     mensaje +=
         `• Subproductos: ${formatearMoneda(
             subtotal
         )}\n`;
 
+
     mensaje +=
         `• Envío: ${formatearMoneda(
             costoEnvio
         )}\n`;
+
 
     mensaje +=
         `• Recargo/Descuento: ${
@@ -2875,46 +3443,62 @@ function enviarPedidoWhatsApp() {
             )
         )}\n`;
 
+
     mensaje +=
         `• Método: ${textoMetodo}\n`;
 
+
     mensaje +=
         `${textoCuotas}\n`;
+
 
     mensaje +=
         `*TOTAL A PAGAR:* ${formatearMoneda(
             totalFinal
         )}\n\n`;
 
+
     mensaje +=
         `*CÓDIGO DE SEGUIMIENTO*\n`;
+
 
     mensaje +=
         `${numeroGuia}\n\n`;
 
+
     mensaje +=
         `Solicito confirmación del pedido y datos para el pago.`;
+
 
     const mensajeCodificado =
         encodeURIComponent(
             mensaje
         );
 
+
     const numeroWhatsApp =
         "5491155012447";
+
 
     const urlWhatsApp =
         `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
+
     carrito = [];
 
+
     actualizarContadorCarrito();
+
 
     window.location.href =
         urlWhatsApp;
 
 }
 
+
+/* =========================================
+   INICIAR CATÁLOGO
+========================================= */
 
 renderizarProductos();
 
