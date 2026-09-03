@@ -1961,6 +1961,30 @@
         const envios = {
 
 
+            "NV-7GTNQFMN": {
+
+                comprador: "Cliente General",
+
+                destino: "Dirección de destino",
+
+                provincia: "Buenos Aires",
+
+                cp: "1800",
+
+                demora: "24 a 48 hs",
+
+                envio: "$ 12.500",
+
+                total: "$ 45.000",
+
+                producto: "Producto de la orden",
+
+                etapa: 5, // 5 = En tránsito (puedes cambiarlo de 0 a 7)
+
+                fecha: "03/09/2026 - 14:30 hs"
+
+            },
+
             "NV-PWQAE8QV": {
 
                 comprador: "Juan Pérez",
@@ -2024,8 +2048,14 @@
             }
 
 
-            const envio =
-                envios[input];
+            // Busca en el objeto estático o en localStorage si se generó dinámicamente
+            let envio = envios[input];
+            if (!envio) {
+                const localData = localStorage.getItem(input);
+                if (localData) {
+                    envio = JSON.parse(localData);
+                }
+            }
 
 
             if (!envio) {
