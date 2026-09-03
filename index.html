@@ -1946,15 +1946,22 @@
 
     <!-- =========================================================
          JAVASCRIPT
-         SE MANTIENE EL SISTEMA DE SEGUIMIENTO
     ========================================================= -->
 
     <script>
 
-
         /*
         ============================================================
         BASE LOCAL DE ENVÍOS
+        GUÍA DE ETAPAS (del 1 al 8):
+        1 = Pedido recibido
+        2 = Pago confirmado
+        3 = Pedido confirmado
+        4 = Preparación del envío
+        5 = Envío despachado
+        6 = En tránsito
+        7 = En reparto
+        8 = Entregado
         ============================================================
         */
 
@@ -1979,25 +1986,11 @@
 
                 producto: "Producto de la orden",
 
-                etapa: 5, // 5 = En tránsito (puedes cambiarlo de 0 a 7)
+                etapa: 1, 
 
-                fecha: "03/09/2026 - 14:30 hs"
+                fecha: "03/09/2026 - 19:35 hs"
 
             },
-
-                "NV-DQ5TPHVL": {
-        comprador: "Nombre del cliente",
-        destino: "Dirección de destino",
-        provincia: "Buenos Aires",
-        cp: "1800",
-        demora: "24 a 48 hs",
-        envio: "$ 12.500",
-        total: "$ 45.000",
-        producto: "Descripción del producto",
-        etapa: 1,
-        fecha: "03/09/2026 - 19:35 hs"
-    },
-
 
             "NV-PWQAE8QV": {
 
@@ -2015,13 +2008,11 @@
 
                 total: "$ 1.603.698",
 
-                producto:
-                    "2x Smart TV TCL 55 C655 QLED 4K",
+                producto: "2x Smart TV TCL 55 C655 QLED 4K",
 
-                etapa: 3,
+                etapa: 1, 
 
-                fecha:
-                    "03/09/2026 - 10:30 hs"
+                fecha: "03/09/2026 - 10:30 hs"
 
             }
 
@@ -2031,12 +2022,11 @@
 
         /*
         ============================================================
-        FUNCIÓN DE BÚSQUEDA
+        FUNCIÓN DE BÚSQUEDA DINÁMICA
         ============================================================
         */
 
         function buscarEnvio() {
-
 
             const input =
                 document
@@ -2045,25 +2035,20 @@
                     .trim()
                     .toUpperCase();
 
-
             const resultCard =
                 document.getElementById("resultCard");
 
-
             if (input === "") {
-
                 alert(
                     "Por favor, ingresá un número de seguimiento válido."
                 );
-
                 resultCard.classList.remove("active");
-
                 return;
             }
 
-
-            // Busca en el objeto estático o en localStorage si se generó dinámicamente
+            // Busca primero en la lista predefinida; si no, revisa localStorage, o crea uno genérico
             let envio = envios[input];
+
             if (!envio) {
                 const localData = localStorage.getItem(input);
                 if (localData) {
@@ -2071,20 +2056,21 @@
                 }
             }
 
-
             if (!envio) {
-
-                resultCard.classList.remove("active");
-
-                alert(
-                    "No encontramos un envío asociado al código " +
-                    input +
-                    ". Verificá que el número ingresado sea correcto."
-                );
-
-                return;
+                // Genera datos automáticos para cualquier código nuevo que escribas
+                envio = {
+                    comprador: "Cliente General",
+                    destino: "Dirección de destino",
+                    provincia: "Buenos Aires",
+                    cp: "1800",
+                    demora: "24 a 48 hs",
+                    envio: "$ 12.500",
+                    total: "$ 45.000",
+                    producto: "Pedido registrado por WhatsApp",
+                    etapa: 1,
+                    fecha: "03/09/2026 - Actualizado"
+                };
             }
-
 
             /*
             --------------------------------------------
@@ -2096,55 +2082,45 @@
                 .getElementById("resultCode")
                 .innerText = input;
 
-
             document
                 .getElementById("resultComprador")
                 .innerText = envio.comprador;
-
 
             document
                 .getElementById("resultDestino")
                 .innerText = envio.destino;
 
-
             document
                 .getElementById("resultProvincia")
                 .innerText = envio.provincia;
-
 
             document
                 .getElementById("resultCP")
                 .innerText = envio.cp;
 
-
             document
                 .getElementById("resultDemora")
                 .innerText = envio.demora;
-
 
             document
                 .getElementById("resultEnvio")
                 .innerText = envio.envio;
 
-
             document
                 .getElementById("resultTotal")
                 .innerText = envio.total;
-
 
             document
                 .getElementById("resultProducto")
                 .innerText = envio.producto;
 
-
             document
                 .getElementById("resultFecha")
                 .innerText = envio.fecha;
 
-
             /*
             --------------------------------------------
-            ETAPAS
+            ETAPAS (Conversión del sistema 1 al 8)
             --------------------------------------------
             */
 
@@ -2153,29 +2129,23 @@
                     ".timeline-item"
                 );
 
-
             etapas.forEach(
                 (etapa, index) => {
-
-
                     etapa.classList.remove(
                         "completed",
                         "active",
                         "delivered"
                     );
 
-
                     const icono =
                         etapa.querySelector(
                             ".timeline-icon"
                         );
 
-
                     const fecha =
                         etapa.querySelector(
                             ".timeline-date"
                         );
-
 
                     const iconos = [
                         "✓",
@@ -2188,117 +2158,88 @@
                         "✓"
                     ];
 
-
                     icono.innerText =
                         iconos[index];
 
-
                     fecha.innerText =
                         "Pendiente";
-
                 }
             );
 
-
-            /*
-            --------------------------------------------
-            MARCAR PROGRESO
-            --------------------------------------------
-            */
+            // Obtenemos el número asignado (1 al 8) y lo convertimos a índice interno (0 al 7)
+            const numeroEtapa = (envio.etapa !== undefined) ? envio.etapa : 1;
+            const etapaActual = numeroEtapa - 1;
 
             etapas.forEach(
                 (etapa, index) => {
-
-
                     const fecha =
                         etapa.querySelector(
                             ".timeline-date"
                         );
-
 
                     const icono =
                         etapa.querySelector(
                             ".timeline-icon"
                         );
 
-
                     if (
                         index <
-                        envio.etapa
+                        etapaActual
                     ) {
-
                         etapa.classList.add(
                             "completed"
                         );
-
 
                         fecha.innerText =
                             "Completado";
 
-
                         icono.innerText =
                             "✓";
-
                     }
-
 
                     else if (
                         index ===
-                        envio.etapa
+                        etapaActual
                     ) {
-
                         etapa.classList.add(
                             "active"
                         );
 
-
                         fecha.innerText =
                             "Estado actual";
-
                     }
-
                 }
             );
 
-
             /*
             --------------------------------------------
-            ENTREGADO
+            ENTREGADO (Si se selecciona la etapa 8)
             --------------------------------------------
             */
 
             if (
-                envio.etapa === 7
+                numeroEtapa >= 8
             ) {
-
-
                 etapas.forEach(
                     (etapa) => {
-
-
                         etapa.classList.remove(
                             "active"
                         );
 
-
                         etapa.classList.add(
                             "completed"
                         );
-
 
                         etapa.querySelector(
                             ".timeline-date"
                         ).innerText =
                             "Completado";
-
                     }
                 );
-
 
                 etapas[7].classList.add(
                     "delivered"
                 );
-
 
                 etapas[7]
                     .querySelector(
@@ -2307,7 +2248,6 @@
                     .innerText =
                     "Entregado";
 
-
                 document
                     .getElementById(
                         "resultStatus"
@@ -2315,27 +2255,21 @@
                     .innerText =
                     "Entregado con éxito";
 
-
                 document
                     .getElementById(
                         "resultStatus"
                     )
                     .style.backgroundColor =
                     "#2563eb";
-
             }
 
-
             else {
-
-
                 const nombreEtapa =
                     etapas[
-                        envio.etapa
+                        etapaActual
                     ]
                         .querySelector("h4")
                         .innerText;
-
 
                 document
                     .getElementById(
@@ -2344,16 +2278,13 @@
                     .innerText =
                     nombreEtapa;
 
-
                 document
                     .getElementById(
                         "resultStatus"
                     )
                     .style.backgroundColor =
                     "#10b981";
-
             }
-
 
             /*
             --------------------------------------------
@@ -2365,15 +2296,12 @@
                 "active"
             );
 
-
             setTimeout(
                 () => {
-
                     resultCard.scrollIntoView({
                         behavior: "smooth",
                         block: "nearest"
                     });
-
                 },
                 100
             );
