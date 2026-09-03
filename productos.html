@@ -345,10 +345,6 @@ header p {
     line-height: 1.3;
 }
 
-/* =========================
-   DESCRIPCION
-========================= */
-
 .card-desc {
     font-size: 0.85rem;
     color: var(--text-muted);
@@ -621,20 +617,14 @@ header p {
     color: var(--text-main);
 }
 
-/* =========================
-   RESUMEN CUOTAS
-========================= */
-
-.cuotas-resumen {
-    text-align: center;
+.installment-summary {
     background: #eff6ff;
     border: 1px solid #bfdbfe;
-    color: #1d4ed8;
-    padding: 10px;
     border-radius: 8px;
+    padding: 10px;
     margin-bottom: 12px;
-    font-size: 0.85rem;
-    font-weight: 700;
+    color: #1e40af;
+    font-size: 0.82rem;
 }
 
 .checkout-btn {
@@ -682,7 +672,8 @@ header p {
 }
 
 .form-group input:focus,
-.form-group select:focus {
+.form-group select:focus,
+.form-group textarea:focus {
     border-color: var(--primary-color);
 }
 
@@ -743,7 +734,6 @@ header p {
     header h1 {
         font-size: 2.3rem;
     }
-
 }
 
 @media (max-width: 480px) {
@@ -759,13 +749,16 @@ header p {
     .cart-item-actions {
         flex-shrink: 0;
     }
-
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <nav class="navbar">
 
@@ -780,7 +773,12 @@ header p {
 
 </nav>
 
+
 <div class="container">
+
+    <!-- =========================
+         HEADER
+    ========================= -->
 
     <header>
 
@@ -792,60 +790,88 @@ header p {
 
     </header>
 
+
+    <!-- =========================
+         FILTROS
+    ========================= -->
+
     <div class="filtros">
 
-        <button class="filter-btn active"
+        <button
+            class="filter-btn active"
             onclick="filtrarCategoria('Todas', this)">
             Todas
         </button>
 
-        <button class="filter-btn"
+        <button
+            class="filter-btn"
             onclick="filtrarCategoria('Televisores', this)">
             Televisores
         </button>
 
-        <button class="filter-btn"
+        <button
+            class="filter-btn"
             onclick="filtrarCategoria('Heladeras', this)">
             Heladeras
         </button>
 
-        <button class="filter-btn"
+        <button
+            class="filter-btn"
             onclick="filtrarCategoria('Cocinas', this)">
             Cocinas
         </button>
 
-        <button class="filter-btn"
+        <button
+            class="filter-btn"
             onclick="filtrarCategoria('Lavarropas', this)">
             Lavarropas
         </button>
 
-        <button class="filter-btn"
+        <button
+            class="filter-btn"
             onclick="filtrarCategoria('Aires acondicionados', this)">
             Aires Acondicionados
         </button>
 
-        <button class="filter-btn"
+        <button
+            class="filter-btn"
             onclick="filtrarCategoria('Celulares', this)">
             Celulares
         </button>
 
-        <button class="filter-btn"
+        <button
+            class="filter-btn"
             onclick="filtrarCategoria('Audio', this)">
             Audio
         </button>
 
-        <button class="filter-btn"
+        <button
+            class="filter-btn"
             onclick="filtrarCategoria('Informática', this)">
             Informática
         </button>
 
     </div>
 
-    <div class="grid-productos" id="gridProductos"></div>
+
+    <!-- =========================
+         PRODUCTOS
+    ========================= -->
+
+    <div
+        class="grid-productos"
+        id="gridProductos">
+    </div>
 
 </div>
 
-<div class="modal-overlay"
+
+<!-- =========================
+     CARRITO
+========================= -->
+
+<div
+    class="modal-overlay"
     id="cartModal"
     onclick="handleOutsideClick(event)">
 
@@ -853,26 +879,34 @@ header p {
 
         <div class="cart-header">
 
-            <h3 id="drawerTitle" style="font-size:1.1rem;">
+            <h3
+                id="drawerTitle"
+                style="font-size:1.1rem;">
                 Tu Carrito de Compras
             </h3>
 
-            <button class="close-cart" onclick="toggleCart()">
+            <button
+                class="close-cart"
+                onclick="toggleCart()">
                 &times;
             </button>
 
         </div>
 
-        <div class="cart-body" id="cartBodyContent"></div>
+        <div
+            class="cart-body"
+            id="cartBodyContent">
+        </div>
 
     </div>
 
 </div>
 
+
 <script>
 
 /* =====================================================
-   TARIFAS
+   TARIFAS DE ENVÍO
 ===================================================== */
 
 const tarifasProvincias = {
@@ -1259,6 +1293,34 @@ function formatearMoneda(valor) {
 
 
 /* =====================================================
+   GENERAR CÓDIGO DE SEGUIMIENTO
+===================================================== */
+
+function generarCodigoSeguimiento() {
+
+    const caracteres =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let codigo = "NV-";
+
+    for (let i = 0; i < 8; i++) {
+
+        codigo +=
+            caracteres.charAt(
+                Math.floor(
+                    Math.random() *
+                    caracteres.length
+                )
+            );
+
+    }
+
+    return codigo;
+
+}
+
+
+/* =====================================================
    FILTRO
 ===================================================== */
 
@@ -1287,20 +1349,33 @@ function filtrarCategoria(categoria, botonElemento) {
 
 function cambiarImagen(productoId, direccion) {
 
-    const producto = productos.find(p => p.id === productoId);
+    const producto =
+        productos.find(
+            p => p.id === productoId
+        );
 
-    if (!producto || !producto.imagenes.length) return;
+    if (
+        !producto ||
+        !producto.imagenes.length
+    ) return;
 
-    if (!estadosCarrusel[productoId]) {
+    if (
+        !estadosCarrusel[productoId]
+    ) {
 
         estadosCarrusel[productoId] = 0;
 
     }
 
-    const total = producto.imagenes.length;
+    const total =
+        producto.imagenes.length;
 
     estadosCarrusel[productoId] =
-        (estadosCarrusel[productoId] + direccion + total) % total;
+        (
+            estadosCarrusel[productoId] +
+            direccion +
+            total
+        ) % total;
 
     actualizarCarrusel(productoId);
 
@@ -1309,7 +1384,8 @@ function cambiarImagen(productoId, direccion) {
 
 function irAImagen(productoId, indice) {
 
-    estadosCarrusel[productoId] = indice;
+    estadosCarrusel[productoId] =
+        indice;
 
     actualizarCarrusel(productoId);
 
@@ -1318,7 +1394,8 @@ function irAImagen(productoId, indice) {
 
 function actualizarCarrusel(productoId) {
 
-    const indice = estadosCarrusel[productoId] || 0;
+    const indice =
+        estadosCarrusel[productoId] || 0;
 
     const slides =
         document.querySelectorAll(
@@ -1330,23 +1407,27 @@ function actualizarCarrusel(productoId) {
             `.carousel-dot[data-producto="${productoId}"]`
         );
 
-    slides.forEach((slide, i) => {
+    slides.forEach(
+        (slide, i) => {
 
-        slide.classList.toggle(
-            'active',
-            i === indice
-        );
+            slide.classList.toggle(
+                'active',
+                i === indice
+            );
 
-    });
+        }
+    );
 
-    dots.forEach((dot, i) => {
+    dots.forEach(
+        (dot, i) => {
 
-        dot.classList.toggle(
-            'active',
-            i === indice
-        );
+            dot.classList.toggle(
+                'active',
+                i === indice
+            );
 
-    });
+        }
+    );
 
 }
 
@@ -1358,31 +1439,47 @@ function actualizarCarrusel(productoId) {
 function alternarDescripcion(id) {
 
     const texto =
-        document.getElementById(`descripcion-${id}`);
+        document.getElementById(
+            `descripcion-${id}`
+        );
 
     const boton =
-        document.getElementById(`verMas-${id}`);
+        document.getElementById(
+            `verMas-${id}`
+        );
 
     if (!texto || !boton) return;
 
     const expandido =
-        texto.classList.contains('expandido');
+        texto.classList.contains(
+            'expandido'
+        );
 
     if (expandido) {
 
-        texto.classList.remove('expandido');
+        texto.classList.remove(
+            'expandido'
+        );
 
-        texto.classList.add('descripcion-corta');
+        texto.classList.add(
+            'descripcion-corta'
+        );
 
-        boton.innerText = 'Ver más';
+        boton.innerText =
+            'Ver más';
 
     } else {
 
-        texto.classList.remove('descripcion-corta');
+        texto.classList.remove(
+            'descripcion-corta'
+        );
 
-        texto.classList.add('expandido');
+        texto.classList.add(
+            'expandido'
+        );
 
-        boton.innerText = 'Ver menos';
+        boton.innerText =
+            'Ver menos';
 
     }
 
@@ -1396,7 +1493,9 @@ function alternarDescripcion(id) {
 function renderizarProductos() {
 
     const gridContainer =
-        document.getElementById('gridProductos');
+        document.getElementById(
+            'gridProductos'
+        );
 
     gridContainer.innerHTML = '';
 
@@ -1410,7 +1509,9 @@ function renderizarProductos() {
             );
 
 
-    if (productosFiltrados.length === 0) {
+    if (
+        productosFiltrados.length === 0
+    ) {
 
         gridContainer.innerHTML = `
 
@@ -1432,293 +1533,339 @@ function renderizarProductos() {
     }
 
 
-    productosFiltrados.forEach(producto => {
+    productosFiltrados.forEach(
+        producto => {
 
-        if (estadosCarrusel[producto.id] === undefined) {
+            if (
+                estadosCarrusel[
+                    producto.id
+                ] === undefined
+            ) {
 
-            estadosCarrusel[producto.id] = 0;
+                estadosCarrusel[
+                    producto.id
+                ] = 0;
 
-        }
-
-
-        let specsHTML = '';
-
-        for (
-            const [key, value]
-            of Object.entries(producto.especificaciones)
-        ) {
-
-            specsHTML += `
-
-                <div>
-
-                    <span class="spec-label">
-                        ${key.charAt(0).toUpperCase() + key.slice(1)}:
-                    </span>
-
-                    <span class="spec-value">
-                        ${value}
-                    </span>
-
-                </div>
-
-            `;
-
-        }
-
-
-        let slidesHTML = '';
-
-        let dotsHTML = '';
-
-        const imagenes =
-            producto.imagenes
-                .filter(img => img && img.trim() !== '')
-                .slice(0, 3);
-
-
-        if (imagenes.length === 0) {
-
-            slidesHTML = `
-
-                <div class="carousel-slide active">
-
-                    <div class="carousel-placeholder">
-
-                        ${producto.marca}
-
-                    </div>
-
-                </div>
-
-            `;
-
-        } else {
-
-            imagenes.forEach((imagen, index) => {
-
-                slidesHTML += `
-
-                    <div
-                        class="carousel-slide ${index === 0 ? 'active' : ''}"
-                        data-producto="${producto.id}"
-                    >
-
-                        <img
-                            src="${imagen}"
-                            alt="${producto.nombre}"
-                            loading="lazy"
-                            onerror="this.style.display='none'"
-                        >
-
-                    </div>
-
-                `;
-
-
-                dotsHTML += `
-
-                    <button
-                        class="carousel-dot ${index === 0 ? 'active' : ''}"
-                        data-producto="${producto.id}"
-                        onclick="irAImagen(${producto.id}, ${index})"
-                        aria-label="Ver imagen ${index + 1}">
-                    </button>
-
-                `;
-
-            });
-
-        }
-
-
-        const mostrarControles =
-            imagenes.length > 1;
-
-
-        const limiteDescripcion = 100;
-
-        const descripcionLarga =
-            producto.descripcion.length > limiteDescripcion;
-
-
-        const descripcionCorta =
-            descripcionLarga
-                ? producto.descripcion.substring(
-                    0,
-                    limiteDescripcion
-                ) + '...'
-                : producto.descripcion;
-
-
-        const card =
-            document.createElement('div');
-
-        card.className = 'card';
-
-
-        card.innerHTML = `
-
-            ${
-                producto.stock
-                    ? '<span class="badge-stock">Stock</span>'
-                    : ''
             }
 
 
-            <div class="product-carousel">
+            /* ESPECIFICACIONES */
 
-                <div class="carousel-track">
+            let specsHTML = '';
 
-                    ${slidesHTML}
+            for (
+                const [key, value]
+                of Object.entries(
+                    producto.especificaciones
+                )
+            ) {
 
-                </div>
+                specsHTML += `
+
+                    <div>
+
+                        <span class="spec-label">
+                            ${
+                                key.charAt(0).toUpperCase() +
+                                key.slice(1)
+                            }:
+                        </span>
+
+                        <span class="spec-value">
+                            ${value}
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
 
 
-                ${
-                    mostrarControles
-                        ? `
+            /* IMAGENES */
 
-                            <button
-                                class="carousel-btn carousel-prev"
-                                onclick="cambiarImagen(${producto.id}, -1)"
-                                aria-label="Imagen anterior">
+            let slidesHTML = '';
 
-                                ‹
+            let dotsHTML = '';
 
-                            </button>
-
-
-                            <button
-                                class="carousel-btn carousel-next"
-                                onclick="cambiarImagen(${producto.id}, 1)"
-                                aria-label="Imagen siguiente">
-
-                                ›
-
-                            </button>
+            const imagenes =
+                producto.imagenes
+                    .filter(
+                        img =>
+                            img &&
+                            img.trim() !== ''
+                    )
+                    .slice(0, 3);
 
 
-                            <div class="carousel-dots">
+            if (
+                imagenes.length === 0
+            ) {
 
-                                ${dotsHTML}
+                slidesHTML = `
+
+                    <div class="carousel-slide active">
+
+                        <div class="carousel-placeholder">
+
+                            ${producto.marca}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            } else {
+
+                imagenes.forEach(
+                    (imagen, index) => {
+
+                        slidesHTML += `
+
+                            <div
+                                class="carousel-slide ${
+                                    index === 0
+                                        ? 'active'
+                                        : ''
+                                }"
+                                data-producto="${producto.id}"
+                            >
+
+                                <img
+                                    src="${imagen}"
+                                    alt="${producto.nombre}"
+                                    loading="lazy"
+                                    onerror="this.style.display='none'"
+                                >
 
                             </div>
 
-                        `
+                        `;
+
+
+                        dotsHTML += `
+
+                            <button
+                                class="carousel-dot ${
+                                    index === 0
+                                        ? 'active'
+                                        : ''
+                                }"
+                                data-producto="${producto.id}"
+                                onclick="irAImagen(${producto.id}, ${index})"
+                                aria-label="Ver imagen ${index + 1}">
+                            </button>
+
+                        `;
+
+                    }
+                );
+
+            }
+
+
+            const mostrarControles =
+                imagenes.length > 1;
+
+
+            /* DESCRIPCION */
+
+            const limiteDescripcion = 100;
+
+            const descripcionLarga =
+                producto.descripcion.length >
+                limiteDescripcion;
+
+            const descripcionCorta =
+                descripcionLarga
+                    ? producto.descripcion.substring(
+                        0,
+                        limiteDescripcion
+                    ) + '...'
+                    : producto.descripcion;
+
+
+            /* CARD */
+
+            const card =
+                document.createElement(
+                    'div'
+                );
+
+            card.className =
+                'card';
+
+
+            card.innerHTML = `
+
+                ${
+                    producto.stock
+                        ? '<span class="badge-stock">Stock</span>'
                         : ''
                 }
 
-            </div>
 
+                <div class="product-carousel">
 
-            <div class="card-body">
+                    <div class="carousel-track">
 
-                <span class="card-category">
+                        ${slidesHTML}
 
-                    ${producto.categoria}
-
-                </span>
-
-
-                <h3 class="card-title">
-
-                    ${producto.nombre}
-
-                </h3>
-
-
-                <p class="card-desc">
-
-                    <span
-                        id="descripcion-${producto.id}"
-                        class="${
-                            descripcionLarga
-                                ? 'descripcion-texto descripcion-corta'
-                                : 'descripcion-texto'
-                        }">
-
-                        ${
-                            descripcionLarga
-                                ? descripcionCorta
-                                : producto.descripcion
-                        }
-
-                    </span>
+                    </div>
 
 
                     ${
-                        descripcionLarga
+                        mostrarControles
                             ? `
 
                                 <button
-                                    id="verMas-${producto.id}"
-                                    class="ver-mas-btn"
-                                    onclick="alternarDescripcion(${producto.id})">
+                                    class="carousel-btn carousel-prev"
+                                    onclick="cambiarImagen(${producto.id}, -1)"
+                                    aria-label="Imagen anterior">
 
-                                    Ver más
+                                    ‹
 
                                 </button>
+
+
+                                <button
+                                    class="carousel-btn carousel-next"
+                                    onclick="cambiarImagen(${producto.id}, 1)"
+                                    aria-label="Imagen siguiente">
+
+                                    ›
+
+                                </button>
+
+
+                                <div class="carousel-dots">
+
+                                    ${dotsHTML}
+
+                                </div>
 
                             `
                             : ''
                     }
 
-                </p>
-
-
-                <div class="specs-list">
-
-                    ${specsHTML}
-
                 </div>
 
 
-                <div class="pricing">
+                <div class="card-body">
 
-                    <div class="price-original">
+                    <span class="card-category">
 
-                        ${formatearMoneda(producto.precio)}
+                        ${producto.categoria}
 
-                    </div>
+                    </span>
 
 
-                    <div class="price-container">
+                    <h3 class="card-title">
 
-                        <span class="price-offer">
+                        ${producto.nombre}
 
-                            ${formatearMoneda(producto.precioOferta)}
+                    </h3>
+
+
+                    <p class="card-desc">
+
+                        <span
+                            id="descripcion-${producto.id}"
+                            class="${
+                                descripcionLarga
+                                    ? 'descripcion-texto descripcion-corta'
+                                    : 'descripcion-texto'
+                            }">
+
+                            ${
+                                descripcionLarga
+                                    ? descripcionCorta
+                                    : producto.descripcion
+                            }
 
                         </span>
 
+
+                        ${
+                            descripcionLarga
+                                ? `
+
+                                    <button
+                                        id="verMas-${producto.id}"
+                                        class="ver-mas-btn"
+                                        onclick="alternarDescripcion(${producto.id})">
+
+                                        Ver más
+
+                                    </button>
+
+                                `
+                                : ''
+                        }
+
+                    </p>
+
+
+                    <div class="specs-list">
+
+                        ${specsHTML}
+
                     </div>
 
 
-                    <div class="cuotas-badge">
+                    <div class="pricing">
 
-                        Precio oferta en transferencia
+                        <div class="price-original">
+
+                            ${formatearMoneda(
+                                producto.precio
+                            )}
+
+                        </div>
+
+
+                        <div class="price-container">
+
+                            <span class="price-offer">
+
+                                ${formatearMoneda(
+                                    producto.precioOferta
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="cuotas-badge">
+
+                            Precio oferta en transferencia
+
+                        </div>
+
+
+                        <button
+                            class="btn-add-cart"
+                            onclick="agregarAlCarrito(${producto.id})">
+
+                            Agregar al Carrito
+
+                        </button>
 
                     </div>
-
-
-                    <button
-                        class="btn-add-cart"
-                        onclick="agregarAlCarrito(${producto.id})">
-
-                        Agregar al Carrito
-
-                    </button>
 
                 </div>
 
-            </div>
-
-        `;
+            `;
 
 
-        gridContainer.appendChild(card);
+            gridContainer.appendChild(
+                card
+            );
 
-    });
+        }
+    );
 
 }
 
@@ -1730,10 +1877,14 @@ function renderizarProductos() {
 function agregarAlCarrito(id) {
 
     const producto =
-        productos.find(p => p.id === id);
+        productos.find(
+            p => p.id === id
+        );
 
     const itemExistente =
-        carrito.find(item => item.id === id);
+        carrito.find(
+            item => item.id === id
+        );
 
 
     if (itemExistente) {
@@ -1769,7 +1920,9 @@ function agregarAlCarrito(id) {
 function cambiarCantidad(id, cambio) {
 
     const item =
-        carrito.find(i => i.id === id);
+        carrito.find(
+            i => i.id === id
+        );
 
 
     if (item) {
@@ -1777,10 +1930,14 @@ function cambiarCantidad(id, cambio) {
         item.cantidad += cambio;
 
 
-        if (item.cantidad <= 0) {
+        if (
+            item.cantidad <= 0
+        ) {
 
             carrito =
-                carrito.filter(i => i.id !== id);
+                carrito.filter(
+                    i => i.id !== id
+                );
 
         }
 
@@ -1801,7 +1958,9 @@ function cambiarCantidad(id, cambio) {
 function eliminarDelCarrito(id) {
 
     carrito =
-        carrito.filter(i => i.id !== id);
+        carrito.filter(
+            i => i.id !== id
+        );
 
     actualizarContadorCarrito();
 
@@ -1826,7 +1985,8 @@ function actualizarContadorCarrito() {
 
     document.getElementById(
         'cartCount'
-    ).innerText = totalItems;
+    ).innerText =
+        totalItems;
 
 }
 
@@ -1835,24 +1995,37 @@ function actualizarContadorCarrito() {
    ABRIR / CERRAR CARRITO
 ===================================================== */
 
-function toggleCart(forceOpen = false) {
+function toggleCart(
+    forceOpen = false
+) {
 
     const modal =
-        document.getElementById('cartModal');
+        document.getElementById(
+            'cartModal'
+        );
 
 
     if (forceOpen) {
 
-        modal.classList.add('active');
+        modal.classList.add(
+            'active'
+        );
 
     } else {
 
-        modal.classList.toggle('active');
+        modal.classList.toggle(
+            'active'
+        );
 
 
-        if (!modal.classList.contains('active')) {
+        if (
+            !modal.classList.contains(
+                'active'
+            )
+        ) {
 
-            vistaActual = 'carrito';
+            vistaActual =
+                'carrito';
 
         }
 
@@ -1870,7 +2043,10 @@ function toggleCart(forceOpen = false) {
 
 function handleOutsideClick(event) {
 
-    if (event.target.id === 'cartModal') {
+    if (
+        event.target.id ===
+        'cartModal'
+    ) {
 
         toggleCart();
 
@@ -1886,13 +2062,19 @@ function handleOutsideClick(event) {
 function renderizarContenidoDrawer() {
 
     const drawerTitle =
-        document.getElementById('drawerTitle');
+        document.getElementById(
+            'drawerTitle'
+        );
 
     const bodyContent =
-        document.getElementById('cartBodyContent');
+        document.getElementById(
+            'cartBodyContent'
+        );
 
 
-    if (carrito.length === 0) {
+    if (
+        carrito.length === 0
+    ) {
 
         drawerTitle.innerText =
             "Tu Carrito de Compras";
@@ -1908,14 +2090,17 @@ function renderizarContenidoDrawer() {
 
         `;
 
-        vistaActual = 'carrito';
+        vistaActual =
+            'carrito';
 
         return;
 
     }
 
 
-    if (vistaActual === 'carrito') {
+    if (
+        vistaActual === 'carrito'
+    ) {
 
         drawerTitle.innerText =
             "Tu Carrito de Compras";
@@ -1932,70 +2117,74 @@ function renderizarContenidoDrawer() {
         `;
 
 
-        carrito.forEach(item => {
+        carrito.forEach(
+            item => {
 
-            htmlItems += `
+                htmlItems += `
 
-                <div class="cart-item">
+                    <div class="cart-item">
 
-                    <div class="cart-item-info">
+                        <div class="cart-item-info">
 
-                        <h4>
-                            ${item.nombre}
-                        </h4>
+                            <h4>
+                                ${item.nombre}
+                            </h4>
 
-                        <div class="cart-item-price">
+                            <div class="cart-item-price">
 
-                            ${formatearMoneda(item.precioOferta)}
-                            c/u
+                                ${formatearMoneda(
+                                    item.precioOferta
+                                )}
+                                c/u
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="cart-item-actions">
+
+                            <button
+                                class="qty-btn"
+                                onclick="cambiarCantidad(${item.id}, -1)">
+
+                                -
+
+                            </button>
+
+
+                            <span>
+
+                                ${item.cantidad}
+
+                            </span>
+
+
+                            <button
+                                class="qty-btn"
+                                onclick="cambiarCantidad(${item.id}, 1)">
+
+                                +
+
+                            </button>
+
+
+                            <button
+                                class="remove-btn"
+                                onclick="eliminarDelCarrito(${item.id})">
+
+                                🗑️
+
+                            </button>
 
                         </div>
 
                     </div>
 
+                `;
 
-                    <div class="cart-item-actions">
-
-                        <button
-                            class="qty-btn"
-                            onclick="cambiarCantidad(${item.id}, -1)">
-
-                            -
-
-                        </button>
-
-
-                        <span>
-
-                            ${item.cantidad}
-
-                        </span>
-
-
-                        <button
-                            class="qty-btn"
-                            onclick="cambiarCantidad(${item.id}, 1)">
-
-                            +
-
-                        </button>
-
-
-                        <button
-                            class="remove-btn"
-                            onclick="eliminarDelCarrito(${item.id})">
-
-                            🗑️
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        });
+            }
+        );
 
 
         htmlItems += `
@@ -2028,7 +2217,8 @@ function renderizarContenidoDrawer() {
                         <option
                             value="transferencia"
                             ${
-                                metodoPagoGlobal === 'transferencia'
+                                metodoPagoGlobal ===
+                                'transferencia'
                                     ? 'selected'
                                     : ''
                             }>
@@ -2041,7 +2231,8 @@ function renderizarContenidoDrawer() {
                         <option
                             value="creditoDni"
                             ${
-                                metodoPagoGlobal === 'creditoDni'
+                                metodoPagoGlobal ===
+                                'creditoDni'
                                     ? 'selected'
                                     : ''
                             }>
@@ -2054,7 +2245,8 @@ function renderizarContenidoDrawer() {
                         <option
                             value="tarjeta"
                             ${
-                                metodoPagoGlobal === 'tarjeta'
+                                metodoPagoGlobal ===
+                                'tarjeta'
                                     ? 'selected'
                                     : ''
                             }>
@@ -2106,7 +2298,9 @@ function renderizarContenidoDrawer() {
 
                 <div class="cart-total">
 
-                    <span>Total:</span>
+                    <span>
+                        Total:
+                    </span>
 
                     <span id="cartTotalPrice">
                         $0
@@ -2116,8 +2310,9 @@ function renderizarContenidoDrawer() {
 
 
                 <div
-                    id="cuotasResumen"
-                    class="cuotas-resumen">
+                    id="installmentSummary"
+                    class="installment-summary"
+                    style="display:none;">
                 </div>
 
 
@@ -2135,14 +2330,18 @@ function renderizarContenidoDrawer() {
         `;
 
 
-        bodyContent.innerHTML = htmlItems;
+        bodyContent.innerHTML =
+            htmlItems;
 
         onPaymentMethodChange();
 
     }
 
 
-    else if (vistaActual === 'formulario') {
+    else if (
+        vistaActual ===
+        'formulario'
+    ) {
 
         drawerTitle.innerText =
             "Datos del Comprador y Envío";
@@ -2347,9 +2546,7 @@ function onPaymentMethodChange() {
             'paymentMethodSelect'
         );
 
-
     if (!selectElement) return;
-
 
     metodoPagoGlobal =
         selectElement.value;
@@ -2360,12 +2557,10 @@ function onPaymentMethodChange() {
             'cuotasContainer'
         );
 
-
     const cuotasSelect =
         document.getElementById(
             'cuotasSelect'
         );
-
 
     const labelCuotas =
         document.getElementById(
@@ -2376,74 +2571,100 @@ function onPaymentMethodChange() {
     cuotasSelect.innerHTML = '';
 
 
-    if (metodoPagoGlobal === 'creditoDni') {
+    if (
+        metodoPagoGlobal ===
+        'creditoDni'
+    ) {
 
         cuotasContainer.style.display =
             'block';
-
 
         labelCuotas.innerText =
             "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
 
 
-        for (let i = 1; i <= 6; i++) {
+        for (
+            let i = 1;
+            i <= 6;
+            i++
+        ) {
 
             const opt =
-                document.createElement('option');
-
+                document.createElement(
+                    'option'
+                );
 
             opt.value = i;
 
-
             opt.innerText =
-                `${i} pago${i > 1 ? 's' : ''} (+${i * 4}% recargo)`;
+                `${i} pago${
+                    i > 1 ? 's' : ''
+                } (+${i * 4}% recargo)`;
 
 
-            if (i === cuotasGlobal) {
+            if (
+                i === cuotasGlobal
+            ) {
 
-                opt.selected = true;
+                opt.selected =
+                    true;
 
             }
 
 
-            cuotasSelect.appendChild(opt);
+            cuotasSelect.appendChild(
+                opt
+            );
 
         }
 
     }
 
 
-    else if (metodoPagoGlobal === 'tarjeta') {
+    else if (
+        metodoPagoGlobal ===
+        'tarjeta'
+    ) {
 
         cuotasContainer.style.display =
             'block';
-
 
         labelCuotas.innerText =
             "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
 
 
-        for (let i = 1; i <= 12; i++) {
+        for (
+            let i = 1;
+            i <= 12;
+            i++
+        ) {
 
             const opt =
-                document.createElement('option');
-
+                document.createElement(
+                    'option'
+                );
 
             opt.value = i;
 
-
             opt.innerText =
-                `${i} cuota${i > 1 ? 's' : ''} (+${i * 8}% recargo)`;
+                `${i} cuota${
+                    i > 1 ? 's' : ''
+                } (+${i * 8}% recargo)`;
 
 
-            if (i === cuotasGlobal) {
+            if (
+                i === cuotasGlobal
+            ) {
 
-                opt.selected = true;
+                opt.selected =
+                    true;
 
             }
 
 
-            cuotasSelect.appendChild(opt);
+            cuotasSelect.appendChild(
+                opt
+            );
 
         }
 
@@ -2455,8 +2676,6 @@ function onPaymentMethodChange() {
         cuotasContainer.style.display =
             'none';
 
-        cuotasGlobal = 1;
-
     }
 
 
@@ -2466,7 +2685,7 @@ function onPaymentMethodChange() {
 
 
 /* =====================================================
-   ACTUALIZAR TOTAL Y CUOTAS
+   ACTUALIZAR TOTAL
 ===================================================== */
 
 function updateCartUI() {
@@ -2477,7 +2696,9 @@ function updateCartUI() {
         );
 
 
-    if (paymentMethodSelect) {
+    if (
+        paymentMethodSelect
+    ) {
 
         metodoPagoGlobal =
             paymentMethodSelect.value;
@@ -2545,7 +2766,8 @@ function updateCartUI() {
             cuotasGlobal * 0.04;
 
         recargoDescuentoValor =
-            subtotal * porcentajeRecargo;
+            subtotal *
+            porcentajeRecargo;
 
     }
 
@@ -2559,7 +2781,8 @@ function updateCartUI() {
             cuotasGlobal * 0.08;
 
         recargoDescuentoValor =
-            subtotal * porcentajeRecargo;
+            subtotal *
+            porcentajeRecargo;
 
     }
 
@@ -2631,7 +2854,9 @@ function updateCartUI() {
                 </span>
 
                 <span>
-                    ${formatearMoneda(subtotal)}
+                    ${formatearMoneda(
+                        subtotal
+                    )}
                 </span>
 
             </div>
@@ -2644,7 +2869,9 @@ function updateCartUI() {
                 </span>
 
                 <span>
-                    ${formatearMoneda(costoEnvio)}
+                    ${formatearMoneda(
+                        costoEnvio
+                    )}
                 </span>
 
             </div>
@@ -2701,35 +2928,86 @@ function updateCartUI() {
 
 
     /* =================================================
-       MOSTRAR CANTIDAD Y MONTO DE CUOTAS
+       MOSTRAR CUOTAS Y MONTO DE CADA CUOTA
     ================================================= */
 
-    const cuotasResumen =
+    const installmentSummary =
         document.getElementById(
-            'cuotasResumen'
+            'installmentSummary'
         );
 
 
-    if (cuotasResumen) {
+    if (installmentSummary) {
 
-        if (metodoPagoGlobal === 'transferencia') {
-
-            cuotasResumen.innerHTML = `
-                💰 <strong>Pago único:</strong>
-                ${formatearMoneda(totalFinal)}
-            `;
-
-        } else {
+        if (
+            metodoPagoGlobal ===
+            'creditoDni'
+        ) {
 
             const montoCuota =
-                totalFinal / cuotasGlobal;
+                totalFinal /
+                cuotasGlobal;
 
-            cuotasResumen.innerHTML = `
-                💳 <strong>${cuotasGlobal}
-                cuota${cuotasGlobal > 1 ? 's' : ''}</strong>
-                de
-                <strong>${formatearMoneda(montoCuota)}</strong>
+
+            installmentSummary.style.display =
+                'block';
+
+
+            installmentSummary.innerHTML = `
+
+                💳 <strong>Plan de pago</strong><br>
+
+                Cantidad de pagos:
+                <strong>${cuotasGlobal}</strong><br>
+
+                Monto de cada pago:
+                <strong>${formatearMoneda(
+                    montoCuota
+                )}</strong>
+
             `;
+
+        }
+
+
+        else if (
+            metodoPagoGlobal ===
+            'tarjeta'
+        ) {
+
+            const montoCuota =
+                totalFinal /
+                cuotasGlobal;
+
+
+            installmentSummary.style.display =
+                'block';
+
+
+            installmentSummary.innerHTML = `
+
+                💳 <strong>Plan de cuotas</strong><br>
+
+                Cantidad de cuotas:
+                <strong>${cuotasGlobal}</strong><br>
+
+                Monto de cada cuota:
+                <strong>${formatearMoneda(
+                    montoCuota
+                )}</strong>
+
+            `;
+
+        }
+
+
+        else {
+
+            installmentSummary.style.display =
+                'none';
+
+            installmentSummary.innerHTML =
+                '';
 
         }
 
@@ -2744,7 +3022,8 @@ function updateCartUI() {
 
 function irAlFormularioEnvio() {
 
-    vistaActual = 'formulario';
+    vistaActual =
+        'formulario';
 
     renderizarContenidoDrawer();
 
@@ -2757,7 +3036,8 @@ function irAlFormularioEnvio() {
 
 function volverAlCarrito() {
 
-    vistaActual = 'carrito';
+    vistaActual =
+        'carrito';
 
     renderizarContenidoDrawer();
 
@@ -2806,6 +3086,8 @@ function enviarPedidoWhatsApp() {
         ).value.trim();
 
 
+    /* VALIDACIÓN */
+
     if (
         !nombre ||
         !dni ||
@@ -2824,6 +3106,14 @@ function enviarPedidoWhatsApp() {
     }
 
 
+    /* GENERAR CÓDIGO ÚNICO */
+
+    const numeroGuia =
+        generarCodigoSeguimiento();
+
+
+    /* PROVINCIA */
+
     const provinciaKey =
         document.getElementById(
             'provinciaSelect'
@@ -2840,6 +3130,8 @@ function enviarPedidoWhatsApp() {
         datosProvincia.costo;
 
 
+    /* SUBTOTAL */
+
     let subtotal =
         carrito.reduce(
             (sum, item) =>
@@ -2851,6 +3143,8 @@ function enviarPedidoWhatsApp() {
             0
         );
 
+
+    /* PAGO */
 
     let recargoDescuentoValor = 0;
 
@@ -2866,7 +3160,7 @@ function enviarPedidoWhatsApp() {
             -(subtotal * 0.15);
 
         textoMetodo =
-            "Transferencia Bancaria (15% OFF Aplicado)";
+            "Transferencia Bancaria (15% OFF aplicado)";
 
     }
 
@@ -2885,15 +3179,11 @@ function enviarPedidoWhatsApp() {
 
 
         textoMetodo =
-            `Crédito con DNI (${
-                cuotasGlobal
-            } pago${
+            `Crédito con DNI (${cuotasGlobal} pago${
                 cuotasGlobal > 1
                     ? 's'
                     : ''
-            }, +${
-                cuotasGlobal * 4
-            }% recargo)`;
+            }, +${cuotasGlobal * 4}% recargo)`;
 
     }
 
@@ -2912,18 +3202,16 @@ function enviarPedidoWhatsApp() {
 
 
         textoMetodo =
-            `Tarjeta de Crédito (${
-                cuotasGlobal
-            } cuota${
+            `Tarjeta de Crédito (${cuotasGlobal} cuota${
                 cuotasGlobal > 1
                     ? 's'
                     : ''
-            }, +${
-                cuotasGlobal * 8
-            }% recargo)`;
+            }, +${cuotasGlobal * 8}% recargo)`;
 
     }
 
+
+    /* TOTAL */
 
     const totalFinal =
         subtotal +
@@ -2931,16 +3219,76 @@ function enviarPedidoWhatsApp() {
         recargoDescuentoValor;
 
 
-    let detalleProductosTexto = "";
+    /* CUOTAS */
+
+    let textoCuotas = "";
 
 
-    carrito.forEach(item => {
+    if (
+        metodoPagoGlobal ===
+        'creditoDni'
+    ) {
 
-        detalleProductosTexto +=
-            `• ${item.cantidad}x ${item.nombre}\n`;
+        const montoPorPago =
+            totalFinal /
+            cuotasGlobal;
 
-    });
 
+        textoCuotas =
+            `• Cantidad de pagos: ${cuotasGlobal}\n` +
+            `• Monto de cada pago: ${formatearMoneda(
+                montoPorPago
+            )}\n`;
+
+    }
+
+
+    else if (
+        metodoPagoGlobal ===
+        'tarjeta'
+    ) {
+
+        const montoPorCuota =
+            totalFinal /
+            cuotasGlobal;
+
+
+        textoCuotas =
+            `• Cantidad de cuotas: ${cuotasGlobal}\n` +
+            `• Monto de cada cuota: ${formatearMoneda(
+                montoPorCuota
+            )}\n`;
+
+    }
+
+
+    else {
+
+        textoCuotas =
+            `• Forma de pago: Pago único por transferencia\n`;
+
+    }
+
+
+    /* PRODUCTOS */
+
+    let detalleProductosTexto =
+        "";
+
+
+    carrito.forEach(
+        item => {
+
+            detalleProductosTexto +=
+                `• ${item.cantidad}x ${item.nombre}\n`;
+
+        }
+    );
+
+
+    /* =================================================
+       MENSAJE WHATSAPP
+    ================================================= */
 
     let mensaje =
         `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
@@ -2952,11 +3300,13 @@ function enviarPedidoWhatsApp() {
         `----------------------------------------\n`;
 
     mensaje +=
-        `*N° de Guía:* NV-6032-2026\n`;
+        `*N° de Seguimiento:* ${numeroGuia}\n`;
 
     mensaje +=
-        `*Código de Validación:* 594710\n\n`;
+        `----------------------------------------\n\n`;
 
+
+    /* DATOS */
 
     mensaje +=
         `*DATOS DEL COMPRADOR*\n`;
@@ -2977,8 +3327,18 @@ function enviarPedidoWhatsApp() {
         `• Dirección: ${direccion}, ${localidad}\n`;
 
     mensaje +=
-        `• Zona de Envío: ${datosProvincia.nombre} (${formatearMoneda(costoEnvio)})\n\n`;
+        `• Zona de Envío: ${datosProvincia.nombre}\n`;
 
+    mensaje +=
+        `• Costo de envío: ${formatearMoneda(
+            costoEnvio
+        )}\n`;
+
+    mensaje +=
+        `• Demora estimada: ${datosProvincia.demora}\n\n`;
+
+
+    /* PRODUCTOS */
 
     mensaje +=
         `*PRODUCTOS SOLICITADOS*\n`;
@@ -2987,14 +3347,20 @@ function enviarPedidoWhatsApp() {
         `${detalleProductosTexto}\n`;
 
 
+    /* PAGOS */
+
     mensaje +=
         `*DESGLOSE DE PAGOS Y ENVÍO*\n`;
 
     mensaje +=
-        `• Subproductos: ${formatearMoneda(subtotal)}\n`;
+        `• Subproductos: ${formatearMoneda(
+            subtotal
+        )}\n`;
 
     mensaje +=
-        `• Envío: ${formatearMoneda(costoEnvio)}\n`;
+        `• Envío: ${formatearMoneda(
+            costoEnvio
+        )}\n`;
 
     mensaje +=
         `• Recargo/Descuento: ${
@@ -3010,42 +3376,40 @@ function enviarPedidoWhatsApp() {
     mensaje +=
         `• Método: ${textoMetodo}\n`;
 
-
-    /* =================================================
-       CUOTAS EN EL MENSAJE DE WHATSAPP
-    ================================================= */
-
-    if (metodoPagoGlobal === 'transferencia') {
-
-        mensaje +=
-            `• Forma de pago: Pago único por transferencia\n`;
-
-    } else {
-
-        const montoCuota =
-            totalFinal / cuotasGlobal;
-
-        mensaje +=
-            `• Cantidad de cuotas: ${cuotasGlobal}\n`;
-
-        mensaje +=
-            `• Monto de cada cuota: ${formatearMoneda(montoCuota)}\n`;
-
-    }
+    mensaje +=
+        `${textoCuotas}\n`;
 
 
-    mensaje += `\n`;
+    /* TOTAL */
 
     mensaje +=
-        `*TOTAL A PAGAR:* ${formatearMoneda(totalFinal)}\n\n`;
+        `*TOTAL A PAGAR:* ${formatearMoneda(
+            totalFinal
+        )}\n\n`;
+
+
+    /* SEGUIMIENTO */
+
+    mensaje +=
+        `*CÓDIGO DE SEGUIMIENTO*\n`;
+
+    mensaje +=
+        `${numeroGuia}\n\n`;
+
 
     mensaje +=
         `Solicito confirmación del pedido y datos para el pago.`;
 
 
-    const mensajeCodificado =
-        encodeURIComponent(mensaje);
+    /* CODIFICAR */
 
+    const mensajeCodificado =
+        encodeURIComponent(
+            mensaje
+        );
+
+
+    /* NÚMERO WHATSAPP */
 
     const numeroWhatsApp =
         "5491155012447";
@@ -3055,10 +3419,14 @@ function enviarPedidoWhatsApp() {
         `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
 
+    /* VACIAR CARRITO */
+
     carrito = [];
 
     actualizarContadorCarrito();
 
+
+    /* ABRIR WHATSAPP */
 
     window.location.href =
         urlWhatsApp;
