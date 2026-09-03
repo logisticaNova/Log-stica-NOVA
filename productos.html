@@ -6,21 +6,34 @@
 
 <title>Logística Nova - Catálogo y Orden de Compra</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 :root {
     --primary-color: #2563eb;
     --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
     --accent-color: #f97316;
-    --text-main: #1f2937;
+    --accent-light: #fff7ed;
+
+    --success-color: #10b981;
+    --success-dark: #059669;
+
+    --text-main: #111827;
+    --text-secondary: #374151;
     --text-muted: #6b7280;
-    --bg-body: #f3f4f6;
+
+    --bg-body: #f6f8fb;
     --bg-card: #ffffff;
+    --bg-soft: #f8fafc;
+
     --border-color: #e5e7eb;
-    --radius: 12px;
-    --transition: all 0.3s ease;
+    --border-light: #eef0f3;
+
+    --radius: 14px;
+    --transition: all 0.25s ease;
 }
 
 * {
@@ -29,166 +42,353 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-body);
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc 0%,
+            #f3f5f9 100%
+        );
     color: var(--text-main);
     line-height: 1.5;
     padding-bottom: 60px;
     overflow-x: hidden;
 }
 
+/* =========================================
+   NAVBAR
+========================================= */
+
 .navbar {
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid var(--border-light);
+
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 12px 20px;
+
+    padding: 13px 24px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .navbar-brand {
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 1.08rem;
+    font-weight: 800;
     color: var(--primary-color);
+    letter-spacing: -0.3px;
 }
 
 .cart-btn {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     color: white;
+
     border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    padding: 9px 15px;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+    font-size: 0.86rem;
+
     cursor: pointer;
+
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
+
     transition: var(--transition);
+
+    box-shadow:
+        0 3px 8px rgba(37,99,235,0.18);
 }
 
 .cart-btn:hover {
-    background-color: var(--primary-dark);
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow:
+        0 5px 12px rgba(37,99,235,0.25);
 }
 
 .cart-badge {
-    background-color: var(--accent-color);
+    background: var(--accent-color);
     color: white;
+
+    min-width: 20px;
+    height: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.75rem;
+
+    padding: 2px 5px;
+
+    font-size: 0.7rem;
+    font-weight: 800;
 }
+
+/* =========================================
+   HEADER
+========================================= */
 
 header {
     text-align: center;
-    margin: 30px 0 20px;
+
+    margin: 42px 0 28px;
+
     padding: 0 16px;
 }
 
+.header-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    background: var(--primary-light);
+    color: var(--primary-color);
+
+    border: 1px solid #dbeafe;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 0.72rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+
+    margin-bottom: 13px;
+}
+
 header h1 {
-    font-size: 2rem;
+    font-size: clamp(1.9rem, 4vw, 2.65rem);
+
     color: var(--text-main);
-    margin-bottom: 8px;
+
+    margin-bottom: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
 }
 
 header p {
     color: var(--text-muted);
-    font-size: 0.95rem;
+
+    font-size: 0.92rem;
+
+    max-width: 620px;
+
+    margin: 0 auto;
 }
 
+.header-highlight {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
 .container {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 0 18px;
+}
+
+/* =========================================
+   FILTROS
+========================================= */
+
+.filtros-wrapper {
+    margin-bottom: 28px;
 }
 
 .filtros {
-    margin-bottom: 25px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
+
     overflow-x: auto;
-    padding-bottom: 5px;
+
+    padding: 4px 2px 9px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+
+    -webkit-overflow-scrolling: touch;
 }
 
 .filtros::-webkit-scrollbar {
-    height: 5px;
+    height: 4px;
+}
+
+.filtros::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .filtros::-webkit-scrollbar-thumb {
     background: #d1d5db;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .filter-btn {
-    background: white;
-    color: var(--text-main);
+    flex: 0 0 auto;
+
+    background: rgba(255,255,255,0.9);
+
+    color: var(--text-secondary);
+
     border: 1px solid var(--border-color);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 600;
+
+    padding: 8px 15px;
+
+    border-radius: 22px;
+
+    font-weight: 650;
+
     cursor: pointer;
+
     white-space: nowrap;
-    font-size: 0.85rem;
+
+    font-size: 0.8rem;
+
     transition: var(--transition);
 }
 
 .filter-btn:hover {
-    border-color: var(--primary-color);
+    border-color: #bfdbfe;
+    color: var(--primary-color);
+    background: #fff;
 }
 
 .filter-btn.active {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
+
+    box-shadow:
+        0 3px 8px rgba(37,99,235,0.18);
 }
+
+/* =========================================
+   GRID
+========================================= */
 
 .grid-productos {
     display: grid;
-    grid-template-columns: 1fr;
+
+    grid-template-columns:
+        repeat(1, minmax(0, 1fr));
+
     gap: 20px;
 }
 
+/* =========================================
+   CARD
+========================================= */
+
 .card {
-    background-color: var(--bg-card);
+    background: var(--bg-card);
+
     border-radius: var(--radius);
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+
+    border: 1px solid var(--border-color);
+
+    box-shadow:
+        0 2px 5px rgba(15,23,42,0.035);
+
     overflow: hidden;
+
     display: flex;
     flex-direction: column;
-    transition: var(--transition);
-    border: 1px solid var(--border-color);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
     position: relative;
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+
+    border-color: #dbe3ef;
+
+    box-shadow:
+        0 10px 25px rgba(15,23,42,0.075);
 }
+
+/* =========================================
+   STOCK
+========================================= */
 
 .badge-stock {
     position: absolute;
+
     top: 12px;
     right: 12px;
-    background-color: #10b981;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 3px 8px;
+
+    background: rgba(255,255,255,0.92);
+    color: #047857;
+
+    border: 1px solid #a7f3d0;
+
+    font-size: 0.65rem;
+
+    font-weight: 800;
+
+    padding: 4px 8px;
+
     border-radius: 20px;
+
     text-transform: uppercase;
+
+    letter-spacing: 0.35px;
+
     z-index: 10;
+
+    box-shadow:
+        0 2px 7px rgba(0,0,0,0.06);
 }
+
+/* =========================================
+   PRODUCT IMAGE / CAROUSEL
+========================================= */
 
 .product-carousel {
     width: 100%;
-    height: 220px;
-    background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
+
+    height: 245px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eef4ff 0%,
+            #f8fafc 55%,
+            #f1f5f9 100%
+        );
+
     position: relative;
+
     overflow: hidden;
+
+    border-bottom: 1px solid var(--border-light);
 }
 
 .carousel-track {
@@ -200,10 +400,13 @@ header p {
 .carousel-slide {
     width: 100%;
     height: 100%;
+
     position: absolute;
     inset: 0;
+
     opacity: 0;
     visibility: hidden;
+
     transition: opacity 0.35s ease;
 }
 
@@ -215,108 +418,198 @@ header p {
 .carousel-slide img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
+    transition: transform 0.45s ease;
+}
+
+.card:hover .carousel-slide.active img {
+    transform: scale(1.025);
 }
 
 .carousel-placeholder {
     width: 100%;
     height: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     color: var(--text-muted);
+
     font-size: 0.9rem;
-    font-weight: 600;
+
+    font-weight: 700;
 }
+
+/* =========================================
+   CAROUSEL BUTTONS
+========================================= */
 
 .carousel-btn {
     position: absolute;
+
     top: 50%;
+
     transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border: none;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid rgba(255,255,255,0.7);
+
     border-radius: 50%;
+
     background: rgba(255,255,255,0.9);
+
     color: var(--text-main);
-    font-size: 24px;
+
+    font-size: 23px;
+
     line-height: 1;
+
     cursor: pointer;
+
     z-index: 5;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+    box-shadow:
+        0 3px 9px rgba(0,0,0,0.12);
+
     transition: var(--transition);
 }
 
 .carousel-btn:hover {
     background: white;
-    transform: translateY(-50%) scale(1.08);
+
+    transform:
+        translateY(-50%)
+        scale(1.07);
+
+    color: var(--primary-color);
 }
 
 .carousel-prev {
-    left: 10px;
+    left: 11px;
 }
 
 .carousel-next {
-    right: 10px;
+    right: 11px;
 }
+
+/* =========================================
+   DOTS
+========================================= */
 
 .carousel-dots {
     position: absolute;
-    bottom: 10px;
+
+    bottom: 11px;
+
     left: 0;
     right: 0;
+
     display: flex;
+
     justify-content: center;
+
     gap: 6px;
+
     z-index: 5;
 }
 
 .carousel-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
+
     border-radius: 50%;
-    background: rgba(255,255,255,0.6);
-    border: 1px solid rgba(0,0,0,0.15);
+
+    background: rgba(255,255,255,0.78);
+
+    border: 1px solid rgba(0,0,0,0.13);
+
     cursor: pointer;
+
     transition: var(--transition);
+
+    padding: 0;
 }
 
 .carousel-dot.active {
     background: var(--primary-color);
-    transform: scale(1.25);
+
+    transform: scale(1.3);
+
+    border-color: var(--primary-color);
 }
 
+/* =========================================
+   CARD BODY
+========================================= */
+
 .card-body {
-    padding: 16px;
+    padding: 18px;
+
     display: flex;
     flex-direction: column;
+
     flex-grow: 1;
 }
 
+/* =========================================
+   CATEGORY
+========================================= */
+
 .card-category {
-    font-size: 0.75rem;
+    font-size: 0.68rem;
+
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+
+    letter-spacing: 0.7px;
+
     color: var(--primary-color);
-    font-weight: 600;
-    margin-bottom: 4px;
+
+    font-weight: 800;
+
+    margin-bottom: 6px;
 }
+
+/* =========================================
+   TITLE
+========================================= */
 
 .card-title {
-    font-size: 1.05rem;
-    font-weight: 600;
+    font-size: 1.03rem;
+
+    font-weight: 750;
+
     color: var(--text-main);
-    margin-bottom: 8px;
-    line-height: 1.3;
+
+    margin-bottom: 9px;
+
+    line-height: 1.35;
+
+    letter-spacing: -0.2px;
 }
 
+/* =========================================
+   DESCRIPTION
+========================================= */
+
 .card-desc {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+
     color: var(--text-muted);
-    margin-bottom: 12px;
+
+    margin-bottom: 15px;
+
+    line-height: 1.55;
+
+    min-height: 63px;
 }
 
 .descripcion-texto {
@@ -325,19 +618,29 @@ header p {
 
 .descripcion-texto.descripcion-corta {
     display: -webkit-box;
+
     -webkit-line-clamp: 3;
+
     -webkit-box-orient: vertical;
+
     overflow: hidden;
 }
 
 .ver-mas-btn {
     border: none;
+
     background: transparent;
+
     color: var(--primary-color);
-    font-weight: 700;
-    font-size: 0.8rem;
+
+    font-weight: 750;
+
+    font-size: 0.76rem;
+
     cursor: pointer;
+
     padding: 0;
+
     margin-left: 4px;
 }
 
@@ -345,19 +648,39 @@ header p {
     text-decoration: underline;
 }
 
+/* =========================================
+   SPECS
+========================================= */
+
 .specs-list {
-    background-color: #f9fafb;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 12px;
-    font-size: 0.8rem;
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #f9fafb
+        );
+
+    border: 1px solid var(--border-light);
+
+    border-radius: 9px;
+
+    padding: 10px 11px;
+
+    margin-bottom: 16px;
+
+    font-size: 0.77rem;
 }
 
 .specs-list div {
     display: flex;
+
     justify-content: space-between;
-    margin-bottom: 4px;
-    gap: 10px;
+
+    align-items: center;
+
+    margin-bottom: 6px;
+
+    gap: 12px;
 }
 
 .specs-list div:last-child {
@@ -366,133 +689,258 @@ header p {
 
 .spec-label {
     color: var(--text-muted);
+
     font-weight: 500;
 }
 
 .spec-value {
-    color: var(--text-main);
-    font-weight: 600;
+    color: var(--text-secondary);
+
+    font-weight: 700;
+
     text-align: right;
 }
 
+/* =========================================
+   PRICING
+========================================= */
+
 .pricing {
     margin-top: auto;
-    border-top: 1px solid var(--border-color);
-    padding-top: 12px;
+
+    border-top: 1px solid var(--border-light);
+
+    padding-top: 15px;
 }
 
 .price-original {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-size: 0.77rem;
+
+    color: #9ca3af;
+
     text-decoration: line-through;
+
+    margin-bottom: 1px;
 }
 
 .price-container {
     display: flex;
+
     align-items: baseline;
-    gap: 10px;
+
+    gap: 9px;
+
+    margin-bottom: 3px;
 }
 
 .price-offer {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.42rem;
+
+    font-weight: 800;
+
     color: var(--text-main);
+
+    letter-spacing: -0.5px;
+}
+
+/* =========================================
+   SAVING
+========================================= */
+
+.price-saving {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: var(--success-dark);
+
+    background: #ecfdf5;
+
+    border: 1px solid #d1fae5;
+
+    border-radius: 5px;
+
+    padding: 3px 7px;
+
+    font-size: 0.68rem;
+
+    font-weight: 800;
+
+    margin-top: 3px;
+
+    margin-bottom: 5px;
 }
 
 .cuotas-badge {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
+
     color: var(--accent-color);
-    font-weight: 600;
-    margin-top: 2px;
-    margin-bottom: 10px;
+
+    font-weight: 750;
+
+    margin-top: 3px;
+
+    margin-bottom: 12px;
 }
+
+/* =========================================
+   ADD CART
+========================================= */
 
 .btn-add-cart {
     width: 100%;
-    background-color: var(--primary-color);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-color),
+            #3b82f6
+        );
+
     color: white;
+
     border: none;
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: 600;
+
+    padding: 11px 12px;
+
+    border-radius: 9px;
+
+    font-weight: 750;
+
+    font-size: 0.84rem;
+
     cursor: pointer;
+
     transition: var(--transition);
+
+    box-shadow:
+        0 3px 8px rgba(37,99,235,0.14);
 }
 
 .btn-add-cart:hover {
-    background-color: var(--primary-dark);
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-dark),
+            #2563eb
+        );
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(37,99,235,0.2);
 }
 
+.btn-add-cart:active {
+    transform: translateY(0);
+}
 
 /* =========================================
-   PAGINACIÓN AGREGADA
+   PAGINACIÓN
 ========================================= */
 
 .paginacion {
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     flex-wrap: wrap;
-    gap: 8px;
-    margin: 30px 0 10px;
+
+    gap: 6px;
+
+    margin: 34px 0 12px;
 }
 
 .paginacion button {
-    min-width: 40px;
-    height: 40px;
-    padding: 0 12px;
+    min-width: 38px;
+
+    height: 38px;
+
+    padding: 0 11px;
+
     border: 1px solid var(--border-color);
+
     background: white;
-    color: var(--text-main);
+
+    color: var(--text-secondary);
+
     border-radius: 8px;
+
     font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 600;
+
+    font-size: 0.78rem;
+
+    font-weight: 700;
+
     cursor: pointer;
+
     transition: var(--transition);
 }
 
-.paginacion button:hover {
-    border-color: var(--primary-color);
+.paginacion button:hover:not(:disabled) {
+    border-color: #bfdbfe;
+
     color: var(--primary-color);
+
+    background: #f8fbff;
 }
 
 .paginacion button.active {
     background: var(--primary-color);
+
     color: white;
+
     border-color: var(--primary-color);
+
+    box-shadow:
+        0 3px 8px rgba(37,99,235,0.18);
 }
 
 .paginacion button:disabled {
-    opacity: 0.45;
+    opacity: 0.4;
+
     cursor: not-allowed;
 }
 
 .paginacion-info {
     width: 100%;
-    text-align: center;
-    margin-top: 8px;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
 
+    text-align: center;
+
+    margin-top: 7px;
+
+    color: var(--text-muted);
+
+    font-size: 0.76rem;
+}
 
 /* =========================================
    CARRITO
+   SIN CAMBIOS FUNCIONALES
 ========================================= */
 
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+
+    background-color: rgba(15,23,42,0.48);
+
     display: flex;
     justify-content: flex-end;
+
     z-index: 1000;
+
     opacity: 0;
     visibility: hidden;
+
     transition: all 0.3s ease;
 }
 
@@ -503,12 +951,17 @@ header p {
 
 .cart-drawer {
     background-color: white;
+
     width: 100%;
     max-width: 480px;
+
     height: 100%;
+
     display: flex;
     flex-direction: column;
+
     transform: translateX(100%);
+
     transition: transform 0.3s ease;
 }
 
@@ -518,71 +971,101 @@ header p {
 
 .cart-header {
     padding: 16px;
+
     border-bottom: 1px solid var(--border-color);
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 }
 
 .close-cart {
     background: none;
+
     border: none;
+
     font-size: 1.5rem;
+
     cursor: pointer;
+
     color: var(--text-muted);
 }
 
 .cart-body {
     padding: 16px;
+
     overflow-y: auto;
+
     flex-grow: 1;
 }
 
 .cart-item {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     gap: 10px;
+
     padding: 10px 0;
+
     border-bottom: 1px solid var(--border-color);
 }
 
 .cart-item-info {
     flex: 1;
+
     min-width: 0;
 }
 
 .cart-item-info h4 {
     font-size: 0.9rem;
+
     margin-bottom: 2px;
 }
 
 .cart-item-price {
     font-size: 0.8rem;
+
     color: var(--text-muted);
 }
 
 .cart-item-actions {
     display: flex;
+
     align-items: center;
+
     gap: 6px;
 }
 
 .qty-btn {
     background-color: var(--bg-body);
+
     border: 1px solid var(--border-color);
+
     padding: 2px 6px;
+
     border-radius: 4px;
+
     cursor: pointer;
+
     font-weight: 600;
 }
 
 .remove-btn {
     background: none;
+
     border: none;
+
     color: #ef4444;
+
     cursor: pointer;
+
     font-size: 0.8rem;
+
     margin-left: 6px;
 }
 
@@ -592,56 +1075,87 @@ header p {
 
 .payment-methods label {
     display: block;
+
     font-size: 0.85rem;
+
     font-weight: 600;
+
     margin-bottom: 4px;
 }
 
 .payment-select {
     width: 100%;
+
     padding: 9px;
+
     border-radius: 8px;
+
     border: 1px solid var(--border-color);
+
     background-color: white;
+
     font-family: inherit;
+
     font-size: 0.9rem;
 }
 
 .cart-summary-line {
     display: flex;
+
     justify-content: space-between;
+
     margin-bottom: 6px;
+
     font-size: 0.85rem;
 }
 
 .cart-total {
     display: flex;
+
     justify-content: space-between;
+
     font-size: 1.1rem;
+
     font-weight: 700;
+
     margin: 12px 0 6px;
+
     color: var(--text-main);
 }
 
 .installment-summary {
     background: #eff6ff;
+
     border: 1px solid #bfdbfe;
+
     border-radius: 8px;
+
     padding: 10px;
+
     margin-bottom: 12px;
+
     color: #1e40af;
+
     font-size: 0.82rem;
 }
 
 .checkout-btn {
     width: 100%;
+
     background-color: #10b981;
+
     color: white;
+
     border: none;
+
     padding: 12px;
+
     border-radius: 8px;
+
     font-weight: 700;
+
     cursor: pointer;
+
     transition: var(--transition);
 }
 
@@ -655,9 +1169,13 @@ header p {
 
 .form-group label {
     display: block;
+
     font-size: 0.82rem;
+
     font-weight: 600;
+
     margin-bottom: 3px;
+
     color: var(--text-main);
 }
 
@@ -665,11 +1183,17 @@ header p {
 .form-group textarea,
 .form-group select {
     width: 100%;
+
     padding: 9px;
+
     border: 1px solid var(--border-color);
+
     border-radius: 8px;
+
     font-family: inherit;
+
     font-size: 0.9rem;
+
     outline: none;
 }
 
@@ -681,34 +1205,55 @@ header p {
 
 .form-buttons {
     display: flex;
+
     gap: 10px;
+
     margin-top: 15px;
 }
 
 .btn-back {
     background-color: var(--text-muted);
+
     color: white;
+
     border: none;
+
     padding: 10px;
+
     border-radius: 8px;
+
     font-weight: 600;
+
     cursor: pointer;
+
     width: 35%;
 }
 
 .btn-submit-order {
     background-color: #25d366;
+
     color: white;
+
     border: none;
+
     padding: 10px;
+
     border-radius: 8px;
+
     font-weight: 700;
+
     cursor: pointer;
+
     width: 65%;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 6px;
+
     font-size: 0.9rem;
 }
 
@@ -718,34 +1263,122 @@ header p {
 
 .empty-cart {
     text-align: center;
+
     color: var(--text-muted);
+
     margin-top: 30px;
 }
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+/* TABLET */
 
 @media (min-width: 640px) {
 
     .grid-productos {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 22px;
+    }
+
+    .product-carousel {
+        height: 225px;
+    }
+
+}
+
+/* DESKTOP */
+
+@media (min-width: 960px) {
+
+    .grid-productos {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
         gap: 24px;
     }
 
-    header h1 {
-        font-size: 2.3rem;
-    }
 }
+
+/* LARGE DESKTOP */
+
+@media (min-width: 1200px) {
+
+    .grid-productos {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        gap: 22px;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .product-carousel {
+        height: 225px;
+    }
+
+}
+
+/* MOBILE */
 
 @media (max-width: 480px) {
 
+    .navbar {
+        padding: 11px 14px;
+    }
+
+    .navbar-brand {
+        font-size: 0.98rem;
+    }
+
+    .cart-btn {
+        padding: 8px 11px;
+    }
+
+    header {
+        margin: 30px 0 22px;
+    }
+
+    header h1 {
+        letter-spacing: -0.7px;
+    }
+
+    .container {
+        padding: 0 13px;
+    }
+
+    .filtros-wrapper {
+        margin-bottom: 21px;
+    }
+
+    .grid-productos {
+        gap: 16px;
+    }
+
     .product-carousel {
-        height: 200px;
+        height: 215px;
     }
 
-    .cart-item {
-        align-items: flex-start;
+    .card-body {
+        padding: 16px;
     }
 
-    .cart-item-actions {
-        flex-shrink: 0;
+    .card-desc {
+        min-height: auto;
+    }
+
+    .price-offer {
+        font-size: 1.35rem;
+    }
+
+    .btn-add-cart {
+        padding: 12px;
+        min-height: 45px;
     }
 
     .paginacion {
@@ -757,6 +1390,15 @@ header p {
         height: 36px;
         padding: 0 9px;
     }
+
+    .cart-item {
+        align-items: flex-start;
+    }
+
+    .cart-item-actions {
+        flex-shrink: 0;
+    }
+
 }
 
 </style>
@@ -766,14 +1408,14 @@ header p {
 
 <nav class="navbar">
 
-<div class="navbar-brand">
-    📦 Logística Nova
-</div>
+    <div class="navbar-brand">
+        📦 Logística Nova
+    </div>
 
-<button class="cart-btn" onclick="toggleCart()">
-    🛒 Carrito
-    <span class="cart-badge" id="cartCount">0</span>
-</button>
+    <button class="cart-btn" onclick="toggleCart()">
+        🛒 Carrito
+        <span class="cart-badge" id="cartCount">0</span>
+    </button>
 
 </nav>
 
@@ -782,88 +1424,142 @@ header p {
 
 <header>
 
-    <h1>Catálogo de Productos</h1>
+    <div class="header-kicker">
+        ✦ Catálogo exclusivo
+    </div>
+
+    <h1>
+        Catálogo de Productos
+    </h1>
 
     <p>
-        Selecciona tus productos, provincia de destino y método de pago preferido
+        Encontrá productos seleccionados con
+        <span class="header-highlight">
+            precio especial por transferencia
+        </span>
+        y opciones de pago flexibles.
     </p>
 
 </header>
 
 
-<div class="filtros">
+<div class="filtros-wrapper">
 
-    <button class="filter-btn active" onclick="filtrarCategoria('Todas', this)">
-        Todas
-    </button>
+    <div class="filtros">
 
-    <button class="filter-btn" onclick="filtrarCategoria('Televisores', this)">
-        Televisores
-    </button>
+        <button class="filter-btn active"
+            onclick="filtrarCategoria('Todas', this)">
+            Todas
+        </button>
 
-    <button class="filter-btn" onclick="filtrarCategoria('Heladeras', this)">
-        Heladeras
-    </button>
+        <button class="filter-btn"
+            onclick="filtrarCategoria('Televisores', this)">
+            Televisores
+        </button>
 
-    <button class="filter-btn" onclick="filtrarCategoria('Cocinas', this)">
-        Cocinas
-    </button>
+        <button class="filter-btn"
+            onclick="filtrarCategoria('Heladeras', this)">
+            Heladeras
+        </button>
 
-    <button class="filter-btn" onclick="filtrarCategoria('Lavarropas', this)">
-        Lavarropas
-    </button>
+        <button class="filter-btn"
+            onclick="filtrarCategoria('Cocinas', this)">
+            Cocinas
+        </button>
 
-    <button class="filter-btn" onclick="filtrarCategoria('Aires acondicionados', this)">
-        Aires Acondicionados
-    </button>
+        <button class="filter-btn"
+            onclick="filtrarCategoria('Lavarropas', this)">
+            Lavarropas
+        </button>
 
-    <button class="filter-btn" onclick="filtrarCategoria('Celulares', this)">
-        Celulares
-    </button>
+        <button class="filter-btn"
+            onclick="filtrarCategoria('Aires acondicionados', this)">
+            Aires Acondicionados
+        </button>
 
-    <button class="filter-btn" onclick="filtrarCategoria('Audio', this)">
-        Audio
-    </button>
+        <button class="filter-btn"
+            onclick="filtrarCategoria('Celulares', this)">
+            Celulares
+        </button>
 
-    <button class="filter-btn" onclick="filtrarCategoria('Informática', this)">
-        Informática
-    </button>
+        <button class="filter-btn"
+            onclick="filtrarCategoria('Audio', this)">
+            Audio
+        </button>
+
+        <button class="filter-btn"
+            onclick="filtrarCategoria('Informática', this)">
+            Informática
+        </button>
+
+    </div>
 
 </div>
 
 
 <div class="grid-productos" id="gridProductos"></div>
 
-<!-- PAGINACIÓN AGREGADA -->
 <div id="paginacion"></div>
 
 </div>
 
 
-<div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
+<div class="modal-overlay"
+     id="cartModal"
+     onclick="handleOutsideClick(event)">
 
-<div class="cart-drawer">
+    <div class="cart-drawer">
 
-    <div class="cart-header">
+        <div class="cart-header">
 
-        <h3 id="drawerTitle" style="font-size:1.1rem;">
-            Tu Carrito de Compras
-        </h3>
+            <h3 id="drawerTitle"
+                style="font-size:1.1rem;">
+                Tu Carrito de Compras
+            </h3>
 
-        <button class="close-cart" onclick="toggleCart()">
-            &times;
-        </button>
+            <button class="close-cart"
+                    onclick="toggleCart()">
+                &times;
+            </button>
+
+        </div>
+
+        <div class="cart-body"
+             id="cartBodyContent"></div>
 
     </div>
-
-    <div class="cart-body" id="cartBodyContent"></div>
-
-</div>
 
 </div>
 
 
 <script>
+
+/*
+=================================================
+IMPORTANTE
+=================================================
+
+DESDE ACÁ SE MANTIENE LA LÓGICA ORIGINAL.
+
+No se modifican:
+
+- carrito
+- formulario
+- pagos
+- cuotas
+- envío
+- WhatsApp
+- número de WhatsApp
+- seguimiento
+- imágenes
+- URLs de imágenes
+- cambiarImagen()
+- irAImagen()
+- actualizarCarrusel()
+
+=================================================
+*/
+
 
 const tarifasProvincias = {
 
@@ -1164,7 +1860,6 @@ let cuotasGlobal = 1;
 let categoriaSeleccionada = 'Todas';
 let estadosCarrusel = {};
 
-/* PAGINACIÓN AGREGADA */
 const PRODUCTOS_POR_PAGINA = 12;
 let paginaActual = 1;
 
@@ -1216,8 +1911,6 @@ function filtrarCategoria(categoria, botonElemento) {
 
     categoriaSeleccionada = categoria;
 
-    /* PAGINACIÓN:
-       volver a la página 1 al cambiar categoría */
     paginaActual = 1;
 
     document
@@ -1389,10 +2082,6 @@ function renderizarProductos() {
     paginacionContainer.innerHTML = '';
 
 
-    /* =====================================
-       FILTRAR PRODUCTOS
-    ===================================== */
-
     const productosFiltrados =
         categoriaSeleccionada === 'Todas'
             ? productos
@@ -1402,10 +2091,6 @@ function renderizarProductos() {
                     categoriaSeleccionada.toLowerCase()
             );
 
-
-    /* =====================================
-       SIN PRODUCTOS
-    ===================================== */
 
     if (
         productosFiltrados.length === 0
@@ -1427,18 +2112,12 @@ function renderizarProductos() {
     }
 
 
-    /* =====================================
-       CALCULAR PÁGINAS
-    ===================================== */
-
     const totalPaginas =
         Math.ceil(
             productosFiltrados.length /
             PRODUCTOS_POR_PAGINA
         );
 
-
-    /* Evitar páginas inexistentes */
 
     if (paginaActual > totalPaginas) {
         paginaActual = totalPaginas;
@@ -1448,10 +2127,6 @@ function renderizarProductos() {
         paginaActual = 1;
     }
 
-
-    /* =====================================
-       OBTENER PRODUCTOS DE LA PÁGINA
-    ===================================== */
 
     const inicio =
         (paginaActual - 1) *
@@ -1467,10 +2142,6 @@ function renderizarProductos() {
             fin
         );
 
-
-    /* =====================================
-       CREAR TARJETAS
-    ===================================== */
 
     productosPagina.forEach(
         producto => {
@@ -1605,6 +2276,28 @@ function renderizarProductos() {
                     : producto.descripcion;
 
 
+            /*
+             * NUEVO:
+             * cálculo únicamente visual del ahorro.
+             * No modifica precioOferta ni ningún cálculo
+             * del carrito.
+             */
+
+            const ahorro =
+                producto.precio -
+                producto.precioOferta;
+
+            const porcentajeAhorro =
+                producto.precio > 0
+                    ? Math.round(
+                        (
+                            ahorro /
+                            producto.precio
+                        ) * 100
+                    )
+                    : 0;
+
+
             const card =
                 document.createElement(
                     'div'
@@ -1619,7 +2312,7 @@ function renderizarProductos() {
 
                 ${
                     producto.stock
-                        ? '<span class="badge-stock">Stock</span>'
+                        ? '<span class="badge-stock">✓ Stock</span>'
                         : ''
                 }
 
@@ -1661,7 +2354,7 @@ function renderizarProductos() {
                 <div class="card-body">
 
                     <span class="card-category">
-                        ${producto.categoria}
+                        ${producto.marca} · ${producto.categoria}
                     </span>
 
 
@@ -1730,8 +2423,14 @@ function renderizarProductos() {
                         </div>
 
 
+                        <div class="price-saving">
+                            Ahorrás ${formatearMoneda(ahorro)}
+                            · ${porcentajeAhorro}% OFF
+                        </div>
+
+
                         <div class="cuotas-badge">
-                            Precio oferta en transferencia
+                            ⚡ Precio especial por transferencia
                         </div>
 
 
@@ -1757,8 +2456,14 @@ function renderizarProductos() {
 
 
     /* =====================================
-       CREAR PAGINACIÓN
+       PAGINACIÓN
     ===================================== */
+
+    /*
+     * Se mantiene la lógica existente.
+     * Con más de 12 productos aparecerán
+     * automáticamente las páginas.
+     */
 
     if (totalPaginas > 1) {
 
@@ -1775,7 +2480,7 @@ function renderizarProductos() {
                     }
                     aria-label="Página anterior">
 
-                    ‹
+                    ‹ Anterior
 
                 </button>
 
@@ -1819,7 +2524,7 @@ function renderizarProductos() {
                     }
                     aria-label="Página siguiente">
 
-                    ›
+                    Siguiente ›
 
                 </button>
 
@@ -1828,7 +2533,7 @@ function renderizarProductos() {
 
                     Mostrando
                     ${inicio + 1}
-                    -
+                    –
                     ${Math.min(
                         fin,
                         productosFiltrados.length
@@ -1900,6 +2605,7 @@ function cambiarPagina(nuevaPagina) {
 
 /* =========================================
    CARRITO
+   ORIGINAL
 ========================================= */
 
 function agregarAlCarrito(id) {
@@ -2064,6 +2770,7 @@ function handleOutsideClick(event) {
 
 /* =========================================
    CONTENIDO DRAWER
+   ORIGINAL
 ========================================= */
 
 function renderizarContenidoDrawer() {
@@ -2357,13 +3064,11 @@ function renderizarContenidoDrawer() {
 
             <div id="checkoutForm">
 
-
                 <div class="form-group">
 
                     <label for="nombreCliente">
                         Nombre y Apellido *
                     </label>
-
 
                     <input
                         type="text"
@@ -2380,7 +3085,6 @@ function renderizarContenidoDrawer() {
                         DNI / CUIL *
                     </label>
 
-
                     <input
                         type="text"
                         id="dniCliente"
@@ -2395,7 +3099,6 @@ function renderizarContenidoDrawer() {
                     <label for="telefonoCliente">
                         Teléfono / WhatsApp *
                     </label>
-
 
                     <input
                         type="tel"
@@ -2412,7 +3115,6 @@ function renderizarContenidoDrawer() {
                         Email *
                     </label>
 
-
                     <input
                         type="email"
                         id="emailCliente"
@@ -2427,7 +3129,6 @@ function renderizarContenidoDrawer() {
                     <label for="direccionCliente">
                         Calle y Número de Entrega *
                     </label>
-
 
                     <input
                         type="text"
@@ -2444,7 +3145,6 @@ function renderizarContenidoDrawer() {
                         Localidad / Barrio *
                     </label>
 
-
                     <input
                         type="text"
                         id="localidadCliente"
@@ -2459,7 +3159,6 @@ function renderizarContenidoDrawer() {
                     <label for="provinciaCliente">
                         Provincia *
                     </label>
-
 
                     <input
                         type="text"
@@ -2476,7 +3175,6 @@ function renderizarContenidoDrawer() {
                         Código Postal *
                     </label>
 
-
                     <input
                         type="text"
                         id="codigoPostalCliente"
@@ -2492,17 +3190,14 @@ function renderizarContenidoDrawer() {
                         Zona de Envío *
                     </label>
 
-
                     <select
                         id="provinciaSelect"
                         class="payment-select"
                         onchange="updateCartUI()">
 
-
                         <option value="CABA">
                             Capital Federal (CABA) - $8.500
                         </option>
-
 
                         <option
                             value="Buenos Aires"
@@ -2512,13 +3207,11 @@ function renderizarContenidoDrawer() {
 
                         </option>
 
-
                         <option value="Provincias">
 
                             Otras Provincias / Resto del País - $18.500
 
                         </option>
-
 
                     </select>
 
@@ -2546,7 +3239,6 @@ function renderizarContenidoDrawer() {
 
                 <div class="form-buttons">
 
-
                     <button
                         type="button"
                         class="btn-back"
@@ -2566,9 +3258,7 @@ function renderizarContenidoDrawer() {
 
                     </button>
 
-
                 </div>
-
 
             </div>
 
@@ -2581,6 +3271,7 @@ function renderizarContenidoDrawer() {
 
 /* =========================================
    MÉTODO DE PAGO
+   ORIGINAL
 ========================================= */
 
 function onPaymentMethodChange() {
@@ -2590,34 +3281,27 @@ function onPaymentMethodChange() {
             'paymentMethodSelect'
         );
 
-
     if (!selectElement) return;
-
 
     metodoPagoGlobal =
         selectElement.value;
-
 
     const cuotasContainer =
         document.getElementById(
             'cuotasContainer'
         );
 
-
     const cuotasSelect =
         document.getElementById(
             'cuotasSelect'
         );
-
 
     const labelCuotas =
         document.getElementById(
             'labelCuotas'
         );
 
-
     cuotasSelect.innerHTML = '';
-
 
     if (
         metodoPagoGlobal ===
@@ -2627,10 +3311,8 @@ function onPaymentMethodChange() {
         cuotasContainer.style.display =
             'block';
 
-
         labelCuotas.innerText =
             "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
-
 
         for (
             let i = 1;
@@ -2643,15 +3325,12 @@ function onPaymentMethodChange() {
                     'option'
                 );
 
-
             opt.value = i;
-
 
             opt.innerText =
                 `${i} pago${
                     i > 1 ? 's' : ''
                 } (+${i * 4}% recargo)`;
-
 
             if (
                 i === cuotasGlobal
@@ -2662,7 +3341,6 @@ function onPaymentMethodChange() {
 
             }
 
-
             cuotasSelect.appendChild(
                 opt
             );
@@ -2670,7 +3348,6 @@ function onPaymentMethodChange() {
         }
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -2680,10 +3357,8 @@ function onPaymentMethodChange() {
         cuotasContainer.style.display =
             'block';
 
-
         labelCuotas.innerText =
             "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
-
 
         for (
             let i = 1;
@@ -2696,15 +3371,12 @@ function onPaymentMethodChange() {
                     'option'
                 );
 
-
             opt.value = i;
-
 
             opt.innerText =
                 `${i} cuota${
                     i > 1 ? 's' : ''
                 } (+${i * 8}% recargo)`;
-
 
             if (
                 i === cuotasGlobal
@@ -2715,7 +3387,6 @@ function onPaymentMethodChange() {
 
             }
 
-
             cuotasSelect.appendChild(
                 opt
             );
@@ -2724,14 +3395,12 @@ function onPaymentMethodChange() {
 
     }
 
-
     else {
 
         cuotasContainer.style.display =
             'none';
 
     }
-
 
     updateCartUI();
 
@@ -2740,6 +3409,7 @@ function onPaymentMethodChange() {
 
 /* =========================================
    ACTUALIZAR CARRITO
+   ORIGINAL
 ========================================= */
 
 function updateCartUI() {
@@ -2748,7 +3418,6 @@ function updateCartUI() {
         document.getElementById(
             'paymentMethodSelect'
         );
-
 
     if (
         paymentMethodSelect
@@ -2759,12 +3428,10 @@ function updateCartUI() {
 
     }
 
-
     const cuotasSelect =
         document.getElementById(
             'cuotasSelect'
         );
-
 
     if (
         cuotasSelect &&
@@ -2778,12 +3445,10 @@ function updateCartUI() {
 
     }
 
-
     const detailsContainer =
         document.getElementById(
             'paymentDetailsContainer'
         );
-
 
     let subtotal =
         carrito.reduce(
@@ -2796,9 +3461,7 @@ function updateCartUI() {
             0
         );
 
-
     let recargoDescuentoValor = 0;
-
 
     if (
         metodoPagoGlobal ===
@@ -2810,7 +3473,6 @@ function updateCartUI() {
 
     }
 
-
     else if (
         metodoPagoGlobal ===
         'creditoDni'
@@ -2819,13 +3481,11 @@ function updateCartUI() {
         const porcentajeRecargo =
             cuotasGlobal * 0.04;
 
-
         recargoDescuentoValor =
             subtotal *
             porcentajeRecargo;
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -2835,40 +3495,33 @@ function updateCartUI() {
         const porcentajeRecargo =
             cuotasGlobal * 0.08;
 
-
         recargoDescuentoValor =
             subtotal *
             porcentajeRecargo;
 
     }
 
-
     let costoEnvio = 12500;
-
 
     const provinciaSelect =
         document.getElementById(
             'provinciaSelect'
         );
 
-
     if (provinciaSelect) {
 
         const provKey =
             provinciaSelect.value;
-
 
         costoEnvio =
             tarifasProvincias[
                 provKey
             ].costo;
 
-
         const infoRes =
             document.getElementById(
                 'envioInfoResumen'
             );
-
 
         if (infoRes) {
 
@@ -2887,12 +3540,10 @@ function updateCartUI() {
 
     }
 
-
     let totalFinal =
         subtotal +
         costoEnvio +
         recargoDescuentoValor;
-
 
     if (detailsContainer) {
 
@@ -2900,7 +3551,6 @@ function updateCartUI() {
             recargoDescuentoValor < 0
                 ? "#10b981"
                 : "var(--text-main)";
-
 
         detailsContainer.innerHTML = `
 
@@ -2910,7 +3560,6 @@ function updateCartUI() {
                     Subproductos:
                 </span>
 
-
                 <span>
                     ${formatearMoneda(
                         subtotal
@@ -2919,13 +3568,11 @@ function updateCartUI() {
 
             </div>
 
-
             <div class="cart-summary-line">
 
                 <span>
                     Envío:
                 </span>
-
 
                 <span>
                     ${formatearMoneda(
@@ -2934,7 +3581,6 @@ function updateCartUI() {
                 </span>
 
             </div>
-
 
             <div
                 class="cart-summary-line"
@@ -2947,7 +3593,6 @@ function updateCartUI() {
                     Recargo/Descuento:
                 </span>
 
-
                 <span>
 
                     ${
@@ -2955,7 +3600,6 @@ function updateCartUI() {
                             ? '-'
                             : '+'
                     }
-
 
                     ${formatearMoneda(
                         Math.abs(
@@ -2971,12 +3615,10 @@ function updateCartUI() {
 
     }
 
-
     const totalPriceEl =
         document.getElementById(
             'cartTotalPrice'
         );
-
 
     if (totalPriceEl) {
 
@@ -2987,12 +3629,10 @@ function updateCartUI() {
 
     }
 
-
     const installmentSummary =
         document.getElementById(
             'installmentSummary'
         );
-
 
     if (installmentSummary) {
 
@@ -3005,10 +3645,8 @@ function updateCartUI() {
                 totalFinal /
                 cuotasGlobal;
 
-
             installmentSummary.style.display =
                 'block';
-
 
             installmentSummary.innerHTML = `
 
@@ -3026,7 +3664,6 @@ function updateCartUI() {
 
         }
 
-
         else if (
             metodoPagoGlobal ===
             'tarjeta'
@@ -3036,10 +3673,8 @@ function updateCartUI() {
                 totalFinal /
                 cuotasGlobal;
 
-
             installmentSummary.style.display =
                 'block';
-
 
             installmentSummary.innerHTML = `
 
@@ -3057,12 +3692,10 @@ function updateCartUI() {
 
         }
 
-
         else {
 
             installmentSummary.style.display =
                 'none';
-
 
             installmentSummary.innerHTML =
                 '';
@@ -3076,13 +3709,13 @@ function updateCartUI() {
 
 /* =========================================
    FORMULARIO
+   ORIGINAL
 ========================================= */
 
 function irAlFormularioEnvio() {
 
     vistaActual =
         'formulario';
-
 
     renderizarContenidoDrawer();
 
@@ -3094,7 +3727,6 @@ function volverAlCarrito() {
     vistaActual =
         'carrito';
 
-
     renderizarContenidoDrawer();
 
 }
@@ -3102,6 +3734,7 @@ function volverAlCarrito() {
 
 /* =========================================
    WHATSAPP
+   ORIGINAL
 ========================================= */
 
 function enviarPedidoWhatsApp() {
@@ -3111,48 +3744,40 @@ function enviarPedidoWhatsApp() {
             'nombreCliente'
         ).value.trim();
 
-
     const dni =
         document.getElementById(
             'dniCliente'
         ).value.trim();
-
 
     const telefono =
         document.getElementById(
             'telefonoCliente'
         ).value.trim();
 
-
     const email =
         document.getElementById(
             'emailCliente'
         ).value.trim();
-
 
     const direccion =
         document.getElementById(
             'direccionCliente'
         ).value.trim();
 
-
     const localidad =
         document.getElementById(
             'localidadCliente'
         ).value.trim();
-
 
     const provincia =
         document.getElementById(
             'provinciaCliente'
         ).value.trim();
 
-
     const codigoPostal =
         document.getElementById(
             'codigoPostalCliente'
         ).value.trim();
-
 
     if (
         !nombre ||
@@ -3169,31 +3794,25 @@ function enviarPedidoWhatsApp() {
             "Por favor, completa todos los datos obligatorios de entrega."
         );
 
-
         return;
 
     }
 
-
     const numeroGuia =
         generarCodigoSeguimiento();
-
 
     const provinciaKey =
         document.getElementById(
             'provinciaSelect'
         ).value;
 
-
     const datosProvincia =
         tarifasProvincias[
             provinciaKey
         ];
 
-
     const costoEnvio =
         datosProvincia.costo;
-
 
     let subtotal =
         carrito.reduce(
@@ -3206,11 +3825,9 @@ function enviarPedidoWhatsApp() {
             0
         );
 
-
     let recargoDescuentoValor = 0;
 
     let textoMetodo = "";
-
 
     if (
         metodoPagoGlobal ===
@@ -3220,12 +3837,10 @@ function enviarPedidoWhatsApp() {
         recargoDescuentoValor =
             -(subtotal * 0.15);
 
-
         textoMetodo =
             "Transferencia Bancaria (15% OFF aplicado)";
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -3239,7 +3854,6 @@ function enviarPedidoWhatsApp() {
                 0.04
             );
 
-
         textoMetodo =
             `Crédito con DNI (${cuotasGlobal} pago${
                 cuotasGlobal > 1
@@ -3248,7 +3862,6 @@ function enviarPedidoWhatsApp() {
             }, +${cuotasGlobal * 4}% recargo)`;
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -3262,7 +3875,6 @@ function enviarPedidoWhatsApp() {
                 0.08
             );
 
-
         textoMetodo =
             `Tarjeta de Crédito (${cuotasGlobal} cuota${
                 cuotasGlobal > 1
@@ -3272,15 +3884,12 @@ function enviarPedidoWhatsApp() {
 
     }
 
-
     const totalFinal =
         subtotal +
         costoEnvio +
         recargoDescuentoValor;
 
-
     let textoCuotas = "";
-
 
     if (
         metodoPagoGlobal ===
@@ -3291,7 +3900,6 @@ function enviarPedidoWhatsApp() {
             totalFinal /
             cuotasGlobal;
 
-
         textoCuotas =
             `• Cantidad de pagos: ${cuotasGlobal}\n` +
             `• Monto de cada pago: ${formatearMoneda(
@@ -3299,7 +3907,6 @@ function enviarPedidoWhatsApp() {
             )}\n`;
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -3310,7 +3917,6 @@ function enviarPedidoWhatsApp() {
             totalFinal /
             cuotasGlobal;
 
-
         textoCuotas =
             `• Cantidad de cuotas: ${cuotasGlobal}\n` +
             `• Monto de cada cuota: ${formatearMoneda(
@@ -3319,7 +3925,6 @@ function enviarPedidoWhatsApp() {
 
     }
 
-
     else {
 
         textoCuotas =
@@ -3327,10 +3932,8 @@ function enviarPedidoWhatsApp() {
 
     }
 
-
     let detalleProductosTexto =
         "";
-
 
     carrito.forEach(
         item => {
@@ -3341,96 +3944,74 @@ function enviarPedidoWhatsApp() {
         }
     );
 
-
     let mensaje =
         `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
-
 
     mensaje +=
         `*LOGÍSTICA NOVA*\n`;
 
-
     mensaje +=
         `----------------------------------------\n`;
-
 
     mensaje +=
         `*N° de Seguimiento:* ${numeroGuia}\n`;
 
-
     mensaje +=
         `----------------------------------------\n\n`;
-
 
     mensaje +=
         `*DATOS DEL COMPRADOR*\n`;
 
-
     mensaje +=
         `• Nombre: ${nombre}\n`;
-
 
     mensaje +=
         `• DNI/CUIL: ${dni}\n`;
 
-
     mensaje +=
         `• Teléfono: ${telefono}\n`;
-
 
     mensaje +=
         `• Email: ${email}\n`;
 
-
     mensaje +=
         `• Dirección: ${direccion}, ${localidad}\n`;
-
 
     mensaje +=
         `• Provincia: ${provincia}\n`;
 
-
     mensaje +=
         `• Código Postal: ${codigoPostal}\n`;
 
-
     mensaje +=
         `• Zona de Envío: ${datosProvincia.nombre}\n`;
-
 
     mensaje +=
         `• Costo de envío: ${formatearMoneda(
             costoEnvio
         )}\n`;
 
-
     mensaje +=
         `• Demora estimada: ${datosProvincia.demora}\n\n`;
-
 
     mensaje +=
         `*PRODUCTOS SOLICITADOS*\n`;
 
-
     mensaje +=
         `${detalleProductosTexto}\n`;
 
-
     mensaje +=
         `*DESGLOSE DE PAGOS Y ENVÍO*\n`;
-
 
     mensaje +=
         `• Subproductos: ${formatearMoneda(
             subtotal
         )}\n`;
 
-
     mensaje +=
         `• Envío: ${formatearMoneda(
             costoEnvio
         )}\n`;
-
 
     mensaje +=
         `• Recargo/Descuento: ${
@@ -3443,52 +4024,40 @@ function enviarPedidoWhatsApp() {
             )
         )}\n`;
 
-
     mensaje +=
         `• Método: ${textoMetodo}\n`;
 
-
     mensaje +=
         `${textoCuotas}\n`;
-
 
     mensaje +=
         `*TOTAL A PAGAR:* ${formatearMoneda(
             totalFinal
         )}\n\n`;
 
-
     mensaje +=
         `*CÓDIGO DE SEGUIMIENTO*\n`;
-
 
     mensaje +=
         `${numeroGuia}\n\n`;
 
-
     mensaje +=
         `Solicito confirmación del pedido y datos para el pago.`;
-
 
     const mensajeCodificado =
         encodeURIComponent(
             mensaje
         );
 
-
     const numeroWhatsApp =
         "5491155012447";
-
 
     const urlWhatsApp =
         `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
-
     carrito = [];
 
-
     actualizarContadorCarrito();
-
 
     window.location.href =
         urlWhatsApp;
@@ -3505,4 +4074,4 @@ renderizarProductos();
 </script>
 
 </body>
-    </html>
+</html>
