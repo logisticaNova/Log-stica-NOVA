@@ -38,10 +38,6 @@ body {
     overflow-x: hidden;
 }
 
-/* =========================
-   NAVBAR
-========================= */
-
 .navbar {
     background-color: white;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -87,10 +83,6 @@ body {
     font-size: 0.75rem;
 }
 
-/* =========================
-   HEADER
-========================= */
-
 header {
     text-align: center;
     margin: 30px 0 20px;
@@ -113,10 +105,6 @@ header p {
     margin: 0 auto;
     padding: 0 16px;
 }
-
-/* =========================
-   FILTROS
-========================= */
 
 .filtros {
     margin-bottom: 25px;
@@ -158,19 +146,11 @@ header p {
     border-color: var(--primary-color);
 }
 
-/* =========================
-   GRID PRODUCTOS
-========================= */
-
 .grid-productos {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
 }
-
-/* =========================
-   CARD
-========================= */
 
 .card {
     background-color: var(--bg-card);
@@ -189,10 +169,6 @@ header p {
     box-shadow: 0 8px 18px rgba(0,0,0,0.08);
 }
 
-/* =========================
-   STOCK
-========================= */
-
 .badge-stock {
     position: absolute;
     top: 12px;
@@ -206,10 +182,6 @@ header p {
     text-transform: uppercase;
     z-index: 10;
 }
-
-/* =========================
-   CARRUSEL
-========================= */
 
 .product-carousel {
     width: 100%;
@@ -317,10 +289,6 @@ header p {
     transform: scale(1.25);
 }
 
-/* =========================
-   CUERPO CARD
-========================= */
-
 .card-body {
     padding: 16px;
     display: flex;
@@ -377,10 +345,6 @@ header p {
     text-decoration: underline;
 }
 
-/* =========================
-   ESPECIFICACIONES
-========================= */
-
 .specs-list {
     background-color: #f9fafb;
     border-radius: 8px;
@@ -410,10 +374,6 @@ header p {
     font-weight: 600;
     text-align: right;
 }
-
-/* =========================
-   PRECIOS
-========================= */
 
 .pricing {
     margin-top: auto;
@@ -462,10 +422,6 @@ header p {
 .btn-add-cart:hover {
     background-color: var(--primary-dark);
 }
-
-/* =========================
-   MODAL / CARRITO
-========================= */
 
 .modal-overlay {
     position: fixed;
@@ -524,10 +480,6 @@ header p {
     flex-grow: 1;
 }
 
-/* =========================
-   ITEMS CARRITO
-========================= */
-
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -575,10 +527,6 @@ header p {
     font-size: 0.8rem;
     margin-left: 6px;
 }
-
-/* =========================
-   PAGOS
-========================= */
 
 .payment-methods {
     margin-bottom: 12px;
@@ -642,10 +590,6 @@ header p {
 .checkout-btn:hover {
     background-color: #059669;
 }
-
-/* =========================
-   FORMULARIO
-========================= */
 
 .form-group {
     margin-bottom: 10px;
@@ -720,10 +664,6 @@ header p {
     margin-top: 30px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
 @media (min-width: 640px) {
 
     .grid-productos {
@@ -756,10 +696,6 @@ header p {
 
 <body>
 
-<!-- =========================
-     NAVBAR
-========================= -->
-
 <nav class="navbar">
 
     <div class="navbar-brand">
@@ -776,10 +712,6 @@ header p {
 
 <div class="container">
 
-    <!-- =========================
-         HEADER
-    ========================= -->
-
     <header>
 
         <h1>Catálogo de Productos</h1>
@@ -791,112 +723,69 @@ header p {
     </header>
 
 
-    <!-- =========================
-         FILTROS
-    ========================= -->
-
     <div class="filtros">
 
-        <button
-            class="filter-btn active"
-            onclick="filtrarCategoria('Todas', this)">
+        <button class="filter-btn active" onclick="filtrarCategoria('Todas', this)">
             Todas
         </button>
 
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Televisores', this)">
+        <button class="filter-btn" onclick="filtrarCategoria('Televisores', this)">
             Televisores
         </button>
 
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Heladeras', this)">
+        <button class="filter-btn" onclick="filtrarCategoria('Heladeras', this)">
             Heladeras
         </button>
 
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Cocinas', this)">
+        <button class="filter-btn" onclick="filtrarCategoria('Cocinas', this)">
             Cocinas
         </button>
 
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Lavarropas', this)">
+        <button class="filter-btn" onclick="filtrarCategoria('Lavarropas', this)">
             Lavarropas
         </button>
 
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Aires acondicionados', this)">
+        <button class="filter-btn" onclick="filtrarCategoria('Aires acondicionados', this)">
             Aires Acondicionados
         </button>
 
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Celulares', this)">
+        <button class="filter-btn" onclick="filtrarCategoria('Celulares', this)">
             Celulares
         </button>
 
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Audio', this)">
+        <button class="filter-btn" onclick="filtrarCategoria('Audio', this)">
             Audio
         </button>
 
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Informática', this)">
+        <button class="filter-btn" onclick="filtrarCategoria('Informática', this)">
             Informática
         </button>
 
     </div>
 
 
-    <!-- =========================
-         PRODUCTOS
-    ========================= -->
-
-    <div
-        class="grid-productos"
-        id="gridProductos">
-    </div>
+    <div class="grid-productos" id="gridProductos"></div>
 
 </div>
 
 
-<!-- =========================
-     CARRITO
-========================= -->
-
-<div
-    class="modal-overlay"
-    id="cartModal"
-    onclick="handleOutsideClick(event)">
+<div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
 
     <div class="cart-drawer">
 
         <div class="cart-header">
 
-            <h3
-                id="drawerTitle"
-                style="font-size:1.1rem;">
+            <h3 id="drawerTitle" style="font-size:1.1rem;">
                 Tu Carrito de Compras
             </h3>
 
-            <button
-                class="close-cart"
-                onclick="toggleCart()">
+            <button class="close-cart" onclick="toggleCart()">
                 &times;
             </button>
 
         </div>
 
-        <div
-            class="cart-body"
-            id="cartBodyContent">
-        </div>
+        <div class="cart-body" id="cartBodyContent"></div>
 
     </div>
 
@@ -904,10 +793,6 @@ header p {
 
 
 <script>
-
-/* =====================================================
-   TARIFAS DE ENVÍO
-===================================================== */
 
 const tarifasProvincias = {
 
@@ -932,10 +817,6 @@ const tarifasProvincias = {
 };
 
 
-/* =====================================================
-   PRODUCTOS
-===================================================== */
-
 const productos = [
 
     {
@@ -946,20 +827,15 @@ const productos = [
         nombre: "Smart TV TCL 55 C655 QLED 4K",
         categoria: "Televisores",
         subcategoria: "Smart TV",
-
-        descripcion:
-            "Televisor QLED 4K con Google TV y Dolby Vision Atmos. Excelente calidad de imagen, colores intensos y gran experiencia para películas, series y videojuegos.",
-
+        descripcion: "Televisor QLED 4K con Google TV y Dolby Vision Atmos. Excelente calidad de imagen, colores intensos y gran experiencia para películas, series y videojuegos.",
         especificaciones: {
             pulgadas: 55,
             resolucion: "4K UHD"
         },
-
         precio: 899999,
         precioOferta: 764999,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
@@ -975,20 +851,15 @@ const productos = [
         nombre: "Smart TV TCL 65 C755 QD-Mini LED 4K",
         categoria: "Televisores",
         subcategoria: "Smart TV",
-
-        descripcion:
-            "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento. Ofrece gran contraste, excelente brillo y una experiencia cinematográfica.",
-
+        descripcion: "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento. Ofrece gran contraste, excelente brillo y una experiencia cinematográfica.",
         especificaciones: {
             pulgadas: 65,
             resolucion: "4K UHD"
         },
-
         precio: 1499999,
         precioOferta: 1274999,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
@@ -1004,20 +875,15 @@ const productos = [
         nombre: "Smart TV Samsung 55 Crystal UHD 4K",
         categoria: "Televisores",
         subcategoria: "Smart TV",
-
-        descripcion:
-            "Smart TV Crystal UHD 4K con sistema Tizen.",
-
+        descripcion: "Smart TV Crystal UHD 4K con sistema Tizen.",
         especificaciones: {
             pulgadas: 55,
             resolucion: "4K UHD"
         },
-
         precio: 920000,
         precioOferta: 782000,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
@@ -1033,20 +899,15 @@ const productos = [
         nombre: "Smart TV LG 50 4K UHD",
         categoria: "Televisores",
         subcategoria: "Smart TV",
-
-        descripcion:
-            "Calidad de imagen superior y sonido envolvente inteligente.",
-
+        descripcion: "Calidad de imagen superior y sonido envolvente inteligente.",
         especificaciones: {
             pulgadas: 50,
             resolucion: "4K UHD"
         },
-
         precio: 710000,
         precioOferta: 603500,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80"
@@ -1061,20 +922,15 @@ const productos = [
         nombre: "Lavarropas Automático Whirlpool 6.5 Kg",
         categoria: "Lavarropas",
         subcategoria: "Carga Frontal",
-
-        descripcion:
-            "Lavarropas automático con múltiples programas de lavado, ideal para el uso cotidiano del hogar.",
-
+        descripcion: "Lavarropas automático con múltiples programas de lavado, ideal para el uso cotidiano del hogar.",
         especificaciones: {
             capacidad: "6.5 kg",
             tipoCarga: "Frontal"
         },
-
         precio: 850000,
         precioOferta: 722500,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=700&q=80",
@@ -1090,20 +946,15 @@ const productos = [
         nombre: "Celular Motorola Edge 50 5G",
         categoria: "Celulares",
         subcategoria: "Smartphones",
-
-        descripcion:
-            "Smartphone premium con pantalla OLED y conectividad 5G. Ideal para fotografía, entretenimiento, trabajo y uso diario.",
-
+        descripcion: "Smartphone premium con pantalla OLED y conectividad 5G. Ideal para fotografía, entretenimiento, trabajo y uso diario.",
         especificaciones: {
             pantalla: "6.7 pulgadas",
             memoriaRAM: "12GB"
         },
-
         precio: 850000,
         precioOferta: 722500,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
@@ -1119,20 +970,15 @@ const productos = [
         nombre: "Aire Acondicionado Samsung Inverter 3000W",
         categoria: "Aires acondicionados",
         subcategoria: "Split Inverter",
-
-        descripcion:
-            "Aire acondicionado Split Inverter frío/calor, diseñado para climatizar ambientes de forma eficiente.",
-
+        descripcion: "Aire acondicionado Split Inverter frío/calor, diseñado para climatizar ambientes de forma eficiente.",
         especificaciones: {
             frigorias: "2600",
             potenciaW: "3000"
         },
-
         precio: 950000,
         precioOferta: 807500,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1631545806609-7e8e2c8f5f6c?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1625961332771-7a3c7b3e9b31?auto=format&fit=crop&w=700&q=80"
@@ -1147,20 +993,15 @@ const productos = [
         nombre: "Notebook Lenovo IdeaPad 3",
         categoria: "Informática",
         subcategoria: "Notebooks",
-
-        descripcion:
-            "Notebook versátil para estudio, trabajo y uso cotidiano. Diseño práctico y excelente equilibrio entre rendimiento y portabilidad.",
-
+        descripcion: "Notebook versátil para estudio, trabajo y uso cotidiano. Diseño práctico y excelente equilibrio entre rendimiento y portabilidad.",
         especificaciones: {
             pantalla: "15.6 pulgadas",
             memoriaRAM: "8GB"
         },
-
         precio: 890000,
         precioOferta: 756500,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=700&q=80",
@@ -1176,20 +1017,15 @@ const productos = [
         nombre: "Parlante Bluetooth JBL Flip 6",
         categoria: "Audio",
         subcategoria: "Parlantes",
-
-        descripcion:
-            "Parlante Bluetooth portátil resistente al agua, ideal para llevar a cualquier lugar.",
-
+        descripcion: "Parlante Bluetooth portátil resistente al agua, ideal para llevar a cualquier lugar.",
         especificaciones: {
             potenciaW: "30",
             conectividad: "Bluetooth"
         },
-
         precio: 210000,
         precioOferta: 178500,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80"
@@ -1204,20 +1040,15 @@ const productos = [
         nombre: "Heladera con Freezer Gafa H300",
         categoria: "Heladeras",
         subcategoria: "Con Freezer",
-
-        descripcion:
-            "Heladera cíclica con gran capacidad y eficiencia energética, ideal para hogares que buscan practicidad.",
-
+        descripcion: "Heladera cíclica con gran capacidad y eficiencia energética, ideal para hogares que buscan practicidad.",
         especificaciones: {
             capacidad: "282 L",
             sistema: "Cíclico"
         },
-
         precio: 980000,
         precioOferta: 833000,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=700&q=80"
@@ -1232,20 +1063,15 @@ const productos = [
         nombre: "Cocina Multigas Orbis Acero Inoxidable",
         categoria: "Cocinas",
         subcategoria: "Hornallas",
-
-        descripcion:
-            "Cocina de alta gama con encendido electrónico y hornallas de alta eficiencia. Diseño moderno en acero inoxidable.",
-
+        descripcion: "Cocina de alta gama con encendido electrónico y hornallas de alta eficiencia. Diseño moderno en acero inoxidable.",
         especificaciones: {
             hornallas: "4",
             seguridad: "Válvula cortagas"
         },
-
         precio: 880000,
         precioOferta: 748000,
         cuotas: 3,
         stock: true,
-
         imagenes: [
             "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=700&q=80",
@@ -1256,45 +1082,24 @@ const productos = [
 ];
 
 
-/* =====================================================
-   VARIABLES
-===================================================== */
-
 let carrito = [];
-
 let vistaActual = 'carrito';
-
 let metodoPagoGlobal = 'transferencia';
-
 let cuotasGlobal = 1;
-
 let categoriaSeleccionada = 'Todas';
-
 let estadosCarrusel = {};
 
-
-/* =====================================================
-   FORMATEAR MONEDA
-===================================================== */
 
 function formatearMoneda(valor) {
 
     return new Intl.NumberFormat('es-AR', {
-
         style: 'currency',
-
         currency: 'ARS',
-
         maximumFractionDigits: 0
-
     }).format(valor);
 
 }
 
-
-/* =====================================================
-   GENERAR CÓDIGO DE SEGUIMIENTO
-===================================================== */
 
 function generarCodigoSeguimiento() {
 
@@ -1320,10 +1125,6 @@ function generarCodigoSeguimiento() {
 }
 
 
-/* =====================================================
-   FILTRO
-===================================================== */
-
 function filtrarCategoria(categoria, botonElemento) {
 
     categoriaSeleccionada = categoria;
@@ -1331,9 +1132,7 @@ function filtrarCategoria(categoria, botonElemento) {
     document
         .querySelectorAll('.filter-btn')
         .forEach(btn => {
-
             btn.classList.remove('active');
-
         });
 
     botonElemento.classList.add('active');
@@ -1342,10 +1141,6 @@ function filtrarCategoria(categoria, botonElemento) {
 
 }
 
-
-/* =====================================================
-   CARRUSEL
-===================================================== */
 
 function cambiarImagen(productoId, direccion) {
 
@@ -1362,9 +1157,7 @@ function cambiarImagen(productoId, direccion) {
     if (
         !estadosCarrusel[productoId]
     ) {
-
         estadosCarrusel[productoId] = 0;
-
     }
 
     const total =
@@ -1409,32 +1202,24 @@ function actualizarCarrusel(productoId) {
 
     slides.forEach(
         (slide, i) => {
-
             slide.classList.toggle(
                 'active',
                 i === indice
             );
-
         }
     );
 
     dots.forEach(
         (dot, i) => {
-
             dot.classList.toggle(
                 'active',
                 i === indice
             );
-
         }
     );
 
 }
 
-
-/* =====================================================
-   VER MAS / VER MENOS
-===================================================== */
 
 function alternarDescripcion(id) {
 
@@ -1457,9 +1242,7 @@ function alternarDescripcion(id) {
 
     if (expandido) {
 
-        texto.classList.remove(
-            'expandido'
-        );
+        texto.classList.remove('expandido');
 
         texto.classList.add(
             'descripcion-corta'
@@ -1486,10 +1269,6 @@ function alternarDescripcion(id) {
 }
 
 
-/* =====================================================
-   RENDERIZAR PRODUCTOS
-===================================================== */
-
 function renderizarProductos() {
 
     const gridContainer =
@@ -1508,30 +1287,24 @@ function renderizarProductos() {
                     categoriaSeleccionada.toLowerCase()
             );
 
-
     if (
         productosFiltrados.length === 0
     ) {
 
         gridContainer.innerHTML = `
-
             <div style="
                 grid-column:1/-1;
                 text-align:center;
                 color:var(--text-muted);
                 padding:30px;
             ">
-
                 No hay productos disponibles en esta categoría.
-
             </div>
-
         `;
 
         return;
 
     }
-
 
     productosFiltrados.forEach(
         producto => {
@@ -1541,15 +1314,10 @@ function renderizarProductos() {
                     producto.id
                 ] === undefined
             ) {
-
                 estadosCarrusel[
                     producto.id
                 ] = 0;
-
             }
-
-
-            /* ESPECIFICACIONES */
 
             let specsHTML = '';
 
@@ -1561,9 +1329,7 @@ function renderizarProductos() {
             ) {
 
                 specsHTML += `
-
                     <div>
-
                         <span class="spec-label">
                             ${
                                 key.charAt(0).toUpperCase() +
@@ -1574,18 +1340,12 @@ function renderizarProductos() {
                         <span class="spec-value">
                             ${value}
                         </span>
-
                     </div>
-
                 `;
 
             }
 
-
-            /* IMAGENES */
-
             let slidesHTML = '';
-
             let dotsHTML = '';
 
             const imagenes =
@@ -1597,23 +1357,16 @@ function renderizarProductos() {
                     )
                     .slice(0, 3);
 
-
             if (
                 imagenes.length === 0
             ) {
 
                 slidesHTML = `
-
                     <div class="carousel-slide active">
-
                         <div class="carousel-placeholder">
-
                             ${producto.marca}
-
                         </div>
-
                     </div>
-
                 `;
 
             } else {
@@ -1622,7 +1375,6 @@ function renderizarProductos() {
                     (imagen, index) => {
 
                         slidesHTML += `
-
                             <div
                                 class="carousel-slide ${
                                     index === 0
@@ -1631,21 +1383,16 @@ function renderizarProductos() {
                                 }"
                                 data-producto="${producto.id}"
                             >
-
                                 <img
                                     src="${imagen}"
                                     alt="${producto.nombre}"
                                     loading="lazy"
                                     onerror="this.style.display='none'"
                                 >
-
                             </div>
-
                         `;
 
-
                         dotsHTML += `
-
                             <button
                                 class="carousel-dot ${
                                     index === 0
@@ -1656,7 +1403,6 @@ function renderizarProductos() {
                                 onclick="irAImagen(${producto.id}, ${index})"
                                 aria-label="Ver imagen ${index + 1}">
                             </button>
-
                         `;
 
                     }
@@ -1664,12 +1410,8 @@ function renderizarProductos() {
 
             }
 
-
             const mostrarControles =
                 imagenes.length > 1;
-
-
-            /* DESCRIPCION */
 
             const limiteDescripcion = 100;
 
@@ -1685,9 +1427,6 @@ function renderizarProductos() {
                     ) + '...'
                     : producto.descripcion;
 
-
-            /* CARD */
-
             const card =
                 document.createElement(
                     'div'
@@ -1695,7 +1434,6 @@ function renderizarProductos() {
 
             card.className =
                 'card';
-
 
             card.innerHTML = `
 
@@ -1705,68 +1443,47 @@ function renderizarProductos() {
                         : ''
                 }
 
-
                 <div class="product-carousel">
 
                     <div class="carousel-track">
-
                         ${slidesHTML}
-
                     </div>
-
 
                     ${
                         mostrarControles
                             ? `
-
                                 <button
                                     class="carousel-btn carousel-prev"
                                     onclick="cambiarImagen(${producto.id}, -1)"
                                     aria-label="Imagen anterior">
-
                                     ‹
-
                                 </button>
-
 
                                 <button
                                     class="carousel-btn carousel-next"
                                     onclick="cambiarImagen(${producto.id}, 1)"
                                     aria-label="Imagen siguiente">
-
                                     ›
-
                                 </button>
 
-
                                 <div class="carousel-dots">
-
                                     ${dotsHTML}
-
                                 </div>
-
                             `
                             : ''
                     }
 
                 </div>
 
-
                 <div class="card-body">
 
                     <span class="card-category">
-
                         ${producto.categoria}
-
                     </span>
 
-
                     <h3 class="card-title">
-
                         ${producto.nombre}
-
                     </h3>
-
 
                     <p class="card-desc">
 
@@ -1777,88 +1494,64 @@ function renderizarProductos() {
                                     ? 'descripcion-texto descripcion-corta'
                                     : 'descripcion-texto'
                             }">
-
                             ${
                                 descripcionLarga
                                     ? descripcionCorta
                                     : producto.descripcion
                             }
-
                         </span>
-
 
                         ${
                             descripcionLarga
                                 ? `
-
                                     <button
                                         id="verMas-${producto.id}"
                                         class="ver-mas-btn"
                                         onclick="alternarDescripcion(${producto.id})">
-
                                         Ver más
-
                                     </button>
-
                                 `
                                 : ''
                         }
 
                     </p>
 
-
                     <div class="specs-list">
-
                         ${specsHTML}
-
                     </div>
-
 
                     <div class="pricing">
 
                         <div class="price-original">
-
                             ${formatearMoneda(
                                 producto.precio
                             )}
-
                         </div>
-
 
                         <div class="price-container">
 
                             <span class="price-offer">
-
                                 ${formatearMoneda(
                                     producto.precioOferta
                                 )}
-
                             </span>
 
                         </div>
 
-
                         <div class="cuotas-badge">
-
                             Precio oferta en transferencia
-
                         </div>
-
 
                         <button
                             class="btn-add-cart"
                             onclick="agregarAlCarrito(${producto.id})">
-
                             Agregar al Carrito
-
                         </button>
 
                     </div>
 
                 </div>
-
             `;
-
 
             gridContainer.appendChild(
                 card
@@ -1869,10 +1562,6 @@ function renderizarProductos() {
 
 }
 
-
-/* =====================================================
-   AGREGAR AL CARRITO
-===================================================== */
 
 function agregarAlCarrito(id) {
 
@@ -1886,7 +1575,6 @@ function agregarAlCarrito(id) {
             item => item.id === id
         );
 
-
     if (itemExistente) {
 
         itemExistente.cantidad++;
@@ -1894,15 +1582,11 @@ function agregarAlCarrito(id) {
     } else {
 
         carrito.push({
-
             ...producto,
-
             cantidad: 1
-
         });
 
     }
-
 
     actualizarContadorCarrito();
 
@@ -1913,10 +1597,6 @@ function agregarAlCarrito(id) {
 }
 
 
-/* =====================================================
-   CAMBIAR CANTIDAD
-===================================================== */
-
 function cambiarCantidad(id, cambio) {
 
     const item =
@@ -1924,11 +1604,9 @@ function cambiarCantidad(id, cambio) {
             i => i.id === id
         );
 
-
     if (item) {
 
         item.cantidad += cambio;
-
 
         if (
             item.cantidad <= 0
@@ -1943,17 +1621,12 @@ function cambiarCantidad(id, cambio) {
 
     }
 
-
     actualizarContadorCarrito();
 
     renderizarContenidoDrawer();
 
 }
 
-
-/* =====================================================
-   ELIMINAR
-===================================================== */
 
 function eliminarDelCarrito(id) {
 
@@ -1969,10 +1642,6 @@ function eliminarDelCarrito(id) {
 }
 
 
-/* =====================================================
-   CONTADOR
-===================================================== */
-
 function actualizarContadorCarrito() {
 
     const totalItems =
@@ -1982,7 +1651,6 @@ function actualizarContadorCarrito() {
             0
         );
 
-
     document.getElementById(
         'cartCount'
     ).innerText =
@@ -1990,10 +1658,6 @@ function actualizarContadorCarrito() {
 
 }
 
-
-/* =====================================================
-   ABRIR / CERRAR CARRITO
-===================================================== */
 
 function toggleCart(
     forceOpen = false
@@ -2003,7 +1667,6 @@ function toggleCart(
         document.getElementById(
             'cartModal'
         );
-
 
     if (forceOpen) {
 
@@ -2016,7 +1679,6 @@ function toggleCart(
         modal.classList.toggle(
             'active'
         );
-
 
         if (
             !modal.classList.contains(
@@ -2031,15 +1693,10 @@ function toggleCart(
 
     }
 
-
     renderizarContenidoDrawer();
 
 }
 
-
-/* =====================================================
-   CLICK FUERA
-===================================================== */
 
 function handleOutsideClick(event) {
 
@@ -2055,10 +1712,6 @@ function handleOutsideClick(event) {
 }
 
 
-/* =====================================================
-   RENDERIZAR CARRITO
-===================================================== */
-
 function renderizarContenidoDrawer() {
 
     const drawerTitle =
@@ -2071,7 +1724,6 @@ function renderizarContenidoDrawer() {
             'cartBodyContent'
         );
 
-
     if (
         carrito.length === 0
     ) {
@@ -2079,15 +1731,10 @@ function renderizarContenidoDrawer() {
         drawerTitle.innerText =
             "Tu Carrito de Compras";
 
-
         bodyContent.innerHTML = `
-
             <div class="empty-cart">
-
                 Tu carrito está vacío.
-
             </div>
-
         `;
 
         vistaActual =
@@ -2097,7 +1744,6 @@ function renderizarContenidoDrawer() {
 
     }
 
-
     if (
         vistaActual === 'carrito'
     ) {
@@ -2105,23 +1751,18 @@ function renderizarContenidoDrawer() {
         drawerTitle.innerText =
             "Tu Carrito de Compras";
 
-
         let htmlItems = `
-
             <div style="
                 flex-grow:1;
                 overflow-y:auto;
                 max-height:45vh;
             ">
-
         `;
-
 
         carrito.forEach(
             item => {
 
                 htmlItems += `
-
                     <div class="cart-item">
 
                         <div class="cart-item-info">
@@ -2131,66 +1772,48 @@ function renderizarContenidoDrawer() {
                             </h4>
 
                             <div class="cart-item-price">
-
                                 ${formatearMoneda(
                                     item.precioOferta
                                 )}
                                 c/u
-
                             </div>
 
                         </div>
-
 
                         <div class="cart-item-actions">
 
                             <button
                                 class="qty-btn"
                                 onclick="cambiarCantidad(${item.id}, -1)">
-
                                 -
-
                             </button>
 
-
                             <span>
-
                                 ${item.cantidad}
-
                             </span>
-
 
                             <button
                                 class="qty-btn"
                                 onclick="cambiarCantidad(${item.id}, 1)">
-
                                 +
-
                             </button>
-
 
                             <button
                                 class="remove-btn"
                                 onclick="eliminarDelCarrito(${item.id})">
-
                                 🗑️
-
                             </button>
 
                         </div>
 
                     </div>
-
                 `;
 
             }
         );
 
-
         htmlItems += `
-
             </div>
-
 
             <div style="
                 margin-top:10px;
@@ -2198,21 +1821,16 @@ function renderizarContenidoDrawer() {
                 padding-top:12px;
             ">
 
-
                 <div class="payment-methods">
 
                     <label for="paymentMethodSelect">
-
                         Método de Pago:
-
                     </label>
-
 
                     <select
                         id="paymentMethodSelect"
                         class="payment-select"
                         onchange="onPaymentMethodChange()">
-
 
                         <option
                             value="transferencia"
@@ -2222,11 +1840,8 @@ function renderizarContenidoDrawer() {
                                     ? 'selected'
                                     : ''
                             }>
-
                             Transferencia Bancaria (15% OFF)
-
                         </option>
-
 
                         <option
                             value="creditoDni"
@@ -2236,11 +1851,8 @@ function renderizarContenidoDrawer() {
                                     ? 'selected'
                                     : ''
                             }>
-
                             Crédito con DNI (Hasta 6 pagos, +4% por pago)
-
                         </option>
-
 
                         <option
                             value="tarjeta"
@@ -2250,16 +1862,12 @@ function renderizarContenidoDrawer() {
                                     ? 'selected'
                                     : ''
                             }>
-
                             Tarjeta de Crédito (Hasta 12 cuotas, +8% por cuota)
-
                         </option>
-
 
                     </select>
 
                 </div>
-
 
                 <div
                     id="cuotasContainer"
@@ -2267,7 +1875,6 @@ function renderizarContenidoDrawer() {
                         margin-bottom:10px;
                         display:none;
                     ">
-
 
                     <label
                         for="cuotasSelect"
@@ -2278,11 +1885,8 @@ function renderizarContenidoDrawer() {
                             display:block;
                         "
                         id="labelCuotas">
-
                         Cantidad de pagos:
-
                     </label>
-
 
                     <select
                         id="cuotasSelect"
@@ -2292,9 +1896,7 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-
                 <div id="paymentDetailsContainer"></div>
-
 
                 <div class="cart-total">
 
@@ -2308,27 +1910,20 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-
                 <div
                     id="installmentSummary"
                     class="installment-summary"
                     style="display:none;">
                 </div>
 
-
                 <button
                     class="checkout-btn"
                     onclick="irAlFormularioEnvio()">
-
                     Continuar con Datos de Envío
-
                 </button>
 
-
             </div>
-
         `;
-
 
         bodyContent.innerHTML =
             htmlItems;
@@ -2336,7 +1931,6 @@ function renderizarContenidoDrawer() {
         onPaymentMethodChange();
 
     }
-
 
     else if (
         vistaActual ===
@@ -2346,11 +1940,9 @@ function renderizarContenidoDrawer() {
         drawerTitle.innerText =
             "Datos del Comprador y Envío";
 
-
         bodyContent.innerHTML = `
 
             <div id="checkoutForm">
-
 
                 <div class="form-group">
 
@@ -2366,7 +1958,6 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label for="dniCliente">
@@ -2380,7 +1971,6 @@ function renderizarContenidoDrawer() {
                         placeholder="Ej. 37897087">
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -2396,7 +1986,6 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label for="emailCliente">
@@ -2410,7 +1999,6 @@ function renderizarContenidoDrawer() {
                         placeholder="Ej. ejemplo@gmail.com">
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -2426,7 +2014,6 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label for="localidadCliente">
@@ -2441,6 +2028,37 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
+                <!-- AGREGADO: PROVINCIA -->
+
+                <div class="form-group">
+
+                    <label for="provinciaCliente">
+                        Provincia *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="provinciaCliente"
+                        required
+                        placeholder="Ej. Buenos Aires">
+
+                </div>
+
+                <!-- AGREGADO: CODIGO POSTAL -->
+
+                <div class="form-group">
+
+                    <label for="codigoPostalCliente">
+                        Código Postal *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="codigoPostalCliente"
+                        required
+                        placeholder="Ej. B1832">
+
+                </div>
 
                 <div class="form-group">
 
@@ -2448,40 +2066,28 @@ function renderizarContenidoDrawer() {
                         Zona de Envío *
                     </label>
 
-
                     <select
                         id="provinciaSelect"
                         class="payment-select"
                         onchange="updateCartUI()">
 
-
                         <option value="CABA">
-
                             Capital Federal (CABA) - $8.500
-
                         </option>
-
 
                         <option
                             value="Buenos Aires"
                             selected>
-
                             Provincia de Buenos Aires - $12.500
-
                         </option>
-
 
                         <option value="Provincias">
-
                             Otras Provincias / Resto del País - $18.500
-
                         </option>
-
 
                     </select>
 
                 </div>
-
 
                 <div
                     id="envioInfoResumen"
@@ -2501,30 +2107,23 @@ function renderizarContenidoDrawer() {
 
                 </div>
 
-
                 <div class="form-buttons">
 
                     <button
                         type="button"
                         class="btn-back"
                         onclick="volverAlCarrito()">
-
                         Volver
-
                     </button>
-
 
                     <button
                         type="button"
                         class="btn-submit-order"
                         onclick="enviarPedidoWhatsApp()">
-
                         💬 Enviar Pedido WhatsApp
-
                     </button>
 
                 </div>
-
 
             </div>
 
@@ -2534,10 +2133,6 @@ function renderizarContenidoDrawer() {
 
 }
 
-
-/* =====================================================
-   CAMBIO METODO PAGO
-===================================================== */
 
 function onPaymentMethodChange() {
 
@@ -2550,7 +2145,6 @@ function onPaymentMethodChange() {
 
     metodoPagoGlobal =
         selectElement.value;
-
 
     const cuotasContainer =
         document.getElementById(
@@ -2567,9 +2161,7 @@ function onPaymentMethodChange() {
             'labelCuotas'
         );
 
-
     cuotasSelect.innerHTML = '';
-
 
     if (
         metodoPagoGlobal ===
@@ -2581,7 +2173,6 @@ function onPaymentMethodChange() {
 
         labelCuotas.innerText =
             "Cantidad de pagos (hasta 6 - +4% recargo por pago):";
-
 
         for (
             let i = 1;
@@ -2601,7 +2192,6 @@ function onPaymentMethodChange() {
                     i > 1 ? 's' : ''
                 } (+${i * 4}% recargo)`;
 
-
             if (
                 i === cuotasGlobal
             ) {
@@ -2611,7 +2201,6 @@ function onPaymentMethodChange() {
 
             }
 
-
             cuotasSelect.appendChild(
                 opt
             );
@@ -2619,7 +2208,6 @@ function onPaymentMethodChange() {
         }
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -2631,7 +2219,6 @@ function onPaymentMethodChange() {
 
         labelCuotas.innerText =
             "Cantidad de cuotas (hasta 12 - +8% recargo por cuota):";
-
 
         for (
             let i = 1;
@@ -2651,7 +2238,6 @@ function onPaymentMethodChange() {
                     i > 1 ? 's' : ''
                 } (+${i * 8}% recargo)`;
 
-
             if (
                 i === cuotasGlobal
             ) {
@@ -2661,7 +2247,6 @@ function onPaymentMethodChange() {
 
             }
 
-
             cuotasSelect.appendChild(
                 opt
             );
@@ -2670,7 +2255,6 @@ function onPaymentMethodChange() {
 
     }
 
-
     else {
 
         cuotasContainer.style.display =
@@ -2678,15 +2262,10 @@ function onPaymentMethodChange() {
 
     }
 
-
     updateCartUI();
 
 }
 
-
-/* =====================================================
-   ACTUALIZAR TOTAL
-===================================================== */
 
 function updateCartUI() {
 
@@ -2694,7 +2273,6 @@ function updateCartUI() {
         document.getElementById(
             'paymentMethodSelect'
         );
-
 
     if (
         paymentMethodSelect
@@ -2705,12 +2283,10 @@ function updateCartUI() {
 
     }
 
-
     const cuotasSelect =
         document.getElementById(
             'cuotasSelect'
         );
-
 
     if (
         cuotasSelect &&
@@ -2724,12 +2300,10 @@ function updateCartUI() {
 
     }
 
-
     const detailsContainer =
         document.getElementById(
             'paymentDetailsContainer'
         );
-
 
     let subtotal =
         carrito.reduce(
@@ -2742,9 +2316,7 @@ function updateCartUI() {
             0
         );
 
-
     let recargoDescuentoValor = 0;
-
 
     if (
         metodoPagoGlobal ===
@@ -2755,7 +2327,6 @@ function updateCartUI() {
             -(subtotal * 0.15);
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -2771,7 +2342,6 @@ function updateCartUI() {
 
     }
 
-
     else if (
         metodoPagoGlobal ===
         'tarjeta'
@@ -2786,15 +2356,12 @@ function updateCartUI() {
 
     }
 
-
     let costoEnvio = 12500;
-
 
     const provinciaSelect =
         document.getElementById(
             'provinciaSelect'
         );
-
 
     if (provinciaSelect) {
 
@@ -2806,12 +2373,10 @@ function updateCartUI() {
                 provKey
             ].costo;
 
-
         const infoRes =
             document.getElementById(
                 'envioInfoResumen'
             );
-
 
         if (infoRes) {
 
@@ -2830,12 +2395,10 @@ function updateCartUI() {
 
     }
 
-
     let totalFinal =
         subtotal +
         costoEnvio +
         recargoDescuentoValor;
-
 
     if (detailsContainer) {
 
@@ -2843,7 +2406,6 @@ function updateCartUI() {
             recargoDescuentoValor < 0
                 ? "#10b981"
                 : "var(--text-main)";
-
 
         detailsContainer.innerHTML = `
 
@@ -2861,7 +2423,6 @@ function updateCartUI() {
 
             </div>
 
-
             <div class="cart-summary-line">
 
                 <span>
@@ -2875,7 +2436,6 @@ function updateCartUI() {
                 </span>
 
             </div>
-
 
             <div
                 class="cart-summary-line"
@@ -2910,12 +2470,10 @@ function updateCartUI() {
 
     }
 
-
     const totalPriceEl =
         document.getElementById(
             'cartTotalPrice'
         );
-
 
     if (totalPriceEl) {
 
@@ -2926,16 +2484,10 @@ function updateCartUI() {
 
     }
 
-
-    /* =================================================
-       MOSTRAR CUOTAS Y MONTO DE CADA CUOTA
-    ================================================= */
-
     const installmentSummary =
         document.getElementById(
             'installmentSummary'
         );
-
 
     if (installmentSummary) {
 
@@ -2948,10 +2500,8 @@ function updateCartUI() {
                 totalFinal /
                 cuotasGlobal;
 
-
             installmentSummary.style.display =
                 'block';
-
 
             installmentSummary.innerHTML = `
 
@@ -2969,7 +2519,6 @@ function updateCartUI() {
 
         }
 
-
         else if (
             metodoPagoGlobal ===
             'tarjeta'
@@ -2979,10 +2528,8 @@ function updateCartUI() {
                 totalFinal /
                 cuotasGlobal;
 
-
             installmentSummary.style.display =
                 'block';
-
 
             installmentSummary.innerHTML = `
 
@@ -3000,7 +2547,6 @@ function updateCartUI() {
 
         }
 
-
         else {
 
             installmentSummary.style.display =
@@ -3016,10 +2562,6 @@ function updateCartUI() {
 }
 
 
-/* =====================================================
-   IR FORMULARIO
-===================================================== */
-
 function irAlFormularioEnvio() {
 
     vistaActual =
@@ -3029,10 +2571,6 @@ function irAlFormularioEnvio() {
 
 }
 
-
-/* =====================================================
-   VOLVER
-===================================================== */
 
 function volverAlCarrito() {
 
@@ -3044,10 +2582,6 @@ function volverAlCarrito() {
 }
 
 
-/* =====================================================
-   ENVIAR WHATSAPP
-===================================================== */
-
 function enviarPedidoWhatsApp() {
 
     const nombre =
@@ -3055,38 +2589,44 @@ function enviarPedidoWhatsApp() {
             'nombreCliente'
         ).value.trim();
 
-
     const dni =
         document.getElementById(
             'dniCliente'
         ).value.trim();
-
 
     const telefono =
         document.getElementById(
             'telefonoCliente'
         ).value.trim();
 
-
     const email =
         document.getElementById(
             'emailCliente'
         ).value.trim();
-
 
     const direccion =
         document.getElementById(
             'direccionCliente'
         ).value.trim();
 
-
     const localidad =
         document.getElementById(
             'localidadCliente'
         ).value.trim();
 
+    /* AGREGADO: PROVINCIA */
 
-    /* VALIDACIÓN */
+    const provincia =
+        document.getElementById(
+            'provinciaCliente'
+        ).value.trim();
+
+    /* AGREGADO: CODIGO POSTAL */
+
+    const codigoPostal =
+        document.getElementById(
+            'codigoPostalCliente'
+        ).value.trim();
 
     if (
         !nombre ||
@@ -3094,7 +2634,9 @@ function enviarPedidoWhatsApp() {
         !telefono ||
         !email ||
         !direccion ||
-        !localidad
+        !localidad ||
+        !provincia ||
+        !codigoPostal
     ) {
 
         alert(
@@ -3105,32 +2647,21 @@ function enviarPedidoWhatsApp() {
 
     }
 
-
-    /* GENERAR CÓDIGO ÚNICO */
-
     const numeroGuia =
         generarCodigoSeguimiento();
-
-
-    /* PROVINCIA */
 
     const provinciaKey =
         document.getElementById(
             'provinciaSelect'
         ).value;
 
-
     const datosProvincia =
         tarifasProvincias[
             provinciaKey
         ];
 
-
     const costoEnvio =
         datosProvincia.costo;
-
-
-    /* SUBTOTAL */
 
     let subtotal =
         carrito.reduce(
@@ -3143,13 +2674,9 @@ function enviarPedidoWhatsApp() {
             0
         );
 
-
-    /* PAGO */
-
     let recargoDescuentoValor = 0;
 
     let textoMetodo = "";
-
 
     if (
         metodoPagoGlobal ===
@@ -3164,7 +2691,6 @@ function enviarPedidoWhatsApp() {
 
     }
 
-
     else if (
         metodoPagoGlobal ===
         'creditoDni'
@@ -3177,7 +2703,6 @@ function enviarPedidoWhatsApp() {
                 0.04
             );
 
-
         textoMetodo =
             `Crédito con DNI (${cuotasGlobal} pago${
                 cuotasGlobal > 1
@@ -3186,7 +2711,6 @@ function enviarPedidoWhatsApp() {
             }, +${cuotasGlobal * 4}% recargo)`;
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -3200,7 +2724,6 @@ function enviarPedidoWhatsApp() {
                 0.08
             );
 
-
         textoMetodo =
             `Tarjeta de Crédito (${cuotasGlobal} cuota${
                 cuotasGlobal > 1
@@ -3210,19 +2733,12 @@ function enviarPedidoWhatsApp() {
 
     }
 
-
-    /* TOTAL */
-
     const totalFinal =
         subtotal +
         costoEnvio +
         recargoDescuentoValor;
 
-
-    /* CUOTAS */
-
     let textoCuotas = "";
-
 
     if (
         metodoPagoGlobal ===
@@ -3233,7 +2749,6 @@ function enviarPedidoWhatsApp() {
             totalFinal /
             cuotasGlobal;
 
-
         textoCuotas =
             `• Cantidad de pagos: ${cuotasGlobal}\n` +
             `• Monto de cada pago: ${formatearMoneda(
@@ -3241,7 +2756,6 @@ function enviarPedidoWhatsApp() {
             )}\n`;
 
     }
-
 
     else if (
         metodoPagoGlobal ===
@@ -3252,7 +2766,6 @@ function enviarPedidoWhatsApp() {
             totalFinal /
             cuotasGlobal;
 
-
         textoCuotas =
             `• Cantidad de cuotas: ${cuotasGlobal}\n` +
             `• Monto de cada cuota: ${formatearMoneda(
@@ -3261,7 +2774,6 @@ function enviarPedidoWhatsApp() {
 
     }
 
-
     else {
 
         textoCuotas =
@@ -3269,12 +2781,8 @@ function enviarPedidoWhatsApp() {
 
     }
 
-
-    /* PRODUCTOS */
-
     let detalleProductosTexto =
         "";
-
 
     carrito.forEach(
         item => {
@@ -3284,11 +2792,6 @@ function enviarPedidoWhatsApp() {
 
         }
     );
-
-
-    /* =================================================
-       MENSAJE WHATSAPP
-    ================================================= */
 
     let mensaje =
         `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
@@ -3304,9 +2807,6 @@ function enviarPedidoWhatsApp() {
 
     mensaje +=
         `----------------------------------------\n\n`;
-
-
-    /* DATOS */
 
     mensaje +=
         `*DATOS DEL COMPRADOR*\n`;
@@ -3326,6 +2826,14 @@ function enviarPedidoWhatsApp() {
     mensaje +=
         `• Dirección: ${direccion}, ${localidad}\n`;
 
+    /* AGREGADO: PROVINCIA Y CODIGO POSTAL */
+
+    mensaje +=
+        `• Provincia: ${provincia}\n`;
+
+    mensaje +=
+        `• Código Postal: ${codigoPostal}\n`;
+
     mensaje +=
         `• Zona de Envío: ${datosProvincia.nombre}\n`;
 
@@ -3337,17 +2845,11 @@ function enviarPedidoWhatsApp() {
     mensaje +=
         `• Demora estimada: ${datosProvincia.demora}\n\n`;
 
-
-    /* PRODUCTOS */
-
     mensaje +=
         `*PRODUCTOS SOLICITADOS*\n`;
 
     mensaje +=
         `${detalleProductosTexto}\n`;
-
-
-    /* PAGOS */
 
     mensaje +=
         `*DESGLOSE DE PAGOS Y ENVÍO*\n`;
@@ -3379,16 +2881,10 @@ function enviarPedidoWhatsApp() {
     mensaje +=
         `${textoCuotas}\n`;
 
-
-    /* TOTAL */
-
     mensaje +=
         `*TOTAL A PAGAR:* ${formatearMoneda(
             totalFinal
         )}\n\n`;
-
-
-    /* SEGUIMIENTO */
 
     mensaje +=
         `*CÓDIGO DE SEGUIMIENTO*\n`;
@@ -3396,47 +2892,29 @@ function enviarPedidoWhatsApp() {
     mensaje +=
         `${numeroGuia}\n\n`;
 
-
     mensaje +=
         `Solicito confirmación del pedido y datos para el pago.`;
-
-
-    /* CODIFICAR */
 
     const mensajeCodificado =
         encodeURIComponent(
             mensaje
         );
 
-
-    /* NÚMERO WHATSAPP */
-
     const numeroWhatsApp =
         "5491155012447";
-
 
     const urlWhatsApp =
         `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
-
-    /* VACIAR CARRITO */
-
     carrito = [];
 
     actualizarContadorCarrito();
-
-
-    /* ABRIR WHATSAPP */
 
     window.location.href =
         urlWhatsApp;
 
 }
 
-
-/* =====================================================
-   INICIALIZAR
-===================================================== */
 
 renderizarProductos();
 
