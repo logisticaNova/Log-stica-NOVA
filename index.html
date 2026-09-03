@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Logística Nova - Seguimiento de Envíos y Soluciones Logísticas</title>
-    <!-- Google Fonts para una tipografía moderna -->
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #2563eb;
@@ -34,7 +37,10 @@
             overflow-x: hidden;
         }
 
-        /* Navbar Superior Flexible */
+        /* =========================
+           NAVBAR
+        ========================= */
+
         .navbar {
             background-color: white;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -89,7 +95,10 @@
             background-color: #ea580c !important;
         }
 
-        /* Hero / Buscador Principal */
+        /* =========================
+           HERO
+        ========================= */
+
         .hero-section {
             background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
             color: white;
@@ -115,14 +124,17 @@
             opacity: 0.9;
         }
 
-        /* Caja de Seguimiento Adaptable */
+        /* =========================
+           BUSCADOR
+        ========================= */
+
         .tracking-box {
             background: white;
             padding: 10px;
             border-radius: var(--radius);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             display: flex;
-            flex-direction: column; /* Por defecto vertical en celulares */
+            flex-direction: column;
             gap: 10px;
             max-width: 600px;
             margin: 0 auto;
@@ -136,6 +148,7 @@
             font-size: 0.95rem;
             outline: none;
             font-family: inherit;
+            text-transform: uppercase;
         }
 
         .tracking-input:focus {
@@ -159,7 +172,10 @@
             background-color: #ea580c;
         }
 
-        /* Resultado del Rastreo */
+        /* =========================
+           RESULTADO
+        ========================= */
+
         .tracking-result-container {
             max-width: 800px;
             margin: -20px auto 30px auto;
@@ -181,12 +197,12 @@
 
         .result-header {
             display: flex;
-            flex-direction: column; /* Apilado en móvil para evitar que se pisen los textos */
+            flex-direction: column;
             gap: 12px;
             align-items: flex-start;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 12px;
-            margin-bottom: 15px;
+            padding-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .status-badge {
@@ -198,7 +214,169 @@
             font-weight: 600;
         }
 
-        /* Contenido Institucional y Servicios */
+        /* =========================
+           DATOS DEL ENVÍO
+        ========================= */
+
+        .shipment-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .shipment-info div {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        /* =========================
+           PRODUCTO
+        ========================= */
+
+        .product-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .product-box h4 {
+            font-size: 0.9rem;
+            margin-bottom: 7px;
+            color: var(--text-muted);
+        }
+
+        .product-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* =========================
+           LINEA DE TIEMPO
+        ========================= */
+
+        .timeline-title {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .tracking-timeline {
+            position: relative;
+            padding-left: 5px;
+        }
+
+        .tracking-timeline::before {
+            content: "";
+            position: absolute;
+            left: 19px;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background-color: #e5e7eb;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            gap: 15px;
+            padding-bottom: 25px;
+            opacity: 0.45;
+        }
+
+        .timeline-icon {
+            position: relative;
+            z-index: 2;
+
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+
+            border-radius: 50%;
+
+            background-color: #e5e7eb;
+            color: #6b7280;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 0.8rem;
+            font-weight: 700;
+
+            border: 3px solid white;
+        }
+
+        .timeline-item.completed {
+            opacity: 1;
+        }
+
+        .timeline-item.completed .timeline-icon {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+        }
+
+        .timeline-item.active .timeline-icon {
+            background-color: #2563eb;
+            color: white;
+            box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.12);
+        }
+
+        .timeline-item.active h4 {
+            color: #2563eb;
+        }
+
+        .timeline-item.delivered {
+            opacity: 1;
+        }
+
+        .timeline-item.delivered .timeline-icon {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .timeline-item.delivered h4 {
+            color: #2563eb;
+        }
+
+        .timeline-content {
+            padding-top: 2px;
+        }
+
+        .timeline-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+            color: var(--text-main);
+        }
+
+        .timeline-content p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .timeline-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
         .container {
             max-width: 1100px;
             margin: 40px auto;
@@ -220,9 +398,13 @@
             font-size: 0.95rem;
         }
 
+        /* =========================
+           SERVICIOS
+        ========================= */
+
         .features-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Una columna por defecto en celulares */
+            grid-template-columns: 1fr;
             gap: 20px;
         }
 
@@ -233,6 +415,11 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.03);
             border: 1px solid var(--border-color);
             transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.06);
         }
 
         .feature-icon {
@@ -251,7 +438,10 @@
             font-size: 0.9rem;
         }
 
-        /* Sección de Compra de Productos / Tienda */
+        /* =========================
+           TIENDA
+        ========================= */
+
         .store-banner {
             background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
             color: white;
@@ -259,7 +449,7 @@
             padding: 30px 20px;
             margin-top: 40px;
             display: flex;
-            flex-direction: column; /* Siempre vertical en celulares para mejor lectura */
+            flex-direction: column;
             align-items: center;
             text-align: center;
             gap: 20px;
@@ -297,7 +487,10 @@
             background-color: #f8fafc;
         }
 
-        /* Footer */
+        /* =========================
+           FOOTER
+        ========================= */
+
         footer {
             background-color: #111827;
             color: #9ca3af;
@@ -312,177 +505,1109 @@
             color: white;
         }
 
-        /* Media Queries para pantallas medianas y escritorios (Escritorio en adelante) */
+        /* =========================
+           ESCRITORIO
+        ========================= */
+
         @media (min-width: 640px) {
+
             .tracking-box {
-                flex-direction: row; /* Vuelve a ponerse horizontal en pantallas más anchas */
+                flex-direction: row;
             }
+
             .tracking-btn {
                 width: auto;
             }
+
             .result-header {
                 flex-direction: row;
                 align-items: center;
+                justify-content: space-between;
             }
+
             .features-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cuadrícula múltiple */
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
+
             .store-banner {
                 flex-direction: row;
                 text-align: left;
                 padding: 40px;
+                justify-content: space-between;
             }
+
             .store-btn {
                 width: auto;
             }
+
             .navbar {
                 padding: 15px 40px;
             }
+
             .hero-section h1 {
                 font-size: 2.8rem;
             }
+
             .section-title {
                 font-size: 2.2rem;
+            }
+
+            .shipment-info {
+                grid-template-columns: 1fr 1fr;
+                column-gap: 25px;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Navbar Institucional -->
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
     <nav class="navbar">
+
         <div class="navbar-brand">
             📦 Logística Nova
         </div>
+
         <div class="nav-links">
-            <a href="#seguimiento">Seguimiento</a>
-            <a href="#quienes-somos">Quiénes Somos</a>
-            <a href="#servicios">Servicios</a>
-            <a href="https://logisticanova.github.io/Log-stica-NOVA/productos.html" class="nav-btn-store" target="_blank">🛒 Ver Productos</a>
+
+            <a href="#seguimiento">
+                Seguimiento
+            </a>
+
+            <a href="#quienes-somos">
+                Quiénes Somos
+            </a>
+
+            <a href="#servicios">
+                Servicios
+            </a>
+
+            <a
+                href="https://logisticanova.github.io/Log-stica-NOVA/productos.html"
+                class="nav-btn-store"
+                target="_blank"
+            >
+                🛒 Ver Productos
+            </a>
+
         </div>
+
     </nav>
 
-    <!-- Sección Hero y Rastreo de Envío -->
+
+    <!-- =========================
+         HERO / SEGUIMIENTO
+    ========================= -->
+
     <header class="hero-section" id="seguimiento">
+
         <div class="hero-container">
-            <h1>Seguimiento de Envíos</h1>
-            <p>Ingresa tu número de guía, código de seguimiento o SKU para conocer el estado actual de tu paquete en tiempo real.</p>
-            
+
+            <h1>
+                Seguimiento de Envíos
+            </h1>
+
+            <p>
+                Ingresa tu número de guía, código de seguimiento o SKU
+                para conocer el estado actual de tu paquete.
+            </p>
+
             <div class="tracking-box">
-                <input type="text" id="trackingInput" class="tracking-input" placeholder="Ej. NOVA-84920 o Código...">
-                <button class="tracking-btn" onclick="buscarEnvio()">Rastrear</button>
+
+                <input
+                    type="text"
+                    id="trackingInput"
+                    class="tracking-input"
+                    placeholder="Ej. NV-PWQAE8QV"
+                    onkeydown="if(event.key === 'Enter') buscarEnvio()"
+                >
+
+                <button
+                    class="tracking-btn"
+                    onclick="buscarEnvio()"
+                >
+                    Rastrear
+                </button>
+
             </div>
+
         </div>
+
     </header>
 
-    <!-- Contenedor del Resultado de Rastreo -->
+
+    <!-- =========================
+         RESULTADO DEL RASTREO
+    ========================= -->
+
     <div class="tracking-result-container">
+
         <div class="result-card" id="resultCard">
+
+            <!-- Encabezado -->
+
             <div class="result-header">
+
                 <div>
-                    <h3 id="resultTitle" style="font-size: 0.95rem; color: var(--text-muted);">Información de Guía</h3>
-                    <p id="resultCode" style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">--</p>
+
+                    <h3 style="
+                        font-size: 0.95rem;
+                        color: var(--text-muted);
+                    ">
+                        Información de Guía
+                    </h3>
+
+                    <p
+                        id="resultCode"
+                        style="
+                            font-size: 1.15rem;
+                            font-weight: 700;
+                            color: var(--text-main);
+                        "
+                    >
+                        --
+                    </p>
+
                 </div>
-                <span class="status-badge" id="resultStatus">En Tránsito</span>
+
+                <span
+                    class="status-badge"
+                    id="resultStatus"
+                >
+                    --
+                </span>
+
             </div>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 10px; font-size: 0.9rem;">
-                <div><strong>Destino:</strong> <span id="resultDestino" style="color: var(--text-muted);">Buenos Aires, Argentina</span></div>
-                <div><strong>Última Actualización:</strong> <span id="resultFecha" style="color: var(--text-muted);">Hoy, 10:30 hs</span></div>
-                <div><strong>Operador Logístico:</strong> <span style="color: var(--text-muted);">Logística Nova Central</span></div>
+
+
+            <!-- Información -->
+
+            <div class="shipment-info">
+
+                <div>
+                    <strong>Comprador:</strong>
+                    <span
+                        id="resultComprador"
+                        style="color: var(--text-muted);"
+                    >
+                        --
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Destino:</strong>
+                    <span
+                        id="resultDestino"
+                        style="color: var(--text-muted);"
+                    >
+                        --
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Provincia:</strong>
+                    <span
+                        id="resultProvincia"
+                        style="color: var(--text-muted);"
+                    >
+                        --
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Código Postal:</strong>
+                    <span
+                        id="resultCP"
+                        style="color: var(--text-muted);"
+                    >
+                        --
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Última Actualización:</strong>
+                    <span
+                        id="resultFecha"
+                        style="color: var(--text-muted);"
+                    >
+                        --
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Demora estimada:</strong>
+                    <span
+                        id="resultDemora"
+                        style="color: var(--text-muted);"
+                    >
+                        --
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Costo de envío:</strong>
+                    <span
+                        id="resultEnvio"
+                        style="color: var(--text-muted);"
+                    >
+                        --
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Total de la orden:</strong>
+                    <span
+                        id="resultTotal"
+                        style="color: var(--text-muted);"
+                    >
+                        --
+                    </span>
+                </div>
+
             </div>
+
+
+            <!-- Producto -->
+
+            <div class="product-box">
+
+                <h4>
+                    PRODUCTOS SOLICITADOS
+                </h4>
+
+                <div
+                    class="product-name"
+                    id="resultProducto"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <!-- Timeline -->
+
+            <h3 class="timeline-title">
+                Seguimiento del envío
+            </h3>
+
+            <div
+                class="tracking-timeline"
+                id="trackingTimeline"
+            >
+
+                <!-- 1 -->
+
+                <div class="timeline-item">
+
+                    <div class="timeline-icon">
+                        ✓
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            Pedido recibido
+                        </h4>
+
+                        <p>
+                            El pedido fue registrado correctamente.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 2 -->
+
+                <div class="timeline-item">
+
+                    <div class="timeline-icon">
+                        💳
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            Pago confirmado
+                        </h4>
+
+                        <p>
+                            Se confirmó el pago correspondiente al pedido.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 3 -->
+
+                <div class="timeline-item">
+
+                    <div class="timeline-icon">
+                        📋
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            Pedido confirmado
+                        </h4>
+
+                        <p>
+                            El pedido fue confirmado y los productos reservados.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 4 -->
+
+                <div class="timeline-item">
+
+                    <div class="timeline-icon">
+                        🏭
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            Preparando envío
+                        </h4>
+
+                        <p>
+                            La mercadería está siendo preparada para despacho.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 5 -->
+
+                <div class="timeline-item">
+
+                    <div class="timeline-icon">
+                        📦
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            Despachado
+                        </h4>
+
+                        <p>
+                            El paquete salió del centro de origen.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 6 -->
+
+                <div class="timeline-item">
+
+                    <div class="timeline-icon">
+                        🚚
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            En tránsito
+                        </h4>
+
+                        <p>
+                            El envío se encuentra viajando hacia su destino.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 7 -->
+
+                <div class="timeline-item">
+
+                    <div class="timeline-icon">
+                        🏠
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            En reparto
+                        </h4>
+
+                        <p>
+                            El paquete se encuentra en camino al domicilio.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 8 -->
+
+                <div class="timeline-item">
+
+                    <div class="timeline-icon">
+                        ✓
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h4>
+                            Entregado
+                        </h4>
+
+                        <p>
+                            El envío fue entregado correctamente.
+                        </p>
+
+                        <span class="timeline-date">
+                            Pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 
-    <!-- Sección Institucional: ¿Qué es Logística Nova? -->
-    <main class="container" id="quienes-somos">
-        <h2 class="section-title">¿Qué es Logística Nova?</h2>
-        <p class="section-subtitle">Somos una empresa líder en gestión integral de envíos, almacenamiento y distribución.</p>
-        
-        <div style="background: white; padding: 25px 20px; border-radius: var(--radius); border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.02); margin-bottom: 40px;">
-            <p style="margin-bottom: 12px; font-size: 0.95rem; color: var(--text-main);">
-                <strong>Logística Nova</strong> nace para simplificar el flujo de mercaderías en todo el país. Brindamos infraestructura tecnológica y operativa avanzada para que PyMEs, grandes comercios y particulares puedan tercerizar su cadena de suministro.
+
+    <!-- =========================
+         QUIÉNES SOMOS
+    ========================= -->
+
+    <main
+        class="container"
+        id="quienes-somos"
+    >
+
+        <h2 class="section-title">
+            ¿Qué es Logística Nova?
+        </h2>
+
+        <p class="section-subtitle">
+            Somos una empresa líder en gestión integral de envíos,
+            almacenamiento y distribución.
+        </p>
+
+
+        <div style="
+            background: white;
+            padding: 25px 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            margin-bottom: 40px;
+        ">
+
+            <p style="
+                margin-bottom: 12px;
+                font-size: 0.95rem;
+                color: var(--text-main);
+            ">
+
+                <strong>Logística Nova</strong>
+                nace para simplificar el flujo de mercaderías
+                en todo el país. Brindamos infraestructura tecnológica
+                y operativa avanzada para que PyMEs, grandes comercios
+                y particulares puedan tercerizar su cadena de suministro.
+
             </p>
-            <p style="font-size: 0.95rem; color: var(--text-main);">
-                Nuestra plataforma automatiza los procesos de despacho, ofrece control de stock centralizado y garantiza trazabilidad absoluta mediante códigos de rastreo inteligentes.
+
+            <p style="
+                font-size: 0.95rem;
+                color: var(--text-main);
+            ">
+
+                Nuestra plataforma automatiza los procesos de despacho,
+                ofrece control de stock centralizado y garantiza
+                trazabilidad absoluta mediante códigos de rastreo inteligentes.
+
             </p>
+
         </div>
 
-        <!-- Sección de Capacidades / Servicios -->
+
+        <!-- =========================
+             SERVICIOS
+        ========================= -->
+
         <div id="servicios">
-            <h2 class="section-title">¿Qué podemos realizar por ti?</h2>
-            <p class="section-subtitle">Conoce las soluciones logísticas que ponemos a tu disposición.</p>
+
+            <h2 class="section-title">
+                ¿Qué podemos realizar por ti?
+            </h2>
+
+            <p class="section-subtitle">
+                Conoce las soluciones logísticas que ponemos a tu disposición.
+            </p>
+
 
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚚</div>
-                    <h3>Distribución Nacional</h3>
-                    <p>Envíos puerta a puerta rápidos y seguros a lo largo de todo el territorio nacional, con flota propia y monitoreo satelital.</p>
-                </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🏭</div>
-                    <h3>Almacenamiento y Fulfillment</h3>
-                    <p>Gestión integral de depósitos: recepción, control de inventario en tiempo real, armado de pedidos (picking) y empaque.</p>
+
+                    <div class="feature-icon">
+                        🚚
+                    </div>
+
+                    <h3>
+                        Distribución Nacional
+                    </h3>
+
+                    <p>
+                        Envíos puerta a puerta rápidos y seguros
+                        a lo largo de todo el territorio nacional,
+                        con flota propia y monitoreo satelital.
+                    </p>
+
                 </div>
 
+
                 <div class="feature-card">
-                    <div class="feature-icon">⏱️</div>
-                    <h3>Logística Última Milla</h3>
-                    <p>Entregas urbanas de alta eficiencia optimizadas para e-commerce, reduciendo tiempos de entrega al cliente final.</p>
+
+                    <div class="feature-icon">
+                        🏭
+                    </div>
+
+                    <h3>
+                        Almacenamiento y Fulfillment
+                    </h3>
+
+                    <p>
+                        Gestión integral de depósitos: recepción,
+                        control de inventario en tiempo real,
+                        armado de pedidos (picking) y empaque.
+                    </p>
+
                 </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ⏱️
+                    </div>
+
+                    <h3>
+                        Logística Última Milla
+                    </h3>
+
+                    <p>
+                        Entregas urbanas de alta eficiencia optimizadas
+                        para e-commerce, reduciendo tiempos de entrega
+                        al cliente final.
+                    </p>
+
+                </div>
+
             </div>
+
         </div>
 
-        <!-- Banner Explicativo e Interactivo para Comprar Productos -->
+
+        <!-- =========================
+             TIENDA
+        ========================= -->
+
         <div class="store-banner">
+
             <div>
-                <h2>¿Buscas adquirir tecnología o electrodomésticos?</h2>
-                <p>Explora nuestro catálogo en línea. Selecciona tus artículos, elige tu medio de pago con descuentos exclusivos y coordina la entrega automática directo por WhatsApp.</p>
+
+                <h2>
+                    ¿Buscas adquirir tecnología o electrodomésticos?
+                </h2>
+
+                <p>
+                    Explora nuestro catálogo en línea.
+                    Selecciona tus artículos, elige tu medio de pago
+                    con descuentos exclusivos y coordina la entrega
+                    automática directo por WhatsApp.
+                </p>
+
             </div>
+
             <div>
-                <a href="https://logisticanova.github.io/Log-stica-NOVA/productos.html" class="store-btn" target="_blank">Ir al Catálogo</a>
+
+                <a
+                    href="https://logisticanova.github.io/Log-stica-NOVA/productos.html"
+                    class="store-btn"
+                    target="_blank"
+                >
+                    Ir al Catálogo
+                </a>
+
             </div>
+
         </div>
+
     </main>
 
-    <!-- Footer -->
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
     <footer>
-        <p>&copy; 2026 <strong>Logística Nova</strong>. Todos los derechos reservados.<br>Soporte y consultas: 11-5501-2447</p>
+
+        <p>
+            &copy; 2026
+            <strong>Logística Nova</strong>.
+            Todos los derechos reservados.
+            <br>
+            Soporte y consultas: 11-5501-2447
+        </p>
+
     </footer>
 
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
     <script>
+
+        /*
+        ============================================================
+        BASE DE DATOS LOCAL DE ENVÍOS
+        ============================================================
+
+        Acá vas agregando cada nuevo código de seguimiento.
+
+        Ejemplo:
+
+        "NV-XXXXXXXX": {
+            comprador: "Nombre",
+            destino: "Dirección",
+            provincia: "Buenos Aires",
+            cp: "1812",
+            demora: "24 a 48 hs",
+            envio: "$ 12.500",
+            total: "$ 1.603.698",
+            producto: "2x Smart TV...",
+            etapa: 3,
+            fecha: "03/09/2026 - 10:30 hs"
+        }
+
+        ETAPAS:
+
+        0 = Pedido recibido
+        1 = Pago confirmado
+        2 = Pedido confirmado
+        3 = Preparando envío
+        4 = Despachado
+        5 = En tránsito
+        6 = En reparto
+        7 = Entregado
+        ============================================================
+        */
+
+
+        const envios = {
+
+            "NV-PWQAE8QV": {
+
+                comprador: "Juan Pérez",
+
+                destino: "Calletin 78, Lomas de Zamora",
+
+                provincia: "Buenos Aires",
+
+                cp: "1812",
+
+                demora: "24 a 48 hs",
+
+                envio: "$ 12.500",
+
+                total: "$ 1.603.698",
+
+                producto:
+                    "2x Smart TV TCL 55 C655 QLED 4K",
+
+                etapa: 3,
+
+                fecha:
+                    "03/09/2026 - 10:30 hs"
+            }
+
+        };
+
+
+        /*
+        ============================================================
+        FUNCIÓN PRINCIPAL DE BÚSQUEDA
+        ============================================================
+        */
+
         function buscarEnvio() {
-            const input = document.getElementById('trackingInput').value.trim();
-            const resultCard = document.getElementById('resultCard');
-            const resultCode = document.getElementById('resultCode');
-            const resultStatus = document.getElementById('resultStatus');
+
+            const input = document
+                .getElementById("trackingInput")
+                .value
+                .trim()
+                .toUpperCase();
+
+
+            const resultCard =
+                document.getElementById("resultCard");
+
+
+            /*
+            --------------------------------------------
+            VALIDAR CAMPO VACÍO
+            --------------------------------------------
+            */
 
             if (input === "") {
-                alert("Por favor, ingresa un número de guía o código de seguimiento válido.");
-                resultCard.classList.remove('active');
+
+                alert(
+                    "Por favor, ingresa un número de seguimiento válido."
+                );
+
+                resultCard.classList.remove("active");
+
                 return;
             }
 
-            // Simulación de búsqueda de envío con datos dinámicos según el código ingresado
-            resultCode.innerText = input.toUpperCase();
-            
-            // Simular estados aleatorios o basados en texto
-            if(input.toLowerCase().includes('err')) {
-                resultStatus.innerText = "Dirección Incorrecta / Demorado";
-                resultStatus.style.backgroundColor = "#ef4444";
-            } else if(input.toLowerCase().includes('ent')) {
-                resultStatus.innerText = "Entregado con Éxito";
-                resultStatus.style.backgroundColor = "#2563eb";
-            } else {
-                resultStatus.innerText = "En Tránsito hacia Destino";
-                resultStatus.style.backgroundColor = "#10b981";
+
+            /*
+            --------------------------------------------
+            BUSCAR ENVÍO
+            --------------------------------------------
+            */
+
+            const envio = envios[input];
+
+
+            /*
+            --------------------------------------------
+            SI NO EXISTE
+            --------------------------------------------
+            */
+
+            if (!envio) {
+
+                resultCard.classList.remove("active");
+
+                alert(
+                    "No encontramos un envío asociado al código " +
+                    input +
+                    ". Verifica que el número ingresado sea correcto."
+                );
+
+                return;
             }
 
-            resultCard.classList.add('active');
-            
-            // Desplazarse suavemente hacia el resultado
-            resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            /*
+            --------------------------------------------
+            MOSTRAR INFORMACIÓN
+            --------------------------------------------
+            */
+
+            document.getElementById("resultCode").innerText =
+                input;
+
+
+            document.getElementById("resultComprador").innerText =
+                envio.comprador;
+
+
+            document.getElementById("resultDestino").innerText =
+                envio.destino;
+
+
+            document.getElementById("resultProvincia").innerText =
+                envio.provincia;
+
+
+            document.getElementById("resultCP").innerText =
+                envio.cp;
+
+
+            document.getElementById("resultDemora").innerText =
+                envio.demora;
+
+
+            document.getElementById("resultEnvio").innerText =
+                envio.envio;
+
+
+            document.getElementById("resultTotal").innerText =
+                envio.total;
+
+
+            document.getElementById("resultProducto").innerText =
+                envio.producto;
+
+
+            document.getElementById("resultFecha").innerText =
+                envio.fecha;
+
+
+            /*
+            --------------------------------------------
+            OBTENER ETAPAS
+            --------------------------------------------
+            */
+
+            const etapas =
+                document.querySelectorAll(".timeline-item");
+
+
+            /*
+            --------------------------------------------
+            REINICIAR TODAS LAS ETAPAS
+            --------------------------------------------
+            */
+
+            etapas.forEach((etapa, index) => {
+
+                etapa.classList.remove(
+                    "completed",
+                    "active",
+                    "delivered"
+                );
+
+
+                const icono =
+                    etapa.querySelector(".timeline-icon");
+
+
+                const fecha =
+                    etapa.querySelector(".timeline-date");
+
+
+                if (index === 7) {
+
+                    icono.innerText = "✓";
+
+                }
+                else if (index === 6) {
+
+                    icono.innerText = "🏠";
+
+                }
+                else if (index === 5) {
+
+                    icono.innerText = "🚚";
+
+                }
+                else if (index === 4) {
+
+                    icono.innerText = "📦";
+
+                }
+                else if (index === 3) {
+
+                    icono.innerText = "🏭";
+
+                }
+                else if (index === 2) {
+
+                    icono.innerText = "📋";
+
+                }
+                else if (index === 1) {
+
+                    icono.innerText = "💳";
+
+                }
+                else {
+
+                    icono.innerText = "✓";
+
+                }
+
+
+                fecha.innerText = "Pendiente";
+
+            });
+
+
+            /*
+            --------------------------------------------
+            MARCAR ETAPAS
+            --------------------------------------------
+            */
+
+            etapas.forEach((etapa, index) => {
+
+                const fecha =
+                    etapa.querySelector(".timeline-date");
+
+
+                const icono =
+                    etapa.querySelector(".timeline-icon");
+
+
+                if (index < envio.etapa) {
+
+                    etapa.classList.add("completed");
+
+                    fecha.innerText =
+                        "Completado";
+
+
+                    icono.innerText = "✓";
+
+                }
+
+
+                else if (index === envio.etapa) {
+
+                    etapa.classList.add("active");
+
+                    fecha.innerText =
+                        "Estado actual";
+
+                }
+
+            });
+
+
+            /*
+            --------------------------------------------
+            SI ESTÁ ENTREGADO
+            --------------------------------------------
+            */
+
+            if (envio.etapa === 7) {
+
+                etapas.forEach((etapa) => {
+
+                    etapa.classList.remove("active");
+
+                    etapa.classList.add("completed");
+
+                    const fecha =
+                        etapa.querySelector(".timeline-date");
+
+                    fecha.innerText =
+                        "Completado";
+
+                });
+
+
+                etapas[7].classList.add("delivered");
+
+                etapas[7]
+                    .querySelector(".timeline-date")
+                    .innerText = "Entregado";
+
+
+                document.getElementById("resultStatus").innerText =
+                    "Entregado con Éxito";
+
+
+                document.getElementById("resultStatus")
+                    .style.backgroundColor =
+                    "#2563eb";
+
+            }
+
+            else {
+
+                /*
+                --------------------------------------------
+                ESTADO ACTUAL
+                --------------------------------------------
+                */
+
+                const nombreEtapa =
+                    etapas[envio.etapa]
+                        .querySelector("h4")
+                        .innerText;
+
+
+                document.getElementById("resultStatus").innerText =
+                    nombreEtapa;
+
+
+                document.getElementById("resultStatus")
+                    .style.backgroundColor =
+                    "#10b981";
+
+            }
+
+
+            /*
+            --------------------------------------------
+            MOSTRAR RESULTADO
+            --------------------------------------------
+            */
+
+            resultCard.classList.add("active");
+
+
+            /*
+            --------------------------------------------
+            DESPLAZAR HACIA EL RESULTADO
+            --------------------------------------------
+            */
+
+            setTimeout(() => {
+
+                resultCard.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                });
+
+            }, 100);
+
         }
+
     </script>
+
 </body>
 </html>
