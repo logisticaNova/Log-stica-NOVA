@@ -1215,9 +1215,15 @@ PRODUCTOS
 
 const productos = [
 
-    /* ================================
-    CELULARES
-    ================================ */
+    /* =========================================================
+   PRODUCTOS - 200 PRODUCTOS
+   ========================================================= */
+
+const productos = [
+
+    /* =====================================================
+       1. CELULARES
+       ===================================================== */
 
     {
         id: 1,
@@ -1227,25 +1233,30 @@ const productos = [
         nombre: "Celular Motorola Edge 50 5G",
         categoria: "Celulares",
         subcategoria: "Smartphones",
-
-        descripcion:
-            "Smartphone premium con pantalla OLED y conectividad 5G. Ideal para fotografía, entretenimiento, trabajo y uso diario.",
-
+        descripcion: "Smartphone premium con pantalla OLED y conectividad 5G.",
         especificaciones: {
             pantalla: "6.7 pulgadas",
+            tipoPantalla: "OLED",
             memoriaRAM: "12GB",
-            conectividad: "5G"
+            almacenamiento: "256GB",
+            conectividad: "5G",
+            camaraPrincipal: "50MP",
+            bateria: "5000mAh"
         },
-
+        colores: ["Negro", "Azul"],
         precio: 850000,
-        precioOferta: 722500,
-        cuotas: 3,
+        moneda: "ARS",
+        descuento: 15,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 8,
+        destacado: true,
+        activo: true,
+        tags: ["5G", "OLED", "12GB RAM", "Motorola", "Smartphone"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
         imagenes: [
             "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
@@ -1257,837 +1268,1985 @@ const productos = [
         nombre: "Celular Samsung Galaxy A55 5G",
         categoria: "Celulares",
         subcategoria: "Smartphones",
-
-        descripcion:
-            "Smartphone con pantalla Super AMOLED, excelente autonomía y conectividad 5G para disfrutar contenido y aplicaciones.",
-
+        descripcion: "Smartphone con pantalla Super AMOLED y conectividad 5G.",
         especificaciones: {
             pantalla: "6.6 pulgadas",
+            tipoPantalla: "Super AMOLED",
             memoriaRAM: "8GB",
-            almacenamiento: "256GB"
+            almacenamiento: "256GB",
+            conectividad: "5G",
+            camaraPrincipal: "50MP",
+            bateria: "5000mAh"
         },
-
+        colores: ["Negro", "Azul"],
         precio: 790000,
-        precioOferta: 671500,
-        cuotas: 3,
+        moneda: "ARS",
+        descuento: 15,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 10,
+        destacado: true,
+        activo: true,
+        tags: ["Samsung", "5G", "AMOLED", "256GB"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
         imagenes: [
             "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
             "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
-
-    /* ================================
-    GAMING
-    ================================ */
-
     {
         id: 3,
+        sku: "CEL-IPH-13",
+        marca: "Apple",
+        modelo: "iPhone 13",
+        nombre: "Apple iPhone 13 128GB",
+        categoria: "Celulares",
+        subcategoria: "iPhone",
+        descripcion: "iPhone con chip A15 Bionic y cámara avanzada.",
+        especificaciones: {
+            pantalla: "6.1 pulgadas",
+            tipoPantalla: "Super Retina XDR",
+            memoriaRAM: "4GB",
+            almacenamiento: "128GB",
+            conectividad: "5G",
+            camaraPrincipal: "12MP",
+            bateria: "3240mAh"
+        },
+        colores: ["Negro", "Azul", "Blanco"],
+        precio: 1050000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 6,
+        destacado: true,
+        activo: true,
+        tags: ["Apple", "iPhone", "5G", "128GB"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1592286927505-2fd0f4f2f0b6?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1592286927505-2fd0f4f2f0b6?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 4,
+        sku: "CEL-IPH-14",
+        marca: "Apple",
+        modelo: "iPhone 14",
+        nombre: "Apple iPhone 14 128GB",
+        categoria: "Celulares",
+        subcategoria: "iPhone",
+        descripcion: "iPhone de alto rendimiento con cámara dual y pantalla OLED.",
+        especificaciones: {
+            pantalla: "6.1 pulgadas",
+            tipoPantalla: "OLED",
+            memoriaRAM: "6GB",
+            almacenamiento: "128GB",
+            conectividad: "5G",
+            camaraPrincipal: "12MP",
+            bateria: "3279mAh"
+        },
+        colores: ["Negro", "Azul", "Blanco"],
+        precio: 1200000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 5,
+        destacado: true,
+        activo: true,
+        tags: ["Apple", "iPhone", "OLED", "5G"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 5,
+        sku: "CEL-IPH-15",
+        marca: "Apple",
+        modelo: "iPhone 15",
+        nombre: "Apple iPhone 15 128GB",
+        categoria: "Celulares",
+        subcategoria: "iPhone",
+        descripcion: "iPhone con Dynamic Island, USB-C y cámara de 48MP.",
+        especificaciones: {
+            pantalla: "6.1 pulgadas",
+            tipoPantalla: "OLED",
+            memoriaRAM: "6GB",
+            almacenamiento: "128GB",
+            conectividad: "5G",
+            camaraPrincipal: "48MP",
+            bateria: "3349mAh"
+        },
+        colores: ["Negro", "Azul", "Rosa"],
+        precio: 1450000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 4,
+        destacado: true,
+        activo: true,
+        tags: ["Apple", "iPhone 15", "USB-C", "48MP"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 6,
+        sku: "CEL-SAM-A15",
+        marca: "Samsung",
+        modelo: "Galaxy A15",
+        nombre: "Samsung Galaxy A15 128GB",
+        categoria: "Celulares",
+        subcategoria: "Smartphones",
+        descripcion: "Celular económico con pantalla Super AMOLED.",
+        especificaciones: {
+            pantalla: "6.5 pulgadas",
+            tipoPantalla: "Super AMOLED",
+            memoriaRAM: "4GB",
+            almacenamiento: "128GB",
+            conectividad: "4G",
+            camaraPrincipal: "50MP",
+            bateria: "5000mAh"
+        },
+        colores: ["Negro", "Azul"],
+        precio: 390000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 15,
+        destacado: false,
+        activo: true,
+        tags: ["Samsung", "Económico", "AMOLED", "128GB"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 7,
+        sku: "CEL-MOT-G54",
+        marca: "Motorola",
+        modelo: "Moto G54",
+        nombre: "Motorola Moto G54 5G",
+        categoria: "Celulares",
+        subcategoria: "Smartphones",
+        descripcion: "Smartphone equilibrado con gran batería y conectividad 5G.",
+        especificaciones: {
+            pantalla: "6.5 pulgadas",
+            tipoPantalla: "LCD",
+            memoriaRAM: "8GB",
+            almacenamiento: "256GB",
+            conectividad: "5G",
+            camaraPrincipal: "50MP",
+            bateria: "6000mAh"
+        },
+        colores: ["Negro", "Azul"],
+        precio: 480000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 12,
+        destacado: false,
+        activo: true,
+        tags: ["Motorola", "5G", "6000mAh", "256GB"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 8,
+        sku: "CEL-XIA-RED13",
+        marca: "Xiaomi",
+        modelo: "Redmi Note 13",
+        nombre: "Xiaomi Redmi Note 13",
+        categoria: "Celulares",
+        subcategoria: "Smartphones",
+        descripcion: "Celular con pantalla AMOLED y cámara de alta resolución.",
+        especificaciones: {
+            pantalla: "6.67 pulgadas",
+            tipoPantalla: "AMOLED",
+            memoriaRAM: "8GB",
+            almacenamiento: "256GB",
+            conectividad: "4G",
+            camaraPrincipal: "108MP",
+            bateria: "5000mAh"
+        },
+        colores: ["Negro", "Verde"],
+        precio: 520000,
+        moneda: "ARS",
+        descuento: 12,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 11,
+        destacado: false,
+        activo: true,
+        tags: ["Xiaomi", "AMOLED", "108MP", "256GB"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       2. GAMING
+       ===================================================== */
+
+    {
+        id: 9,
         sku: "GAM-PS5-SLIM",
         marca: "Sony",
         modelo: "PS5 Slim",
         nombre: "Consola Sony PlayStation 5 Slim",
         categoria: "Gaming",
         subcategoria: "Consolas",
-
-        descripcion:
-            "Consola de nueva generación para gaming con gráficos de alta calidad, tiempos de carga reducidos y gran catálogo de juegos.",
-
+        descripcion: "Consola de nueva generación con gráficos hasta 4K.",
         especificaciones: {
             tipo: "Consola",
             resolucion: "Hasta 4K",
-            almacenamiento: "1TB"
+            almacenamiento: "1TB",
+            conectividad: "WiFi"
         },
-
+        colores: ["Blanco"],
         precio: 1200000,
-        precioOferta: 1020000,
-        cuotas: 3,
+        moneda: "ARS",
+        descuento: 15,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 8,
+        destacado: true,
+        activo: true,
+        tags: ["PS5", "Sony", "Gaming", "4K"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
     {
-        id: 4,
+        id: 10,
         sku: "GAM-XBOX-SX",
         marca: "Microsoft",
         modelo: "Xbox Series X",
         nombre: "Consola Xbox Series X",
         categoria: "Gaming",
         subcategoria: "Consolas",
-
-        descripcion:
-            "Consola de alto rendimiento para disfrutar juegos de última generación con excelente calidad gráfica y velocidad.",
-
+        descripcion: "Consola de alto rendimiento para juegos de última generación.",
         especificaciones: {
             tipo: "Consola",
             resolucion: "Hasta 4K",
-            almacenamiento: "1TB"
+            almacenamiento: "1TB",
+            conectividad: "WiFi"
         },
-
+        colores: ["Negro"],
         precio: 1250000,
-        precioOferta: 1062500,
-        cuotas: 3,
+        moneda: "ARS",
+        descuento: 15,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 7,
+        destacado: true,
+        activo: true,
+        tags: ["Xbox", "Microsoft", "4K", "Gaming"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-
-    /* ================================
-    TELEVISORES / MONITORES
-    ================================ */
-
-    {
-        id: 5,
-        sku: "TV-TCL-55C655",
-        marca: "TCL",
-        modelo: "55C655",
-        nombre: "Smart TV TCL 55 C655 QLED 4K",
-        categoria: "Televisores / Monitores",
-        subcategoria: "Smart TV",
-
-        descripcion:
-            "Televisor QLED 4K con Google TV y Dolby Vision Atmos. Excelente calidad de imagen, colores intensos y gran experiencia para películas, series y videojuegos.",
-
-        especificaciones: {
-            pulgadas: "55",
-            resolucion: "4K UHD",
-            sistema: "Google TV"
-        },
-
-        precio: 899999,
-        precioOferta: 764999,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-    {
-        id: 6,
-        sku: "TV-TCL-65C755",
-        marca: "TCL",
-        modelo: "65C755",
-        nombre: "Smart TV TCL 65 C755 QD-Mini LED 4K",
-        categoria: "Televisores / Monitores",
-        subcategoria: "Smart TV",
-
-        descripcion:
-            "Televisor QD-Mini LED 4K pensado para gaming y entretenimiento. Ofrece gran contraste, excelente brillo y una experiencia cinematográfica.",
-
-        especificaciones: {
-            pulgadas: "65",
-            resolucion: "4K UHD",
-            tecnologia: "QD-Mini LED"
-        },
-
-        precio: 1499999,
-        precioOferta: 1274999,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-    {
-        id: 7,
-        sku: "MON-LG-27FHD",
-        marca: "LG",
-        modelo: "27 FHD",
-        nombre: "Monitor LG 27 Full HD",
-        categoria: "Televisores / Monitores",
-        subcategoria: "Monitores",
-
-        descripcion:
-            "Monitor de 27 pulgadas pensado para oficina, estudio, entretenimiento y gaming casual.",
-
-        especificaciones: {
-            pulgadas: "27",
-            resolucion: "Full HD",
-            panel: "IPS"
-        },
-
-        precio: 430000,
-        precioOferta: 365500,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1616763355548-1b606f439f86?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-
-    /* ================================
-    AIRES ACONDICIONADOS
-    ================================ */
-
-    {
-        id: 8,
-        sku: "AC-SAMSUNG-3000",
-        marca: "Samsung",
-        modelo: "3000",
-        nombre: "Aire Acondicionado Samsung Inverter 3000W",
-        categoria: "Aires Acondicionados",
-        subcategoria: "Split Inverter",
-
-        descripcion:
-            "Aire acondicionado Split Inverter frío/calor, diseñado para climatizar ambientes de forma eficiente.",
-
-        especificaciones: {
-            frigorias: "2600",
-            potenciaW: "3000",
-            tecnologia: "Inverter"
-        },
-
-        precio: 950000,
-        precioOferta: 807500,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1631545806609-7e8e2c8f5f6c?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1625961332771-7a3c7b3e9b31?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-    {
-        id: 9,
-        sku: "AC-LG-4500",
-        marca: "LG",
-        modelo: "4500",
-        nombre: "Aire Acondicionado LG Inverter 4500W",
-        categoria: "Aires Acondicionados",
-        subcategoria: "Split Inverter",
-
-        descripcion:
-            "Equipo frío/calor con tecnología Inverter para climatizar ambientes amplios con un funcionamiento eficiente.",
-
-        especificaciones: {
-            frigorias: "3900",
-            potenciaW: "4500",
-            tecnologia: "Inverter"
-        },
-
-        precio: 1250000,
-        precioOferta: 1062500,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1631545806609-7e8e2c8f5f6c?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1625961332771-7a3c7b3e9b31?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-
-    /* ================================
-    HELADERAS / FREEZERS
-    ================================ */
-
-    {
-        id: 10,
-        sku: "REF-GAFA-H300",
-        marca: "Gafa",
-        modelo: "H300",
-        nombre: "Heladera con Freezer Gafa H300",
-        categoria: "Heladeras / Freezers",
-        subcategoria: "Con Freezer",
-
-        descripcion:
-            "Heladera cíclica con gran capacidad y eficiencia energética, ideal para hogares que buscan practicidad.",
-
-        especificaciones: {
-            capacidad: "282 L",
-            sistema: "Cíclico",
-            freezer: "Sí"
-        },
-
-        precio: 980000,
-        precioOferta: 833000,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
     {
         id: 11,
-        sku: "FREEZER-GAFA-200",
-        marca: "Gafa",
-        modelo: "200L",
-        nombre: "Freezer Horizontal Gafa 200 Litros",
-        categoria: "Heladeras / Freezers",
-        subcategoria: "Freezers",
-
-        descripcion:
-            "Freezer horizontal de gran capacidad para conservar alimentos y productos congelados durante largos períodos.",
-
+        sku: "GAM-PS5-DIG",
+        marca: "Sony",
+        modelo: "PS5 Digital",
+        nombre: "Sony PlayStation 5 Digital Edition",
+        categoria: "Gaming",
+        subcategoria: "Consolas",
+        descripcion: "Consola digital de nueva generación para gaming.",
         especificaciones: {
-            capacidad: "200 L",
-            tipo: "Horizontal",
-            frio: "Estático"
+            tipo: "Consola",
+            resolucion: "4K",
+            almacenamiento: "825GB",
+            conectividad: "WiFi"
         },
-
-        precio: 750000,
-        precioOferta: 637500,
-        cuotas: 3,
+        colores: ["Blanco"],
+        precio: 1050000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 6,
+        destacado: false,
+        activo: true,
+        tags: ["PS5", "Digital", "Sony", "Gaming"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80"
         ]
     },
-
-
-    /* ================================
-    COCINAS / HORNOS
-    ================================ */
 
     {
         id: 12,
-        sku: "COC-ORBIS-5F",
-        marca: "Orbis",
-        modelo: "Multigas",
-        nombre: "Cocina Multigas Orbis Acero Inoxidable",
-        categoria: "Cocinas / Hornos",
-        subcategoria: "Cocinas",
-
-        descripcion:
-            "Cocina de alta gama con encendido electrónico y hornallas de alta eficiencia. Diseño moderno en acero inoxidable.",
-
+        sku: "GAM-XBOX-SS",
+        marca: "Microsoft",
+        modelo: "Xbox Series S",
+        nombre: "Xbox Series S 512GB",
+        categoria: "Gaming",
+        subcategoria: "Consolas",
+        descripcion: "Consola compacta para gaming digital.",
         especificaciones: {
-            hornallas: "4",
-            seguridad: "Válvula cortagas",
-            material: "Acero inoxidable"
+            tipo: "Consola",
+            resolucion: "1440p",
+            almacenamiento: "512GB",
+            conectividad: "WiFi"
         },
-
-        precio: 880000,
-        precioOferta: 748000,
-        cuotas: 3,
+        colores: ["Blanco"],
+        precio: 720000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 9,
+        destacado: false,
+        activo: true,
+        tags: ["Xbox", "Series S", "Gaming", "Digital"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=700&q=80"
         ]
     },
+
+    /* =====================================================
+       3. NOTEBOOKS
+       ===================================================== */
 
     {
         id: 13,
-        sku: "HOR-ATMA-60",
-        marca: "Atma",
-        modelo: "60L",
-        nombre: "Horno Eléctrico Atma 60 Litros",
-        categoria: "Cocinas / Hornos",
-        subcategoria: "Hornos Eléctricos",
-
-        descripcion:
-            "Horno eléctrico de gran capacidad con múltiples funciones de cocción para preparar comidas de manera práctica.",
-
+        sku: "NOT-LEN-I5",
+        marca: "Lenovo",
+        modelo: "IdeaPad 3",
+        nombre: "Notebook Lenovo IdeaPad 3",
+        categoria: "Notebooks",
+        subcategoria: "Notebooks",
+        descripcion: "Notebook versátil para trabajo, estudio y entretenimiento.",
         especificaciones: {
-            capacidad: "60 L",
-            potencia: "2000 W",
-            funciones: "6"
+            pantalla: "15.6 pulgadas",
+            procesador: "Intel Core i5",
+            memoriaRAM: "8GB",
+            almacenamiento: "512GB SSD",
+            sistemaOperativo: "Windows 11"
         },
-
-        precio: 420000,
-        precioOferta: 357000,
-        cuotas: 3,
+        colores: ["Gris"],
+        precio: 850000,
+        moneda: "ARS",
+        descuento: 15,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 8,
+        destacado: true,
+        activo: true,
+        tags: ["Lenovo", "Core i5", "SSD", "Notebook"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
-
-    /* ================================
-    LAVARROPAS / SECADORAS
-    ================================ */
-
     {
         id: 14,
-        sku: "LAV-WHIRL-WNQ65A",
-        marca: "Whirlpool",
-        modelo: "WNQ65A",
-        nombre: "Lavarropas Automático Whirlpool 6.5 Kg",
-        categoria: "Lavarropas / Secadoras",
-        subcategoria: "Carga Frontal",
-
-        descripcion:
-            "Lavarropas automático con múltiples programas de lavado, ideal para el uso cotidiano del hogar.",
-
+        sku: "NOT-HP-15",
+        marca: "HP",
+        modelo: "15",
+        nombre: "Notebook HP 15",
+        categoria: "Notebooks",
+        subcategoria: "Notebooks",
+        descripcion: "Notebook para oficina, estudio y uso cotidiano.",
         especificaciones: {
-            capacidad: "6.5 kg",
-            tipoCarga: "Frontal",
-            programas: "Múltiples"
+            pantalla: "15.6 pulgadas",
+            procesador: "Intel Core i5",
+            memoriaRAM: "8GB",
+            almacenamiento: "512GB SSD",
+            sistemaOperativo: "Windows 11"
         },
-
-        precio: 850000,
-        precioOferta: 722500,
-        cuotas: 3,
+        colores: ["Plata"],
+        precio: 890000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 7,
+        destacado: false,
+        activo: true,
+        tags: ["HP", "Core i5", "Windows", "SSD"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
     {
         id: 15,
-        sku: "SEC-SAM-8KG",
-        marca: "Samsung",
-        modelo: "8KG",
-        nombre: "Secadora Samsung 8 Kg",
-        categoria: "Lavarropas / Secadoras",
-        subcategoria: "Secadoras",
-
-        descripcion:
-            "Secadora de ropa de gran capacidad, pensada para agilizar el secado y facilitar las tareas del hogar.",
-
+        sku: "NOT-ASU-VIVO",
+        marca: "ASUS",
+        modelo: "Vivobook 15",
+        nombre: "Notebook ASUS Vivobook 15",
+        categoria: "Notebooks",
+        subcategoria: "Notebooks",
+        descripcion: "Notebook liviana para productividad y estudio.",
         especificaciones: {
-            capacidad: "8 kg",
-            tipo: "Secadora",
-            programas: "Múltiples"
+            pantalla: "15.6 pulgadas",
+            procesador: "Intel Core i5",
+            memoriaRAM: "8GB",
+            almacenamiento: "512GB SSD",
+            sistemaOperativo: "Windows 11"
         },
-
-        precio: 1050000,
-        precioOferta: 892500,
-        cuotas: 3,
+        colores: ["Azul"],
+        precio: 930000,
+        moneda: "ARS",
+        descuento: 12,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 5,
+        destacado: false,
+        activo: true,
+        tags: ["ASUS", "Vivobook", "Core i5", "SSD"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=700&q=80",
+            "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       4. TV
+       ===================================================== */
+
+    {
+        id: 16,
+        sku: "TV-SAM-50",
+        marca: "Samsung",
+        modelo: "50 Crystal UHD",
+        nombre: "Smart TV Samsung 50 pulgadas Crystal UHD",
+        categoria: "TV",
+        subcategoria: "Smart TV",
+        descripcion: "Smart TV 4K para disfrutar películas, series y videojuegos.",
+        especificaciones: {
+            pantalla: "50 pulgadas",
+            resolucion: "4K UHD",
+            tipoPantalla: "LED",
+            sistema: "Tizen",
+            conectividad: "WiFi"
+        },
+        colores: ["Negro"],
+        precio: 720000,
+        moneda: "ARS",
+        descuento: 15,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 10,
+        destacado: true,
+        activo: true,
+        tags: ["Samsung", "Smart TV", "4K", "50 pulgadas"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 17,
+        sku: "TV-LG-55",
+        marca: "LG",
+        modelo: "55 UHD",
+        nombre: "Smart TV LG 55 pulgadas 4K UHD",
+        categoria: "TV",
+        subcategoria: "Smart TV",
+        descripcion: "Smart TV LG con resolución 4K y plataforma inteligente.",
+        especificaciones: {
+            pantalla: "55 pulgadas",
+            resolucion: "4K UHD",
+            tipoPantalla: "LED",
+            sistema: "webOS",
+            conectividad: "WiFi"
+        },
+        colores: ["Negro"],
+        precio: 850000,
+        moneda: "ARS",
+        descuento: 12,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 8,
+        destacado: true,
+        activo: true,
+        tags: ["LG", "Smart TV", "4K", "55 pulgadas"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 18,
+        sku: "TV-TCL-43",
+        marca: "TCL",
+        modelo: "43 S5400",
+        nombre: "Smart TV TCL 43 pulgadas Full HD",
+        categoria: "TV",
+        subcategoria: "Smart TV",
+        descripcion: "Smart TV económica para entretenimiento diario.",
+        especificaciones: {
+            pantalla: "43 pulgadas",
+            resolucion: "Full HD",
+            tipoPantalla: "LED",
+            sistema: "Google TV",
+            conectividad: "WiFi"
+        },
+        colores: ["Negro"],
+        precio: 480000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 12,
+        destacado: false,
+        activo: true,
+        tags: ["TCL", "Smart TV", "Full HD", "Google TV"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       5. LAVARROPAS
+       ===================================================== */
+
+    {
+        id: 19,
+        sku: "LAV-DRE-AUTO8",
+        marca: "Drean",
+        modelo: "Next 8.12",
+        nombre: "Lavarropas Automático Drean 8Kg",
+        categoria: "Lavarropas",
+        subcategoria: "Automáticos",
+        descripcion: "Lavarropas automático de 8Kg con múltiples programas.",
+        especificaciones: {
+            capacidad: "8Kg",
+            tipo: "Automático",
+            carga: "Frontal",
+            centrifugado: "1200 RPM",
+            programas: "15"
+        },
+        colores: ["Blanco"],
+        precio: 690000,
+        moneda: "ARS",
+        descuento: 15,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 6,
+        destacado: true,
+        activo: true,
+        tags: ["Drean", "Automático", "8Kg", "Lavarropas"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
             "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
-
-    /* ================================
-    PEQUEÑOS ELECTRODOMÉSTICOS
-    ================================ */
+    {
+        id: 20,
+        sku: "LAV-GRAN-AUTO8",
+        marca: "Gafa",
+        modelo: "Aqua 8Kg",
+        nombre: "Lavarropas Automático Gafa 8Kg",
+        categoria: "Lavarropas",
+        subcategoria: "Automáticos",
+        descripcion: "Lavarropas automático de carga frontal.",
+        especificaciones: {
+            capacidad: "8Kg",
+            tipo: "Automático",
+            carga: "Frontal",
+            centrifugado: "1200 RPM",
+            programas: "15"
+        },
+        colores: ["Blanco"],
+        precio: 650000,
+        moneda: "ARS",
+        descuento: 12,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 7,
+        destacado: true,
+        activo: true,
+        tags: ["Gafa", "Automático", "8Kg", "Lavarropas"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
 
     {
-        id: 16,
-        sku: "PEQ-ATMA-LICU",
-        marca: "Atma",
-        modelo: "Licuadora",
-        nombre: "Licuadora Atma de 1.5 Litros",
+        id: 21,
+        sku: "LAV-KOH-PALETA",
+        marca: "Kohinoor",
+        modelo: "Classic 5Kg",
+        nombre: "Lavarropas a Paleta Kohinoor 5Kg",
+        categoria: "Lavarropas",
+        subcategoria: "A Paleta",
+        descripcion: "Lavarropas económico a paleta, práctico para el hogar.",
+        especificaciones: {
+            capacidad: "5Kg",
+            tipo: "A Paleta",
+            carga: "Superior",
+            centrifugado: "No",
+            programas: "Lavado"
+        },
+        colores: ["Blanco"],
+        precio: 310000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 10,
+        destacado: true,
+        activo: true,
+        tags: ["Kohinoor", "Paleta", "Económico", "5Kg"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 22,
+        sku: "LAV-COD-SEMIAUTO",
+        marca: "Codini",
+        modelo: "Semi 5Kg",
+        nombre: "Lavarropas Semiautomático Codini 5Kg",
+        categoria: "Lavarropas",
+        subcategoria: "Semiautomáticos",
+        descripcion: "Lavarropas semiautomático económico y práctico.",
+        especificaciones: {
+            capacidad: "5Kg",
+            tipo: "Semiautomático",
+            carga: "Superior",
+            centrifugado: "No",
+            programas: "Lavado"
+        },
+        colores: ["Blanco"],
+        precio: 270000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 12,
+        destacado: true,
+        activo: true,
+        tags: ["Codini", "Semiautomático", "Económico", "5Kg"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 23,
+        sku: "LAV-DRE-6AUTO",
+        marca: "Drean",
+        modelo: "Next 6Kg",
+        nombre: "Lavarropas Automático Drean 6Kg",
+        categoria: "Lavarropas",
+        subcategoria: "Automáticos",
+        descripcion: "Lavarropas automático compacto y eficiente.",
+        especificaciones: {
+            capacidad: "6Kg",
+            tipo: "Automático",
+            carga: "Frontal",
+            centrifugado: "1000 RPM",
+            programas: "15"
+        },
+        colores: ["Blanco"],
+        precio: 570000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 8,
+        destacado: false,
+        activo: true,
+        tags: ["Drean", "Automático", "6Kg"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 24,
+        sku: "LAV-COD-SEMIAUTO7",
+        marca: "Codini",
+        modelo: "Semi 7Kg",
+        nombre: "Lavarropas Semiautomático Codini 7Kg",
+        categoria: "Lavarropas",
+        subcategoria: "Semiautomáticos",
+        descripcion: "Modelo semiautomático de gran capacidad.",
+        especificaciones: {
+            capacidad: "7Kg",
+            tipo: "Semiautomático",
+            carga: "Superior",
+            centrifugado: "No",
+            programas: "Lavado"
+        },
+        colores: ["Blanco"],
+        precio: 340000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 9,
+        destacado: false,
+        activo: true,
+        tags: ["Codini", "Semiautomático", "7Kg"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       6. HELADERAS
+       ===================================================== */
+
+    {
+        id: 25,
+        sku: "HEL-GAFA-300",
+        marca: "Gafa",
+        modelo: "HGF300",
+        nombre: "Heladera Gafa 300 Litros",
+        categoria: "Heladeras",
+        subcategoria: "No Frost",
+        descripcion: "Heladera No Frost con buena capacidad para el hogar.",
+        especificaciones: {
+            capacidad: "300 litros",
+            tipo: "No Frost",
+            freezer: "Superior",
+            eficiencia: "Clase A"
+        },
+        colores: ["Blanco"],
+        precio: 850000,
+        moneda: "ARS",
+        descuento: 12,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 5,
+        destacado: true,
+        activo: true,
+        tags: ["Gafa", "No Frost", "300L", "Heladera"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 26,
+        sku: "HEL-SAM-400",
+        marca: "Samsung",
+        modelo: "RB400",
+        nombre: "Heladera Samsung No Frost 400L",
+        categoria: "Heladeras",
+        subcategoria: "No Frost",
+        descripcion: "Heladera moderna con sistema No Frost.",
+        especificaciones: {
+            capacidad: "400 litros",
+            tipo: "No Frost",
+            freezer: "Inferior",
+            eficiencia: "Clase A"
+        },
+        colores: ["Gris"],
+        precio: 1200000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 4,
+        destacado: true,
+        activo: true,
+        tags: ["Samsung", "No Frost", "400L"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       7. AIRES ACONDICIONADOS
+       ===================================================== */
+
+    {
+        id: 27,
+        sku: "AIRE-BGH-3000",
+        marca: "BGH",
+        modelo: "Silent Air 3000",
+        nombre: "Aire Acondicionado BGH 3000 Frigorías",
+        categoria: "Aires Acondicionados",
+        subcategoria: "Split",
+        descripcion: "Aire acondicionado Split frío/calor para ambientes medianos.",
+        especificaciones: {
+            capacidad: "3000 frigorías",
+            tipo: "Split",
+            tecnologia: "Inverter",
+            funcion: "Frío/Calor",
+            eficiencia: "A"
+        },
+        colores: ["Blanco"],
+        precio: 780000,
+        moneda: "ARS",
+        descuento: 15,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 5,
+        destacado: true,
+        activo: true,
+        tags: ["BGH", "Split", "Inverter", "Frío Calor"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1631545806609-5d0a3c1c7c2f?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1631545806609-5d0a3c1c7c2f?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 28,
+        sku: "AIRE-SUR-2500",
+        marca: "Surrey",
+        modelo: "Split 2500",
+        nombre: "Aire Acondicionado Surrey 2500 Frigorías",
+        categoria: "Aires Acondicionados",
+        subcategoria: "Split",
+        descripcion: "Aire acondicionado Split compacto para dormitorios y oficinas.",
+        especificaciones: {
+            capacidad: "2500 frigorías",
+            tipo: "Split",
+            tecnologia: "Convencional",
+            funcion: "Frío/Calor",
+            eficiencia: "A"
+        },
+        colores: ["Blanco"],
+        precio: 690000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 6,
+        destacado: false,
+        activo: true,
+        tags: ["Surrey", "Split", "Frío Calor"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1631545806609-5d0a3c1c7c2f?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1631545806609-5d0a3c1c7c2f?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       8. AUDIO
+       ===================================================== */
+
+    {
+        id: 29,
+        sku: "AUD-JBL-FLIP6",
+        marca: "JBL",
+        modelo: "Flip 6",
+        nombre: "Parlante JBL Flip 6",
+        categoria: "Audio",
+        subcategoria: "Parlantes",
+        descripcion: "Parlante Bluetooth portátil resistente al agua.",
+        especificaciones: {
+            potencia: "30W",
+            conectividad: "Bluetooth",
+            bateria: "12 horas",
+            resistencia: "IP67"
+        },
+        colores: ["Negro", "Azul"],
+        precio: 180000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 15,
+        destacado: true,
+        activo: true,
+        tags: ["JBL", "Bluetooth", "Parlante", "Portátil"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 30,
+        sku: "AUD-JBL-CHARGE5",
+        marca: "JBL",
+        modelo: "Charge 5",
+        nombre: "Parlante JBL Charge 5",
+        categoria: "Audio",
+        subcategoria: "Parlantes",
+        descripcion: "Parlante Bluetooth potente con batería de larga duración.",
+        especificaciones: {
+            potencia: "40W",
+            conectividad: "Bluetooth",
+            bateria: "20 horas",
+            resistencia: "IP67"
+        },
+        colores: ["Negro", "Rojo"],
+        precio: 250000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 12,
+        destacado: true,
+        activo: true,
+        tags: ["JBL", "Charge 5", "Bluetooth"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       9. AURICULARES
+       ===================================================== */
+
+    {
+        id: 31,
+        sku: "AUR-APP-AIRPODS2",
+        marca: "Apple",
+        modelo: "AirPods 2",
+        nombre: "Apple AirPods 2da Generación",
+        categoria: "Auriculares",
+        subcategoria: "Bluetooth",
+        descripcion: "Auriculares inalámbricos compactos con estuche de carga.",
+        especificaciones: {
+            tipo: "In-Ear",
+            conectividad: "Bluetooth",
+            bateria: "5 horas",
+            microfono: "Sí"
+        },
+        colores: ["Blanco"],
+        precio: 220000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 14,
+        destacado: true,
+        activo: true,
+        tags: ["Apple", "AirPods", "Bluetooth"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 32,
+        sku: "AUR-SAM-BUDSFE",
+        marca: "Samsung",
+        modelo: "Galaxy Buds FE",
+        nombre: "Samsung Galaxy Buds FE",
+        categoria: "Auriculares",
+        subcategoria: "Bluetooth",
+        descripcion: "Auriculares inalámbricos con cancelación activa de ruido.",
+        especificaciones: {
+            tipo: "In-Ear",
+            conectividad: "Bluetooth",
+            bateria: "8.5 horas",
+            cancelacionRuido: "Sí"
+        },
+        colores: ["Negro", "Blanco"],
+        precio: 170000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 18,
+        destacado: false,
+        activo: true,
+        tags: ["Samsung", "Buds", "Bluetooth", "ANC"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       10. MONITORES
+       ===================================================== */
+
+    {
+        id: 33,
+        sku: "MON-SAM-24",
+        marca: "Samsung",
+        modelo: "T350 24",
+        nombre: "Monitor Samsung 24 pulgadas",
+        categoria: "Monitores",
+        subcategoria: "Monitores",
+        descripcion: "Monitor Full HD para oficina, estudio y entretenimiento.",
+        especificaciones: {
+            pantalla: "24 pulgadas",
+            resolucion: "1920x1080",
+            frecuencia: "75Hz",
+            panel: "IPS"
+        },
+        colores: ["Negro"],
+        precio: 260000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 10,
+        destacado: true,
+        activo: true,
+        tags: ["Samsung", "24 pulgadas", "Full HD", "IPS"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 34,
+        sku: "MON-LG-27",
+        marca: "LG",
+        modelo: "27MP400",
+        nombre: "Monitor LG 27 pulgadas Full HD",
+        categoria: "Monitores",
+        subcategoria: "Monitores",
+        descripcion: "Monitor de gran tamaño para trabajo y entretenimiento.",
+        especificaciones: {
+            pantalla: "27 pulgadas",
+            resolucion: "1920x1080",
+            frecuencia: "75Hz",
+            panel: "IPS"
+        },
+        colores: ["Negro"],
+        precio: 320000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 8,
+        destacado: false,
+        activo: true,
+        tags: ["LG", "27 pulgadas", "IPS", "Full HD"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       11. INFORMÁTICA / PC
+       ===================================================== */
+
+    {
+        id: 35,
+        sku: "PC-AMD-RYZEN5",
+        marca: "AMD",
+        modelo: "Ryzen 5",
+        nombre: "PC Gamer Ryzen 5 16GB",
+        categoria: "Informática",
+        subcategoria: "PC Gamer",
+        descripcion: "PC para gaming y tareas exigentes.",
+        especificaciones: {
+            procesador: "Ryzen 5",
+            memoriaRAM: "16GB",
+            almacenamiento: "512GB SSD",
+            grafica: "Integrada",
+            sistemaOperativo: "Windows 11"
+        },
+        colores: ["Negro"],
+        precio: 850000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 5,
+        destacado: true,
+        activo: true,
+        tags: ["PC Gamer", "Ryzen 5", "16GB", "SSD"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    {
+        id: 36,
+        sku: "PC-INTEL-I5",
+        marca: "Intel",
+        modelo: "Core i5",
+        nombre: "PC Intel Core i5 16GB SSD",
+        categoria: "Informática",
+        subcategoria: "PC de escritorio",
+        descripcion: "Computadora de escritorio para trabajo y estudio.",
+        especificaciones: {
+            procesador: "Intel Core i5",
+            memoriaRAM: "16GB",
+            almacenamiento: "512GB SSD",
+            grafica: "Integrada",
+            sistemaOperativo: "Windows 11"
+        },
+        colores: ["Negro"],
+        precio: 720000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
+        stock: true,
+        cantidadStock: 7,
+        destacado: false,
+        activo: true,
+        tags: ["Intel", "Core i5", "16GB", "SSD"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80",
+        imagenes: [
+            "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80"
+        ]
+    },
+
+    /* =====================================================
+       12. PEQUEÑOS ELECTRODOMÉSTICOS
+       ===================================================== */
+
+    {
+        id: 37,
+        sku: "PEQ-LIL-LICU",
+        marca: "Liliana",
+        modelo: "AL800",
+        nombre: "Licuadora Liliana 800W",
         categoria: "Pequeños Electrodomésticos",
         subcategoria: "Licuadoras",
-
-        descripcion:
-            "Licuadora práctica para preparar bebidas, licuados, salsas y distintas preparaciones de forma rápida.",
-
+        descripcion: "Licuadora potente para preparaciones cotidianas.",
         especificaciones: {
-            capacidad: "1.5 L",
-            potencia: "600 W",
-            velocidades: "2"
+            potencia: "800W",
+            capacidad: "1.5 litros",
+            velocidades: "2",
+            jarra: "Plástica"
         },
-
-        precio: 140000,
-        precioOferta: 119000,
-        cuotas: 3,
+        colores: ["Negro"],
+        precio: 85000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 20,
+        destacado: false,
+        activo: true,
+        tags: ["Liliana", "Licuadora", "800W"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=80",
         imagenes: [
             "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
     {
-        id: 17,
-        sku: "PEQ-PEABODY-AIR",
-        marca: "Peabody",
-        modelo: "Air Fryer",
-        nombre: "Freidora de Aire Peabody",
+        id: 38,
+        sku: "PEQ-PHI-AIRFRY",
+        marca: "Philips",
+        modelo: "Essential",
+        nombre: "Freidora de Aire Philips Essential",
         categoria: "Pequeños Electrodomésticos",
         subcategoria: "Freidoras de Aire",
-
-        descripcion:
-            "Freidora de aire para cocinar una amplia variedad de alimentos con practicidad y menor uso de aceite.",
-
+        descripcion: "Freidora de aire para cocinar con poco aceite.",
         especificaciones: {
-            capacidad: "5.5 L",
-            potencia: "1700 W",
-            control: "Digital"
+            potencia: "1400W",
+            capacidad: "4.1 litros",
+            temperatura: "80-200°C",
+            pantalla: "Digital"
         },
-
-        precio: 230000,
-        precioOferta: 195500,
-        cuotas: 3,
+        colores: ["Negro"],
+        precio: 180000,
+        moneda: "ARS",
+        descuento: 12,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 13,
+        destacado: true,
+        activo: true,
+        tags: ["Philips", "Air Fryer", "Freidora"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
-
-    /* ================================
-    ASPIRADORAS
-    ================================ */
+    /* =====================================================
+       13. COCINA
+       ===================================================== */
 
     {
-        id: 18,
-        sku: "ASP-ELECTROLUX-2000",
-        marca: "Electrolux",
-        modelo: "2000W",
-        nombre: "Aspiradora Electrolux 2000W",
-        categoria: "Aspiradoras",
-        subcategoria: "Aspiradoras",
-
-        descripcion:
-            "Aspiradora potente para la limpieza cotidiana del hogar, con diseño práctico y excelente capacidad de succión.",
-
+        id: 39,
+        sku: "COC-LON-550",
+        marca: "Longvie",
+        modelo: "550",
+        nombre: "Cocina Longvie 4 Hornallas",
+        categoria: "Cocina",
+        subcategoria: "Cocinas",
+        descripcion: "Cocina a gas de 4 hornallas para uso doméstico.",
         especificaciones: {
-            potencia: "2000 W",
-            capacidad: "2 L",
-            tipo: "Trineo"
+            hornallas: "4",
+            tipo: "Gas",
+            horno: "Gas",
+            encendido: "Manual"
         },
-
-        precio: 250000,
-        precioOferta: 212500,
-        cuotas: 3,
+        colores: ["Blanco"],
+        precio: 430000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 8,
+        destacado: true,
+        activo: true,
+        tags: ["Longvie", "Cocina", "Gas", "4 hornallas"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
     {
-        id: 19,
-        sku: "ASP-XIAOMI-G10",
-        marca: "Xiaomi",
-        modelo: "G10",
-        nombre: "Aspiradora Inalámbrica Xiaomi",
-        categoria: "Aspiradoras",
-        subcategoria: "Inalámbricas",
-
-        descripcion:
-            "Aspiradora inalámbrica moderna y práctica para realizar limpiezas rápidas en diferentes ambientes del hogar.",
-
-        especificaciones: {
-            autonomia: "Hasta 60 min",
-            tipo: "Inalámbrica",
-            filtro: "HEPA"
-        },
-
-        precio: 480000,
-        precioOferta: 408000,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=700&q=80"
-        ]
-    },
-
-
-    /* ================================
-    TERMOTANQUES
-    ================================ */
-
-    {
-        id: 20,
-        sku: "TER-ESCORIAL-80",
+        id: 40,
+        sku: "COC-ESC-550",
         marca: "Escorial",
-        modelo: "80L",
-        nombre: "Termotanque Escorial 80 Litros",
-        categoria: "Termotanques",
-        subcategoria: "Eléctricos",
-
-        descripcion:
-            "Termotanque eléctrico de 80 litros diseñado para abastecer de agua caliente a hogares de uso cotidiano.",
-
+        modelo: "Candor",
+        nombre: "Cocina Escorial 4 Hornallas",
+        categoria: "Cocina",
+        subcategoria: "Cocinas",
+        descripcion: "Cocina económica de 4 hornallas.",
         especificaciones: {
-            capacidad: "80 L",
-            energia: "Eléctrico",
-            instalacion: "Vertical"
+            hornallas: "4",
+            tipo: "Gas",
+            horno: "Gas",
+            encendido: "Manual"
         },
-
-        precio: 490000,
-        precioOferta: 416500,
-        cuotas: 3,
+        colores: ["Blanco"],
+        precio: 350000,
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 10,
+        destacado: false,
+        activo: true,
+        tags: ["Escorial", "Cocina", "Económica", "Gas"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80"
         ]
     },
 
+    /* =====================================================
+       PRODUCTOS 41 - 200
+       ===================================================== */
+
     {
-        id: 21,
-        sku: "TER-RHEEM-120",
-        marca: "Rheem",
-        modelo: "120L",
-        nombre: "Termotanque Rheem 120 Litros",
-        categoria: "Termotanques",
-        subcategoria: "Eléctricos",
-
-        descripcion:
-            "Termotanque de gran capacidad pensado para hogares que necesitan una mayor disponibilidad de agua caliente.",
-
-        especificaciones: {
-            capacidad: "120 L",
-            energia: "Eléctrico",
-            instalacion: "Vertical"
-        },
-
-        precio: 680000,
-        precioOferta: 578000,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80"
-        ]
+        id: 41,
+        sku: "CEL-SAM-S23",
+        marca: "Samsung",
+        modelo: "Galaxy S23",
+        nombre: "Samsung Galaxy S23 128GB",
+        categoria: "Celulares",
+        subcategoria: "Smartphones",
+        descripcion: "Smartphone premium Samsung.",
+        especificaciones: { pantalla: "6.1 pulgadas", tipoPantalla: "AMOLED", memoriaRAM: "8GB", almacenamiento: "128GB", conectividad: "5G", camaraPrincipal: "50MP", bateria: "3900mAh" },
+        colores: ["Negro", "Verde"],
+        precio: 1250000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 5, destacado: true, activo: true,
+        tags: ["Samsung", "S23", "5G", "AMOLED"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80"]
     },
 
-
-    /* ================================
-    INFORMÁTICA
-    ================================ */
+    {
+        id: 42,
+        sku: "CEL-MOT-G84",
+        marca: "Motorola",
+        modelo: "Moto G84",
+        nombre: "Motorola Moto G84 256GB",
+        categoria: "Celulares",
+        subcategoria: "Smartphones",
+        descripcion: "Celular con pantalla pOLED y gran almacenamiento.",
+        especificaciones: { pantalla: "6.5 pulgadas", tipoPantalla: "pOLED", memoriaRAM: "8GB", almacenamiento: "256GB", conectividad: "5G", camaraPrincipal: "50MP", bateria: "5000mAh" },
+        colores: ["Negro", "Azul"],
+        precio: 550000, moneda: "ARS", descuento: 12, garantia: "12 meses", stock: true, cantidadStock: 9, destacado: false, activo: true,
+        tags: ["Motorola", "5G", "pOLED", "256GB"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80"]
+    },
 
     {
-        id: 22,
-        sku: "NOTE-LEN-IDEA3",
+        id: 43,
+        sku: "CEL-XIA-POCOX6",
+        marca: "Xiaomi",
+        modelo: "POCO X6",
+        nombre: "Xiaomi POCO X6 5G",
+        categoria: "Celulares",
+        subcategoria: "Smartphones",
+        descripcion: "Smartphone orientado a rendimiento y gaming.",
+        especificaciones: { pantalla: "6.67 pulgadas", tipoPantalla: "AMOLED", memoriaRAM: "12GB", almacenamiento: "256GB", conectividad: "5G", camaraPrincipal: "64MP", bateria: "5100mAh" },
+        colores: ["Negro"],
+        precio: 620000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 8, destacado: true, activo: true,
+        tags: ["Xiaomi", "POCO", "Gaming", "5G"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 44,
+        sku: "CEL-IPH-SE3",
+        marca: "Apple",
+        modelo: "iPhone SE 3",
+        nombre: "Apple iPhone SE 3ra Generación",
+        categoria: "Celulares",
+        subcategoria: "iPhone",
+        descripcion: "iPhone compacto con chip A15 Bionic.",
+        especificaciones: { pantalla: "4.7 pulgadas", tipoPantalla: "Retina HD", memoriaRAM: "4GB", almacenamiento: "64GB", conectividad: "5G", camaraPrincipal: "12MP", bateria: "2018mAh" },
+        colores: ["Negro", "Blanco"],
+        precio: 780000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 4, destacado: false, activo: true,
+        tags: ["Apple", "iPhone", "SE", "5G"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1592286927505-2fd0f4f2f0b6?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1592286927505-2fd0f4f2f0b6?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 45,
+        sku: "GAM-PS4-SLIM",
+        marca: "Sony",
+        modelo: "PS4 Slim",
+        nombre: "Sony PlayStation 4 Slim 1TB",
+        categoria: "Gaming",
+        subcategoria: "Consolas",
+        descripcion: "Consola PlayStation para entretenimiento y gaming.",
+        especificaciones: { tipo: "Consola", resolucion: "1080p", almacenamiento: "1TB", conectividad: "WiFi" },
+        colores: ["Negro"],
+        precio: 650000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 5, destacado: false, activo: true,
+        tags: ["Sony", "PS4", "Gaming", "1TB"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 46,
+        sku: "GAM-NIN-SWITCH",
+        marca: "Nintendo",
+        modelo: "Switch",
+        nombre: "Nintendo Switch",
+        categoria: "Gaming",
+        subcategoria: "Consolas",
+        descripcion: "Consola híbrida portátil y de sobremesa.",
+        especificaciones: { tipo: "Consola híbrida", pantalla: "6.2 pulgadas", almacenamiento: "32GB", conectividad: "WiFi" },
+        colores: ["Negro", "Rojo/Azul"],
+        precio: 720000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 6, destacado: true, activo: true,
+        tags: ["Nintendo", "Switch", "Gaming", "Portátil"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 47,
+        sku: "NOT-LEN-I3",
         marca: "Lenovo",
-        modelo: "IdeaPad 3",
-        nombre: "Notebook Lenovo IdeaPad 3",
-        categoria: "Informática",
+        modelo: "IdeaPad 1",
+        nombre: "Notebook Lenovo IdeaPad 1",
+        categoria: "Notebooks",
         subcategoria: "Notebooks",
-
-        descripcion:
-            "Notebook versátil para estudio, trabajo y uso cotidiano. Diseño práctico y excelente equilibrio entre rendimiento y portabilidad.",
-
-        especificaciones: {
-            pantalla: "15.6 pulgadas",
-            memoriaRAM: "8GB",
-            almacenamiento: "512GB SSD"
-        },
-
-        precio: 890000,
-        precioOferta: 756500,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=700&q=80"
-        ]
+        descripcion: "Notebook económica para estudio y oficina.",
+        especificaciones: { pantalla: "15.6 pulgadas", procesador: "Intel Core i3", memoriaRAM: "8GB", almacenamiento: "256GB SSD", sistemaOperativo: "Windows 11" },
+        colores: ["Gris"],
+        precio: 620000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 10, destacado: false, activo: true,
+        tags: ["Lenovo", "Core i3", "Económica"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80"]
     },
 
     {
-        id: 23,
-        sku: "PC-AMD-RYZEN5",
-        marca: "AMD",
-        modelo: "Ryzen 5",
-        nombre: "PC de Escritorio Ryzen 5",
-        categoria: "Informática",
-        subcategoria: "PC de Escritorio",
-
-        descripcion:
-            "PC de escritorio equilibrada para trabajo, estudio, entretenimiento y tareas exigentes del día a día.",
-
-        especificaciones: {
-            procesador: "Ryzen 5",
-            memoriaRAM: "16GB",
-            almacenamiento: "512GB SSD"
-        },
-
-        precio: 780000,
-        precioOferta: 663000,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=700&q=80"
-        ]
+        id: 48,
+        sku: "NOT-ASU-I3",
+        marca: "ASUS",
+        modelo: "Vivobook Go",
+        nombre: "Notebook ASUS Vivobook Go",
+        categoria: "Notebooks",
+        subcategoria: "Notebooks",
+        descripcion: "Notebook liviana para tareas diarias.",
+        especificaciones: { pantalla: "15.6 pulgadas", procesador: "Intel Core i3", memoriaRAM: "8GB", almacenamiento: "256GB SSD", sistemaOperativo: "Windows 11" },
+        colores: ["Plata"],
+        precio: 680000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 8, destacado: false, activo: true,
+        tags: ["ASUS", "Vivobook", "Core i3"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80"]
     },
 
-
-    /* ================================
-    AUDIO
-    ================================ */
+    {
+        id: 49,
+        sku: "TV-SAM-43",
+        marca: "Samsung",
+        modelo: "43 Crystal UHD",
+        nombre: "Smart TV Samsung 43 pulgadas",
+        categoria: "TV",
+        subcategoria: "Smart TV",
+        descripcion: "Smart TV 4K compacta.",
+        especificaciones: { pantalla: "43 pulgadas", resolucion: "4K", tipoPantalla: "LED", sistema: "Tizen", conectividad: "WiFi" },
+        colores: ["Negro"],
+        precio: 560000, moneda: "ARS", descuento: 12, garantia: "12 meses", stock: true, cantidadStock: 10, destacado: true, activo: true,
+        tags: ["Samsung", "43 pulgadas", "4K"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"]
+    },
 
     {
-        id: 24,
-        sku: "AUD-JBL-FLIP6",
+        id: 50,
+        sku: "TV-TCL-55",
+        marca: "TCL",
+        modelo: "55 P635",
+        nombre: "Smart TV TCL 55 pulgadas 4K",
+        categoria: "TV",
+        subcategoria: "Smart TV",
+        descripcion: "Smart TV 4K con Google TV.",
+        especificaciones: { pantalla: "55 pulgadas", resolucion: "4K", tipoPantalla: "LED", sistema: "Google TV", conectividad: "WiFi" },
+        colores: ["Negro"],
+        precio: 690000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 7, destacado: true, activo: true,
+        tags: ["TCL", "55 pulgadas", "4K", "Google TV"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    /* =====================================================
+       LAVARROPAS ADICIONALES
+       ===================================================== */
+
+    {
+        id: 51,
+        sku: "LAV-DRE-7AUTO",
+        marca: "Drean",
+        modelo: "Next 7Kg",
+        nombre: "Lavarropas Automático Drean 7Kg",
+        categoria: "Lavarropas",
+        subcategoria: "Automáticos",
+        descripcion: "Lavarropas automático económico.",
+        especificaciones: { capacidad: "7Kg", tipo: "Automático", carga: "Frontal", centrifugado: "1000 RPM", programas: "15" },
+        colores: ["Blanco"],
+        precio: 610000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 7, destacado: true, activo: true,
+        tags: ["Drean", "Automático", "7Kg"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 52,
+        sku: "LAV-GAFA-6AUTO",
+        marca: "Gafa",
+        modelo: "Aqua 6Kg",
+        nombre: "Lavarropas Automático Gafa 6Kg",
+        categoria: "Lavarropas",
+        subcategoria: "Automáticos",
+        descripcion: "Lavarropas automático compacto.",
+        especificaciones: { capacidad: "6Kg", tipo: "Automático", carga: "Frontal", centrifugado: "1000 RPM", programas: "15" },
+        colores: ["Blanco"],
+        precio: 560000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 8, destacado: false, activo: true,
+        tags: ["Gafa", "Automático", "6Kg"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 53,
+        sku: "LAV-KOH-PALETA7",
+        marca: "Kohinoor",
+        modelo: "Classic 7Kg",
+        nombre: "Lavarropas a Paleta Kohinoor 7Kg",
+        categoria: "Lavarropas",
+        subcategoria: "A Paleta",
+        descripcion: "Lavarropas a paleta de gran capacidad.",
+        especificaciones: { capacidad: "7Kg", tipo: "A Paleta", carga: "Superior", centrifugado: "No", programas: "Lavado" },
+        colores: ["Blanco"],
+        precio: 350000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 8, destacado: true, activo: true,
+        tags: ["Kohinoor", "Paleta", "7Kg"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 54,
+        sku: "LAV-COD-SEMIAUTO6",
+        marca: "Codini",
+        modelo: "Semi 6Kg",
+        nombre: "Lavarropas Semiautomático Codini 6Kg",
+        categoria: "Lavarropas",
+        subcategoria: "Semiautomáticos",
+        descripcion: "Lavarropas semiautomático económico.",
+        especificaciones: { capacidad: "6Kg", tipo: "Semiautomático", carga: "Superior", centrifugado: "No", programas: "Lavado" },
+        colores: ["Blanco"],
+        precio: 300000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 10, destacado: true, activo: true,
+        tags: ["Codini", "Semiautomático", "6Kg"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    /* =====================================================
+       HELADERAS
+       ===================================================== */
+
+    {
+        id: 55,
+        sku: "HEL-DREAN-320",
+        marca: "Drean",
+        modelo: "HDR320",
+        nombre: "Heladera Drean No Frost 320L",
+        categoria: "Heladeras",
+        subcategoria: "No Frost",
+        descripcion: "Heladera No Frost de capacidad media.",
+        especificaciones: { capacidad: "320 litros", tipo: "No Frost", freezer: "Superior", eficiencia: "A" },
+        colores: ["Blanco"],
+        precio: 780000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 5, destacado: true, activo: true,
+        tags: ["Drean", "No Frost", "320L"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 56,
+        sku: "HEL-GAFA-250",
+        marca: "Gafa",
+        modelo: "HGF250",
+        nombre: "Heladera Gafa 250 Litros",
+        categoria: "Heladeras",
+        subcategoria: "Cíclica",
+        descripcion: "Heladera económica para espacios reducidos.",
+        especificaciones: { capacidad: "250 litros", tipo: "Cíclica", freezer: "Superior", eficiencia: "A" },
+        colores: ["Blanco"],
+        precio: 620000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 6, destacado: false, activo: true,
+        tags: ["Gafa", "250L", "Económica"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    /* =====================================================
+       AIRES
+       ===================================================== */
+
+    {
+        id: 57,
+        sku: "AIRE-BGH-4500",
+        marca: "BGH",
+        modelo: "4500 Inverter",
+        nombre: "Aire Acondicionado BGH 4500 Frigorías",
+        categoria: "Aires Acondicionados",
+        subcategoria: "Split",
+        descripcion: "Aire acondicionado de gran capacidad.",
+        especificaciones: { capacidad: "4500 frigorías", tipo: "Split", tecnologia: "Inverter", funcion: "Frío/Calor", eficiencia: "A" },
+        colores: ["Blanco"],
+        precio: 1050000, moneda: "ARS", descuento: 12, garantia: "12 meses", stock: true, cantidadStock: 4, destacado: true, activo: true,
+        tags: ["BGH", "Inverter", "4500 frigorías"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1631545806609-5d0a3c1c7c2f?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1631545806609-5d0a3c1c7c2f?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 58,
+        sku: "AIRE-SUR-3200",
+        marca: "Surrey",
+        modelo: "3200 Inverter",
+        nombre: "Aire Acondicionado Surrey 3200 Frigorías",
+        categoria: "Aires Acondicionados",
+        subcategoria: "Split",
+        descripcion: "Aire acondicionado inverter frío/calor.",
+        especificaciones: { capacidad: "3200 frigorías", tipo: "Split", tecnologia: "Inverter", funcion: "Frío/Calor", eficiencia: "A" },
+        colores: ["Blanco"],
+        precio: 850000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 5, destacado: true, activo: true,
+        tags: ["Surrey", "Inverter", "3200 frigorías"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1631545806609-5d0a3c1c7c2f?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1631545806609-5d0a3c1c7c2f?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    /* =====================================================
+       AUDIO / AURICULARES
+       ===================================================== */
+
+    {
+        id: 59,
+        sku: "AUD-JBL-GO3",
         marca: "JBL",
-        modelo: "Flip 6",
-        nombre: "Parlante Bluetooth JBL Flip 6",
+        modelo: "Go 3",
+        nombre: "Parlante JBL Go 3",
         categoria: "Audio",
         subcategoria: "Parlantes",
-
-        descripcion:
-            "Parlante Bluetooth portátil resistente al agua, ideal para llevar a cualquier lugar.",
-
-        especificaciones: {
-            potenciaW: "30",
-            conectividad: "Bluetooth",
-            resistencia: "Agua"
-        },
-
-        precio: 210000,
-        precioOferta: 178500,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80"
-        ]
+        descripcion: "Parlante Bluetooth ultra portátil.",
+        especificaciones: { potencia: "4.2W", conectividad: "Bluetooth", bateria: "5 horas", resistencia: "IP67" },
+        colores: ["Negro", "Azul"],
+        precio: 95000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 20, destacado: false, activo: true,
+        tags: ["JBL", "Go 3", "Bluetooth"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80"]
     },
 
     {
-        id: 25,
-        sku: "AUD-JBL-TUNE",
-        marca: "JBL",
-        modelo: "Tune",
-        nombre: "Auriculares Bluetooth JBL",
-        categoria: "Audio",
-        subcategoria: "Auriculares",
-
-        descripcion:
-            "Auriculares inalámbricos cómodos para disfrutar música, podcasts y llamadas durante todo el día.",
-
-        especificaciones: {
-            conectividad: "Bluetooth",
-            bateria: "Hasta 40 hs",
-            microfono: "Sí"
-        },
-
-        precio: 180000,
-        precioOferta: 153000,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",
-            "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=700&q=80"
-        ]
+        id: 60,
+        sku: "AUD-MON-PRO",
+        marca: "Monster",
+        modelo: "Pro Wireless",
+        nombre: "Auriculares Monster Wireless",
+        categoria: "Auriculares",
+        subcategoria: "Bluetooth",
+        descripcion: "Auriculares inalámbricos para música y llamadas.",
+        especificaciones: { tipo: "Over-Ear", conectividad: "Bluetooth", bateria: "30 horas", microfono: "Sí" },
+        colores: ["Negro"],
+        precio: 140000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 12, destacado: false, activo: true,
+        tags: ["Monster", "Wireless", "Bluetooth"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80"]
     },
 
-
-    /* ================================
-    ACCESORIOS
-    ================================ */
+    /* =====================================================
+       MONITORES
+       ===================================================== */
 
     {
-        id: 26,
-        sku: "ACC-LOGI-MOUSE",
-        marca: "Logitech",
-        modelo: "M185",
-        nombre: "Mouse Inalámbrico Logitech",
-        categoria: "Accesorios",
-        subcategoria: "Mouse",
-
-        descripcion:
-            "Mouse inalámbrico compacto y cómodo para notebooks y computadoras de escritorio.",
-
-        especificaciones: {
-            conexion: "Wireless",
-            botones: "3",
-            compatibilidad: "Windows / Mac"
-        },
-
-        precio: 55000,
-        precioOferta: 46750,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80"
-        ]
+        id: 61,
+        sku: "MON-SAM-27G",
+        marca: "Samsung",
+        modelo: "Odyssey G3",
+        nombre: "Monitor Gamer Samsung Odyssey 27",
+        categoria: "Monitores",
+        subcategoria: "Gaming",
+        descripcion: "Monitor gamer de 27 pulgadas.",
+        especificaciones: { pantalla: "27 pulgadas", resolucion: "Full HD", frecuencia: "144Hz", panel: "VA" },
+        colores: ["Negro"],
+        precio: 430000, moneda: "ARS", descuento: 12, garantia: "12 meses", stock: true, cantidadStock: 7, destacado: true, activo: true,
+        tags: ["Samsung", "Odyssey", "Gaming", "144Hz"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80"]
     },
 
     {
-        id: 27,
-        sku: "ACC-KING-128",
-        marca: "Kingston",
-        modelo: "128GB",
-        nombre: "Pendrive Kingston 128GB",
-        categoria: "Accesorios",
-        subcategoria: "Almacenamiento",
+        id: 62,
+        sku: "MON-LG-24G",
+        marca: "LG",
+        modelo: "24GN60R",
+        nombre: "Monitor Gamer LG 24 pulgadas",
+        categoria: "Monitores",
+        subcategoria: "Gaming",
+        descripcion: "Monitor gamer Full HD con alta frecuencia.",
+        especificaciones: { pantalla: "24 pulgadas", resolucion: "Full HD", frecuencia: "144Hz", panel: "IPS" },
+        colores: ["Negro"],
+        precio: 360000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 8, destacado: true, activo: true,
+        tags: ["LG", "Gaming", "144Hz", "IPS"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80"]
+    },
 
-        descripcion:
-            "Memoria USB portátil para guardar y transportar documentos, fotografías, videos y archivos.",
+    /* =====================================================
+       INFORMÁTICA
+       ===================================================== */
 
-        especificaciones: {
-            capacidad: "128GB",
-            conexion: "USB",
-            tipo: "Pendrive"
-        },
-
-        precio: 45000,
-        precioOferta: 38250,
-        cuotas: 3,
-        stock: true,
-
-        imagenes: [
-            "https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?auto=format&fit=crop&w=700&q=80"
-        ]
+    {
+        id: 63,
+        sku: "PC-RYZEN7",
+        marca: "AMD",
+        modelo: "Ryzen 7",
+        nombre: "PC Gamer Ryzen 7 32GB",
+        categoria: "Informática",
+        subcategoria: "PC Gamer",
+        descripcion: "PC gamer de alto rendimiento.",
+        especificaciones: { procesador: "Ryzen 7", memoriaRAM: "32GB", almacenamiento: "1TB SSD", grafica: "RTX 4060", sistemaOperativo: "Windows 11" },
+        colores: ["Negro"],
+        precio: 1450000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 4, destacado: true, activo: true,
+        tags: ["Ryzen 7", "RTX 4060", "PC Gamer"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80"]
     },
 
     {
-        id: 28,
-        sku: "ACC-ANKER-CARGA",
-        marca: "Anker",
-        modelo: "USB-C",
-        nombre: "Cargador USB-C Anker",
-        categoria: "Accesorios",
-        subcategoria: "Cargadores",
+        id: 64,
+        sku: "PC-I3-8GB",
+        marca: "Intel",
+        modelo: "Core i3",
+        nombre: "PC de Escritorio Intel Core i3",
+        categoria: "Informática",
+        subcategoria: "PC de escritorio",
+        descripcion: "PC económica para oficina y estudio.",
+        especificaciones: { procesador: "Intel Core i3", memoriaRAM: "8GB", almacenamiento: "256GB SSD", grafica: "Integrada", sistemaOperativo: "Windows 11" },
+        colores: ["Negro"],
+        precio: 520000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 10, destacado: false, activo: true,
+        tags: ["Intel", "Core i3", "Económica"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80"]
+    },
 
-        descripcion:
-            "Cargador compacto con conexión USB-C para smartphones, tablets y otros dispositivos compatibles.",
+    /* =====================================================
+       PEQUEÑOS ELECTRODOMÉSTICOS
+       ===================================================== */
 
+    {
+        id: 65,
+        sku: "PEQ-LIL-MIX",
+        marca: "Liliana",
+        modelo: "AM450",
+        nombre: "Batidora Liliana 450W",
+        categoria: "Pequeños Electrodomésticos",
+        subcategoria: "Batidoras",
+        descripcion: "Batidora eléctrica para repostería y cocina.",
+        especificaciones: { potencia: "450W", velocidades: "5", accesorios: "Batidores", tipo: "Manual" },
+        colores: ["Blanco"],
+        precio: 65000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 20, destacado: false, activo: true,
+        tags: ["Liliana", "Batidora", "450W"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 66,
+        sku: "PEQ-ATMA-MICRO",
+        marca: "Atma",
+        modelo: "MD1720",
+        nombre: "Microondas Atma 20 Litros",
+        categoria: "Pequeños Electrodomésticos",
+        subcategoria: "Microondas",
+        descripcion: "Microondas compacto para cocina.",
+        especificaciones: { capacidad: "20 litros", potencia: "700W", funciones: "6", display: "Digital" },
+        colores: ["Negro"],
+        precio: 150000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 14, destacado: true, activo: true,
+        tags: ["Atma", "Microondas", "20L"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    /* =====================================================
+       COCINA
+       ===================================================== */
+
+    {
+        id: 67,
+        sku: "COC-LON-560",
+        marca: "Longvie",
+        modelo: "550X",
+        nombre: "Cocina Longvie 4 Hornallas con Grill",
+        categoria: "Cocina",
+        subcategoria: "Cocinas",
+        descripcion: "Cocina completa de cuatro hornallas.",
+        especificaciones: { hornallas: "4", tipo: "Gas", horno: "Gas", encendido: "Eléctrico" },
+        colores: ["Blanco"],
+        precio: 490000, moneda: "ARS", descuento: 10, garantia: "12 meses", stock: true, cantidadStock: 6, destacado: true, activo: true,
+        tags: ["Longvie", "Cocina", "Gas"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    {
+        id: 68,
+        sku: "COC-ESC-4H",
+        marca: "Escorial",
+        modelo: "Master",
+        nombre: "Cocina Escorial 4 Hornallas",
+        categoria: "Cocina",
+        subcategoria: "Cocinas",
+        descripcion: "Cocina económica de gas.",
+        especificaciones: { hornallas: "4", tipo: "Gas", horno: "Gas", encendido: "Manual" },
+        colores: ["Blanco"],
+        precio: 330000, moneda: "ARS", descuento: 8, garantia: "12 meses", stock: true, cantidadStock: 10, destacado: false, activo: true,
+        tags: ["Escorial", "Gas", "Económica"],
+        imagenPrincipal: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
+        imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80"]
+    },
+
+    /* =====================================================
+       MÁS PRODUCTOS PARA COMPLETAR 200
+       ===================================================== */
+
+    ...[
+        ["CEL-MOT-G34","Motorola","Moto G34","Motorola Moto G34 5G","Celulares","Smartphones",420000],
+        ["CEL-SAM-A25","Samsung","Galaxy A25","Samsung Galaxy A25 5G","Celulares","Smartphones",490000],
+        ["CEL-XIA-RN13P","Xiaomi","Redmi Note 13 Pro","Xiaomi Redmi Note 13 Pro","Celulares","Smartphones",690000],
+        ["CEL-IPH-12","Apple","iPhone 12","Apple iPhone 12 128GB","Celulares","iPhone",900000],
+        ["CEL-IPH-15P","Apple","iPhone 15 Plus","Apple iPhone 15 Plus","Celulares","iPhone",1600000],
+        ["GAM-PS5-DISC","Sony","PS5 Disc","PlayStation 5 con Disco","Gaming","Consolas",1300000],
+        ["GAM-XBOX-CONT","Microsoft","Controller","Joystick Xbox Wireless","Gaming","Accesorios",160000],
+        ["GAM-SONY-DUAL","Sony","DualSense","Joystick Sony DualSense PS5","Gaming","Accesorios",180000],
+        ["GAM-NIN-OLED","Nintendo","Switch OLED","Nintendo Switch OLED","Gaming","Consolas",850000],
+        ["GAM-LOG-G203","Logitech","G203","Mouse Gamer Logitech G203","Gaming","Accesorios",75000],
+        ["NOT-HP-I3","HP","15-DY","Notebook HP Core i3","Notebooks","Notebooks",590000],
+        ["NOT-LEN-I7","Lenovo","IdeaPad 5","Notebook Lenovo Core i7","Notebooks","Notebooks",1100000],
+        ["NOT-ACER-I5","Acer","Aspire 5","Notebook Acer Core i5","Notebooks","Notebooks",850000],
+        ["NOT-ASU-I7","ASUS","Vivobook 16","Notebook ASUS Core i7","Notebooks","Notebooks",1150000],
+        ["TV-LG-43","LG","43 UHD","Smart TV LG 43 pulgadas","TV","Smart TV",530000],
+        ["TV-LG-50","LG","50 UHD","Smart TV LG 50 pulgadas","TV","Smart TV",670000],
+        ["TV-SAM-55","Samsung","55 QLED","Smart TV Samsung 55 QLED","TV","Smart TV",980000],
+        ["TV-TCL-50","TCL","50 P635","Smart TV TCL 50 pulgadas","TV","Smart TV",610000],
+        ["TV-Phil-43","Philips","43P","Smart TV Philips 43 pulgadas","TV","Smart TV",500000],
+        ["LAV-DRE-9","Drean","Next 9Kg","Lavarropas Automático Drean 9Kg","Lavarropas","Automáticos",780000],
+        ["LAV-GAFA-7","Gafa","Aqua 7Kg","Lavarropas Automático Gafa 7Kg","Lavarropas","Automáticos",600000],
+        ["LAV-LG-9","LG","9Kg","Lavarropas LG Automático 9Kg","Lavarropas","Automáticos",950000],
+        ["LAV-SAM-9","Samsung","9Kg","Lavarropas Samsung 9Kg","Lavarropas","Automáticos",1050000],
+        ["LAV-KOH-6","Kohinoor","Classic 6Kg","Lavarropas a Paleta Kohinoor 6Kg","Lavarropas","A Paleta",330000],
+        ["LAV-KOH-8","Kohinoor","Classic 8Kg","Lavarropas a Paleta Kohinoor 8Kg","Lavarropas","A Paleta",390000],
+        ["LAV-COD-5","Codini","Semi 5Kg","Lavarropas Codini Semiautomático 5Kg","Lavarropas","Semiautomáticos",270000],
+        ["LAV-COD-8","Codini","Semi 8Kg","Lavarropas Codini Semiautomático 8Kg","Lavarropas","Semiautomáticos",370000],
+        ["LAV-KOH-SEM","Kohinoor","Semi 6Kg","Lavarropas Kohinoor Semiautomático","Lavarropas","Semiautomáticos",320000],
+        ["HEL-GAFA-360","Gafa","HGF360","Heladera Gafa No Frost 360L","Heladeras","No Frost",890000],
+        ["HEL-DREAN-280","Drean","HDR280","Heladera Drean 280L","Heladeras","No Frost",720000],
+        ["HEL-LG-420","LG","GB420","Heladera LG No Frost 420L","Heladeras","No Frost",1250000],
+        ["HEL-SAM-350","Samsung","RB350","Heladera Samsung 350L","Heladeras","No Frost",1100000],
+        ["HEL-CONS-300","Consul","300L","Heladera Consul 300L","Heladeras","No Frost",790000],
+        ["AIRE-BGH-2500","BGH","2500","Aire BGH 2500 Frigorías","Aires Acondicionados","Split",650000],
+        ["AIRE-BGH-3500","BGH","3500","Aire BGH 3500 Frigorías","Aires Acondicionados","Split",820000],
+        ["AIRE-SUR-3000","Surrey","3000","Aire Surrey 3000 Frigorías","Aires Acondicionados","Split",730000],
+        ["AIRE-LG-3000","LG","3000","Aire LG 3000 Frigorías","Aires Acondicionados","Split",850000],
+        ["AIRE-SAM-3200","Samsung","3200","Aire Samsung 3200 Frigorías","Aires Acondicionados","Split",920000],
+        ["AUD-JBL-XTREME","JBL","Xtreme 3","Parlante JBL Xtreme 3","Audio","Parlantes",390000],
+        ["AUD-JBL-PULSE","JBL","Pulse 5","Parlante JBL Pulse 5","Audio","Parlantes",330000],
+        ["AUD-SONY-SRS","Sony","SRS-XB23","Parlante Sony Bluetooth","Audio","Parlantes",180000],
+        ["AUD-PHIL-TAH","Philips","TAH4205","Auriculares Philips Bluetooth","Auriculares","Bluetooth",85000],
+        ["AUD-JBL-TUNE","JBL","Tune 510","Auriculares JBL Tune 510","Auriculares","Bluetooth",110000],
+        ["AUD-SONY-WH","Sony","WH-CH520","Auriculares Sony WH-CH520","Auriculares","Bluetooth",130000],
+        ["AUD-REDMI-BUDS","Xiaomi","Buds 4","Xiaomi Redmi Buds","Auriculares","Bluetooth",95000],
+        ["MON-SAM-22","Samsung","22 T350","Monitor Samsung 22 pulgadas","Monitores","Monitores",220000],
+        ["MON-LG-22","LG","22MP","Monitor LG 22 pulgadas","Monitores","Monitores",210000],
+        ["MON-SAM-32","Samsung","32 FHD","Monitor Samsung 32 pulgadas","Monitores","Monitores",390000],
+        ["MON-GIG-24","Gigabyte","G24F","Monitor Gamer Gigabyte 24","Monitores","Gaming",420000],
+        ["MON-ASUS-24","ASUS","VG249","Monitor Gamer ASUS 24","Monitores","Gaming",450000],
+        ["PC-RYZEN3","AMD","Ryzen 3","PC Ryzen 3 8GB","Informática","PC de escritorio",480000],
+        ["PC-RYZEN5-32","AMD","Ryzen 5","PC Ryzen 5 32GB","Informática","PC Gamer",950000],
+        ["PC-I5-16","Intel","Core i5","PC Core i5 16GB","Informática","PC de escritorio",720000],
+        ["PC-I7-16","Intel","Core i7","PC Core i7 16GB","Informática","PC de escritorio",950000],
+        ["PC-GAM-R5","AMD","Ryzen 5","PC Gamer Ryzen 5 RTX","Informática","PC Gamer",1200000],
+        ["PEQ-ATMA-LIC","Atma","Licuadora","Licuadora Atma 600W","Pequeños Electrodomésticos","Licuadoras",70000],
+        ["PEQ-LIL-TOST","Liliana","Tostadora","Tostadora Liliana","Pequeños Electrodomésticos","Tostadoras",55000],
+        ["PEQ-ATMA-TOST","Atma","Tostadora","Tostadora Atma","Pequeños Electrodomésticos","Tostadoras",50000],
+        ["PEQ-PHI-CAF","Philips","Cafetera","Cafetera Philips","Pequeños Electrodomésticos","Cafeteras",85000],
+        ["PEQ-ATMA-CAF","Atma","Cafetera","Cafetera Atma","Pequeños Electrodomésticos","Cafeteras",70000],
+        ["PEQ-LIL-AIR","Liliana","Air Fryer","Freidora de Aire Liliana","Pequeños Electrodomésticos","Freidoras de Aire",110000],
+        ["PEQ-ATMA-MICRO2","Atma","MD2020","Microondas Atma 20L","Pequeños Electrodomésticos","Microondas",160000],
+        ["PEQ-BGH-MICRO","BGH","20L","Microondas BGH 20L","Pequeños Electrodomésticos","Microondas",170000],
+        ["COC-LON-4H","Longvie","550","Cocina Longvie 4 Hornallas","Cocina","Cocinas",440000],
+        ["COC-ESC-5H","Escorial","5H","Cocina Escorial 5 Hornallas","Cocina","Cocinas",390000],
+        ["COC-MORE-4H","Morelli","4H","Cocina Morelli 4 Hornallas","Cocina","Cocinas",370000],
+        ["COC-LON-ELEC","Longvie","Eléctrica","Cocina Eléctrica Longvie","Cocina","Cocinas",520000],
+        ["COC-ESC-ECON","Escorial","Económica","Cocina Escorial Económica","Cocina","Cocinas",310000],
+        ["COC-MORE-5H","Morelli","5H","Cocina Morelli 5 Hornallas","Cocina","Cocinas",450000],
+        ["CEL-SAM-A35","Samsung","Galaxy A35","Samsung Galaxy A35 5G","Celulares","Smartphones",580000],
+        ["CEL-SAM-A05","Samsung","Galaxy A05","Samsung Galaxy A05","Celulares","Smartphones",320000],
+        ["CEL-MOT-G24","Motorola","Moto G24","Motorola Moto G24","Celulares","Smartphones",350000],
+        ["CEL-MOT-G14","Motorola","Moto G14","Motorola Moto G14","Celulares","Smartphones",300000],
+        ["CEL-XIA-RED12","Xiaomi","Redmi 12","Xiaomi Redmi 12","Celulares","Smartphones",350000],
+        ["CEL-XIA-RED13C","Xiaomi","Redmi 13C","Xiaomi Redmi 13C","Celulares","Smartphones",330000],
+        ["CEL-IPH-11","Apple","iPhone 11","Apple iPhone 11 64GB","Celulares","iPhone",720000],
+        ["CEL-IPH-14P","Apple","iPhone 14 Pro","Apple iPhone 14 Pro","Celulares","iPhone",1500000],
+        ["CEL-IPH-15P2","Apple","iPhone 15 Pro","Apple iPhone 15 Pro","Celulares","iPhone",1800000],
+        ["GAM-LOG-G502","Logitech","G502","Mouse Gamer Logitech G502","Gaming","Accesorios",140000],
+        ["GAM-LOG-K120","Logitech","K120","Teclado Logitech K120","Gaming","Accesorios",35000],
+        ["GAM-REDR-KB","Redragon","K552","Teclado Gamer Redragon","Gaming","Accesorios",90000],
+        ["GAM-REDR-MOUSE","Redragon","M711","Mouse Gamer Redragon","Gaming","Accesorios",85000],
+        ["GAM-SONY-HEAD","Sony","Pulse 3D","Auriculares Gamer Sony","Gaming","Accesorios",190000],
+        ["NOT-HP-I5-16","HP","15-I5","Notebook HP Core i5 16GB","Notebooks","Notebooks",880000],
+        ["NOT-LEN-I5-16","Lenovo","IdeaPad 5","Notebook Lenovo Core i5 16GB","Notebooks","Notebooks",920000],
+        ["NOT-ACER-I3","Acer","Aspire 3","Notebook Acer Core i3","Notebooks","Notebooks",600000],
+        ["NOT-ASU-RYZEN","ASUS","Vivobook Ryzen","Notebook ASUS Ryzen 5","Notebooks","Notebooks",780000],
+        ["NOT-DELL-I5","Dell","Inspiron","Notebook Dell Core i5","Notebooks","Notebooks",980000],
+        ["TV-SAM-32","Samsung","32 HD","Smart TV Samsung 32","TV","Smart TV",390000],
+        ["TV-LG-32","LG","32 HD","Smart TV LG 32","TV","Smart TV",370000],
+        ["TV-TCL-32","TCL","32 S","Smart TV TCL 32","TV","Smart TV",350000],
+        ["TV-SAM-65","Samsung","65 UHD","Smart TV Samsung 65 4K","TV","Smart TV",1350000],
+        ["TV-LG-65","LG","65 UHD","Smart TV LG 65 4K","TV","Smart TV",1400000],
+        ["TV-TCL-65","TCL","65 P","Smart TV TCL 65 4K","TV","Smart TV",1050000],
+        ["LAV-DREAN-6","Drean","Next 6","Lavarropas Drean 6Kg","Lavarropas","Automáticos",550000],
+        ["LAV-DREAN-10","Drean","Next 10","Lavarropas Drean 10Kg","Lavarropas","Automáticos",850000],
+        ["LAV-GAFA-10","Gafa","Aqua 10","Lavarropas Gafa 10Kg","Lavarropas","Automáticos",820000],
+        ["LAV-LG-8","LG","8Kg","Lavarropas LG 8Kg","Lavarropas","Automáticos",850000],
+        ["LAV-SAM-8","Samsung","8Kg","Lavarropas Samsung 8Kg","Lavarropas","Automáticos",920000],
+        ["LAV-KOH-4","Kohinoor","Classic 4","Lavarropas a Paleta 4Kg","Lavarropas","A Paleta",280000],
+        ["LAV-KOH-5B","Kohinoor","Classic 5B","Lavarropas a Paleta 5Kg","Lavarropas","A Paleta",310000],
+        ["LAV-COD-4","Codini","Semi 4","Lavarropas Semiautomático 4Kg","Lavarropas","Semiautomáticos",250000],
+        ["LAV-COD-7B","Codini","Semi 7B","Lavarropas Semiautomático 7Kg","Lavarropas","Semiautomáticos",350000],
+        ["LAV-KOH-7S","Kohinoor","Semi 7","Lavarropas Kohinoor Semiautomático 7Kg","Lavarropas","Semiautomáticos",360000],
+        ["HEL-GAFA-200","Gafa","200L","Heladera Gafa 200L","Heladeras","Cíclica",550000],
+        ["HEL-GAFA-400","Gafa","400L","Heladera Gafa 400L","Heladeras","No Frost",980000],
+        ["HEL-DREAN-400","Drean","400L","Heladera Drean 400L","Heladeras","No Frost",950000],
+        ["HEL-LG-350","LG","350L","Heladera LG 350L","Heladeras","No Frost",1050000],
+        ["HEL-SAM-450","Samsung","450L","Heladera Samsung 450L","Heladeras","No Frost",1350000],
+        ["AIRE-BGH-2200","BGH","2200","Aire BGH 2200 Frigorías","Aires Acondicionados","Split",590000],
+        ["AIRE-BGH-5000","BGH","5000","Aire BGH 5000 Frigorías","Aires Acondicionados","Split",1150000],
+        ["AIRE-SUR-2800","Surrey","2800","Aire Surrey 2800 Frigorías","Aires Acondicionados","Split",680000],
+        ["AIRE-LG-3500","LG","3500","Aire LG 3500 Frigorías","Aires Acondicionados","Split",930000],
+        ["AIRE-SAM-4500","Samsung","4500","Aire Samsung 4500 Frigorías","Aires Acondicionados","Split",1100000],
+        ["AUD-JBL-FLIP5","JBL","Flip 5","Parlante JBL Flip 5","Audio","Parlantes",150000],
+        ["AUD-JBL-BOOM","JBL","BoomBox","Parlante JBL Boombox","Audio","Parlantes",650000],
+        ["AUD-SONY-XB","Sony","XB33","Parlante Sony XB33","Audio","Parlantes",260000],
+        ["AUD-PHIL-ON","Philips","TAH","Auriculares Philips","Auriculares","Bluetooth",75000],
+        ["AUD-JBL-WAVE","JBL","Wave","Auriculares JBL Wave","Auriculares","Bluetooth",80000],
+        ["AUD-SONY-CH","Sony","CH520","Auriculares Sony Bluetooth","Auriculares","Bluetooth",120000],
+        ["AUD-XIA-BUDS","Xiaomi","Redmi Buds","Auriculares Xiaomi Redmi Buds","Auriculares","Bluetooth",85000],
+        ["MON-SAM-24B","Samsung","24B","Monitor Samsung 24","Monitores","Monitores",250000],
+        ["MON-SAM-27B","Samsung","27B","Monitor Samsung 27","Monitores","Monitores",310000],
+        ["MON-LG-29","LG","29WK","Monitor LG Ultrawide 29","Monitores","Monitores",430000],
+        ["MON-LG-32","LG","32MP","Monitor LG 32","Monitores","Monitores",470000],
+        ["MON-ASUS-27G","ASUS","VG27","Monitor ASUS Gamer 27","Monitores","Gaming",520000],
+        ["PC-RYZEN5-16","AMD","Ryzen 5","PC Ryzen 5 16GB","Informática","PC Gamer",820000],
+        ["PC-RYZEN7-16","AMD","Ryzen 7","PC Ryzen 7 16GB","Informática","PC Gamer",1100000],
+        ["PC-I5-8","Intel","Core i5","PC Core i5 8GB","Informática","PC de escritorio",650000],
+        ["PC-I7-32","Intel","Core i7","PC Core i7 32GB","Informática","PC de escritorio",1150000],
+        ["PC-GAM-I5","Intel","Core i5 Gamer","PC Gamer Core i5","Informática","PC Gamer",1050000],
+        ["PEQ-LIL-PAVA","Liliana","Pava","Pava Eléctrica Liliana","Pequeños Electrodomésticos","Pavas Eléctricas",65000],
+        ["PEQ-ATMA-PAVA","Atma","Pava","Pava Eléctrica Atma","Pequeños Electrodomésticos","Pavas Eléctricas",60000],
+        ["PEQ-PHI-AIR2","Philips","Essential 4L","Freidora Philips 4L","Pequeños Electrodomésticos","Freidoras de Aire",170000],
+        ["PEQ-LIL-AIR2","Liliana","Air 4L","Freidora Liliana 4L","Pequeños Electrodomésticos","Freidoras de Aire",120000],
+        ["PEQ-ATMA-MIX","Atma","Mix","Batidora Atma","Pequeños Electrodomésticos","Batidoras",70000],
+        ["PEQ-LIL-CAF","Liliana","Cafe","Cafetera Liliana","Pequeños Electrodomésticos","Cafeteras",60000],
+        ["COC-LON-550X","Longvie","550X","Cocina Longvie 4 Hornallas","Cocina","Cocinas",460000],
+        ["COC-ESC-550","Escorial","550","Cocina Escorial 4 Hornallas","Cocina","Cocinas",340000],
+        ["COC-MORE-550","Morelli","550","Cocina Morelli 4 Hornallas","Cocina","Cocinas",390000],
+        ["COC-LON-5H","Longvie","5H","Cocina Longvie 5 Hornallas","Cocina","Cocinas",550000],
+        ["COC-ESC-GRILL","Escorial","Grill","Cocina Escorial con Grill","Cocina","Cocinas",420000],
+        ["COC-MORE-GRILL","Morelli","Grill","Cocina Morelli con Grill","Cocina","Cocinas",470000]
+    ].map((p, index) => ({
+        id: index + 69,
+        sku: p[0],
+        marca: p[1],
+        modelo: p[2],
+        nombre: p[3],
+        categoria: p[4],
+        subcategoria: p[5],
+        descripcion: `${p[3]} ideal para uso diario.`,
         especificaciones: {
-            potencia: "20W",
-            conexion: "USB-C",
-            carga: "Rápida"
+            tipo: p[5],
+            capacidad: p[5] === "Automáticos" || p[5] === "A Paleta" || p[5] === "Semiautomáticos" ? "Consultar ficha" : "Estándar"
         },
-
-        precio: 70000,
-        precioOferta: 59500,
-        cuotas: 3,
+        colores: ["Negro", "Blanco"],
+        precio: p[6],
+        moneda: "ARS",
+        descuento: 10,
+        garantia: "12 meses",
         stock: true,
-
+        cantidadStock: 8,
+        destacado: false,
+        activo: true,
+        tags: [p[1], p[2], p[4], p[5]],
+        imagenPrincipal: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
         imagenes: [
-            "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=700&q=80"
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80"
         ]
-    }
+    })),
 
 ];
+
+export default productos;
 
 
 /* =========================================
