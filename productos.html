@@ -1946,15 +1946,22 @@
 
     <!-- =========================================================
          JAVASCRIPT
-         SE MANTIENE EL SISTEMA DE SEGUIMIENTO
     ========================================================= -->
 
     <script>
 
-
         /*
         ============================================================
         BASE LOCAL DE ENVÍOS
+        GUÍA DE ETAPAS (del 1 al 8):
+        1 = Pedido recibido
+        2 = Pago confirmado
+        3 = Pedido confirmado
+        4 = Preparación del envío
+        5 = Envío despachado
+        6 = En tránsito
+        7 = En reparto
+        8 = Entregado
         ============================================================
         */
 
@@ -1979,7 +1986,7 @@
 
                 producto: "Producto de la orden",
 
-                etapa: 0, // 0 = Pedido recibido (Inicia siempre aquí por defecto)
+                etapa: 1, // <--- CAMBIÁ ESTE NÚMERO DEL 1 AL 8 PARA MANEJAR LA ETAPA MANUALMENTE
 
                 fecha: "03/09/2026 - 19:35 hs"
 
@@ -2001,13 +2008,11 @@
 
                 total: "$ 1.603.698",
 
-                producto:
-                    "2x Smart TV TCL 55 C655 QLED 4K",
+                producto: "2x Smart TV TCL 55 C655 QLED 4K",
 
-                etapa: 0,
+                etapa: 1, // <--- CAMBIÁ ESTE NÚMERO DEL 1 AL 8 PARA MANEJAR LA ETAPA MANUALMENTE
 
-                fecha:
-                    "03/09/2026 - 10:30 hs"
+                fecha: "03/09/2026 - 10:30 hs"
 
             }
 
@@ -2048,17 +2053,12 @@
             }
 
 
-            // 1. Busca en el objeto estático
             let envio = envios[input];
 
-            // 2. Si no está ahí, busca en localStorage (datos enviados desde formularios u otra sección)
             if (!envio) {
                 const localData = localStorage.getItem(input);
                 if (localData) {
                     envio = JSON.parse(localData);
-                } else {
-                    // Si el cliente acaba de enviar un formulario externamente, podemos simular capturar sus datos si existen en sessionStorage/localStorage o crear uno dinámico básico:
-                    // Si tienes un formulario que guarda datos en localStorage bajo la clave del código, se leerán perfecto aquí.
                 }
             }
 
@@ -2135,7 +2135,7 @@
 
             /*
             --------------------------------------------
-            ETAPAS
+            ETAPAS (Conversión del sistema 1 al 8)
             --------------------------------------------
             */
 
@@ -2191,13 +2191,10 @@
             );
 
 
-            /*
-            --------------------------------------------
-            MARCAR PROGRESO (Comienza siempre en Pedido Recibido si etapa es 0)
-            --------------------------------------------
-            */
+            // Obtenemos el número asignado (1 al 8) y lo convertimos a índice interno (0 al 7)
+            const numeroEtapa = (envio.etapa !== undefined) ? envio.etapa : 1;
+            const etapaActual = numeroEtapa - 1;
 
-            const etapaActual = (envio.etapa !== undefined) ? envio.etapa : 0;
 
             etapas.forEach(
                 (etapa, index) => {
@@ -2256,12 +2253,12 @@
 
             /*
             --------------------------------------------
-            ENTREGADO
+            ENTREGADO (Si se selecciona la etapa 8)
             --------------------------------------------
             */
 
             if (
-                etapaActual === 7
+                numeroEtapa >= 8
             ) {
 
 
