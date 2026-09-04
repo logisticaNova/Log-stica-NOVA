@@ -331,14 +331,7 @@ header p {
     color: var(--text-muted);
     margin-bottom: 15px;
     line-height: 1.55;
-    min-height: 63px;
-}
-
-.descripcion-texto.descripcion-corta {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    min-height: 55px;
 }
 
 .ver-mas-btn {
@@ -841,20 +834,37 @@ function cambiarImagenMiniatura(productoId, srcImagen, elementoThumbnail) {
     elementoThumbnail.classList.add('active');
 }
 
-function alternarDescripcion(id) {
-    const texto = document.getElementById(`descripcion-${id}`);
+/* Modificado para expandir/contraer dinámicamente el texto completo sin cortar palabras a la mitad */
+function alternarDescripcion(id, descripcionCompleta) {
+    const textoElemento = document.getElementById(`descripcion-${id}`);
     const boton = document.getElementById(`verMas-${id}`);
-    if (!texto || !boton) return;
-    const expandido = texto.classList.contains('expandido');
-    if (expandido) {
-        texto.classList.remove('expandido');
-        texto.classList.add('descripcion-corta');
+    if (!textoElemento || !boton) return;
+
+    const estaExpandido = boton.getAttribute('data-expandido') === 'true';
+
+    if (estaExpandido) {
+        // Volver a contraer (cortado a 50 caracteres limpios)
+        textoElemento.innerText = recortarTextoLimpio(descripcionCompleta, 50);
         boton.innerText = 'Ver más';
+        boton.setAttribute('data-expandido', 'false');
     } else {
-        texto.classList.remove('descripcion-corta');
-        texto.classList.add('expandido');
+        // Mostrar completo
+        textoElemento.innerText = descripcionCompleta;
         boton.innerText = 'Ver menos';
+        boton.setAttribute('data-expandido', 'true');
     }
+}
+
+// Función auxiliar para cortar en 50 caracteres sin cortar palabras a la mitad
+function recortarTextoLimpio(texto, limite) {
+    if (texto.length <= limite) return texto;
+    const sub = texto.substring(0, limite);
+    const ultimoEspacio = sub.lastIndexOf(' ');
+    // Si encuentra un espacio cercano, corta ahí para no dejar una palabra a medias
+    if (ultimoEspacio > 20) {
+        return sub.substring(0, ultimoEspacio) + '...';
+    }
+    return sub + '...';
 }
 
 function renderizarProductos() {
@@ -895,9 +905,8 @@ function renderizarProductos() {
             thumbnailsHTML += `<img src="${imgSrc}" alt="${producto.nombre} - Vista ${index + 1}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="cambiarImagenMiniatura(${producto.id}, '${imgSrc}', this)">`;
         });
 
-        const limiteDescripcion = 100;
-        const descripcionLarga = producto.descripcion.length > limiteDescripcion;
-        const descripcionCorta = descripcionLarga ? producto.descripcion.substring(0, limiteDescripcion) + '...' : producto.descripcion;
+        const superaLimite = producto.descripcion.length > 50;
+        const descripcionInicial = recortarTextoLimpio(producto.descripcion, 50);
 
         const card = document.createElement('div');
         card.className = 'card';
@@ -917,8 +926,8 @@ function renderizarProductos() {
                 <span class="card-category">${producto.marca} · ${producto.categoria}</span>
                 <h3 class="card-title">${producto.nombre}</h3>
                 <p class="card-desc">
-                    <span id="descripcion-${producto.id}" class="${descripcionLarga ? 'descripcion-texto descripcion-corta' : 'descripcion-texto'}">${descripcionLarga ? descripcionCorta : producto.descripcion}</span>
-                    ${descripcionLarga ? `<button id="verMas-${producto.id}" class="ver-mas-btn" onclick="alternarDescripcion(${producto.id})">Ver más</button>` : ''}
+                    <span id="descripcion-${producto.id}">${descripcionInicial}</span>
+                    ${superaLimite ? `<button id="verMas-${producto.id}" class="ver-mas-btn" data-expandido="false" onclick="alternarDescripcion(${producto.id}, '${producto.descripcion.replace(/'/g, "\\'")}')">Ver más</button>` : ''}
                 </p>
                 <div class="specs-list">${specsHTML}</div>
                 <div class="pricing">
