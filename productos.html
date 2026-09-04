@@ -242,9 +242,6 @@ header p {
     box-shadow: 0 2px 7px rgba(0,0,0,0.06);
 }
 
-/* =========================================
-   SISTEMA DE GALERÍA DE IMÁGENES
-   ========================================= */
 .product-gallery-container {
     padding: 14px;
     background: #fafafa;
@@ -299,7 +296,6 @@ header p {
     border-color: var(--primary-color);
     transform: scale(1.05);
 }
-/* ========================================= */
 
 .card-body {
     padding: 18px;
@@ -811,7 +807,6 @@ const productos = [
     { id: 19, sku: "CEL-XIA-RN13", marca: "Xiaomi", modelo: "Redmi Note 13", nombre: "Celular Xiaomi Redmi Note 13 256GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla AMOLED ultrabrillante, cámara triple de 108MP y carga rápida de 33W.", especificaciones: { pantalla: "6.67 AMOLED", almacenamiento: "256GB", ram: "8GB", camara: "108MP" }, precioOferta: 339999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
     { id: 20, sku: "CEL-XIA-POCOM6", marca: "Xiaomi", modelo: "Poco M6 Pro", nombre: "Celular Xiaomi Poco M6 Pro 256GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Procesador enfocado en gaming fluido, pantalla AMOLED 120Hz y carga rápida.", especificaciones: { pantalla: "6.67 AMOLED 120Hz", almacenamiento: "256GB", ram: "8GB", camara: "64MP" }, precioOferta: 379999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Ventiladores (21 al 55)
     { id: 21, sku: "ELEC-VEN-PEY20", marca: "Peabody", modelo: "PE-VP20", nombre: "Ventilador de Pie Peabody 20 Pulgadas", categoria: "Pequeños Electrodomésticos", subcategoria: "Ventilación", descripcion: "Ventilador de pie metálico de gran potencia con 3 velocidades y cabezal oscilante.", especificaciones: { tipo: "De pie", potencia: "90W", diametro: "20 pulgadas", velocidades: "3" }, precioOferta: 64999, stock: true, imagenes: ["https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=600&q=80"] },
     { id: 22, sku: "ELEC-VEN-LIL3IN1", marca: "Liliana", modelo: "VCC20", nombre: "Ventilador de Pie Liliana 3 en 1", categoria: "Pequeños Electrodomésticos", subcategoria: "Ventilación", descripcion: "Versátil ventilador convertible en pie, turbo o pared con aspas aerodinámicas.", especificaciones: { tipo: "3 en 1", potencia: "75W", diametro: "20 pulgadas", velocidades: "3" }, precioOferta: 58999, stock: true, imagenes: ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80"] },
     { id: 23, sku: "ELEC-VEN-LILTUR18", marca: "Liliana", modelo: "VT400", nombre: "Ventilador Turbo Liliana 18\"", categoria: "Pequeños Electrodomésticos", subcategoria: "Ventilación", descripcion: "Turbo de alta performance con reja oscilante y motor reforzado silencioso.", especificaciones: { tipo: "Turbo", potencia: "80W", diametro: "18 pulgadas", velocidades: "3" }, precioOferta: 49999, stock: true, imagenes: ["https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=600&q=80"] },
@@ -828,7 +823,6 @@ const productos = [
     { id: 34, sku: "ELEC-VEN-TECHOM", marca: "Technical", modelo: "TEC-VT", nombre: "Ventilador Turbo 16 Pulgadas", categoria: "Pequeños Electrodomésticos", subcategoria: "Ventilación", descripcion: "Diseño aerodinámico en color negro mate.", especificaciones: { tipo: "Turbo", potencia: "65W", diametro: "16 pulgadas", velocidades: "3" }, precioOferta: 42999, stock: true, imagenes: ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80"] },
     { id: 35, sku: "ELEC-VEN-ATMAW", marca: "Atma", modelo: "VAPW18", nombre: "Ventilador de Pared Atma 18\"", categoria: "Pequeños Electrodomésticos", subcategoria: "Ventilación", descripcion: "Fácil instalación mural y control total de flujo de aire.", especificaciones: { tipo: "De pared", potencia: "75W", diametro: "18 pulgadas", velocidades: "3" }, precioOferta: 49999, stock: true, imagenes: ["https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Freidoras Eléctricas (36 al 70)
     { id: 36, sku: "ELEC-FRI-AT3L", marca: "Atma", modelo: "AF8120", nombre: "Freidora de Aire Atma Sin Aceite 3 Litros", categoria: "Pequeños Electrodomésticos", subcategoria: "Cocina", descripcion: "Freidora sin aceite con tecnología de circulación de aire caliente, control de temperatura y timer.", especificaciones: { capacidad: "3 Litros", potencia: "1400W", timer: "60 min", temperatura: "Hasta 200°C" }, precioOferta: 79999, stock: true, imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
     { id: 37, sku: "ELEC-FRI-PHI5L", marca: "Philips", modelo: "Airfryer Essential 5L", nombre: "Freidora Sin Aceite Philips Airfryer 5.2L", categoria: "Pequeños Electrodomésticos", subcategoria: "Cocina", descripcion: "Gran capacidad familiar, tecnología Rapid Air para comidas crujientes por fuera y tiernas por dentro.", especificaciones: { capacidad: "5.2 Litros", potencia: "2000W", timer: "Digital", temperatura: "Ajustable" }, precioOferta: 149999, stock: true, imagenes: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=600&q=80"] },
     { id: 38, sku: "ELEC-FRI-OST4L", marca: "Oster", modelo: "CKSTDF40", nombre: "Freidora de Aire Oster Digital 4L", categoria: "Pequeños Electrodomésticos", subcategoria: "Cocina", descripcion: "Panel táctil digital con programas preestablecidos para carnes, papas, pescados y repostería.", especificaciones: { capacidad: "4 Litros", potencia: "1500W", panel: "Tactil digital", temperatura: "80°C a 200°C" }, precioOferta: 99999, stock: true, imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
@@ -840,7 +834,6 @@ const productos = [
     { id: 44, sku: "ELEC-FRI-NEST6L", marca: "Nappo", modelo: "NAF-500", nombre: "Freidora de Aire Nappo 6 Litros Familiar", categoria: "Pequeños Electrodomésticos", subcategoria: "Cocina", descripcion: "Extra grande para porciones abundantes con Doble resistencia.", especificaciones: { capacidad: "6 Litros", potencia: "1800W", timer: "Digital", temperatura: "Ajustable" }, precioOferta: 119999, stock: true, imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
     { id: 45, sku: "ELEC-FRI-GACH2L", marca: "Gafa", modelo: "Compact Air", nombre: "Freidora de Aire Mini 2.5L", categoria: "Pequeños Electrodomésticos", subcategoria: "Cocina", descripcion: "Super compacta para parejas o personas solas, bajo consumo.", especificaciones: { capacidad: "2.5 Litros", potencia: "1000W", timer: "30 min", temperatura: "Fija/Variable" }, precioOferta: 54999, stock: true, imagenes: ["https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Lavarropas Económicos (46 al 90)
     { id: 46, sku: "LAV-DREAN-6", marca: "Drean", modelo: "Next 6.06", nombre: "Lavarropas Automático Drean Next 6kg 600RPM", categoria: "Lavarropas / Secadoras", subcategoria: "Lavarropas", descripcion: "Lavarropas automático económico de carga frontal, selector multifunción y sistema de lavado inteligente.", especificaciones: { carga: "Frontal", capacidad: "6 kg", centrifugado: "600 RPM", eficiencia: "A+" }, precioOferta: 489999, stock: true, imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"] },
     { id: 47, sku: "LAV-DREAN-5", marca: "Drean", modelo: "Concept 5.05", nombre: "Lavarropas Semicuidad / Automático Drean Concept 5kg", categoria: "Lavarropas / Secadoras", subcategoria: "Lavarropas", descripcion: "Carga superior súper accesible, cuba de acero inoxidable y programas optimizados de lavado.", especificaciones: { carga: "Superior", capacidad: "5 kg", centrifugado: "500 RPM", eficiencia: "A" }, precioOferta: 399999, stock: true, imagenes: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=600&q=80"] },
     { id: 48, sku: "LAV-PAT-7", marca: "Patrick", modelo: "LKP7100", nombre: "Lavarropas Patrick Carga Superior 7kg", categoria: "Lavarropas / Secadoras", subcategoria: "Lavarropas", descripcion: "Mayor capacidad de carga a precio económico, filtro de pelusas y múltiples programas.", especificaciones: { carga: "Superior", capacidad: "7 kg", centrifugado: "700 RPM", eficiencia: "A" }, precioOferta: 439999, stock: true, imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"] },
@@ -852,7 +845,6 @@ const productos = [
     { id: 54, sku: "LAV-PAT-5", marca: "Patrick", modelo: "LKP50", nombre: "Lavarropas Semiautomático Patrick 5kg", categoria: "Lavarropas / Secadoras", subcategoria: "Lavarropas", descripcion: "Semiautomático ultra económico, fácil de cargar y vaciar.", especificaciones: { carga: "Superior", capacidad: "5 kg", centrifugado: "Sin centrifugado", eficiencia: "A" }, precioOferta: 259999, stock: true, imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"] },
     { id: 55, sku: "LAV-DREAN-GOLD", marca: "Drean", modelo: "Gold 8.6", nombre: "Lavarropas Drean Gold 8kg Carga Superior", categoria: "Lavarropas / Secadoras", subcategoria: "Lavarropas", descripcion: "Diseño compacto europeo de carga superior, cómodo para espacios reducidos.", especificaciones: { carga: "Superior", capacidad: "8 kg", centrifugado: "800 RPM", eficiencia: "A+" }, precioOferta: 549999, stock: true, imagenes: ["https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Cocinas de 4 hornallas económicas (56 al 100)
     { id: 56, sku: "COC-ATMA-4", marca: "Atma", modelo: "CO450N", nombre: "Cocina a Gas 4 Hornallas Atma Multigas", categoria: "Cocinas / Hornos", subcategoria: "Cocinas", descripcion: "Cocina de 4 hornallas económica con encendido electrónico, horno visor con luz y válvula de seguridad.", especificaciones: { hornallas: "4", encendido: "Electrónico", horno: "Con visor y luz", tipoGas: "Multigas" }, precioOferta: 349999, stock: true, imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
     { id: 57, sku: "COC-PH-4", marca: "Philco", modelo: "PHCO40", nombre: "Cocina Gas 4 Hornallas Philco Encendido a Chispa", categoria: "Cocinas / Hornos", subcategoria: "Cocinas", descripcion: "Hornallas de alta eficiencia, horno enlozado de fácil limpieza y puerta doble cristal.", especificaciones: { hornallas: "4", encendido: "A chispa", horno: "Enlozado fácil limpieza", tipoGas: "Multigas" }, precioOferta: 329999, stock: true, imagenes: ["https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80"] },
     { id: 58, sku: "COC-ORB-4", marca: "Orbis", modelo: "388GF4", nombre: "Cocina Orbis 4 Hornallas Puerta Espejada Económica", categoria: "Cocinas / Hornos", subcategoria: "Cocinas", descripcion: "Diseño elegante con puerta de horno espejada, rejillas enlozadas y válvula de seguridad en hornallas y horno.", especificaciones: { hornallas: "4", encendido: "Electrónico automático", horno: "Visor espejado", tipoGas: "Multigas" }, precioOferta: 419999, stock: true, imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
@@ -864,39 +856,33 @@ const productos = [
     { id: 64, sku: "COC-ATMA-INOX", marca: "Atma", modelo: "CO450IX", nombre: "Cocina 4 Hornallas Atma Acero Inoxidable", categoria: "Cocinas / Hornos", subcategoria: "Cocinas", descripcion: "Terminación en acero inoxidable con frente espejado y válvulas de seguridad.", especificaciones: { hornallas: "4", encendido: "Electrónico", horno: "Visor con luz", tipoGas: "Multigas" }, precioOferta: 399999, stock: true, imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"] },
     { id: 65, sku: "COC-PH-GRIS", marca: "Philco", modelo: "PHCO45G", nombre: "Cocina Philco 4 Hornallas Gris Silver", categoria: "Cocinas / Hornos", subcategoria: "Cocinas", descripcion: "Diseño moderno color silver, rejillas vitrocerámicas divididas.", especificaciones: { hornallas: "4", encendido: "A chispa", horno: "Doble cristal", tipoGas: "Multigas" }, precioOferta: 359999, stock: true, imagenes: ["https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Heladeras y Freezers (66 al 110)
     { id: 66, sku: "HEL-GAFA-H340", marca: "Gafa", modelo: "HGD350", nombre: "Heladera Gafa Ciclíca 282 Litros Blanca", categoria: "Heladeras / Freezers", subcategoria: "Heladeras", descripcion: "Heladera con freezer cíclico, estantes regulables y cajón para vegetales de gran tamaño.", especificaciones: { capacidad: "282 Lts", sistema: "Ciclica", freezer: "Superior", eficiencia: "A" }, precioOferta: 649999, stock: true, imagenes: ["https://images.unsplash.com/photo-1584568694244-14fbdf82bdfe?auto=format&fit=crop&w=600&q=80"] },
     { id: 67, sku: "HEL-COL-RT38", marca: "Samsung", modelo: "RT38", nombre: "Heladera Samsung No Frost 380L Inverter", categoria: "Heladeras / Freezers", subcategoria: "Heladeras", descripcion: "Tecnología Digital Inverter, ahorro de energía superior y enfriamiento envolvente All-Around Cooling.", especificaciones: { capacidad: "380 Lts", sistema: "No Frost", freezer: "Superior", eficiencia: "A+" }, precioOferta: 1150000, stock: true, imagenes: ["https://images.unsplash.com/photo-1571175336579-4d691cf0ac42?auto=format&fit=crop&w=600&q=80"] },
     { id: 68, sku: "HEL-PHIC-PRO", marca: "Philco", modelo: "PHCT320", nombre: "Heladera con Freezer Philco 314L Blanca", categoria: "Heladeras / Freezers", subcategoria: "Heladeras", descripcion: "Amplio espacio interior con iluminación LED y anaqueles porta botellas.", especificaciones: { capacidad: "314 Lts", sistema: "Ciclica", freezer: "Superior", eficiencia: "A" }, precioOferta: 699999, stock: true, imagenes: ["https://images.unsplash.com/photo-1584568694244-14fbdf82bdfe?auto=format&fit=crop&w=600&q=80"] },
     { id: 69, sku: "HEL-GFA-FRZ", marca: "Gafa", modelo: "Ecolook 100", nombre: "Freezer Horizontal Gafa 100 Litros", categoria: "Heladeras / Freezers", subcategoria: "Freezers", descripcion: "Freezer compacto horizontal de bajo consumo con función dual congelador/enfriador.", especificaciones: { capacidad: "100 Lts", tipo: "Horizontal", eficiencia: "A", sistema: "Dual" }, precioOferta: 429999, stock: true, imagenes: ["https://images.unsplash.com/photo-1571175336579-4d691cf0ac42?auto=format&fit=crop&w=600&q=80"] },
     { id: 70, sku: "HEL-WHIRL-NF", marca: "Whirlpool", modelo: "WRM45", nombre: "Heladera Whirlpool No Frost 430 Litros Inox", categoria: "Heladeras / Freezers", subcategoria: "Heladeras", descripcion: "Panel touch exterior, compartimento extrafrío y máxima frescura prolongada.", especificaciones: { capacidad: "430 Lts", sistema: "No Frost", freezer: "Superior", eficiencia: "A+" }, precioOferta: 1399999, stock: true, imagenes: ["https://images.unsplash.com/photo-1584568694244-14fbdf82bdfe?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Televisores / Monitores (71 al 130)
     { id: 71, sku: "TV-SAM-55CU7000", marca: "Samsung", modelo: "UN55CU7000", nombre: "Smart TV 55\" Samsung 4K UHD", categoria: "Televisores / Monitores", subcategoria: "Smart TV", descripcion: "PurColor, procesador Crystal 4K y diseño elegante sin bordes para una experiencia inmersiva.", especificaciones: { pantalla: "55 Pulgadas", resolucion: "4K UHD", smart: "Tizen", hdmi: "3" }, precioOferta: 749999, stock: true, imagenes: ["https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=600&q=80"] },
     { id: 72, sku: "TV-LG-43UR7800", marca: "LG", modelo: "43UR7800", nombre: "Smart TV 43\" LG 4K ThinQ AI", categoria: "Televisores / Monitores", subcategoria: "Smart TV", descripcion: "Inteligencia artificial ThinQ AI, procesador a5 AI 4K Gen6 y compatibilidad con HDR10 Pro.", especificaciones: { pantalla: "43 Pulgadas", resolucion: "4K UHD", smart: "webOS", hdmi: "3" }, precioOferta: 519999, stock: true, imagenes: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=600&q=80"] },
     { id: 73, sku: "TV-PHIC-32", marca: "Philco", modelo: "PLD32HS23", nombre: "Smart TV 32\" Philco HD", categoria: "Televisores / Monitores", subcategoria: "Smart TV", descripcion: "Televisor compacto HD con aplicaciones de streaming integradas y sonido Dolby Digital.", especificaciones: { pantalla: "32 Pulgadas", resolucion: "HD", smart: "VIDAA", hdmi: "2" }, precioOferta: 279999, stock: true, imagenes: ["https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=600&q=80"] },
     { id: 74, sku: "TV-HISE-50", marca: "Hisense", modelo: "50A6H", nombre: "Smart TV 50\" Hisense 4K Google TV", categoria: "Televisores / Monitores", subcategoria: "Smart TV", descripcion: "Plataforma Google TV con control por voz, Dolby Vision y modo juego de baja latencia.", especificaciones: { pantalla: "50 Pulgadas", resolucion: "4K UHD", smart: "Google TV", hdmi: "3" }, precioOferta: 629999, stock: true, imagenes: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=600&q=80"] },
     { id: 75, sku: "MON-SAM-24", marca: "Samsung", modelo: "LS24C310", nombre: "Monitor Gamer Samsung 24\" FHD 75Hz IPS", categoria: "Televisores / Monitores", subcategoria: "Monitores", descripcion: "Panel IPS con ángulos de visión amplios, FreeSync y diseño sin bordes en 3 lados.", especificaciones: { pantalla: "24 Pulgadas IPS", resolucion: "Full HD", tasaRefresco: "75Hz", tiempoRespuesta: "5ms" }, precioOferta: 219999, stock: true, imagenes: ["https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Gaming (76 al 150)
     { id: 76, sku: "GAM-CON-PS5", marca: "Sony", modelo: "PlayStation 5 Slim", nombre: "Consola Sony PlayStation 5 Slim 1TB", categoria: "Gaming", subcategoria: "Consolas", descripcion: "Diseño más esbelto, unidad de disco extraíble y velocidad ultrarrápida con SSD de ultra alta velocidad.", especificaciones: { almacenamiento: "1TB SSD", resolucion: "Hasta 4K 120fps", lectora: "Blu-ray Disc", inalambrico: "DualSense" }, precioOferta: 1299999, stock: true, imagenes: ["https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=600&q=80"] },
     { id: 77, sku: "GAM-CON-XSS", marca: "Microsoft", modelo: "Xbox Series S 512GB", nombre: "Consola Microsoft Xbox Series S 512GB", categoria: "Gaming", subcategoria: "Consolas", descripcion: "Juegos de próxima generación en formato 100% digital, tamaño ultra compacto y tiempos de carga mínimos.", especificaciones: { almacenamiento: "512GB NVMe SSD", resolucion: "1440p hasta 120fps", lectora: "Sin lectora", inalambrico: "Control Xbox" }, precioOferta: 789999, stock: true, imagenes: ["https://images.unsplash.com/photo-1621259182978-fbf93132d53d?auto=format&fit=crop&w=600&q=80"] },
     { id: 78, sku: "GAM-MOU-LOGG305", marca: "Logitech G", modelo: "G305 Lightspeed", nombre: "Mouse Gamer Inalámbrico Logitech G305", categoria: "Gaming", subcategoria: "Periféricos", descripcion: "Sensor HERO de hasta 12,000 DPI, conectividad inalámbrica ultrarrápida y hasta 250 horas de uso.", especificaciones: { sensor: "HERO 12K", dpi: "200-12000", conexion: "Inalámbrico USB", peso: "99g" }, precioOferta: 59999, stock: true, imagenes: ["https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80"] },
     { id: 79, sku: "GAM-TEC-RETRY", marca: "Redragon", modelo: "K552 Kumara", nombre: "Teclado Mecánico Gamer Redragon Kumara K552 RGB", categoria: "Gaming", subcategoria: "Periféricos", descripcion: "Teclado mecánico TKL compacto con switches Outemu Red y retroiluminación RGB.", especificaciones: { tipo: "Mecánico TKL", switches: "Outemu Red", antiGhosting: "100%", iluminacion: "RGB" }, precioOferta: 64999, stock: true, imagenes: ["https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"] },
     { id: 80, sku: "GAM-AUD-HYPERX", marca: "HyperX", modelo: "Cloud Stinger 2", nombre: "Auriculares Gamer HyperX Cloud Stinger 2", categoria: "Gaming", subcategoria: "Periféricos", descripcion: "Comodidad ligera con almohadillas de espuma viscoelástica y sonido espacial inmersivo.", especificaciones: { driver: "50mm dinámicos", conexion: "Jack 3.5mm", microfono: "Giratorio con silencio", peso: "275g" }, precioOferta: 79999, stock: true, imagenes: ["https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Aires Acondicionados (81 al 170)
     { id: 81, sku: "CLI-PHIC-3000", marca: "Philco", modelo: "PHIN32H22W", nombre: "Aire Acondicionado Split Inverter Philco 3200W Frío/Calor", categoria: "Aires Acondicionados", subcategoria: "Splits", descripcion: "Tecnología Inverter para máximo ahorro energético, función I Feel y gas ecológico R410a.", especificaciones: { frigorias: "2750 fg", potenciaW: "3200W", tipo: "Frío/Calor Inverter", eficiencia: "A++" }, precioOferta: 789999, stock: true, imagenes: ["https://images.unsplash.com/photo-1631545725791-62d294822295?auto=format&fit=crop&w=600&q=80"] },
     { id: 82, sku: "CLI-HIS-4500", marca: "Hisense", modelo: "AS-18UW4", nombre: "Aire Acondicionado Split Hisense 4500 Frigorías", categoria: "Aires Acondicionados", subcategoria: "Splits", descripcion: "Climatización rápida para ambientes amplios, display digital oculto y filtros purificadores.", especificaciones: { frigorias: "4500 fg", potenciaW: "5200W", tipo: "Frío/Calor", eficiencia: "A" }, precioOferta: 1120000, stock: true, imagenes: ["https://images.unsplash.com/photo-1631545725791-62d294822295?auto=format&fit=crop&w=600&q=80"] },
     { id: 83, sku: "CLI-MGD-2300", marca: "Midea", modelo: "MSAG-12", nombre: "Aire Acondicionado Split Midea 2300 Frigorías", categoria: "Aires Acondicionados", subcategoria: "Splits", descripcion: "Ideal para habitaciones pequeñas o estudios, bajo nivel sonoro.", especificaciones: { frigorias: "2300 fg", potenciaW: "2600W", tipo: "Frío/Calor", eficiencia: "A" }, precioOferta: 649999, stock: true, imagenes: ["https://images.unsplash.com/photo-1631545725791-62d294822295?auto=format&fit=crop&w=600&q=80"] },
 
-    // Bloque Informática (171 al 200)
     { id: 180, sku: "INF-NOTE-LENOVO", marca: "Lenovo", modelo: "IdeaPad 1", nombre: "Notebook Lenovo IdeaPad 1 15.6\" Celeron 4GB 128GB SSD", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Portátil liviana y rápida para estudio y tareas de oficina cotidianas con disco de estado sólido.", especificaciones: { pantalla: "15.6 HD", procesador: "Intel Celeron N4020", ram: "4GB", almacenamiento: "128GB SSD" }, precioOferta: 489999, stock: true, imagenes: ["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80"] },
     { id: 185, sku: "INF-NOTE-HP", marca: "HP", modelo: "14-cf2000", nombre: "Notebook HP 14\" Intel Core i3 8GB 256GB SSD", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Rendimiento superior con procesador Core i3 y arranque instantáneo gracias al SSD.", especificaciones: { pantalla: "14 HD", procesador: "Intel Core i3", ram: "8GB", almacenamiento: "256GB SSD" }, precioOferta: 699999, stock: true, imagenes: ["https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80"] },
     { id: 190, sku: "INF-NOTE-ASUS", marca: "Asus", modelo: "Vivobook Go 15", nombre: "Notebook Asus Vivobook 15.6\" Ryzen 3 8GB 256GB SSD", categoria: "Informática", subcategoria: "Notebooks", descripcion: "Procesador AMD Ryzen de gran desempeño gráfico y diseño ultrafino.", especificaciones: { pantalla: "15.6 FHD", procesador: "AMD Ryzen 3", ram: "8GB", almacenamiento: "256GB SSD" }, precioOferta: 759999, stock: true, imagenes: ["https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=600&q=80"] },
     { id: 200, sku: "INF-TABLET-SAM", marca: "Samsung", modelo: "Galaxy Tab A9", nombre: "Tablet Samsung Galaxy Tab A9 8.7\" 64GB", categoria: "Informática", subcategoria: "Tablets", descripcion: "Diseño compacto metálico, ideal para entretenimiento multimedia y lectura en cualquier lugar.", especificaciones: { pantalla: "8.7 Pulgadas", almacenamiento: "64GB", ram: "4GB", bateria: "5100 mAh" }, precioOferta: 289999, stock: true, imagenes: ["https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80"] }
 ];
-
 
 let carrito = [];
 let vistaActual = 'carrito';
@@ -938,7 +924,6 @@ function cambiarImagenMiniatura(productoId, srcImagen, elementoThumbnail) {
     elementoThumbnail.classList.add('active');
 }
 
-/* Modificado para expandir/contraer dinámicamente el texto completo sin cortar palabras a la mitad */
 function alternarDescripcion(id, descripcionCompleta) {
     const textoElemento = document.getElementById(`descripcion-${id}`);
     const boton = document.getElementById(`verMas-${id}`);
@@ -947,24 +932,20 @@ function alternarDescripcion(id, descripcionCompleta) {
     const estaExpandido = boton.getAttribute('data-expandido') === 'true';
 
     if (estaExpandido) {
-        // Volver a contraer (cortado a 50 caracteres limpios)
         textoElemento.innerText = recortarTextoLimpio(descripcionCompleta, 50);
         boton.innerText = 'Ver más';
         boton.setAttribute('data-expandido', 'false');
     } else {
-        // Mostrar completo
         textoElemento.innerText = descripcionCompleta;
         boton.innerText = 'Ver menos';
         boton.setAttribute('data-expandido', 'true');
     }
 }
 
-// Función auxiliar para cortar en 50 caracteres sin cortar palabras a la mitad
 function recortarTextoLimpio(texto, limite) {
     if (texto.length <= limite) return texto;
     const sub = texto.substring(0, limite);
     const ultimoEspacio = sub.lastIndexOf(' ');
-    // Si encuentra un espacio cercano, corta ahí para no dejar una palabra a medias
     if (ultimoEspacio > 20) {
         return sub.substring(0, ultimoEspacio) + '...';
     }
@@ -1158,32 +1139,38 @@ function calcularTotales() {
         total = subtotal + recargoTotal;
     }
     
-    const valorCuota = total / cuotasGlobal;
-    const costoEnvio = tarifasProvincias[localidadSeleccionadaGlobal] ? tarifasProvincias[localidadSeleccionadaGlobal].costo : 8500;
-    
-    return { subtotal, descuento, recargo: recargoTotal, total, valorCuota, costoEnvio };
+    const costoEnvio = tarifasProvincias[localidadSeleccionadaGlobal]?.costo || 0;
+    total += costoEnvio;
+    const valorCuota = cuotasGlobal > 0 ? total / cuotasGlobal : total;
+
+    return { subtotal, descuento, recargoTotal, costoEnvio, total, valorCuota };
 }
 
 function renderizarContenidoDrawer() {
-    const drawerTitle = document.getElementById('drawerTitle');
     const bodyContent = document.getElementById('cartBodyContent');
+    const drawerTitle = document.getElementById('drawerTitle');
+    if (!bodyContent) return;
 
     if (carrito.length === 0) {
         drawerTitle.innerText = "Tu Carrito de Compras";
-        bodyContent.innerHTML = `<div class="empty-cart">Tu carrito está vacío.</div>`;
-        vistaActual = 'carrito';
+        bodyContent.innerHTML = `
+            <div class="empty-cart">
+                <p>Tu carrito está vacío.</p>
+                <button class="cart-btn" style="margin: 20px auto;" onclick="toggleCart()">Ver Catálogo</button>
+            </div>
+        `;
         return;
     }
 
     if (vistaActual === 'carrito') {
         drawerTitle.innerText = "Tu Carrito de Compras";
-        let htmlItems = `<div style="flex-grow:1; overflow-y:auto; max-height:35vh;">`;
+        let itemsHTML = '';
         carrito.forEach(item => {
-            htmlItems += `
+            itemsHTML += `
                 <div class="cart-item">
                     <div class="cart-item-info">
                         <h4>${item.nombre}</h4>
-                        <div class="cart-item-price">${formatearMoneda(item.precioOferta)} c/u</div>
+                        <div class="cart-item-price">${formatearMoneda(item.precioOferta)} x ${item.cantidad}</div>
                     </div>
                     <div class="cart-item-actions">
                         <button class="qty-btn" onclick="cambiarCantidad(${item.id}, -1)">-</button>
@@ -1194,154 +1181,155 @@ function renderizarContenidoDrawer() {
                 </div>
             `;
         });
-        htmlItems += `</div>`;
 
-        const { subtotal, descuento, recargo, total, valorCuota } = calcularTotales();
-
-        let maxCuotas = 1;
-        if (metodoPagoGlobal === 'creditoDni') maxCuotas = 6;
-        if (metodoPagoGlobal === 'tarjetaCredito') maxCuotas = 12;
+        const infoEnvio = tarifasProvincias[localidadSeleccionadaGlobal];
+        const { subtotal, descuento, recargoTotal, costoEnvio, total, valorCuota } = calcularTotales();
 
         let opcionesCuotasHTML = '';
-        for (let i = 1; i <= maxCuotas; i++) {
-            opcionesCuotasHTML += `<option value="${i}" ${cuotasGlobal === i ? 'selected' : ''}>${i} ${i === 1 ? 'Pago' : 'Pagos'}</option>`;
+        if (metodoPagoGlobal === 'creditoDni') {
+            [1, 3, 6].forEach(c => {
+                opcionesCuotasHTML += `<option value="${c}" ${cuotasGlobal === c ? 'selected' : ''}>${c} ${c === 1 ? 'Cuota sin interés' : 'Cuotas (recargo financ.)'}</option>`;
+            });
+        } else if (metodoPagoGlobal === 'tarjetaCredito') {
+            [1, 3, 6, 12].forEach(c => {
+                opcionesCuotasHTML += `<option value="${c}" ${cuotasGlobal === c ? 'selected' : ''}>${c} ${c === 1 ? 'Cuota' : 'Cuotas'}</option>`;
+            });
         }
 
-        htmlItems += `
-            <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:10px;">
-                <div class="payment-methods">
-                    <label for="paymentMethodSelect">Método de Pago:</label>
-                    <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
-                        <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
-                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (+5.5% acumulativo por cuota)</option>
-                        <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito (+8% acumulativo por cuota)</option>
-                    </select>
-                </div>
+        bodyContent.innerHTML = `
+            <div style="margin-bottom: 15px;">${itemsHTML}</div>
+            
+            <div class="form-group">
+                <label>Zona de Destino (Envío):</label>
+                <select id="localidadSelect" class="payment-select" onchange="onLocalidadChange()">
+                    <option value="CABA" ${localidadSeleccionadaGlobal === 'CABA' ? 'selected' : ''}>CABA ($8.500 - 12 a 24 hs)</option>
+                    <option value="Buenos Aires" ${localidadSeleccionadaGlobal === 'Buenos Aires' ? 'selected' : ''}>Buenos Aires ($12.500 - 24 a 48 hs)</option>
+                    <option value="Provincias" ${localidadSeleccionadaGlobal === 'Provincias' ? 'selected' : ''}>Otras Provincias ($18.500 - 3 a 6 días)</option>
+                </select>
+            </div>
 
-                <div class="payment-methods">
-                    <label for="cuotasSelect">Cantidad de Pagos / Cuotas:</label>
+            <div class="payment-methods">
+                <label>Método de Pago:</label>
+                <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
+                    <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
+                    <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Cuenta DNI</option>
+                    <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito</option>
+                </select>
+            </div>
+
+            ${(metodoPagoGlobal === 'creditoDni' || metodoPagoGlobal === 'tarjetaCredito') ? `
+                <div class="form-group">
+                    <label>Cantidad de Cuotas:</label>
                     <select id="cuotasSelect" class="payment-select" onchange="onCuotasChange()">
                         ${opcionesCuotasHTML}
                     </select>
                 </div>
+            ` : ''}
 
+            <div style="border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 10px;">
                 <div class="cart-summary-line"><span>Subtotal productos:</span><span>${formatearMoneda(subtotal)}</span></div>
                 ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
-                ${recargo > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo (${cuotasGlobal} cuotas):</span><span>+${formatearMoneda(recargo)}</span></div>` : ''}
-                
-                <div class="cart-total"><span>Total Productos:</span><span>${formatearMoneda(total)}</span></div>
-                
-                <div class="installment-summary">
-                    ${cuotasGlobal > 1 ? `Plan en <strong>${cuotasGlobal} cuotas</strong> de <strong>${formatearMoneda(valorCuota)}</strong> c/u` : `Pago único de <strong>${formatearMoneda(valorCuota)}</strong>`}
-                </div>
-
-                <button class="checkout-btn" onclick="procederAlCheckout()">Continuar con la Orden de Compra</button>
+                ${recargoTotal > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo Financiamiento:</span><span>+${formatearMoneda(recargoTotal)}</span></div>` : ''}
+                <div class="cart-summary-line"><span>Costo de Envío (${infoEnvio.nombre}):</span><span>${formatearMoneda(costoEnvio)}</span></div>
+                <div class="cart-total"><span>Total Final:</span><span>${formatearMoneda(total)}</span></div>
+                ${cuotasGlobal > 1 ? `<div class="installment-summary">Pagás ${cuotasGlobal} cuotas de <strong>${formatearMoneda(valorCuota)}</strong></div>` : ''}
             </div>
-        `;
-        bodyContent.innerHTML = htmlItems;
-    } else if (vistaActual === 'checkout') {
-        drawerTitle.innerText = "Datos de Envío y Contacto";
-        const infoEnvioActual = tarifasProvincias[localidadSeleccionadaGlobal];
-        const { total, valorCuota, costoEnvio } = calcularTotales();
-        const totalConEnvio = total + costoEnvio;
 
+            <button class="checkout-btn" style="margin-top: 15px;" onclick="vistaActual = 'formulario'; renderizarContenidoDrawer();">Continuar con la Orden de Compra</button>
+        `;
+    } else if (vistaActual === 'formulario') {
+        drawerTitle.innerText = "Datos de Envío y Facturación";
         bodyContent.innerHTML = `
             <form id="orderForm" onsubmit="enviarOrdenWhatsApp(event)">
                 <div class="form-group">
-                    <label for="localidadSelect">Localidad / Provincia de Destino:</label>
-                    <select id="localidadSelect" class="payment-select" onchange="onLocalidadChange()">
-                        <option value="CABA" ${localidadSeleccionadaGlobal === 'CABA' ? 'selected' : ''}>CABA — ${formatearMoneda(8500)} (Demora: 12 a 24 hs)</option>
-                        <option value="Buenos Aires" ${localidadSeleccionadaGlobal === 'Buenos Aires' ? 'selected' : ''}>Buenos Aires — ${formatearMoneda(12500)} (Demora: 24 a 48 hs)</option>
-                        <option value="Provincias" ${localidadSeleccionadaGlobal === 'Provincias' ? 'selected' : ''}>Provincias — ${formatearMoneda(18500)} (Demora: 3 a 6 días hábiles)</option>
-                    </select>
+                    <label>Nombre y Apellido *</label>
+                    <input type="text" id="nombreCliente" required placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono / WhatsApp *</label>
+                    <input type="tel" id="telCliente" required placeholder="Ej. 1123456789">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="emailCliente" placeholder="correo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label>Dirección de Entrega (Calle y Nro) *</label>
+                    <input type="text" id="dirCliente" required placeholder="Av. Corrientes 1234, Piso 2">
+                </div>
+                <div class="form-group">
+                    <label>Localidad / Ciudad *</label>
+                    <input type="text" id="ciudadCliente" required placeholder="Ej. Mar del Plata">
+                </div>
+                <div class="form-group">
+                    <label>Observaciones / Comentarios</label>
+                    <textarea id="obsCliente" rows="2" placeholder="Timbre roto, dejar en recepción, etc."></textarea>
                 </div>
 
-                <div class="installment-summary" style="margin-top: 6px; margin-bottom: 10px;">
-                    🚚 Costo de envío: <strong>${formatearMoneda(costoEnvio)}</strong><br>
-                    ⏱️ Demora estimada: <strong>${infoEnvioActual.demora}</strong><br>
-                    💵 Total final con envío: <strong>${formatearMoneda(totalConEnvio)}</strong>
-                </div>
-
-                <div class="form-group"><label>Nombre y Apellido</label><input type="text" id="nombreCliente" required placeholder="Ej: Juan Pérez"></div>
-                <div class="form-group"><label>DNI / CUIL</label><input type="text" id="dniCliente" required placeholder="Ej: 37897087"></div>
-                <div class="form-group"><label>Email</label><input type="email" id="emailCliente" required placeholder="Ej: juan@gmail.com"></div>
-                <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="telefonoCliente" required placeholder="Ej: 1166788997"></div>
-                <div class="form-group"><label>Dirección de Calle y Número</label><input type="text" id="direccionCliente" required placeholder="Ej: Av. Corrientes 1234"></div>
-                <div class="form-group"><label>Piso / Departamento (Opcional)</label><input type="text" id="pisoCliente" placeholder="Ej: 4 B"></div>
-                <div class="form-group"><label>Código Postal</label><input type="text" id="cpCliente" required placeholder="Ej: 1043"></div>
-                
                 <div class="form-buttons">
-                    <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
-                    <button type="submit" class="btn-submit-order">💬 Enviar Pedido x WhatsApp</button>
+                    <button type="button" class="btn-back" onclick="vistaActual = 'carrito'; renderizarContenidoDrawer();">Volver</button>
+                    <button type="submit" class="btn-submit-order">💬 Enviar a WhatsApp</button>
                 </div>
             </form>
         `;
     }
 }
 
-function procederAlCheckout() {
-    if (carrito.length === 0) return;
-    vistaActual = 'checkout';
-    renderizarContenidoDrawer();
-}
-
-function volverAlCarrito() {
-    vistaActual = 'carrito';
-    renderizarContenidoDrawer();
-}
-
 function enviarOrdenWhatsApp(event) {
     event.preventDefault();
     const nombre = document.getElementById('nombreCliente').value;
-    const dni = document.getElementById('dniCliente').value;
-    const email = document.getElementById('emailCliente').value;
-    const telefono = document.getElementById('telefonoCliente').value;
-    const direccion = document.getElementById('direccionCliente').value;
-    const piso = document.getElementById('pisoCliente').value;
-    const cp = document.getElementById('cpCliente').value;
+    const tel = document.getElementById('telCliente').value;
+    const email = document.getElementById('emailCliente').value || "No especificado";
+    const dir = document.getElementById('dirCliente').value;
+    const ciudad = document.getElementById('ciudadCliente').value;
+    const obs = document.getElementById('obsCliente').value || "Ninguna";
 
-    const infoEnvio = tarifasProvincias[localidadSeleccionadaGlobal];
-    const costoEnvio = infoEnvio.costo;
-    const demoraEnvio = infoEnvio.demora;
-    const { total, valorCuota } = calcularTotales();
-    const totalConEnvio = total + costoEnvio;
     const codigoSeguimiento = generarCodigoSeguimiento11Digitos();
+    const { subtotal, descuento, recargoTotal, costoEnvio, total, valorCuota } = calcularTotales();
+    const infoEnvio = tarifasProvincias[localidadSeleccionadaGlobal];
 
-    let nombreFormaPago = cuotasGlobal === 1 ? "Pago único por transferencia" : `${cuotasGlobal} cuotas de ${formatearMoneda(valorCuota)} c/u`;
-    if (metodoPagoGlobal === 'creditoDni') {
-        nombreFormaPago = cuotasGlobal === 1 ? "Pago único Crédito con DNI" : `${cuotasGlobal} cuotas de ${formatearMoneda(valorCuota)} c/u (Crédito con DNI)`;
-    } else if (metodoPagoGlobal === 'tarjetaCredito') {
-        nombreFormaPago = cuotasGlobal === 1 ? "Pago único Tarjeta de Crédito" : `${cuotasGlobal} cuotas de ${formatearMoneda(valorCuota)} c/u (Tarjeta de Crédito)`;
-    }
-
-    let mensaje = `• Nombre: ${nombre}\n`;
-    mensaje += `• DNI/CUIL: ${dni}\n`;
-    mensaje += `• Teléfono: ${telefono}\n`;
-    mensaje += `• Email: ${email}\n`;
-    mensaje += `• Dirección: ${direccion} ${piso ? '(' + piso + ')' : ''}\n`;
-    mensaje += `• Provincia: ${infoEnvio.nombre}\n`;
-    mensaje += `• Código Postal: ${cp}\n`;
-    mensaje += `• Zona de Envío: ${infoEnvio.nombre}\n`;
-    mensaje += `• Costo de envío: ${formatearMoneda(costoEnvio)}\n`;
-    mensaje += `• Demora estimada: ${demoraEnvio}\n\n`;
-
-    mensaje += `*PRODUCTOS SOLICITADOS*\n`;
-    carrito.forEach(item => {
-        mensaje += `• ${item.cantidad}x ${item.nombre} — ${formatearMoneda(item.precioOferta * item.cantidad)}\n`;
+    let detalleProductos = "";
+    carrito.forEach((item, index) => {
+        detalleProductos += `*${index + 1}.* ${item.nombre} (SKU: ${item.sku}) - Cant: ${item.cantidad} - Subtotal: ${formatearMoneda(item.precioOferta * item.cantidad)}\n`;
     });
 
-    mensaje += `\n• Forma de pago: ${nombreFormaPago}\n`;
-    mensaje += `• Total final con envío: ${formatearMoneda(totalConEnvio)}\n`;
-    mensaje += `• Código de seguimiento: ${codigoSeguimiento}`;
+    let textoMetodoPago = metodoPagoGlobal === 'transferencia' ? "Transferencia Bancaria (15% OFF)" : (metodoPagoGlobal === 'creditoDni' ? `Cuenta DNI (${cuotasGlobal} cuotas)` : `Tarjeta de Crédito (${cuotasGlobal} cuotas)`);
 
-    const urlWhatsApp = `https://api.whatsapp.com/send?phone=5491100000000&text=${encodeURIComponent(mensaje)}`;
+    let mensaje = `📦 *NUEVA ORDEN DE COMPRA - LOGÍSTICA NOVA*\n`;
+    mensaje += `🆔 *Seguimiento:* ${codigoSeguimiento}\n\n`;
+    mensaje += `👤 *CLIENTE*\n`;
+    mensaje += `• Nombre: ${nombre}\n`;
+    mensaje += `• Teléfono: ${tel}\n`;
+    mensaje += `• Email: ${email}\n\n`;
+    mensaje += `📍 *ENVÍO*\n`;
+    mensaje += `• Dirección: ${dir}, ${ciudad}\n`;
+    mensaje += `• Zona: ${infoEnvio.nombre} (Demora: ${infoEnvio.demora})\n`;
+    mensaje += `• Costo Envío: ${formatearMoneda(costoEnvio)}\n\n`;
+    mensaje += `🛒 *PRODUCTOS*\n`;
+    mensaje += `${detalleProductos}\n`;
+    mensaje += `💳 *PAGO*\n`;
+    mensaje += `• Método: ${textoMetodoPago}\n`;
+    if (cuotasGlobal > 1) {
+        mensaje += `• Valor Cuota: ${formatearMoneda(valorCuota)}\n`;
+    }
+    mensaje += `• Subtotal: ${formatearMoneda(subtotal)}\n`;
+    if (descuento > 0) mensaje += `• Descuento: -${formatearMoneda(descuento)}\n`;
+    if (recargoTotal > 0) mensaje += `• Recargo: +${formatearMoneda(recargoTotal)}\n`;
+    mensaje += `💰 *TOTAL FINAL:* ${formatearMoneda(total)}\n\n`;
+    mensaje += `📝 *Observaciones:* ${obs}`;
+
+    const numeroWhatsAppDestino = "5491100000000"; // Reemplazá con tu número
+    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsAppDestino}&text=${encodeURIComponent(mensaje)}`;
+
     window.open(urlWhatsApp, '_blank');
 }
 
-// Inicializar la carga de productos al cargar la página
-window.onload = function() {
+// Inicializar la aplicación al cargar la página
+window.onload = () => {
     renderizarProductos();
+    actualizarContadorCarrito();
 };
 </script>
+
 </body>
 </html>
