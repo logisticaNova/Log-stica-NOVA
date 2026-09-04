@@ -1111,7 +1111,6 @@ function renderizarContenidoDrawer() {
 
                 <div class="cart-summary-line"><span>Subtotal:</span><span>${formatearMoneda(subtotal)}</span></div>
                 ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
-                ${recargo > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo (${metodoPagoGlobal === 'creditoDni' ? '+5.5%' : '+8%'} en cada pago):</span><span>+${formatearMoneda(recargo)}</span></div>` : ''}
                 
                 <div class="cart-total"><span>Total a Pagar:</span><span>${formatearMoneda(total)}</span></div>
                 
