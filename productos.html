@@ -39,21 +39,12 @@ html {
 
 body {
     font-family: 'Inter', sans-serif;
-    background:
-        linear-gradient(
-            180deg,
-            #f8fafc 0%,
-            #f3f5f9 100%
-        );
+    background: linear-gradient(180deg, #f8fafc 0%, #f3f5f9 100%);
     color: var(--text-main);
     line-height: 1.5;
     padding-bottom: 60px;
     overflow-x: hidden;
 }
-
-/* =========================================
-NAVBAR
-========================================= */
 
 .navbar {
     background: rgba(255,255,255,0.96);
@@ -112,10 +103,6 @@ NAVBAR
     font-weight: 800;
 }
 
-/* =========================================
-HEADER
-========================================= */
-
 header {
     text-align: center;
     margin: 42px 0 28px;
@@ -158,19 +145,11 @@ header p {
     font-weight: 700;
 }
 
-/* =========================================
-CONTAINER
-========================================= */
-
 .container {
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 18px;
 }
-
-/* =========================================
-FILTROS
-========================================= */
 
 .filtros-wrapper {
     margin-bottom: 28px;
@@ -188,10 +167,6 @@ FILTROS
 
 .filtros::-webkit-scrollbar {
     height: 4px;
-}
-
-.filtros::-webkit-scrollbar-track {
-    background: transparent;
 }
 
 .filtros::-webkit-scrollbar-thumb {
@@ -226,19 +201,11 @@ FILTROS
     box-shadow: 0 3px 8px rgba(37,99,235,0.18);
 }
 
-/* =========================================
-GRID
-========================================= */
-
 .grid-productos {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 20px;
 }
-
-/* =========================================
-CARD
-========================================= */
 
 .card {
     background: var(--bg-card);
@@ -248,10 +215,7 @@ CARD
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     position: relative;
 }
 
@@ -260,10 +224,6 @@ CARD
     border-color: #dbe3ef;
     box-shadow: 0 10px 25px rgba(15,23,42,0.075);
 }
-
-/* =========================================
-STOCK
-========================================= */
 
 .badge-stock {
     position: absolute;
@@ -282,20 +242,10 @@ STOCK
     box-shadow: 0 2px 7px rgba(0,0,0,0.06);
 }
 
-/* =========================================
-PRODUCT IMAGE / CAROUSEL
-========================================= */
-
 .product-carousel {
     width: 100%;
     height: 245px;
-    background:
-        linear-gradient(
-            145deg,
-            #eef4ff 0%,
-            #f8fafc 55%,
-            #f1f5f9 100%
-        );
+    background: linear-gradient(145deg, #eef4ff 0%, #f8fafc 55%, #f1f5f9 100%);
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid var(--border-light);
@@ -344,10 +294,6 @@ PRODUCT IMAGE / CAROUSEL
     font-weight: 700;
 }
 
-/* =========================================
-CAROUSEL BUTTONS
-========================================= */
-
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -375,17 +321,8 @@ CAROUSEL BUTTONS
     color: var(--primary-color);
 }
 
-.carousel-prev {
-    left: 11px;
-}
-
-.carousel-next {
-    right: 11px;
-}
-
-/* =========================================
-DOTS
-========================================= */
+.carousel-prev { left: 11px; }
+.carousel-next { right: 11px; }
 
 .carousel-dots {
     position: absolute;
@@ -414,10 +351,6 @@ DOTS
     transform: scale(1.3);
     border-color: var(--primary-color);
 }
-
-/* =========================================
-CARD BODY
-========================================= */
 
 .card-body {
     padding: 18px;
@@ -452,10 +385,6 @@ CARD BODY
     min-height: 63px;
 }
 
-.descripcion-texto {
-    display: inline;
-}
-
 .descripcion-texto.descripcion-corta {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -474,21 +403,8 @@ CARD BODY
     margin-left: 4px;
 }
 
-.ver-mas-btn:hover {
-    text-decoration: underline;
-}
-
-/* =========================================
-SPECS
-========================================= */
-
 .specs-list {
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #f9fafb
-        );
+    background: linear-gradient(135deg, #f8fafc, #f9fafb);
     border: 1px solid var(--border-light);
     border-radius: 9px;
     padding: 10px 11px;
@@ -504,24 +420,10 @@ SPECS
     gap: 12px;
 }
 
-.specs-list div:last-child {
-    margin-bottom: 0;
-}
+.specs-list div:last-child { margin-bottom: 0; }
 
-.spec-label {
-    color: var(--text-muted);
-    font-weight: 500;
-}
-
-.spec-value {
-    color: var(--text-secondary);
-    font-weight: 700;
-    text-align: right;
-}
-
-/* =========================================
-PRICING
-========================================= */
+.spec-label { color: var(--text-muted); font-weight: 500; }
+.spec-value { color: var(--text-secondary); font-weight: 700; text-align: right; }
 
 .pricing {
     margin-top: auto;
@@ -543,10 +445,6 @@ PRICING
     letter-spacing: -0.5px;
 }
 
-/* =========================================
-TRANSFERENCIA
-========================================= */
-
 .cuotas-badge {
     display: inline-flex;
     align-items: center;
@@ -562,18 +460,9 @@ TRANSFERENCIA
     margin-bottom: 12px;
 }
 
-/* =========================================
-ADD CART
-========================================= */
-
 .btn-add-cart {
     width: 100%;
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary-color),
-            #3b82f6
-        );
+    background: linear-gradient(135deg, var(--primary-color), #3b82f6);
     color: white;
     border: none;
     padding: 11px 12px;
@@ -586,23 +475,10 @@ ADD CART
 }
 
 .btn-add-cart:hover {
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary-dark),
-            #2563eb
-        );
+    background: linear-gradient(135deg, var(--primary-dark), #2563eb);
     transform: translateY(-1px);
     box-shadow: 0 6px 14px rgba(37,99,235,0.2);
 }
-
-.btn-add-cart:active {
-    transform: translateY(0);
-}
-
-/* =========================================
-PAGINACIÓN
-========================================= */
 
 .paginacion {
     display: flex;
@@ -653,10 +529,6 @@ PAGINACIÓN
     color: var(--text-muted);
     font-size: 0.76rem;
 }
-
-/* =========================================
-CARRITO / DRAWER
-========================================= */
 
 .modal-overlay {
     position: fixed;
@@ -729,15 +601,8 @@ CARRITO / DRAWER
     min-width: 0;
 }
 
-.cart-item-info h4 {
-    font-size: 0.9rem;
-    margin-bottom: 2px;
-}
-
-.cart-item-price {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
+.cart-item-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
+.cart-item-price { font-size: 0.8rem; color: var(--text-muted); }
 
 .cart-item-actions {
     display: flex;
@@ -822,9 +687,7 @@ CARRITO / DRAWER
     transition: var(--transition);
 }
 
-.checkout-btn:hover {
-    background-color: #059669;
-}
+.checkout-btn:hover { background-color: #059669; }
 
 .form-group {
     margin-bottom: 10px;
@@ -848,12 +711,6 @@ CARRITO / DRAWER
     font-family: inherit;
     font-size: 0.9rem;
     outline: none;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--primary-color);
 }
 
 .form-buttons {
@@ -889,9 +746,7 @@ CARRITO / DRAWER
     font-size: 0.9rem;
 }
 
-.btn-submit-order:hover {
-    background-color: #128c7e;
-}
+.btn-submit-order:hover { background-color: #128c7e; }
 
 .empty-cart {
     text-align: center;
@@ -903,11 +758,9 @@ CARRITO / DRAWER
     .grid-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
     .product-carousel { height: 225px; }
 }
-
 @media (min-width: 960px) {
     .grid-productos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 }
-
 @media (min-width: 1200px) {
     .grid-productos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
     .container { padding: 0 20px; }
@@ -954,7 +807,6 @@ CARRITO / DRAWER
 <div id="paginacion"></div>
 </div>
 
-<!-- CARRITO / DRAWER -->
 <div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
     <div class="cart-drawer">
         <div class="cart-header">
@@ -972,56 +824,11 @@ const tarifasProvincias = {
     "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Otras Provincias / Resto del País" }
 };
 
-// Array con productos estructurados para Logística Nova
 const productos = [
-    // Celulares (1 a 15)
     { id: 1, sku: "CEL-MOT-EDGE50", marca: "Motorola", modelo: "Edge 50", nombre: "Celular Motorola Edge 50 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Smartphone premium con pantalla OLED de 6.7 pulgadas, 12GB de RAM, 256GB de almacenamiento, conectividad 5G y cámara de 50MP.", especificaciones: { pantalla: "6.7 OLED", almacenamiento: "256GB", ram: "12GB", camara: "50MP" }, precioOferta: 549999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
     { id: 2, sku: "CEL-SAM-S24", marca: "Samsung", modelo: "Galaxy S24", nombre: "Celular Samsung Galaxy S24 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Potencia impulsada por Inteligencia Artificial, pantalla Dynamic AMOLED 2X y procesador de alto rendimiento.", especificaciones: { pantalla: "6.2 Dynamic AMOLED", almacenamiento: "128GB", ram: "8GB", camara: "50MP" }, precioOferta: 989999, stock: true, imagenes: ["https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80"] },
     { id: 3, sku: "CEL-XIA-NOTE13", marca: "Xiaomi", modelo: "Redmi Note 13 Pro", nombre: "Celular Xiaomi Redmi Note 13 Pro", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Cámara ultrarrápida de 200MP con estabilización óptica OIS y carga rápida de 67W.", especificaciones: { pantalla: "6.67 AMOLED", almacenamiento: "256GB", ram: "8GB", camara: "200MP" }, precioOferta: 395999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
-    { id: 4, sku: "CEL-APP-IP15", marca: "Apple", modelo: "iPhone 15", nombre: "Celular Apple iPhone 15 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Dynamic Island, cámara principal de 48MP con teleobjetivo de 2x y diseño resistente en vidrio infundido.", especificaciones: { pantalla: "6.1 Super Retina XDR", almacenamiento: "128GB", ram: "6GB", camara: "48MP" }, precioOferta: 1349999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] },
-    { id: 5, sku: "CEL-SAM-A55", marca: "Samsung", modelo: "Galaxy A55", nombre: "Celular Samsung Galaxy A55 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Diseño metálico refinado, seguridad avanzada Knox y batería duradera para todo el día.", especificaciones: { pantalla: "6.6 Super AMOLED", almacenamiento: "256GB", ram: "8GB", camara: "50MP" }, precioOferta: 519999, stock: true, imagenes: ["https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80"] },
-    { id: 6, sku: "CEL-MOT-G85", marca: "Motorola", modelo: "Moto G85", nombre: "Celular Motorola Moto G85 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla curva sin bordes pOLED de 120Hz y sonido Dolby Atmos envolvente.", especificaciones: { pantalla: "6.67 pOLED", almacenamiento: "256GB", ram: "8GB", camara: "50MP OIS" }, precioOferta: 389999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
-    { id: 7, sku: "CEL-XIA-POCOF6", marca: "Xiaomi", modelo: "Poco F6", nombre: "Celular Xiaomi Poco F6 Gaming Edition", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Rendimiento extremo con procesador Snapdragon y refrigeración líquida avanzada.", especificaciones: { pantalla: "6.67 CrystalRes", almacenamiento: "512GB", ram: "12GB", camara: "50MP" }, precioOferta: 649999, stock: true, imagenes: ["https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80"] },
-    { id: 8, sku: "CEL-APP-IP14", marca: "Apple", modelo: "iPhone 14", nombre: "Celular Apple iPhone 14 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Detección de choques, autonomía increíble y excelente rendimiento fotográfico con poca luz.", especificaciones: { pantalla: "6.1 OLED", almacenamiento: "128GB", ram: "6GB", camara: "12MP Dual" }, precioOferta: 1120000, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] },
-    { id: 9, sku: "CEL-SAM-A35", marca: "Samsung", modelo: "Galaxy A35", nombre: "Celular Samsung Galaxy A35 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla brillante FHD+ Super AMOLED de 120Hz y resistencia al agua IP67.", especificaciones: { pantalla: "6.6 Super AMOLED", almacenamiento: "128GB", ram: "6GB", camara: "50MP" }, precioOferta: 419999, stock: true, imagenes: ["https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80"] },
-    { id: 10, sku: "CEL-MOT-G34", marca: "Motorola", modelo: "Moto G34", nombre: "Celular Motorola Moto G34 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Diseño elegante, altavoces estéreo con Dolby Atmos y conectividad veloz.", especificaciones: { pantalla: "6.5 HD+", almacenamiento: "128GB", ram: "4GB", camara: "50MP" }, precioOferta: 249999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
-    { id: 11, sku: "CEL-XIA-RED13C", marca: "Xiaomi", modelo: "Redmi 13C", nombre: "Celular Xiaomi Redmi 13C 256GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla inmersiva de 6.74 pulgadas y batería de gran capacidad para uso continuo.", especificaciones: { pantalla: "6.74 HD+", almacenamiento: "256GB", ram: "8GB", camara: "50MP" }, precioOferta: 229999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
-    { id: 12, sku: "CEL-SAM-S24ULT", marca: "Samsung", modelo: "Galaxy S24 Ultra", nombre: "Celular Samsung Galaxy S24 Ultra 512GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Cuerpo de titanio, S-Pen incorporado y sistema de cámaras profesional de 200MP.", especificaciones: { pantalla: "6.8 QHD+ AMOLED", almacenamiento: "512GB", ram: "12GB", camara: "200MP" }, precioOferta: 1589999, stock: true, imagenes: ["https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80"] },
-    { id: 13, sku: "CEL-APP-IP13", marca: "Apple", modelo: "iPhone 13", nombre: "Celular Apple iPhone 13 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Sistema de doble cámara avanzado y gran rendimiento gracias al chip A15 Bionic.", especificaciones: { pantalla: "6.1 OLED", almacenamiento: "128GB", ram: "4GB", camara: "12MP" }, precioOferta: 949999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] },
-    { id: 14, sku: "CEL-MOT-RAZR50", marca: "Motorola", modelo: "Razr 50", nombre: "Celular Motorola Razr 50 Ultra", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla externa interactiva más grande de su categoría y diseño plegable vanguardista.", especificaciones: { pantalla: "6.9 pOLED plegable", almacenamiento: "512GB", ram: "12GB", camara: "50MP" }, precioOferta: 1199999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
-    { id: 15, sku: "CEL-XIA-NOTE13P", marca: "Xiaomi", modelo: "Redmi Note 13 4G", nombre: "Celular Xiaomi Redmi Note 13 4G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla AMOLED de 120Hz y diseño ultra fino con cámara triple de 108MP.", especificaciones: { pantalla: "6.67 AMOLED", almacenamiento: "128GB", ram: "6GB", camara: "108MP" }, precioOferta: 289999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
-
-    // Gaming (16 a 30)
-    { id: 16, sku: "GAM-NOTEBOOK-ASUS", marca: "ASUS", modelo: "TUF Gaming A15", nombre: "Notebook Gamer ASUS TUF A15 Ryzen 7", categoria: "Gaming", subcategoria: "Laptops Gamer", descripcion: "Equipada con procesador AMD Ryzen 7, placa gráfica NVIDIA RTX 4060 y pantalla de 144Hz para gaming competitivo.", especificaciones: { procesador: "Ryzen 7 7435HS", grafica: "RTX 4060", ram: "16GB", almacenamiento: "512GB SSD" }, precioOferta: 1450000, stock: true, imagenes: ["https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80"] },
-    { id: 17, sku: "GAM-NOTEBOOK-LENOVO", marca: "Lenovo", modelo: "LOQ 15", nombre: "Notebook Gamer Lenovo LOQ 15", categoria: "Gaming", subcategoria: "Laptops Gamer", descripcion: "Rendimiento térmico optimizado, teclado retroiluminado y gráficos dedicados para máxima fluidez.", especificaciones: { procesador: "Intel Core i5", grafica: "RTX 3050", ram: "16GB", almacenamiento: "512GB SSD" }, precioOferta: 1199999, stock: true, imagenes: ["https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=600&q=80"] },
-    { id: 18, sku: "GAM-MONITOR-LG", marca: "LG", modelo: "UltraGear 27", nombre: "Monitor Gamer LG UltraGear 27\" IPS 180Hz", categoria: "Gaming", subcategoria: "Monitores", descripcion: "Tiempo de respuesta ultra rápido de 1ms GtG, compatible con G-Sync y FreeSync Premium.", especificaciones: { panel: "IPS 27 pulgadas", resolucion: "Full HD (1920x1080)", tasaRefresco: "180Hz", tiempoRespuesta: "1ms" }, precioOferta: 349999, stock: true, imagenes: ["https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"] },
-    { id: 19, sku: "GAM-TECLADO-RED", marca: "Redragon", modelo: "Kumara K552", nombre: "Teclado Mecánico Gamer Redragon Kumara RGB", categoria: "Gaming", subcategoria: "Periféricos", descripcion: "Diseño compacto TKL sin teclado numérico, switches mecánicos intercambiables y retroiluminación RGB.", especificaciones: { tipo: "Mecánico TKL", switches: "Red / Outemu", iluminacion: "RGB", conexion: "USB Cableado" }, precioOferta: 54999, stock: true, imagenes: ["https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"] },
-    { id: 20, sku: "GAM-MOUSE-LOGI", marca: "Logitech", modelo: "G205 Lightsync", nombre: "Mouse Gamer Logitech G203 RGB", categoria: "Gaming", subcategoria: "Periféricos", descripcion: "Sensor de grado para juegos de hasta 8000 DPI e iluminación personalizable Lightsync.", especificaciones: { sensor: "Óptico 8000 DPI", botones: "6 programables", peso: "85g", conexion: "USB" }, precioOferta: 39999, stock: true, imagenes: ["https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80"] },
-    ...Array.from({ length: 180 }, (_, index) => {
-        const id = index + 21;
-        const categorias = [
-            "Televisores / Monitores", "Aires Acondicionados", "Heladeras / Freezers", 
-            "Cocinas / Hornos", "Lavarropas / Secadoras", "Pequeños Electrodomésticos", 
-            "Aspiradoras", "Termotanques", "Informática", "Audio", "Accesorios"
-        ];
-        const cat = categorias[index % categorias.length];
-        const marcas = ["Samsung", "LG", "Philips", "Whirlpool", "Electrolux", "Sony", "Xiaomi", "Atma", "Midea", "Longvie"];
-        const marca = marcas[index % marcas.length];
-        return {
-            id: id,
-            sku: `PROD-${marca.toUpperCase().slice(0,3)}-${id}`,
-            marca: marca,
-            modelo: `Serie Pro ${id}`,
-            nombre: `${cat.slice(0, 10)} ${marca} Modelo X-${id}`,
-            categoria: cat,
-            subcategoria: "General",
-            descripcion: `Producto de alta calidad y rendimiento óptimo perteneciente a la línea ${cat} de ${marca}. Diseñado para brindar durabilidad y eficiencia en el hogar.`,
-            especificaciones: { eficiencia: "Clase A+", garantia: "12 Meses", origen: "Nacional / Importado", estado: "Nuevo" },
-            precioOferta: 120000 + (id * 15500) % 850000,
-            stock: true,
-            imagenes: ["https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80"]
-        };
-    })
+    { id: 4, sku: "CEL-APP-IP15", marca: "Apple", modelo: "iPhone 15", nombre: "Celular Apple iPhone 15 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Dynamic Island, cámara principal de 48MP con teleobjetivo de 2x y diseño resistente en vidrio infundido.", especificaciones: { pantalla: "6.1 Super Retina XDR", almacenamiento: "128GB", ram: "6GB", camara: "48MP" }, precioOferta: 1349999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] }
 ];
 
 let carrito = [];
@@ -1042,7 +849,7 @@ function generarCodigoSeguimiento11Digitos() {
     for (let i = 0; i < 7; i++) {
         codigo += Math.floor(Math.random() * 10);
     }
-    return codigo; // Genera formato exacto NV-XXXXXXX (11 caracteres totales)
+    return codigo;
 }
 
 function filtrarCategoria(categoria, botonElemento) {
@@ -1127,14 +934,10 @@ function renderizarProductos() {
         let dotsHTML = '';
         const imagenes = producto.imagenes.filter(img => img && img.trim() !== '').slice(0, 3);
 
-        if (imagenes.length === 0) {
-            slidesHTML = `<div class="carousel-slide active"><div class="carousel-placeholder">${producto.marca}</div></div>`;
-        } else {
-            imagenes.forEach((imagen, index) => {
-                slidesHTML += `<div class="carousel-slide ${index === 0 ? 'active' : ''}" data-producto="${producto.id}"><img src="${imagen}" alt="${producto.nombre}" loading="lazy" onerror="this.style.display='none'"></div>`;
-                dotsHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-producto="${producto.id}" onclick="irAImagen(${producto.id}, ${index})" aria-label="Ver imagen ${index + 1}"></button>`;
-            });
-        }
+        imagenes.forEach((imagen, index) => {
+            slidesHTML += `<div class="carousel-slide ${index === 0 ? 'active' : ''}" data-producto="${producto.id}"><img src="${imagen}" alt="${producto.nombre}" loading="lazy" onerror="this.style.display='none'"></div>`;
+            dotsHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-producto="${producto.id}" onclick="irAImagen(${producto.id}, ${index})" aria-label="Ver imagen ${index + 1}"></button>`;
+        });
 
         const mostrarControles = imagenes.length > 1;
         const limiteDescripcion = 100;
@@ -1172,25 +975,6 @@ function renderizarProductos() {
         `;
         gridContainer.appendChild(card);
     });
-
-    if (totalPaginas > 1) {
-        let paginacionHTML = `<div class="paginacion"><button onclick="cambiarPagina(${paginaActual - 1})" ${paginaActual === 1 ? 'disabled' : ''}>‹ Anterior</button>`;
-        for (let i = 1; i <= totalPaginas; i++) {
-            paginacionHTML += `<button class="${i === paginaActual ? 'active' : ''}" onclick="cambiarPagina(${i})">${i}</button>`;
-        }
-        paginacionHTML += `<button onclick="cambiarPagina(${paginaActual + 1})" ${paginaActual === totalPaginas ? 'disabled' : ''}>Siguiente ›</button>
-        <div class="paginacion-info">Mostrando ${inicio + 1} – ${Math.min(fin, productosFiltrados.length)} de ${productosFiltrados.length} productos</div></div>`;
-        paginacionContainer.innerHTML = paginacionHTML;
-    }
-}
-
-function cambiarPagina(nuevaPagina) {
-    const productosFiltrados = categoriaSeleccionada === 'Todas' ? productos : productos.filter(p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase());
-    const totalPaginas = Math.ceil(productosFiltrados.length / PRODUCTOS_POR_PAGINA);
-    if (nuevaPagina < 1 || nuevaPagina > totalPaginas) return;
-    paginaActual = nuevaPagina;
-    renderizarProductos();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function agregarAlCarrito(id) {
@@ -1253,15 +1037,7 @@ function onPaymentMethodChange() {
     const select = document.getElementById('paymentMethodSelect');
     if (!select) return;
     metodoPagoGlobal = select.value;
-    const cuotasContainer = document.getElementById('cuotasContainer');
-    if (cuotasContainer) {
-        if (metodoPagoGlobal === 'creditoDni') {
-            cuotasContainer.style.display = 'block';
-        } else {
-            cuotasContainer.style.display = 'none';
-            cuotasGlobal = 1;
-        }
-    }
+    cuotasGlobal = 1; // Resetear cuotas al cambiar método
     renderizarContenidoDrawer();
 }
 
@@ -1279,10 +1055,14 @@ function calcularTotales() {
     if (metodoPagoGlobal === 'transferencia') {
         descuento = subtotal * 0.15;
     } else if (metodoPagoGlobal === 'creditoDni') {
-        if (cuotasGlobal > 3) recargo = subtotal * 0.10;
+        recargo = subtotal * 0.055; // +5.5% por pago con DNI
+    } else if (metodoPagoGlobal === 'tarjetaCredito') {
+        recargo = subtotal * 0.08; // +8% por pago con Tarjeta de Crédito
     }
+    
     const total = subtotal - descuento + recargo;
-    return { subtotal, descuento, recargo, total };
+    const valorCuota = total / cuotasGlobal;
+    return { subtotal, descuento, recargo, total, valorCuota };
 }
 
 function renderizarContenidoDrawer() {
@@ -1298,7 +1078,7 @@ function renderizarContenidoDrawer() {
 
     if (vistaActual === 'carrito') {
         drawerTitle.innerText = "Tu Carrito de Compras";
-        let htmlItems = `<div style="flex-grow:1; overflow-y:auto; max-height:42vh;">`;
+        let htmlItems = `<div style="flex-grow:1; overflow-y:auto; max-height:38vh;">`;
         carrito.forEach(item => {
             htmlItems += `
                 <div class="cart-item">
@@ -1317,7 +1097,17 @@ function renderizarContenidoDrawer() {
         });
         htmlItems += `</div>`;
 
-        const { subtotal, descuento, recargo, total } = calcularTotales();
+        const { subtotal, descuento, recargo, total, valorCuota } = calcularTotales();
+
+        // Generar opciones de cuotas dinámicas según método de pago
+        let maxCuotas = 1;
+        if (metodoPagoGlobal === 'creditoDni') maxCuotas = 6;
+        if (metodoPagoGlobal === 'tarjetaCredito') maxCuotas = 12;
+
+        let opcionesCuotasHTML = '';
+        for (let i = 1; i <= maxCuotas; i++) {
+            opcionesCuotasHTML += `<option value="${i}" ${cuotasGlobal === i ? 'selected' : ''}>${i} ${i === 1 ? 'Pago' : 'Pagos'}</option>`;
+        }
 
         htmlItems += `
             <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:12px;">
@@ -1325,26 +1115,27 @@ function renderizarContenidoDrawer() {
                     <label for="paymentMethodSelect">Método de Pago:</label>
                     <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
                         <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
-                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (Hasta 6 cuotas)</option>
-                        <option value="tarjeta" ${metodoPagoGlobal === 'tarjeta' ? 'selected' : ''}>Tarjeta de Crédito / Débito</option>
+                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (+5.5% recargo)</option>
+                        <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito (+8% recargo)</option>
                     </select>
                 </div>
 
-                <div id="cuotasContainer" class="payment-methods" style="display:${metodoPagoGlobal === 'creditoDni' ? 'block' : 'none'};">
-                    <label for="cuotasSelect">Cantidad de Cuotas:</label>
+                <div class="payment-methods">
+                    <label for="cuotasSelect">Cantidad de Pagos / Cuotas:</label>
                     <select id="cuotasSelect" class="payment-select" onchange="onCuotasChange()">
-                        <option value="1" ${cuotasGlobal === 1 ? 'selected' : ''}>1 Pago sin interés</option>
-                        <option value="3" ${cuotasGlobal === 3 ? 'selected' : ''}>3 Cuotas sin interés</option>
-                        <option value="6" ${cuotasGlobal === 6 ? 'selected' : ''}>6 Cuotas (10% recargo)</option>
+                        ${opcionesCuotasHTML}
                     </select>
                 </div>
 
                 <div class="cart-summary-line"><span>Subtotal:</span><span>${formatearMoneda(subtotal)}</span></div>
                 ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
-                ${recargo > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo Financiamiento:</span><span>+${formatearMoneda(recargo)}</span></div>` : ''}
+                ${recargo > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo por pago:</span><span>+${formatearMoneda(recargo)}</span></div>` : ''}
                 
-                <div class="cart-total"><span>Total:</span><span>${formatearMoneda(total)}</span></div>
-                ${cuotasGlobal > 1 ? `<div class="installment-summary">Pagás en ${cuotasGlobal} cuotas de <strong>${formatearMoneda(total / cuotasGlobal)}</strong></div>` : ''}
+                <div class="cart-total"><span>Total a Pagar:</span><span>${formatearMoneda(total)}</span></div>
+                
+                <div class="installment-summary">
+                    Primer cuota / Valor mensual: <strong>${formatearMoneda(valorCuota)}</strong> (${cuotasGlobal} ${cuotasGlobal === 1 ? 'cuota' : 'cuotas'})
+                </div>
 
                 <button class="checkout-btn" onclick="procederAlCheckout()">Continuar con la Orden de Compra</button>
             </div>
@@ -1354,19 +1145,19 @@ function renderizarContenidoDrawer() {
         drawerTitle.innerText = "Datos de Envío y Contacto";
         bodyContent.innerHTML = `
             <form id="orderForm" onsubmit="enviarOrdenWhatsApp(event)">
-                <div class="form-group"><label>Nombre y Apellido</label><input type="text" id="nombreCliente" required placeholder="Ej: Tatuada gonzales"></div>
-                <div class="form-group"><label>DNI / CUIL</label><input type="text" id="dniCliente" required placeholder="Ej: 34678908"></div>
+                <div class="form-group"><label>Nombre y Apellido</label><input type="text" id="nombreCliente" required placeholder="Ej: Juan Pérez"></div>
+                <div class="form-group"><label>DNI / CUIL</label><input type="text" id="dniCliente" required placeholder="Ej: 37897087"></div>
                 <div class="form-group"><label>Email</label><input type="email" id="emailCliente" required placeholder="Ej: iarita@gmail.com"></div>
-                <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="telefonoCliente" required placeholder="Ej: 1125365235"></div>
+                <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="telefonoCliente" required placeholder="Ej: 1166788997"></div>
                 <div class="form-group"><label>Zona de Envío / Provincia</label>
-                    <select id="provinciaCliente" class="payment-select" onchange="renderizarContenidoDrawer()">
+                    <select id="provinciaCliente" class="payment-select">
                         <option value="CABA">Capital Federal (CABA) - $8.500</option>
-                        <option value="Buenos Aires">Provincia de Buenos Aires - $12.500</option>
-                        <option value="Provincias" selected>Otras Provincias / Resto del País - $18.500</option>
+                        <option value="Buenos Aires" selected>Provincia de Buenos Aires - $12.500</option>
+                        <option value="Provincias">Otras Provincias / Resto del País - $18.500</option>
                     </select>
                 </div>
-                <div class="form-group"><label>Dirección de Entrega</label><input type="text" id="direccionCliente" required placeholder="Ej: Calletin 78, Lomas de Zamora"></div>
-                <div class="form-group"><label>Código Postal</label><input type="text" id="cpCliente" required placeholder="Ej: 1812"></div>
+                <div class="form-group"><label>Dirección de Entrega</label><input type="text" id="direccionCliente" required placeholder="Ej: Calletin 78"></div>
+                <div class="form-group"><label>Código Postal</label><input type="text" id="cpCliente" required placeholder="Ej: 1789"></div>
                 
                 <div class="form-buttons">
                     <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
@@ -1399,24 +1190,23 @@ function enviarOrdenWhatsApp(event) {
     const cp = document.getElementById('cpCliente').value;
 
     const tarifaEnvio = tarifasProvincias[provKey] || tarifasProvincias["Provincias"];
-    const { subtotal, descuento, recargo, total } = calcularTotales();
+    const { subtotal, descuento, recargo, total, valorCuota } = calcularTotales();
     const costoEnvio = tarifaEnvio.costo;
     const totalFinal = total + costoEnvio;
-    const codigoSeguimiento = generarCodigoSeguimiento11Digitos(); // 11 dígitos exactos (ej: NV-3489126)
+    const codigoSeguimiento = generarCodigoSeguimiento11Digitos();
 
-    let mensaje = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
-    mensaje += `*LOGÍSTICA NOVA*\n`;
-    mensaje += `----------------------------------------\n`;
-    mensaje += `*N° de Seguimiento:* ${codigoSeguimiento}\n`;
-    mensaje += `----------------------------------------\n\n`;
+    let nombreMetodo = "Transferencia Bancaria";
+    if (metodoPagoGlobal === 'creditoDni') nombreMetodo = "Crédito con DNI";
+    if (metodoPagoGlobal === 'tarjetaCredito') nombreMetodo = "Tarjeta de Crédito";
 
+    let mensaje = `*N° de Seguimiento: ${codigoSeguimiento}*\n\n`;
     mensaje += `*DATOS DEL COMPRADOR*\n`;
     mensaje += `• Nombre: ${nombre}\n`;
     mensaje += `• DNI/CUIL: ${dni}\n`;
     mensaje += `• Teléfono: ${telefono}\n`;
     mensaje += `• Email: ${email}\n`;
     mensaje += `• Dirección: ${direccion}\n`;
-    mensaje += `• Provincia: ${provKey === 'Provincias' ? 'Buenos Aires' : provKey}\n`;
+    mensaje += `• Provincia: ${provKey}\n`;
     mensaje += `• Código Postal: ${cp}\n`;
     mensaje += `• Zona de Envío: ${tarifaEnvio.nombre}\n`;
     mensaje += `• Costo de envío: ${formatearMoneda(costoEnvio)}\n`;
@@ -1430,24 +1220,15 @@ function enviarOrdenWhatsApp(event) {
     mensaje += `\n*DESGLOSE DE PAGOS Y ENVÍO*\n`;
     mensaje += `• Subtotal: ${formatearMoneda(subtotal)}\n`;
     mensaje += `• Envío: ${formatearMoneda(costoEnvio)}\n`;
-    if (descuento > 0) {
-        mensaje += `• Recargo/Descuento: -${formatearMoneda(descuento)}\n`;
-        mensaje += `• Método: Transferencia Bancaria (15% OFF aplicado)\n`;
-    } else if (recargo > 0) {
-        mensaje += `• Recargo/Descuento: +${formatearMoneda(recargo)}\n`;
-        mensaje += `• Método: Crédito con DNI (${cuotasGlobal} cuotas)\n`;
-    } else {
-        mensaje += `• Recargo/Descuento: $ 0\n`;
-        mensaje += `• Método: Tarjeta / Pago Estándar\n`;
-    }
-    mensaje += `• Forma de pago: Pago único por transferencia\n\n`;
+    mensaje += `• Recargo/Descuento: ${descuento > 0 ? '-' + formatearMoneda(descuento) : (recargo > 0 ? '+' + formatearMoneda(recargo) : '$ 0')}\n`;
+    mensaje += `• Método: ${nombreMetodo}\n`;
+    mensaje += `• Forma de pago: ${cuotasGlobal} ${cuotasGlobal === 1 ? 'Pago único' : 'cuotas de ' + formatearMoneda(valorCuota)}\n\n`;
 
-    mensaje += `*TOTAL A PAGAR:* ${formatearMoneda(totalFinal)}\n\n`;
+    mensaje += `*TOTAL A PAGAR: ${formatearMoneda(totalFinal)}*\n`;
+    mensaje += `Primer cuota / Valor mensual: ${formatearMoneda(valorCuota)} (${cuotasGlobal} ${cuotasGlobal === 1 ? 'cuota' : 'cuotas'})\n\n`;
 
     mensaje += `*CÓDIGO DE SEGUIMIENTO*\n`;
-    mensaje += `${codigoSeguimiento}\n\n`;
-
-    mensaje += `Solicito confirmación del pedido y datos para el pago.`;
+    mensaje += `${codigoSeguimiento}`;
 
     const numeroWhatsApp = "541155012447"; 
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
