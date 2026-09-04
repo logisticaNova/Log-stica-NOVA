@@ -610,14 +610,14 @@ header p {
 }
 
 .payment-methods {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .payment-methods label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
 .payment-select {
@@ -633,16 +633,16 @@ header p {
 .cart-summary-line {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6px;
-    font-size: 0.85rem;
+    margin-bottom: 5px;
+    font-size: 0.83rem;
 }
 
 .cart-total {
     display: flex;
     justify-content: space-between;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    margin: 12px 0 6px;
+    margin: 10px 0 5px;
     color: var(--text-main);
 }
 
@@ -650,10 +650,10 @@ header p {
     background: #eff6ff;
     border: 1px solid #bfdbfe;
     border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 12px;
+    padding: 9px 10px;
+    margin-bottom: 10px;
     color: #1e40af;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
 }
 
 .checkout-btn {
@@ -661,7 +661,7 @@ header p {
     background-color: #10b981;
     color: white;
     border: none;
-    padding: 12px;
+    padding: 11px;
     border-radius: 8px;
     font-weight: 700;
     cursor: pointer;
@@ -1040,21 +1040,22 @@ function onLocalidadChange() {
 function calcularTotales() {
     let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
     let descuento = 0;
+    let recargoTotal = 0;
     let total = subtotal;
-    let porcentajeRecargoAcumulado = 0;
 
     if (metodoPagoGlobal === 'transferencia') {
         descuento = subtotal * 0.15;
         total = subtotal - descuento;
     } else if (metodoPagoGlobal === 'creditoDni') {
-        porcentajeRecargoAcumulado = 0.055 * cuotasGlobal;
-        total = subtotal * (1 + porcentajeRecargoAcumulado);
+        const recargoPorcentaje = 0.055 * cuotasGlobal;
+        recargoTotal = subtotal * recargoPorcentaje;
+        total = subtotal + recargoTotal;
     } else if (metodoPagoGlobal === 'tarjetaCredito') {
-        porcentajeRecargoAcumulado = 0.08 * cuotasGlobal;
-        total = subtotal * (1 + porcentajeRecargoAcumulado);
+        const recargoPorcentaje = 0.08 * cuotasGlobal;
+        recargoTotal = subtotal * recargoPorcentaje;
+        total = subtotal + recargoTotal;
     }
     
-    const recargoTotal = total - subtotal;
     const valorCuota = total / cuotasGlobal;
     const costoEnvio = tarifasProvincias[localidadSeleccionadaGlobal] ? tarifasProvincias[localidadSeleccionadaGlobal].costo : 8500;
     
@@ -1093,8 +1094,7 @@ function renderizarContenidoDrawer() {
         });
         htmlItems += `</div>`;
 
-        const { subtotal, descuento, total, valorCuota, costoEnvio } = calcularTotales();
-        const infoEnvioActual = tarifasProvincias[localidadSeleccionadaGlobal];
+        const { subtotal, descuento, recargo, total, valorCuota } = calcularTotales();
 
         let maxCuotas = 1;
         if (metodoPagoGlobal === 'creditoDni') maxCuotas = 6;
@@ -1106,22 +1106,13 @@ function renderizarContenidoDrawer() {
         }
 
         htmlItems += `
-            <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:12px;">
-                <div class="payment-methods">
-                    <label for="localidadSelect">Localidad / Provincia de Destino:</label>
-                    <select id="localidadSelect" class="payment-select" onchange="onLocalidadChange()">
-                        <option value="CABA" ${localidadSeleccionadaGlobal === 'CABA' ? 'selected' : ''}>CABA — ${formatearMoneda(8500)} (Demora: 12 a 24 hs)</option>
-                        <option value="Buenos Aires" ${localidadSeleccionadaGlobal === 'Buenos Aires' ? 'selected' : ''}>Buenos Aires — ${formatearMoneda(12500)} (Demora: 24 a 48 hs)</option>
-                        <option value="Provincias" ${localidadSeleccionadaGlobal === 'Provincias' ? 'selected' : ''}>Provincias — ${formatearMoneda(18500)} (Demora: 3 a 6 días hábiles)</option>
-                    </select>
-                </div>
-
+            <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:10px;">
                 <div class="payment-methods">
                     <label for="paymentMethodSelect">Método de Pago:</label>
                     <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
                         <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
-                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (+5.5% por pago)</option>
-                        <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito (+8% por pago)</option>
+                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (+5.5% acumulativo por cuota)</option>
+                        <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito (+8% acumulativo por cuota)</option>
                     </select>
                 </div>
 
@@ -1134,13 +1125,12 @@ function renderizarContenidoDrawer() {
 
                 <div class="cart-summary-line"><span>Subtotal productos:</span><span>${formatearMoneda(subtotal)}</span></div>
                 ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
-                <div class="cart-summary-line"><span>Envío (${infoEnvioActual.nombre} - ${infoEnvioActual.demora}):</span><span>${formatearMoneda(costoEnvio)}</span></div>
+                ${recargo > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo (${cuotasGlobal} cuotas):</span><span>+${formatearMoneda(recargo)}</span></div>` : ''}
                 
-                <div class="cart-total"><span>Total a Pagar:</span><span>${formatearMoneda(total + costoEnvio)}</span></div>
+                <div class="cart-total"><span>Total Productos:</span><span>${formatearMoneda(total)}</span></div>
                 
                 <div class="installment-summary">
-                    Primera cuota productos: <strong>${formatearMoneda(valorCuota)}</strong><br>
-                    Demora estimada de entrega: <strong>${infoEnvioActual.demora}</strong>
+                    ${cuotasGlobal > 1 ? `Plan en <strong>${cuotasGlobal} cuotas</strong> de <strong>${formatearMoneda(valorCuota)}</strong> c/u` : `Pago único de <strong>${formatearMoneda(valorCuota)}</strong>`}
                 </div>
 
                 <button class="checkout-btn" onclick="procederAlCheckout()">Continuar con la Orden de Compra</button>
@@ -1149,8 +1139,27 @@ function renderizarContenidoDrawer() {
         bodyContent.innerHTML = htmlItems;
     } else if (vistaActual === 'checkout') {
         drawerTitle.innerText = "Datos de Envío y Contacto";
+        const infoEnvioActual = tarifasProvincias[localidadSeleccionadaGlobal];
+        const { total, valorCuota, costoEnvio } = calcularTotales();
+        const totalConEnvio = total + costoEnvio;
+
         bodyContent.innerHTML = `
             <form id="orderForm" onsubmit="enviarOrdenWhatsApp(event)">
+                <div class="form-group">
+                    <label for="localidadSelect">Localidad / Provincia de Destino:</label>
+                    <select id="localidadSelect" class="payment-select" onchange="onLocalidadChange()">
+                        <option value="CABA" ${localidadSeleccionadaGlobal === 'CABA' ? 'selected' : ''}>CABA — ${formatearMoneda(8500)} (Demora: 12 a 24 hs)</option>
+                        <option value="Buenos Aires" ${localidadSeleccionadaGlobal === 'Buenos Aires' ? 'selected' : ''}>Buenos Aires — ${formatearMoneda(12500)} (Demora: 24 a 48 hs)</option>
+                        <option value="Provincias" ${localidadSeleccionadaGlobal === 'Provincias' ? 'selected' : ''}>Provincias — ${formatearMoneda(18500)} (Demora: 3 a 6 días hábiles)</option>
+                    </select>
+                </div>
+
+                <div class="installment-summary" style="margin-top: 6px; margin-bottom: 10px;">
+                    🚚 Costo de envío: <strong>${formatearMoneda(costoEnvio)}</strong><br>
+                    ⏱️ Demora estimada: <strong>${infoEnvioActual.demora}</strong><br>
+                    💵 Total final con envío: <strong>${formatearMoneda(totalConEnvio)}</strong>
+                </div>
+
                 <div class="form-group"><label>Nombre y Apellido</label><input type="text" id="nombreCliente" required placeholder="Ej: Juan Pérez"></div>
                 <div class="form-group"><label>DNI / CUIL</label><input type="text" id="dniCliente" required placeholder="Ej: 37897087"></div>
                 <div class="form-group"><label>Email</label><input type="email" id="emailCliente" required placeholder="Ej: juan@gmail.com"></div>
@@ -1197,8 +1206,8 @@ function enviarOrdenWhatsApp(event) {
     const codigoSeguimiento = generarCodigoSeguimiento11Digitos();
 
     let nombreMetodo = "Transferencia Bancaria";
-    if (metodoPagoGlobal === 'creditoDni') nombreMetodo = `Crédito con DNI (${cuotasGlobal} x +5.5% acumulado)`;
-    if (metodoPagoGlobal === 'tarjetaCredito') nombreMetodo = `Tarjeta de Crédito (${cuotasGlobal} x +8% acumulado)`;
+    if (metodoPagoGlobal === 'creditoDni') nombreMetodo = `Crédito con DNI (${cuotasGlobal} x +5.5% acumulativo)`;
+    if (metodoPagoGlobal === 'tarjetaCredito') nombreMetodo = `Tarjeta de Crédito (${cuotasGlobal} x +8% acumulativo)`;
 
     let mensaje = `*N° de Seguimiento: ${codigoSeguimiento}*\n\n`;
     mensaje += `*DATOS DEL COMPRADOR*\n`;
