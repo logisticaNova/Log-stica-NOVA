@@ -1260,6 +1260,7 @@
                 Servicios
             </a>
 
+            <!-- ENLACE ACTUALIZADO AL CATÁLOGO -->
             <a
                 href="https://logisticanova.github.io/Log-stica-NOVA/productos.html"
                 class="nav-btn-store"
@@ -1926,7 +1927,7 @@
 
 
             <div>
-
+                <!-- BOTÓN DEL BANNER ACTUALIZADO AL CATÁLOGO -->
                 <a
                     href="https://logisticanova.github.io/Log-stica-NOVA/productos.html"
                     class="store-btn"
@@ -2005,7 +2006,7 @@
                 envio: "$ 18.500",
                 total: "$ 690.499",
                 producto: '1x Televisor Samsung 55" 4K UHD Smart TV',
-                etapa: 5, // Configurado en Etapa 0 (En espera a cargar su pedido al sistema)
+                etapa: 5, 
                 fecha: "03/09/2026 - 20:15 hs"
             }
 
@@ -2038,7 +2039,6 @@
                 return;
             }
 
-            // Busca primero en la lista predefinida; si no, revisa localStorage, o crea uno genérico en Etapa 0
             let envio = envios[input];
 
             if (!envio) {
@@ -2049,7 +2049,6 @@
             }
 
             if (!envio) {
-                // Genera datos automáticos y coloca cualquier código de 11 dígitos en la Etapa 0 por defecto
                 envio = {
                     comprador: "Cliente General",
                     destino: "Dirección de destino",
@@ -2059,16 +2058,10 @@
                     envio: "A cotizar",
                     total: "A confirmar",
                     producto: "Pedido ingresado al portal",
-                    etapa: 0, // Etapa 0: En espera a cargar su pedido al sistema
+                    etapa: 0, 
                     fecha: "03/09/2026 - Recién ingresado"
                 };
             }
-
-            /*
-            --------------------------------------------
-            INFORMACIÓN GENERAL
-            --------------------------------------------
-            */
 
             document
                 .getElementById("resultCode")
@@ -2109,12 +2102,6 @@
             document
                 .getElementById("resultFecha")
                 .innerText = envio.fecha;
-
-            /*
-            --------------------------------------------
-            ETAPAS (Ajustado para índices de 0 a 8)
-            --------------------------------------------
-            */
 
             const etapas =
                 document.querySelectorAll(
@@ -2159,7 +2146,6 @@
                 }
             );
 
-            // Obtenemos el número asignado (0 al 8)
             const numeroEtapa = (envio.etapa !== undefined) ? envio.etapa : 0;
             const etapaActual = numeroEtapa;
 
@@ -2203,12 +2189,6 @@
                     }
                 }
             );
-
-            /*
-            --------------------------------------------
-            ENTREGADO (Si se selecciona la última etapa)
-            --------------------------------------------
-            */
 
             if (
                 numeroEtapa >= 8
@@ -2278,12 +2258,6 @@
                     .style.backgroundColor =
                     "#10b981";
             }
-
-            /*
-            --------------------------------------------
-            MOSTRAR RESULTADO
-            --------------------------------------------
-            */
 
             resultCard.classList.add(
                 "active"
