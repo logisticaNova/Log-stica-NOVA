@@ -242,104 +242,65 @@ header p {
     box-shadow: 0 2px 7px rgba(0,0,0,0.06);
 }
 
-.product-carousel {
-    width: 100%;
-    height: 245px;
-    background: linear-gradient(145deg, #eef4ff 0%, #f8fafc 55%, #f1f5f9 100%);
-    position: relative;
-    overflow: hidden;
+/* =========================================
+   NUEVO SISTEMA DE GALERÍA DE 3 A 5 IMÁGENES
+   ========================================= */
+.product-gallery-container {
+    padding: 14px;
+    background: #fafafa;
     border-bottom: 1px solid var(--border-light);
 }
 
-.carousel-track {
+.main-image-container {
     width: 100%;
-    height: 100%;
-    position: relative;
+    height: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e2e8f0;
 }
 
-.carousel-slide {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s ease;
-}
-
-.carousel-slide.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.carousel-slide img {
+.main-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.45s ease;
+    transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
-.card:hover .carousel-slide.active img {
+.card:hover .main-image-container img {
     transform: scale(1.025);
 }
 
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 34px;
-    height: 34px;
-    border: 1px solid rgba(255,255,255,0.7);
-    border-radius: 50%;
-    background: rgba(255,255,255,0.9);
-    color: var(--text-main);
-    font-size: 23px;
-    line-height: 1;
-    cursor: pointer;
-    z-index: 5;
+.thumbnails-container {
     display: flex;
-    align-items: center;
+    gap: 8px;
     justify-content: center;
-    box-shadow: 0 3px 9px rgba(0,0,0,0.12);
-    transition: var(--transition);
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
 }
 
-.carousel-btn:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.07);
-    color: var(--primary-color);
-}
-
-.carousel-prev { left: 11px; }
-.carousel-next { right: 11px; }
-
-.carousel-dots {
-    position: absolute;
-    bottom: 11px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    z-index: 5;
-}
-
-.carousel-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.78);
-    border: 1px solid rgba(0,0,0,0.13);
+.thumbnail {
+    width: 52px;
+    height: 52px;
+    border-radius: 6px;
+    object-fit: cover;
     cursor: pointer;
-    transition: var(--transition);
-    padding: 0;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    background: #fff;
 }
 
-.carousel-dot.active {
-    background: var(--primary-color);
-    transform: scale(1.3);
+.thumbnail:hover, .thumbnail.active {
     border-color: var(--primary-color);
+    transform: scale(1.05);
 }
+
+/* ========================================= */
 
 .card-body {
     padding: 18px;
@@ -737,7 +698,6 @@ header p {
 
 @media (min-width: 640px) {
     .grid-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
-    .product-carousel { height: 225px; }
 }
 @media (min-width: 960px) {
     .grid-productos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -785,7 +745,7 @@ header p {
 </div>
 
 <div class="grid-productos" id="gridProductos"></div>
-<div id="paginacion"></div>
+<div id="paginacion" class="paginacion"></div>
 </div>
 
 <div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
@@ -805,11 +765,42 @@ const tarifasProvincias = {
     "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Provincias" }
 };
 
+// EJEMPLO DE PRODUCTOS CONFIGURADOS CON 4 IMÁGENES CADA UNO (De 3 a 5 requerido)
 const productos = [
-    { id: 1, sku: "CEL-MOT-EDGE50", marca: "Motorola", modelo: "Edge 50", nombre: "Celular Motorola Edge 50 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Smartphone premium con pantalla OLED de 6.7 pulgadas, 12GB de RAM, 256GB de almacenamiento, conectividad 5G y cámara de 50MP.", especificaciones: { pantalla: "6.7 OLED", almacenamiento: "256GB", ram: "12GB", camara: "50MP" }, precioOferta: 549999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
-    { id: 2, sku: "CEL-SAM-S24", marca: "Samsung", modelo: "Galaxy S24", nombre: "Celular Samsung Galaxy S24 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Potencia impulsada por Inteligencia Artificial, pantalla Dynamic AMOLED 2X y procesador de alto rendimiento.", especificaciones: { pantalla: "6.2 Dynamic AMOLED", almacenamiento: "128GB", ram: "8GB", camara: "50MP" }, precioOferta: 989999, stock: true, imagenes: ["https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80"] },
-    { id: 3, sku: "CEL-XIA-NOTE13", marca: "Xiaomi", modelo: "Redmi Note 13 Pro", nombre: "Celular Xiaomi Redmi Note 13 Pro", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Cámara ultrarrápida de 200MP con estabilización óptica OIS y carga rápida de 67W.", especificaciones: { pantalla: "6.67 AMOLED", almacenamiento: "256GB", ram: "8GB", camara: "200MP" }, precioOferta: 395999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
-    { id: 4, sku: "CEL-APP-IP15", marca: "Apple", modelo: "iPhone 15", nombre: "Celular Apple iPhone 15 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Dynamic Island, cámara principal de 48MP con teleobjetivo de 2x y diseño resistente en vidrio infundido.", especificaciones: { pantalla: "6.1 Super Retina XDR", almacenamiento: "128GB", ram: "6GB", camara: "48MP" }, precioOferta: 1349999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] }
+    { 
+        id: 1, sku: "CEL-MOT-EDGE50", marca: "Motorola", modelo: "Edge 50", nombre: "Celular Motorola Edge 50 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Smartphone premium con pantalla OLED de 6.7 pulgadas, 12GB de RAM, 256GB de almacenamiento, conectividad 5G y cámara de 50MP.", especificaciones: { pantalla: "6.7 OLED", almacenamiento: "256GB", ram: "12GB", camara: "50MP" }, precioOferta: 549999, stock: true, 
+        imagenes: [
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80"
+        ] 
+    },
+    { 
+        id: 2, sku: "CEL-SAM-S24", marca: "Samsung", modelo: "Galaxy S24", nombre: "Celular Samsung Galaxy S24 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Potencia impulsada por Inteligencia Artificial, pantalla Dynamic AMOLED 2X y procesador de alto rendimiento.", especificaciones: { pantalla: "6.2 Dynamic AMOLED", almacenamiento: "128GB", ram: "8GB", camara: "50MP" }, precioOferta: 989999, stock: true, 
+        imagenes: [
+            "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+        ] 
+    },
+    { 
+        id: 3, sku: "CEL-XIA-NOTE13", marca: "Xiaomi", modelo: "Redmi Note 13 Pro", nombre: "Celular Xiaomi Redmi Note 13 Pro", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Cámara ultrarrápida de 200MP con estabilización óptica OIS y carga rápida de 67W.", especificaciones: { pantalla: "6.67 AMOLED", almacenamiento: "256GB", ram: "8GB", camara: "200MP" }, precioOferta: 395999, stock: true, 
+        imagenes: [
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+        ] 
+    },
+    { 
+        id: 4, sku: "CEL-APP-IP15", marca: "Apple", modelo: "iPhone 15", nombre: "Celular Apple iPhone 15 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Dynamic Island, cámara principal de 48MP con teleobjetivo de 2x y diseño resistente en vidrio infundido.", especificaciones: { pantalla: "6.1 Super Retina XDR", almacenamiento: "128GB", ram: "6GB", camara: "48MP" }, precioOferta: 1349999, stock: true, 
+        imagenes: [
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80"
+        ] 
+    }
 ];
 
 let carrito = [];
@@ -818,7 +809,6 @@ let metodoPagoGlobal = 'transferencia';
 let cuotasGlobal = 1;
 let categoriaSeleccionada = 'Todas';
 let localidadSeleccionadaGlobal = 'CABA';
-let estadosCarrusel = {};
 const PRODUCTOS_POR_PAGINA = 12;
 let paginaActual = 1;
 
@@ -842,26 +832,17 @@ function filtrarCategoria(categoria, botonElemento) {
     renderizarProductos();
 }
 
-function cambiarImagen(productoId, direccion) {
-    const producto = productos.find(p => p.id === productoId);
-    if (!producto || !producto.imagenes.length) return;
-    if (!estadosCarrusel[productoId]) estadosCarrusel[productoId] = 0;
-    const total = producto.imagenes.length;
-    estadosCarrusel[productoId] = (estadosCarrusel[productoId] + direccion + total) % total;
-    actualizarCarrusel(productoId);
-}
-
-function irAImagen(productoId, indice) {
-    estadosCarrusel[productoId] = indice;
-    actualizarCarrusel(productoId);
-}
-
-function actualizarCarrusel(productoId) {
-    const indice = estadosCarrusel[productoId] || 0;
-    const slides = document.querySelectorAll(`.carousel-slide[data-producto="${productoId}"]`);
-    const dots = document.querySelectorAll(`.carousel-dot[data-producto="${productoId}"]`);
-    slides.forEach((slide, i) => slide.classList.toggle('active', i === indice));
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === indice));
+// Función que cambia la imagen principal al hacer clic en las miniaturas
+function cambiarImagenMiniatura(productoId, srcImagen, elementoThumbnail) {
+    const imagenPrincipal = document.getElementById(`mainImage-${productoId}`);
+    if (imagenPrincipal) {
+        imagenPrincipal.src = srcImagen;
+    }
+    
+    // Cambiar la clase activa en las miniaturas de este producto específico
+    const contenedorMiniaturas = elementoThumbnail.parentElement;
+    contenedorMiniaturas.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+    elementoThumbnail.classList.add('active');
 }
 
 function alternarDescripcion(id) {
@@ -904,24 +885,21 @@ function renderizarProductos() {
     const productosPagina = productosFiltrados.slice(inicio, fin);
 
     productosPagina.forEach(producto => {
-        if (estadosCarrusel[producto.id] === undefined) estadosCarrusel[producto.id] = 0;
-
         let specsHTML = '';
         for (const [key, value] of Object.entries(producto.especificaciones)) {
             const etiqueta = key.replace(/([A-Z])/g, ' $1').replace(/^./, letra => letra.toUpperCase());
             specsHTML += `<div><span class="spec-label">${etiqueta}:</span><span class="spec-value">${value}</span></div>`;
         }
 
-        let slidesHTML = '';
-        let dotsHTML = '';
-        const imagenes = producto.imagenes.filter(img => img && img.trim() !== '').slice(0, 3);
+        // Tomar de 3 a 5 imágenes del arreglo del producto
+        const imagenes = producto.imagenes.filter(img => img && img.trim() !== '').slice(0, 5);
+        const imagenPrincipalInicial = imagenes.length > 0 ? imagenes[0] : '';
 
-        imagenes.forEach((imagen, index) => {
-            slidesHTML += `<div class="carousel-slide ${index === 0 ? 'active' : ''}" data-producto="${producto.id}"><img src="${imagen}" alt="${producto.nombre}" loading="lazy" onerror="this.style.display='none'"></div>`;
-            dotsHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-producto="${producto.id}" onclick="irAImagen(${producto.id}, ${index})" aria-label="Ver imagen ${index + 1}"></button>`;
+        let thumbnailsHTML = '';
+        imagenes.forEach((imgSrc, index) => {
+            thumbnailsHTML += `<img src="${imgSrc}" alt="${producto.nombre} - Vista ${index + 1}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="cambiarImagenMiniatura(${producto.id}, '${imgSrc}', this)">`;
         });
 
-        const mostrarControles = imagenes.length > 1;
         const limiteDescripcion = 100;
         const descripcionLarga = producto.descripcion.length > limiteDescripcion;
         const descripcionCorta = descripcionLarga ? producto.descripcion.substring(0, limiteDescripcion) + '...' : producto.descripcion;
@@ -930,14 +908,17 @@ function renderizarProductos() {
         card.className = 'card';
         card.innerHTML = `
             ${producto.stock ? '<span class="badge-stock">✓ Stock</span>' : ''}
-            <div class="product-carousel">
-                <div class="carousel-track">${slidesHTML}</div>
-                ${mostrarControles ? `
-                    <button class="carousel-btn carousel-prev" onclick="cambiarImagen(${producto.id}, -1)">‹</button>
-                    <button class="carousel-btn carousel-next" onclick="cambiarImagen(${producto.id}, 1)">›</button>
-                    <div class="carousel-dots">${dotsHTML}</div>
-                ` : ''}
+            
+            <!-- GALERÍA DE IMÁGENES (Principal + Miniaturas de 3 a 5) -->
+            <div class="product-gallery-container">
+                <div class="main-image-container">
+                    <img id="mainImage-${producto.id}" src="${imagenPrincipalInicial}" alt="${producto.nombre}" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="thumbnails-container">
+                    ${thumbnailsHTML}
+                </div>
             </div>
+
             <div class="card-body">
                 <span class="card-category">${producto.marca} · ${producto.categoria}</span>
                 <h3 class="card-title">${producto.nombre}</h3>
