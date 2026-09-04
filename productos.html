@@ -1201,43 +1201,40 @@ function enviarOrdenWhatsApp(event) {
     const infoEnvio = tarifasProvincias[localidadSeleccionadaGlobal];
     const costoEnvio = infoEnvio.costo;
     const demoraEnvio = infoEnvio.demora;
-    const { subtotal, descuento, recargo, total, valorCuota } = calcularTotales();
-    const totalFinal = total + costoEnvio;
+    const { total, valorCuota } = calcularTotales();
+    const totalConEnvio = total + costoEnvio;
     const codigoSeguimiento = generarCodigoSeguimiento11Digitos();
 
-    let nombreMetodo = "Transferencia Bancaria";
-    if (metodoPagoGlobal === 'creditoDni') nombreMetodo = `Crédito con DNI (${cuotasGlobal} x +5.5% acumulativo)`;
-    if (metodoPagoGlobal === 'tarjetaCredito') nombreMetodo = `Tarjeta de Crédito (${cuotasGlobal} x +8% acumulativo)`;
+    let nombreFormaPago = cuotasGlobal === 1 ? "Pago único por transferencia" : `${cuotasGlobal} cuotas de ${formatearMoneda(valorCuota)} c/u`;
+    if (metodoPagoGlobal === 'creditoDni') {
+        nombreFormaPago = cuotasGlobal === 1 ? "Pago único Crédito con DNI" : `${cuotasGlobal} cuotas de ${formatearMoneda(valorCuota)} c/u (Crédito con DNI)`;
+    } else if (metodoPagoGlobal === 'tarjetaCredito') {
+        nombreFormaPago = cuotasGlobal === 1 ? "Pago único Tarjeta de Crédito" : `${cuotasGlobal} cuotas de ${formatearMoneda(valorCuota)} c/u (Tarjeta de Crédito)`;
+    }
 
-    let mensaje = `*N° de Seguimiento: ${codigoSeguimiento}*\n\n`;
-    mensaje += `*DATOS DEL COMPRADOR*\n`;
-    mensaje += `• Nombre: ${nombre}\n`;
+    let mensaje = `• Nombre: ${nombre}\n`;
     mensaje += `• DNI/CUIL: ${dni}\n`;
     mensaje += `• Teléfono: ${telefono}\n`;
     mensaje += `• Email: ${email}\n`;
-    mensaje += `• Destino: ${infoEnvio.nombre}\n`;
     mensaje += `• Dirección: ${direccion} ${piso ? '(' + piso + ')' : ''}\n`;
+    mensaje += `• Provincia: ${infoEnvio.nombre}\n`;
     mensaje += `• Código Postal: ${cp}\n`;
-    mensaje += `• Demora estimada de entrega: *${demoraEnvio}*\n\n`;
+    mensaje += `• Zona de Envío: ${infoEnvio.nombre}\n`;
+    mensaje += `• Costo de envío: ${formatearMoneda(costoEnvio)}\n`;
+    mensaje += `• Demora estimada: ${demoraEnvio}\n\n`;
 
     mensaje += `*PRODUCTOS SOLICITADOS*\n`;
     carrito.forEach(item => {
         mensaje += `• ${item.cantidad}x ${item.nombre} — ${formatearMoneda(item.precioOferta * item.cantidad)}\n`;
     });
 
-    mensaje += `\n*DESGLOSE DE PAGOS Y ENVÍO*\n`;
-    mensaje += `• Subtotal: ${formatearMoneda(subtotal)}\n`;
-    mensaje += `• Envío (${infoEnvio.nombre}): ${formatearMoneda(costoEnvio)}\n`;
-    mensaje += `• Recargo/Descuento: ${descuento > 0 ? '-' + formatearMoneda(descuento) : (recargo > 0 ? '+' + formatearMoneda(recargo) : '$ 0')}\n`;
-    mensaje += `• Método: ${nombreMetodo}\n`;
-    mensaje += `• Forma de pago: ${cuotasGlobal} ${cuotasGlobal === 1 ? 'Pago único' : 'cuotas de ' + formatearMoneda(valorCuota) + ' c/u'}\n\n`;
+    mensaje += `\n• Método: ${metodoPagoGlobal === 'transferencia' ? 'Tarjeta / Pago Estándar' : 'Financiación'}\n`;
+    mensaje += `• Forma de pago: ${nombreFormaPago}\n`;
+    mensaje += `• Total del crédito: ${formatearMoneda(totalConEnvio)}\n`;
+    mensaje += `• Primera cuota a abonar: ${formatearMoneda(valorCuota)}\n`;
+    mensaje += `• Cuotas restantes: ${cuotasGlobal > 1 ? (cuotasGlobal - 1) + ' cuotas de ' + formatearMoneda(valorCuota) : '0'}\n\n`;
 
-    mensaje += `*TOTAL A PAGAR (Con envío): ${formatearMoneda(totalFinal)}*\n`;
-    mensaje += `• Primera cuota / Monto a abonar ahora: *${formatearMoneda(valorCuota)}*\n`;
-    mensaje += `• Cuotas restantes: ${cuotasGlobal > 1 ? (cuotasGlobal - 1) + ' cuotas de ' + formatearMoneda(valorCuota) : 'Ninguna (Pago único)'}\n\n`;
-
-    mensaje += `*SOLICITUD DE CONFIRMACIÓN*\n`;
-    mensaje += `Hola, por favor envíenme los *datos bancarios (CBU/Alias)* para realizar el pago de la primera cuota y confirmar este pedido.\n\n`;
+    mensaje += `Solicito confirmación del pedido y datos para el pago.\n\n`;
 
     mensaje += `*CÓDIGO DE SEGUIMIENTO*\n`;
     mensaje += `${codigoSeguimiento}`;
