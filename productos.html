@@ -1,2376 +1,1463 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Logística Nova | Soluciones Logísticas y Seguimiento de Envíos</title>
-
-    <meta
-        name="description"
-        content="Logística Nova ofrece soluciones integrales de transporte, distribución, almacenamiento y seguimiento de envíos."
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        :root {
-            --primary-color: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-soft: #eff6ff;
-
-            --accent-color: #f97316;
-            --accent-dark: #ea580c;
-
-            --success-color: #10b981;
-            --danger-color: #ef4444;
-
-            --text-main: #172033;
-            --text-secondary: #475569;
-            --text-muted: #64748b;
-
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-
-            --border-color: #e2e8f0;
-
-            --radius: 14px;
-            --transition: all 0.3s ease;
-
-            --shadow-sm:
-                0 2px 8px rgba(15, 23, 42, 0.05);
-
-            --shadow-md:
-                0 8px 25px rgba(15, 23, 42, 0.08);
-
-            --shadow-lg:
-                0 18px 45px rgba(15, 23, 42, 0.12);
-        }
-
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-
-        /* =========================================================
-           NAVBAR
-        ========================================================= */
-
-        .navbar {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(10px);
-
-            box-shadow:
-                0 1px 0 rgba(15, 23, 42, 0.06);
-
-            position: sticky;
-            top: 0;
-            z-index: 100;
-
-            padding: 14px 20px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-
-
-        .navbar-brand {
-            font-size: 1.15rem;
-            font-weight: 800;
-
-            color: var(--primary-color);
-
-            display: flex;
-            align-items: center;
-            gap: 7px;
-
-            white-space: nowrap;
-        }
-
-
-        .nav-links {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-
-        .nav-links a {
-            text-decoration: none;
-
-            color: var(--text-secondary);
-
-            font-weight: 500;
-            font-size: 0.88rem;
-
-            transition: var(--transition);
-        }
-
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-
-        .nav-btn-store {
-            background: var(--accent-color);
-
-            color: white !important;
-
-            padding: 8px 14px;
-
-            border-radius: 8px;
-
-            font-weight: 700 !important;
-
-            box-shadow:
-                0 4px 12px rgba(249, 115, 22, 0.18);
-        }
-
-
-        .nav-btn-store:hover {
-            background: var(--accent-dark) !important;
-
-            transform: translateY(-1px);
-        }
-
-
-        /* =========================================================
-           HERO
-        ========================================================= */
-
-        .hero-section {
-
-            position: relative;
-
-            background:
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(255,255,255,0.12),
-                    transparent 28%
-                ),
-
-                radial-gradient(
-                    circle at 85% 80%,
-                    rgba(255,255,255,0.08),
-                    transparent 30%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #172554 0%,
-                    #1d4ed8 55%,
-                    #2563eb 100%
-                );
-
-            color: white;
-
-            text-align: center;
-
-            padding: 72px 16px 82px;
-        }
-
-
-        .hero-container {
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-
-        .hero-label {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 7px;
-
-            background: rgba(255,255,255,0.12);
-
-            border: 1px solid rgba(255,255,255,0.18);
-
-            padding: 7px 13px;
-
-            border-radius: 50px;
-
-            font-size: 0.78rem;
-
-            font-weight: 600;
-
-            margin-bottom: 18px;
-
-            letter-spacing: 0.2px;
-        }
-
-
-        .hero-section h1 {
-
-            font-size: 2.25rem;
-
-            margin-bottom: 15px;
-
-            font-weight: 800;
-
-            line-height: 1.15;
-
-            letter-spacing: -0.8px;
-        }
-
-
-        .hero-section p {
-
-            max-width: 690px;
-
-            margin: 0 auto 28px;
-
-            font-size: 1rem;
-
-            line-height: 1.7;
-
-            color: rgba(255,255,255,0.9);
-        }
-
-
-        /* =========================================================
-           TRACKING BOX
-        ========================================================= */
-
-        .tracking-box {
-
-            background: white;
-
-            padding: 9px;
-
-            border-radius: 12px;
-
-            box-shadow: var(--shadow-lg);
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 9px;
-
-            max-width: 650px;
-
-            margin: 0 auto;
-        }
-
-
-        .tracking-input {
-
-            width: 100%;
-
-            padding: 13px 15px;
-
-            border: 1px solid var(--border-color);
-
-            border-radius: 9px;
-
-            font-size: 0.95rem;
-
-            outline: none;
-
-            font-family: inherit;
-
-            color: var(--text-main);
-
-            background: #fff;
-
-            text-transform: uppercase;
-
-            transition: var(--transition);
-        }
-
-
-        .tracking-input::placeholder {
-            color: #94a3b8;
-            text-transform: none;
-        }
-
-
-        .tracking-input:focus {
-
-            border-color: var(--primary-color);
-
-            box-shadow:
-                0 0 0 3px rgba(37, 99, 235, 0.10);
-        }
-
-
-        .tracking-btn {
-
-            background: var(--accent-color);
-
-            color: white;
-
-            border: none;
-
-            padding: 13px 20px;
-
-            border-radius: 9px;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            font-size: 0.95rem;
-
-            width: 100%;
-
-            font-family: inherit;
-
-            transition: var(--transition);
-        }
-
-
-        .tracking-btn:hover {
-
-            background: var(--accent-dark);
-
-            transform: translateY(-1px);
-
-            box-shadow:
-                0 5px 14px rgba(249, 115, 22, 0.25);
-        }
-
-
-        /* =========================================================
-           RESULTADO
-        ========================================================= */
-
-        .tracking-result-container {
-
-            max-width: 820px;
-
-            margin: -28px auto 45px;
-
-            padding: 0 16px;
-
-            position: relative;
-
-            z-index: 5;
-        }
-
-
-        .result-card {
-
-            background: white;
-
-            border-radius: var(--radius);
-
-            padding: 24px;
-
-            box-shadow: var(--shadow-md);
-
-            border: 1px solid var(--border-color);
-
-            display: none;
-        }
-
-
-        .result-card.active {
-            display: block;
-        }
-
-
-        .result-header {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 12px;
-
-            align-items: flex-start;
-
-            border-bottom: 1px solid var(--border-color);
-
-            padding-bottom: 17px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .result-header h3 {
-            font-weight: 600;
-        }
-
-
-        .status-badge {
-
-            background-color: var(--success-color);
-
-            color: white;
-
-            padding: 6px 13px;
-
-            border-radius: 50px;
-
-            font-size: 0.76rem;
-
-            font-weight: 700;
-
-            letter-spacing: 0.1px;
-        }
-
-
-        /* =========================================================
-           INFORMACIÓN DEL ENVÍO
-        ========================================================= */
-
-        .shipment-info {
-
-            display: grid;
-
-            grid-template-columns: 1fr;
-
-            gap: 0 24px;
-
-            font-size: 0.88rem;
-
-            margin-bottom: 26px;
-        }
-
-
-        .shipment-info div {
-
-            padding: 10px 0;
-
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-
-        .shipment-info strong {
-            color: var(--text-main);
-        }
-
-
-        /* =========================================================
-           PRODUCTO
-        ========================================================= */
-
-        .product-box {
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #f8fafc,
-                    #f1f5f9
-                );
-
-            border: 1px solid var(--border-color);
-
-            border-radius: 11px;
-
-            padding: 16px;
-
-            margin-bottom: 28px;
-        }
-
-
-        .product-box h4 {
-
-            font-size: 0.76rem;
-
-            margin-bottom: 8px;
-
-            color: var(--text-muted);
-
-            letter-spacing: 0.4px;
-        }
-
-
-        .product-name {
-
-            font-size: 0.95rem;
-
-            font-weight: 650;
-
-            color: var(--text-main);
-        }
-
-
-        /* =========================================================
-           TIMELINE
-        ========================================================= */
-
-        .timeline-title {
-
-            font-size: 1.08rem;
-
-            margin-bottom: 21px;
-
-            font-weight: 700;
-        }
-
-
-        .tracking-timeline {
-
-            position: relative;
-
-            padding-left: 5px;
-        }
-
-
-        .tracking-timeline::before {
-
-            content: "";
-
-            position: absolute;
-
-            left: 19px;
-
-            top: 10px;
-
-            bottom: 10px;
-
-            width: 3px;
-
-            background: #e2e8f0;
-
-            border-radius: 10px;
-        }
-
-
-        .timeline-item {
-
-            position: relative;
-
-            display: flex;
-
-            gap: 15px;
-
-            padding-bottom: 27px;
-
-            opacity: 0.42;
-
-            transition: var(--transition);
-        }
-
-
-        .timeline-icon {
-
-            position: relative;
-
-            z-index: 2;
-
-            width: 32px;
-
-            height: 32px;
-
-            min-width: 32px;
-
-            border-radius: 50%;
-
-            background: #e2e8f0;
-
-            color: #64748b;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 0.78rem;
-
-            font-weight: 700;
-
-            border: 3px solid white;
-        }
-
-
-        .timeline-item.completed {
-
-            opacity: 1;
-        }
-
-
-        .timeline-item.completed .timeline-icon {
-
-            background: var(--success-color);
-
-            color: white;
-        }
-
-
-        .timeline-item.active {
-
-            opacity: 1;
-        }
-
-
-        .timeline-item.active .timeline-icon {
-
-            background: var(--primary-color);
-
-            color: white;
-
-            box-shadow:
-                0 0 0 5px rgba(37, 99, 235, 0.11);
-        }
-
-
-        .timeline-item.active h4 {
-
-            color: var(--primary-color);
-        }
-
-
-        .timeline-item.delivered {
-
-            opacity: 1;
-        }
-
-
-        .timeline-item.delivered .timeline-icon {
-
-            background: var(--primary-color);
-
-            color: white;
-        }
-
-
-        .timeline-item.delivered h4 {
-
-            color: var(--primary-color);
-        }
-
-
-        .timeline-content {
-            padding-top: 2px;
-        }
-
-
-        .timeline-content h4 {
-
-            font-size: 0.92rem;
-
-            margin-bottom: 4px;
-
-            color: var(--text-main);
-
-            font-weight: 700;
-        }
-
-
-        .timeline-content p {
-
-            font-size: 0.81rem;
-
-            color: var(--text-muted);
-
-            margin-bottom: 5px;
-
-            line-height: 1.5;
-        }
-
-
-        .timeline-date {
-
-            font-size: 0.73rem;
-
-            color: var(--text-muted);
-
-            font-weight: 650;
-        }
-
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-
-
-        /* =========================================================
-           CONTENEDORES
-        ========================================================= */
-
-        .container {
-
-            max-width: 1100px;
-
-            margin: 70px auto;
-
-            padding: 0 16px;
-        }
-
-
-        .section-heading {
-
-            max-width: 700px;
-
-            margin: 0 auto 35px;
-
-            text-align: center;
-        }
-
-
-        .section-label {
-
-            display: inline-block;
-
-            color: var(--primary-color);
-
-            background: var(--primary-soft);
-
-            padding: 5px 11px;
-
-            border-radius: 50px;
-
-            font-size: 0.73rem;
-
-            font-weight: 700;
-
-            margin-bottom: 10px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.5px;
-        }
-
-
-        .section-title {
-
-            text-align: center;
-
-            font-size: 1.75rem;
-
-            margin-bottom: 10px;
-
-            color: var(--text-main);
-
-            line-height: 1.25;
-
-            font-weight: 800;
-
-            letter-spacing: -0.4px;
-        }
-
-
-        .section-subtitle {
-
-            text-align: center;
-
-            color: var(--text-muted);
-
-            margin-bottom: 30px;
-
-            font-size: 0.93rem;
-
-            line-height: 1.7;
-        }
-
-
-        /* =========================================================
-           QUIENES SOMOS
-        ========================================================= */
-
-        .about-card {
-
-            background: white;
-
-            padding: 30px;
-
-            border-radius: var(--radius);
-
-            border: 1px solid var(--border-color);
-
-            box-shadow: var(--shadow-sm);
-
-            margin-bottom: 65px;
-
-            position: relative;
-
-            overflow: hidden;
-        }
-
-
-        .about-card::before {
-
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-
-            top: 0;
-
-            width: 4px;
-
-            height: 100%;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    var(--primary-color),
-                    var(--accent-color)
-                );
-        }
-
-
-        .about-card p {
-
-            font-size: 0.94rem;
-
-            color: var(--text-secondary);
-
-            line-height: 1.75;
-
-            margin-bottom: 14px;
-        }
-
-
-        .about-card p:last-child {
-            margin-bottom: 0;
-        }
-
-
-        .about-card strong {
-            color: var(--text-main);
-        }
-
-
-        /* =========================================================
-           SERVICIOS
-        ========================================================= */
-
-        .features-grid {
-
-            display: grid;
-
-            grid-template-columns: 1fr;
-
-            gap: 20px;
-        }
-
-
-        .feature-card {
-
-            background: white;
-
-            padding: 27px 23px;
-
-            border-radius: var(--radius);
-
-            box-shadow: var(--shadow-sm);
-
-            border: 1px solid var(--border-color);
-
-            transition: var(--transition);
-
-            position: relative;
-
-            overflow: hidden;
-        }
-
-
-        .feature-card::after {
-
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-
-            bottom: 0;
-
-            height: 3px;
-
-            width: 0;
-
-            background: var(--primary-color);
-
-            transition: var(--transition);
-        }
-
-
-        .feature-card:hover {
-
-            transform: translateY(-4px);
-
-            box-shadow: var(--shadow-md);
-        }
-
-
-        .feature-card:hover::after {
-            width: 100%;
-        }
-
-
-        .feature-icon {
-
-            width: 50px;
-
-            height: 50px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            background: var(--primary-soft);
-
-            border-radius: 12px;
-
-            font-size: 1.65rem;
-
-            margin-bottom: 17px;
-        }
-
-
-        .feature-card h3 {
-
-            font-size: 1.08rem;
-
-            margin-bottom: 8px;
-
-            color: var(--text-main);
-
-            font-weight: 700;
-        }
-
-
-        .feature-card p {
-
-            color: var(--text-muted);
-
-            font-size: 0.87rem;
-
-            line-height: 1.7;
-        }
-
-
-        /* =========================================================
-           BANNER TIENDA
-        ========================================================= */
-
-        .store-banner {
-
-            background:
-
-                radial-gradient(
-                    circle at 85% 20%,
-                    rgba(255,255,255,0.13),
-                    transparent 25%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #f97316,
-                    #ea580c
-                );
-
-            color: white;
-
-            border-radius: var(--radius);
-
-            padding: 32px 23px;
-
-            margin-top: 55px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            text-align: center;
-
-            gap: 22px;
-
-            box-shadow:
-                0 12px 30px rgba(249, 115, 22, 0.18);
-        }
-
-
-        .store-banner h2 {
-
-            font-size: 1.4rem;
-
-            margin-bottom: 9px;
-
-            line-height: 1.3;
-
-            font-weight: 800;
-        }
-
-
-        .store-banner p {
-
-            font-size: 0.9rem;
-
-            opacity: 0.95;
-
-            line-height: 1.65;
-
-            max-width: 650px;
-        }
-
-
-        .store-btn {
-
-            background: white;
-
-            color: var(--accent-dark);
-
-            padding: 12px 23px;
-
-            border-radius: 9px;
-
-            text-decoration: none;
-
-            font-weight: 750;
-
-            font-size: 0.92rem;
-
-            display: inline-block;
-
-            transition: var(--transition);
-
-            box-shadow:
-                0 5px 12px rgba(0,0,0,0.12);
-
-            width: 100%;
-
-            max-width: 280px;
-        }
-
-
-        .store-btn:hover {
-
-            background: #fff7ed;
-
-            transform: translateY(-2px);
-        }
-
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-
-            background: #0f172a;
-
-            color: #94a3b8;
-
-            text-align: center;
-
-            padding: 38px 16px;
-
-            margin-top: 80px;
-
-            font-size: 0.82rem;
-
-            line-height: 1.7;
-        }
-
-
-        footer strong {
-            color: white;
-        }
-
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media (min-width: 640px) {
-
-            .navbar {
-                padding: 15px 40px;
-            }
-
-
-            .tracking-box {
-                flex-direction: row;
-            }
-
-
-            .tracking-btn {
-                width: auto;
-
-                min-width: 125px;
-            }
-
-
-            .result-header {
-
-                flex-direction: row;
-
-                align-items: center;
-
-                justify-content: space-between;
-            }
-
-
-            .shipment-info {
-
-                grid-template-columns:
-                    1fr 1fr;
-
-                column-gap: 25px;
-            }
-
-
-            .features-grid {
-
-                grid-template-columns:
-                    repeat(
-                        3,
-                        1fr
-                    );
-            }
-
-
-            .store-banner {
-
-                flex-direction: row;
-
-                text-align: left;
-
-                padding: 40px;
-
-                justify-content: space-between;
-            }
-
-
-            .store-banner p {
-                max-width: 700px;
-            }
-
-
-            .store-btn {
-                width: auto;
-            }
-
-
-            .hero-section {
-                padding: 82px 16px 95px;
-            }
-
-
-            .hero-section h1 {
-                font-size: 3rem;
-            }
-
-
-            .hero-section p {
-                font-size: 1.05rem;
-            }
-
-
-            .section-title {
-                font-size: 2.1rem;
-            }
-        }
-
-
-        @media (max-width: 639px) {
-
-            .navbar {
-                justify-content: center;
-            }
-
-
-            .navbar-brand {
-                width: 100%;
-                justify-content: center;
-            }
-
-
-            .nav-links {
-                justify-content: center;
-                gap: 11px;
-            }
-
-
-            .nav-links a {
-                font-size: 0.78rem;
-            }
-
-
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-
-
-            .about-card {
-                padding: 25px 20px 25px 25px;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logística Nova - Catálogo y Orden de Compra</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+    --accent-color: #f97316;
+    --accent-light: #fff7ed;
+    --success-color: #10b981;
+    --success-dark: #059669;
+    --text-main: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
+    --bg-body: #f6f8fb;
+    --bg-card: #ffffff;
+    --bg-soft: #f8fafc;
+    --border-color: #e5e7eb;
+    --border-light: #eef0f3;
+    --radius: 14px;
+    --transition: all 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc 0%,
+            #f3f5f9 100%
+        );
+    color: var(--text-main);
+    line-height: 1.5;
+    padding-bottom: 60px;
+    overflow-x: hidden;
+}
+
+/* =========================================
+NAVBAR
+========================================= */
+
+.navbar {
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 13px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: -0.3px;
+}
+
+.cart-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 9px 15px;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 0.86rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: var(--transition);
+    box-shadow: 0 3px 8px rgba(37,99,235,0.18);
+}
+
+.cart-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(37,99,235,0.25);
+}
+
+.cart-badge {
+    background: var(--accent-color);
+    color: white;
+    min-width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+/* =========================================
+HEADER
+========================================= */
+
+header {
+    text-align: center;
+    margin: 42px 0 28px;
+    padding: 0 16px;
+}
+
+.header-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border: 1px solid #dbeafe;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+    margin-bottom: 13px;
+}
+
+header h1 {
+    font-size: clamp(1.9rem, 4vw, 2.65rem);
+    color: var(--text-main);
+    margin-bottom: 9px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+.header-highlight {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* =========================================
+CONTAINER
+========================================= */
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+/* =========================================
+FILTROS
+========================================= */
+
+.filtros-wrapper {
+    margin-bottom: 28px;
+}
+
+.filtros {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 2px 9px;
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+    -webkit-overflow-scrolling: touch;
+}
+
+.filtros::-webkit-scrollbar {
+    height: 4px;
+}
+
+.filtros::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.filtros::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 20px;
+}
+
+.filter-btn {
+    flex: 0 0 auto;
+    background: rgba(255,255,255,0.9);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 22px;
+    font-weight: 650;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    border-color: #bfdbfe;
+    color: var(--primary-color);
+    background: #fff;
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 3px 8px rgba(37,99,235,0.18);
+}
+
+/* =========================================
+GRID
+========================================= */
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* =========================================
+CARD
+========================================= */
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(15,23,42,0.035);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: #dbe3ef;
+    box-shadow: 0 10px 25px rgba(15,23,42,0.075);
+}
+
+/* =========================================
+STOCK
+========================================= */
+
+.badge-stock {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255,255,255,0.92);
+    color: #047857;
+    border: 1px solid #a7f3d0;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+    z-index: 10;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.06);
+}
+
+/* =========================================
+PRODUCT IMAGE / CAROUSEL
+========================================= */
+
+.product-carousel {
+    width: 100%;
+    height: 245px;
+    background:
+        linear-gradient(
+            145deg,
+            #eef4ff 0%,
+            #f8fafc 55%,
+            #f1f5f9 100%
+        );
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.carousel-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.card:hover .carousel-slide.active img {
+    transform: scale(1.025);
+}
+
+.carousel-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* =========================================
+CAROUSEL BUTTONS
+========================================= */
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    color: var(--text-main);
+    font-size: 23px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 9px rgba(0,0,0,0.12);
+    transition: var(--transition);
+}
+
+.carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.07);
+    color: var(--primary-color);
+}
+
+.carousel-prev {
+    left: 11px;
+}
+
+.carousel-next {
+    right: 11px;
+}
+
+/* =========================================
+DOTS
+========================================= */
+
+.carousel-dots {
+    position: absolute;
+    bottom: 11px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    z-index: 5;
+}
+
+.carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(0,0,0,0.13);
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: var(--primary-color);
+    transform: scale(1.3);
+    border-color: var(--primary-color);
+}
+
+/* =========================================
+CARD BODY
+========================================= */
+
+.card-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-category {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--primary-color);
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.card-title {
+    font-size: 1.03rem;
+    font-weight: 750;
+    color: var(--text-main);
+    margin-bottom: 9px;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+}
+
+.card-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    line-height: 1.55;
+    min-height: 63px;
+}
+
+.descripcion-texto {
+    display: inline;
+}
+
+.descripcion-texto.descripcion-corta {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ver-mas-btn {
+    border: none;
+    background: transparent;
+    color: var(--primary-color);
+    font-weight: 750;
+    font-size: 0.76rem;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 4px;
+}
+
+.ver-mas-btn:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+SPECS
+========================================= */
+
+.specs-list {
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #f9fafb
+        );
+    border: 1px solid var(--border-light);
+    border-radius: 9px;
+    padding: 10px 11px;
+    margin-bottom: 16px;
+    font-size: 0.77rem;
+}
+
+.specs-list div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    gap: 12px;
+}
+
+.specs-list div:last-child {
+    margin-bottom: 0;
+}
+
+.spec-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.spec-value {
+    color: var(--text-secondary);
+    font-weight: 700;
+    text-align: right;
+}
+
+/* =========================================
+PRICING
+========================================= */
+
+.pricing {
+    margin-top: auto;
+    border-top: 1px solid var(--border-light);
+    padding-top: 15px;
+}
+
+.price-container {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    margin-bottom: 5px;
+}
+
+.price-offer {
+    font-size: 1.42rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+/* =========================================
+TRANSFERENCIA
+========================================= */
+
+.cuotas-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    font-size: 0.72rem;
+    color: var(--accent-color);
+    background: var(--accent-light);
+    border: 1px solid #fed7aa;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-weight: 750;
+    margin-top: 3px;
+    margin-bottom: 12px;
+}
+
+/* =========================================
+ADD CART
+========================================= */
+
+.btn-add-cart {
+    width: 100%;
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-color),
+            #3b82f6
+        );
+    color: white;
+    border: none;
+    padding: 11px 12px;
+    border-radius: 9px;
+    font-weight: 750;
+    font-size: 0.84rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 3px 8px rgba(37,99,235,0.14);
+}
+
+.btn-add-cart:hover {
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-dark),
+            #2563eb
+        );
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(37,99,235,0.2);
+}
+
+.btn-add-cart:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+PAGINACIÓN
+========================================= */
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 34px 0 12px;
+}
+
+.paginacion button {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 11px;
+    border: 1px solid var(--border-color);
+    background: white;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.paginacion button:hover:not(:disabled) {
+    border-color: #bfdbfe;
+    color: var(--primary-color);
+    background: #f8fbff;
+}
+
+.paginacion button.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 3px 8px rgba(37,99,235,0.18);
+}
+
+.paginacion button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.paginacion-info {
+    width: 100%;
+    text-align: center;
+    margin-top: 7px;
+    color: var(--text-muted);
+    font-size: 0.76rem;
+}
+
+/* =========================================
+CARRITO / DRAWER
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15,23,42,0.48);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-drawer {
+    background-color: white;
+    width: 100%;
+    max-width: 480px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .cart-drawer {
+    transform: translateX(0);
+}
+
+.cart-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.cart-body {
+    padding: 16px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-info h4 {
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.cart-item-price {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qty-btn {
+    background-color: var(--bg-body);
+    border: 1px solid var(--border-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-left: 6px;
+}
+
+.payment-methods {
+    margin-bottom: 12px;
+}
+
+.payment-methods label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.payment-select {
+    width: 100%;
+    padding: 9px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.cart-summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 12px 0 6px;
+    color: var(--text-main);
+}
+
+.installment-summary {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 12px;
+    color: #1e40af;
+    font-size: 0.82rem;
+}
+
+.checkout-btn {
+    width: 100%;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.checkout-btn:hover {
+    background-color: #059669;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-back {
+    background-color: var(--text-muted);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 35%;
+}
+
+.btn-submit-order {
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.btn-submit-order:hover {
+    background-color: #128c7e;
+}
+
+.empty-cart {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 30px;
+}
+
+@media (min-width: 640px) {
+    .grid-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    .product-carousel { height: 225px; }
+}
+
+@media (min-width: 960px) {
+    .grid-productos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+}
+
+@media (min-width: 1200px) {
+    .grid-productos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+    .container { padding: 0 20px; }
+}
+</style>
 </head>
-
 
 <body>
 
-
-    <!-- =========================================================
-         NAVBAR
-    ========================================================= -->
-
-    <nav class="navbar">
-
-        <div class="navbar-brand">
-            📦 Logística Nova
-        </div>
-
-
-        <div class="nav-links">
-
-            <a href="#seguimiento">
-                Seguimiento
-            </a>
-
-            <a href="#quienes-somos">
-                Empresa
-            </a>
-
-            <a href="#servicios">
-                Servicios
-            </a>
-
-            <a
-                href="https://logisticanova.github.io/Log-stica-NOVA/productos.html"
-                class="nav-btn-store"
-                target="_blank"
-            >
-                🛒 Catálogo
-            </a>
-
-        </div>
-
-    </nav>
-
-
-    <!-- =========================================================
-         HERO
-    ========================================================= -->
-
-    <header
-        class="hero-section"
-        id="seguimiento"
-    >
-
-        <div class="hero-container">
-
-
-            <div class="hero-label">
-                📍 Seguimiento online de envíos
-            </div>
-
-
-            <h1>
-                Seguimiento de Envíos
-            </h1>
-
-
-            <p>
-                Consultá el estado de tu envío de forma rápida y sencilla.
-                Ingresá tu número de seguimiento para conocer el progreso
-                de tu pedido y sus principales actualizaciones logísticas.
-            </p>
-
-
-            <div class="tracking-box">
-
-                <input
-                    type="text"
-                    id="trackingInput"
-                    class="tracking-input"
-                    placeholder="Ingresá tu código de seguimiento"
-                    onkeydown="if(event.key === 'Enter') buscarEnvio()"
-                >
-
-
-                <button
-                    class="tracking-btn"
-                    onclick="buscarEnvio()"
-                >
-                    Rastrear envío
-                </button>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- =========================================================
-         RESULTADO
-    ========================================================= -->
-
-    <div class="tracking-result-container">
-
-        <div
-            class="result-card"
-            id="resultCard"
-        >
-
-
-            <div class="result-header">
-
-                <div>
-
-                    <h3 style="
-                        font-size: 0.88rem;
-                        color: var(--text-muted);
-                        margin-bottom: 2px;
-                    ">
-                        Número de seguimiento
-                    </h3>
-
-
-                    <p
-                        id="resultCode"
-                        style="
-                            font-size: 1.15rem;
-                            font-weight: 800;
-                            color: var(--text-main);
-                        "
-                    >
-                        --
-                    </p>
-
-                </div>
-
-
-                <span
-                    class="status-badge"
-                    id="resultStatus"
-                >
-                    --
-                </span>
-
-            </div>
-
-
-            <!-- INFORMACIÓN -->
-
-            <div class="shipment-info">
-
-                <div>
-                    <strong>Comprador:</strong>
-                    <span
-                        id="resultComprador"
-                        style="color: var(--text-muted);"
-                    >
-                        --
-                    </span>
-                </div>
-
-
-                <div>
-                    <strong>Destino:</strong>
-                    <span
-                        id="resultDestino"
-                        style="color: var(--text-muted);"
-                    >
-                        --
-                    </span>
-                </div>
-
-
-                <div>
-                    <strong>Provincia:</strong>
-                    <span
-                        id="resultProvincia"
-                        style="color: var(--text-muted);"
-                    >
-                        --
-                    </span>
-                </div>
-
-
-                <div>
-                    <strong>Código Postal:</strong>
-                    <span
-                        id="resultCP"
-                        style="color: var(--text-muted);"
-                    >
-                        --
-                    </span>
-                </div>
-
-
-                <div>
-                    <strong>Última actualización:</strong>
-                    <span
-                        id="resultFecha"
-                        style="color: var(--text-muted);"
-                    >
-                        --
-                    </span>
-                </div>
-
-
-                <div>
-                    <strong>Demora estimada:</strong>
-                    <span
-                        id="resultDemora"
-                        style="color: var(--text-muted);"
-                    >
-                        --
-                    </span>
-                </div>
-
-
-                <div>
-                    <strong>Costo de envío:</strong>
-                    <span
-                        id="resultEnvio"
-                        style="color: var(--text-muted);"
-                    >
-                        --
-                    </span>
-                </div>
-
-
-                <div>
-                    <strong>Total de la orden:</strong>
-                    <span
-                        id="resultTotal"
-                        style="color: var(--text-muted);"
-                    >
-                        --
-                    </span>
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCTO -->
-
-            <div class="product-box">
-
-                <h4>
-                    PRODUCTO / PEDIDO
-                </h4>
-
-
-                <div
-                    class="product-name"
-                    id="resultProducto"
-                >
-                    --
-                </div>
-
-            </div>
-
-
-            <!-- TIMELINE -->
-
-            <h3 class="timeline-title">
-                Historial del envío
-            </h3>
-
-
-            <div
-                class="tracking-timeline"
-                id="trackingTimeline"
-            >
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        ✓
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-                            Pedido recibido
-                        </h4>
-
-                        <p>
-                            La solicitud fue registrada correctamente
-                            en nuestro sistema.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        💳
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-                            Pago confirmado
-                        </h4>
-
-                        <p>
-                            Se verificó y confirmó el pago correspondiente
-                            a la orden.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        📋
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-                            Pedido confirmado
-                        </h4>
-
-                        <p>
-                            La orden fue confirmada y los productos
-                            quedaron reservados.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        🏭
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-                            Preparación del envío
-                        </h4>
-
-                        <p>
-                            El pedido se encuentra en proceso de preparación
-                            y acondicionamiento.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        📦
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-                            Envío despachado
-                        </h4>
-
-                        <p>
-                            El paquete fue entregado al área de distribución
-                            para iniciar su recorrido.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        🚚
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-                            En tránsito
-                        </h4>
-
-                        <p>
-                            El envío se encuentra en ruta hacia
-                            su destino.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        🏠
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-                            En reparto
-                        </h4>
-
-                        <p>
-                            El envío se encuentra en la etapa final
-                            de distribución hacia el domicilio indicado.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        ✓
-                    </div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-                            Entregado
-                        </h4>
-
-                        <p>
-                            El pedido fue entregado correctamente
-                            en su destino.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
+<nav class="navbar">
+    <div class="navbar-brand">📦 Logística Nova</div>
+    <button class="cart-btn" onclick="toggleCart()">
+        🛒 Carrito <span class="cart-badge" id="cartCount">0</span>
+    </button>
+</nav>
+
+<div class="container">
+<header>
+    <div class="header-kicker">✦ Catálogo exclusivo</div>
+    <h1>Catálogo de Productos</h1>
+    <p>Encontrá productos seleccionados con <span class="header-highlight">precio especial por transferencia</span> y opciones de pago flexibles.</p>
+</header>
+
+<div class="filtros-wrapper">
+    <div class="filtros">
+        <button class="filter-btn active" onclick="filtrarCategoria('Todas', this)">Todas</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Celulares', this)">Celulares</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Gaming', this)">Gaming</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Televisores / Monitores', this)">Televisores / Monitores</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Aires Acondicionados', this)">Aires Acondicionados</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Heladeras / Freezers', this)">Heladeras / Freezers</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Cocinas / Hornos', this)">Cocinas / Hornos</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Lavarropas / Secadoras', this)">Lavarropas / Secadoras</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Pequeños Electrodomésticos', this)">Pequeños Electrodomésticos</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Aspiradoras', this)">Aspiradoras</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Termotanques', this)">Termotanques</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Informática', this)">Informática</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Audio', this)">Audio</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Accesorios', this)">Accesorios</button>
     </div>
+</div>
 
+<div class="grid-productos" id="gridProductos"></div>
+<div id="paginacion"></div>
+</div>
 
-    <!-- =========================================================
-         QUIÉNES SOMOS
-    ========================================================= -->
-
-    <main
-        class="container"
-        id="quienes-somos"
-    >
-
-
-        <div class="section-heading">
-
-            <span class="section-label">
-                Nuestra empresa
-            </span>
-
-
-            <h2 class="section-title">
-                Soluciones logísticas pensadas para crecer
-            </h2>
-
-
-            <p class="section-subtitle">
-                Acompañamos a comercios, empresas y particulares
-                en la gestión eficiente de sus envíos, almacenamiento
-                y distribución.
-            </p>
-
+<!-- CARRITO / DRAWER -->
+<div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
+    <div class="cart-drawer">
+        <div class="cart-header">
+            <h3 id="drawerTitle" style="font-size:1.1rem;">Tu Carrito de Compras</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
         </div>
-
-
-        <div class="about-card">
-
-            <p>
-
-                <strong>Logística Nova</strong>
-                es una empresa orientada a brindar soluciones integrales
-                para la gestión y distribución de mercaderías.
-
-            </p>
-
-
-            <p>
-
-                Nuestro objetivo es simplificar cada etapa del proceso
-                logístico mediante una operación organizada, seguimiento
-                de envíos y herramientas que permitan obtener mayor
-                visibilidad sobre cada pedido.
-
-            </p>
-
-
-            <p>
-
-                Trabajamos para ofrecer una experiencia clara, eficiente
-                y confiable, desde la recepción de la mercadería hasta
-                su entrega en destino.
-
-            </p>
-
-        </div>
-
-
-        <!-- =====================================================
-             SERVICIOS
-        ===================================================== -->
-
-        <div
-            id="servicios"
-            class="section-heading"
-        >
-
-            <span class="section-label">
-                Nuestras soluciones
-            </span>
-
-
-            <h2 class="section-title">
-                Servicios logísticos
-            </h2>
-
-
-            <p class="section-subtitle">
-                Soluciones adaptadas a las necesidades de cada operación,
-                con foco en eficiencia, trazabilidad y cumplimiento.
-            </p>
-
-        </div>
-
-
-        <div class="features-grid">
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    🚚
-                </div>
-
-
-                <h3>
-                    Distribución nacional
-                </h3>
-
-
-                <p>
-                    Coordinamos envíos y distribución de mercaderías
-                    hacia diferentes puntos del país, buscando optimizar
-                    tiempos y recorridos.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    🏭
-                </div>
-
-
-                <h3>
-                    Almacenamiento y fulfillment
-                </h3>
-
-
-                <p>
-                    Gestionamos recepción, almacenamiento, preparación
-                    y despacho de pedidos para facilitar la operación
-                    diaria de comercios y empresas.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    📍
-                </div>
-
-
-                <h3>
-                    Última milla
-                </h3>
-
-
-                <p>
-                    Facilitamos la distribución de pedidos hasta
-                    el destinatario final, especialmente para operaciones
-                    de comercio electrónico.
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =====================================================
-             BANNER CATÁLOGO
-        ===================================================== -->
-
-        <div class="store-banner">
-
-
-            <div>
-
-                <h2>
-                    Tecnología y productos para tu hogar
-                </h2>
-
-
-                <p>
-                    Conocé nuestro catálogo online y encontrá productos
-                    seleccionados de tecnología y electrodomésticos.
-                    Realizá tu pedido y coordiná la entrega de manera
-                    simple y directa.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <a
-                    href="https://logisticanova.github.io/Log-stica-NOVA/productos.html"
-                    class="store-btn"
-                    target="_blank"
-                >
-                    Explorar catálogo
-                </a>
-
-            </div>
-
-
-        </div>
-
-    </main>
-
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================= -->
-
-    <footer>
-
-        <p>
-
-            &copy; 2026
-            <strong>Logística Nova</strong>.
-            Todos los derechos reservados.
-
-            <br>
-
-            Soluciones de logística, distribución y seguimiento.
-
-            <br>
-
-            Soporte y consultas:
-            <strong>11-5501-2447</strong>
-
-        </p>
-
-    </footer>
-
-
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================= -->
-
-    <script>
-
-        /*
-        ============================================================
-        BASE LOCAL DE ENVÍOS
-        GUÍA DE ETAPAS (del 1 al 8):
-        1 = Pedido recibido
-        2 = Pago confirmado
-        3 = Pedido confirmado
-        4 = Preparación del envío
-        5 = Envío despachado
-        6 = En tránsito
-        7 = En reparto
-        8 = Entregado
-        ============================================================
-        */
-
-        const envios = {
-
-
-            "NV-7GTNQFMN": {
-
-                comprador: "Cliente General",
-
-                destino: "Dirección de destino",
-
-                provincia: "Buenos Aires",
-
-                cp: "1800",
-
-                demora: "24 a 48 hs",
-
-                envio: "$ 12.500",
-
-                total: "$ 45.000",
-
-                producto: "Producto de la orden",
-
-                etapa: 1, // <--- CAMBIÁ ESTE NÚMERO DEL 1 AL 8 PARA MANEJAR LA ETAPA MANUALMENTE
-
-                fecha: "03/09/2026 - 19:35 hs"
-
-            },
-
-            "NV-PWQAE8QV": {
-
-                comprador: "Juan Pérez",
-
-                destino: "Calletin 78, Lomas de Zamora",
-
-                provincia: "Buenos Aires",
-
-                cp: "1812",
-
-                demora: "24 a 48 hs",
-
-                envio: "$ 12.500",
-
-                total: "$ 1.603.698",
-
-                producto: "2x Smart TV TCL 55 C655 QLED 4K",
-
-                etapa: 1, // <--- CAMBIÁ ESTE NÚMERO DEL 1 AL 8 PARA MANEJAR LA ETAPA MANUALMENTE
-
-                fecha: "03/09/2026 - 10:30 hs"
-
-            }
-
-
+        <div class="cart-body" id="cartBodyContent"></div>
+    </div>
+</div>
+
+<script>
+const tarifasProvincias = {
+    "CABA": { costo: 8500, demora: "12 a 24 hs", nombre: "Capital Federal (CABA)" },
+    "Buenos Aires": { costo: 12500, demora: "24 a 48 hs", nombre: "Provincia de Buenos Aires" },
+    "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Otras Provincias / Resto del País" }
+};
+
+// Array con productos estructurados para Logística Nova
+const productos = [
+    // Celulares (1 a 15)
+    { id: 1, sku: "CEL-MOT-EDGE50", marca: "Motorola", modelo: "Edge 50", nombre: "Celular Motorola Edge 50 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Smartphone premium con pantalla OLED de 6.7 pulgadas, 12GB de RAM, 256GB de almacenamiento, conectividad 5G y cámara de 50MP.", especificaciones: { pantalla: "6.7 OLED", almacenamiento: "256GB", ram: "12GB", camara: "50MP" }, precioOferta: 549999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
+    { id: 2, sku: "CEL-SAM-S24", marca: "Samsung", modelo: "Galaxy S24", nombre: "Celular Samsung Galaxy S24 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Potencia impulsada por Inteligencia Artificial, pantalla Dynamic AMOLED 2X y procesador de alto rendimiento.", especificaciones: { pantalla: "6.2 Dynamic AMOLED", almacenamiento: "128GB", ram: "8GB", camara: "50MP" }, precioOferta: 989999, stock: true, imagenes: ["https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80"] },
+    { id: 3, sku: "CEL-XIA-NOTE13", marca: "Xiaomi", modelo: "Redmi Note 13 Pro", nombre: "Celular Xiaomi Redmi Note 13 Pro", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Cámara ultrarrápida de 200MP con estabilización óptica OIS y carga rápida de 67W.", especificaciones: { pantalla: "6.67 AMOLED", almacenamiento: "256GB", ram: "8GB", camara: "200MP" }, precioOferta: 395999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
+    { id: 4, sku: "CEL-APP-IP15", marca: "Apple", modelo: "iPhone 15", nombre: "Celular Apple iPhone 15 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Dynamic Island, cámara principal de 48MP con teleobjetivo de 2x y diseño resistente en vidrio infundido.", especificaciones: { pantalla: "6.1 Super Retina XDR", almacenamiento: "128GB", ram: "6GB", camara: "48MP" }, precioOferta: 1349999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] },
+    { id: 5, sku: "CEL-SAM-A55", marca: "Samsung", modelo: "Galaxy A55", nombre: "Celular Samsung Galaxy A55 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Diseño metálico refinado, seguridad avanzada Knox y batería duradera para todo el día.", especificaciones: { pantalla: "6.6 Super AMOLED", almacenamiento: "256GB", ram: "8GB", camara: "50MP" }, precioOferta: 519999, stock: true, imagenes: ["https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80"] },
+    { id: 6, sku: "CEL-MOT-G85", marca: "Motorola", modelo: "Moto G85", nombre: "Celular Motorola Moto G85 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla curva sin bordes pOLED de 120Hz y sonido Dolby Atmos envolvente.", especificaciones: { pantalla: "6.67 pOLED", almacenamiento: "256GB", ram: "8GB", camara: "50MP OIS" }, precioOferta: 389999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
+    { id: 7, sku: "CEL-XIA-POCOF6", marca: "Xiaomi", modelo: "Poco F6", nombre: "Celular Xiaomi Poco F6 Gaming Edition", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Rendimiento extremo con procesador Snapdragon y refrigeración líquida avanzada.", especificaciones: { pantalla: "6.67 CrystalRes", almacenamiento: "512GB", ram: "12GB", camara: "50MP" }, precioOferta: 649999, stock: true, imagenes: ["https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=600&q=80"] },
+    { id: 8, sku: "CEL-APP-IP14", marca: "Apple", modelo: "iPhone 14", nombre: "Celular Apple iPhone 14 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Detección de choques, autonomía increíble y excelente rendimiento fotográfico con poca luz.", especificaciones: { pantalla: "6.1 OLED", almacenamiento: "128GB", ram: "6GB", camara: "12MP Dual" }, precioOferta: 1120000, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] },
+    { id: 9, sku: "CEL-SAM-A35", marca: "Samsung", modelo: "Galaxy A35", nombre: "Celular Samsung Galaxy A35 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla brillante FHD+ Super AMOLED de 120Hz y resistencia al agua IP67.", especificaciones: { pantalla: "6.6 Super AMOLED", almacenamiento: "128GB", ram: "6GB", camara: "50MP" }, precioOferta: 419999, stock: true, imagenes: ["https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80"] },
+    { id: 10, sku: "CEL-MOT-G34", marca: "Motorola", modelo: "Moto G34", nombre: "Celular Motorola Moto G34 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Diseño elegante, altavoces estéreo con Dolby Atmos y conectividad veloz.", especificaciones: { pantalla: "6.5 HD+", almacenamiento: "128GB", ram: "4GB", camara: "50MP" }, precioOferta: 249999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
+    { id: 11, sku: "CEL-XIA-RED13C", marca: "Xiaomi", modelo: "Redmi 13C", nombre: "Celular Xiaomi Redmi 13C 256GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla inmersiva de 6.74 pulgadas y batería de gran capacidad para uso continuo.", especificaciones: { pantalla: "6.74 HD+", almacenamiento: "256GB", ram: "8GB", camara: "50MP" }, precioOferta: 229999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
+    { id: 12, sku: "CEL-SAM-S24ULT", marca: "Samsung", modelo: "Galaxy S24 Ultra", nombre: "Celular Samsung Galaxy S24 Ultra 512GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Cuerpo de titanio, S-Pen incorporado y sistema de cámaras profesional de 200MP.", especificaciones: { pantalla: "6.8 QHD+ AMOLED", almacenamiento: "512GB", ram: "12GB", camara: "200MP" }, precioOferta: 1589999, stock: true, imagenes: ["https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80"] },
+    { id: 13, sku: "CEL-APP-IP13", marca: "Apple", modelo: "iPhone 13", nombre: "Celular Apple iPhone 13 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Sistema de doble cámara avanzado y gran rendimiento gracias al chip A15 Bionic.", especificaciones: { pantalla: "6.1 OLED", almacenamiento: "128GB", ram: "4GB", camara: "12MP" }, precioOferta: 949999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] },
+    { id: 14, sku: "CEL-MOT-RAZR50", marca: "Motorola", modelo: "Razr 50", nombre: "Celular Motorola Razr 50 Ultra", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla externa interactiva más grande de su categoría y diseño plegable vanguardista.", especificaciones: { pantalla: "6.9 pOLED plegable", almacenamiento: "512GB", ram: "12GB", camara: "50MP" }, precioOferta: 1199999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
+    { id: 15, sku: "CEL-XIA-NOTE13P", marca: "Xiaomi", modelo: "Redmi Note 13 4G", nombre: "Celular Xiaomi Redmi Note 13 4G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla AMOLED de 120Hz y diseño ultra fino con cámara triple de 108MP.", especificaciones: { pantalla: "6.67 AMOLED", almacenamiento: "128GB", ram: "6GB", camara: "108MP" }, precioOferta: 289999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
+
+    // Gaming (16 a 30)
+    { id: 16, sku: "GAM-NOTEBOOK-ASUS", marca: "ASUS", modelo: "TUF Gaming A15", nombre: "Notebook Gamer ASUS TUF A15 Ryzen 7", categoria: "Gaming", subcategoria: "Laptops Gamer", descripcion: "Equipada con procesador AMD Ryzen 7, placa gráfica NVIDIA RTX 4060 y pantalla de 144Hz para gaming competitivo.", especificaciones: { procesador: "Ryzen 7 7435HS", grafica: "RTX 4060", ram: "16GB", almacenamiento: "512GB SSD" }, precioOferta: 1450000, stock: true, imagenes: ["https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80"] },
+    { id: 17, sku: "GAM-NOTEBOOK-LENOVO", marca: "Lenovo", modelo: "LOQ 15", nombre: "Notebook Gamer Lenovo LOQ 15", categoria: "Gaming", subcategoria: "Laptops Gamer", descripcion: "Rendimiento térmico optimizado, teclado retroiluminado y gráficos dedicados para máxima fluidez.", especificaciones: { procesador: "Intel Core i5", grafica: "RTX 3050", ram: "16GB", almacenamiento: "512GB SSD" }, precioOferta: 1199999, stock: true, imagenes: ["https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=600&q=80"] },
+    { id: 18, sku: "GAM-MONITOR-LG", marca: "LG", modelo: "UltraGear 27", nombre: "Monitor Gamer LG UltraGear 27\" IPS 180Hz", categoria: "Gaming", subcategoria: "Monitores", descripcion: "Tiempo de respuesta ultra rápido de 1ms GtG, compatible con G-Sync y FreeSync Premium.", especificaciones: { panel: "IPS 27 pulgadas", resolucion: "Full HD (1920x1080)", tasaRefresco: "180Hz", tiempoRespuesta: "1ms" }, precioOferta: 349999, stock: true, imagenes: ["https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"] },
+    { id: 19, sku: "GAM-TECLADO-RED", marca: "Redragon", modelo: "Kumara K552", nombre: "Teclado Mecánico Gamer Redragon Kumara RGB", categoria: "Gaming", subcategoria: "Periféricos", descripcion: "Diseño compacto TKL sin teclado numérico, switches mecánicos intercambiables y retroiluminación RGB.", especificaciones: { tipo: "Mecánico TKL", switches: "Red / Outemu", iluminacion: "RGB", conexion: "USB Cableado" }, precioOferta: 54999, stock: true, imagenes: ["https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"] },
+    { id: 20, sku: "GAM-MOUSE-LOGI", marca: "Logitech", modelo: "G205 Lightsync", nombre: "Mouse Gamer Logitech G203 RGB", categoria: "Gaming", subcategoria: "Periféricos", descripcion: "Sensor de grado para juegos de hasta 8000 DPI e iluminación personalizable Lightsync.", especificaciones: { sensor: "Óptico 8000 DPI", botones: "6 programables", peso: "85g", conexion: "USB" }, precioOferta: 39999, stock: true, imagenes: ["https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80"] },
+    ...Array.from({ length: 180 }, (_, index) => {
+        const id = index + 21;
+        const categorias = [
+            "Televisores / Monitores", "Aires Acondicionados", "Heladeras / Freezers", 
+            "Cocinas / Hornos", "Lavarropas / Secadoras", "Pequeños Electrodomésticos", 
+            "Aspiradoras", "Termotanques", "Informática", "Audio", "Accesorios"
+        ];
+        const cat = categorias[index % categorias.length];
+        const marcas = ["Samsung", "LG", "Philips", "Whirlpool", "Electrolux", "Sony", "Xiaomi", "Atma", "Midea", "Longvie"];
+        const marca = marcas[index % marcas.length];
+        return {
+            id: id,
+            sku: `PROD-${marca.toUpperCase().slice(0,3)}-${id}`,
+            marca: marca,
+            modelo: `Serie Pro ${id}`,
+            nombre: `${cat.slice(0, 10)} ${marca} Modelo X-${id}`,
+            categoria: cat,
+            subcategoria: "General",
+            descripcion: `Producto de alta calidad y rendimiento óptimo perteneciente a la línea ${cat} de ${marca}. Diseñado para brindar durabilidad y eficiencia en el hogar.`,
+            especificaciones: { eficiencia: "Clase A+", garantia: "12 Meses", origen: "Nacional / Importado", estado: "Nuevo" },
+            precioOferta: 120000 + (id * 15500) % 850000,
+            stock: true,
+            imagenes: ["https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80"]
         };
-
-
-        /*
-        ============================================================
-        FUNCIÓN DE BÚSQUEDA
-        ============================================================
-        */
-
-        function buscarEnvio() {
-
-
-            const input =
-                document
-                    .getElementById("trackingInput")
-                    .value
-                    .trim()
-                    .toUpperCase();
-
-
-            const resultCard =
-                document.getElementById("resultCard");
-
-
-            if (input === "") {
-
-                alert(
-                    "Por favor, ingresá un número de seguimiento válido."
-                );
-
-                resultCard.classList.remove("active");
-
-                return;
-            }
-
-
-            let envio = envios[input];
-
-            if (!envio) {
-                const localData = localStorage.getItem(input);
-                if (localData) {
-                    envio = JSON.parse(localData);
-                }
-            }
-
-
-            if (!envio) {
-
-                resultCard.classList.remove("active");
-
-                alert(
-                    "No encontramos un envío asociado al código " +
-                    input +
-                    ". Verificá que el número ingresado sea correcto."
-                );
-
-                return;
-            }
-
-
-            /*
-            --------------------------------------------
-            INFORMACIÓN GENERAL
-            --------------------------------------------
-            */
-
-            document
-                .getElementById("resultCode")
-                .innerText = input;
-
-
-            document
-                .getElementById("resultComprador")
-                .innerText = envio.comprador || "Cliente General";
-
-
-            document
-                .getElementById("resultDestino")
-                .innerText = envio.destino || "Dirección de destino";
-
-
-            document
-                .getElementById("resultProvincia")
-                .innerText = envio.provincia || "Buenos Aires";
-
-
-            document
-                .getElementById("resultCP")
-                .innerText = envio.cp || "1800";
-
-
-            document
-                .getElementById("resultDemora")
-                .innerText = envio.demora || "24 a 48 hs";
-
-
-            document
-                .getElementById("resultEnvio")
-                .innerText = envio.envio || "$ 12.500";
-
-
-            document
-                .getElementById("resultTotal")
-                .innerText = envio.total || "$ 45.000";
-
-
-            document
-                .getElementById("resultProducto")
-                .innerText = envio.producto || "Producto de la orden";
-
-
-            document
-                .getElementById("resultFecha")
-                .innerText = envio.fecha || "03/09/2026 - Actualizado";
-
-
-            /*
-            --------------------------------------------
-            ETAPAS (Conversión del sistema 1 al 8)
-            --------------------------------------------
-            */
-
-            const etapas =
-                document.querySelectorAll(
-                    ".timeline-item"
-                );
-
-
-            etapas.forEach(
-                (etapa, index) => {
-
-
-                    etapa.classList.remove(
-                        "completed",
-                        "active",
-                        "delivered"
-                    );
-
-
-                    const icono =
-                        etapa.querySelector(
-                            ".timeline-icon"
-                        );
-
-
-                    const fecha =
-                        etapa.querySelector(
-                            ".timeline-date"
-                        );
-
-
-                    const iconos = [
-                        "✓",
-                        "💳",
-                        "📋",
-                        "🏭",
-                        "📦",
-                        "🚚",
-                        "🏠",
-                        "✓"
-                    ];
-
-
-                    icono.innerText =
-                        iconos[index];
-
-
-                    fecha.innerText =
-                        "Pendiente";
-
-                }
-            );
-
-
-            // Obtenemos el número asignado (1 al 8) y lo convertimos a índice interno (0 al 7)
-            const numeroEtapa = (envio.etapa !== undefined) ? envio.etapa : 1;
-            const etapaActual = numeroEtapa - 1;
-
-
-            etapas.forEach(
-                (etapa, index) => {
-
-
-                    const fecha =
-                        etapa.querySelector(
-                            ".timeline-date"
-                        );
-
-
-                    const icono =
-                        etapa.querySelector(
-                            ".timeline-icon"
-                        );
-
-
-                    if (
-                        index <
-                        etapaActual
-                    ) {
-
-                        etapa.classList.add(
-                            "completed"
-                        );
-
-
-                        fecha.innerText =
-                            "Completado";
-
-
-                        icono.innerText =
-                            "✓";
-
-                    }
-
-
-                    else if (
-                        index ===
-                        etapaActual
-                    ) {
-
-                        etapa.classList.add(
-                            "active"
-                        );
-
-
-                        fecha.innerText =
-                            "Estado actual";
-
-                    }
-
-                }
-            );
-
-
-            /*
-            --------------------------------------------
-            ENTREGADO (Si se selecciona la etapa 8)
-            --------------------------------------------
-            */
-
-            if (
-                numeroEtapa >= 8
-            ) {
-
-
-                etapas.forEach(
-                    (etapa) => {
-
-
-                        etapa.classList.remove(
-                            "active"
-                        );
-
-
-                        etapa.classList.add(
-                            "completed"
-                        );
-
-
-                        etapa.querySelector(
-                            ".timeline-date"
-                        ).innerText =
-                            "Completado";
-
-                    }
-                );
-
-
-                etapas[7].classList.add(
-                    "delivered"
-                );
-
-
-                etapas[7]
-                    .querySelector(
-                        ".timeline-date"
-                    )
-                    .innerText =
-                    "Entregado";
-
-
-                document
-                    .getElementById(
-                        "resultStatus"
-                    )
-                    .innerText =
-                    "Entregado con éxito";
-
-
-                document
-                    .getElementById(
-                        "resultStatus"
-                    )
-                    .style.backgroundColor =
-                    "#2563eb";
-
-            }
-
-
-            else {
-
-
-                const nombreEtapa =
-                    etapas[
-                        etapaActual
-                    ]
-                        .querySelector("h4")
-                        .innerText;
-
-
-                document
-                    .getElementById(
-                        "resultStatus"
-                    )
-                    .innerText =
-                    nombreEtapa;
-
-
-                document
-                    .getElementById(
-                        "resultStatus"
-                    )
-                    .style.backgroundColor =
-                    "#10b981";
-
-            }
-
-
-            /*
-            --------------------------------------------
-            MOSTRAR RESULTADO
-            --------------------------------------------
-            */
-
-            resultCard.classList.add(
-                "active"
-            );
-
-
-            setTimeout(
-                () => {
-
-                    resultCard.scrollIntoView({
-                        behavior: "smooth",
-                        block: "nearest"
-                    });
-
-                },
-                100
-            );
-
+    })
+];
+
+let carrito = [];
+let vistaActual = 'carrito';
+let metodoPagoGlobal = 'transferencia';
+let cuotasGlobal = 1;
+let categoriaSeleccionada = 'Todas';
+let estadosCarrusel = {};
+const PRODUCTOS_POR_PAGINA = 12;
+let paginaActual = 1;
+
+function formatearMoneda(valor) {
+    return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(valor);
+}
+
+function generarCodigoSeguimiento11Digitos() {
+    let codigo = "NV-";
+    for (let i = 0; i < 7; i++) {
+        codigo += Math.floor(Math.random() * 10);
+    }
+    return codigo; // Genera formato exacto NV-XXXXXXX (11 caracteres totales)
+}
+
+function filtrarCategoria(categoria, botonElemento) {
+    categoriaSeleccionada = categoria;
+    paginaActual = 1;
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    botonElemento.classList.add('active');
+    renderizarProductos();
+}
+
+function cambiarImagen(productoId, direccion) {
+    const producto = productos.find(p => p.id === productoId);
+    if (!producto || !producto.imagenes.length) return;
+    if (!estadosCarrusel[productoId]) estadosCarrusel[productoId] = 0;
+    const total = producto.imagenes.length;
+    estadosCarrusel[productoId] = (estadosCarrusel[productoId] + direccion + total) % total;
+    actualizarCarrusel(productoId);
+}
+
+function irAImagen(productoId, indice) {
+    estadosCarrusel[productoId] = indice;
+    actualizarCarrusel(productoId);
+}
+
+function actualizarCarrusel(productoId) {
+    const indice = estadosCarrusel[productoId] || 0;
+    const slides = document.querySelectorAll(`.carousel-slide[data-producto="${productoId}"]`);
+    const dots = document.querySelectorAll(`.carousel-dot[data-producto="${productoId}"]`);
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === indice));
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === indice));
+}
+
+function alternarDescripcion(id) {
+    const texto = document.getElementById(`descripcion-${id}`);
+    const boton = document.getElementById(`verMas-${id}`);
+    if (!texto || !boton) return;
+    const expandido = texto.classList.contains('expandido');
+    if (expandido) {
+        texto.classList.remove('expandido');
+        texto.classList.add('descripcion-corta');
+        boton.innerText = 'Ver más';
+    } else {
+        texto.classList.remove('descripcion-corta');
+        texto.classList.add('expandido');
+        boton.innerText = 'Ver menos';
+    }
+}
+
+function renderizarProductos() {
+    const gridContainer = document.getElementById('gridProductos');
+    const paginacionContainer = document.getElementById('paginacion');
+    gridContainer.innerHTML = '';
+    paginacionContainer.innerHTML = '';
+
+    const productosFiltrados = categoriaSeleccionada === 'Todas'
+        ? productos
+        : productos.filter(p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase());
+
+    if (productosFiltrados.length === 0) {
+        gridContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:30px;">No hay productos disponibles en esta categoría.</div>`;
+        return;
+    }
+
+    const totalPaginas = Math.ceil(productosFiltrados.length / PRODUCTOS_POR_PAGINA);
+    if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+    if (paginaActual < 1) paginaActual = 1;
+
+    const inicio = (paginaActual - 1) * PRODUCTOS_POR_PAGINA;
+    const fin = inicio + PRODUCTOS_POR_PAGINA;
+    const productosPagina = productosFiltrados.slice(inicio, fin);
+
+    productosPagina.forEach(producto => {
+        if (estadosCarrusel[producto.id] === undefined) estadosCarrusel[producto.id] = 0;
+
+        let specsHTML = '';
+        for (const [key, value] of Object.entries(producto.especificaciones)) {
+            const etiqueta = key.replace(/([A-Z])/g, ' $1').replace(/^./, letra => letra.toUpperCase());
+            specsHTML += `<div><span class="spec-label">${etiqueta}:</span><span class="spec-value">${value}</span></div>`;
         }
 
-    </script>
+        let slidesHTML = '';
+        let dotsHTML = '';
+        const imagenes = producto.imagenes.filter(img => img && img.trim() !== '').slice(0, 3);
 
+        if (imagenes.length === 0) {
+            slidesHTML = `<div class="carousel-slide active"><div class="carousel-placeholder">${producto.marca}</div></div>`;
+        } else {
+            imagenes.forEach((imagen, index) => {
+                slidesHTML += `<div class="carousel-slide ${index === 0 ? 'active' : ''}" data-producto="${producto.id}"><img src="${imagen}" alt="${producto.nombre}" loading="lazy" onerror="this.style.display='none'"></div>`;
+                dotsHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-producto="${producto.id}" onclick="irAImagen(${producto.id}, ${index})" aria-label="Ver imagen ${index + 1}"></button>`;
+            });
+        }
+
+        const mostrarControles = imagenes.length > 1;
+        const limiteDescripcion = 100;
+        const descripcionLarga = producto.descripcion.length > limiteDescripcion;
+        const descripcionCorta = descripcionLarga ? producto.descripcion.substring(0, limiteDescripcion) + '...' : producto.descripcion;
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            ${producto.stock ? '<span class="badge-stock">✓ Stock</span>' : ''}
+            <div class="product-carousel">
+                <div class="carousel-track">${slidesHTML}</div>
+                ${mostrarControles ? `
+                    <button class="carousel-btn carousel-prev" onclick="cambiarImagen(${producto.id}, -1)">‹</button>
+                    <button class="carousel-btn carousel-next" onclick="cambiarImagen(${producto.id}, 1)">›</button>
+                    <div class="carousel-dots">${dotsHTML}</div>
+                ` : ''}
+            </div>
+            <div class="card-body">
+                <span class="card-category">${producto.marca} · ${producto.categoria}</span>
+                <h3 class="card-title">${producto.nombre}</h3>
+                <p class="card-desc">
+                    <span id="descripcion-${producto.id}" class="${descripcionLarga ? 'descripcion-texto descripcion-corta' : 'descripcion-texto'}">${descripcionLarga ? descripcionCorta : producto.descripcion}</span>
+                    ${descripcionLarga ? `<button id="verMas-${producto.id}" class="ver-mas-btn" onclick="alternarDescripcion(${producto.id})">Ver más</button>` : ''}
+                </p>
+                <div class="specs-list">${specsHTML}</div>
+                <div class="pricing">
+                    <div class="price-container">
+                        <span class="price-offer">${formatearMoneda(producto.precioOferta)}</span>
+                    </div>
+                    <div class="cuotas-badge">⚡ Abonando por transferencia 15% OFF</div>
+                    <button class="btn-add-cart" onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
+                </div>
+            </div>
+        `;
+        gridContainer.appendChild(card);
+    });
+
+    if (totalPaginas > 1) {
+        let paginacionHTML = `<div class="paginacion"><button onclick="cambiarPagina(${paginaActual - 1})" ${paginaActual === 1 ? 'disabled' : ''}>‹ Anterior</button>`;
+        for (let i = 1; i <= totalPaginas; i++) {
+            paginacionHTML += `<button class="${i === paginaActual ? 'active' : ''}" onclick="cambiarPagina(${i})">${i}</button>`;
+        }
+        paginacionHTML += `<button onclick="cambiarPagina(${paginaActual + 1})" ${paginaActual === totalPaginas ? 'disabled' : ''}>Siguiente ›</button>
+        <div class="paginacion-info">Mostrando ${inicio + 1} – ${Math.min(fin, productosFiltrados.length)} de ${productosFiltrados.length} productos</div></div>`;
+        paginacionContainer.innerHTML = paginacionHTML;
+    }
+}
+
+function cambiarPagina(nuevaPagina) {
+    const productosFiltrados = categoriaSeleccionada === 'Todas' ? productos : productos.filter(p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase());
+    const totalPaginas = Math.ceil(productosFiltrados.length / PRODUCTOS_POR_PAGINA);
+    if (nuevaPagina < 1 || nuevaPagina > totalPaginas) return;
+    paginaActual = nuevaPagina;
+    renderizarProductos();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function agregarAlCarrito(id) {
+    const producto = productos.find(p => p.id === id);
+    if (!producto) return;
+    const itemExistente = carrito.find(item => item.id === id);
+    if (itemExistente) {
+        itemExistente.cantidad++;
+    } else {
+        carrito.push({ ...producto, cantidad: 1 });
+    }
+    actualizarContadorCarrito();
+    vistaActual = 'carrito';
+    toggleCart(true);
+}
+
+function cambiarCantidad(id, cambio) {
+    const item = carrito.find(i => i.id === id);
+    if (item) {
+        item.cantidad += cambio;
+        if (item.cantidad <= 0) {
+            carrito = carrito.filter(i => i.id !== id);
+        }
+    }
+    actualizarContadorCarrito();
+    renderizarContenidoDrawer();
+}
+
+function eliminarDelCarrito(id) {
+    carrito = carrito.filter(i => i.id !== id);
+    actualizarContadorCarrito();
+    renderizarContenidoDrawer();
+}
+
+function actualizarContadorCarrito() {
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    document.getElementById('cartCount').innerText = totalItems;
+}
+
+function toggleCart(forceOpen = false) {
+    const modal = document.getElementById('cartModal');
+    if (forceOpen) {
+        modal.classList.add('active');
+    } else {
+        modal.classList.toggle('active');
+        if (!modal.classList.contains('active')) {
+            vistaActual = 'carrito';
+        }
+    }
+    renderizarContenidoDrawer();
+}
+
+function handleOutsideClick(event) {
+    if (event.target.id === 'cartModal') {
+        toggleCart();
+    }
+}
+
+function onPaymentMethodChange() {
+    const select = document.getElementById('paymentMethodSelect');
+    if (!select) return;
+    metodoPagoGlobal = select.value;
+    const cuotasContainer = document.getElementById('cuotasContainer');
+    if (cuotasContainer) {
+        if (metodoPagoGlobal === 'creditoDni') {
+            cuotasContainer.style.display = 'block';
+        } else {
+            cuotasContainer.style.display = 'none';
+            cuotasGlobal = 1;
+        }
+    }
+    renderizarContenidoDrawer();
+}
+
+function onCuotasChange() {
+    const select = document.getElementById('cuotasSelect');
+    if (select) cuotasGlobal = parseInt(select.value) || 1;
+    renderizarContenidoDrawer();
+}
+
+function calcularTotales() {
+    let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
+    let descuento = 0;
+    let recargo = 0;
+
+    if (metodoPagoGlobal === 'transferencia') {
+        descuento = subtotal * 0.15;
+    } else if (metodoPagoGlobal === 'creditoDni') {
+        if (cuotasGlobal > 3) recargo = subtotal * 0.10;
+    }
+    const total = subtotal - descuento + recargo;
+    return { subtotal, descuento, recargo, total };
+}
+
+function renderizarContenidoDrawer() {
+    const drawerTitle = document.getElementById('drawerTitle');
+    const bodyContent = document.getElementById('cartBodyContent');
+
+    if (carrito.length === 0) {
+        drawerTitle.innerText = "Tu Carrito de Compras";
+        bodyContent.innerHTML = `<div class="empty-cart">Tu carrito está vacío.</div>`;
+        vistaActual = 'carrito';
+        return;
+    }
+
+    if (vistaActual === 'carrito') {
+        drawerTitle.innerText = "Tu Carrito de Compras";
+        let htmlItems = `<div style="flex-grow:1; overflow-y:auto; max-height:42vh;">`;
+        carrito.forEach(item => {
+            htmlItems += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.nombre}</h4>
+                        <div class="cart-item-price">${formatearMoneda(item.precioOferta)} c/u</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, -1)">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                        <button class="remove-btn" onclick="eliminarDelCarrito(${item.id})">🗑️</button>
+                    </div>
+                </div>
+            `;
+        });
+        htmlItems += `</div>`;
+
+        const { subtotal, descuento, recargo, total } = calcularTotales();
+
+        htmlItems += `
+            <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:12px;">
+                <div class="payment-methods">
+                    <label for="paymentMethodSelect">Método de Pago:</label>
+                    <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
+                        <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
+                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (Hasta 6 cuotas)</option>
+                        <option value="tarjeta" ${metodoPagoGlobal === 'tarjeta' ? 'selected' : ''}>Tarjeta de Crédito / Débito</option>
+                    </select>
+                </div>
+
+                <div id="cuotasContainer" class="payment-methods" style="display:${metodoPagoGlobal === 'creditoDni' ? 'block' : 'none'};">
+                    <label for="cuotasSelect">Cantidad de Cuotas:</label>
+                    <select id="cuotasSelect" class="payment-select" onchange="onCuotasChange()">
+                        <option value="1" ${cuotasGlobal === 1 ? 'selected' : ''}>1 Pago sin interés</option>
+                        <option value="3" ${cuotasGlobal === 3 ? 'selected' : ''}>3 Cuotas sin interés</option>
+                        <option value="6" ${cuotasGlobal === 6 ? 'selected' : ''}>6 Cuotas (10% recargo)</option>
+                    </select>
+                </div>
+
+                <div class="cart-summary-line"><span>Subtotal:</span><span>${formatearMoneda(subtotal)}</span></div>
+                ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
+                ${recargo > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo Financiamiento:</span><span>+${formatearMoneda(recargo)}</span></div>` : ''}
+                
+                <div class="cart-total"><span>Total:</span><span>${formatearMoneda(total)}</span></div>
+                ${cuotasGlobal > 1 ? `<div class="installment-summary">Pagás en ${cuotasGlobal} cuotas de <strong>${formatearMoneda(total / cuotasGlobal)}</strong></div>` : ''}
+
+                <button class="checkout-btn" onclick="procederAlCheckout()">Continuar con la Orden de Compra</button>
+            </div>
+        `;
+        bodyContent.innerHTML = htmlItems;
+    } else if (vistaActual === 'checkout') {
+        drawerTitle.innerText = "Datos de Envío y Contacto";
+        bodyContent.innerHTML = `
+            <form id="orderForm" onsubmit="enviarOrdenWhatsApp(event)">
+                <div class="form-group"><label>Nombre y Apellido</label><input type="text" id="nombreCliente" required placeholder="Ej: Tatuada gonzales"></div>
+                <div class="form-group"><label>DNI / CUIL</label><input type="text" id="dniCliente" required placeholder="Ej: 34678908"></div>
+                <div class="form-group"><label>Email</label><input type="email" id="emailCliente" required placeholder="Ej: iarita@gmail.com"></div>
+                <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="telefonoCliente" required placeholder="Ej: 1125365235"></div>
+                <div class="form-group"><label>Zona de Envío / Provincia</label>
+                    <select id="provinciaCliente" class="payment-select" onchange="renderizarContenidoDrawer()">
+                        <option value="CABA">Capital Federal (CABA) - $8.500</option>
+                        <option value="Buenos Aires">Provincia de Buenos Aires - $12.500</option>
+                        <option value="Provincias" selected>Otras Provincias / Resto del País - $18.500</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Dirección de Entrega</label><input type="text" id="direccionCliente" required placeholder="Ej: Calletin 78, Lomas de Zamora"></div>
+                <div class="form-group"><label>Código Postal</label><input type="text" id="cpCliente" required placeholder="Ej: 1812"></div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
+                    <button type="submit" class="btn-submit-order">💬 Enviar Pedido x WhatsApp</button>
+                </div>
+            </form>
+        `;
+    }
+}
+
+function procederAlCheckout() {
+    if (carrito.length === 0) return;
+    vistaActual = 'checkout';
+    renderizarContenidoDrawer();
+}
+
+function volverAlCarrito() {
+    vistaActual = 'carrito';
+    renderizarContenidoDrawer();
+}
+
+function enviarOrdenWhatsApp(event) {
+    event.preventDefault();
+    const nombre = document.getElementById('nombreCliente').value;
+    const dni = document.getElementById('dniCliente').value;
+    const email = document.getElementById('emailCliente').value;
+    const telefono = document.getElementById('telefonoCliente').value;
+    const provKey = document.getElementById('provinciaCliente').value;
+    const direccion = document.getElementById('direccionCliente').value;
+    const cp = document.getElementById('cpCliente').value;
+
+    const tarifaEnvio = tarifasProvincias[provKey] || tarifasProvincias["Provincias"];
+    const { subtotal, descuento, recargo, total } = calcularTotales();
+    const costoEnvio = tarifaEnvio.costo;
+    const totalFinal = total + costoEnvio;
+    const codigoSeguimiento = generarCodigoSeguimiento11Digitos(); // 11 dígitos exactos (ej: NV-3489126)
+
+    let mensaje = `*NUEVA ORDEN DE COMPRA Y ENVÍO*\n`;
+    mensaje += `*LOGÍSTICA NOVA*\n`;
+    mensaje += `----------------------------------------\n`;
+    mensaje += `*N° de Seguimiento:* ${codigoSeguimiento}\n`;
+    mensaje += `----------------------------------------\n\n`;
+
+    mensaje += `*DATOS DEL COMPRADOR*\n`;
+    mensaje += `• Nombre: ${nombre}\n`;
+    mensaje += `• DNI/CUIL: ${dni}\n`;
+    mensaje += `• Teléfono: ${telefono}\n`;
+    mensaje += `• Email: ${email}\n`;
+    mensaje += `• Dirección: ${direccion}\n`;
+    mensaje += `• Provincia: ${provKey === 'Provincias' ? 'Buenos Aires' : provKey}\n`;
+    mensaje += `• Código Postal: ${cp}\n`;
+    mensaje += `• Zona de Envío: ${tarifaEnvio.nombre}\n`;
+    mensaje += `• Costo de envío: ${formatearMoneda(costoEnvio)}\n`;
+    mensaje += `• Demora estimada: ${tarifaEnvio.demora}\n\n`;
+
+    mensaje += `*PRODUCTOS SOLICITADOS*\n`;
+    carrito.forEach(item => {
+        mensaje += `• ${item.cantidad}x ${item.nombre} — ${formatearMoneda(item.precioOferta * item.cantidad)}\n`;
+    });
+
+    mensaje += `\n*DESGLOSE DE PAGOS Y ENVÍO*\n`;
+    mensaje += `• Subtotal: ${formatearMoneda(subtotal)}\n`;
+    mensaje += `• Envío: ${formatearMoneda(costoEnvio)}\n`;
+    if (descuento > 0) {
+        mensaje += `• Recargo/Descuento: -${formatearMoneda(descuento)}\n`;
+        mensaje += `• Método: Transferencia Bancaria (15% OFF aplicado)\n`;
+    } else if (recargo > 0) {
+        mensaje += `• Recargo/Descuento: +${formatearMoneda(recargo)}\n`;
+        mensaje += `• Método: Crédito con DNI (${cuotasGlobal} cuotas)\n`;
+    } else {
+        mensaje += `• Recargo/Descuento: $ 0\n`;
+        mensaje += `• Método: Tarjeta / Pago Estándar\n`;
+    }
+    mensaje += `• Forma de pago: Pago único por transferencia\n\n`;
+
+    mensaje += `*TOTAL A PAGAR:* ${formatearMoneda(totalFinal)}\n\n`;
+
+    mensaje += `*CÓDIGO DE SEGUIMIENTO*\n`;
+    mensaje += `${codigoSeguimiento}\n\n`;
+
+    mensaje += `Solicito confirmación del pedido y datos para el pago.`;
+
+    const numeroWhatsApp = "541155012447"; 
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarProductos();
+    actualizarContadorCarrito();
+});
+</script>
 </body>
 </html>
