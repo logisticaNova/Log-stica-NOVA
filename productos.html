@@ -1038,11 +1038,9 @@ function calcularTotales() {
         descuento = subtotal * 0.15;
         total = subtotal - descuento;
     } else if (metodoPagoGlobal === 'creditoDni') {
-        // Recargo acumulativo del 5.5% por cada pago seleccionado
         porcentajeRecargoAcumulado = 0.055 * cuotasGlobal;
         total = subtotal * (1 + porcentajeRecargoAcumulado);
     } else if (metodoPagoGlobal === 'tarjetaCredito') {
-        // Recargo acumulativo del 8% por cada pago seleccionado (o ajusta según prefieras)
         porcentajeRecargoAcumulado = 0.08 * cuotasGlobal;
         total = subtotal * (1 + porcentajeRecargoAcumulado);
     }
@@ -1105,8 +1103,8 @@ function renderizarContenidoDrawer() {
                     <label for="paymentMethodSelect">Método de Pago:</label>
                     <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
                         <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
-                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (+5.5% por pago)</option>
-                        <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito (+8% por pago)</option>
+                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (+5.5% por pago acumulativo)</option>
+                        <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito (+8% por pago acumulativo)</option>
                     </select>
                 </div>
 
@@ -1124,7 +1122,7 @@ function renderizarContenidoDrawer() {
                 
                 <div class="installment-summary">
                     Primera cuota: <strong>${formatearMoneda(valorCuota)}</strong><br>
-                    Cantidad de cuotas a abonar por mes: <strong>${cuotasGlobal} ${cuotasGlobal === 1 ? 'cuota' : 'cuotas'}</strong> de <strong>${formatearMoneda(valorCuota)}</strong> c/u<br>
+                    Cantidad de cuotas: <strong>${cuotasGlobal} ${cuotasGlobal === 1 ? 'cuota' : 'cuotas'}</strong> de <strong>${formatearMoneda(valorCuota)}</strong> c/u<br>
                     ${cuotasGlobal > 1 && metodoPagoGlobal !== 'transferencia' ? `<small style="display:block; margin-top:4px;">Incluye recargo acumulativo (${cuotasGlobal} x ${textoPorcentajeRecargo}).</small>` : ''}
                 </div>
 
@@ -1140,15 +1138,9 @@ function renderizarContenidoDrawer() {
                 <div class="form-group"><label>DNI / CUIL</label><input type="text" id="dniCliente" required placeholder="Ej: 37897087"></div>
                 <div class="form-group"><label>Email</label><input type="email" id="emailCliente" required placeholder="Ej: iarita@gmail.com"></div>
                 <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="telefonoCliente" required placeholder="Ej: 1166788997"></div>
-                <div class="form-group"><label>Zona de Envío / Provincia</label>
-                    <select id="provinciaCliente" class="payment-select">
-                        <option value="CABA">Capital Federal (CABA) - $8.500</option>
-                        <option value="Buenos Aires" selected>Provincia de Buenos Aires - $12.500</option>
-                        <option value="Provincias">Otras Provincias / Resto del País - $18.500</option>
-                    </select>
-                </div>
-                <div class="form-group"><label>Dirección de Entrega</label><input type="text" id="direccionCliente" required placeholder="Ej: Calletin 78"></div>
-                <div class="form-group"><label>Código Postal</label><input type="text" id="cpCliente" required placeholder="Ej: 1789"></div>
+                <div class="form-group"><label>Localidad / Provincia</label><input type="text" id="localidadCliente" required placeholder="Ej: Morón, Buenos Aires"></div>
+                <div class="form-group"><label>Dirección de Entrega</label><input type="text" id="direccionCliente" required placeholder="Ej: Calle 78 #456"></div>
+                <div class="form-group"><label>Código Postal</label><input type="text" id="cpCliente" required placeholder="Ej: 1708"></div>
                 
                 <div class="form-buttons">
                     <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
@@ -1176,13 +1168,12 @@ function enviarOrdenWhatsApp(event) {
     const dni = document.getElementById('dniCliente').value;
     const email = document.getElementById('emailCliente').value;
     const telefono = document.getElementById('telefonoCliente').value;
-    const provKey = document.getElementById('provinciaCliente').value;
+    const localidad = document.getElementById('localidadCliente').value;
     const direccion = document.getElementById('direccionCliente').value;
     const cp = document.getElementById('cpCliente').value;
 
-    const tarifaEnvio = tarifasProvincias[provKey] || tarifasProvincias["Provincias"];
+    const costoEnvio = 12500; // Costo base estándar aplicado
     const { subtotal, descuento, recargo, total, valorCuota } = calcularTotales();
-    const costoEnvio = tarifaEnvio.costo;
     const totalFinal = total + costoEnvio;
     const codigoSeguimiento = generarCodigoSeguimiento11Digitos();
 
@@ -1196,12 +1187,10 @@ function enviarOrdenWhatsApp(event) {
     mensaje += `• DNI/CUIL: ${dni}\n`;
     mensaje += `• Teléfono: ${telefono}\n`;
     mensaje += `• Email: ${email}\n`;
+    mensaje += `• Localidad / Provincia: ${localidad}\n`;
     mensaje += `• Dirección: ${direccion}\n`;
-    mensaje += `• Provincia: ${provKey}\n`;
     mensaje += `• Código Postal: ${cp}\n`;
-    mensaje += `• Zona de Envío: ${tarifaEnvio.nombre}\n`;
-    mensaje += `• Costo de envío: ${formatearMoneda(costoEnvio)}\n`;
-    mensaje += `• Demora estimada: ${tarifaEnvio.demora}\n\n`;
+    mensaje += `• Costo de envío estimado: ${formatearMoneda(costoEnvio)}\n\n`;
 
     mensaje += `*PRODUCTOS SOLICITADOS*\n`;
     carrito.forEach(item => {
@@ -1216,8 +1205,11 @@ function enviarOrdenWhatsApp(event) {
     mensaje += `• Forma de pago: ${cuotasGlobal} ${cuotasGlobal === 1 ? 'Pago único' : 'cuotas de ' + formatearMoneda(valorCuota) + ' c/u'}\n\n`;
 
     mensaje += `*TOTAL A PAGAR: ${formatearMoneda(totalFinal)}*\n`;
-    mensaje += `• Primera cuota: ${formatearMoneda(valorCuota)}\n`;
-    mensaje += `• Cuotas a abonar por mes: ${cuotasGlobal} ${cuotasGlobal === 1 ? 'cuota' : 'cuotas'} de ${formatearMoneda(valorCuota)}\n\n`;
+    mensaje += `• Primera cuota / Monto a abonar ahora: ${formatearMoneda(valorCuota)}\n`;
+    mensaje += `• Cuotas restantes: ${cuotasGlobal > 1 ? (cuotasGlobal - 1) + ' cuotas de ' + formatearMoneda(valorCuota) : 'Ninguna (Pago único)'}\n\n`;
+
+    mensaje += `*SOLICITUD DE CONFIRMACIÓN*\n`;
+    mensaje += `Hola, por favor envíenme los *datos bancarios (CBU/Alias)* para realizar el pago de la primera cuota y confirmar este pedido.\n\n`;
 
     mensaje += `*CÓDIGO DE SEGUIMIENTO*\n`;
     mensaje += `${codigoSeguimiento}`;
