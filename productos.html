@@ -1018,7 +1018,7 @@ function onPaymentMethodChange() {
     const select = document.getElementById('paymentMethodSelect');
     if (!select) return;
     metodoPagoGlobal = select.value;
-    cuotasGlobal = 1; // Resetear cuotas al cambiar método
+    cuotasGlobal = 1; 
     renderizarContenidoDrawer();
 }
 
@@ -1031,20 +1031,27 @@ function onCuotasChange() {
 function calcularTotales() {
     let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
     let descuento = 0;
-    let recargoTotal = 0;
+    let total = subtotal;
+    let porcentajeRecargoAcumulado = 0;
 
     if (metodoPagoGlobal === 'transferencia') {
         descuento = subtotal * 0.15;
+        total = subtotal - descuento;
     } else if (metodoPagoGlobal === 'creditoDni') {
-        recargoTotal = subtotal * 0.055; // +5.5% de recargo total
+        // Recargo acumulativo del 5.5% por cada pago seleccionado
+        porcentajeRecargoAcumulado = 0.055 * cuotasGlobal;
+        total = subtotal * (1 + porcentajeRecargoAcumulado);
     } else if (metodoPagoGlobal === 'tarjetaCredito') {
-        recargoTotal = subtotal * 0.08; // +8% de recargo total
+        // Recargo acumulativo del 8% por cada pago seleccionado (o ajusta según prefieras)
+        porcentajeRecargoAcumulado = 0.08 * cuotasGlobal;
+        total = subtotal * (1 + porcentajeRecargoAcumulado);
     }
     
-    const total = subtotal - descuento + recargoTotal;
+    const recargoTotal = total - subtotal;
     const valorCuota = total / cuotasGlobal;
     const recargoPorCuota = recargoTotal / cuotasGlobal;
-    return { subtotal, descuento, recargo: recargoTotal, total, valorCuota, recargoPorCuota };
+    
+    return { subtotal, descuento, recargo: recargoTotal, total, valorCuota, recargoPorCuota, porcentajeRecargoAcumulado };
 }
 
 function renderizarContenidoDrawer() {
@@ -1079,9 +1086,8 @@ function renderizarContenidoDrawer() {
         });
         htmlItems += `</div>`;
 
-        const { subtotal, descuento, recargo, total, valorCuota, recargoPorCuota } = calcularTotales();
+        const { subtotal, descuento, total, valorCuota } = calcularTotales();
 
-        // Generar opciones de cuotas dinámicas según método de pago
         let maxCuotas = 1;
         if (metodoPagoGlobal === 'creditoDni') maxCuotas = 6;
         if (metodoPagoGlobal === 'tarjetaCredito') maxCuotas = 12;
@@ -1090,6 +1096,8 @@ function renderizarContenidoDrawer() {
         for (let i = 1; i <= maxCuotas; i++) {
             opcionesCuotasHTML += `<option value="${i}" ${cuotasGlobal === i ? 'selected' : ''}>${i} ${i === 1 ? 'Pago' : 'Pagos'}</option>`;
         }
+
+        let textoPorcentajeRecargo = metodoPagoGlobal === 'creditoDni' ? '+5.5% por pago' : (metodoPagoGlobal === 'tarjetaCredito' ? '+8% por pago' : '');
 
         htmlItems += `
             <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:12px;">
@@ -1117,7 +1125,7 @@ function renderizarContenidoDrawer() {
                 <div class="installment-summary">
                     Primera cuota: <strong>${formatearMoneda(valorCuota)}</strong><br>
                     Cantidad de cuotas a abonar por mes: <strong>${cuotasGlobal} ${cuotasGlobal === 1 ? 'cuota' : 'cuotas'}</strong> de <strong>${formatearMoneda(valorCuota)}</strong> c/u<br>
-                    ${recargo > 0 ? `<small style="display:block; margin-top:4px;">Incluye recargo de ${formatearMoneda(recargoPorCuota)} por cada pago.</small>` : ''}
+                    ${cuotasGlobal > 1 && metodoPagoGlobal !== 'transferencia' ? `<small style="display:block; margin-top:4px;">Incluye recargo acumulativo (${cuotasGlobal} x ${textoPorcentajeRecargo}).</small>` : ''}
                 </div>
 
                 <button class="checkout-btn" onclick="procederAlCheckout()">Continuar con la Orden de Compra</button>
@@ -1179,8 +1187,8 @@ function enviarOrdenWhatsApp(event) {
     const codigoSeguimiento = generarCodigoSeguimiento11Digitos();
 
     let nombreMetodo = "Transferencia Bancaria";
-    if (metodoPagoGlobal === 'creditoDni') nombreMetodo = "Crédito con DNI (+5.5% por pago)";
-    if (metodoPagoGlobal === 'tarjetaCredito') nombreMetodo = "Tarjeta de Crédito (+8% por pago)";
+    if (metodoPagoGlobal === 'creditoDni') nombreMetodo = `Crédito con DNI (${cuotasGlobal} x +5.5% acumulado)`;
+    if (metodoPagoGlobal === 'tarjetaCredito') nombreMetodo = `Tarjeta de Crédito (${cuotasGlobal} x +8% acumulado)`;
 
     let mensaje = `*N° de Seguimiento: ${codigoSeguimiento}*\n\n`;
     mensaje += `*DATOS DEL COMPRADOR*\n`;
