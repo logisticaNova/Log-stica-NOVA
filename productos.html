@@ -243,7 +243,7 @@ header p {
 }
 
 /* =========================================
-   NUEVO SISTEMA DE GALERÍA DE 3 A 5 IMÁGENES
+   SISTEMA DE GALERÍA DE IMÁGENES
    ========================================= */
 .product-gallery-container {
     padding: 14px;
@@ -299,7 +299,6 @@ header p {
     border-color: var(--primary-color);
     transform: scale(1.05);
 }
-
 /* ========================================= */
 
 .card-body {
@@ -765,7 +764,6 @@ const tarifasProvincias = {
     "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Provincias" }
 };
 
-// EJEMPLO DE PRODUCTOS CONFIGURADOS CON 4 IMÁGENES CADA UNO (De 3 a 5 requerido)
 const productos = [
     { 
         id: 1, sku: "CEL-MOT-EDGE50", marca: "Motorola", modelo: "Edge 50", nombre: "Celular Motorola Edge 50 5G", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Smartphone premium con pantalla OLED de 6.7 pulgadas, 12GB de RAM, 256GB de almacenamiento, conectividad 5G y cámara de 50MP.", especificaciones: { pantalla: "6.7 OLED", almacenamiento: "256GB", ram: "12GB", camara: "50MP" }, precioOferta: 549999, stock: true, 
@@ -832,14 +830,12 @@ function filtrarCategoria(categoria, botonElemento) {
     renderizarProductos();
 }
 
-// Función que cambia la imagen principal al hacer clic en las miniaturas
 function cambiarImagenMiniatura(productoId, srcImagen, elementoThumbnail) {
     const imagenPrincipal = document.getElementById(`mainImage-${productoId}`);
     if (imagenPrincipal) {
         imagenPrincipal.src = srcImagen;
     }
     
-    // Cambiar la clase activa en las miniaturas de este producto específico
     const contenedorMiniaturas = elementoThumbnail.parentElement;
     contenedorMiniaturas.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
     elementoThumbnail.classList.add('active');
@@ -891,7 +887,6 @@ function renderizarProductos() {
             specsHTML += `<div><span class="spec-label">${etiqueta}:</span><span class="spec-value">${value}</span></div>`;
         }
 
-        // Tomar de 3 a 5 imágenes del arreglo del producto
         const imagenes = producto.imagenes.filter(img => img && img.trim() !== '').slice(0, 5);
         const imagenPrincipalInicial = imagenes.length > 0 ? imagenes[0] : '';
 
@@ -909,7 +904,6 @@ function renderizarProductos() {
         card.innerHTML = `
             ${producto.stock ? '<span class="badge-stock">✓ Stock</span>' : ''}
             
-            <!-- GALERÍA DE IMÁGENES (Principal + Miniaturas de 3 a 5) -->
             <div class="product-gallery-container">
                 <div class="main-image-container">
                     <img id="mainImage-${producto.id}" src="${imagenPrincipalInicial}" alt="${producto.nombre}" loading="lazy" onerror="this.style.display='none'">
