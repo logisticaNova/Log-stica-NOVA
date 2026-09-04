@@ -800,9 +800,9 @@ header p {
 
 <script>
 const tarifasProvincias = {
-    "CABA": { costo: 8500, demora: "12 a 24 hs", nombre: "Capital Federal (CABA)" },
-    "Buenos Aires": { costo: 12500, demora: "24 a 48 hs", nombre: "Provincia de Buenos Aires" },
-    "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Otras Provincias / Resto del País" }
+    "CABA": { costo: 8500, demora: "12 a 24 hs", nombre: "CABA" },
+    "Buenos Aires": { costo: 12500, demora: "24 a 48 hs", nombre: "Buenos Aires" },
+    "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Provincias" }
 };
 
 const productos = [
@@ -817,6 +817,7 @@ let vistaActual = 'carrito';
 let metodoPagoGlobal = 'transferencia';
 let cuotasGlobal = 1;
 let categoriaSeleccionada = 'Todas';
+let localidadSeleccionadaGlobal = 'CABA';
 let estadosCarrusel = {};
 const PRODUCTOS_POR_PAGINA = 12;
 let paginaActual = 1;
@@ -1028,6 +1029,14 @@ function onCuotasChange() {
     renderizarContenidoDrawer();
 }
 
+function onLocalidadChange() {
+    const select = document.getElementById('localidadSelect');
+    if (select) {
+        localidadSeleccionadaGlobal = select.value;
+        renderizarContenidoDrawer();
+    }
+}
+
 function calcularTotales() {
     let subtotal = carrito.reduce((sum, item) => sum + (item.precioOferta * item.cantidad), 0);
     let descuento = 0;
@@ -1047,9 +1056,9 @@ function calcularTotales() {
     
     const recargoTotal = total - subtotal;
     const valorCuota = total / cuotasGlobal;
-    const recargoPorCuota = recargoTotal / cuotasGlobal;
+    const costoEnvio = tarifasProvincias[localidadSeleccionadaGlobal] ? tarifasProvincias[localidadSeleccionadaGlobal].costo : 8500;
     
-    return { subtotal, descuento, recargo: recargoTotal, total, valorCuota, recargoPorCuota, porcentajeRecargoAcumulado };
+    return { subtotal, descuento, recargo: recargoTotal, total, valorCuota, costoEnvio };
 }
 
 function renderizarContenidoDrawer() {
@@ -1065,7 +1074,7 @@ function renderizarContenidoDrawer() {
 
     if (vistaActual === 'carrito') {
         drawerTitle.innerText = "Tu Carrito de Compras";
-        let htmlItems = `<div style="flex-grow:1; overflow-y:auto; max-height:38vh;">`;
+        let htmlItems = `<div style="flex-grow:1; overflow-y:auto; max-height:35vh;">`;
         carrito.forEach(item => {
             htmlItems += `
                 <div class="cart-item">
@@ -1084,7 +1093,8 @@ function renderizarContenidoDrawer() {
         });
         htmlItems += `</div>`;
 
-        const { subtotal, descuento, total, valorCuota } = calcularTotales();
+        const { subtotal, descuento, total, valorCuota, costoEnvio } = calcularTotales();
+        const infoEnvioActual = tarifasProvincias[localidadSeleccionadaGlobal];
 
         let maxCuotas = 1;
         if (metodoPagoGlobal === 'creditoDni') maxCuotas = 6;
@@ -1095,35 +1105,42 @@ function renderizarContenidoDrawer() {
             opcionesCuotasHTML += `<option value="${i}" ${cuotasGlobal === i ? 'selected' : ''}>${i} ${i === 1 ? 'Pago' : 'Pagos'}</option>`;
         }
 
-        let textoPorcentajeRecargo = metodoPagoGlobal === 'creditoDni' ? '+5.5% por pago' : (metodoPagoGlobal === 'tarjetaCredito' ? '+8% por pago' : '');
-
         htmlItems += `
             <div style="margin-top:10px; border-top:1px solid var(--border-color); padding-top:12px;">
                 <div class="payment-methods">
-                    <label for="paymentMethodSelect">Método de Pago:</label>
-                    <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
-                        <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
-                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (+5.5% por pago acumulativo)</option>
-                        <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito (+8% por pago acumulativo)</option>
+                    <label for="localidadSelect">Localidad / Provincia de Destino:</label>
+                    <select id="localidadSelect" class="payment-select" onchange="onLocalidadChange()">
+                        <option value="CABA" ${localidadSeleccionadaGlobal === 'CABA' ? 'selected' : ''}>CABA — ${formatearMoneda(8500)} (Demora: 12 a 24 hs)</option>
+                        <option value="Buenos Aires" ${localidadSeleccionadaGlobal === 'Buenos Aires' ? 'selected' : ''}>Buenos Aires — ${formatearMoneda(12500)} (Demora: 24 a 48 hs)</option>
+                        <option value="Provincias" ${localidadSeleccionadaGlobal === 'Provincias' ? 'selected' : ''}>Provincias — ${formatearMoneda(18500)} (Demora: 3 a 6 días hábiles)</option>
                     </select>
                 </div>
 
                 <div class="payment-methods">
-                    <label for="cuotasSelect">Cantidad de Pagos / Cuotas (hasta ${maxCuotas}):</label>
+                    <label for="paymentMethodSelect">Método de Pago:</label>
+                    <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
+                        <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
+                        <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Crédito con DNI (+5.5% por pago)</option>
+                        <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito (+8% por pago)</option>
+                    </select>
+                </div>
+
+                <div class="payment-methods">
+                    <label for="cuotasSelect">Cantidad de Pagos / Cuotas:</label>
                     <select id="cuotasSelect" class="payment-select" onchange="onCuotasChange()">
                         ${opcionesCuotasHTML}
                     </select>
                 </div>
 
-                <div class="cart-summary-line"><span>Subtotal:</span><span>${formatearMoneda(subtotal)}</span></div>
+                <div class="cart-summary-line"><span>Subtotal productos:</span><span>${formatearMoneda(subtotal)}</span></div>
                 ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
+                <div class="cart-summary-line"><span>Envío (${infoEnvioActual.nombre} - ${infoEnvioActual.demora}):</span><span>${formatearMoneda(costoEnvio)}</span></div>
                 
-                <div class="cart-total"><span>Total a Pagar:</span><span>${formatearMoneda(total)}</span></div>
+                <div class="cart-total"><span>Total a Pagar:</span><span>${formatearMoneda(total + costoEnvio)}</span></div>
                 
                 <div class="installment-summary">
-                    Primera cuota: <strong>${formatearMoneda(valorCuota)}</strong><br>
-                    Cantidad de cuotas: <strong>${cuotasGlobal} ${cuotasGlobal === 1 ? 'cuota' : 'cuotas'}</strong> de <strong>${formatearMoneda(valorCuota)}</strong> c/u<br>
-                    ${cuotasGlobal > 1 && metodoPagoGlobal !== 'transferencia' ? `<small style="display:block; margin-top:4px;">Incluye recargo acumulativo (${cuotasGlobal} x ${textoPorcentajeRecargo}).</small>` : ''}
+                    Primera cuota productos: <strong>${formatearMoneda(valorCuota)}</strong><br>
+                    Demora estimada de entrega: <strong>${infoEnvioActual.demora}</strong>
                 </div>
 
                 <button class="checkout-btn" onclick="procederAlCheckout()">Continuar con la Orden de Compra</button>
@@ -1136,11 +1153,11 @@ function renderizarContenidoDrawer() {
             <form id="orderForm" onsubmit="enviarOrdenWhatsApp(event)">
                 <div class="form-group"><label>Nombre y Apellido</label><input type="text" id="nombreCliente" required placeholder="Ej: Juan Pérez"></div>
                 <div class="form-group"><label>DNI / CUIL</label><input type="text" id="dniCliente" required placeholder="Ej: 37897087"></div>
-                <div class="form-group"><label>Email</label><input type="email" id="emailCliente" required placeholder="Ej: iarita@gmail.com"></div>
+                <div class="form-group"><label>Email</label><input type="email" id="emailCliente" required placeholder="Ej: juan@gmail.com"></div>
                 <div class="form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="telefonoCliente" required placeholder="Ej: 1166788997"></div>
-                <div class="form-group"><label>Localidad / Provincia</label><input type="text" id="localidadCliente" required placeholder="Ej: Morón, Buenos Aires"></div>
-                <div class="form-group"><label>Dirección de Entrega</label><input type="text" id="direccionCliente" required placeholder="Ej: Calle 78 #456"></div>
-                <div class="form-group"><label>Código Postal</label><input type="text" id="cpCliente" required placeholder="Ej: 1708"></div>
+                <div class="form-group"><label>Dirección de Calle y Número</label><input type="text" id="direccionCliente" required placeholder="Ej: Av. Corrientes 1234"></div>
+                <div class="form-group"><label>Piso / Departamento (Opcional)</label><input type="text" id="pisoCliente" placeholder="Ej: 4 B"></div>
+                <div class="form-group"><label>Código Postal</label><input type="text" id="cpCliente" required placeholder="Ej: 1043"></div>
                 
                 <div class="form-buttons">
                     <button type="button" class="btn-back" onclick="volverAlCarrito()">Volver</button>
@@ -1168,11 +1185,13 @@ function enviarOrdenWhatsApp(event) {
     const dni = document.getElementById('dniCliente').value;
     const email = document.getElementById('emailCliente').value;
     const telefono = document.getElementById('telefonoCliente').value;
-    const localidad = document.getElementById('localidadCliente').value;
     const direccion = document.getElementById('direccionCliente').value;
+    const piso = document.getElementById('pisoCliente').value;
     const cp = document.getElementById('cpCliente').value;
 
-    const costoEnvio = 12500; // Costo base estándar aplicado
+    const infoEnvio = tarifasProvincias[localidadSeleccionadaGlobal];
+    const costoEnvio = infoEnvio.costo;
+    const demoraEnvio = infoEnvio.demora;
     const { subtotal, descuento, recargo, total, valorCuota } = calcularTotales();
     const totalFinal = total + costoEnvio;
     const codigoSeguimiento = generarCodigoSeguimiento11Digitos();
@@ -1187,10 +1206,10 @@ function enviarOrdenWhatsApp(event) {
     mensaje += `• DNI/CUIL: ${dni}\n`;
     mensaje += `• Teléfono: ${telefono}\n`;
     mensaje += `• Email: ${email}\n`;
-    mensaje += `• Localidad / Provincia: ${localidad}\n`;
-    mensaje += `• Dirección: ${direccion}\n`;
+    mensaje += `• Destino: ${infoEnvio.nombre}\n`;
+    mensaje += `• Dirección: ${direccion} ${piso ? '(' + piso + ')' : ''}\n`;
     mensaje += `• Código Postal: ${cp}\n`;
-    mensaje += `• Costo de envío estimado: ${formatearMoneda(costoEnvio)}\n\n`;
+    mensaje += `• Demora estimada de entrega: *${demoraEnvio}*\n\n`;
 
     mensaje += `*PRODUCTOS SOLICITADOS*\n`;
     carrito.forEach(item => {
@@ -1199,13 +1218,13 @@ function enviarOrdenWhatsApp(event) {
 
     mensaje += `\n*DESGLOSE DE PAGOS Y ENVÍO*\n`;
     mensaje += `• Subtotal: ${formatearMoneda(subtotal)}\n`;
-    mensaje += `• Envío: ${formatearMoneda(costoEnvio)}\n`;
+    mensaje += `• Envío (${infoEnvio.nombre}): ${formatearMoneda(costoEnvio)}\n`;
     mensaje += `• Recargo/Descuento: ${descuento > 0 ? '-' + formatearMoneda(descuento) : (recargo > 0 ? '+' + formatearMoneda(recargo) : '$ 0')}\n`;
     mensaje += `• Método: ${nombreMetodo}\n`;
     mensaje += `• Forma de pago: ${cuotasGlobal} ${cuotasGlobal === 1 ? 'Pago único' : 'cuotas de ' + formatearMoneda(valorCuota) + ' c/u'}\n\n`;
 
-    mensaje += `*TOTAL A PAGAR: ${formatearMoneda(totalFinal)}*\n`;
-    mensaje += `• Primera cuota / Monto a abonar ahora: ${formatearMoneda(valorCuota)}\n`;
+    mensaje += `*TOTAL A PAGAR (Con envío): ${formatearMoneda(totalFinal)}*\n`;
+    mensaje += `• Primera cuota / Monto a abonar ahora: *${formatearMoneda(valorCuota)}*\n`;
     mensaje += `• Cuotas restantes: ${cuotasGlobal > 1 ? (cuotasGlobal - 1) + ' cuotas de ' + formatearMoneda(valorCuota) : 'Ninguna (Pago único)'}\n\n`;
 
     mensaje += `*SOLICITUD DE CONFIRMACIÓN*\n`;
