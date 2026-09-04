@@ -1557,7 +1557,7 @@ function enviarOrdenWhatsApp(event) {
     mensaje += `💰 *TOTAL FINAL:* ${formatearMoneda(total)}\n\n`;
     mensaje += `📝 *Observaciones:* ${obs}`;
 
-    const numeroWhatsAppDestino = "5491100000000"; // Reemplazá con tu número
+    const numeroWhatsAppDestino = "5491155012447"; // Reemplazá con tu número
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsAppDestino}&text=${encodeURIComponent(mensaje)}`;
 
     window.open(urlWhatsApp, '_blank');
