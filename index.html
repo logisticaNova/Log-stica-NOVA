@@ -115,9 +115,16 @@
 
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 10px;
 
             white-space: nowrap;
+        }
+
+        /* Estilo para el nuevo logo en la barra de navegación */
+        .navbar-logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
         }
 
 
@@ -1262,7 +1269,9 @@
     <nav class="navbar">
 
         <div class="navbar-brand">
-            📦 Nova Envíos & Créditos
+            <!-- LOGO NUEVO INTEGRADO -->
+            <img src="1000381149.jpg" alt="Logo Nova Envíos" class="navbar-logo-img">
+            Nova Envíos & Créditos
         </div>
 
 
@@ -1280,7 +1289,7 @@
                 Servicios
             </a>
 
-            <!-- MIS ÓRDENES (Nuevo enlace añadido) -->
+            <!-- MIS ÓRDENES -->
             <a href="#seguimiento" style="color: var(--accent-dark); font-weight: 800;">
                 Mis Órdenes
             </a>
