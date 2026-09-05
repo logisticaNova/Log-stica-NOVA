@@ -11,8 +11,9 @@
         content="Nova Envíos & Créditos ofrece soluciones de transporte y seguimiento de envíos realizados por cuenta propia."
     >
 
+    <!-- FUENTES: Inter para textos y Outfit para títulos llamativos -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap"
         rel="stylesheet"
     >
 
@@ -72,6 +73,11 @@
             overflow-x: hidden;
         }
 
+        /* APLICACIÓN DE LA NUEVA FUENTE A TODOS LOS TÍTULOS */
+        h1, h2, h3, .section-title, .hero-section h1, .store-banner h2, .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+        }
+
 
         /* =========================================================
            NAVBAR
@@ -100,8 +106,9 @@
 
 
         .navbar-brand {
-            font-size: 1.15rem;
-            font-weight: 800;
+            font-size: 1.25rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
 
             color: var(--primary-color);
 
@@ -215,31 +222,35 @@
 
             border: 1px solid rgba(255,255,255,0.18);
 
-            padding: 7px 13px;
+            padding: 7px 14px;
 
             border-radius: 50px;
 
-            font-size: 0.78rem;
+            font-size: 0.8rem;
 
-            font-weight: 600;
+            font-weight: 700;
 
             margin-bottom: 18px;
 
-            letter-spacing: 0.2px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
 
 
         .hero-section h1 {
 
-            font-size: 2.25rem;
+            font-size: 2.75rem;
 
             margin-bottom: 15px;
 
-            font-weight: 800;
+            font-weight: 900;
 
-            line-height: 1.15;
+            line-height: 1.1;
 
-            letter-spacing: -0.8px;
+            letter-spacing: -1px;
+            
+            /* Efecto brillante en el título principal */
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
 
@@ -249,11 +260,11 @@
 
             margin: 0 auto 28px;
 
-            font-size: 1rem;
+            font-size: 1.05rem;
 
             line-height: 1.7;
 
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.92);
         }
 
 
@@ -344,7 +355,8 @@
 
             width: 100%;
 
-            font-family: inherit;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.5px;
 
             transition: var(--transition);
         }
@@ -419,7 +431,7 @@
 
 
         .result-header h3 {
-            font-weight: 600;
+            font-weight: 700;
         }
 
 
@@ -433,11 +445,12 @@
 
             border-radius: 50px;
 
-            font-size: 0.76rem;
+            font-size: 0.78rem;
 
-            font-weight: 700;
+            font-weight: 800;
 
-            letter-spacing: 0.1px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
 
 
@@ -497,21 +510,22 @@
 
         .product-box h4 {
 
-            font-size: 0.76rem;
+            font-size: 0.78rem;
 
             margin-bottom: 8px;
 
             color: var(--text-muted);
 
-            letter-spacing: 0.4px;
+            letter-spacing: 0.6px;
+            font-weight: 700;
         }
 
 
         .product-name {
 
-            font-size: 0.95rem;
+            font-size: 0.98rem;
 
-            font-weight: 650;
+            font-weight: 700;
 
             color: var(--text-main);
         }
@@ -523,11 +537,12 @@
 
         .timeline-title {
 
-            font-size: 1.08rem;
+            font-size: 1.15rem;
 
             margin-bottom: 21px;
 
-            font-weight: 700;
+            font-weight: 800;
+            color: var(--text-main);
         }
 
 
@@ -671,13 +686,13 @@
 
         .timeline-content h4 {
 
-            font-size: 0.92rem;
+            font-size: 0.95rem;
 
             margin-bottom: 4px;
 
             color: var(--text-main);
 
-            font-weight: 700;
+            font-weight: 800;
         }
 
 
@@ -695,11 +710,11 @@
 
         .timeline-date {
 
-            font-size: 0.73rem;
+            font-size: 0.75rem;
 
             color: var(--text-muted);
 
-            font-weight: 650;
+            font-weight: 700;
         }
 
 
@@ -724,9 +739,9 @@
 
         .section-heading {
 
-            max-width: 700px;
+            max-width: 750px;
 
-            margin: 0 auto 35px;
+            margin: 0 auto 40px;
 
             text-align: center;
         }
@@ -740,19 +755,19 @@
 
             background: var(--primary-soft);
 
-            padding: 5px 11px;
+            padding: 6px 14px;
 
             border-radius: 50px;
 
-            font-size: 0.73rem;
+            font-size: 0.78rem;
 
-            font-weight: 700;
+            font-weight: 800;
 
-            margin-bottom: 10px;
+            margin-bottom: 12px;
 
             text-transform: uppercase;
 
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
 
@@ -760,17 +775,20 @@
 
             text-align: center;
 
-            font-size: 1.75rem;
+            font-size: 2.2rem;
 
-            margin-bottom: 10px;
+            margin-bottom: 14px;
 
-            color: var(--text-main);
+            /* Títulos llamativos con degradado elegante */
+            background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
 
-            line-height: 1.25;
+            line-height: 1.2;
 
-            font-weight: 800;
+            font-weight: 900;
 
-            letter-spacing: -0.4px;
+            letter-spacing: -0.5px;
         }
 
 
@@ -778,13 +796,15 @@
 
             text-align: center;
 
-            color: var(--text-muted);
+            color: var(--text-secondary);
 
-            margin-bottom: 30px;
+            margin: 0 auto;
 
-            font-size: 0.93rem;
+            font-size: 1.05rem;
 
             line-height: 1.7;
+
+            max-width: 680px;
         }
 
 
@@ -796,7 +816,7 @@
 
             background: white;
 
-            padding: 30px;
+            padding: 35px;
 
             border-radius: var(--radius);
 
@@ -822,7 +842,7 @@
 
             top: 0;
 
-            width: 4px;
+            width: 5px;
 
             height: 100%;
 
@@ -837,13 +857,13 @@
 
         .about-card p {
 
-            font-size: 0.94rem;
+            font-size: 1rem;
 
             color: var(--text-secondary);
 
-            line-height: 1.75;
+            line-height: 1.8;
 
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
 
@@ -854,6 +874,7 @@
 
         .about-card strong {
             color: var(--text-main);
+            font-weight: 700;
         }
 
 
@@ -867,7 +888,7 @@
 
             grid-template-columns: 1fr;
 
-            gap: 20px;
+            gap: 22px;
         }
 
 
@@ -875,7 +896,7 @@
 
             background: white;
 
-            padding: 27px 23px;
+            padding: 30px 25px;
 
             border-radius: var(--radius);
 
@@ -913,7 +934,7 @@
 
         .feature-card:hover {
 
-            transform: translateY(-4px);
+            transform: translateY(-5px);
 
             box-shadow: var(--shadow-md);
         }
@@ -926,9 +947,9 @@
 
         .feature-icon {
 
-            width: 50px;
+            width: 55px;
 
-            height: 50px;
+            height: 55px;
 
             display: flex;
 
@@ -938,31 +959,32 @@
 
             background: var(--primary-soft);
 
-            border-radius: 12px;
+            border-radius: 14px;
 
             font-size: 1.65rem;
 
-            margin-bottom: 17px;
+            margin-bottom: 20px;
         }
 
 
         .feature-card h3 {
 
-            font-size: 1.08rem;
+            font-size: 1.2rem;
 
-            margin-bottom: 8px;
+            margin-bottom: 10px;
 
             color: var(--text-main);
 
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -0.3px;
         }
 
 
         .feature-card p {
 
-            color: var(--text-muted);
+            color: var(--text-secondary);
 
-            font-size: 0.87rem;
+            font-size: 0.92rem;
 
             line-height: 1.7;
         }
@@ -978,7 +1000,7 @@
 
                 radial-gradient(
                     circle at 85% 20%,
-                    rgba(255,255,255,0.13),
+                    rgba(255,255,255,0.15),
                     transparent 25%
                 ),
 
@@ -992,9 +1014,9 @@
 
             border-radius: var(--radius);
 
-            padding: 32px 23px;
+            padding: 38px 28px;
 
-            margin-top: 55px;
+            margin-top: 60px;
 
             display: flex;
 
@@ -1007,29 +1029,30 @@
             gap: 22px;
 
             box-shadow:
-                0 12px 30px rgba(249, 115, 22, 0.18);
+                0 12px 35px rgba(249, 115, 22, 0.22);
         }
 
 
         .store-banner h2 {
 
-            font-size: 1.4rem;
+            font-size: 1.8rem;
 
-            margin-bottom: 9px;
+            margin-bottom: 10px;
 
-            line-height: 1.3;
+            line-height: 1.25;
 
-            font-weight: 800;
+            font-weight: 900;
+            letter-spacing: -0.5px;
         }
 
 
         .store-banner p {
 
-            font-size: 0.9rem;
+            font-size: 0.98rem;
 
-            opacity: 0.95;
+            opacity: 0.96;
 
-            line-height: 1.65;
+            line-height: 1.7;
 
             max-width: 650px;
         }
@@ -1041,26 +1064,28 @@
 
             color: var(--accent-dark);
 
-            padding: 12px 23px;
+            padding: 13px 26px;
 
             border-radius: 9px;
 
             text-decoration: none;
 
-            font-weight: 750;
+            font-weight: 800;
 
-            font-size: 0.92rem;
+            font-size: 0.98rem;
 
             display: inline-block;
 
             transition: var(--transition);
 
             box-shadow:
-                0 5px 12px rgba(0,0,0,0.12);
+                0 5px 15px rgba(0,0,0,0.12);
 
             width: 100%;
 
             max-width: 280px;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.3px;
         }
 
 
@@ -1084,18 +1109,19 @@
 
             text-align: center;
 
-            padding: 38px 16px;
+            padding: 42px 16px;
 
             margin-top: 80px;
 
-            font-size: 0.82rem;
+            font-size: 0.85rem;
 
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
 
         footer strong {
             color: white;
+            font-family: 'Outfit', sans-serif;
         }
 
 
@@ -1118,7 +1144,7 @@
             .tracking-btn {
                 width: auto;
 
-                min-width: 125px;
+                min-width: 135px;
             }
 
 
@@ -1157,7 +1183,7 @@
 
                 text-align: left;
 
-                padding: 40px;
+                padding: 45px;
 
                 justify-content: space-between;
             }
@@ -1179,17 +1205,17 @@
 
 
             .hero-section h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
 
 
             .hero-section p {
-                font-size: 1.05rem;
+                font-size: 1.12rem;
             }
 
 
             .section-title {
-                font-size: 2.1rem;
+                font-size: 2.6rem;
             }
         }
 
@@ -1219,7 +1245,7 @@
 
 
             .hero-section h1 {
-                font-size: 2rem;
+                font-size: 2.3rem;
             }
 
 
@@ -1292,7 +1318,7 @@
 
 
             <h1>
-                Seguimiento de Envíos
+                Rastreo y Control de Envíos
             </h1>
 
 
@@ -1761,13 +1787,13 @@
 
 
             <h2 class="section-title">
-                Soluciones logísticas pensadas para crecer
+                Compromiso y Eficiencia en Cada Envío
             </h2>
 
 
             <p class="section-subtitle">
                 Gestionamos la distribución y los envíos de nuestros propios productos
-                para garantizar un servicio directo y de confianza.
+                para garantizar un servicio directo, transparente y de absoluta confianza.
             </p>
 
         </div>
@@ -1779,24 +1805,24 @@
 
                 <strong>Nova Envíos & Créditos</strong>
                 es una empresa que trabaja exclusivamente los envíos por cuenta propia, 
-                asegurando el control total de cada etapa logística.
+                asegurando el control absoluto de cada etapa logística.
 
             </p>
 
 
             <p>
 
-                Nuestro objetivo es brindar una operatoria propia y eficiente, simplificando 
-                la entrega de pedidos y ofreciendo un seguimiento claro para nuestros clientes.
+                Nuestro objetivo principal es brindar una operatoria propia y eficiente, simplificando 
+                la entrega de pedidos y ofreciendo un seguimiento claro para cada uno de nuestros clientes.
 
             </p>
 
 
             <p>
 
-                Trabajamos para ofrecer una experiencia directa, transparente
-                y confiable, desde la preparación de la mercadería hasta
-                su entrega en destino.
+                Trabajamos cada día para ofrecer una experiencia directa, transparente
+                y confiable, desde la preparación inicial de la mercadería hasta
+                su entrega final en destino.
 
             </p>
 
@@ -1818,13 +1844,13 @@
 
 
             <h2 class="section-title">
-                Servicios logísticos propios
+                Servicios Logísticos Propios
             </h2>
 
 
             <p class="section-subtitle">
-                Operaciones adaptadas para gestionar nuestros envíos con foco en 
-                la eficiencia, trazabilidad y cumplimiento.
+                Operaciones optimizadas y adaptadas para gestionar nuestros envíos con un alto estándar 
+                de eficiencia, trazabilidad y cumplimiento directo.
             </p>
 
         </div>
@@ -1841,13 +1867,13 @@
 
 
                 <h3>
-                    Envíos propios
+                    Envíos Propios
                 </h3>
 
 
                 <p>
                     Coordinamos y ejecutamos la distribución de nuestros productos
-                    por cuenta propia, buscando optimizar tiempos y recorridos.
+                    por cuenta propia, buscando optimizar los tiempos de entrega y recorridos.
                 </p>
 
             </div>
@@ -1861,13 +1887,13 @@
 
 
                 <h3>
-                    Almacenamiento interno
+                    Almacenamiento Interno
                 </h3>
 
 
                 <p>
                     Gestionamos la recepción, almacenamiento y preparación
-                    de mercadería propia para facilitar una rápida salida.
+                    de mercadería propia para facilitar una rápida y segura salida.
                 </p>
 
             </div>
@@ -1881,13 +1907,13 @@
 
 
                 <h3>
-                    Última milla propia
+                    Última Milla Propia
                 </h3>
 
 
                 <p>
                     Realizamos la distribución final de los pedidos directamente
-                    hasta el destinatario, asegurando una atención personalizada.
+                    hasta el destinatario, asegurando una atención cercana y personalizada.
                 </p>
 
             </div>
@@ -1906,7 +1932,7 @@
             <div>
 
                 <h2>
-                    Tecnología y productos para tu hogar
+                    Tecnología y Productos para tu Hogar
                 </h2>
 
 
@@ -1914,7 +1940,7 @@
                     Conocé nuestro catálogo online y encontrá productos
                     seleccionados de tecnología y electrodomésticos.
                     Realizá tu pedido y coordiná la entrega de manera
-                    simple y directa.
+                    simple, segura y directa.
                 </p>
 
             </div>
