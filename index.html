@@ -120,17 +120,6 @@
             white-space: nowrap;
         }
 
-        /* ESTILO PARA EL LOGO SVG EXACTO */
-        .navbar-logo-svg {
-            height: 38px;
-            width: auto;
-            transition: var(--transition);
-        }
-
-        .navbar-logo-svg:hover {
-            transform: scale(1.05);
-        }
-
 
         .nav-links {
             display: flex;
@@ -181,7 +170,7 @@
 
 
         /* =========================================================
-           HERO CON FONDO DE IMAGEN, LOGO Y TÍTULO
+           HERO CON FONDO DE IMAGEN Y TÍTULO
         ========================================================= */
 
         .hero-section {
@@ -212,27 +201,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        /* ESTILO PARA EL LOGO GRANDE EN EL HERO */
-        .hero-logo-img {
-            height: 75px;
-            width: auto;
-            object-fit: contain;
-            margin-bottom: 18px;
-            filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.45));
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
 
@@ -1298,39 +1266,6 @@
     <nav class="navbar">
 
         <div class="navbar-brand">
-            <!-- LOGO SVG IDÉNTICO AL DE LA IMAGEN (Camión y estelas exactas) -->
-            <svg class="navbar-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="40 50 430 110">
-                <g fill="none" stroke="#2563eb" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
-                    <!-- Líneas de velocidad izquierdas -->
-                    <line x1="50" y1="80" x2="150" y2="80" />
-                    <line x1="70" y1="95" x2="160" y2="95" stroke-width="3.5" />
-                    <line x1="40" y1="110" x2="150" y2="110" />
-                    <line x1="90" y1="125" x2="140" y2="125" stroke-width="3.5" />
-
-                    <!-- Estela de humo / viento derecha -->
-                    <path d="M 390 75 h 15 a 12 12 0 0 0 12 -12 a 12 12 0 0 0 -12 -12 h -8" />
-                    <path d="M 370 95 h 35 a 15 15 0 0 0 15 -15 a 15 15 0 0 0 -15 -15 h -20 a 18 18 0 0 1 -18 -18 a 18 18 0 0 1 18 -18 h 25" />
-                    <path d="M 385 115 h 10 a 10 10 0 0 1 10 10 a 10 10 0 0 1 -10 10 h -15" />
-                    <line x1="370" y1="135" x2="395" y2="135" stroke-width="3.5" />
-
-                    <!-- Camión de reparto exacto -->
-                    <g fill="#2563eb" stroke="none">
-                        <path d="M 160 80 h 100 l 35 35 v 20 h -135 z" />
-                        <path d="M 265 80 h 30 c 10 0 20 8 25 18 l 10 22 h -65 z" />
-                        <!-- Ventana con el color de fondo para recortar -->
-                        <path d="M 272 87 h 20 l 15 18 h -35 z" fill="#f8fafc" />
-                    </g>
-
-                    <!-- Ruedas exactas -->
-                    <g fill="#f8fafc" stroke="#2563eb" stroke-width="4.5">
-                        <circle cx="205" cy="135" r="12" />
-                        <circle cx="205" cy="135" r="4" fill="#2563eb" />
-                        
-                        <circle cx="320" cy="135" r="12" />
-                        <circle cx="320" cy="135" r="4" fill="#2563eb" />
-                    </g>
-                </g>
-            </svg>
             Nova Envíos & Créditos
         </div>
 
@@ -1368,7 +1303,7 @@
 
 
     <!-- =========================================================
-         HERO CON FONDO DE LA CAMIONETA, LOGO Y TÍTULO
+         HERO CON FONDO DE LA CAMIONETA Y TÍTULO
     ========================================================= -->
 
     <header
@@ -1377,9 +1312,6 @@
     >
 
         <div class="hero-container">
-
-            <!-- LOGO INTEGRADO EN LA SECCIÓN HERO -->
-            <img src="1788638885508.png" alt="Logo Nova Envíos" class="hero-logo-img">
 
             <div class="hero-label">
                 📍 Seguimiento online de envíos propios
