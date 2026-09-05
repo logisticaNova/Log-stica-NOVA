@@ -120,11 +120,18 @@
             white-space: nowrap;
         }
 
-        /* Estilo para el logo en la barra de navegación */
+        /* ESTILO MEJORADO PARA EL LOGO EN LA NAVBAR */
         .navbar-logo-img {
-            height: 34px;
+            height: 38px;
             width: auto;
             object-fit: contain;
+            border-radius: 6px;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        .navbar-logo-img:hover {
+            transform: scale(1.03);
         }
 
 
@@ -210,13 +217,25 @@
             align-items: center;
         }
 
-        /* Estilo para el logo grande integrado en el Hero */
+        /* ESTILO MEJORADO PARA EL LOGO GRANDE EN EL HERO */
         .hero-logo-img {
-            height: 65px;
+            height: 75px;
             width: auto;
             object-fit: contain;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+            margin-bottom: 18px;
+            filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.45));
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
 
