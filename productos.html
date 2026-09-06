@@ -1073,6 +1073,7 @@ function calcularTotales() {
     
     const costoEnvio = tarifasProvincias[localidadSeleccionadaGlobal]?.costo || 0;
     total += costoEnvio;
+    
     const valorCuota = cuotasGlobal > 0 ? total / cuotasGlobal : total;
 
     return { subtotal, descuento, recargoTotal, costoEnvio, total, valorCuota };
@@ -1149,7 +1150,7 @@ function renderizarContenidoDrawer() {
                 ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
                 ${recargoTotal > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo Financiamiento:</span><span>+${formatearMoneda(recargoTotal)}</span></div>` : ''}
                 <div class="cart-total"><span>Subtotal a pagar:</span><span>${formatearMoneda(subtotal - descuento + recargoTotal)}</span></div>
-                ${cuotasGlobal > 1 ? `<div class="installment-summary">Pagás en <strong>${cuotasGlobal} pagos</strong> de <strong>${formatearMoneda(valorCuota)}</strong> (sin incluir envío)</div>` : ''}
+                ${cuotasGlobal > 1 ? `<div class="installment-summary">Pagás en <strong>${cuotasGlobal} pagos</strong> de <strong>${formatearMoneda(valorCuota)}</strong> (incluyendo envío estimado)</div>` : ''}
             </div>
 
             <button class="checkout-btn" style="margin-top: 15px;" onclick="vistaActual = 'formulario'; renderizarContenidoDrawer();">Continuar con Datos y Envío</button>
@@ -1244,14 +1245,15 @@ function enviarOrdenWhatsApp(event) {
     mensaje += `💳 *PAGO*\n`;
     mensaje += `• Método: ${textoMetodoPago}\n`;
     if (cuotasGlobal > 1) {
-        mensaje += `• Valor Cuota aprox: ${formatearMoneda(valorCuota)}\n`;
+        mensaje += `• Valor Cuota (incluye envío): ${formatearMoneda(valorCuota)}\n`;
     }
     mensaje += `• Subtotal: ${formatearMoneda(subtotal)}\n`;
     if (descuento > 0) mensaje += `• Descuento: -${formatearMoneda(descuento)}\n`;
     if (recargoTotal > 0) mensaje += `• Recargo: +${formatearMoneda(recargoTotal)}\n`;
     mensaje += `• Costo Envío: ${formatearMoneda(costoEnvio)}\n`;
     mensaje += `💰 *TOTAL FINAL:* ${formatearMoneda(total)}\n\n`;
-    mensaje += `📝 *Observaciones:* ${obs}`;
+    mensaje += `📝 *Observaciones:* ${obs}\n\n`;
+    mensaje += `Hola, ya elegí mi producto y me gustaría avanzar con la compra. ¿Me pasarías el alias o CBU y los datos bancarios para realizar el pago?`;
 
     const numeroWhatsAppDestino = "5491155012447";
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsAppDestino}&text=${encodeURIComponent(mensaje)}`;
