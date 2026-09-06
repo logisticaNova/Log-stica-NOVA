@@ -762,7 +762,8 @@ const tarifasProvincias = {
     "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Otras Provincias" }
 };
 
-const productos = [
+// ARRAY 1: CELULARES
+const arrayCelulares = [
     { 
         id: 1, 
         sku: "CEL-MOT-EDGE50", 
@@ -815,6 +816,77 @@ const productos = [
     { id: 18, sku: "CEL-MOT-G24", marca: "Motorola", modelo: "Moto G24", nombre: "Celular Motorola Moto G24 128GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Diseño delgado y elegante con RAM Boost y potente altavoz estéreo.", especificaciones: { pantalla: "6.6 HD+ 90Hz", almacenamiento: "128GB", ram: "4GB", camara: "50MP" }, precioOferta: 249999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] },
     { id: 19, sku: "CEL-XIA-RN13", marca: "Xiaomi", modelo: "Redmi Note 13", nombre: "Celular Xiaomi Redmi Note 13 256GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Pantalla AMOLED ultrabrillante, cámara triple de 108MP y carga rápida de 33W.", especificaciones: { pantalla: "6.67 AMOLED", almacenamiento: "256GB", ram: "8GB", camara: "108MP" }, precioOferta: 339999, stock: true, imagenes: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"] },
     { id: 20, sku: "CEL-XIA-POCOM6", marca: "Xiaomi", modelo: "Poco M6 Pro", nombre: "Celular Xiaomi Poco M6 Pro 256GB", categoria: "Celulares", subcategoria: "Smartphones", descripcion: "Procesador enfocado en gaming fluido, pantalla AMOLED 120Hz y carga rápida.", especificaciones: { pantalla: "6.67 AMOLED 120Hz", almacenamiento: "256GB", ram: "8GB", camara: "64MP" }, precioOferta: 379999, stock: true, imagenes: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"] }
+];
+
+// ARRAY 2: GAMING E INFORMÁTICA
+const arrayGamingInformatica = [
+    { 
+        id: 21, 
+        sku: "GAM-NOTEBOOK-ASUS", 
+        marca: "Asus", 
+        modelo: "TUF Gaming F15", 
+        nombre: "Notebook Gamer Asus TUF F15", 
+        categoria: "Gaming", 
+        subcategoria: "Laptops", 
+        descripcion: "Laptop de alto rendimiento para gaming con tarjeta gráfica dedicada RTX y procesador Intel Core i7.", 
+        especificaciones: { pantalla: "15.6 144Hz", almacenamiento: "512GB SSD", ram: "16GB", gpu: "RTX 4050" }, 
+        precioOferta: 1450000, 
+        stock: true, 
+        imagenes: ["https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80"] 
+    },
+    { 
+        id: 22, 
+        sku: "INF-MONITOR-LG", 
+        marca: "LG", 
+        modelo: "UltraGear 27", 
+        nombre: "Monitor Gamer LG UltraGear 27\"", 
+        categoria: "Televisores / Monitores", 
+        subcategoria: "Monitores", 
+        descripcion: "Monitor IPS de 1ms con tasa de refresco ultra rápida de 165Hz para juegos competitivos.", 
+        especificaciones: { pantalla: "27 IPS", resolucion: "1080p", refresco: "165Hz", tiempoRespuesta: "1ms" }, 
+        precioOferta: 389999, 
+        stock: true, 
+        imagenes: ["https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"] 
+    }
+];
+
+// ARRAY 3: HOGAR Y LÍNEA BLANCA
+const arrayHogarElectro = [
+    { 
+        id: 23, 
+        sku: "HEL-WHIRL-PRO", 
+        marca: "Whirlpool", 
+        modelo: "No Frost WRM45", 
+        nombre: "Heladera Whirlpool No Frost 432L", 
+        categoria: "Heladeras / Freezers", 
+        subcategoria: "Heladeras", 
+        descripcion: "Heladera con tecnología Evox anti-huellas, control electrónico de temperatura y amplio espacio interior.", 
+        especificaciones: { capacidad: "432 Litros", sistema: "No Frost", eficiencia: "Clase A", color: "Inox" }, 
+        precioOferta: 1290000, 
+        stock: true, 
+        imagenes: ["https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=600&q=80"] 
+    },
+    { 
+        id: 24, 
+        sku: "LAV-LONG-ECO", 
+        marca: "Longvie", 
+        modelo: "L1613", 
+        nombre: "Lavarropas Automático Longvie 8kg", 
+        categoria: "Lavarropas / Secadoras", 
+        subcategoria: "Lavarropas", 
+        descripcion: "Lavarropas de carga frontal con display digital, programas rápidos y centrifugado ajustable.", 
+        especificaciones: { carga: "Frontal", capacidad: "8 Kg", centrifugado: "1200 RPM", eficiencia: "A++" }, 
+        precioOferta: 850000, 
+        stock: true, 
+        imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"] 
+    }
+];
+
+// UNIFICACIÓN DE TODOS LOS ARRAYS EN UN ÚNICO ARRAY GLOBAL PARA LA PANTALLA
+const productos = [
+    ...arrayCelulares,
+    ...arrayGamingInformatica,
+    ...arrayHogarElectro
 ];
 
 let carrito = [];
