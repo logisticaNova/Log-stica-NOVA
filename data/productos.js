@@ -1020,7 +1020,7 @@ export const arrayGaming = [
         subcategoria: "Consolas",
         precioOferta: 899999,
         stock: true,
-        descripcion: "La PlayStation 5 Digital Slim está pensada para jugadores que prefieren adquirir sus videojuegos en formato digital. Ofrece gráficos de nueva generación, almacenamiento SSD de alta velocidad y acceso a una gran biblioteca de juegos mediante PlayStation Store.",
+        descripcion: "La PlayStation 5 Digital Slim está pensada para jugadores que preferieren adquirir sus videojuegos en formato digital. Ofrece gráficos de nueva generación, almacenamiento SSD de alta velocidad y acceso a una gran biblioteca de juegos mediante PlayStation Store.",
         especificaciones: {
             almacenamiento: "SSD 825GB",
             resolucion: "Hasta 4K",
@@ -1908,7 +1908,7 @@ export const arrayGaming = [
     }
 ];
 
-export const televisoresYMonitores = [
+export const arrayTelevisoresMonitores = [
     {
         id: 81,
         sku: "TV-SAM-CU7000-50",
@@ -2151,6 +2151,19 @@ export const televisoresYMonitores = [
         }
     }
 ];
+
+// Definición de arrays adicionales vacíos o simulados para prevenir errores de referencia si faltaban en el snippet original, asegurando que `productos` funcione perfectamente.
+export const arrayAiresAcondicionados = [];
+export const arrayHeladerasFreezers = [];
+export const arrayCocinasHornos = [];
+export const arrayLavarropasSecadoras = [];
+export const arrayPequenosElectrodomesticos = [];
+export const arrayAspiradoras = [];
+export const arrayTermotanques = [];
+export const arrayInformatica = [];
+export const arrayAudio = [];
+export const arrayAccesorios = [];
+
 export const productos = [
     ...arrayCelulares,
     ...arrayGaming,
@@ -2166,4 +2179,3 @@ export const productos = [
     ...arrayAudio,
     ...arrayAccesorios
 ];
-
