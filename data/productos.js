@@ -15,7 +15,8 @@ export const arrayCelulares = [
         modelo: "iPhone 17",
         imagenes: [
             "https://i.postimg.cc/W4r3Rws7/image-search-1788802797575.jpg",
-            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80", 
+            "https://i.postimg.cc/XqDGNNm5/image-search-1788803929102.webp"
         ],
         nombre: "Apple iPhone 17 256GB",
         categoria: "Celulares",
