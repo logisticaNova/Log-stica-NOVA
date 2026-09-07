@@ -985,7 +985,7 @@ export const arrayCelulares = [
     }
 ];
 
- export arrayGaming = [
+export const arrayGaming = [
     {
         id: 41,
         sku: "GAM-PS5-001",
@@ -1907,8 +1907,6 @@ export const arrayCelulares = [
         }
     }
 ];
-
-
 
 export const arrayTelevisoresMonitores = [
     {
