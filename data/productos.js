@@ -1,3 +1,7 @@
+// ==========================================
+// 1. ARRAYS SEPARADOS POR CATEGORÍA
+// ==========================================
+
 export const arrayCelulares = [
     {
         id: 1,
@@ -11,10 +15,7 @@ export const arrayCelulares = [
         stock: true,
         descripcion: "Diseño vanguardista de aluminio espacial, rendimiento gráfico superior y resistencia avanzada al agua y polvo.",
         especificaciones: { pantalla: "6.3 pulgadas Super Retina", almacenamiento: "256GB", conectividad: "5G", sistema: "iOS" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -31,9 +32,7 @@ export const arrayGaming = [
         stock: true,
         descripcion: "Diseñada para gaming serio y multitarea pesada con procesador de alta potencia y refrigeración optimizada.",
         especificaciones: { pantalla: "15.6 144Hz", almacenamiento: "512GB SSD", ram: "16GB", gpu: "RTX 4050" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -50,9 +49,7 @@ export const arrayTelevisoresMonitores = [
         stock: true,
         descripcion: "Monitor optimizado para eSports y diseño con tiempos de respuesta ultrarrápidos de 1ms.",
         especificaciones: { tamano: "27 pulgadas", resolucion: "QHD (2560x1440)", frecuencia: "165Hz" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -69,9 +66,7 @@ export const arrayAiresAcondicionados = [
         stock: true,
         descripcion: "Climatización inteligente con compresor Inverter que reduce significativamente el consumo eléctrico.",
         especificaciones: { frigorias: "3000 Frigorías", tipo: "Frío / Calor", eficiencia: "Clase A" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -88,9 +83,7 @@ export const arrayHeladerasFreezers = [
         stock: true,
         descripcion: "Tecnología Evox antihuellas y sistema No Frost envolvente que mantiene los alimentos frescos por más tiempo.",
         especificaciones: { capacidad: "432 Litros", sistema: "No Frost", eficiencia: "Clase A+" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -107,9 +100,7 @@ export const arrayCocinasHornos = [
         stock: true,
         descripcion: "Cocina de alta gama con encendido electrónico a una mano y válvula de seguridad en hornallas y horno.",
         especificaciones: { hornallas: "4 quemadores", horno: "Autolimpiante", seguridad: "Válvula integrada" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -126,9 +117,7 @@ export const arrayLavarropasSecadoras = [
         stock: true,
         descripcion: "Lavarropas de carga frontal con múltiples programas de lavado inteligentes y motor de alta eficiencia.",
         especificaciones: { capacidad: "9 Kilogramos", centrifugado: "1400 RPM", eficiencia: "A++" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -145,9 +134,7 @@ export const arrayPequenosElectrodomesticos = [
         stock: true,
         descripcion: "Disfrutá de un café perfecto todas las mañanas con sistema antigoteo y jarra de vidrio termorresistente.",
         especificaciones: { capacidad: "1.25 Litros", potencia: "1000W", sistema: "Antigoteo" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -164,9 +151,7 @@ export const arrayAspiradoras = [
         stock: true,
         descripcion: "Iluminación láser que revela el polvo microscópico y sensor piezoeléctrico que adapta la potencia automáticamente.",
         especificaciones: { autonomia: "Hasta 60 minutos", tecnologia: "Sin bolsa", potencia: "Succión ciclónica" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -183,9 +168,7 @@ export const arrayTermotanques = [
         stock: true,
         descripcion: "Agua caliente continua para toda la familia gracias a su sistema de alta recuperación y aislación térmica reforzada.",
         especificaciones: { capacidad: "120 Litros", recuperacion: "Alta", conexion: "Multigás" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -202,9 +185,7 @@ export const arrayInformatica = [
         stock: true,
         descripcion: "Sensor óptico de 8000 DPI que funciona sobre cualquier superficie (incluso vidrio) y desplazamiento electromagnético MagSpeed.",
         especificaciones: { conectividad: "Bluetooth / Logi Bolt", bateria: "Recargable USB-C", botones: "7 configurables" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -221,9 +202,7 @@ export const arrayAudio = [
         stock: true,
         descripcion: "Sonido potente y nítido con tweeter independiente y radiadores pasivos duales para graves profundos.",
         especificaciones: { potencia: "30W", autonomia: "12 horas", proteccion: "IP67 sumergible" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
@@ -240,13 +219,14 @@ export const arrayAccesorios = [
         stock: true,
         descripcion: "Batería externa de alta capacidad con puertos USB-C de alta velocidad para cargar múltiples dispositivos en simultáneo.",
         especificaciones: { capacidad: "20000 mAh", puertos: "USB-C y USB-A", tecnologia: "PowerIQ 3.0" },
-        imagenes: [
-            "https://images.unsplash.com/photo-1609592424104-97d4c4f6974a?auto=format&fit=crop&w=600&q=80"
-        ]
+        imagenes: ["https://images.unsplash.com/photo-1609592424104-97d4c4f6974a?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
-// Array Maestro que unifica todos los anteriores para que el script HTML los lea correctamente
+// ==========================================
+// 2. ARRAY GENERAL QUE UNIFICA TODO PARA EL HTML
+// ==========================================
+
 export const productos = [
     ...arrayCelulares,
     ...arrayGaming,
