@@ -1020,7 +1020,7 @@ export const arrayGaming = [
         subcategoria: "Consolas",
         precioOferta: 899999,
         stock: true,
-        descripcion: "La PlayStation 5 Digital Slim está pensada para jugadores que preferieren adquirir sus videojuegos en formato digital. Ofrece gráficos de nueva generación, almacenamiento SSD de alta velocidad y acceso a una gran biblioteca de juegos mediante PlayStation Store.",
+        descripcion: "La PlayStation 5 Digital Slim está pensada para jugadores que prefieren adquirir sus videojuegos en formato digital. Ofrece gráficos de nueva generación, almacenamiento SSD de alta velocidad y acceso a una gran biblioteca de juegos mediante PlayStation Store.",
         especificaciones: {
             almacenamiento: "SSD 825GB",
             resolucion: "Hasta 4K",
@@ -1910,259 +1910,194 @@ export const arrayGaming = [
 
 export const arrayTelevisoresMonitores = [
     {
-        id: 81,
-        sku: "TV-SAM-CU7000-50",
-        marca: "Samsung",
-        modelo: "CU7000",
-        imagen: "imagenes/tv/samsung-cu7000-50.jpg",
-        nombre: "Smart TV Samsung CU7000 50\" 4K",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV 4K",
-        precioOferta: 699999,
-        descripcion: "Smart TV Samsung de 50 pulgadas con resolución 4K UHD, tecnología PurColor y plataforma Smart TV. Ideal para disfrutar películas, series, deportes y videojuegos con gran calidad de imagen.",
-        especificaciones: {
-            pantalla: "50 pulgadas",
-            resolucion: "4K UHD",
-            tecnologia: "PurColor",
-            sistema: "Tizen",
-            hdr: "HDR",
-            conectividad: "Wi-Fi y Bluetooth",
-            puertos: "HDMI y USB",
-            audio: "20W",
-            tipo: "Smart TV",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 82,
-        sku: "TV-SAM-DU7000-43",
-        marca: "Samsung",
-        modelo: "DU7000",
-        imagen: "imagenes/tv/samsung-du7000-43.jpg",
-        nombre: "Smart TV Samsung DU7000 43\" 4K",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV 4K",
-        precioOferta: 579999,
-        descripcion: "Smart TV Samsung de 43 pulgadas con resolución 4K UHD y funciones inteligentes. Su tamaño compacto permite instalarlo fácilmente en dormitorios, livings o espacios de entretenimiento.",
-        especificaciones: {
-            pantalla: "43 pulgadas",
-            resolucion: "4K UHD",
-            tecnologia: "PurColor",
-            sistema: "Tizen",
-            hdr: "HDR",
-            conectividad: "Wi-Fi y Bluetooth",
-            puertos: "HDMI y USB",
-            audio: "20W",
-            tipo: "Smart TV",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 83,
-        sku: "TV-LG-UR7800-50",
+        id: 42,
+        sku: "MON-LG-27",
         marca: "LG",
-        modelo: "UR7800",
-        imagen: "imagenes/tv/lg-ur7800-50.jpg",
-        nombre: "Smart TV LG UR7800 50\" 4K",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV 4K",
-        precioOferta: 679999,
-        descripcion: "Smart TV LG de 50 pulgadas con resolución 4K UHD y plataforma webOS. Ofrece acceso a aplicaciones de streaming y una experiencia de entretenimiento completa para el hogar.",
-        especificaciones: {
-            pantalla: "50 pulgadas",
-            resolucion: "4K UHD",
-            procesador: "α5 AI Processor 4K Gen6",
-            sistema: "webOS",
-            hdr: "HDR10 Pro",
-            conectividad: "Wi-Fi y Bluetooth",
-            puertos: "HDMI y USB",
-            audio: "20W",
-            tipo: "Smart TV",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 84,
-        sku: "TV-LG-UR7300-43",
-        marca: "LG",
-        modelo: "UR7300",
-        imagen: "imagenes/tv/lg-ur7300-43.jpg",
-        nombre: "Smart TV LG UR7300 43\" 4K",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV 4K",
-        precioOferta: 559999,
-        descripcion: "Televisor LG de 43 pulgadas con resolución 4K UHD y sistema webOS. Es una alternativa práctica para dormitorios, cocinas, oficinas o livings de tamaño reducido.",
-        especificaciones: {
-            pantalla: "43 pulgadas",
-            resolucion: "4K UHD",
-            procesador: "α5 AI Processor 4K",
-            sistema: "webOS",
-            hdr: "HDR10 Pro",
-            conectividad: "Wi-Fi",
-            puertos: "HDMI y USB",
-            audio: "20W",
-            tipo: "Smart TV",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 85,
-        sku: "TV-TCL-P755-55",
-        marca: "TCL",
-        modelo: "P755",
-        imagen: "imagenes/tv/tcl-p755-55.jpg",
-        nombre: "Smart TV TCL P755 55\" 4K",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV 4K",
-        precioOferta: 649999,
-        descripcion: "Smart TV TCL de 55 pulgadas con resolución 4K UHD y funciones inteligentes. Su pantalla amplia resulta ideal para cine en casa, streaming, deportes y videojuegos.",
-        especificaciones: {
-            pantalla: "55 pulgadas",
-            resolucion: "4K UHD",
-            tecnologia: "HDR",
-            sistema: "Google TV",
-            hdr: "Dolby Vision",
-            conectividad: "Wi-Fi y Bluetooth",
-            puertos: "HDMI y USB",
-            audio: "20W",
-            tipo: "Smart TV",
-            control: "Control por voz",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 86,
-        sku: "TV-TCL-C655-55",
-        marca: "TCL",
-        modelo: "C655",
-        imagen: "imagenes/tv/tcl-c655-55.jpg",
-        nombre: "Smart TV TCL C655 55\" QLED 4K",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV QLED",
-        precioOferta: 779999,
-        descripcion: "Smart TV TCL de 55 pulgadas con tecnología QLED y resolución 4K UHD. Está pensado para quienes buscan colores más intensos y una experiencia audiovisual superior.",
-        especificaciones: {
-            pantalla: "55 pulgadas",
-            resolucion: "4K UHD",
-            tecnologia: "QLED",
-            sistema: "Google TV",
-            hdr: "Dolby Vision",
-            audio: "Dolby Atmos",
-            conectividad: "Wi-Fi y Bluetooth",
-            puertos: "HDMI y USB",
-            tipo: "Smart TV",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 87,
-        sku: "TV-MOT-TV43",
-        marca: "Motorola",
-        modelo: "Moto TV 43",
-        imagen: "imagenes/tv/motorola-moto-tv-43.jpg",
-        nombre: "Smart TV Motorola Moto TV 43\"",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV",
-        precioOferta: 499999,
-        descripcion: "Smart TV Motorola de 43 pulgadas diseñado para disfrutar contenido online, televisión y aplicaciones de entretenimiento. Su tamaño es ideal para distintos ambientes del hogar.",
-        especificaciones: {
-            pantalla: "43 pulgadas",
-            resolucion: "Full HD",
-            sistema: "Android TV",
-            conectividad: "Wi-Fi",
-            bluetooth: "Sí",
-            puertos: "HDMI y USB",
-            audio: "20W",
-            tipo: "Smart TV",
-            control: "Control remoto",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 88,
-        sku: "TV-BGH-B5024-50",
-        marca: "BGH",
-        modelo: "B5024",
-        imagen: "imagenes/tv/bgh-b5024-50.jpg",
-        nombre: "Smart TV BGH B5024 50\" 4K",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV 4K",
-        precioOferta: 519999,
-        descripcion: "Smart TV BGH de 50 pulgadas con resolución 4K UHD y funciones inteligentes. Una opción equilibrada para disfrutar entretenimiento, streaming y televisión digital.",
-        especificaciones: {
-            pantalla: "50 pulgadas",
-            resolucion: "4K UHD",
-            sistema: "Google TV",
-            hdr: "HDR",
-            conectividad: "Wi-Fi",
-            bluetooth: "Sí",
-            puertos: "HDMI y USB",
-            audio: "20W",
-            tipo: "Smart TV",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 89,
-        sku: "TV-GAFA-SMART-43",
-        marca: "Gafa",
-        modelo: "Smart TV 43",
-        imagen: "imagenes/tv/gafa-smart-tv-43.jpg",
-        nombre: "Smart TV Gafa 43\"",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV",
-        precioOferta: 459999,
-        descripcion: "Smart TV Gafa de 43 pulgadas pensado para brindar una experiencia de entretenimiento sencilla y práctica. Ideal para dormitorios, livings y espacios pequeños.",
-        especificaciones: {
-            pantalla: "43 pulgadas",
-            resolucion: "Full HD",
-            sistema: "Smart TV",
-            conectividad: "Wi-Fi",
-            puertos: "HDMI y USB",
-            audio: "16W",
-            tipo: "Smart TV",
-            entrada: "HDMI",
-            usb: "USB",
-            garantia: "12 meses"
-        }
-    },
-    {
-        id: 90,
-        sku: "TV-HIS-A6N-50",
-        marca: "Hisense",
-        modelo: "A6N",
-        imagen: "imagenes/tv/hisense-a6n-50.jpg",
-        nombre: "Smart TV Hisense A6N 50\" 4K",
-        categoria: "Televisores y Monitores",
-        subcategoria: "Smart TV 4K",
-        precioOferta: 579999,
-        descripcion: "Smart TV Hisense de 50 pulgadas con resolución 4K UHD y tecnología HDR. Ofrece una pantalla amplia para disfrutar películas, series, deportes y videojuegos.",
-        especificaciones: {
-            pantalla: "50 pulgadas",
-            resolucion: "4K UHD",
-            sistema: "VIDAA",
-            hdr: "HDR10",
-            conectividad: "Wi-Fi y Bluetooth",
-            puertos: "HDMI y USB",
-            audio: "20W",
-            tipo: "Smart TV",
-            tecnologia: "Direct LED",
-            garantia: "12 meses"
-        }
+        modelo: "UltraGear 27",
+        nombre: "Monitor Gamer LG UltraGear 27 pulgadas",
+        categoria: "Televisores / Monitores",
+        subcategoria: "Monitores",
+        precioOferta: 480000,
+        stock: true,
+        descripcion: "Monitor optimizado para eSports y diseño con tiempos de respuesta ultrarrápidos de 1ms.",
+        especificaciones: { tamano: "27 pulgadas", resolucion: "QHD (2560x1440)", frecuencia: "165Hz" },
+        imagenes: ["https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"]
     }
 ];
 
-// Definición de arrays adicionales vacíos o simulados para prevenir errores de referencia si faltaban en el snippet original, asegurando que `productos` funcione perfectamente.
-export const arrayAiresAcondicionados = [];
-export const arrayHeladerasFreezers = [];
-export const arrayCocinasHornos = [];
-export const arrayLavarropasSecadoras = [];
-export const arrayPequenosElectrodomesticos = [];
-export const arrayAspiradoras = [];
-export const arrayTermotanques = [];
-export const arrayInformatica = [];
-export const arrayAudio = [];
-export const arrayAccesorios = [];
+export const arrayAiresAcondicionados = [
+    {
+        id: 43,
+        sku: "AIR-LG-INVERTER",
+        marca: "LG",
+        modelo: "Dual Cool 3000",
+        nombre: "Aire Acondicionado Split Inverter Frío/Calor",
+        categoria: "Aires Acondicionados",
+        subcategoria: "Splits",
+        precioOferta: 950000,
+        stock: true,
+        descripcion: "Climatización inteligente con compresor Inverter que reduce significativamente el consumo eléctrico.",
+        especificaciones: { frigorias: "3000 Frigorías", tipo: "Frío / Calor", eficiencia: "Clase A" },
+        imagenes: ["https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayHeladerasFreezers = [
+    {
+        id: 44,
+        sku: "HEL-WHIRL-PRO",
+        marca: "Whirlpool",
+        modelo: "No Frost WRM45",
+        nombre: "Heladera Whirlpool No Frost 432L Inox",
+        categoria: "Heladeras / Freezers",
+        subcategoria: "Heladeras",
+        precioOferta: 1290000,
+        stock: true,
+        descripcion: "Tecnología Evox antihuellas y sistema No Frost envolvente que mantiene los alimentos frescos por más tiempo.",
+        especificaciones: { capacidad: "432 Litros", sistema: "No Frost", eficiencia: "Clase A+" },
+        imagenes: ["https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayCocinasHornos = [
+    {
+        id: 45,
+        sku: "COC-ORBIS-01",
+        marca: "Orbis",
+        modelo: "Multigas 90cm",
+        nombre: "Cocina a Gas Acero Inoxidable con Grill",
+        categoria: "Cocinas / Hornos",
+        subcategoria: "Cocinas",
+        precioOferta: 650000,
+        stock: true,
+        descripcion: "Cocina de alta gama con encendido electrónico a una mano y válvula de seguridad en hornallas y horno.",
+        especificaciones: { hornallas: "4 quemadores", horno: "Autolimpiante", seguridad: "Válvula integrada" },
+        imagenes: ["https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayLavarropasSecadoras = [
+    {
+        id: 46,
+        sku: "LAV-LONG-9KG",
+        marca: "Longvie",
+        modelo: "LSP1842",
+        nombre: "Lavarropas Automático 9 Kg 1400 RPM",
+        categoria: "Lavarropas / Secadoras",
+        subcategoria: "Lavarropas",
+        precioOferta: 780000,
+        stock: true,
+        descripcion: "Lavarropas de carga frontal con múltiples programas de lavado inteligentes y motor de alta eficiencia.",
+        especificaciones: { capacidad: "9 Kilogramos", centrifugado: "1400 RPM", eficiencia: "A++" },
+        imagenes: ["https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayPequenosElectrodomesticos = [
+    {
+        id: 47,
+        sku: "PEQ-MOUL-CAF",
+        marca: "Moulinex",
+        modelo: "Subito Pro",
+        nombre: "Cafetera de Filtro Eléctrica Programable",
+        categoria: "Pequeños Electrodomésticos",
+        subcategoria: "Cafeteras",
+        precioOferta: 110000,
+        stock: true,
+        descripcion: "Disfrutá de un café perfecto todas las mañanas con sistema antigoteo y jarra de vidrio termorresistente.",
+        especificaciones: { capacidad: "1.25 Litros", potencia: "1000W", sistema: "Antigoteo" },
+        imagenes: ["https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayAspiradoras = [
+    {
+        id: 48,
+        sku: "ASP-DISH-V15",
+        marca: "Dyson",
+        modelo: "V15 Detect",
+        nombre: "Aspiradora Inalámbrica Inteligente",
+        categoria: "Aspiradoras",
+        subcategoria: "Inalámbricas",
+        precioOferta: 890000,
+        stock: true,
+        descripcion: "Iluminación láser que revela el polvo microscópico y sensor piezoeléctrico que adapta la potencia automáticamente.",
+        especificaciones: { autonomia: "Hasta 60 minutos", tecnologia: "Sin bolsa", potencia: "Succión ciclónica" },
+        imagenes: ["https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayTermotanques = [
+    {
+        id: 49,
+        sku: "TER-SENA-120L",
+        marca: "Saiar",
+        modelo: "A Gas 120 Litros",
+        nombre: "Termotanque a Gas Alta Recuperación",
+        categoria: "Termotanques",
+        subcategoria: "A Gas",
+        precioOferta: 540000,
+        stock: true,
+        descripcion: "Agua caliente continua para toda la familia gracias a su sistema de alta recuperación y aislación térmica reforzada.",
+        especificaciones: { capacidad: "120 Litros", recuperacion: "Alta", conexion: "Multigás" },
+        imagenes: ["https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayInformatica = [
+    {
+        id: 50,
+        sku: "INF-LOG-MX3",
+        marca: "Logitech",
+        modelo: "MX Master 3S",
+        nombre: "Mouse Inalámbrico Ergonómico Avanzado",
+        categoria: "Informática",
+        subcategoria: "Periféricos",
+        precioOferta: 145000,
+        stock: true,
+        descripcion: "Sensor óptico de 8000 DPI que funciona sobre cualquier superficie (incluso vidrio) y desplazamiento electromagnético MagSpeed.",
+        especificaciones: { conectividad: "Bluetooth / Logi Bolt", bateria: "Recargable USB-C", botones: "7 configurables" },
+        imagenes: ["https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayAudio = [
+    {
+        id: 51,
+        sku: "AUD-JBL-FLIP6",
+        marca: "JBL",
+        modelo: "Flip 6",
+        nombre: "Parlante Bluetooth Portátil Resistente al Agua",
+        categoria: "Audio",
+        subcategoria: "Parlantes",
+        precioOferta: 180000,
+        stock: true,
+        descripcion: "Sonido potente y nítido con tweeter independiente y radiadores pasivos duales para graves profundos.",
+        especificaciones: { potencia: "30W", autonomia: "12 horas", proteccion: "IP67 sumergible" },
+        imagenes: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+export const arrayAccesorios = [
+    {
+        id: 52,
+        sku: "ACC-ANGR-PWR",
+        marca: "Anker",
+        modelo: "Power Bank 20000mAh",
+        nombre: "Cargador Portátil Power Bank Carga Rápida",
+        categoria: "Accesorios",
+        subcategoria: "Cargadores",
+        precioOferta: 95000,
+        stock: true,
+        descripcion: "Batería externa de alta capacidad con puertos USB-C de alta velocidad para cargar múltiples dispositivos en simultáneo.",
+        especificaciones: { capacidad: "20000 mAh", puertos: "USB-C y USB-A", tecnologia: "PowerIQ 3.0" },
+        imagenes: ["https://images.unsplash.com/photo-1609592424104-97d4c4f6974a?auto=format&fit=crop&w=600&q=80"]
+    }
+];
+
+// ==========================================
+// 2. ARRAY GENERAL QUE UNIFICA TODO PARA EL HTML
+// ==========================================
 
 export const productos = [
     ...arrayCelulares,
