@@ -54,52 +54,57 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 13px 24px;
+    padding: 13px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .navbar-brand {
-    font-size: 1.08rem;
+    font-size: 1rem;
     font-weight: 800;
     color: var(--primary-color);
     letter-spacing: -0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
 }
 
 .cart-btn {
     background: var(--primary-color);
     color: white;
     border: none;
-    padding: 9px 15px;
+    padding: 8px 12px;
     border-radius: 9px;
     font-weight: 700;
-    font-size: 0.86rem;
+    font-size: 0.82rem;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     transition: var(--transition);
     box-shadow: 0 3px 8px rgba(37,99,235,0.18);
+    flex-shrink: 0;
 }
 
 .cart-badge {
     background: var(--accent-color);
     color: white;
-    min-width: 20px;
-    height: 20px;
+    min-width: 18px;
+    height: 18px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    padding: 2px 5px;
-    font-size: 0.7rem;
+    padding: 2px 4px;
+    font-size: 0.65rem;
     font-weight: 800;
 }
 
 header {
     text-align: center;
-    margin: 42px 0 28px;
+    margin: 32px 0 20px;
     padding: 0 16px;
 }
 
@@ -110,25 +115,25 @@ header {
     background: var(--primary-light);
     color: var(--primary-color);
     border: 1px solid #dbeafe;
-    padding: 6px 11px;
+    padding: 5px 10px;
     border-radius: 20px;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
-    margin-bottom: 13px;
+    margin-bottom: 10px;
 }
 
 header h1 {
-    font-size: clamp(1.9rem, 4vw, 2.65rem);
+    font-size: clamp(1.7rem, 4vw, 2.65rem);
     color: var(--text-main);
-    margin-bottom: 9px;
+    margin-bottom: 8px;
     font-weight: 800;
     letter-spacing: -1px;
 }
 
 header p {
     color: var(--text-muted);
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     max-width: 620px;
     margin: 0 auto;
 }
@@ -141,35 +146,38 @@ header p {
 .container {
     max-width: 1240px;
     margin: 0 auto;
-    padding: 0 18px;
+    padding: 0 14px;
 }
 
 .search-wrapper {
     max-width: 600px;
-    margin: 0 auto 20px;
+    margin: 0 auto 16px;
 }
 
 .search-input {
     width: 100%;
-    padding: 12px 16px;
+    padding: 11px 15px;
     border-radius: 25px;
     border: 1px solid var(--border-color);
     background: #fff;
     font-family: inherit;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     outline: none;
     box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
 .filtros-wrapper {
-    margin-bottom: 28px;
+    margin-bottom: 22px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .filtros {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding: 4px 2px 9px;
+    padding: 4px 4px 10px;
+    scrollbar-width: thin;
 }
 
 .filter-btn {
@@ -177,11 +185,11 @@ header p {
     background: rgba(255,255,255,0.9);
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
-    padding: 8px 15px;
+    padding: 7px 14px;
     border-radius: 22px;
     font-weight: 650;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
 }
 
 .filter-btn.active {
@@ -193,7 +201,7 @@ header p {
 .grid-productos {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 20px;
+    gap: 16px;
 }
 
 .card {
@@ -222,17 +230,17 @@ header p {
 }
 
 .product-gallery-container {
-    padding: 14px;
+    padding: 12px;
     background: #fafafa;
     border-bottom: 1px solid var(--border-light);
 }
 
 .main-image-container {
     width: 100%;
-    height: 220px;
+    height: 200px;
     border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     background: #fff;
     display: flex;
     justify-content: center;
@@ -248,20 +256,22 @@ header p {
 
 .thumbnails-container {
     display: flex;
-    gap: 8px;
-    justify-content: center;
+    gap: 6px;
+    justify-content: flex-start;
     width: 100%;
     overflow-x: auto;
+    padding-bottom: 4px;
 }
 
 .thumbnail {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-radius: 6px;
     object-fit: cover;
     cursor: pointer;
     border: 2px solid transparent;
     background: #fff;
+    flex-shrink: 0;
 }
 
 .thumbnail.active {
@@ -269,32 +279,32 @@ header p {
 }
 
 .card-body {
-    padding: 18px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
 .card-category {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
     color: var(--primary-color);
     font-weight: 800;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
 .card-title {
-    font-size: 1.03rem;
+    font-size: 1rem;
     font-weight: 750;
     color: var(--text-main);
-    margin-bottom: 9px;
+    margin-bottom: 8px;
 }
 
 .card-desc {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    margin-bottom: 15px;
-    min-height: 55px;
+    margin-bottom: 12px;
+    min-height: 48px;
 }
 
 .ver-mas-btn {
@@ -302,7 +312,7 @@ header p {
     background: transparent;
     color: var(--primary-color);
     font-weight: 750;
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     cursor: pointer;
 }
 
@@ -310,15 +320,15 @@ header p {
     background: #f8fafc;
     border: 1px solid var(--border-light);
     border-radius: 9px;
-    padding: 10px 11px;
-    margin-bottom: 16px;
-    font-size: 0.77rem;
+    padding: 9px 10px;
+    margin-bottom: 14px;
+    font-size: 0.75rem;
 }
 
 .specs-list div {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
 .specs-list div:last-child {
@@ -338,24 +348,24 @@ header p {
 .pricing {
     margin-top: auto;
     border-top: 1px solid var(--border-light);
-    padding-top: 15px;
+    padding-top: 12px;
 }
 
 .price-offer {
-    font-size: 1.42rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: var(--text-main);
 }
 
 .cuotas-badge {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--accent-color);
     background: var(--accent-light);
     border: 1px solid #fed7aa;
     border-radius: 6px;
-    padding: 5px 8px;
+    padding: 4px 7px;
     font-weight: 750;
-    margin: 3px 0 12px;
+    margin: 3px 0 10px;
     display: inline-block;
 }
 
@@ -364,7 +374,7 @@ header p {
     background: var(--primary-color);
     color: white;
     border: none;
-    padding: 11px;
+    padding: 10px;
     border-radius: 9px;
     font-weight: 750;
     cursor: pointer;
@@ -374,12 +384,13 @@ header p {
     display: flex;
     justify-content: center;
     gap: 6px;
-    margin: 34px 0 12px;
+    margin: 28px 0 10px;
+    flex-wrap: wrap;
 }
 
 .paginacion button {
-    min-width: 38px;
-    height: 38px;
+    min-width: 36px;
+    height: 36px;
     border: 1px solid var(--border-color);
     background: white;
     border-radius: 8px;
@@ -415,7 +426,7 @@ header p {
 .cart-drawer {
     background-color: white;
     width: 100%;
-    max-width: 480px;
+    max-width: 440px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -428,7 +439,7 @@ header p {
 }
 
 .cart-header {
-    padding: 16px;
+    padding: 14px 16px;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -444,7 +455,7 @@ header p {
 }
 
 .cart-body {
-    padding: 16px;
+    padding: 14px 16px;
     overflow-y: auto;
     flex-grow: 1;
 }
@@ -453,18 +464,18 @@ header p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    padding: 10px 0;
+    gap: 8px;
+    padding: 8px 0;
     border-bottom: 1px solid var(--border-color);
 }
 
 .cart-item-info h4 {
-    font-size: 0.9rem;
+    font-size: 0.86rem;
     margin-bottom: 2px;
 }
 
 .cart-item-price {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
 }
 
@@ -497,19 +508,20 @@ header p {
     border-radius: 8px;
     border: 1px solid var(--border-color);
     font-family: inherit;
+    font-size: 0.9rem;
 }
 
 .cart-summary-line {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
-    font-size: 0.83rem;
+    font-size: 0.82rem;
 }
 
 .cart-total {
     display: flex;
     justify-content: space-between;
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     font-weight: 700;
     margin: 10px 0;
 }
@@ -531,14 +543,14 @@ header p {
 
 .form-group label {
     display: block;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 3px;
 }
 
 .inline-group {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .inline-group > div {
@@ -547,8 +559,8 @@ header p {
 
 .form-buttons {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 8px;
+    margin-top: 14px;
 }
 
 .btn-back {
@@ -559,6 +571,7 @@ header p {
     border-radius: 8px;
     width: 35%;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .btn-submit-order {
@@ -585,21 +598,21 @@ header p {
 @media (min-width: 640px) {
     .grid-productos {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 22px;
+        gap: 18px;
     }
 }
 
 @media (min-width: 960px) {
     .grid-productos {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 24px;
+        gap: 20px;
     }
 }
 
 @media (min-width: 1200px) {
     .grid-productos {
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 22px;
+        gap: 20px;
     }
 }
 </style>
@@ -608,7 +621,7 @@ header p {
 <body>
 
 <nav class="navbar">
-    <div class="navbar-brand">📦 Logística Nova</div>
+    <div class="navbar-brand">Nova Envíos & Créditos</div>
 
     <button class="cart-btn" onclick="toggleCart()">
         🛒 Carrito
@@ -762,7 +775,7 @@ header p {
         <div class="cart-header">
             <h3
                 id="drawerTitle"
-                style="font-size:1.1rem;"
+                style="font-size:1.05rem;"
             >
                 Tu Carrito de Compras
             </h3>
@@ -2177,7 +2190,7 @@ function renderizarContenidoDrawer() {
                 style="margin-top:15px;"
             >
 
-                <label>
+                <label style="font-size:0.8rem; font-weight:600; margin-bottom:4px; display:block;">
                     Método de Pago:
                 </label>
 
@@ -2752,7 +2765,7 @@ function(event) {
 
 
     let mensaje =
-        `📦 *NUEVA ORDEN DE COMPRA - LOGÍSTICA NOVA*\n`;
+        `📦 *NUEVA ORDEN DE COMPRA - NOVA ENVÍOS & CRÉDITOS*\n`;
 
     mensaje +=
         `🆔 *Seguimiento:* ${codigoSeguimiento}\n\n`;
@@ -2863,4 +2876,4 @@ actualizarContadorCarrito();
 </script>
 
 </body>
-    </html>
+</html>
