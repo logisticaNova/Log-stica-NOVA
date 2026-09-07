@@ -2639,7 +2639,7 @@ export const televisoresYMonitores = [
 
 export const arrayAiresAcondicionados = [
     {
-        id: 43,
+        id: 1000,
         sku: "AIR-LG-INVERTER",
         marca: "LG",
         modelo: "Dual Cool 3000",
@@ -2656,7 +2656,7 @@ export const arrayAiresAcondicionados = [
 
 export const arrayHeladerasFreezers = [
     {
-        id: 44,
+        id: 444,
         sku: "HEL-WHIRL-PRO",
         marca: "Whirlpool",
         modelo: "No Frost WRM45",
@@ -2673,7 +2673,7 @@ export const arrayHeladerasFreezers = [
 
 export const arrayCocinasHornos = [
     {
-        id: 45,
+        id: 455,
         sku: "COC-ORBIS-01",
         marca: "Orbis",
         modelo: "Multigas 90cm",
@@ -2690,7 +2690,7 @@ export const arrayCocinasHornos = [
 
 export const arrayLavarropasSecadoras = [
     {
-        id: 46,
+        id: 466,
         sku: "LAV-LONG-9KG",
         marca: "Longvie",
         modelo: "LSP1842",
@@ -2707,7 +2707,7 @@ export const arrayLavarropasSecadoras = [
 
 export const arrayPequenosElectrodomesticos = [
     {
-        id: 47,
+        id: 477,
         sku: "PEQ-MOUL-CAF",
         marca: "Moulinex",
         modelo: "Subito Pro",
@@ -2724,7 +2724,7 @@ export const arrayPequenosElectrodomesticos = [
 
 export const arrayAspiradoras = [
     {
-        id: 48,
+        id: 488,
         sku: "ASP-DISH-V15",
         marca: "Dyson",
         modelo: "V15 Detect",
@@ -2741,7 +2741,7 @@ export const arrayAspiradoras = [
 
 export const arrayTermotanques = [
     {
-        id: 49,
+        id: 499,
         sku: "TER-SENA-120L",
         marca: "Saiar",
         modelo: "A Gas 120 Litros",
@@ -2758,7 +2758,7 @@ export const arrayTermotanques = [
 
 export const arrayInformatica = [
     {
-        id: 50,
+        id: 500,
         sku: "INF-LOG-MX3",
         marca: "Logitech",
         modelo: "MX Master 3S",
@@ -2775,7 +2775,7 @@ export const arrayInformatica = [
 
 export const arrayAudio = [
     {
-        id: 51,
+        id: 511,
         sku: "AUD-JBL-FLIP6",
         marca: "JBL",
         modelo: "Flip 6",
@@ -2792,7 +2792,7 @@ export const arrayAudio = [
 
 export const arrayAccesorios = [
     {
-        id: 52,
+        id: 522,
         sku: "ACC-ANGR-PWR",
         marca: "Anker",
         modelo: "Power Bank 20000mAh",
