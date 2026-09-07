@@ -359,3 +359,11 @@ export const catalogoCompleto = [
     ...arrayAudio,
     ...arrayAccesorios
 ];
+
+// ==========================================
+// EXPORTACIÓN PRINCIPAL
+// ==========================================
+// El HTML importa "productos", por eso debe existir
+// este export.
+
+export const productos = catalogoCompleto;
