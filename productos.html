@@ -151,6 +151,29 @@ header p {
     padding: 0 18px;
 }
 
+.search-wrapper {
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    font-family: inherit;
+    font-size: 0.92rem;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.12);
+}
+
 .filtros-wrapper {
     margin-bottom: 28px;
 }
@@ -722,6 +745,10 @@ header p {
     <p>Encontrá productos seleccionados con <span class="header-highlight">precio especial por transferencia</span> y opciones de pago flexibles.</p>
 </header>
 
+<div class="search-wrapper">
+    <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre, marca o modelo..." oninput="buscarProductos()">
+</div>
+
 <div class="filtros-wrapper">
     <div class="filtros">
         <button class="filter-btn active" onclick="filtrarCategoria('Todas', this)">Todas</button>
@@ -791,7 +818,7 @@ const celulares = [
         sku: "CEL-IPH-002",
         marca: "Apple",
         modelo: "iPhone 17 Pro",
-        imagenes: ["https://i.postimg.cc/c49K6F1M/Screenshot-20260906-212720-Google.png"],
+        imagenes: ["img/celulares/iphone-17-pro.jpg"],
         nombre: "Apple iPhone 17 Pro 256GB",
         categoria: "Celulares",
         subcategoria: "iPhone",
@@ -992,694 +1019,6 @@ const celulares = [
             sistema: "Android",
             garantia: "Garantía oficial"
         }
-    },
-    {
-        id: 11,
-        sku: "CEL-SAM-006",
-        marca: "Samsung",
-        modelo: "Galaxy A06",
-        imagenes: ["img/celulares/galaxy-a06.jpg"],
-        nombre: "Samsung Galaxy A06 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 249900,
-        stock: true,
-        descripcion: "El Samsung Galaxy A06 es un smartphone económico pensado para tareas cotidianas como llamadas, mensajería, redes sociales, navegación y entretenimiento.",
-        especificaciones: {
-            pantalla: "6.7 pulgadas HD+",
-            almacenamiento: "128GB",
-            memoriaRam: "4GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 12,
-        sku: "CEL-SAM-007",
-        marca: "Samsung",
-        modelo: "Galaxy A15",
-        imagenes: ["img/celulares/galaxy-a15.jpg"],
-        nombre: "Samsung Galaxy A15 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 299900,
-        stock: true,
-        descripcion: "El Galaxy A15 combina una pantalla Super AMOLED con almacenamiento amplio y una batería de gran capacidad. Es una alternativa equilibrada para el día a día.",
-        especificaciones: {
-            pantalla: "6.5 pulgadas Super AMOLED",
-            almacenamiento: "128GB",
-            memoriaRam: "4GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 13,
-        sku: "CEL-SAM-008",
-        marca: "Samsung",
-        modelo: "Galaxy A25 5G",
-        imagenes: ["img/celulares/galaxy-a25-5g.jpg"],
-        nombre: "Samsung Galaxy A25 5G 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 399900,
-        stock: true,
-        descripcion: "El Samsung Galaxy A25 5G ofrece una experiencia completa con pantalla Super AMOLED, conectividad 5G y cámara principal de alta resolución.",
-        especificaciones: {
-            pantalla: "6.5 pulgadas Super AMOLED 120Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "6GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 14,
-        sku: "CEL-SAM-009",
-        marca: "Samsung",
-        modelo: "Galaxy A35 5G",
-        imagenes: ["img/celulares/galaxy-a35-5g.jpg"],
-        nombre: "Samsung Galaxy A35 5G 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 489900,
-        stock: true,
-        descripcion: "El Galaxy A35 5G ofrece una pantalla amplia de alta calidad, conectividad 5G y un sistema de cámaras versátil para entretenimiento y fotografía.",
-        especificaciones: {
-            pantalla: "6.6 pulgadas Super AMOLED 120Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 15,
-        sku: "CEL-SAM-010",
-        marca: "Samsung",
-        modelo: "Galaxy S24 FE",
-        imagenes: ["img/celulares/galaxy-s24-fe.jpg"],
-        nombre: "Samsung Galaxy S24 FE 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 799900,
-        stock: true,
-        descripcion: "El Samsung Galaxy S24 FE combina características de gama alta con un formato más accesible y gran fluidez en aplicaciones.",
-        especificaciones: {
-            pantalla: "6.7 pulgadas Dynamic AMOLED 2X",
-            almacenamiento: "128GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "4700mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 16,
-        sku: "CEL-XIA-001",
-        marca: "Xiaomi",
-        modelo: "Redmi Note 14",
-        imagenes: ["img/celulares/redmi-note-14.jpg"],
-        nombre: "Xiaomi Redmi Note 14 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 369900,
-        stock: true,
-        descripcion: "El Xiaomi Redmi Note 14 ofrece una pantalla amplia, almacenamiento generoso y una batería de gran capacidad.",
-        especificaciones: {
-            pantalla: "6.67 pulgadas AMOLED 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "4G",
-            camaraPrincipal: "108MP",
-            bateria: "5500mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 17,
-        sku: "CEL-XIA-002",
-        marca: "Xiaomi",
-        modelo: "Redmi Note 14 5G",
-        imagenes: ["img/celulares/redmi-note-14-5g.jpg"],
-        nombre: "Xiaomi Redmi Note 14 5G 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 429900,
-        stock: true,
-        descripcion: "El Redmi Note 14 5G suma conectividad de nueva generación, pantalla AMOLED y almacenamiento amplio.",
-        especificaciones: {
-            pantalla: "6.67 pulgadas AMOLED 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "108MP",
-            bateria: "5110mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 18,
-        sku: "CEL-XIA-003",
-        marca: "Xiaomi",
-        modelo: "Redmi 14C",
-        imagenes: ["img/celulares/redmi-14c.jpg"],
-        nombre: "Xiaomi Redmi 14C 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 249900,
-        stock: true,
-        descripcion: "El Xiaomi Redmi 14C es una opción económica con pantalla grande y batería de larga duración.",
-        especificaciones: {
-            pantalla: "6.88 pulgadas HD+ 120Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "4GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "5160mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 19,
-        sku: "CEL-XIA-004",
-        marca: "Xiaomi",
-        modelo: "Poco X6 Pro",
-        imagenes: ["img/celulares/poco-x6-pro.jpg"],
-        nombre: "POCO X6 Pro 5G 512GB",
-        categoria: "Celulares",
-        subcategoria: "Gaming",
-        precioOferta: 599900,
-        stock: true,
-        descripcion: "El POCO X6 Pro está orientado a usuarios que buscan alto rendimiento para juegos y aplicaciones exigentes.",
-        especificaciones: {
-            pantalla: "6.67 pulgadas AMOLED 120Hz",
-            almacenamiento: "512GB",
-            memoriaRam: "12GB",
-            conectividad: "5G",
-            camaraPrincipal: "64MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 20,
-        sku: "CEL-MOT-001",
-        marca: "Motorola",
-        modelo: "Moto G55 5G",
-        imagenes: ["img/celulares/moto-g55-5g.jpg"],
-        nombre: "Motorola Moto G55 5G 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 399900,
-        stock: true,
-        descripcion: "El Motorola Moto G55 5G ofrece una experiencia equilibrada con pantalla fluida, conectividad 5G y batería de gran capacidad.",
-        especificaciones: {
-            pantalla: "6.5 pulgadas Full HD+ 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 21,
-        sku: "CEL-MOT-002",
-        marca: "Motorola",
-        modelo: "Moto G35 5G",
-        imagenes: ["img/celulares/moto-g35-5g.jpg"],
-        nombre: "Motorola Moto G35 5G 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 299900,
-        stock: true,
-        descripcion: "El Moto G35 5G es un smartphone accesible que incorpora conectividad 5G y pantalla de alta resolución.",
-        especificaciones: {
-            pantalla: "6.72 pulgadas Full HD+ 120Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "4GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 22,
-        sku: "CEL-MOT-003",
-        marca: "Motorola",
-        modelo: "Moto G24",
-        imagenes: ["img/celulares/moto-g24.jpg"],
-        nombre: "Motorola Moto G24 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 249900,
-        stock: true,
-        descripcion: "El Motorola Moto G24 es una alternativa económica para usuarios que buscan un equipo confiable para llamadas y redes sociales.",
-        especificaciones: {
-            pantalla: "6.56 pulgadas HD+ 90Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "8GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 23,
-        sku: "CEL-MOT-004",
-        marca: "Motorola",
-        modelo: "Moto G85 5G",
-        imagenes: ["img/celulares/moto-g85-5g.jpg"],
-        nombre: "Motorola Moto G85 5G 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 449900,
-        stock: true,
-        descripcion: "El Moto G85 5G combina una pantalla curva de alta calidad, conectividad 5G y una batería preparada para jornadas extensas.",
-        especificaciones: {
-            pantalla: "6.67 pulgadas pOLED 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 24,
-        sku: "CEL-MOT-005",
-        marca: "Motorola",
-        modelo: "Edge 50 Fusion",
-        imagenes: ["img/celulares/motorola-edge-50-fusion.jpg"],
-        nombre: "Motorola Edge 50 Fusion 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 599900,
-        stock: true,
-        descripcion: "El Motorola Edge 50 Fusion ofrece un diseño moderno junto con una pantalla pOLED de alta frecuencia y cámaras avanzadas.",
-        especificaciones: {
-            pantalla: "6.7 pulgadas pOLED 144Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 25,
-        sku: "CEL-TEC-001",
-        marca: "Tecno",
-        modelo: "Spark 30C",
-        imagenes: ["img/celulares/tecno-spark-30c.jpg"],
-        nombre: "Tecno Spark 30C 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 229900,
-        stock: true,
-        descripcion: "El Tecno Spark 30C es una opción económica con pantalla amplia y batería de gran capacidad para el día a día.",
-        especificaciones: {
-            pantalla: "6.67 pulgadas HD+ 120Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "4GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 26,
-        sku: "CEL-TEC-002",
-        marca: "Tecno",
-        modelo: "Camon 30",
-        imagenes: ["img/celulares/tecno-camon-30.jpg"],
-        nombre: "Tecno Camon 30 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 399900,
-        stock: true,
-        descripcion: "El Tecno Camon 30 está enfocado en fotografía y entretenimiento, incorporando una pantalla AMOLED y alta resolución.",
-        especificaciones: {
-            pantalla: "6.78 pulgadas AMOLED 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 27,
-        sku: "CEL-RED-001",
-        marca: "Redmi",
-        modelo: "Redmi 13C",
-        imagenes: ["img/celulares/redmi-13c.jpg"],
-        nombre: "Redmi 13C 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 229900,
-        stock: true,
-        descripcion: "El Redmi 13C es un smartphone económico diseñado para las tareas esenciales del día a día.",
-        especificaciones: {
-            pantalla: "6.74 pulgadas HD+ 90Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "4GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 28,
-        sku: "CEL-RED-002",
-        marca: "Redmi",
-        modelo: "Redmi Note 13",
-        imagenes: ["img/celulares/redmi-note-13.jpg"],
-        nombre: "Redmi Note 13 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 329900,
-        stock: true,
-        descripcion: "El Redmi Note 13 ofrece una pantalla AMOLED de alta calidad y una cámara principal de alta resolución.",
-        especificaciones: {
-            pantalla: "6.67 pulgadas AMOLED 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "4G",
-            camaraPrincipal: "108MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 29,
-        sku: "CEL-REAL-001",
-        marca: "Realme",
-        modelo: "C75",
-        imagenes: ["img/celulares/realme-c75.jpg"],
-        nombre: "Realme C75 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 319900,
-        stock: true,
-        descripcion: "El Realme C75 combina una pantalla amplia, almacenamiento generoso y una batería de gran capacidad.",
-        especificaciones: {
-            pantalla: "6.72 pulgadas Full HD+ 90Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "6000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 30,
-        sku: "CEL-REAL-002",
-        marca: "Realme",
-        modelo: "C61",
-        imagenes: ["img/celulares/realme-c61.jpg"],
-        nombre: "Realme C61 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 249900,
-        stock: true,
-        descripcion: "El Realme C61 es un smartphone accesible para comunicación, redes sociales y navegación.",
-        especificaciones: {
-            pantalla: "6.74 pulgadas HD+ 90Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "6GB",
-            conectividad: "4G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 31,
-        sku: "CEL-NOK-001",
-        marca: "Nokia",
-        modelo: "G42 5G",
-        imagenes: ["img/celulares/nokia-g42-5g.jpg"],
-        nombre: "Nokia G42 5G 128GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 329900,
-        stock: true,
-        descripcion: "El Nokia G42 5G ofrece conectividad de alta velocidad, pantalla fluida y batería de larga duración.",
-        especificaciones: {
-            pantalla: "6.56 pulgadas HD+ 90Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "6GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 32,
-        sku: "CEL-MOT-006",
-        marca: "Motorola",
-        modelo: "Moto E14",
-        imagenes: ["img/celulares/moto-e14.jpg"],
-        nombre: "Motorola Moto E14 64GB",
-        categoria: "Celulares",
-        subcategoria: "Económicos",
-        precioOferta: 189900,
-        stock: true,
-        descripcion: "El Motorola Moto E14 es una alternativa económica para quienes buscan un teléfono sencillo y funcional.",
-        especificaciones: {
-            pantalla: "6.56 pulgadas HD+ 90Hz",
-            almacenamiento: "64GB",
-            memoriaRam: "2GB",
-            conectividad: "4G",
-            camaraPrincipal: "13MP",
-            bateria: "5000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 33,
-        sku: "CEL-SAM-011",
-        marca: "Samsung",
-        modelo: "Galaxy Z Flip 6",
-        imagenes: ["img/celulares/galaxy-z-flip-6.jpg"],
-        nombre: "Samsung Galaxy Z Flip 6 256GB",
-        categoria: "Celulares",
-        subcategoria: "Plegables",
-        precioOferta: 1199900,
-        stock: true,
-        descripcion: "El Galaxy Z Flip 6 combina un formato plegable compacto con tecnología de alto rendimiento.",
-        especificaciones: {
-            pantalla: "6.7 pulgadas Dynamic AMOLED 2X",
-            almacenamiento: "256GB",
-            memoriaRam: "12GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "4000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 34,
-        sku: "CEL-SAM-012",
-        marca: "Samsung",
-        modelo: "Galaxy Z Fold 6",
-        imagenes: ["img/celulares/galaxy-z-fold-6.jpg"],
-        nombre: "Samsung Galaxy Z Fold 6 512GB",
-        categoria: "Celulares",
-        subcategoria: "Plegables",
-        precioOferta: 1999900,
-        stock: true,
-        descripcion: "El Galaxy Z Fold 6 está diseñado para quienes buscan una experiencia similar a la de una tablet en un dispositivo plegable.",
-        especificaciones: {
-            pantalla: "7.6 pulgadas Dynamic AMOLED 2X",
-            almacenamiento: "512GB",
-            memoriaRam: "12GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "4400mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 35,
-        sku: "CEL-APL-006",
-        marca: "Apple",
-        modelo: "iPhone 16 Pro",
-        imagenes: ["img/celulares/iphone-16-pro.jpg"],
-        nombre: "Apple iPhone 16 Pro 128GB",
-        categoria: "Celulares",
-        subcategoria: "iPhone",
-        precioOferta: 1599900,
-        stock: true,
-        descripcion: "El iPhone 16 Pro combina un diseño premium con un potente rendimiento y un sistema de cámaras avanzado.",
-        especificaciones: {
-            pantalla: "6.3 pulgadas Super Retina XDR 120Hz",
-            almacenamiento: "128GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "48MP",
-            sistema: "iOS",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 36,
-        sku: "CEL-APL-007",
-        marca: "Apple",
-        modelo: "iPhone 16 Pro Max",
-        imagenes: ["img/celulares/iphone-16-pro-max.jpg"],
-        nombre: "Apple iPhone 16 Pro Max 256GB",
-        categoria: "Celulares",
-        subcategoria: "iPhone",
-        precioOferta: 1899900,
-        stock: true,
-        descripcion: "El iPhone 16 Pro Max ofrece una pantalla de gran tamaño, rendimiento de alta gama y un sistema de cámaras profesional.",
-        especificaciones: {
-            pantalla: "6.9 pulgadas Super Retina XDR 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "48MP",
-            sistema: "iOS",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 37,
-        sku: "CEL-XIA-005",
-        marca: "Xiaomi",
-        modelo: "Poco X7 Pro",
-        imagenes: ["img/celulares/poco-x7-pro.jpg"],
-        nombre: "POCO X7 Pro 5G 256GB",
-        categoria: "Celulares",
-        subcategoria: "Gaming",
-        precioOferta: 649900,
-        stock: true,
-        descripcion: "El POCO X7 Pro está orientado a usuarios que buscan alto rendimiento para juegos y aplicaciones exigentes.",
-        especificaciones: {
-            pantalla: "6.67 pulgadas AMOLED 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "6000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 38,
-        sku: "CEL-MOT-007",
-        marca: "Motorola",
-        modelo: "Edge 50 Pro",
-        imagenes: ["img/celulares/motorola-edge-50-pro.jpg"],
-        nombre: "Motorola Edge 50 Pro 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 749900,
-        stock: true,
-        descripcion: "El Motorola Edge 50 Pro combina diseño premium, pantalla pOLED de alta resolución y cámaras avanzadas.",
-        especificaciones: {
-            pantalla: "6.7 pulgadas pOLED 144Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "12GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "4500mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 39,
-        sku: "CEL-SAM-013",
-        marca: "Samsung",
-        modelo: "Galaxy S24",
-        imagenes: ["img/celulares/galaxy-s24.jpg"],
-        nombre: "Samsung Galaxy S24 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 899900,
-        stock: true,
-        descripcion: "El Samsung Galaxy S24 ofrece un diseño compacto, pantalla Dynamic AMOLED de alta calidad y rendimiento de gama alta.",
-        especificaciones: {
-            pantalla: "6.2 pulgadas Dynamic AMOLED 2X 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "50MP",
-            bateria: "4000mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
-    },
-    {
-        id: 40,
-        sku: "CEL-XIA-006",
-        marca: "Xiaomi",
-        modelo: "Redmi Note 14 Pro 5G",
-        imagenes: ["img/celulares/redmi-note-14-pro-5g.jpg"],
-        nombre: "Xiaomi Redmi Note 14 Pro 5G 256GB",
-        categoria: "Celulares",
-        subcategoria: "Smartphones",
-        precioOferta: 529900,
-        stock: true,
-        descripcion: "El Redmi Note 14 Pro 5G combina una pantalla AMOLED de alta frecuencia, cámara de alta resolución y conectividad 5G.",
-        especificaciones: {
-            pantalla: "6.67 pulgadas AMOLED 120Hz",
-            almacenamiento: "256GB",
-            memoriaRam: "8GB",
-            conectividad: "5G",
-            camaraPrincipal: "200MP",
-            bateria: "5500mAh",
-            sistema: "Android",
-            garantia: "Garantía oficial"
-        }
     }
 ];
 
@@ -1751,11 +1090,13 @@ const productos = [
     ...arrayHogarElectro
 ];
 
-let carrito = [];
+// Cargar carrito desde LocalStorage si existe
+let carrito = JSON.parse(localStorage.getItem('logistica_nova_carrito')) || [];
 let vistaActual = 'carrito';
 let metodoPagoGlobal = 'transferencia';
 let cuotasGlobal = 1;
 let categoriaSeleccionada = 'Todas';
+let textoBusqueda = '';
 let localidadSeleccionadaGlobal = 'CABA';
 const PRODUCTOS_POR_PAGINA = 12;
 let paginaActual = 1;
@@ -1770,6 +1111,17 @@ function generarCodigoSeguimiento11Digitos() {
         codigo += Math.floor(Math.random() * 10);
     }
     return codigo;
+}
+
+function guardarCarritoStorage() {
+    localStorage.setItem('logistica_nova_carrito', JSON.stringify(carrito));
+}
+
+function buscarProductos() {
+    const input = document.getElementById('searchInput');
+    textoBusqueda = input.value.toLowerCase().trim();
+    paginaActual = 1;
+    renderizarProductos();
 }
 
 function filtrarCategoria(categoria, botonElemento) {
@@ -1825,12 +1177,21 @@ function renderizarProductos() {
     gridContainer.innerHTML = '';
     paginacionContainer.innerHTML = '';
 
-    const productosFiltrados = categoriaSeleccionada === 'Todas'
+    let productosFiltrados = categoriaSeleccionada === 'Todas'
         ? productos
         : productos.filter(p => p.categoria.toLowerCase() === categoriaSeleccionada.toLowerCase());
 
+    if (textoBusqueda !== '') {
+        productosFiltrados = productosFiltrados.filter(p => 
+            p.nombre.toLowerCase().includes(textoBusqueda) || 
+            p.marca.toLowerCase().includes(textoBusqueda) || 
+            p.modelo.toLowerCase().includes(textoBusqueda) ||
+            p.descripcion.toLowerCase().includes(textoBusqueda)
+        );
+    }
+
     if (productosFiltrados.length === 0) {
-        gridContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:30px;">No hay productos disponibles en esta categoría.</div>`;
+        gridContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:30px;">No se encontraron productos que coincidan con la búsqueda.</div>`;
         return;
     }
 
@@ -1919,6 +1280,7 @@ function agregarAlCarrito(id) {
         carrito.push({ ...producto, cantidad: 1 });
     }
     actualizarContadorCarrito();
+    guardarCarritoStorage();
     vistaActual = 'carrito';
     toggleCart(true);
 }
@@ -1932,12 +1294,14 @@ function cambiarCantidad(id, cambio) {
         }
     }
     actualizarContadorCarrito();
+    guardarCarritoStorage();
     renderizarContenidoDrawer();
 }
 
 function eliminarDelCarrito(id) {
     carrito = carrito.filter(i => i.id !== id);
     actualizarContadorCarrito();
+    guardarCarritoStorage();
     renderizarContenidoDrawer();
 }
 
