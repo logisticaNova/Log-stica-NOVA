@@ -987,18 +987,50 @@ export const arrayCelulares = [
 
 export const arrayGaming = [
     {
-        id: 41,
-        sku: "GAM-NOTEBOOK-ASUS",
-        marca: "Asus",
-        modelo: "TUF Gaming F15",
-        nombre: "Notebook Gamer Asus TUF F15 144Hz",
+        id: 79,
+        sku: "GAM-PS5-003",
+        marca: "Sony",
+        modelo: "PlayStation 5 Pro",
+        imagenes: ["https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=600&q=80"],
+        nombre: "Sony PlayStation 5 Pro",
         categoria: "Gaming",
-        subcategoria: "Laptops",
-        precioOferta: 1450000,
+        subcategoria: "Consolas",
+        precioOferta: 1299999,
         stock: true,
-        descripcion: "Diseñada para gaming serio y multitarea pesada con procesador de alta potencia y refrigeración optimizada.",
-        especificaciones: { pantalla: "15.6 144Hz", almacenamiento: "512GB SSD", ram: "16GB", gpu: "RTX 4050" },
-        imagenes: ["https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80"]
+        descripcion: "La PlayStation 5 Pro está orientada a jugadores que buscan una experiencia gráfica superior en juegos compatibles. Ofrece mayor capacidad de procesamiento gráfico y tecnologías destinadas a mejorar la calidad visual, manteniendo el acceso al ecosistema de juegos de PlayStation 5.",
+        especificaciones: {
+            almacenamiento: "SSD 2TB",
+            resolucion: "Hasta 4K",
+            conectividad: "Wi-Fi y Bluetooth",
+            unidad_optica: "Digital",
+            tecnologia: "Ray Tracing avanzado",
+            hdr: "Compatible",
+            puerto: "HDMI 2.1",
+            garantia: "Garantía oficial"
+        }
+    },
+    {
+        id: 80,
+        sku: "GAM-PC-011",
+        marca: "Gamer",
+        modelo: "Ryzen 5 5600X RTX 4060",
+        imagenes: ["https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80"],
+        nombre: "PC Gamer Ryzen 5 5600X RTX 4060",
+        categoria: "Gaming",
+        subcategoria: "Computadoras Gamer",
+        precioOferta: 1199999,
+        stock: true,
+        descripcion: "Esta PC Gamer está orientada a usuarios que buscan una configuración dedicada para videojuegos modernos. Su procesador Ryzen 5 y tarjeta gráfica NVIDIA GeForce RTX permiten disfrutar de juegos con gráficos avanzados, mientras que los 16GB de RAM y el almacenamiento SSD ofrecen una plataforma equilibrada para gaming, edición y productividad.",
+        especificaciones: {
+            procesador: "AMD Ryzen 5 5600X",
+            memoria_ram: "16GB",
+            almacenamiento: "SSD 1TB",
+            graficos: "NVIDIA GeForce RTX 4060",
+            sistema: "Windows",
+            conectividad: "Wi-Fi",
+            gabinete: "Gamer RGB",
+            garantia: "Garantía"
+        }
     }
 ];
 
