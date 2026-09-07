@@ -1908,7 +1908,7 @@ export const arrayGaming = [
     }
 ];
 
-exportexport const arrayTelevisoresMonitores = [
+export const arrayTelevisoresMonitores = [
     {
         id: 81,
         sku: "MON-PHI-22-081",
