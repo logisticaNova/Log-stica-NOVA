@@ -149,6 +149,60 @@ header p {
     padding: 0 14px;
 }
 
+
+/* ==========================================
+   AVISO DE MANTENIMIENTO
+   ========================================== */
+
+.aviso-mantenimiento {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 22px;
+    padding: 16px 20px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-left: 5px solid #f97316;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+    text-align: left;
+}
+
+.aviso-mantenimiento h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #c2410c;
+}
+
+.aviso-mantenimiento p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #7c2d12;
+}
+
+@media (max-width: 600px) {
+
+    .aviso-mantenimiento {
+        margin: 0 0 18px;
+        padding: 14px 15px;
+    }
+
+    .aviso-mantenimiento h3 {
+        font-size: 15px;
+    }
+
+    .aviso-mantenimiento p {
+        font-size: 13px;
+    }
+
+}
+
+
+/* ==========================================
+   BUSCADOR
+   ========================================== */
+
 .search-wrapper {
     max-width: 600px;
     margin: 0 auto 16px;
@@ -644,6 +698,24 @@ header p {
         y opciones de pago flexibles.
     </p>
 </header>
+
+
+<!-- ==========================================
+     AVISO DE MANTENIMIENTO
+     ========================================== -->
+
+<div class="aviso-mantenimiento">
+
+    <h3>
+        Aviso de Mantenimiento
+    </h3>
+
+    <p>
+        "La página se encuentra en mantenimiento y algunas imágenes pueden no coincidir exactamente con el producto. Podés realizar tu pedido con total tranquilidad."
+    </p>
+
+</div>
+
 
 <div class="search-wrapper">
     <input
@@ -1180,10 +1252,6 @@ function renderizarProductos() {
     paginacionContainer.innerHTML = '';
 
 
-    // ------------------------------------------
-    // FILTRO CATEGORÍA
-    // ------------------------------------------
-
     let productosFiltrados =
         categoriaSeleccionada === 'Todas'
             ? [...productos]
@@ -1202,10 +1270,6 @@ function renderizarProductos() {
 
             });
 
-
-    // ------------------------------------------
-    // BÚSQUEDA
-    // ------------------------------------------
 
     if (textoBusqueda !== '') {
 
@@ -1256,10 +1320,6 @@ function renderizarProductos() {
     }
 
 
-    // ------------------------------------------
-    // SIN RESULTADOS
-    // ------------------------------------------
-
     if (productosFiltrados.length === 0) {
 
         gridContainer.innerHTML = `
@@ -1277,10 +1337,6 @@ function renderizarProductos() {
     }
 
 
-    // ------------------------------------------
-    // PAGINACIÓN
-    // ------------------------------------------
-
     const totalPaginas =
         Math.ceil(
             productosFiltrados.length /
@@ -1288,16 +1344,11 @@ function renderizarProductos() {
         );
 
     if (paginaActual > totalPaginas) {
-
-        paginaActual =
-            totalPaginas;
-
+        paginaActual = totalPaginas;
     }
 
     if (paginaActual < 1) {
-
         paginaActual = 1;
-
     }
 
 
@@ -1315,10 +1366,6 @@ function renderizarProductos() {
             fin
         );
 
-
-    // ------------------------------------------
-    // TARJETAS
-    // ------------------------------------------
 
     productosPagina.forEach(producto => {
 
@@ -1365,10 +1412,6 @@ function renderizarProductos() {
         }
 
 
-        // --------------------------------------
-        // IMÁGENES
-        // --------------------------------------
-
         const imagenes =
             Array.isArray(
                 producto.imagenes
@@ -1411,10 +1454,6 @@ function renderizarProductos() {
         );
 
 
-        // --------------------------------------
-        // DESCRIPCIÓN
-        // --------------------------------------
-
         const descripcion =
             String(
                 producto.descripcion || ''
@@ -1429,10 +1468,6 @@ function renderizarProductos() {
                 50
             );
 
-
-        // --------------------------------------
-        // CARD
-        // --------------------------------------
 
         const card =
             document.createElement('div');
@@ -1563,10 +1598,6 @@ function renderizarProductos() {
 
     });
 
-
-    // ------------------------------------------
-    // BOTONES DE PAGINACIÓN
-    // ------------------------------------------
 
     if (totalPaginas > 1) {
 
@@ -2005,10 +2036,6 @@ function renderizarContenidoDrawer() {
     }
 
 
-    // ------------------------------------------
-    // CARRITO VACÍO
-    // ------------------------------------------
-
     if (carrito.length === 0) {
 
         if (drawerTitle) {
@@ -2041,10 +2068,6 @@ function renderizarContenidoDrawer() {
         return;
     }
 
-
-    // ------------------------------------------
-    // VISTA CARRITO
-    // ------------------------------------------
 
     if (vistaActual === 'carrito') {
 
@@ -2410,10 +2433,6 @@ function renderizarContenidoDrawer() {
 
     }
 
-
-    // ------------------------------------------
-    // VISTA FORMULARIO
-    // ------------------------------------------
 
     else if (
         vistaActual ===
@@ -2876,4 +2895,4 @@ actualizarContadorCarrito();
 </script>
 
 </body>
-</html>
+    </html>
