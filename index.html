@@ -1336,7 +1336,7 @@
                     type="text"
                     id="trackingInput"
                     class="tracking-input"
-                    placeholder="Ingresá tu código de seguimiento (ej: NV-NLQ4XMJU)"
+                    placeholder="Ingresá tu código de seguimiento (ej: 12345678901)"
                     onkeydown="if(event.key === 'Enter') buscarEnvio()"
                 >
 
@@ -2007,20 +2007,7 @@
 
         const envios = {
 
-            "NV-7GTNQFMN": {
-                comprador: "Cliente General",
-                destino: "Dirección de destino",
-                provincia: "Buenos Aires",
-                cp: "1800",
-                demora: "24 a 48 hs",
-                envio: "$ 12.500",
-                total: "$ 45.000",
-                producto: "Producto de la orden",
-                etapa: 1, 
-                fecha: "03/09/2026 - 19:35 hs"
-            },
-
-            "NV-NLQ4XMJU": {
+            "12345678901": {
                 comprador: "Tatuada gonzales",
                 destino: "Calletin 78, Lomas de Zamora",
                 provincia: "Buenos Aires",
@@ -2048,9 +2035,9 @@
             const resultCard =
                 document.getElementById("resultCard");
 
-            if (input === "") {
+            if (input.length !== 11) {
                 alert(
-                    "Por favor, ingresá un número de seguimiento válido."
+                    "El código de seguimiento debe tener exactamente 11 dígitos."
                 );
                 resultCard.classList.remove("active");
                 return;
