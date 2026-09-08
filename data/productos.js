@@ -790,160 +790,136 @@ export const arrayCelulares = [
             garantia: "Garantía oficial"
         }
     },
-        {
-        id: 112,
-        sku: "TAB-SAM-A11-001",
-        marca: "Samsung",
-        modelo: "Galaxy Tab A11",
-        imagen: "img/celulares/samsung-galaxy-tab-a11.jpg",
-        nombre: "Samsung Galaxy Tab A11 8.7\" 4GB 64GB",
-        categoria: "Celulares",
-        subcategoria: "Tablets",
-        precio0ferta: 254999,
-        moneda: "ARS",
-        stock: 15,
-        descripcion: "Tablet compacta y económica, ideal para estudiar, navegar por internet, utilizar redes sociales, mirar videos y realizar tareas cotidianas.",
-        especificaciones: {
-            pantalla: "8.7 pulgadas",
-            resolucion: "1340 x 800 píxeles",
-            tecnologia: "TFT",
-            procesador: "Octa-Core",
-            ram: "4 GB",
-            almacenamiento: "64 GB",
-            almacenamientoExpandible: "Sí, mediante microSD",
-            sistemaOperativo: "Android",
-            conectividad: "Wi-Fi",
-            camaraTrasera: "8 MP",
-            camaraFrontal: "5 MP",
-            bateria: "5100 mAh",
-            bluetooth: "Sí",
-            puerto: "USB-C"
-        }
-    },
-
     {
-        id: 113,
-        sku: "TAB-TCL-10G-001",
-        marca: "TCL",
-        modelo: "TAB 10 Gen 2",
-        imagen: "img/celulares/tcl-tab-10-gen2.jpg",
-        nombre: "TCL TAB 10 Gen 2 10.1\" 4GB 64GB",
-        categoria: "Celulares",
-        subcategoria: "Tablets",
-        precio0ferta: 349999,
-        moneda: "ARS",
-        stock: 12,
-        descripcion: "Tablet de pantalla amplia pensada para entretenimiento, estudio, navegación web y uso diario. Su almacenamiento permite instalar aplicaciones y guardar contenido multimedia.",
-        especificaciones: {
-            pantalla: "10.1 pulgadas",
-            resolucion: "1920 x 1200 píxeles",
-            tecnologia: "IPS",
-            procesador: "Octa-Core",
-            ram: "4 GB",
-            almacenamiento: "64 GB",
-            almacenamientoExpandible: "Sí, mediante microSD",
-            sistemaOperativo: "Android",
-            conectividad: "Wi-Fi",
-            camaraTrasera: "8 MP",
-            camaraFrontal: "5 MP",
-            bateria: "6000 mAh",
-            bluetooth: "Sí",
-            puerto: "USB-C"
-        }
-    },
+   
+    id: 112,
+    sku: "TAB-SAM-A11-001",
+    marca: "Samsung",
+    modelo: "Galaxy Tab A11",
+    imagenes: [
+        "https://i.postimg.cc/REEMPLAZAR/samsung-galaxy-tab-a11-1.jpg",
+        "https://i.postimg.cc/REEMPLAZAR/samsung-galaxy-tab-a11-2.jpg"
+    ],
+    nombre: "Samsung Galaxy Tab A11 8.7\" 64GB",
+    categoria: "Celulares",
+    subcategoria: "Tablets",
+    precioOferta: 254999,
+    stock: true,
+    descripcion: "Tablet Samsung compacta y económica, ideal para estudiar, navegar por internet, mirar videos, utilizar redes sociales y realizar tareas cotidianas.",
+    especificaciones: {
+        pantalla: "8.7 pulgadas TFT",
+        almacenamiento: "64GB",
+        memoriaRAM: "4GB",
+        camara: "8MP trasera / 5MP frontal",
+        conectividad: "Wi-Fi / Bluetooth",
+        sistema: "Android",
+        garantia: "Garantía oficial"
+    }
+},
 
-    {
-        id: 114,
-        sku: "TAB-ACE-A10-001",
-        marca: "Acer",
-        modelo: "Iconia A10",
-        imagen: "img/celulares/acer-iconia-a10.jpg",
-        nombre: "Acer Iconia A10 10.1\" 4GB 64GB",
-        categoria: "Celulares",
-        subcategoria: "Tablets",
-        precio0ferta: 159999,
-        moneda: "ARS",
-        stock: 10,
-        descripcion: "Tablet económica con pantalla de 10.1 pulgadas, pensada para navegación, reproducción de contenido, lectura, clases virtuales y tareas básicas.",
-        especificaciones: {
-            pantalla: "10.1 pulgadas",
-            resolucion: "1280 x 800 píxeles",
-            tecnologia: "IPS",
-            procesador: "Octa-Core",
-            ram: "4 GB",
-            almacenamiento: "64 GB",
-            almacenamientoExpandible: "Sí, mediante microSD",
-            sistemaOperativo: "Android",
-            conectividad: "Wi-Fi",
-            camaraTrasera: "5 MP",
-            camaraFrontal: "2 MP",
-            bateria: "6000 mAh",
-            bluetooth: "Sí",
-            puerto: "USB-C"
-        }
-    },
+{
+    id: 113,
+    sku: "TAB-TCL-10G-001",
+    marca: "TCL",
+    modelo: "TAB 10 Gen 2",
+    imagenes: [
+        "https://i.postimg.cc/REEMPLAZAR/tcl-tab-10-gen2-1.jpg",
+        "https://i.postimg.cc/REEMPLAZAR/tcl-tab-10-gen2-2.jpg"
+    ],
+    nombre: "TCL TAB 10 Gen 2 10.1\" 64GB",
+    categoria: "Celulares",
+    subcategoria: "Tablets",
+    precioOferta: 349999,
+    stock: true,
+    descripcion: "Tablet TCL de pantalla amplia, pensada para entretenimiento, estudio, navegación web, reproducción multimedia y uso diario.",
+    especificaciones: {
+        pantalla: "10.1 pulgadas IPS",
+        almacenamiento: "64GB",
+        memoriaRAM: "4GB",
+        camara: "8MP trasera / 5MP frontal",
+        conectividad: "Wi-Fi / Bluetooth",
+        sistema: "Android",
+        garantia: "Garantía oficial"
+    }
+},
 
-    {
-        id: 115,
-        sku: "TAB-SAN-7-001",
-        marca: "Sansei",
-        modelo: "TS7A232",
-        imagen: "img/celulares/sansei-ts7a232.jpg",
-        nombre: "Sansei TS7A232 Tablet 7\" 2GB 32GB",
-        categoria: "Celulares",
-        subcategoria: "Tablets",
-        precio0ferta: 92999,
-        moneda: "ARS",
-        stock: 20,
-        descripcion: "Tablet compacta y económica para tareas básicas, navegación, reproducción multimedia, aplicaciones sencillas y uso infantil.",
-        especificaciones: {
-            pantalla: "7 pulgadas",
-            resolucion: "1024 x 600 píxeles",
-            tecnologia: "LCD",
-            procesador: "Quad-Core",
-            ram: "2 GB",
-            almacenamiento: "32 GB",
-            almacenamientoExpandible: "Sí, mediante microSD",
-            sistemaOperativo: "Android",
-            conectividad: "Wi-Fi",
-            camaraTrasera: "2 MP",
-            camaraFrontal: "0.3 MP",
-            bateria: "3000 mAh",
-            bluetooth: "Sí",
-            puerto: "Micro USB"
-        }
-    },
+{
+    id: 114,
+    sku: "TAB-ACE-A10-001",
+    marca: "Acer",
+    modelo: "Iconia A10",
+    imagenes: [
+        "https://i.postimg.cc/REEMPLAZAR/acer-iconia-a10-1.jpg",
+        "https://i.postimg.cc/REEMPLAZAR/acer-iconia-a10-2.jpg"
+    ],
+    nombre: "Acer Iconia A10 10.1\" 64GB",
+    categoria: "Celulares",
+    subcategoria: "Tablets",
+    precioOferta: 159999,
+    stock: true,
+    descripcion: "Tablet Acer económica con pantalla de 10.1 pulgadas, adecuada para navegación, lectura, clases virtuales, reproducción multimedia y tareas básicas.",
+    especificaciones: {
+        pantalla: "10.1 pulgadas IPS",
+        almacenamiento: "64GB",
+        memoriaRAM: "4GB",
+        camara: "5MP trasera / 2MP frontal",
+        conectividad: "Wi-Fi / Bluetooth",
+        sistema: "Android",
+        garantia: "Garantía oficial"
+    }
+},
 
-    {
-        id: 116,
-        sku: "TAB-LEN-10-001",
-        marca: "Lenovo",
-        modelo: "Tab 10",
-        imagen: "img/celulares/lenovo-tab-10.jpg",
-        nombre: "Lenovo Tab 10\" 4GB 128GB",
-        categoria: "Celulares",
-        subcategoria: "Tablets",
-        precio0ferta: 435319,
-        moneda: "ARS",
-        stock: 8,
-        descripcion: "Tablet Lenovo de pantalla amplia y almacenamiento de 128 GB, ideal para entretenimiento, estudio, navegación, videollamadas y aplicaciones de uso cotidiano.",
-        especificaciones: {
-            pantalla: "10 pulgadas",
-            resolucion: "1920 x 1200 píxeles",
-            tecnologia: "IPS",
-            procesador: "Octa-Core",
-            ram: "4 GB",
-            almacenamiento: "128 GB",
-            almacenamientoExpandible: "Sí, mediante microSD",
-            sistemaOperativo: "Android",
-            conectividad: "Wi-Fi",
-            camaraTrasera: "8 MP",
-            camaraFrontal: "5 MP",
-            bateria: "5100 mAh",
-            bluetooth: "Sí",
-            puerto: "USB-C"
-        }
-    },
+{
+    id: 115,
+    sku: "TAB-SAN-7-001",
+    marca: "Sansei",
+    modelo: "TS7A232",
+    imagenes: [
+        "https://i.postimg.cc/REEMPLAZAR/sansei-ts7a232-1.jpg",
+        "https://i.postimg.cc/REEMPLAZAR/sansei-ts7a232-2.jpg"
+    ],
+    nombre: "Sansei TS7A232 Tablet 7\" 32GB",
+    categoria: "Celulares",
+    subcategoria: "Tablets",
+    precioOferta: 92999,
+    stock: true,
+    descripcion: "Tablet compacta y económica para tareas básicas, navegación, reproducción multimedia, aplicaciones sencillas y entretenimiento.",
+    especificaciones: {
+        pantalla: "7 pulgadas LCD",
+        almacenamiento: "32GB",
+        memoriaRAM: "2GB",
+        camara: "2MP trasera / 0.3MP frontal",
+        conectividad: "Wi-Fi / Bluetooth",
+        sistema: "Android",
+        garantia: "Garantía oficial"
+    }
+},
+
+{
+    id: 116,
+    sku: "TAB-LEN-10-001",
+    marca: "Lenovo",
+    modelo: "Tab 10",
+    imagenes: [
+        "https://i.postimg.cc/REEMPLAZAR/lenovo-tab-10-1.jpg",
+        "https://i.postimg.cc/REEMPLAZAR/lenovo-tab-10-2.jpg"
+    ],
+    nombre: "Lenovo Tab 10\" 128GB",
+    categoria: "Celulares",
+    subcategoria: "Tablets",
+    precioOferta: 435319,
+    stock: true,
+    descripcion: "Tablet Lenovo con pantalla amplia y 128GB de almacenamiento, ideal para entretenimiento, estudio, navegación, videollamadas y aplicaciones cotidianas.",
+    especificaciones: {
+        pantalla: "10 pulgadas IPS",
+        almacenamiento: "128GB",
+        memoriaRAM: "4GB",
+        camara: "8MP trasera / 5MP frontal",
+        conectividad: "Wi-Fi / Bluetooth",
+        sistema: "Android",
+        garantia: "Garantía oficial"
+    }
+},
 ];
 
 // ==========================================
