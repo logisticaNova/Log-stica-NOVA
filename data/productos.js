@@ -14,8 +14,7 @@ export const arrayCelulares = [
         marca: "Apple",
         modelo: "iPhone 17",
         imagenes: [
-            "https://i.postimg.cc/W4r3Rws7/image-search-1788802797575.jpg",
-            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80", 
+            "https://i.postimg.cc/W4r3Rws7/image-search-1788802797575.jpg", 
             "https://i.postimg.cc/XqDGNNm5/image-search-1788803929102.webp"
         ],
         nombre: "Apple iPhone 17 256GB",
@@ -65,8 +64,7 @@ export const arrayCelulares = [
         marca: "Apple",
         modelo: "iPhone 16",
         imagenes: [
-            "https://images.unsplash.com/photo-1592286927505-2fd8a2e0b3f4?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+            "https://i.postimg.cc/ht0XFZ2d/image-search-1788878495467.jpg"
         ],
         nombre: "Apple iPhone 16 128GB",
         categoria: "Celulares",
@@ -90,8 +88,7 @@ export const arrayCelulares = [
         marca: "Apple",
         modelo: "iPhone 16 Pro",
         imagenes: [
-            "https://images.unsplash.com/photo-1592286927505-2fd8a2e0b3f4?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+            "https://i.postimg.cc/QdM3t6XH/image-search-1788878730113.jpg"
         ],
         nombre: "Apple iPhone 16 Pro 256GB",
         categoria: "Celulares",
@@ -115,8 +112,8 @@ export const arrayCelulares = [
         marca: "Samsung",
         modelo: "Galaxy A06",
         imagenes: [
-            "https://images.unsplash.com/photo-1592286927505-2fd8a2e0b3f4?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+            "https://i.postimg.cc/mgP5JKLc/image-search-1788878867524.webp",
+            "https://i.postimg.cc/28KHQTQv/image-search-1788878887795.webp"
         ],
         nombre: "Samsung Galaxy A06 128GB",
         categoria: "Celulares",
@@ -141,8 +138,8 @@ export const arrayCelulares = [
         marca: "Samsung",
         modelo: "Galaxy A16",
         imagenes: [
-            "https://images.unsplash.com/photo-1592286927505-2fd8a2e0b3f4?auto=format&fit=crop&w=600&q=80",
-            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+            "https://i.postimg.cc/cLG3GnZX/image-search-1788879060557.jpg",
+            "https://i.postimg.cc/d0tmgyj0/image-search-1788879197022.jpg"
         ],
         nombre: "Samsung Galaxy A16 128GB",
         categoria: "Celulares",
