@@ -47,6 +47,28 @@ body {
     overflow-x: hidden;
 }
 
+/* Barra superior de confianza */
+.top-trust-bar {
+    background: #111827;
+    color: #f9fafb;
+    font-size: 0.72rem;
+    padding: 7px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    font-weight: 500;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.top-trust-bar span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .navbar {
     background: rgba(255,255,255,0.96);
     backdrop-filter: blur(12px);
@@ -86,6 +108,15 @@ body {
     transition: var(--transition);
     box-shadow: 0 3px 8px rgba(37,99,235,0.18);
     flex-shrink: 0;
+}
+
+.cart-btn.bounce {
+    animation: cartBounce 0.4s ease;
+}
+
+@keyframes cartBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
 }
 
 .cart-badge {
@@ -176,9 +207,19 @@ header p {
     color: #7c2d12;
 }
 
-.search-wrapper {
-    max-width: 600px;
+.controls-wrapper {
+    max-width: 900px;
     margin: 0 auto 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search-wrapper {
+    flex: 1;
+    min-width: 260px;
 }
 
 .search-input {
@@ -190,6 +231,23 @@ header p {
     font-family: inherit;
     font-size: 0.9rem;
     outline: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.sort-wrapper {
+    width: 220px;
+}
+
+.sort-select {
+    width: 100%;
+    padding: 11px 15px;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
@@ -240,6 +298,16 @@ header p {
     display: flex;
     flex-direction: column;
     position: relative;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .badge-stock {
@@ -273,12 +341,19 @@ header p {
     justify-content: center;
     align-items: center;
     border: 1px solid #e2e8f0;
+    cursor: zoom-in;
+    position: relative;
 }
 
 .main-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.main-image-container:hover img {
+    transform: scale(1.03);
 }
 
 .thumbnails-container {
@@ -405,6 +480,11 @@ header p {
     border-radius: 9px;
     font-weight: 750;
     cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-add-cart:hover {
+    background: var(--primary-dark);
 }
 
 .paginacion {
@@ -430,6 +510,7 @@ header p {
     color: white;
 }
 
+/* Modales y Drawers */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -536,6 +617,19 @@ header p {
     border: 1px solid var(--border-color);
     font-family: inherit;
     font-size: 0.9rem;
+    transition: border-color 0.2s;
+}
+
+/* Validación visual en tiempo real con éxito/error */
+.form-group input:not(:placeholder-shown):valid,
+.form-group textarea:not(:placeholder-shown):valid {
+    border-color: var(--success-color);
+    background-color: #f0fdf4;
+}
+
+.form-group input:not(:placeholder-shown):invalid {
+    border-color: #ef4444;
+    background-color: #fef2f2;
 }
 
 .cart-summary-line {
@@ -677,6 +771,80 @@ header p {
 .btn-business { background: #128c7e; }
 .btn-web { background: #111827; }
 
+/* Notificaciones Toast */
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.toast {
+    background: #111827;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: toastIn 0.3s ease, toastOut 0.3s ease 2.7s forwards;
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastOut {
+    to { opacity: 0; transform: translateY(10px); }
+}
+
+/* Lightbox Modal para Imágenes */
+.lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
 @media (max-width: 600px) {
     .inline-group {
         flex-direction: column;
@@ -687,6 +855,13 @@ header p {
     }
     .btn-back,
     .btn-submit-order {
+        width: 100%;
+    }
+    .controls-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .sort-wrapper {
         width: 100%;
     }
 }
@@ -705,9 +880,16 @@ header p {
 
 <body>
 
+<div class="top-trust-bar">
+    <span>🔒 Compra 100% Segura</span>
+    <span>⚡ 15% OFF por Transferencia</span>
+    <span>📦 Envíos a todo el país</span>
+    <span>🛡️ Garantía Oficial</span>
+</div>
+
 <nav class="navbar">
     <div class="navbar-brand">Nova Envíos & Créditos</div>
-    <button class="cart-btn" onclick="toggleCart()">
+    <button class="cart-btn" id="cartBtnMain" onclick="toggleCart()">
         🛒 Carrito <span class="cart-badge" id="cartCount">0</span>
     </button>
 </nav>
@@ -724,8 +906,18 @@ header p {
     <p>"La página se encuentra en mantenimiento y algunas imágenes pueden no coincidir exactamente con el producto. Podés realizar tu pedido con total tranquilidad."</p>
 </div>
 
-<div class="search-wrapper">
-    <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre, marca o modelo..." oninput="buscarProductos()">
+<div class="controls-wrapper">
+    <div class="search-wrapper">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre, marca o modelo..." oninput="buscarProductos()">
+    </div>
+    <div class="sort-wrapper">
+        <select id="sortSelect" class="sort-select" onchange="ordenarProductos()">
+            <option value="recientes">Más recientes</option>
+            <option value="menor-precio">Menor precio</option>
+            <option value="mayor-precio">Mayor precio</option>
+            <option value="az">Alfabético (A-Z)</option>
+        </select>
+    </div>
 </div>
 
 <div class="filtros-wrapper">
@@ -761,6 +953,13 @@ header p {
     </div>
 </div>
 
+<div class="lightbox-modal" id="lightboxModal" onclick="cerrarLightbox(event)">
+    <button class="lightbox-close" onclick="cerrarLightbox()">&times;</button>
+    <img class="lightbox-content" id="lightboxImg" src="" alt="Ampliada">
+</div>
+
+<div id="toastContainer"></div>
+
 <script type="module">
 import { productos } from './data/productos.js';
 
@@ -779,8 +978,21 @@ let metodoPagoGlobal = 'transferencia';
 let cuotasGlobal = 1;
 let categoriaSeleccionada = 'Todas';
 let textoBusqueda = '';
+let criterioOrden = 'recientes';
 let localidadSeleccionadaGlobal = 'CABA';
 let paginaActual = 1;
+
+function mostrarToast(mensaje) {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `<span>✓</span> ${escaparHTML(mensaje)}`;
+    container.appendChild(toast);
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
 
 function formatearMoneda(valor) {
     return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(Number(valor) || 0);
@@ -795,9 +1007,6 @@ function guardarCarritoStorage() {
     localStorage.setItem('logistica_nova_carrito', JSON.stringify(carrito));
 }
 
-// ==========================================
-// GUARDAR / CARGAR DATOS DEL CLIENTE EN STORAGE
-// ==========================================
 function guardarDatosClienteStorage() {
     const datosCliente = {
         nombre: document.getElementById('nombreCliente')?.value.trim() || '',
@@ -853,6 +1062,13 @@ window.buscarProductos = function() {
     renderizarProductos();
 };
 
+window.ordenarProductos = function() {
+    const select = document.getElementById('sortSelect');
+    if (select) criterioOrden = select.value;
+    paginaActual = 1;
+    renderizarProductos();
+};
+
 window.filtrarCategoria = function(categoria, botonElemento) {
     categoriaSeleccionada = categoria;
     paginaActual = 1;
@@ -870,6 +1086,21 @@ window.cambiarImagenMiniatura = function(productoId, srcImagen, elementoThumbnai
     if (elementoThumbnail && elementoThumbnail.parentElement) {
         elementoThumbnail.parentElement.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
         elementoThumbnail.classList.add('active');
+    }
+};
+
+window.abrirLightbox = function(src) {
+    const modal = document.getElementById('lightboxModal');
+    const img = document.getElementById('lightboxImg');
+    if (!modal || !img || !src) return;
+    img.src = src;
+    modal.classList.add('active');
+};
+
+window.cerrarLightbox = function(event) {
+    if (!event || event.target.id === 'lightboxModal' || event.target.classList.contains('lightbox-close')) {
+        const modal = document.getElementById('lightboxModal');
+        if (modal) modal.classList.remove('active');
     }
 };
 
@@ -907,6 +1138,15 @@ function renderizarProductos() {
             const descripcion = String(producto.descripcion || '').toLowerCase();
             return nombre.includes(textoBusqueda) || marca.includes(textoBusqueda) || modelo.includes(textoBusqueda) || descripcion.includes(textoBusqueda);
         });
+    }
+
+    // Ordenamiento
+    if (criterioOrden === 'menor-precio') {
+        productosFiltrados.sort((a, b) => (Number(a.precioOferta) || 0) - (Number(b.precioOferta) || 0));
+    } else if (criterioOrden === 'mayor-precio') {
+        productosFiltrados.sort((a, b) => (Number(b.precioOferta) || 0) - (Number(a.precioOferta) || 0));
+    } else if (criterioOrden === 'az') {
+        productosFiltrados.sort((a, b) => String(a.nombre || '').localeCompare(String(b.nombre || '')));
     }
 
     if (productosFiltrados.length === 0) {
@@ -947,7 +1187,7 @@ function renderizarProductos() {
         card.innerHTML = `
             ${producto.stock ? `<span class="badge-stock">✓ Stock</span>` : ''}
             <div class="product-gallery-container">
-                <div class="main-image-container">
+                <div class="main-image-container" onclick="abrirLightbox('${escaparJS(imagenPrincipalInicial)}')">
                     ${imagenPrincipalInicial ? `<img id="mainImage-${producto.id}" src="${escaparHTML(imagenPrincipalInicial)}" alt="${escaparHTML(producto.nombre)}" loading="lazy" onerror="this.style.display='none';">` : `<span style="color:var(--text-muted); font-size:0.8rem;">Imagen no disponible</span>`}
                 </div>
                 <div class="thumbnails-container">${thumbnailsHTML}</div>
@@ -996,6 +1236,15 @@ window.agregarAlCarrito = function(id) {
     }
     actualizarContadorCarrito();
     guardarCarritoStorage();
+    
+    // Animación de rebote en el botón del carrito
+    const cartBtn = document.getElementById('cartBtnMain');
+    if (cartBtn) {
+        cartBtn.classList.add('bounce');
+        setTimeout(() => cartBtn.classList.remove('bounce'), 400);
+    }
+
+    mostrarToast(`¡Agregado al carrito: ${producto.nombre}!`);
     vistaActual = 'carrito';
     window.toggleCart(true);
 };
@@ -1016,6 +1265,7 @@ window.eliminarDelCarrito = function(id) {
     actualizarContadorCarrito();
     guardarCarritoStorage();
     renderizarContenidoDrawer();
+    mostrarToast("Producto eliminado del carrito");
 };
 
 function actualizarContadorCarrito() {
@@ -1213,7 +1463,7 @@ window.enviarOrdenWhatsApp = function(event, destino = 'whatsapp') {
         return;
     }
     if (carrito.length === 0) {
-        alert('El carrito está vacío.');
+        mostrarToast('El carrito está vacío.');
         return;
     }
 
@@ -1274,3 +1524,4 @@ actualizarContadorCarrito();
 
 </body>
 </html>
+
