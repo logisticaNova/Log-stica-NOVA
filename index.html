@@ -2690,88 +2690,52 @@
          * =====================================================
          * ENVÍOS REGISTRADOS
          * =====================================================
-         *
-         * IMPORTANTE:
-         *
-         * Los códigos NO se generan automáticamente.
-         *
-         * Solo funcionarán los códigos que agregues
-         * manualmente dentro de este objeto.
-         *
-         * Formato obligatorio:
-         *
-         * NV-XXXXXXX
-         *
-         * Ejemplo:
-         *
-         * NV-7895781
-         *
+         * Combinamos los pedidos guardados automáticamente en el 
+         * navegador (localStorage) con tus datos estáticos base.
          */
 
-
-        const envios = {
-
-
+        let envios = {
             "NV-7895781": {
-
                 comprador: "",
-
                 destino: "",
-
                 provincia: "",
-
                 cp: "",
-
                 demora: "",
-
                 envio: "$",
-
                 total: "$",
-
                 producto: "",
-
-                /*
-                 * 0 = En espera
-                 * 1 = Pedido recibido
-                 * 2 = Pago confirmado
-                 * 3 = Pedido confirmado
-                 * 4 = Preparación
-                 * 5 = Despachado
-                 * 6 = En tránsito
-                 * 7 = En reparto
-                 * 8 = Entregado
-                 */
-
                 etapa: 0,
-
                 fecha: ""
-
             }
-
-
-            /*
-             * PARA AGREGAR OTRO ENVÍO:
-             *
-             *
-             * "NV-1234567": {
-             *
-             *     comprador: "Juan Pérez",
-             *     destino: "Buenos Aires",
-             *     provincia: "Buenos Aires",
-             *     cp: "1400",
-             *     demora: "2 días",
-             *     envio: "$15.000",
-             *     total: "$250.000",
-             *     producto: "iPhone 17",
-             *     etapa: 6,
-             *     fecha: "08/09/2026"
-             *
-             * }
-             *
-             */
-
-
         };
+
+        // Cargar los pedidos que el cliente envió mediante el formulario y WhatsApp
+        function cargarPedidosGuardados() {
+            try {
+                const pedidosLocales = JSON.parse(localStorage.getItem('misPedidos')) || [];
+                pedidosLocales.forEach(pedido => {
+                    if (pedido.codigoEnvio) {
+                        envios[pedido.codigoEnvio.toUpperCase()] = {
+                            comprador: pedido.nombre || "Cliente",
+                            destino: pedido.destino || "A coordinar",
+                            provincia: pedido.provincia || "-",
+                            cp: pedido.cp || "-",
+                            demora: pedido.demora || "2 a 3 días",
+                            envio: pedido.envio || "$0",
+                            total: pedido.total || "$0",
+                            producto: pedido.productos || "Pedido de tienda",
+                            etapa: pedido.etapa !== undefined ? Number(pedido.etapa) : 1, // Por defecto inicia en la etapa 1
+                            fecha: pedido.fecha || new Date().toLocaleDateString()
+                        };
+                    }
+                });
+            } catch (e) {
+                console.error("Error al cargar los pedidos locales", e);
+            }
+        }
+
+        // Ejecutar al cargar la página
+        cargarPedidosGuardados();
 
 
 
@@ -3103,7 +3067,7 @@
                 isNaN(numeroEtapa)
             ) {
 
-                numeroEtapa = 0;
+                numeroEtapa = 1; // Por defecto etapa 1 si no está definido
 
             }
 
@@ -3351,4 +3315,5 @@
 
 </body>
 
-                        </html>
+</html>
+
