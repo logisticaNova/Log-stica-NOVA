@@ -208,61 +208,44 @@ header p {
 }
 
 .controls-wrapper {
-    max-width: 900px;
-    margin: 0 auto 16px;
+    max-width: 100%;
+    margin: 0 0 16px;
     display: flex;
     gap: 12px;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
 }
 
-.search-wrapper {
-    flex: 1;
-    min-width: 260px;
+.search-wrapper, .sort-wrapper {
+    width: 100%;
 }
 
-.search-input {
+.search-input, .sort-select {
     width: 100%;
     padding: 11px 15px;
     border-radius: 25px;
     border: 1px solid var(--border-color);
     background: #fff;
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 16px;
     outline: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-}
-
-.sort-wrapper {
-    width: 220px;
-}
-
-.sort-select {
-    width: 100%;
-    padding: 11px 15px;
-    border-radius: 25px;
-    border: 1px solid var(--border-color);
-    background: #fff;
-    font-family: inherit;
-    font-size: 0.85rem;
-    outline: none;
-    cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
 .filtros-wrapper {
-    margin-bottom: 22px;
-    width: 100%;
+    margin: 0 -14px 18px;
+    padding: 0 14px;
+    width: calc(100% + 28px);
     overflow: hidden;
 }
 
 .filtros {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     overflow-x: auto;
-    padding: 4px 4px 10px;
+    padding: 4px 4px 8px;
     scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
 }
 
 .filter-btn {
@@ -270,11 +253,11 @@ header p {
     background: rgba(255,255,255,0.9);
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
-    padding: 7px 14px;
+    padding: 6px 12px;
     border-radius: 22px;
     font-weight: 650;
     cursor: pointer;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
 }
 
 .filter-btn.active {
@@ -370,7 +353,7 @@ header p {
     height: 48px;
     border-radius: 6px;
     object-fit: cover;
-    cursor: pointer;
+    cursor: zoom-in;
     border: 2px solid transparent;
     background: #fff;
     flex-shrink: 0;
@@ -616,7 +599,7 @@ header p {
     border-radius: 8px;
     border: 1px solid var(--border-color);
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 16px;
     transition: border-color 0.2s;
 }
 
@@ -845,6 +828,40 @@ header p {
     cursor: pointer;
 }
 
+@media (max-width: 599px) {
+    .grid-productos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    
+    .main-image-container {
+        height: 130px;
+    }
+
+    .card-body {
+        padding: 10px;
+    }
+
+    .card-title {
+        font-size: 0.85rem;
+        min-height: 2.4em;
+    }
+
+    .price-offer {
+        font-size: 1.05rem;
+    }
+
+    .btn-add-cart {
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+
+    .thumbnail {
+        width: 38px;
+        height: 38px;
+    }
+}
+
 @media (max-width: 600px) {
     .inline-group {
         flex-direction: column;
@@ -857,12 +874,33 @@ header p {
     .btn-submit-order {
         width: 100%;
     }
+    .cart-drawer {
+        max-width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+}
+
+@media (min-width: 600px) {
     .controls-wrapper {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        max-width: 900px;
+        margin: 0 auto 16px;
+    }
+    .search-wrapper {
+        flex: 1;
     }
     .sort-wrapper {
-        width: 100%;
+        width: 220px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .payment-select,
+    .search-input,
+    .sort-select {
+        font-size: 0.9rem !important;
     }
 }
 
@@ -1140,7 +1178,6 @@ function renderizarProductos() {
         });
     }
 
-    // Ordenamiento
     if (criterioOrden === 'menor-precio') {
         productosFiltrados.sort((a, b) => (Number(a.precioOferta) || 0) - (Number(b.precioOferta) || 0));
     } else if (criterioOrden === 'mayor-precio') {
@@ -1175,7 +1212,19 @@ function renderizarProductos() {
         let thumbnailsHTML = '';
 
         imagenes.forEach((imgSrc, index) => {
-            thumbnailsHTML += `<img src="${escaparHTML(imgSrc)}" alt="${escaparHTML(producto.nombre)}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="cambiarImagenMiniatura(${producto.id}, '${escaparJS(imgSrc)}', this)" onerror="this.style.display='none'">`;
+            thumbnailsHTML += `<img src="${escaparHTML(imgSrc)}" alt="${escaparHTML(producto.nombre)}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="cambiarImagenMiniatura(${producto.id}, '${escaparJS(imgSrc)}', this)" ondblclick="abrirLightbox('${escaparJS(imgSrc)}')" onclick="cambiarImagenMiniatura(${producto.id}, '${escaparJS(imgSrc)}', this)" oncontextmenu="event.preventDefault(); abrirLightbox('${escaparJS(imgSrc)}');" onerror="this.style.display='none'">`;
+        });
+
+        // Hacemos que cada miniatura también permita abrir el zoom haciendo clic en un icono o manejando el evento secundario, o simplemente permitiendo abrir cualquier miniatura en el lightbox si se desea. Aquí actualizamos el thumbnail para que al hacer clic se seleccione, y si se hace clic secundario o se mantiene, o podemos agregar un botón de zoom. Mejor aún: actualizamos el evento del thumbnail para que se pueda ver en grande fácilmente, o agregamos un visor directo. Vamos a permitir que el thumbnail actualice la principal y con un doble clic o toque largo abra el lightbox, o mejor: añadimos un botón o hacemos que cada miniatura tenga la opción de abrir el zoom. Vamos a dejar que el click cambie la imagen principal y al hacer click en la miniatura activa o un botón rápido abra el zoom, o hagamos que cualquier miniatura abra el lightbox directamente si se desea, o mantener el cambio de miniatura y permitir zoom desde el lightbox de la principal. 
+        // Corrección solicitada: "que todas las imagenes del producto se vean con zoom". Haremos que tanto la principal como las miniaturas o un control extra permitan abrir el lightbox de esa foto específica.
+        
+        let thumbnailsConZoomHTML = '';
+        imagenes.forEach((imgSrc, index) => {
+            thumbnailsConZoomHTML += `
+                <div style="position:relative; flex-shrink:0;">
+                    <img src="${escaparHTML(imgSrc)}" alt="${escaparHTML(producto.nombre)}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="cambiarImagenMiniatura(${producto.id}, '${escaparJS(imgSrc)}', this)" onerror="this.style.display='none'">
+                    <span style="position:absolute; bottom:2px; right:2px; background:rgba(0,0,0,0.6); color:white; font-size:9px; padding:1px 3px; border-radius:3px; cursor:pointer;" onclick="abrirLightbox('${escaparJS(imgSrc)}')">🔍</span>
+                </div>`;
         });
 
         const descripcion = String(producto.descripcion || '');
@@ -1187,10 +1236,10 @@ function renderizarProductos() {
         card.innerHTML = `
             ${producto.stock ? `<span class="badge-stock">✓ Stock</span>` : ''}
             <div class="product-gallery-container">
-                <div class="main-image-container" onclick="abrirLightbox('${escaparJS(imagenPrincipalInicial)}')">
+                <div class="main-image-container" onclick="abrirLightbox(document.getElementById('mainImage-${producto.id}').src)">
                     ${imagenPrincipalInicial ? `<img id="mainImage-${producto.id}" src="${escaparHTML(imagenPrincipalInicial)}" alt="${escaparHTML(producto.nombre)}" loading="lazy" onerror="this.style.display='none';">` : `<span style="color:var(--text-muted); font-size:0.8rem;">Imagen no disponible</span>`}
                 </div>
-                <div class="thumbnails-container">${thumbnailsHTML}</div>
+                <div class="thumbnails-container">${thumbnailsConZoomHTML}</div>
             </div>
             <div class="card-body">
                 <span class="card-category">${escaparHTML(producto.marca)} · ${escaparHTML(producto.categoria)}</span>
@@ -1237,7 +1286,6 @@ window.agregarAlCarrito = function(id) {
     actualizarContadorCarrito();
     guardarCarritoStorage();
     
-    // Animación de rebote en el botón del carrito
     const cartBtn = document.getElementById('cartBtnMain');
     if (cartBtn) {
         cartBtn.classList.add('bounce');
@@ -1524,4 +1572,3 @@ actualizarContadorCarrito();
 
 </body>
 </html>
-
