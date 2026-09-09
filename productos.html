@@ -1356,7 +1356,7 @@ window.onLocalidadSelectChange = function() {
     const select = document.getElementById('localidadEnvioSelect');
     if (select) localidadSeleccionadaGlobal = select.value;
     guardarDatosClienteStorage();
-    renderizarContenidoDrawer(); // Actualiza los totales en tiempo real al cambiar la zona en el carrito
+    renderizarContenidoDrawer();
 };
 
 function calcularTotales() {
@@ -1543,15 +1543,19 @@ window.enviarOrdenWhatsApp = function(event, destino = 'whatsapp') {
     let mensaje = `📦 *NUEVA ORDEN DE COMPRA - NOVA ENVÍOS & CRÉDITOS*\n`;
     mensaje += `🆔 *Código de seguimiento:* ${codigoSeguimiento}\n\n`;
     mensaje += `👤 *CLIENTE*\n• Nombre: ${nombre}\n• Teléfono: ${tel}\n• Email: ${email}\n\n`;
-    mensaje += `📍 *ENVÍO*\n• Dirección: ${dir}, ${ciudad} (CP: ${cp})\n• Zona: ${infoEnvio.nombre} (${formatearMoneda(costoEnvio)})\n• Demora estimada: ${infoEnvio.demora}\n\n`;
+    mensaje += `📍 *ENVÍO*\n• Dirección: ${dir}, ${ciudad} (CP: ${cp})\n• Zona: ${infoEnvio.nombre}\n• Demora estimada: ${infoEnvio.demora}\n`;
+    mensaje += `🚚 *Costo de Envío:* ${formatearMoneda(costoEnvio)}\n\n`;
     mensaje += `🛒 *PRODUCTOS*\n${detalleProductos}\n`;
     mensaje += `💳 *PAGO*\n• Método: ${textoMetodoPago}\n`;
-    if (cuotasGlobal > 1) mensaje += `• Valor Cuota: ${formatearMoneda(valorCuota)}\n`;
     mensaje += `• Subtotal: ${formatearMoneda(subtotal)}\n`;
     if (descuento > 0) mensaje += `• Descuento: -${formatearMoneda(descuento)}\n`;
     if (recargoTotal > 0) mensaje += `• Recargo: +${formatearMoneda(recargoTotal)}\n`;
-    mensaje += `• Costo Envío: ${formatearMoneda(costoEnvio)}\n`;
-    mensaje += `💰 *TOTAL FINAL:* ${formatearMoneda(total)}\n\n`;
+
+    if (cuotasGlobal > 1) {
+        mensaje += `\n🔢 *FINANCIAMIENTO*\n• Cantidad de Pagos: ${cuotasGlobal}\n• Valor por Cuota: ${formatearMoneda(valorCuota)}\n`;
+    }
+
+    mensaje += `\n💰 *MONTO TOTAL FINAL:* ${formatearMoneda(total)}\n\n`;
     mensaje += `📝 *Observaciones:* ${obs}\n\n`;
     mensaje += `Hola, ya elegí mi producto y me gustaría avanzar con la compra.`;
 
@@ -1578,4 +1582,3 @@ actualizarContadorCarrito();
 
 </body>
 </html>
-
