@@ -47,26 +47,32 @@ body {
     overflow-x: hidden;
 }
 
-/* Barra superior de confianza */
+/* Barra superior de confianza fija y con ajuste de texto para móviles */
 .top-trust-bar {
     background: #111827;
     color: #f9fafb;
-    font-size: 0.72rem;
-    padding: 7px 16px;
+    font-size: 0.7rem;
+    padding: 8px 12px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 24px;
-    text-align: center;
+    gap: 16px;
     font-weight: 500;
     overflow-x: auto;
     white-space: nowrap;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.top-trust-bar::-webkit-scrollbar {
+    display: none;
 }
 
 .top-trust-bar span {
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    flex-shrink: 0;
 }
 
 .navbar {
@@ -353,7 +359,7 @@ header p {
     height: 48px;
     border-radius: 6px;
     object-fit: cover;
-    cursor: zoom-in;
+    cursor: pointer;
     border: 2px solid transparent;
     background: #fff;
     flex-shrink: 0;
@@ -603,7 +609,6 @@ header p {
     transition: border-color 0.2s;
 }
 
-/* Validación visual en tiempo real con éxito/error */
 .form-group input:not(:placeholder-shown):valid,
 .form-group textarea:not(:placeholder-shown):valid {
     border-color: var(--success-color);
@@ -1209,14 +1214,6 @@ function renderizarProductos() {
 
         const imagenes = Array.isArray(producto.imagenes) ? producto.imagenes.filter(img => img && String(img).trim() !== '').slice(0, 5) : [];
         const imagenPrincipalInicial = imagenes.length > 0 ? imagenes[0] : '';
-        let thumbnailsHTML = '';
-
-        imagenes.forEach((imgSrc, index) => {
-            thumbnailsHTML += `<img src="${escaparHTML(imgSrc)}" alt="${escaparHTML(producto.nombre)}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="cambiarImagenMiniatura(${producto.id}, '${escaparJS(imgSrc)}', this)" ondblclick="abrirLightbox('${escaparJS(imgSrc)}')" onclick="cambiarImagenMiniatura(${producto.id}, '${escaparJS(imgSrc)}', this)" oncontextmenu="event.preventDefault(); abrirLightbox('${escaparJS(imgSrc)}');" onerror="this.style.display='none'">`;
-        });
-
-        // Hacemos que cada miniatura también permita abrir el zoom haciendo clic en un icono o manejando el evento secundario, o simplemente permitiendo abrir cualquier miniatura en el lightbox si se desea. Aquí actualizamos el thumbnail para que al hacer clic se seleccione, y si se hace clic secundario o se mantiene, o podemos agregar un botón de zoom. Mejor aún: actualizamos el evento del thumbnail para que se pueda ver en grande fácilmente, o agregamos un visor directo. Vamos a permitir que el thumbnail actualice la principal y con un doble clic o toque largo abra el lightbox, o mejor: añadimos un botón o hacemos que cada miniatura tenga la opción de abrir el zoom. Vamos a dejar que el click cambie la imagen principal y al hacer click en la miniatura activa o un botón rápido abra el zoom, o hagamos que cualquier miniatura abra el lightbox directamente si se desea, o mantener el cambio de miniatura y permitir zoom desde el lightbox de la principal. 
-        // Corrección solicitada: "que todas las imagenes del producto se vean con zoom". Haremos que tanto la principal como las miniaturas o un control extra permitan abrir el lightbox de esa foto específica.
         
         let thumbnailsConZoomHTML = '';
         imagenes.forEach((imgSrc, index) => {
@@ -1359,6 +1356,7 @@ window.onLocalidadSelectChange = function() {
     const select = document.getElementById('localidadEnvioSelect');
     if (select) localidadSeleccionadaGlobal = select.value;
     guardarDatosClienteStorage();
+    renderizarContenidoDrawer(); // Actualiza los totales en tiempo real al cambiar la zona en el carrito
 };
 
 function calcularTotales() {
@@ -1443,15 +1441,23 @@ function renderizarContenidoDrawer() {
                     <select id="cuotasSelect" class="payment-select" onchange="onCuotasChange()">${opcionesCuotasHTML}</select>
                 </div>
             ` : ''}
+            <div class="form-group" style="margin-top:10px;">
+                <label>Zona de Destino / Envío:</label>
+                <select id="localidadEnvioSelect" class="payment-select" onchange="onLocalidadSelectChange()">
+                    <option value="CABA" ${localidadSeleccionadaGlobal === 'CABA' ? 'selected' : ''}>CABA ($8.500 - 12 a 24 hs)</option>
+                    <option value="Buenos Aires" ${localidadSeleccionadaGlobal === 'Buenos Aires' ? 'selected' : ''}>Buenos Aires ($12.500 - 24 a 48 hs)</option>
+                    <option value="Provincias" ${localidadSeleccionadaGlobal === 'Provincias' ? 'selected' : ''}>Otras Provincias ($18.500 - 3 a 6 días)</option>
+                </select>
+            </div>
             <div style="border-top:1px solid var(--border-color); padding-top:12px; margin-top:15px;">
                 <div class="cart-summary-line"><span>Subtotal productos:</span><span>${formatearMoneda(subtotal)}</span></div>
                 ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
                 ${recargoTotal > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo Financiamiento:</span><span>+${formatearMoneda(recargoTotal)}</span></div>` : ''}
-                <div class="cart-summary-line"><span>Envío:</span><span>${formatearMoneda(costoEnvio)}</span></div>
+                <div class="cart-summary-line"><span>Envío (${tarifasProvincias[localidadSeleccionadaGlobal]?.nombre || ''}):</span><span>${formatearMoneda(costoEnvio)}</span></div>
                 <div class="cart-total"><span>Total:</span><span>${formatearMoneda(total)}</span></div>
                 ${cuotasGlobal > 1 ? `<div style="font-size:0.8rem; color:#1e40af; background:#eff6ff; padding:8px; border-radius:6px; margin-bottom:10px;">Pagás en <strong>${cuotasGlobal} pagos</strong> de <strong>${formatearMoneda(valorCuota)}</strong></div>` : ''}
             </div>
-            <button class="checkout-btn" style="margin-top:15px;" onclick="window.cambiarAVistaFormulario()">Continuar con Datos y Envío</button>
+            <button class="checkout-btn" style="margin-top:15px;" onclick="window.cambiarAVistaFormulario()">Continuar con Datos</button>
         `;
     } else if (vistaActual === 'formulario') {
         if (drawerTitle) drawerTitle.innerText = "Datos Personales y Envío";
@@ -1468,9 +1474,9 @@ function renderizarContenidoDrawer() {
                 <div class="form-group">
                     <label>Zona de Destino / Envío *</label>
                     <select id="localidadEnvioSelect" class="payment-select" onchange="onLocalidadSelectChange()">
-                        <option value="CABA">CABA ($8.500 - 12 a 24 hs)</option>
-                        <option value="Buenos Aires">Buenos Aires ($12.500 - 24 a 48 hs)</option>
-                        <option value="Provincias">Otras Provincias ($18.500 - 3 a 6 días)</option>
+                        <option value="CABA" ${localidadSeleccionadaGlobal === 'CABA' ? 'selected' : ''}>CABA ($8.500 - 12 a 24 hs)</option>
+                        <option value="Buenos Aires" ${localidadSeleccionadaGlobal === 'Buenos Aires' ? 'selected' : ''}>Buenos Aires ($12.500 - 24 a 48 hs)</option>
+                        <option value="Provincias" ${localidadSeleccionadaGlobal === 'Provincias' ? 'selected' : ''}>Otras Provincias ($18.500 - 3 a 6 días)</option>
                     </select>
                 </div>
                 <div class="form-group"><label>Observaciones</label><textarea id="obsCliente" rows="2" placeholder="Comentarios..." oninput="guardarDatosClienteStorage()"></textarea></div>
@@ -1572,3 +1578,4 @@ actualizarContadorCarrito();
 
 </body>
 </html>
+
