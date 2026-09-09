@@ -2,3318 +2,1001 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Nova Envíos & Créditos | Soluciones Logísticas y Seguimiento de Envíos
-    </title>
-
-    <meta
-        name="description"
-        content="Nova Envíos & Créditos ofrece soluciones de transporte y seguimiento de envíos realizados por cuenta propia."
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Envíos & Créditos | Soluciones Logísticas y Seguimiento de Envíos</title>
+    <meta name="description" content="Nova Envíos & Créditos ofrece soluciones de transporte y seguimiento de envíos realizados por cuenta propia.">
 
     <!-- FUENTES -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-
         :root {
-
             --primary-color: #2563eb;
             --primary-dark: #1d4ed8;
             --primary-soft: #eff6ff;
-
             --accent-color: #f97316;
             --accent-dark: #ea580c;
-
             --success-color: #10b981;
             --danger-color: #ef4444;
-
             --text-main: #0f172a;
             --text-secondary: #334155;
             --text-muted: #475569;
-
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
-
             --border-color: #cbd5e1;
-
             --radius: 14px;
-
-            --transition:
-                all 0.3s ease;
-
-            --shadow-sm:
-                0 2px 8px rgba(15, 23, 42, 0.08);
-
-            --shadow-md:
-                0 8px 25px rgba(15, 23, 42, 0.12);
-
-            --shadow-lg:
-                0 18px 45px rgba(15, 23, 42, 0.2);
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.08);
+            --shadow-md: 0 8px 25px rgba(15, 23, 42, 0.12);
+            --shadow-lg: 0 18px 45px rgba(15, 23, 42, 0.2);
         }
 
-
         * {
-
             box-sizing: border-box;
-
             margin: 0;
-
             padding: 0;
         }
 
-
         html {
-
             scroll-behavior: smooth;
         }
 
-
         body {
-
             font-family: 'Inter', sans-serif;
-
-            background-color:
-                var(--bg-body);
-
-            color:
-                var(--text-main);
-
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.7;
-
             overflow-x: hidden;
         }
 
-
-        h1,
-        h2,
-        h3,
-        .section-title,
-        .hero-section h1,
-        .store-banner h2,
-        .navbar-brand {
-
-            font-family:
-                'Outfit',
-                sans-serif;
+        h1, h2, h3, .section-title, .hero-section h1, .store-banner h2, .navbar-brand {
+            font-family: 'Outfit', sans-serif;
         }
 
-
-        /* =========================================================
-           NAVBAR
-        ========================================================= */
-
+        /* NAVBAR */
         .navbar {
-
-            background:
-                rgba(255, 255, 255, 0.98);
-
-            backdrop-filter:
-                blur(10px);
-
-            box-shadow:
-                0 1px 0 rgba(15, 23, 42, 0.1);
-
-            position:
-                sticky;
-
-            top:
-                0;
-
-            z-index:
-                100;
-
-            padding:
-                14px 20px;
-
-            display:
-                flex;
-
-            justify-content:
-                space-between;
-
-            align-items:
-                center;
-
-            flex-wrap:
-                wrap;
-
-            gap:
-                14px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 rgba(15, 23, 42, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
         }
-
 
         .navbar-brand {
-
-            font-size:
-                1.25rem;
-
-            font-weight:
-                900;
-
-            letter-spacing:
-                -0.5px;
-
-            color:
-                var(--primary-color);
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                10px;
-
-            white-space:
-                nowrap;
+            font-size: 1.25rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
         }
-
 
         .nav-links {
-
-            display:
-                flex;
-
-            gap:
-                18px;
-
-            align-items:
-                center;
-
-            flex-wrap:
-                wrap;
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
         }
-
 
         .nav-links a {
-
-            text-decoration:
-                none;
-
-            color:
-                var(--text-secondary);
-
-            font-weight:
-                600;
-
-            font-size:
-                0.92rem;
-
-            transition:
-                var(--transition);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: var(--transition);
         }
-
 
         .nav-links a:hover {
-
-            color:
-                var(--primary-color);
+            color: var(--primary-color);
         }
-
 
         .nav-btn-store {
-
-            background:
-                var(--accent-color);
-
-            color:
-                white !important;
-
-            padding:
-                8px 14px;
-
-            border-radius:
-                8px;
-
-            font-weight:
-                700 !important;
-
-            box-shadow:
-                0 4px 12px rgba(249, 115, 22, 0.18);
+            background: var(--accent-color);
+            color: white !important;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.18);
         }
-
 
         .nav-btn-store:hover {
-
-            background:
-                var(--accent-dark) !important;
-
-            transform:
-                translateY(-1px);
+            background: var(--accent-dark) !important;
+            transform: translateY(-1px);
         }
 
-
-        /* =========================================================
-           HERO
-        ========================================================= */
-
+        /* HERO */
         .hero-section {
-
-            position:
-                relative;
-
-            background:
-
-                linear-gradient(
-                    135deg,
-                    rgba(15, 23, 42, 0.88) 0%,
-                    rgba(29, 78, 216, 0.82) 55%,
-                    rgba(37, 99, 235, 0.78) 100%
-                ),
-
-                url(
-                    'https://raw.githubusercontent.com/logisticanova/Log-stica-NOVA/main/1000381152.jpg'
-                )
-                center/cover
-                no-repeat;
-
-            color:
-                white;
-
-            text-align:
-                center;
-
-            padding:
-                85px 16px 95px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(29, 78, 216, 0.82) 55%, rgba(37, 99, 235, 0.78) 100%),
+                        url('https://raw.githubusercontent.com/logisticanova/Log-stica-NOVA/main/1000381152.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 85px 16px 95px;
         }
-
 
         .hero-container {
-
-            max-width:
-                850px;
-
-            margin:
-                0 auto;
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            align-items:
-                center;
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-
 
         .hero-label {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                7px;
-
-            background:
-                rgba(255, 255, 255, 0.2);
-
-            border:
-                1px solid rgba(255, 255, 255, 0.3);
-
-            padding:
-                7px 14px;
-
-            border-radius:
-                50px;
-
-            font-size:
-                0.85rem;
-
-            font-weight:
-                700;
-
-            margin-bottom:
-                18px;
-
-            letter-spacing:
-                0.3px;
-
-            text-transform:
-                uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
-
 
         .hero-section h1 {
-
-            font-size:
-                2.75rem;
-
-            margin-bottom:
-                15px;
-
-            font-weight:
-                900;
-
-            line-height:
-                1.1;
-
-            letter-spacing:
-                -1px;
-
-            text-shadow:
-                0 4px 20px rgba(0, 0, 0, 0.3);
+            font-size: 2.75rem;
+            margin-bottom: 15px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-
 
         .hero-section p {
-
-            max-width:
-                690px;
-
-            margin:
-                0 auto 28px;
-
-            font-size:
-                1.12rem;
-
-            line-height:
-                1.7;
-
-            color:
-                #f1f5f9;
-
-            font-weight:
-                500;
+            max-width: 690px;
+            margin: 0 auto 28px;
+            font-size: 1.12rem;
+            line-height: 1.7;
+            color: #f1f5f9;
+            font-weight: 500;
         }
 
-
-        /* =========================================================
-           TRACKING BOX
-        ========================================================= */
-
+        /* TRACKING BOX */
         .tracking-box {
-
-            background:
-                white;
-
-            padding:
-                10px;
-
-            border-radius:
-                12px;
-
-            box-shadow:
-                var(--shadow-lg);
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            gap:
-                10px;
-
-            max-width:
-                650px;
-
-            width:
-                100%;
-
-            margin:
-                0 auto;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 650px;
+            width: 100%;
+            margin: 0 auto;
         }
-
 
         .tracking-input {
-
-            width:
-                100%;
-
-            padding:
-                14px 16px;
-
-            border:
-                2px solid var(--border-color);
-
-            border-radius:
-                9px;
-
-            font-size:
-                1rem;
-
-            outline:
-                none;
-
-            font-family:
-                inherit;
-
-            color:
-                var(--text-main);
-
-            background:
-                #fff;
-
-            text-transform:
-                uppercase;
-
-            font-weight:
-                600;
-
-            transition:
-                var(--transition);
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 9px;
+            font-size: 1rem;
+            outline: none;
+            font-family: inherit;
+            color: var(--text-main);
+            background: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: var(--transition);
         }
-
 
         .tracking-input::placeholder {
-
-            color:
-                #64748b;
-
-            text-transform:
-                none;
-
-            font-weight:
-                400;
+            color: #64748b;
+            text-transform: none;
+            font-weight: 400;
         }
-
 
         .tracking-input:focus {
-
-            border-color:
-                var(--primary-color);
-
-            box-shadow:
-                0 0 0 3px
-                rgba(37, 99, 235, 0.2);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
-
 
         .tracking-btn {
-
-            background:
-                var(--accent-color);
-
-            color:
-                white;
-
-            border:
-                none;
-
-            padding:
-                14px 20px;
-
-            border-radius:
-                9px;
-
-            font-weight:
-                700;
-
-            cursor:
-                pointer;
-
-            font-size:
-                1rem;
-
-            width:
-                100%;
-
-            font-family:
-                'Outfit',
-                sans-serif;
-
-            letter-spacing:
-                0.5px;
-
-            transition:
-                var(--transition);
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 9px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
         }
-
 
         .tracking-btn:hover {
-
-            background:
-                var(--accent-dark);
-
-            transform:
-                translateY(-1px);
-
-            box-shadow:
-                0 5px 14px
-                rgba(249, 115, 22, 0.3);
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 14px rgba(249, 115, 22, 0.3);
         }
 
-
-        /* =========================================================
-           RESULTADO
-        ========================================================= */
-
+        /* RESULTADO */
         .tracking-result-container {
-
-            max-width:
-                820px;
-
-            margin:
-                -28px auto 45px;
-
-            padding:
-                0 16px;
-
-            position:
-                relative;
-
-            z-index:
-                5;
+            max-width: 820px;
+            margin: -28px auto 45px;
+            padding: 0 16px;
+            position: relative;
+            z-index: 5;
         }
-
 
         .result-card {
-
-            background:
-                white;
-
-            border-radius:
-                var(--radius);
-
-            padding:
-                24px;
-
-            box-shadow:
-                var(--shadow-md);
-
-            border:
-                2px solid var(--border-color);
-
-            display:
-                none;
+            background: white;
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--border-color);
+            display: none;
         }
-
 
         .result-card.active {
-
-            display:
-                block;
+            display: block;
         }
-
 
         .result-header {
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            gap:
-                12px;
-
-            align-items:
-                flex-start;
-
-            border-bottom:
-                2px solid var(--border-color);
-
-            padding-bottom:
-                17px;
-
-            margin-bottom:
-                20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 17px;
+            margin-bottom: 20px;
         }
-
 
         .result-header h3 {
-
-            font-weight:
-                700;
+            font-weight: 700;
         }
-
 
         .status-badge {
-
-            background-color:
-                var(--success-color);
-
-            color:
-                white;
-
-            padding:
-                6px 13px;
-
-            border-radius:
-                50px;
-
-            font-size:
-                0.82rem;
-
-            font-weight:
-                800;
-
-            letter-spacing:
-                0.3px;
-
-            text-transform:
-                uppercase;
+            background-color: var(--success-color);
+            color: white;
+            padding: 6px 13px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
 
-
-        /* =========================================================
-           INFORMACIÓN
-        ========================================================= */
-
+        /* INFORMACIÓN */
         .shipment-info {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                1fr;
-
-            gap:
-                0 24px;
-
-            font-size:
-                0.95rem;
-
-            margin-bottom:
-                26px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0 24px;
+            font-size: 0.95rem;
+            margin-bottom: 26px;
         }
-
 
         .shipment-info div {
-
-            padding:
-                12px 0;
-
-            border-bottom:
-                1px solid var(--border-color);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
         }
-
 
         .shipment-info strong {
-
-            color:
-                var(--text-main);
-
-            font-weight:
-                700;
+            color: var(--text-main);
+            font-weight: 700;
         }
 
-
-        /* =========================================================
-           PRODUCTO
-        ========================================================= */
-
+        /* PRODUCTO */
         .product-box {
-
-            background:
-
-                linear-gradient(
-                    135deg,
-                    #f1f5f9,
-                    #e2e8f0
-                );
-
-            border:
-                2px solid var(--border-color);
-
-            border-radius:
-                11px;
-
-            padding:
-                16px;
-
-            margin-bottom:
-                28px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border: 2px solid var(--border-color);
+            border-radius: 11px;
+            padding: 16px;
+            margin-bottom: 28px;
         }
-
 
         .product-box h4 {
-
-            font-size:
-                0.82rem;
-
-            margin-bottom:
-                8px;
-
-            color:
-                var(--text-main);
-
-            letter-spacing:
-                0.6px;
-
-            font-weight:
-                800;
+            font-size: 0.82rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            letter-spacing: 0.6px;
+            font-weight: 800;
         }
-
 
         .product-name {
-
-            font-size:
-                1.05rem;
-
-            font-weight:
-                700;
-
-            color:
-                var(--text-main);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
         }
 
-
-        /* =========================================================
-           TIMELINE
-        ========================================================= */
-
+        /* TIMELINE */
         .timeline-title {
-
-            font-size:
-                1.15rem;
-
-            margin-bottom:
-                21px;
-
-            font-weight:
-                800;
-
-            color:
-                var(--text-main);
+            font-size: 1.15rem;
+            margin-bottom: 21px;
+            font-weight: 800;
+            color: var(--text-main);
         }
-
 
         .tracking-timeline {
-
-            position:
-                relative;
-
-            padding-left:
-                5px;
+            position: relative;
+            padding-left: 5px;
         }
-
 
         .tracking-timeline::before {
-
-            content:
-                "";
-
-            position:
-                absolute;
-
-            left:
-                19px;
-
-            top:
-                10px;
-
-            bottom:
-                10px;
-
-            width:
-                3px;
-
-            background:
-                var(--border-color);
-
-            border-radius:
-                10px;
+            content: "";
+            position: absolute;
+            left: 19px;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background: var(--border-color);
+            border-radius: 10px;
         }
-
 
         .timeline-item {
-
-            position:
-                relative;
-
-            display:
-                flex;
-
-            gap:
-                15px;
-
-            padding-bottom:
-                27px;
-
-            opacity:
-                0.5;
-
-            transition:
-                var(--transition);
+            position: relative;
+            display: flex;
+            gap: 15px;
+            padding-bottom: 27px;
+            opacity: 0.5;
+            transition: var(--transition);
         }
-
 
         .timeline-icon {
-
-            position:
-                relative;
-
-            z-index:
-                2;
-
-            width:
-                32px;
-
-            height:
-                32px;
-
-            min-width:
-                32px;
-
-            border-radius:
-                50%;
-
-            background:
-                var(--border-color);
-
-            color:
-                var(--text-main);
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            font-size:
-                0.82rem;
-
-            font-weight:
-                700;
-
-            border:
-                3px solid white;
+            position: relative;
+            z-index: 2;
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            border-radius: 50%;
+            background: var(--border-color);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            font-weight: 700;
+            border: 3px solid white;
         }
 
-
-        .timeline-item.completed {
-
-            opacity:
-                1;
+        .timeline-item.completed,
+        .timeline-item.active,
+        .timeline-item.delivered {
+            opacity: 1;
         }
-
 
         .timeline-item.completed .timeline-icon {
-
-            background:
-                var(--success-color);
-
-            color:
-                white;
+            background: var(--success-color);
+            color: white;
         }
-
-
-        .timeline-item.active {
-
-            opacity:
-                1;
-        }
-
 
         .timeline-item.active .timeline-icon {
-
-            background:
-                var(--primary-color);
-
-            color:
-                white;
-
-            box-shadow:
-                0 0 0 5px
-                rgba(37, 99, 235, 0.15);
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.15);
         }
-
 
         .timeline-item.active h4 {
-
-            color:
-                var(--primary-dark);
+            color: var(--primary-dark);
         }
-
-
-        .timeline-item.delivered {
-
-            opacity:
-                1;
-        }
-
 
         .timeline-item.delivered .timeline-icon {
-
-            background:
-                var(--primary-color);
-
-            color:
-                white;
+            background: var(--primary-color);
+            color: white;
         }
-
 
         .timeline-item.delivered h4 {
-
-            color:
-                var(--primary-dark);
+            color: var(--primary-dark);
         }
-
 
         .timeline-content {
-
-            padding-top:
-                2px;
+            padding-top: 2px;
         }
-
 
         .timeline-content h4 {
-
-            font-size:
-                1rem;
-
-            margin-bottom:
-                4px;
-
-            color:
-                var(--text-main);
-
-            font-weight:
-                800;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: var(--text-main);
+            font-weight: 800;
         }
-
 
         .timeline-content p {
-
-            font-size:
-                0.88rem;
-
-            color:
-                var(--text-secondary);
-
-            margin-bottom:
-                5px;
-
-            line-height:
-                1.5;
-
-            font-weight:
-                500;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            line-height: 1.5;
+            font-weight: 500;
         }
-
 
         .timeline-date {
-
-            font-size:
-                0.78rem;
-
-            color:
-                var(--text-main);
-
-            font-weight:
-                700;
+            font-size: 0.78rem;
+            color: var(--text-main);
+            font-weight: 700;
         }
-
 
         .timeline-item:last-child {
-
-            padding-bottom:
-                0;
+            padding-bottom: 0;
         }
 
-
-        /* =========================================================
-           CONTENEDORES
-        ========================================================= */
-
+        /* CONTENEDORES */
         .container {
-
-            max-width:
-                1100px;
-
-            margin:
-                70px auto;
-
-            padding:
-                0 16px;
+            max-width: 1100px;
+            margin: 70px auto;
+            padding: 0 16px;
         }
-
 
         .section-heading {
-
-            max-width:
-                750px;
-
-            margin:
-                0 auto 40px;
-
-            text-align:
-                center;
+            max-width: 750px;
+            margin: 0 auto 40px;
+            text-align: center;
         }
-
 
         .section-label {
-
-            display:
-                inline-block;
-
-            color:
-                var(--primary-dark);
-
-            background:
-                var(--primary-soft);
-
-            padding:
-                6px 14px;
-
-            border-radius:
-                50px;
-
-            font-size:
-                0.82rem;
-
-            font-weight:
-                800;
-
-            margin-bottom:
-                12px;
-
-            text-transform:
-                uppercase;
-
-            letter-spacing:
-                1px;
-
-            border:
-                1px solid #bfdbfe;
+            display: inline-block;
+            color: var(--primary-dark);
+            background: var(--primary-soft);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid #bfdbfe;
         }
-
 
         .section-title {
-
-            text-align:
-                center;
-
-            font-size:
-                2.2rem;
-
-            margin-bottom:
-                14px;
-
-            color:
-                var(--text-main);
-
-            line-height:
-                1.2;
-
-            font-weight:
-                900;
-
-            letter-spacing:
-                -0.5px;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+            color: var(--text-main);
+            line-height: 1.2;
+            font-weight: 900;
+            letter-spacing: -0.5px;
         }
-
 
         .section-subtitle {
-
-            text-align:
-                center;
-
-            color:
-                var(--text-secondary);
-
-            margin:
-                0 auto;
-
-            font-size:
-                1.1rem;
-
-            line-height:
-                1.7;
-
-            max-width:
-                680px;
-
-            font-weight:
-                500;
+            text-align: center;
+            color: var(--text-secondary);
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 680px;
+            font-weight: 500;
         }
 
-
-        /* =========================================================
-           QUIENES SOMOS
-        ========================================================= */
-
+        /* QUIENES SOMOS */
         .about-card {
-
-            background:
-                white;
-
-            padding:
-                35px;
-
-            border-radius:
-                var(--radius);
-
-            border:
-                2px solid var(--border-color);
-
-            box-shadow:
-                var(--shadow-sm);
-
-            margin-bottom:
-                65px;
-
-            position:
-                relative;
-
-            overflow:
-                hidden;
+            background: white;
+            padding: 35px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 65px;
+            position: relative;
+            overflow: hidden;
         }
-
 
         .about-card::before {
-
-            content:
-                "";
-
-            position:
-                absolute;
-
-            left:
-                0;
-
-            top:
-                0;
-
-            width:
-                6px;
-
-            height:
-                100%;
-
-            background:
-
-                linear-gradient(
-                    to bottom,
-                    var(--primary-color),
-                    var(--accent-color)
-                );
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
         }
-
 
         .about-card p {
-
-            font-size:
-                1.05rem;
-
-            color:
-                var(--text-secondary);
-
-            line-height:
-                1.8;
-
-            margin-bottom:
-                16px;
-
-            font-weight:
-                500;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-weight: 500;
         }
-
 
         .about-card p:last-child {
-
-            margin-bottom:
-                0;
+            margin-bottom: 0;
         }
-
 
         .about-card strong {
-
-            color:
-                var(--text-main);
-
-            font-weight:
-                700;
+            color: var(--text-main);
+            font-weight: 700;
         }
 
-
-        /* =========================================================
-           SERVICIOS
-        ========================================================= */
-
+        /* SERVICIOS */
         .features-grid {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                1fr;
-
-            gap:
-                22px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 22px;
         }
-
 
         .feature-card {
-
-            background:
-                white;
-
-            padding:
-                30px 25px;
-
-            border-radius:
-                var(--radius);
-
-            box-shadow:
-                var(--shadow-sm);
-
-            border:
-                2px solid var(--border-color);
-
-            transition:
-                var(--transition);
-
-            position:
-                relative;
-
-            overflow:
-                hidden;
+            background: white;
+            padding: 30px 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
-
 
         .feature-card::after {
-
-            content:
-                "";
-
-            position:
-                absolute;
-
-            left:
-                0;
-
-            bottom:
-                0;
-
-            height:
-                4px;
-
-            width:
-                0;
-
-            background:
-                var(--primary-color);
-
-            transition:
-                var(--transition);
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            width: 0;
+            background: var(--primary-color);
+            transition: var(--transition);
         }
-
 
         .feature-card:hover {
-
-            transform:
-                translateY(-5px);
-
-            box-shadow:
-                var(--shadow-md);
-
-            border-color:
-                var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
         }
-
 
         .feature-card:hover::after {
-
-            width:
-                100%;
+            width: 100%;
         }
-
 
         .feature-icon {
-
-            width:
-                55px;
-
-            height:
-                55px;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            background:
-                var(--primary-soft);
-
-            border-radius:
-                14px;
-
-            font-size:
-                1.65rem;
-
-            margin-bottom:
-                20px;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-soft);
+            border-radius: 14px;
+            font-size: 1.65rem;
+            margin-bottom: 20px;
         }
-
 
         .feature-card h3 {
-
-            font-size:
-                1.25rem;
-
-            margin-bottom:
-                10px;
-
-            color:
-                var(--text-main);
-
-            font-weight:
-                800;
-
-            letter-spacing:
-                -0.3px;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            font-weight: 800;
+            letter-spacing: -0.3px;
         }
-
 
         .feature-card p {
-
-            color:
-                var(--text-secondary);
-
-            font-size:
-                0.98rem;
-
-            line-height:
-                1.7;
-
-            font-weight:
-                500;
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.7;
+            font-weight: 500;
         }
 
-
-        /* =========================================================
-           BANNER TIENDA
-        ========================================================= */
-
+        /* BANNER TIENDA */
         .store-banner {
-
-            background:
-
-                radial-gradient(
-                    circle at 85% 20%,
-                    rgba(255,255,255,0.15),
-                    transparent 25%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #f97316,
-                    #ea580c
-                );
-
-            color:
-                white;
-
-            border-radius:
-                var(--radius);
-
-            padding:
-                38px 28px;
-
-            margin-top:
-                60px;
-
-            display:
-                flex;
-
-            flex-direction:
-                column;
-
-            align-items:
-                center;
-
-            text-align:
-                center;
-
-            gap:
-                22px;
-
-            box-shadow:
-                0 12px 35px
-                rgba(249, 115, 22, 0.22);
+            background: radial-gradient(circle at 85% 20%, rgba(255,255,255,0.15), transparent 25%),
+                        linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            border-radius: var(--radius);
+            padding: 38px 28px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 22px;
+            box-shadow: 0 12px 35px rgba(249, 115, 22, 0.22);
         }
-
 
         .store-banner h2 {
-
-            font-size:
-                1.8rem;
-
-            margin-bottom:
-                10px;
-
-            line-height:
-                1.25;
-
-            font-weight:
-                900;
-
-            letter-spacing:
-                -0.5px;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            line-height: 1.25;
+            font-weight: 900;
+            letter-spacing: -0.5px;
         }
-
 
         .store-banner p {
-
-            font-size:
-                1.05rem;
-
-            color:
-                #fff7ed;
-
-            line-height:
-                1.7;
-
-            max-width:
-                650px;
-
-            font-weight:
-                500;
+            font-size: 1.05rem;
+            color: #fff7ed;
+            line-height: 1.7;
+            max-width: 650px;
+            font-weight: 500;
         }
-
 
         .store-btn {
-
-            background:
-                white;
-
-            color:
-                var(--accent-dark);
-
-            padding:
-                13px 26px;
-
-            border-radius:
-                9px;
-
-            text-decoration:
-                none;
-
-            font-weight:
-                800;
-
-            font-size:
-                1rem;
-
-            display:
-                inline-block;
-
-            transition:
-                var(--transition);
-
-            box-shadow:
-                0 5px 15px
-                rgba(0,0,0,0.12);
-
-            width:
-                100%;
-
-            max-width:
-                280px;
-
-            font-family:
-                'Outfit',
-                sans-serif;
-
-            letter-spacing:
-                0.3px;
+            background: white;
+            color: var(--accent-dark);
+            padding: 13px 26px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            display: inline-block;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 280px;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.3px;
         }
-
 
         .store-btn:hover {
-
-            background:
-                #fff7ed;
-
-            transform:
-                translateY(-2px);
+            background: #fff7ed;
+            transform: translateY(-2px);
         }
 
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
+        /* FOOTER */
         footer {
-
-            background:
-                #0f172a;
-
-            color:
-                #cbd5e1;
-
-            text-align:
-                center;
-
-            padding:
-                42px 16px;
-
-            margin-top:
-                80px;
-
-            font-size:
-                0.92rem;
-
-            line-height:
-                1.8;
-
-            font-weight:
-                500;
+            background: #0f172a;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 42px 16px;
+            margin-top: 80px;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            font-weight: 500;
         }
-
 
         footer strong {
-
-            color:
-                white;
-
-            font-family:
-                'Outfit',
-                sans-serif;
+            color: white;
+            font-family: 'Outfit', sans-serif;
         }
 
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
+        /* RESPONSIVE */
         @media (min-width: 640px) {
-
-            .navbar {
-
-                padding:
-                    15px 40px;
-            }
-
-
-            .tracking-box {
-
-                flex-direction:
-                    row;
-            }
-
-
-            .tracking-btn {
-
-                width:
-                    auto;
-
-                min-width:
-                    135px;
-            }
-
-
-            .result-header {
-
-                flex-direction:
-                    row;
-
-                align-items:
-                    center;
-
-                justify-content:
-                    space-between;
-            }
-
-
-            .shipment-info {
-
-                grid-template-columns:
-                    1fr 1fr;
-
-                column-gap:
-                    25px;
-            }
-
-
-            .features-grid {
-
-                grid-template-columns:
-                    repeat(
-                        3,
-                        1fr
-                    );
-            }
-
-
-            .store-banner {
-
-                flex-direction:
-                    row;
-
-                text-align:
-                    left;
-
-                padding:
-                    45px;
-
-                justify-content:
-                    space-between;
-            }
-
-
-            .store-banner p {
-
-                max-width:
-                    700px;
-            }
-
-
-            .store-btn {
-
-                width:
-                    auto;
-            }
-
-
-            .hero-section {
-
-                padding:
-                    95px 16px 110px;
-            }
-
-
-            .hero-section h1 {
-
-                font-size:
-                    3.5rem;
-            }
-
-
-            .hero-section p {
-
-                font-size:
-                    1.2rem;
-            }
-
-
-            .section-title {
-
-                font-size:
-                    2.6rem;
-            }
-
+            .navbar { padding: 15px 40px; }
+            .tracking-box { flex-direction: row; }
+            .tracking-btn { width: auto; min-width: 135px; }
+            .result-header { flex-direction: row; align-items: center; justify-content: space-between; }
+            .shipment-info { grid-template-columns: 1fr 1fr; column-gap: 25px; }
+            .features-grid { grid-template-columns: repeat(3, 1fr); }
+            .store-banner { flex-direction: row; text-align: left; padding: 45px; justify-content: space-between; }
+            .store-banner p { max-width: 700px; }
+            .store-btn { width: auto; }
+            .hero-section { padding: 95px 16px 110px; }
+            .hero-section h1 { font-size: 3.5rem; }
+            .hero-section p { font-size: 1.2rem; }
+            .section-title { font-size: 2.6rem; }
         }
-
 
         @media (max-width: 639px) {
-
-            .navbar {
-
-                justify-content:
-                    center;
-            }
-
-
-            .navbar-brand {
-
-                width:
-                    100%;
-
-                justify-content:
-                    center;
-            }
-
-
-            .nav-links {
-
-                justify-content:
-                    center;
-
-                gap:
-                    11px;
-            }
-
-
-            .nav-links a {
-
-                font-size:
-                    0.85rem;
-            }
-
-
-            .hero-section h1 {
-
-                font-size:
-                    2.3rem;
-            }
-
-
-            .about-card {
-
-                padding:
-                    25px 20px 25px 25px;
-            }
-
+            .navbar { justify-content: center; }
+            .navbar-brand { width: 100%; justify-content: center; }
+            .nav-links { justify-content: center; gap: 11px; }
+            .nav-links a { font-size: 0.85rem; }
+            .hero-section h1 { font-size: 2.3rem; }
+            .about-card { padding: 25px 20px 25px 25px; }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- =========================================================
-         NAVBAR
-    ========================================================= -->
-
+    <!-- NAVBAR -->
     <nav class="navbar">
-
-        <div class="navbar-brand">
-
-            Nova Envíos & Créditos
-
-        </div>
-
-
+        <div class="navbar-brand">Nova Envíos & Créditos</div>
         <div class="nav-links">
-
-            <a href="#seguimiento">
-                Seguimiento
-            </a>
-
-
-            <a href="#quienes-somos">
-                Empresa
-            </a>
-
-
-            <a href="#servicios">
-                Servicios
-            </a>
-
-
-            <a
-                href="#seguimiento"
-                style="
-                    color: var(--accent-dark);
-                    font-weight: 800;
-                "
-            >
-                Mis Órdenes
-            </a>
-
-
-            <a
-                href="https://logisticanova.github.io/Log-stica-NOVA/productos.html"
-                class="nav-btn-store"
-                target="_blank"
-            >
-                🛒 Catálogo
-            </a>
-
+            <a href="#seguimiento">Seguimiento</a>
+            <a href="#quienes-somos">Empresa</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#seguimiento" style="color: var(--accent-dark); font-weight: 800;">Mis Órdenes</a>
+            <a href="https://logisticanova.github.io/Log-stica-NOVA/productos.html" class="nav-btn-store" target="_blank">🛒 Catálogo</a>
         </div>
-
     </nav>
 
-
-    <!-- =========================================================
-         HERO
-    ========================================================= -->
-
-    <header
-        class="hero-section"
-        id="seguimiento"
-    >
-
+    <!-- HERO -->
+    <header class="hero-section" id="seguimiento">
         <div class="hero-container">
-
-
-            <div class="hero-label">
-
-                📍 Seguimiento online de envíos propios
-
-            </div>
-
-
-            <h1>
-
-                Rastreo y Control de Envíos
-
-            </h1>
-
-
+            <div class="hero-label">📍 Seguimiento online de envíos propios</div>
+            <h1>Rastreo y Control de Envíos</h1>
             <p>
-
-                Consultá el estado de tu envío por cuenta propia
-                de forma rápida y sencilla.
-
-                Ingresá tu número de seguimiento para conocer
-                el progreso de tu pedido y sus principales
-                actualizaciones logísticas.
-
+                Consultá el estado de tu envío por cuenta propia de forma rápida y sencilla.
+                Ingresá tu número de seguimiento para conocer el progreso de tu pedido y sus principales actualizaciones logísticas.
             </p>
-
-
             <div class="tracking-box">
-
-
-                <input
-                    type="text"
-                    id="trackingInput"
-                    class="tracking-input"
-                    placeholder="Ingresá tu código de seguimiento (ej: NV-7895781)"
-                    autocomplete="off"
-                    onkeydown="if(event.key === 'Enter') buscarEnvio()"
-                >
-
-
-                <button
-                    class="tracking-btn"
-                    onclick="buscarEnvio()"
-                >
-
-                    Rastrear envío
-
-                </button>
-
-
+                <input type="text" id="trackingInput" class="tracking-input" placeholder="Ingresá tu código de seguimiento (ej: NV-1540942)" autocomplete="off" onkeydown="if(event.key === 'Enter') buscarEnvio()">
+                <button class="tracking-btn" onclick="buscarEnvio()">Rastrear envío</button>
             </div>
-
         </div>
-
     </header>
 
-
-    <!-- =========================================================
-         RESULTADO
-    ========================================================= -->
-
+    <!-- RESULTADO -->
     <div class="tracking-result-container">
-
-
-        <div
-            class="result-card"
-            id="resultCard"
-        >
-
-
+        <div class="result-card" id="resultCard">
             <div class="result-header">
-
-
                 <div>
-
-                    <h3
-                        style="
-                            font-size: 0.95rem;
-                            color: var(--text-secondary);
-                            margin-bottom: 2px;
-                            font-weight: 700;
-                        "
-                    >
-                        Número de seguimiento
-                    </h3>
-
-
-                    <p
-                        id="resultCode"
-                        style="
-                            font-size: 1.25rem;
-                            font-weight: 900;
-                            color: var(--text-main);
-                        "
-                    >
-                        --
-                    </p>
-
+                    <h3 style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2px; font-weight: 700;">Número de seguimiento</h3>
+                    <p id="resultCode" style="font-size: 1.25rem; font-weight: 900; color: var(--text-main);">--</p>
                 </div>
-
-
-                <span
-                    class="status-badge"
-                    id="resultStatus"
-                >
-                    --
-                </span>
-
+                <span class="status-badge" id="resultStatus">--</span>
             </div>
-
 
             <!-- INFORMACIÓN -->
-
             <div class="shipment-info">
-
-
-                <div>
-
-                    <strong>
-                        Comprador:
-                    </strong>
-
-                    <span
-                        id="resultComprador"
-                        style="
-                            color: var(--text-secondary);
-                            font-weight: 600;
-                        "
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Destino:
-                    </strong>
-
-                    <span
-                        id="resultDestino"
-                        style="
-                            color: var(--text-secondary);
-                            font-weight: 600;
-                        "
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Provincia:
-                    </strong>
-
-                    <span
-                        id="resultProvincia"
-                        style="
-                            color: var(--text-secondary);
-                            font-weight: 600;
-                        "
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Código Postal:
-                    </strong>
-
-                    <span
-                        id="resultCP"
-                        style="
-                            color: var(--text-secondary);
-                            font-weight: 600;
-                        "
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Última actualización:
-                    </strong>
-
-                    <span
-                        id="resultFecha"
-                        style="
-                            color: var(--text-secondary);
-                            font-weight: 600;
-                        "
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Demora estimada:
-                    </strong>
-
-                    <span
-                        id="resultDemora"
-                        style="
-                            color: var(--text-secondary);
-                            font-weight: 600;
-                        "
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Costo de envío:
-                    </strong>
-
-                    <span
-                        id="resultEnvio"
-                        style="
-                            color: var(--text-secondary);
-                            font-weight: 600;
-                        "
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Total de la orden:
-                    </strong>
-
-                    <span
-                        id="resultTotal"
-                        style="
-                            color: var(--text-secondary);
-                            font-weight: 600;
-                        "
-                    >
-                        --
-                    </span>
-
-                </div>
-
+                <div><strong>Comprador:</strong> <span id="resultComprador" style="color: var(--text-secondary); font-weight: 600;">--</span></div>
+                <div><strong>Destino:</strong> <span id="resultDestino" style="color: var(--text-secondary); font-weight: 600;">--</span></div>
+                <div><strong>Provincia:</strong> <span id="resultProvincia" style="color: var(--text-secondary); font-weight: 600;">--</span></div>
+                <div><strong>Código Postal:</strong> <span id="resultCP" style="color: var(--text-secondary); font-weight: 600;">--</span></div>
+                <div><strong>Última actualización:</strong> <span id="resultFecha" style="color: var(--text-secondary); font-weight: 600;">--</span></div>
+                <div><strong>Demora estimada:</strong> <span id="resultDemora" style="color: var(--text-secondary); font-weight: 600;">--</span></div>
+                <div><strong>Costo de envío:</strong> <span id="resultEnvio" style="color: var(--text-secondary); font-weight: 600;">--</span></div>
+                <div><strong>Total de la orden:</strong> <span id="resultTotal" style="color: var(--text-secondary); font-weight: 600;">--</span></div>
             </div>
-
 
             <!-- PRODUCTO -->
-
             <div class="product-box">
-
-
-                <h4>
-                    PRODUCTO / PEDIDO
-                </h4>
-
-
-                <div
-                    class="product-name"
-                    id="resultProducto"
-                >
-                    --
-                </div>
-
+                <h4>PRODUCTO / PEDIDO</h4>
+                <div class="product-name" id="resultProducto">--</div>
             </div>
-
 
             <!-- TIMELINE -->
-
-            <h3 class="timeline-title">
-
-                Historial del envío
-
-            </h3>
-
-
-            <div
-                class="tracking-timeline"
-                id="trackingTimeline"
-            >
-
-
+            <h3 class="timeline-title">Historial del envío</h3>
+            <div class="tracking-timeline" id="trackingTimeline">
                 <!-- ETAPA 0 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        🕒
-                    </div>
-
+                    <div class="timeline-icon">🕒</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            En espera a cargar su pedido al sistema
-                        </h4>
-
-                        <p>
-                            El código fue ingresado y aguarda
-                            el registro oficial en la plataforma.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>En espera a cargar su pedido al sistema</h4>
+                        <p>El código fue ingresado y aguarda el registro oficial en la plataforma.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
                 <!-- ETAPA 1 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        ✓
-                    </div>
-
+                    <div class="timeline-icon">✓</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            Pedido recibido
-                        </h4>
-
-                        <p>
-                            La solicitud fue registrada correctamente
-                            en nuestro sistema.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>Pedido recibido</h4>
+                        <p>La solicitud fue registrada correctamente en nuestro sistema.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
                 <!-- ETAPA 2 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        💳
-                    </div>
-
+                    <div class="timeline-icon">💳</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            Pago confirmado
-                        </h4>
-
-                        <p>
-                            Se verificó y confirmó el pago correspondiente
-                            a la orden.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>Pago confirmado</h4>
+                        <p>Se verificó y confirmó el pago correspondiente a la orden.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
                 <!-- ETAPA 3 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        📋
-                    </div>
-
+                    <div class="timeline-icon">📋</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            Pedido confirmado
-                        </h4>
-
-                        <p>
-                            La orden fue confirmada y los productos
-                            quedaron reservados.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>Pedido confirmado</h4>
+                        <p>La orden fue confirmada y los productos quedaron reservados.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
                 <!-- ETAPA 4 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        🏭
-                    </div>
-
+                    <div class="timeline-icon">🏭</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            Preparación del envío
-                        </h4>
-
-                        <p>
-                            El pedido se encuentra en proceso
-                            de preparación y acondicionamiento.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>Preparación del envío</h4>
+                        <p>El pedido se encuentra en proceso de preparación y acondicionamiento.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
                 <!-- ETAPA 5 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        📦
-                    </div>
-
+                    <div class="timeline-icon">📦</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            Envío despachado
-                        </h4>
-
-                        <p>
-                            El paquete fue entregado al área
-                            de distribución para iniciar su recorrido.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>Envío despachado</h4>
+                        <p>El paquete fue entregado al área de distribución para iniciar su recorrido.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
                 <!-- ETAPA 6 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        🚚
-                    </div>
-
+                    <div class="timeline-icon">🚚</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            En tránsito
-                        </h4>
-
-                        <p>
-                            El envío se encuentra en ruta hacia
-                            su destino.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>En tránsito</h4>
+                        <p>El envío se encuentra en ruta hacia su destino.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
                 <!-- ETAPA 7 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        🏠
-                    </div>
-
+                    <div class="timeline-icon">🏠</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            En reparto
-                        </h4>
-
-                        <p>
-                            El envío se encuentra en la etapa final
-                            de distribución hacia el domicilio indicado.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>En reparto</h4>
+                        <p>El envío se encuentra en la etapa final de distribución hacia el domicilio indicado.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
                 <!-- ETAPA 8 -->
-
                 <div class="timeline-item">
-
-                    <div class="timeline-icon">
-                        ✓
-                    </div>
-
+                    <div class="timeline-icon">✓</div>
                     <div class="timeline-content">
-
-                        <h4>
-                            Entregado
-                        </h4>
-
-                        <p>
-                            El pedido fue entregado correctamente
-                            en su destino.
-                        </p>
-
-                        <span class="timeline-date">
-                            Pendiente
-                        </span>
-
+                        <h4>Entregado</h4>
+                        <p>El pedido fue entregado correctamente en su destino.</p>
+                        <span class="timeline-date">Pendiente</span>
                     </div>
-
                 </div>
-
-
             </div>
-
         </div>
-
     </div>
 
-
-    <!-- =========================================================
-         QUIÉNES SOMOS
-    ========================================================= -->
-
-    <main
-        class="container"
-        id="quienes-somos"
-    >
-
-
+    <!-- QUIÉNES SOMOS -->
+    <main class="container" id="quienes-somos">
         <div class="section-heading">
-
-
-            <span class="section-label">
-                Nuestra empresa
-            </span>
-
-
-            <h2 class="section-title">
-                Compromiso y Eficiencia en Cada Envío
-            </h2>
-
-
+            <span class="section-label">Nuestra empresa</span>
+            <h2 class="section-title">Compromiso y Eficiencia en Cada Envío</h2>
             <p class="section-subtitle">
-
-                Gestionamos la distribución y los envíos de
-                nuestros propios productos para garantizar
-                un servicio directo, transparente y de
-                absoluta confianza.
-
+                Gestionamos la distribución y los envíos de nuestros propios productos para garantizar un servicio directo, transparente y de absoluta confianza.
             </p>
-
         </div>
-
 
         <div class="about-card">
-
-
-            <p>
-
-                <strong>
-                    Nova Envíos & Créditos
-                </strong>
-
-                es una empresa que trabaja exclusivamente
-                los envíos por cuenta propia, asegurando
-                el control absoluto de cada etapa logística.
-
-            </p>
-
-
-            <p>
-
-                Nuestro objetivo principal es brindar una
-                operatoria propia y eficiente, simplificando
-                la entrega de pedidos y ofreciendo un
-                seguimiento claro para cada uno de nuestros clientes.
-
-            </p>
-
-
-            <p>
-
-                Trabajamos cada día para ofrecer una experiencia
-                directa, transparente y confiable, desde la
-                preparación inicial de la mercadería hasta
-                su entrega final en destino.
-
-            </p>
-
+            <p><strong>Nova Envíos & Créditos</strong> es una empresa que trabaja exclusivamente los envíos por cuenta propia, asegurando el control absoluto de cada etapa logística.</p>
+            <p>Nuestro objetivo principal es brindar una operatoria propia y eficiente, simplificando la entrega de pedidos y ofreciendo un seguimiento claro para cada uno de nuestros clientes.</p>
+            <p>Trabajamos cada día para ofrecer una experiencia directa, transparente y confiable, desde la preparación inicial de la mercadería hasta su entrega final en destino.</p>
         </div>
 
-
-        <!-- =====================================================
-             SERVICIOS
-        ===================================================== -->
-
-        <div
-            id="servicios"
-            class="section-heading"
-        >
-
-
-            <span class="section-label">
-                Nuestras soluciones
-            </span>
-
-
-            <h2 class="section-title">
-                Servicios Logísticos Propios
-            </h2>
-
-
-            <p class="section-subtitle">
-
-                Operaciones optimizadas y adaptadas para gestionar
-                nuestros envíos con un alto estándar de eficiencia,
-                trazabilidad y cumplimiento directo.
-
-            </p>
-
+        <!-- SERVICIOS -->
+        <div id="servicios" class="section-heading">
+            <span class="section-label">Nuestras soluciones</span>
+            <h2 class="section-title">Servicios Logísticos Propios</h2>
+            <p class="section-subtitle">Operaciones optimizadas y adaptadas para gestionar nuestros envíos con un alto estándar de eficiencia, trazabilidad y cumplimiento directo.</p>
         </div>
-
 
         <div class="features-grid">
-
-
             <div class="feature-card">
-
-
-                <div class="feature-icon">
-                    🚚
-                </div>
-
-
-                <h3>
-                    Envíos Propios
-                </h3>
-
-
-                <p>
-
-                    Coordinamos y ejecutamos la distribución
-                    de nuestros productos por cuenta propia,
-                    buscando optimizar los tiempos de entrega
-                    y recorridos.
-
-                </p>
-
+                <div class="feature-icon">🚚</div>
+                <h3>Envíos Propios</h3>
+                <p>Coordinamos y ejecutamos la distribución de nuestros productos por cuenta propia, buscando optimizar los tiempos de entrega y recorridos.</p>
             </div>
-
-
             <div class="feature-card">
-
-
-                <div class="feature-icon">
-                    🏭
-                </div>
-
-
-                <h3>
-                    Almacenamiento Interno
-                </h3>
-
-
-                <p>
-
-                    Gestionamos la recepción, almacenamiento
-                    y preparación de mercadería propia para
-                    facilitar una rápida y segura salida.
-
-                </p>
-
+                <div class="feature-icon">🏭</div>
+                <h3>Almacenamiento Interno</h3>
+                <p>Gestionamos la recepción, almacenamiento y preparación de mercadería propia para facilitar una rápida y segura salida.</p>
             </div>
-
-
             <div class="feature-card">
-
-
-                <div class="feature-icon">
-                    📍
-                </div>
-
-
-                <h3>
-                    Última Milla Propia
-                </h3>
-
-
-                <p>
-
-                    Realizamos la distribución final de los
-                    pedidos directamente hasta el destinatario,
-                    asegurando una atención cercana y personalizada.
-
-                </p>
-
+                <div class="feature-icon">📍</div>
+                <h3>Última Milla Propia</h3>
+                <p>Realizamos la distribución final de los pedidos directamente hasta el destinatario, asegurando una atención cercana y personalizada.</p>
             </div>
-
-
         </div>
 
-
-        <!-- =====================================================
-             BANNER CATÁLOGO
-        ===================================================== -->
-
+        <!-- BANNER CATÁLOGO -->
         <div class="store-banner">
-
-
             <div>
-
-
-                <h2>
-                    Tecnología y Productos para tu Hogar
-                </h2>
-
-
-                <p>
-
-                    Conocé nuestro catálogo online y encontrá
-                    productos seleccionados de tecnología y
-                    electrodomésticos.
-
-                    Realizá tu pedido y coordiná la entrega
-                    de manera simple, segura y directa.
-
-                </p>
-
+                <h2>Tecnología y Productos para tu Hogar</h2>
+                <p>Conocé nuestro catálogo online y encontrá productos seleccionados de tecnología y electrodomésticos. Realizá tu pedido y coordiná la entrega de manera simple, segura y directa.</p>
             </div>
-
-
             <div>
-
-                <a
-                    href="https://logisticanova.github.io/Log-stica-NOVA/productos.html"
-                    class="store-btn"
-                    target="_blank"
-                >
-                    Explorar catálogo
-                </a>
-
+                <a href="https://logisticanova.github.io/Log-stica-NOVA/productos.html" class="store-btn" target="_blank">Explorar catálogo</a>
             </div>
-
-
         </div>
-
     </main>
 
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================= -->
-
+    <!-- FOOTER -->
     <footer>
-
-
         <p>
-
-            &copy; 2026
-
-            <strong>
-                Nova Envíos & Créditos
-            </strong>.
-
-            Todos los derechos reservados.
-
-            <br>
-
-            Soluciones de logística, distribución
-            y envíos por cuenta propia.
-
-            <br>
-
-            Dirección:
-            <strong>
-                Perú Y Av. Cabildo
-            </strong>
-
-            <br>
-
-            Email:
-            <strong>
-                novaenvioscreditos@gmail.com
-            </strong>
-
-            <br>
-
-            Soporte y consultas:
-            <strong>
-                11-5501-2447
-            </strong>
-
+            &copy; 2026 <strong>Nova Envíos & Créditos</strong>. Todos los derechos reservados.
+            <br>Soluciones de logística, distribución y envíos por cuenta propia.
+            <br>Dirección: <strong>Perú Y Av. Cabildo</strong>
+            <br>Email: <strong>novaenvioscreditos@gmail.com</strong>
+            <br>Soporte y consultas: <strong>11-5501-2447</strong>
         </p>
-
     </footer>
 
-
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================= -->
-
+    <!-- JAVASCRIPT -->
     <script>
-
-
-        /*
-         * =====================================================
-         * ENVÍOS REGISTRADOS
-         * =====================================================
-         * Combinamos los pedidos guardados automáticamente en el 
-         * navegador (localStorage) con tus datos estáticos base.
-         */
-
+        // ACÁ PODÉS CARGAR TUS CÓDIGOS MANUALMENTE Y CAMBIAR SU ETAPA (0 al 8) CUANDO QUIERAS
         let envios = {
-            "NV-7895781": {
-                comprador: "",
-                destino: "",
-                provincia: "",
-                cp: "",
-                demora: "",
-                envio: "$",
-                total: "$",
-                producto: "",
-                etapa: 0,
-                fecha: ""
+            "NV-1540942": {
+                comprador: "Juan Pérez",
+                destino: "Av. Cabildo 2000",
+                provincia: "Buenos Aires",
+                cp: "1428",
+                demora: "2 a 3 días hábiles",
+                envio: "$4.500",
+                total: "$125.000",
+                producto: "Smart TV 32 Pulgadas",
+                etapa: 3, // Cambiá este número del 0 al 8 según prefieras
+                fecha: "08/09/2026"
             }
         };
 
-        // Cargar los pedidos que el cliente envió mediante el formulario y WhatsApp
-        function cargarPedidosGuardados() {
-            try {
-                const pedidosLocales = JSON.parse(localStorage.getItem('misPedidos')) || [];
-                pedidosLocales.forEach(pedido => {
-                    if (pedido.codigoEnvio) {
-                        envios[pedido.codigoEnvio.toUpperCase()] = {
-                            comprador: pedido.nombre || "Cliente",
-                            destino: pedido.destino || "A coordinar",
-                            provincia: pedido.provincia || "-",
-                            cp: pedido.cp || "-",
-                            demora: pedido.demora || "2 a 3 días",
-                            envio: pedido.envio || "$0",
-                            total: pedido.total || "$0",
-                            producto: pedido.productos || "Pedido de tienda",
-                            etapa: pedido.etapa !== undefined ? Number(pedido.etapa) : 1, // Por defecto inicia en la etapa 1
-                            fecha: pedido.fecha || new Date().toLocaleDateString()
-                        };
-                    }
-                });
-            } catch (e) {
-                console.error("Error al cargar los pedidos locales", e);
-            }
-        }
-
-        // Ejecutar al cargar la página
-        cargarPedidosGuardados();
-
-
-
-        /* =====================================================
-           BUSCAR ENVÍO
-        ===================================================== */
-
         function buscarEnvio() {
+            const inputElement = document.getElementById("trackingInput");
+            const resultCard = document.getElementById("resultCard");
+            const input = inputElement.value.trim().toUpperCase();
 
-
-            const inputElement =
-                document.getElementById(
-                    "trackingInput"
-                );
-
-
-            const resultCard =
-                document.getElementById(
-                    "resultCard"
-                );
-
-
-            /*
-             * Obtener código
-             */
-
-            const input =
-                inputElement
-                    .value
-                    .trim()
-                    .toUpperCase();
-
-
-            /*
-             * =================================================
-             * VALIDACIÓN DEL FORMATO
-             * =================================================
-             *
-             * NV-
-             * +
-             * exactamente 7 números
-             *
-             * Ejemplo:
-             *
-             * NV-7895781
-             *
-             */
-
-
-            const formatoTracking =
-                /^NV-\d{7}$/;
-
-
-            if (
-                !formatoTracking.test(input)
-            ) {
-
-
-                alert(
-
-                    "Código de seguimiento inválido.\n\n" +
-
-                    "El código debe tener este formato:\n\n" +
-
-                    "NV-7895781\n\n" +
-
-                    "Debe comenzar con NV- y continuar " +
-
-                    "con exactamente 7 números."
-
-                );
-
-
-                resultCard.classList.remove(
-                    "active"
-                );
-
-
+            const formatoTracking = /^NV-\d{7}$/;
+            if (!formatoTracking.test(input)) {
+                alert("Código de seguimiento inválido.\n\nEl código debe tener este formato:\n\nNV-7895781\n\nDebe comenzar con NV- y continuar con exactamente 7 números.");
+                resultCard.classList.remove("active");
                 return;
-
             }
 
-
-
-            /*
-             * =================================================
-             * BUSCAR ÚNICAMENTE EN LOS ENVÍOS REGISTRADOS
-             * =================================================
-             */
-
-
-            const envio =
-                envios[input];
-
-
-
-            /*
-             * =================================================
-             * SI NO EXISTE
-             * =================================================
-             */
-
-
-            if (!envio) {
-
-
-                alert(
-
-                    "No encontramos ningún envío asociado al código:\n\n" +
-
-                    input +
-
-                    "\n\n" +
-
-                    "Verificá el código e intentá nuevamente."
-
-                );
-
-
-                resultCard.classList.remove(
-                    "active"
-                );
-
-
-                return;
-
+            // Si el código no existe en el objeto de arriba, se crea automáticamente en etapa 0 (pendiente)
+            if (!envios[input]) {
+                envios[input] = {
+                    comprador: "Pendiente de actualización",
+                    destino: "Pendiente de actualización",
+                    provincia: "Pendiente",
+                    cp: "----",
+                    demora: "A calcular",
+                    envio: "A calcular",
+                    total: "A calcular",
+                    producto: "Pedido registrado - A la espera de detalles",
+                    etapa: 0,
+                    fecha: new Date().toLocaleDateString()
+                };
             }
 
-
-
-            /*
-             * =================================================
-             * MOSTRAR DATOS
-             * =================================================
-             */
-
-
-            document
-                .getElementById(
-                    "resultCode"
-                )
-                .innerText =
-                input;
-
-
-
-            document
-                .getElementById(
-                    "resultComprador"
-                )
-                .innerText =
-                envio.comprador ||
-                "Pendiente";
-
-
-
-            document
-                .getElementById(
-                    "resultDestino"
-                )
-                .innerText =
-                envio.destino ||
-                "Pendiente";
-
-
-
-            document
-                .getElementById(
-                    "resultProvincia"
-                )
-                .innerText =
-                envio.provincia ||
-                "Pendiente";
-
-
-
-            document
-                .getElementById(
-                    "resultCP"
-                )
-                .innerText =
-                envio.cp ||
-                "Pendiente";
-
-
-
-            document
-                .getElementById(
-                    "resultDemora"
-                )
-                .innerText =
-                envio.demora ||
-                "Pendiente";
-
-
-
-            document
-                .getElementById(
-                    "resultEnvio"
-                )
-                .innerText =
-                envio.envio ||
-                "Pendiente";
-
-
-
-            document
-                .getElementById(
-                    "resultTotal"
-                )
-                .innerText =
-                envio.total ||
-                "Pendiente";
-
-
-
-            document
-                .getElementById(
-                    "resultProducto"
-                )
-                .innerText =
-                envio.producto ||
-                "Pendiente";
-
-
-
-            document
-                .getElementById(
-                    "resultFecha"
-                )
-                .innerText =
-                envio.fecha ||
-                "Pendiente";
-
-
-
-            /*
-             * =================================================
-             * TIMELINE
-             * =================================================
-             */
-
-
-            const etapas =
-                document.querySelectorAll(
-                    ".timeline-item"
-                );
-
-
-            const iconos = [
-
-                "🕒",
-
-                "✓",
-
-                "💳",
-
-                "📋",
-
-                "🏭",
-
-                "📦",
-
-                "🚚",
-
-                "🏠",
-
-                "✓"
-
-            ];
-
-
-
-            /*
-             * Reiniciar timeline
-             */
-
-
-            etapas.forEach(
-                (etapa, index) => {
-
-
-                    etapa.classList.remove(
-                        "completed",
-                        "active",
-                        "delivered"
-                    );
-
-
-                    const icono =
-                        etapa.querySelector(
-                            ".timeline-icon"
-                        );
-
-
-                    const fecha =
-                        etapa.querySelector(
-                            ".timeline-date"
-                        );
-
-
-                    icono.innerText =
-                        iconos[index];
-
-
-                    fecha.innerText =
-                        "Pendiente";
-
-
+            const envio = envios[input];
+
+            document.getElementById("resultCode").innerText = input;
+            document.getElementById("resultComprador").innerText = envio.comprador;
+            document.getElementById("resultDestino").innerText = envio.destino;
+            document.getElementById("resultProvincia").innerText = envio.provincia;
+            document.getElementById("resultCP").innerText = envio.cp;
+            document.getElementById("resultDemora").innerText = envio.demora;
+            document.getElementById("resultEnvio").innerText = envio.envio;
+            document.getElementById("resultTotal").innerText = envio.total;
+            document.getElementById("resultProducto").innerText = envio.producto;
+            document.getElementById("resultFecha").innerText = envio.fecha;
+
+            const etapas = document.querySelectorAll(".timeline-item");
+            const iconos = ["🕒", "✓", "💳", "📋", "🏭", "📦", "🚚", "🏠", "✓"];
+
+            etapas.forEach((etapa, index) => {
+                etapa.classList.remove("completed", "active", "delivered");
+                etapa.querySelector(".timeline-icon").innerText = iconos[index];
+                etapa.querySelector(".timeline-date").innerText = "Pendiente";
+            });
+
+            let numeroEtapa = Number(envio.etapa);
+            if (isNaN(numeroEtapa)) numeroEtapa = 0;
+            numeroEtapa = Math.max(0, Math.min(numeroEtapa, 8));
+
+            etapas.forEach((etapa, index) => {
+                const fecha = etapa.querySelector(".timeline-date");
+                const icono = etapa.querySelector(".timeline-icon");
+
+                if (index < numeroEtapa) {
+                    etapa.classList.add("completed");
+                    fecha.innerText = "Completado";
+                    icono.innerText = "✓";
+                } else if (index === numeroEtapa) {
+                    etapa.classList.add("active");
+                    fecha.innerText = "Estado actual";
                 }
-            );
+            });
 
+            if (numeroEtapa >= 8) {
+                etapas.forEach((etapa) => {
+                    etapa.classList.remove("active");
+                    etapa.classList.add("completed");
+                    etapa.querySelector(".timeline-date").innerText = "Completado";
+                });
+                etapas[8].classList.add("delivered");
+                etapas[8].querySelector(".timeline-date").innerText = "Entregado";
 
-
-            /*
-             * =================================================
-             * ETAPA ACTUAL
-             * =================================================
-             */
-
-
-            let numeroEtapa =
-                Number(
-                    envio.etapa
-                );
-
-
-            if (
-                isNaN(numeroEtapa)
-            ) {
-
-                numeroEtapa = 1; // Por defecto etapa 1 si no está definido
-
+                const status = document.getElementById("resultStatus");
+                status.innerText = "Entregado con éxito";
+                status.style.backgroundColor = "#2563eb";
+            } else {
+                const nombreEtapa = etapas[numeroEtapa].querySelector("h4").innerText;
+                const status = document.getElementById("resultStatus");
+                status.innerText = nombreEtapa;
+                status.style.backgroundColor = "#10b981";
             }
 
-
-            numeroEtapa =
-                Math.max(
-                    0,
-                    Math.min(
-                        numeroEtapa,
-                        8
-                    )
-                );
-
-
-
-            /*
-             * Marcar etapas
-             */
-
-
-            etapas.forEach(
-                (etapa, index) => {
-
-
-                    const fecha =
-                        etapa.querySelector(
-                            ".timeline-date"
-                        );
-
-
-                    const icono =
-                        etapa.querySelector(
-                            ".timeline-icon"
-                        );
-
-
-
-                    /*
-                     * Etapas anteriores
-                     */
-
-
-                    if (
-                        index <
-                        numeroEtapa
-                    ) {
-
-
-                        etapa.classList.add(
-                            "completed"
-                        );
-
-
-                        fecha.innerText =
-                            "Completado";
-
-
-                        icono.innerText =
-                            "✓";
-
-
-                    }
-
-
-
-                    /*
-                     * Etapa actual
-                     */
-
-
-                    else if (
-                        index ===
-                        numeroEtapa
-                    ) {
-
-
-                        etapa.classList.add(
-                            "active"
-                        );
-
-
-                        fecha.innerText =
-                            "Estado actual";
-
-
-                    }
-
-                }
-            );
-
-
-
-            /*
-             * =================================================
-             * ENVÍO ENTREGADO
-             * =================================================
-             */
-
-
-            if (
-                numeroEtapa >= 8
-            ) {
-
-
-                etapas.forEach(
-                    (etapa) => {
-
-
-                        etapa.classList.remove(
-                            "active"
-                        );
-
-
-                        etapa.classList.add(
-                            "completed"
-                        );
-
-
-                        etapa
-                            .querySelector(
-                                ".timeline-date"
-                            )
-                            .innerText =
-                            "Completado";
-
-                    }
-                );
-
-
-
-                etapas[8]
-                    .classList.add(
-                        "delivered"
-                    );
-
-
-
-                etapas[8]
-                    .querySelector(
-                        ".timeline-date"
-                    )
-                    .innerText =
-                    "Entregado";
-
-
-
-                const status =
-                    document.getElementById(
-                        "resultStatus"
-                    );
-
-
-                status.innerText =
-                    "Entregado con éxito";
-
-
-                status.style.backgroundColor =
-                    "#2563eb";
-
-
-            }
-
-
-            /*
-             * =================================================
-             * ENVÍO EN PROCESO
-             * =================================================
-             */
-
-
-            else {
-
-
-                const nombreEtapa =
-                    etapas[
-                        numeroEtapa
-                    ]
-                    .querySelector(
-                        "h4"
-                    )
-                    .innerText;
-
-
-
-                const status =
-                    document.getElementById(
-                        "resultStatus"
-                    );
-
-
-                status.innerText =
-                    nombreEtapa;
-
-
-                status.style.backgroundColor =
-                    "#10b981";
-
-            }
-
-
-
-            /*
-             * =================================================
-             * MOSTRAR RESULTADO
-             * =================================================
-             */
-
-
-            resultCard.classList.add(
-                "active"
-            );
-
-
-
-            /*
-             * Desplazar hacia el resultado
-             */
-
-
-            setTimeout(
-                () => {
-
-
-                    resultCard.scrollIntoView({
-
-                        behavior:
-                            "smooth",
-
-                        block:
-                            "nearest"
-
-                    });
-
-
-                },
-                100
-            );
-
-
+            resultCard.classList.add("active");
+            setTimeout(() => {
+                resultCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }, 100);
         }
-
-
     </script>
-
-
 </body>
 
 </html>
-
