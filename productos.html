@@ -149,11 +149,6 @@ header p {
     padding: 0 14px;
 }
 
-
-/* ==========================================
-   AVISO DE MANTENIMIENTO
-   ========================================== */
-
 .aviso-mantenimiento {
     width: 100%;
     max-width: 900px;
@@ -180,28 +175,6 @@ header p {
     line-height: 1.55;
     color: #7c2d12;
 }
-
-@media (max-width: 600px) {
-
-    .aviso-mantenimiento {
-        margin: 0 0 18px;
-        padding: 14px 15px;
-    }
-
-    .aviso-mantenimiento h3 {
-        font-size: 15px;
-    }
-
-    .aviso-mantenimiento p {
-        font-size: 13px;
-    }
-
-}
-
-
-/* ==========================================
-   BUSCADOR
-   ========================================== */
 
 .search-wrapper {
     max-width: 600px;
@@ -649,11 +622,6 @@ header p {
     margin-top: 30px;
 }
 
-
-/* ==========================================
-   OPCIONES DE WHATSAPP
-   ========================================== */
-
 .whatsapp-box {
     margin-top: 16px;
     padding: 14px;
@@ -705,75 +673,32 @@ header p {
     opacity: 0.94;
 }
 
-.btn-whatsapp {
-    background: #25d366;
-}
-
-.btn-business {
-    background: #128c7e;
-}
-
-.btn-web {
-    background: #111827;
-}
-
-.codigo-generado {
-    margin-top: 12px;
-    padding: 10px;
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    border-radius: 9px;
-    text-align: center;
-    font-size: 0.78rem;
-    color: #1e40af;
-}
-
-.codigo-generado strong {
-    display: block;
-    font-size: 1rem;
-    margin-top: 3px;
-    letter-spacing: 0.5px;
-}
-
+.btn-whatsapp { background: #25d366; }
+.btn-business { background: #128c7e; }
+.btn-web { background: #111827; }
 
 @media (max-width: 600px) {
-
     .inline-group {
         flex-direction: column;
         gap: 0;
     }
-
     .form-buttons {
         flex-direction: column;
     }
-
     .btn-back,
     .btn-submit-order {
         width: 100%;
     }
-
 }
-
 
 @media (min-width: 640px) {
-    .grid-productos {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-    }
+    .grid-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 }
-
 @media (min-width: 960px) {
-    .grid-productos {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 20px;
-    }
+    .grid-productos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 }
-
 @media (min-width: 1200px) {
-    .grid-productos {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 20px;
-    }
+    .grid-productos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 }
 </style>
 </head>
@@ -781,2881 +706,570 @@ header p {
 <body>
 
 <nav class="navbar">
-
-    <div class="navbar-brand">
-        Nova Envíos & Créditos
-    </div>
-
-    <button
-        class="cart-btn"
-        onclick="toggleCart()"
-    >
-        🛒 Carrito
-        <span
-            class="cart-badge"
-            id="cartCount"
-        >
-            0
-        </span>
+    <div class="navbar-brand">Nova Envíos & Créditos</div>
+    <button class="cart-btn" onclick="toggleCart()">
+        🛒 Carrito <span class="cart-badge" id="cartCount">0</span>
     </button>
-
 </nav>
 
-
 <div class="container">
-
 <header>
-
-    <div class="header-kicker">
-        ✦ Catálogo exclusivo
-    </div>
-
-    <h1>
-        Catálogo de Productos
-    </h1>
-
-    <p>
-        Encontrá productos seleccionados con
-        <span class="header-highlight">
-            precio especial por transferencia
-        </span>
-        y opciones de pago flexibles.
-    </p>
-
+    <div class="header-kicker">✦ Catálogo exclusivo</div>
+    <h1>Catálogo de Productos</h1>
+    <p>Encontrá productos seleccionados con <span class="header-highlight">precio especial por transferencia</span> y opciones de pago flexibles.</p>
 </header>
 
-
-<!-- ==========================================
-     AVISO DE MANTENIMIENTO
-     ========================================== -->
-
 <div class="aviso-mantenimiento">
-
-    <h3>
-        Aviso de Mantenimiento
-    </h3>
-
-    <p>
-        "La página se encuentra en mantenimiento y algunas imágenes pueden no coincidir exactamente con el producto. Podés realizar tu pedido con total tranquilidad."
-    </p>
-
+    <h3>Aviso de Mantenimiento</h3>
+    <p>"La página se encuentra en mantenimiento y algunas imágenes pueden no coincidir exactamente con el producto. Podés realizar tu pedido con total tranquilidad."</p>
 </div>
-
 
 <div class="search-wrapper">
-
-    <input
-        type="text"
-        id="searchInput"
-        class="search-input"
-        placeholder="🔍 Buscar por nombre, marca o modelo..."
-        oninput="buscarProductos()"
-    >
-
+    <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre, marca o modelo..." oninput="buscarProductos()">
 </div>
-
 
 <div class="filtros-wrapper">
-
     <div class="filtros">
-
-        <button
-            class="filter-btn active"
-            onclick="filtrarCategoria('Todas', this)"
-        >
-            Todas
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Celulares', this)"
-        >
-            Celulares
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Gaming', this)"
-        >
-            Gaming
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Televisores y Monitores', this)"
-        >
-            Televisores / Monitores
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Aires Acondicionados', this)"
-        >
-            Aires Acondicionados
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Heladeras y Freezers', this)"
-        >
-            Heladeras / Freezers
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Cocinas y Hornos', this)"
-        >
-            Cocinas / Hornos
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Lavarropas y Secadoras', this)"
-        >
-            Lavarropas / Secadoras
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Pequeños Electrodomésticos', this)"
-        >
-            Pequeños Electrodomésticos
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Aspiradoras', this)"
-        >
-            Aspiradoras
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Termotanques y Calefones', this)"
-        >
-            Termotanques
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Informática', this)"
-        >
-            Informática
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Audio', this)"
-        >
-            Audio
-        </button>
-
-        <button
-            class="filter-btn"
-            onclick="filtrarCategoria('Accesorios', this)"
-        >
-            Accesorios
-        </button>
-
+        <button class="filter-btn active" onclick="filtrarCategoria('Todas', this)">Todas</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Celulares', this)">Celulares</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Gaming', this)">Gaming</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Televisores y Monitores', this)">Televisores / Monitores</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Aires Acondicionados', this)">Aires Acondicionados</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Heladeras y Freezers', this)">Heladeras / Freezers</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Cocinas y Hornos', this)">Cocinas / Hornos</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Lavarropas y Secadoras', this)">Lavarropas / Secadoras</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Pequeños Electrodomésticos', this)">Pequeños Electrodomésticos</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Aspiradoras', this)">Aspiradoras</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Termotanques y Calefones', this)">Termotanques</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Informática', this)">Informática</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Audio', this)">Audio</button>
+        <button class="filter-btn" onclick="filtrarCategoria('Accesorios', this)">Accesorios</button>
     </div>
-
 </div>
 
-
-<div
-    class="grid-productos"
-    id="gridProductos"
-></div>
-
-
-<div
-    id="paginacion"
-    class="paginacion"
-></div>
-
+<div class="grid-productos" id="gridProductos"></div>
+<div id="paginacion" class="paginacion"></div>
 </div>
 
-
-<!-- ==========================================
-     CARRITO
-     ========================================== -->
-
-<div
-    class="modal-overlay"
-    id="cartModal"
-    onclick="handleOutsideClick(event)"
->
-
+<div class="modal-overlay" id="cartModal" onclick="handleOutsideClick(event)">
     <div class="cart-drawer">
-
         <div class="cart-header">
-
-            <h3
-                id="drawerTitle"
-                style="font-size:1.05rem;"
-            >
-                Tu Carrito de Compras
-            </h3>
-
-            <button
-                class="close-cart"
-                onclick="toggleCart()"
-            >
-                &times;
-            </button>
-
+            <h3 id="drawerTitle" style="font-size:1.05rem;">Tu Carrito de Compras</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
         </div>
-
-        <div
-            class="cart-body"
-            id="cartBodyContent"
-        ></div>
-
+        <div class="cart-body" id="cartBodyContent"></div>
     </div>
-
 </div>
-
 
 <script type="module">
-
 import { productos } from './data/productos.js';
 
-
-// ==========================================
-// CONFIGURACIÓN
-// ==========================================
-
 const tarifasProvincias = {
-
-    "CABA": {
-        costo: 8500,
-        demora: "12 a 24 hs",
-        nombre: "CABA"
-    },
-
-    "Buenos Aires": {
-        costo: 12500,
-        demora: "24 a 48 hs",
-        nombre: "Buenos Aires"
-    },
-
-    "Provincias": {
-        costo: 18500,
-        demora: "3 a 6 días hábiles",
-        nombre: "Otras Provincias"
-    }
-
+    "CABA": { costo: 8500, demora: "12 a 24 hs", nombre: "CABA" },
+    "Buenos Aires": { costo: 12500, demora: "24 a 48 hs", nombre: "Buenos Aires" },
+    "Provincias": { costo: 18500, demora: "3 a 6 días hábiles", nombre: "Otras Provincias" }
 };
-
 
 const PRODUCTOS_POR_PAGINA = 12;
-
-
-// Número de WhatsApp de Nova
 const NUMERO_WHATSAPP = "5491155012447";
 
-
-// ==========================================
-// ESTADO
-// ==========================================
-
-let carrito =
-    JSON.parse(
-        localStorage.getItem(
-            'logistica_nova_carrito'
-        )
-    ) || [];
-
+let carrito = JSON.parse(localStorage.getItem('logistica_nova_carrito')) || [];
 let vistaActual = 'carrito';
-
-let metodoPagoGlobal =
-    'transferencia';
-
+let metodoPagoGlobal = 'transferencia';
 let cuotasGlobal = 1;
-
-let categoriaSeleccionada =
-    'Todas';
-
+let categoriaSeleccionada = 'Todas';
 let textoBusqueda = '';
-
-let localidadSeleccionadaGlobal =
-    'CABA';
-
+let localidadSeleccionadaGlobal = 'CABA';
 let paginaActual = 1;
 
-
-// ==========================================
-// VALIDACIÓN
-// ==========================================
-
-if (!Array.isArray(productos)) {
-
-    console.error(
-        'Error: productos no es un array.',
-        productos
-    );
-
-}
-
-
-// ==========================================
-// MONEDA
-// ==========================================
-
 function formatearMoneda(valor) {
-
-    const numero =
-        Number(valor) || 0;
-
-    return new Intl.NumberFormat(
-        'es-AR',
-        {
-            style: 'currency',
-            currency: 'ARS',
-            maximumFractionDigits: 0
-        }
-    ).format(numero);
-
+    return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(Number(valor) || 0);
 }
-
-
-// ==========================================
-// GENERAR CÓDIGO DE SEGUIMIENTO
-// ==========================================
-//
-// Genera:
-// NV-1234567
-//
-// No utiliza localStorage.
-// No necesita base de datos.
-//
 
 function generarCodigoSeguimiento() {
-
-    const numero =
-        Math.floor(
-            1000000 +
-            Math.random() * 9000000
-        );
-
+    const numero = Math.floor(1000000 + Math.random() * 9000000);
     return `NV-${numero}`;
-
 }
-
-
-// ==========================================
-// STORAGE DEL CARRITO
-// ==========================================
 
 function guardarCarritoStorage() {
-
-    localStorage.setItem(
-        'logistica_nova_carrito',
-        JSON.stringify(carrito)
-    );
-
+    localStorage.setItem('logistica_nova_carrito', JSON.stringify(carrito));
 }
 
+// ==========================================
+// GUARDAR / CARGAR DATOS DEL CLIENTE EN STORAGE
+// ==========================================
+function guardarDatosClienteStorage() {
+    const datosCliente = {
+        nombre: document.getElementById('nombreCliente')?.value.trim() || '',
+        tel: document.getElementById('telCliente')?.value.trim() || '',
+        email: document.getElementById('emailCliente')?.value.trim() || '',
+        dir: document.getElementById('dirCliente')?.value.trim() || '',
+        ciudad: document.getElementById('ciudadCliente')?.value.trim() || '',
+        cp: document.getElementById('cpCliente')?.value.trim() || '',
+        zona: document.getElementById('localidadEnvioSelect')?.value || 'CABA',
+        obs: document.getElementById('obsCliente')?.value.trim() || ''
+    };
+    localStorage.setItem('logistica_nova_cliente', JSON.stringify(datosCliente));
+}
 
-// ==========================================
-// ESCAPAR HTML
-// ==========================================
+function cargarDatosClienteStorage() {
+    const guardados = JSON.parse(localStorage.getItem('logistica_nova_cliente'));
+    if (!guardados) return;
+
+    if (document.getElementById('nombreCliente')) document.getElementById('nombreCliente').value = guardados.nombre || '';
+    if (document.getElementById('telCliente')) document.getElementById('telCliente').value = guardados.tel || '';
+    if (document.getElementById('emailCliente')) document.getElementById('emailCliente').value = guardados.email || '';
+    if (document.getElementById('dirCliente')) document.getElementById('dirCliente').value = guardados.dir || '';
+    if (document.getElementById('ciudadCliente')) document.getElementById('ciudadCliente').value = guardados.ciudad || '';
+    if (document.getElementById('cpCliente')) document.getElementById('cpCliente').value = guardados.cp || '';
+    if (document.getElementById('obsCliente')) document.getElementById('obsCliente').value = guardados.obs || '';
+    
+    if (guardados.zona && document.getElementById('localidadEnvioSelect')) {
+        document.getElementById('localidadEnvioSelect').value = guardados.zona;
+        localidadSeleccionadaGlobal = guardados.zona;
+    }
+}
 
 function escaparHTML(valor) {
-
-    return String(valor ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-
+    return String(valor ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
-
-
-// ==========================================
-// ESCAPAR JS
-// ==========================================
 
 function escaparJS(valor) {
-
-    return String(valor ?? '')
-        .replace(/\\/g, '\\\\')
-        .replace(/'/g, "\\'")
-        .replace(/\r/g, '\\r')
-        .replace(/\n/g, '\\n');
-
+    return String(valor ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\r/g, '\\r').replace(/\n/g, '\\n');
 }
 
-
-// ==========================================
-// RECORTAR TEXTO
-// ==========================================
-
-function recortarTextoLimpio(
-    texto,
-    limite
-) {
-
-    const contenido =
-        String(texto || '');
-
-    if (
-        contenido.length <= limite
-    ) {
-
-        return contenido;
-
-    }
-
-    const sub =
-        contenido.substring(
-            0,
-            limite
-        );
-
-    const ultimoEspacio =
-        sub.lastIndexOf(' ');
-
-    if (
-        ultimoEspacio > 20
-    ) {
-
-        return (
-            sub.substring(
-                0,
-                ultimoEspacio
-            ) + '...'
-        );
-
-    }
-
+function recortarTextoLimpio(texto, limite) {
+    const contenido = String(texto || '');
+    if (contenido.length <= limite) return contenido;
+    const sub = contenido.substring(0, limite);
+    const ultimoEspacio = sub.lastIndexOf(' ');
+    if (ultimoEspacio > 20) return sub.substring(0, ultimoEspacio) + '...';
     return sub + '...';
-
 }
 
-
-// ==========================================
-// BÚSQUEDA
-// ==========================================
-
-window.buscarProductos =
-function() {
-
-    const input =
-        document.getElementById(
-            'searchInput'
-        );
-
-    textoBusqueda =
-        input.value
-            .toLowerCase()
-            .trim();
-
+window.buscarProductos = function() {
+    textoBusqueda = document.getElementById('searchInput').value.toLowerCase().trim();
     paginaActual = 1;
-
     renderizarProductos();
-
 };
 
-
-// ==========================================
-// FILTRO
-// ==========================================
-
-window.filtrarCategoria =
-function(
-    categoria,
-    botonElemento
-) {
-
-    categoriaSeleccionada =
-        categoria;
-
+window.filtrarCategoria = function(categoria, botonElemento) {
+    categoriaSeleccionada = categoria;
     paginaActual = 1;
-
-    document
-        .querySelectorAll(
-            '.filter-btn'
-        )
-        .forEach(btn => {
-
-            btn.classList.remove(
-                'active'
-            );
-
-        });
-
-    if (botonElemento) {
-
-        botonElemento.classList.add(
-            'active'
-        );
-
-    }
-
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    if (botonElemento) botonElemento.classList.add('active');
     renderizarProductos();
-
 };
 
-
-// ==========================================
-// CAMBIAR IMAGEN
-// ==========================================
-
-window.cambiarImagenMiniatura =
-function(
-    productoId,
-    srcImagen,
-    elementoThumbnail
-) {
-
-    const imagenPrincipal =
-        document.getElementById(
-            `mainImage-${productoId}`
-        );
-
+window.cambiarImagenMiniatura = function(productoId, srcImagen, elementoThumbnail) {
+    const imagenPrincipal = document.getElementById(`mainImage-${productoId}`);
     if (imagenPrincipal) {
-
-        imagenPrincipal.src =
-            srcImagen;
-
-        imagenPrincipal.style.display =
-            'block';
-
+        imagenPrincipal.src = srcImagen;
+        imagenPrincipal.style.display = 'block';
     }
-
-    if (
-        elementoThumbnail &&
-        elementoThumbnail.parentElement
-    ) {
-
-        elementoThumbnail
-            .parentElement
-            .querySelectorAll(
-                '.thumbnail'
-            )
-            .forEach(thumb => {
-
-                thumb.classList.remove(
-                    'active'
-                );
-
-            });
-
-        elementoThumbnail.classList.add(
-            'active'
-        );
-
+    if (elementoThumbnail && elementoThumbnail.parentElement) {
+        elementoThumbnail.parentElement.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+        elementoThumbnail.classList.add('active');
     }
-
 };
 
-
-// ==========================================
-// DESCRIPCIÓN
-// ==========================================
-
-window.alternarDescripcion =
-function(
-    id,
-    descripcionCompleta
-) {
-
-    const textoElemento =
-        document.getElementById(
-            `descripcion-${id}`
-        );
-
-    const boton =
-        document.getElementById(
-            `verMas-${id}`
-        );
-
-    if (
-        !textoElemento ||
-        !boton
-    ) {
-
-        return;
-
-    }
-
-    const estaExpandido =
-        boton.getAttribute(
-            'data-expandido'
-        ) === 'true';
-
+window.alternarDescripcion = function(id, descripcionCompleta) {
+    const textoElemento = document.getElementById(`descripcion-${id}`);
+    const boton = document.getElementById(`verMas-${id}`);
+    if (!textoElemento || !boton) return;
+    const estaExpandido = boton.getAttribute('data-expandido') === 'true';
     if (estaExpandido) {
-
-        textoElemento.innerText =
-            recortarTextoLimpio(
-                descripcionCompleta,
-                50
-            );
-
-        boton.innerText =
-            'Ver más';
-
-        boton.setAttribute(
-            'data-expandido',
-            'false'
-        );
-
+        textoElemento.innerText = recortarTextoLimpio(descripcionCompleta, 50);
+        boton.innerText = 'Ver más';
+        boton.setAttribute('data-expandido', 'false');
     } else {
-
-        textoElemento.innerText =
-            descripcionCompleta;
-
-        boton.innerText =
-            'Ver menos';
-
-        boton.setAttribute(
-            'data-expandido',
-            'true'
-        );
-
+        textoElemento.innerText = descripcionCompleta;
+        boton.innerText = 'Ver menos';
+        boton.setAttribute('data-expandido', 'true');
     }
-
 };
-
-
-// ==========================================
-// RENDERIZAR PRODUCTOS
-// ==========================================
 
 function renderizarProductos() {
-
-    const gridContainer =
-        document.getElementById(
-            'gridProductos'
-        );
-
-    const paginacionContainer =
-        document.getElementById(
-            'paginacion'
-        );
-
-    if (
-        !gridContainer ||
-        !paginacionContainer
-    ) {
-
-        return;
-
-    }
+    const gridContainer = document.getElementById('gridProductos');
+    const paginacionContainer = document.getElementById('paginacion');
+    if (!gridContainer || !paginacionContainer) return;
 
     gridContainer.innerHTML = '';
-
     paginacionContainer.innerHTML = '';
 
+    let productosFiltrados = categoriaSeleccionada === 'Todas' ? [...productos] : productos.filter(p => String(p.categoria || '').toLowerCase().trim() === String(categoriaSeleccionada).toLowerCase().trim());
 
-    let productosFiltrados =
-        categoriaSeleccionada === 'Todas'
-            ? [...productos]
-            : productos.filter(
-                producto => {
-
-                    return String(
-                        producto.categoria ||
-                        ''
-                    )
-                    .toLowerCase()
-                    .trim() ===
-                    String(
-                        categoriaSeleccionada
-                    )
-                    .toLowerCase()
-                    .trim();
-
-                }
-            );
-
-
-    if (
-        textoBusqueda !== ''
-    ) {
-
-        productosFiltrados =
-            productosFiltrados.filter(
-                producto => {
-
-                    const nombre =
-                        String(
-                            producto.nombre ||
-                            ''
-                        ).toLowerCase();
-
-                    const marca =
-                        String(
-                            producto.marca ||
-                            ''
-                        ).toLowerCase();
-
-                    const modelo =
-                        String(
-                            producto.modelo ||
-                            ''
-                        ).toLowerCase();
-
-                    const descripcion =
-                        String(
-                            producto.descripcion ||
-                            ''
-                        ).toLowerCase();
-
-                    const categoria =
-                        String(
-                            producto.categoria ||
-                            ''
-                        ).toLowerCase();
-
-                    const subcategoria =
-                        String(
-                            producto.subcategoria ||
-                            ''
-                        ).toLowerCase();
-
-                    return (
-                        nombre.includes(
-                            textoBusqueda
-                        ) ||
-                        marca.includes(
-                            textoBusqueda
-                        ) ||
-                        modelo.includes(
-                            textoBusqueda
-                        ) ||
-                        descripcion.includes(
-                            textoBusqueda
-                        ) ||
-                        categoria.includes(
-                            textoBusqueda
-                        ) ||
-                        subcategoria.includes(
-                            textoBusqueda
-                        )
-                    );
-
-                }
-            );
-
+    if (textoBusqueda !== '') {
+        productosFiltrados = productosFiltrados.filter(producto => {
+            const nombre = String(producto.nombre || '').toLowerCase();
+            const marca = String(producto.marca || '').toLowerCase();
+            const modelo = String(producto.modelo || '').toLowerCase();
+            const descripcion = String(producto.descripcion || '').toLowerCase();
+            return nombre.includes(textoBusqueda) || marca.includes(textoBusqueda) || modelo.includes(textoBusqueda) || descripcion.includes(textoBusqueda);
+        });
     }
 
-
-    if (
-        productosFiltrados.length === 0
-    ) {
-
-        gridContainer.innerHTML = `
-
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                color:var(--text-muted);
-                padding:30px;
-            ">
-
-                No se encontraron productos
-                que coincidan con la búsqueda.
-
-            </div>
-
-        `;
-
+    if (productosFiltrados.length === 0) {
+        gridContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:30px;">No se encontraron productos que coincidan con la búsqueda.</div>`;
         return;
-
     }
 
+    const totalPaginas = Math.ceil(productosFiltrados.length / PRODUCTOS_POR_PAGINA);
+    if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+    if (paginaActual < 1) paginaActual = 1;
 
-    const totalPaginas =
-        Math.ceil(
-            productosFiltrados.length /
-            PRODUCTOS_POR_PAGINA
-        );
+    const inicio = (paginaActual - 1) * PRODUCTOS_POR_PAGINA;
+    const productosPagina = productosFiltrados.slice(inicio, inicio + PRODUCTOS_POR_PAGINA);
 
-    if (
-        paginaActual > totalPaginas
-    ) {
-
-        paginaActual =
-            totalPaginas;
-
-    }
-
-    if (
-        paginaActual < 1
-    ) {
-
-        paginaActual = 1;
-
-    }
-
-
-    const inicio =
-        (paginaActual - 1) *
-        PRODUCTOS_POR_PAGINA;
-
-    const fin =
-        inicio +
-        PRODUCTOS_POR_PAGINA;
-
-
-    const productosPagina =
-        productosFiltrados.slice(
-            inicio,
-            fin
-        );
-
-
-    productosPagina.forEach(
-        producto => {
-
-            let specsHTML = '';
-
-
-            if (
-                producto.especificaciones &&
-                typeof producto.especificaciones ===
-                'object'
-            ) {
-
-                for (
-                    const [
-                        key,
-                        value
-                    ]
-                    of Object.entries(
-                        producto.especificaciones
-                    )
-                ) {
-
-                    const etiqueta =
-                        key
-                            .replace(
-                                /([A-Z])/g,
-                                ' $1'
-                            )
-                            .replace(
-                                /^./,
-                                letra =>
-                                    letra.toUpperCase()
-                            );
-
-                    specsHTML += `
-
-                        <div>
-
-                            <span class="spec-label">
-                                ${escaparHTML(
-                                    etiqueta
-                                )}:
-                            </span>
-
-                            <span class="spec-value">
-                                ${escaparHTML(
-                                    value
-                                )}
-                            </span>
-
-                        </div>
-
-                    `;
-
-                }
-
+    productosPagina.forEach(producto => {
+        let specsHTML = '';
+        if (producto.especificaciones && typeof producto.especificaciones === 'object') {
+            for (const [key, value] of Object.entries(producto.especificaciones)) {
+                const etiqueta = key.replace(/([A-Z])/g, ' $1').replace(/^./, letra => letra.toUpperCase());
+                specsHTML += `<div><span class="spec-label">${escaparHTML(etiqueta)}:</span><span class="spec-value">${escaparHTML(value)}</span></div>`;
             }
-
-
-            const imagenes =
-                Array.isArray(
-                    producto.imagenes
-                )
-                    ? producto.imagenes
-                        .filter(
-                            img =>
-                                img &&
-                                String(
-                                    img
-                                ).trim() !== ''
-                        )
-                        .slice(
-                            0,
-                            5
-                        )
-                    : [];
-
-
-            const imagenPrincipalInicial =
-                imagenes.length > 0
-                    ? imagenes[0]
-                    : '';
-
-
-            let thumbnailsHTML = '';
-
-
-            imagenes.forEach(
-                (
-                    imgSrc,
-                    index
-                ) => {
-
-                    thumbnailsHTML += `
-
-                        <img
-                            src="${escaparHTML(
-                                imgSrc
-                            )}"
-                            alt="${escaparHTML(
-                                producto.nombre
-                            )}"
-                            class="thumbnail ${
-                                index === 0
-                                    ? 'active'
-                                    : ''
-                            }"
-                            onclick="cambiarImagenMiniatura(
-                                ${producto.id},
-                                '${escaparJS(
-                                    imgSrc
-                                )}',
-                                this
-                            )"
-                            onerror="
-                                this.style.display='none'
-                            "
-                        >
-
-                    `;
-
-                }
-            );
-
-
-            const descripcion =
-                String(
-                    producto.descripcion ||
-                    ''
-                );
-
-            const superaLimite =
-                descripcion.length > 50;
-
-            const descripcionInicial =
-                recortarTextoLimpio(
-                    descripcion,
-                    50
-                );
-
-
-            const card =
-                document.createElement(
-                    'div'
-                );
-
-            card.className =
-                'card';
-
-
-            card.innerHTML = `
-
-                ${
-                    producto.stock
-                        ? `
-                            <span class="badge-stock">
-                                ✓ Stock
-                            </span>
-                        `
-                        : ''
-                }
-
-
-                <div
-                    class="product-gallery-container"
-                >
-
-                    <div
-                        class="main-image-container"
-                    >
-
-                        ${
-                            imagenPrincipalInicial
-                                ? `
-                                    <img
-                                        id="mainImage-${producto.id}"
-                                        src="${escaparHTML(
-                                            imagenPrincipalInicial
-                                        )}"
-                                        alt="${escaparHTML(
-                                            producto.nombre
-                                        )}"
-                                        loading="lazy"
-                                        onerror="
-                                            this.style.display='none';
-                                        "
-                                    >
-                                `
-                                : `
-                                    <span style="
-                                        color:var(--text-muted);
-                                        font-size:0.8rem;
-                                    ">
-                                        Imagen no disponible
-                                    </span>
-                                `
-                        }
-
-                    </div>
-
-
-                    <div
-                        class="thumbnails-container"
-                    >
-
-                        ${thumbnailsHTML}
-
-                    </div>
-
-                </div>
-
-
-                <div class="card-body">
-
-                    <span class="card-category">
-
-                        ${escaparHTML(
-                            producto.marca
-                        )}
-
-                        ·
-
-                        ${escaparHTML(
-                            producto.categoria
-                        )}
-
-                    </span>
-
-
-                    <h3 class="card-title">
-
-                        ${escaparHTML(
-                            producto.nombre
-                        )}
-
-                    </h3>
-
-
-                    <p class="card-desc">
-
-                        <span
-                            id="descripcion-${producto.id}"
-                        >
-                            ${escaparHTML(
-                                descripcionInicial
-                            )}
-                        </span>
-
-
-                        ${
-                            superaLimite
-                                ? `
-                                    <button
-                                        id="verMas-${producto.id}"
-                                        class="ver-mas-btn"
-                                        data-expandido="false"
-                                        onclick="alternarDescripcion(
-                                            ${producto.id},
-                                            '${escaparJS(
-                                                descripcion
-                                            )}'
-                                        )"
-                                    >
-                                        Ver más
-                                    </button>
-                                `
-                                : ''
-                        }
-
-                    </p>
-
-
-                    <div class="specs-list">
-
-                        ${specsHTML}
-
-                    </div>
-
-
-                    <div class="pricing">
-
-                        <div
-                            class="price-container"
-                        >
-
-                            <span
-                                class="price-offer"
-                            >
-                                ${formatearMoneda(
-                                    producto.precioOferta
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div
-                            class="cuotas-badge"
-                        >
-                            ⚡ Abonando por transferencia
-                            15% OFF
-                        </div>
-
-
-                        <button
-                            class="btn-add-cart"
-                            onclick="agregarAlCarrito(
-                                ${producto.id}
-                            )"
-                        >
-                            Agregar al Carrito
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            gridContainer.appendChild(
-                card
-            );
-
-        }
-    );
-
-
-    if (
-        totalPaginas > 1
-    ) {
-
-        for (
-            let i = 1;
-            i <= totalPaginas;
-            i++
-        ) {
-
-            const btn =
-                document.createElement(
-                    'button'
-                );
-
-            btn.innerText = i;
-
-
-            if (
-                i === paginaActual
-            ) {
-
-                btn.classList.add(
-                    'active'
-                );
-
-            }
-
-
-            btn.onclick = () => {
-
-                paginaActual = i;
-
-                renderizarProductos();
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-
-            };
-
-
-            paginacionContainer.appendChild(
-                btn
-            );
-
         }
 
-    }
+        const imagenes = Array.isArray(producto.imagenes) ? producto.imagenes.filter(img => img && String(img).trim() !== '').slice(0, 5) : [];
+        const imagenPrincipalInicial = imagenes.length > 0 ? imagenes[0] : '';
+        let thumbnailsHTML = '';
 
-}
-
-
-// ==========================================
-// AGREGAR AL CARRITO
-// ==========================================
-
-window.agregarAlCarrito =
-function(id) {
-
-    const producto =
-        productos.find(
-            p => p.id === id
-        );
-
-    if (!producto) {
-
-        return;
-
-    }
-
-
-    const itemExistente =
-        carrito.find(
-            item => item.id === id
-        );
-
-
-    if (itemExistente) {
-
-        itemExistente.cantidad++;
-
-    } else {
-
-        carrito.push({
-
-            ...producto,
-
-            cantidad: 1
-
+        imagenes.forEach((imgSrc, index) => {
+            thumbnailsHTML += `<img src="${escaparHTML(imgSrc)}" alt="${escaparHTML(producto.nombre)}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="cambiarImagenMiniatura(${producto.id}, '${escaparJS(imgSrc)}', this)" onerror="this.style.display='none'">`;
         });
 
-    }
+        const descripcion = String(producto.descripcion || '');
+        const superaLimite = descripcion.length > 50;
+        const descripcionInicial = recortarTextoLimpio(descripcion, 50);
 
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            ${producto.stock ? `<span class="badge-stock">✓ Stock</span>` : ''}
+            <div class="product-gallery-container">
+                <div class="main-image-container">
+                    ${imagenPrincipalInicial ? `<img id="mainImage-${producto.id}" src="${escaparHTML(imagenPrincipalInicial)}" alt="${escaparHTML(producto.nombre)}" loading="lazy" onerror="this.style.display='none';">` : `<span style="color:var(--text-muted); font-size:0.8rem;">Imagen no disponible</span>`}
+                </div>
+                <div class="thumbnails-container">${thumbnailsHTML}</div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">${escaparHTML(producto.marca)} · ${escaparHTML(producto.categoria)}</span>
+                <h3 class="card-title">${escaparHTML(producto.nombre)}</h3>
+                <p class="card-desc">
+                    <span id="descripcion-${producto.id}">${escaparHTML(descripcionInicial)}</span>
+                    ${superaLimite ? `<button id="verMas-${producto.id}" class="ver-mas-btn" data-expandido="false" onclick="alternarDescripcion(${producto.id}, '${escaparJS(descripcion)}')">Ver más</button>` : ''}
+                </p>
+                <div class="specs-list">${specsHTML}</div>
+                <div class="pricing">
+                    <div class="price-container"><span class="price-offer">${formatearMoneda(producto.precioOferta)}</span></div>
+                    <div class="cuotas-badge">⚡ Abonando por transferencia 15% OFF</div>
+                    <button class="btn-add-cart" onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
+                </div>
+            </div>
+        `;
+        gridContainer.appendChild(card);
+    });
 
-    actualizarContadorCarrito();
-
-    guardarCarritoStorage();
-
-    vistaActual =
-        'carrito';
-
-    window.toggleCart(
-        true
-    );
-
-};
-
-
-// ==========================================
-// CAMBIAR CANTIDAD
-// ==========================================
-
-window.cambiarCantidad =
-function(
-    id,
-    cambio
-) {
-
-    const item =
-        carrito.find(
-            i => i.id === id
-        );
-
-
-    if (item) {
-
-        item.cantidad += cambio;
-
-
-        if (
-            item.cantidad <= 0
-        ) {
-
-            carrito =
-                carrito.filter(
-                    i => i.id !== id
-                );
-
+    if (totalPaginas > 1) {
+        for (let i = 1; i <= totalPaginas; i++) {
+            const btn = document.createElement('button');
+            btn.innerText = i;
+            if (i === paginaActual) btn.classList.add('active');
+            btn.onclick = () => {
+                paginaActual = i;
+                renderizarProductos();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            paginacionContainer.appendChild(btn);
         }
-
     }
+}
 
-
+window.agregarAlCarrito = function(id) {
+    const producto = productos.find(p => p.id === id);
+    if (!producto) return;
+    const itemExistente = carrito.find(item => item.id === id);
+    if (itemExistente) {
+        itemExistente.cantidad++;
+    } else {
+        carrito.push({ ...producto, cantidad: 1 });
+    }
     actualizarContadorCarrito();
-
     guardarCarritoStorage();
-
-    renderizarContenidoDrawer();
-
+    vistaActual = 'carrito';
+    window.toggleCart(true);
 };
 
-
-// ==========================================
-// ELIMINAR
-// ==========================================
-
-window.eliminarDelCarrito =
-function(id) {
-
-    carrito =
-        carrito.filter(
-            i => i.id !== id
-        );
-
-
+window.cambiarCantidad = function(id, cambio) {
+    const item = carrito.find(i => i.id === id);
+    if (item) {
+        item.cantidad += cambio;
+        if (item.cantidad <= 0) carrito = carrito.filter(i => i.id !== id);
+    }
     actualizarContadorCarrito();
-
     guardarCarritoStorage();
-
     renderizarContenidoDrawer();
-
 };
 
-
-// ==========================================
-// CONTADOR
-// ==========================================
+window.eliminarDelCarrito = function(id) {
+    carrito = carrito.filter(i => i.id !== id);
+    actualizarContadorCarrito();
+    guardarCarritoStorage();
+    renderizarContenidoDrawer();
+};
 
 function actualizarContadorCarrito() {
-
-    const totalItems =
-        carrito.reduce(
-            (
-                sum,
-                item
-            ) =>
-                sum +
-                (
-                    Number(
-                        item.cantidad
-                    ) || 0
-                ),
-            0
-        );
-
-
-    const contador =
-        document.getElementById(
-            'cartCount'
-        );
-
-
-    if (contador) {
-
-        contador.innerText =
-            totalItems;
-
-    }
-
+    const totalItems = carrito.reduce((sum, item) => sum + (Number(item.cantidad) || 0), 0);
+    const contador = document.getElementById('cartCount');
+    if (contador) contador.innerText = totalItems;
 }
 
-
-// ==========================================
-// ABRIR / CERRAR CARRITO
-// ==========================================
-
-window.toggleCart =
-function(
-    forceOpen = false
-) {
-
-    const modal =
-        document.getElementById(
-            'cartModal'
-        );
-
-
-    if (!modal) {
-
-        return;
-
-    }
-
-
+window.toggleCart = function(forceOpen = false) {
+    const modal = document.getElementById('cartModal');
+    if (!modal) return;
     if (forceOpen) {
-
-        modal.classList.add(
-            'active'
-        );
-
+        modal.classList.add('active');
     } else {
-
-        modal.classList.toggle(
-            'active'
-        );
-
-
-        if (
-            !modal.classList.contains(
-                'active'
-            )
-        ) {
-
-            vistaActual =
-                'carrito';
-
-        }
-
+        modal.classList.toggle('active');
+        if (!modal.classList.contains('active')) vistaActual = 'carrito';
     }
-
-
     renderizarContenidoDrawer();
-
+    if (vistaActual === 'formulario') {
+        cargarDatosClienteStorage();
+    }
 };
 
-
-// ==========================================
-// CLICK AFUERA
-// ==========================================
-
-window.handleOutsideClick =
-function(event) {
-
-    if (
-        event.target.id ===
-        'cartModal'
-    ) {
-
-        window.toggleCart();
-
-    }
-
+window.handleOutsideClick = function(event) {
+    if (event.target.id === 'cartModal') window.toggleCart();
 };
 
-
-// ==========================================
-// MÉTODO DE PAGO
-// ==========================================
-
-window.onPaymentMethodChange =
-function() {
-
-    const select =
-        document.getElementById(
-            'paymentMethodSelect'
-        );
-
-
-    if (!select) {
-
-        return;
-
-    }
-
-
-    metodoPagoGlobal =
-        select.value;
-
+window.onPaymentMethodChange = function() {
+    const select = document.getElementById('paymentMethodSelect');
+    if (!select) return;
+    metodoPagoGlobal = select.value;
     cuotasGlobal = 1;
-
     renderizarContenidoDrawer();
-
 };
 
-
-// ==========================================
-// CUOTAS
-// ==========================================
-
-window.onCuotasChange =
-function() {
-
-    const select =
-        document.getElementById(
-            'cuotasSelect'
-        );
-
-
-    if (select) {
-
-        cuotasGlobal =
-            parseInt(
-                select.value
-            ) || 1;
-
-    }
-
-
+window.onCuotasChange = function() {
+    const select = document.getElementById('cuotasSelect');
+    if (select) cuotasGlobal = parseInt(select.value) || 1;
     renderizarContenidoDrawer();
-
 };
 
-
-// ==========================================
-// LOCALIDAD
-// ==========================================
-
-window.onLocalidadSelectChange =
-function() {
-
-    const select =
-        document.getElementById(
-            'localidadEnvioSelect'
-        );
-
-
-    if (select) {
-
-        localidadSeleccionadaGlobal =
-            select.value;
-
-    }
-
+window.onLocalidadSelectChange = function() {
+    const select = document.getElementById('localidadEnvioSelect');
+    if (select) localidadSeleccionadaGlobal = select.value;
+    guardarDatosClienteStorage();
 };
-
-
-// ==========================================
-// CALCULAR TOTALES
-// ==========================================
 
 function calcularTotales() {
-
-    const subtotal =
-        carrito.reduce(
-            (
-                sum,
-                item
-            ) =>
-                sum +
-                (
-                    Number(
-                        item.precioOferta
-                    ) || 0
-                ) *
-                (
-                    Number(
-                        item.cantidad
-                    ) || 0
-                ),
-            0
-        );
-
-
+    const subtotal = carrito.reduce((sum, item) => sum + (Number(item.precioOferta) || 0) * (Number(item.cantidad) || 0), 0);
     let descuento = 0;
-
     let recargoTotal = 0;
+    let total = subtotal;
 
-    let total =
-        subtotal;
-
-
-    if (
-        metodoPagoGlobal ===
-        'transferencia'
-    ) {
-
-        descuento =
-            subtotal * 0.15;
-
-        total =
-            subtotal -
-            descuento;
-
+    if (metodoPagoGlobal === 'transferencia') {
+        descuento = subtotal * 0.15;
+        total = subtotal - descuento;
+    } else if (metodoPagoGlobal === 'creditoDni' || metodoPagoGlobal === 'tarjetaCredito') {
+        const porcentajeBase = metodoPagoGlobal === 'creditoDni' ? 0.04 : 0.06;
+        recargoTotal = subtotal * (porcentajeBase * cuotasGlobal);
+        total = subtotal + recargoTotal;
     }
 
-    else if (
-        metodoPagoGlobal ===
-            'creditoDni' ||
-        metodoPagoGlobal ===
-            'tarjetaCredito'
-    ) {
-
-        const porcentajeBase =
-            metodoPagoGlobal ===
-                'creditoDni'
-                ? 0.04
-                : 0.06;
-
-
-        const recargoPorcentaje =
-            porcentajeBase *
-            cuotasGlobal;
-
-
-        recargoTotal =
-            subtotal *
-            recargoPorcentaje;
-
-
-        total =
-            subtotal +
-            recargoTotal;
-
-    }
-
-
-    const costoEnvio =
-        tarifasProvincias[
-            localidadSeleccionadaGlobal
-        ]?.costo || 0;
-
-
+    const costoEnvio = tarifasProvincias[localidadSeleccionadaGlobal]?.costo || 0;
     total += costoEnvio;
+    const valorCuota = cuotasGlobal > 0 ? total / cuotasGlobal : total;
 
-
-    const valorCuota =
-        cuotasGlobal > 0
-            ? total /
-              cuotasGlobal
-            : total;
-
-
-    return {
-
-        subtotal,
-
-        descuento,
-
-        recargoTotal,
-
-        costoEnvio,
-
-        total,
-
-        valorCuota
-
-    };
-
+    return { subtotal, descuento, recargoTotal, costoEnvio, total, valorCuota };
 }
-
-
-// ==========================================
-// DRAWER
-// ==========================================
 
 function renderizarContenidoDrawer() {
+    const bodyContent = document.getElementById('cartBodyContent');
+    const drawerTitle = document.getElementById('drawerTitle');
+    if (!bodyContent) return;
 
-    const bodyContent =
-        document.getElementById(
-            'cartBodyContent'
-        );
-
-
-    const drawerTitle =
-        document.getElementById(
-            'drawerTitle'
-        );
-
-
-    if (!bodyContent) {
-
-        return;
-
-    }
-
-
-    if (
-        carrito.length === 0
-    ) {
-
-        if (drawerTitle) {
-
-            drawerTitle.innerText =
-                "Tu Carrito de Compras";
-
-        }
-
-
+    if (carrito.length === 0) {
+        if (drawerTitle) drawerTitle.innerText = "Tu Carrito de Compras";
         bodyContent.innerHTML = `
-
             <div class="empty-cart">
-
-                <p>
-                    Tu carrito está vacío.
-                </p>
-
-
-                <button
-                    class="cart-btn"
-                    style="margin:20px auto;"
-                    onclick="toggleCart()"
-                >
-                    Ver Catálogo
-                </button>
-
+                <p>Tu carrito está vacío.</p>
+                <button class="cart-btn" style="margin:20px auto;" onclick="toggleCart()">Ver Catálogo</button>
             </div>
-
         `;
-
         return;
-
     }
 
-
-    if (
-        vistaActual ===
-        'carrito'
-    ) {
-
-        if (drawerTitle) {
-
-            drawerTitle.innerText =
-                "Tu Carrito de Compras";
-
-        }
-
-
+    if (vistaActual === 'carrito') {
+        if (drawerTitle) drawerTitle.innerText = "Tu Carrito de Compras";
         let itemsHTML = '';
-
-
-        carrito.forEach(
-            item => {
-
-                itemsHTML += `
-
-                    <div class="cart-item">
-
-                        <div
-                            class="cart-item-info"
-                        >
-
-                            <h4>
-                                ${escaparHTML(
-                                    item.nombre
-                                )}
-                            </h4>
-
-                            <div
-                                class="cart-item-price"
-                            >
-
-                                ${formatearMoneda(
-                                    item.precioOferta
-                                )}
-
-                                x
-
-                                ${item.cantidad}
-
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            class="cart-item-actions"
-                        >
-
-                            <button
-                                class="qty-btn"
-                                onclick="cambiarCantidad(
-                                    ${item.id},
-                                    -1
-                                )"
-                            >
-                                -
-                            </button>
-
-
-                            <span>
-                                ${item.cantidad}
-                            </span>
-
-
-                            <button
-                                class="qty-btn"
-                                onclick="cambiarCantidad(
-                                    ${item.id},
-                                    1
-                                )"
-                            >
-                                +
-                            </button>
-
-
-                            <button
-                                class="remove-btn"
-                                onclick="eliminarDelCarrito(
-                                    ${item.id}
-                                )"
-                            >
-                                🗑️
-                            </button>
-
-                        </div>
-
+        carrito.forEach(item => {
+            itemsHTML += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${escaparHTML(item.nombre)}</h4>
+                        <div class="cart-item-price">${formatearMoneda(item.precioOferta)} x ${item.cantidad}</div>
                     </div>
+                    <div class="cart-item-actions">
+                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, -1)">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="qty-btn" onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                        <button class="remove-btn" onclick="eliminarDelCarrito(${item.id})">🗑️</button>
+                    </div>
+                </div>
+            `;
+        });
 
-                `;
-
-            }
-        );
-
-
-        const {
-
-            subtotal,
-
-            descuento,
-
-            recargoTotal,
-
-            costoEnvio,
-
-            total,
-
-            valorCuota
-
-        } = calcularTotales();
-
-
-        let opcionesCuotasHTML =
-            '';
-
-
-        if (
-            metodoPagoGlobal ===
-                'creditoDni' ||
-            metodoPagoGlobal ===
-                'tarjetaCredito'
-        ) {
-
-            [
-                1,
-                3,
-                6,
-                9,
-                12
-            ]
-                .forEach(
-                    c => {
-
-                        opcionesCuotasHTML += `
-
-                            <option
-                                value="${c}"
-                                ${
-                                    cuotasGlobal === c
-                                        ? 'selected'
-                                        : ''
-                                }
-                            >
-
-                                ${c}
-
-                                ${
-                                    c === 1
-                                        ? 'Pago'
-                                        : 'Pagos'
-                                }
-
-                            </option>
-
-                        `;
-
-                    }
-                );
-
+        const { subtotal, descuento, recargoTotal, costoEnvio, total, valorCuota } = calcularTotales();
+        let opcionesCuotasHTML = '';
+        if (metodoPagoGlobal === 'creditoDni' || metodoPagoGlobal === 'tarjetaCredito') {
+            [1, 3, 6, 9, 12].forEach(c => {
+                opcionesCuotasHTML += `<option value="${c}" ${cuotasGlobal === c ? 'selected' : ''}>${c} ${c === 1 ? 'Pago' : 'Pagos'}</option>`;
+            });
         }
 
-
         bodyContent.innerHTML = `
-
-            <div
-                style="margin-bottom:15px;"
-            >
-
-                ${itemsHTML}
-
-            </div>
-
-
-            <div
-                class="payment-methods"
-                style="margin-top:15px;"
-            >
-
-                <label
-                    style="
-                        font-size:0.8rem;
-                        font-weight:600;
-                        margin-bottom:4px;
-                        display:block;
-                    "
-                >
-                    Método de Pago:
-                </label>
-
-
-                <select
-                    id="paymentMethodSelect"
-                    class="payment-select"
-                    onchange="onPaymentMethodChange()"
-                >
-
-                    <option
-                        value="transferencia"
-                        ${
-                            metodoPagoGlobal ===
-                            'transferencia'
-                                ? 'selected'
-                                : ''
-                        }
-                    >
-                        Transferencia Bancaria
-                        (15% OFF)
-                    </option>
-
-
-                    <option
-                        value="creditoDni"
-                        ${
-                            metodoPagoGlobal ===
-                            'creditoDni'
-                                ? 'selected'
-                                : ''
-                        }
-                    >
-                        Cuenta DNI
-                    </option>
-
-
-                    <option
-                        value="tarjetaCredito"
-                        ${
-                            metodoPagoGlobal ===
-                            'tarjetaCredito'
-                                ? 'selected'
-                                : ''
-                        }
-                    >
-                        Tarjeta de Crédito
-                    </option>
-
+            <div style="margin-bottom:15px;">${itemsHTML}</div>
+            <div class="payment-methods" style="margin-top:15px;">
+                <label style="font-size:0.8rem; font-weight:600; margin-bottom:4px; display:block;">Método de Pago:</label>
+                <select id="paymentMethodSelect" class="payment-select" onchange="onPaymentMethodChange()">
+                    <option value="transferencia" ${metodoPagoGlobal === 'transferencia' ? 'selected' : ''}>Transferencia Bancaria (15% OFF)</option>
+                    <option value="creditoDni" ${metodoPagoGlobal === 'creditoDni' ? 'selected' : ''}>Cuenta DNI</option>
+                    <option value="tarjetaCredito" ${metodoPagoGlobal === 'tarjetaCredito' ? 'selected' : ''}>Tarjeta de Crédito</option>
                 </select>
-
             </div>
-
-
-            ${
-                metodoPagoGlobal ===
-                    'creditoDni' ||
-                metodoPagoGlobal ===
-                    'tarjetaCredito'
-                    ? `
-
-                        <div
-                            class="form-group"
-                            style="margin-top:10px;"
-                        >
-
-                            <label>
-                                Cantidad de Pagos
-                                (Cuotas):
-                            </label>
-
-
-                            <select
-                                id="cuotasSelect"
-                                class="payment-select"
-                                onchange="onCuotasChange()"
-                            >
-
-                                ${opcionesCuotasHTML}
-
-                            </select>
-
-                        </div>
-
-                    `
-                    : ''
-            }
-
-
-            <div
-                style="
-                    border-top:1px solid var(--border-color);
-                    padding-top:12px;
-                    margin-top:15px;
-                "
-            >
-
-                <div
-                    class="cart-summary-line"
-                >
-
-                    <span>
-                        Subtotal productos:
-                    </span>
-
-                    <span>
-                        ${formatearMoneda(
-                            subtotal
-                        )}
-                    </span>
-
+            ${metodoPagoGlobal === 'creditoDni' || metodoPagoGlobal === 'tarjetaCredito' ? `
+                <div class="form-group" style="margin-top:10px;">
+                    <label>Cantidad de Pagos (Cuotas):</label>
+                    <select id="cuotasSelect" class="payment-select" onchange="onCuotasChange()">${opcionesCuotasHTML}</select>
                 </div>
-
-
-                ${
-                    descuento > 0
-                        ? `
-
-                            <div
-                                class="cart-summary-line"
-                                style="
-                                    color:var(--success-dark)
-                                "
-                            >
-
-                                <span>
-                                    Descuento
-                                    Transferencia
-                                    (15%):
-                                </span>
-
-                                <span>
-                                    -${formatearMoneda(
-                                        descuento
-                                    )}
-                                </span>
-
-                            </div>
-
-                        `
-                        : ''
-                }
-
-
-                ${
-                    recargoTotal > 0
-                        ? `
-
-                            <div
-                                class="cart-summary-line"
-                                style="
-                                    color:var(--accent-color)
-                                "
-                            >
-
-                                <span>
-                                    Recargo
-                                    Financiamiento:
-                                </span>
-
-                                <span>
-                                    +${formatearMoneda(
-                                        recargoTotal
-                                    )}
-                                </span>
-
-                            </div>
-
-                        `
-                        : ''
-                }
-
-
-                <div
-                    class="cart-summary-line"
-                >
-
-                    <span>
-                        Envío:
-                    </span>
-
-                    <span>
-                        ${formatearMoneda(
-                            costoEnvio
-                        )}
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="cart-total"
-                >
-
-                    <span>
-                        Total:
-                    </span>
-
-                    <span>
-                        ${formatearMoneda(
-                            total
-                        )}
-                    </span>
-
-                </div>
-
-
-                ${
-                    cuotasGlobal > 1
-                        ? `
-
-                            <div
-                                style="
-                                    font-size:0.8rem;
-                                    color:#1e40af;
-                                    background:#eff6ff;
-                                    padding:8px;
-                                    border-radius:6px;
-                                    margin-bottom:10px;
-                                "
-                            >
-
-                                Pagás en
-
-                                <strong>
-                                    ${cuotasGlobal}
-                                    pagos
-                                </strong>
-
-                                de
-
-                                <strong>
-                                    ${formatearMoneda(
-                                        valorCuota
-                                    )}
-                                </strong>
-
-                            </div>
-
-                        `
-                        : ''
-                }
-
+            ` : ''}
+            <div style="border-top:1px solid var(--border-color); padding-top:12px; margin-top:15px;">
+                <div class="cart-summary-line"><span>Subtotal productos:</span><span>${formatearMoneda(subtotal)}</span></div>
+                ${descuento > 0 ? `<div class="cart-summary-line" style="color:var(--success-dark)"><span>Descuento Transferencia (15%):</span><span>-${formatearMoneda(descuento)}</span></div>` : ''}
+                ${recargoTotal > 0 ? `<div class="cart-summary-line" style="color:var(--accent-color)"><span>Recargo Financiamiento:</span><span>+${formatearMoneda(recargoTotal)}</span></div>` : ''}
+                <div class="cart-summary-line"><span>Envío:</span><span>${formatearMoneda(costoEnvio)}</span></div>
+                <div class="cart-total"><span>Total:</span><span>${formatearMoneda(total)}</span></div>
+                ${cuotasGlobal > 1 ? `<div style="font-size:0.8rem; color:#1e40af; background:#eff6ff; padding:8px; border-radius:6px; margin-bottom:10px;">Pagás en <strong>${cuotasGlobal} pagos</strong> de <strong>${formatearMoneda(valorCuota)}</strong></div>` : ''}
             </div>
-
-
-            <button
-                class="checkout-btn"
-                style="margin-top:15px;"
-                onclick="window.cambiarAVistaFormulario()"
-            >
-                Continuar con Datos y Envío
-            </button>
-
+            <button class="checkout-btn" style="margin-top:15px;" onclick="window.cambiarAVistaFormulario()">Continuar con Datos y Envío</button>
         `;
-
-    }
-
-
-    else if (
-        vistaActual ===
-        'formulario'
-    ) {
-
-        if (drawerTitle) {
-
-            drawerTitle.innerText =
-                "Datos Personales y Envío";
-
-        }
-
-
+    } else if (vistaActual === 'formulario') {
+        if (drawerTitle) drawerTitle.innerText = "Datos Personales y Envío";
         bodyContent.innerHTML = `
-
-            <form
-                id="orderForm"
-                onsubmit="
-                    window.enviarOrdenWhatsApp(event)
-                "
-            >
-
-                <div
-                    class="form-group"
-                >
-
-                    <label>
-                        Nombre y Apellido *
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="nombreCliente"
-                        required
-                        placeholder="Ej. Juan Pérez"
-                    >
-
+            <form id="orderForm" onsubmit="window.enviarOrdenWhatsApp(event)">
+                <div class="form-group"><label>Nombre y Apellido *</label><input type="text" id="nombreCliente" required placeholder="Ej. Juan Pérez" oninput="guardarDatosClienteStorage()"></div>
+                <div class="form-group"><label>Teléfono / WhatsApp *</label><input type="tel" id="telCliente" required placeholder="Ej. 1123456789" oninput="guardarDatosClienteStorage()"></div>
+                <div class="form-group"><label>Correo Electrónico</label><input type="email" id="emailCliente" placeholder="correo@ejemplo.com" oninput="guardarDatosClienteStorage()"></div>
+                <div class="form-group"><label>Dirección de Entrega *</label><input type="text" id="dirCliente" required placeholder="Av. Corrientes 1234" oninput="guardarDatosClienteStorage()"></div>
+                <div class="inline-group">
+                    <div class="form-group"><label>Localidad *</label><input type="text" id="ciudadCliente" required placeholder="Ej. Mar del Plata" oninput="guardarDatosClienteStorage()"></div>
+                    <div class="form-group"><label>Cód. Postal *</label><input type="text" id="cpCliente" required placeholder="Ej. 7600" oninput="guardarDatosClienteStorage()"></div>
                 </div>
-
-
-                <div
-                    class="form-group"
-                >
-
-                    <label>
-                        Teléfono / WhatsApp *
-                    </label>
-
-
-                    <input
-                        type="tel"
-                        id="telCliente"
-                        required
-                        placeholder="Ej. 1123456789"
-                    >
-
-                </div>
-
-
-                <div
-                    class="form-group"
-                >
-
-                    <label>
-                        Correo Electrónico
-                    </label>
-
-
-                    <input
-                        type="email"
-                        id="emailCliente"
-                        placeholder="correo@ejemplo.com"
-                    >
-
-                </div>
-
-
-                <div
-                    class="form-group"
-                >
-
-                    <label>
-                        Dirección de Entrega *
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="dirCliente"
-                        required
-                        placeholder="Av. Corrientes 1234"
-                    >
-
-                </div>
-
-
-                <div
-                    class="inline-group"
-                >
-
-                    <div
-                        class="form-group"
-                    >
-
-                        <label>
-                            Localidad *
-                        </label>
-
-
-                        <input
-                            type="text"
-                            id="ciudadCliente"
-                            required
-                            placeholder="Ej. Mar del Plata"
-                        >
-
-                    </div>
-
-
-                    <div
-                        class="form-group"
-                    >
-
-                        <label>
-                            Cód. Postal *
-                        </label>
-
-
-                        <input
-                            type="text"
-                            id="cpCliente"
-                            required
-                            placeholder="Ej. 7600"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="form-group"
-                >
-
-                    <label>
-                        Zona de Destino / Envío *
-                    </label>
-
-
-                    <select
-                        id="localidadEnvioSelect"
-                        class="payment-select"
-                        onchange="
-                            onLocalidadSelectChange()
-                        "
-                    >
-
-                        <option
-                            value="CABA"
-                            ${
-                                localidadSeleccionadaGlobal ===
-                                'CABA'
-                                    ? 'selected'
-                                    : ''
-                            }
-                        >
-                            CABA
-                            ($8.500 - 12 a 24 hs)
-                        </option>
-
-
-                        <option
-                            value="Buenos Aires"
-                            ${
-                                localidadSeleccionadaGlobal ===
-                                'Buenos Aires'
-                                    ? 'selected'
-                                    : ''
-                            }
-                        >
-                            Buenos Aires
-                            ($12.500 - 24 a 48 hs)
-                        </option>
-
-
-                        <option
-                            value="Provincias"
-                            ${
-                                localidadSeleccionadaGlobal ===
-                                'Provincias'
-                                    ? 'selected'
-                                    : ''
-                            }
-                        >
-                            Otras Provincias
-                            ($18.500 - 3 a 6 días)
-                        </option>
-
+                <div class="form-group">
+                    <label>Zona de Destino / Envío *</label>
+                    <select id="localidadEnvioSelect" class="payment-select" onchange="onLocalidadSelectChange()">
+                        <option value="CABA">CABA ($8.500 - 12 a 24 hs)</option>
+                        <option value="Buenos Aires">Buenos Aires ($12.500 - 24 a 48 hs)</option>
+                        <option value="Provincias">Otras Provincias ($18.500 - 3 a 6 días)</option>
                     </select>
-
                 </div>
-
-
-                <div
-                    class="form-group"
-                >
-
-                    <label>
-                        Observaciones
-                    </label>
-
-
-                    <textarea
-                        id="obsCliente"
-                        rows="2"
-                        placeholder="Comentarios..."
-                    ></textarea>
-
+                <div class="form-group"><label>Observaciones</label><textarea id="obsCliente" rows="2" placeholder="Comentarios..." oninput="guardarDatosClienteStorage()"></textarea></div>
+                <div class="form-buttons">
+                    <button type="button" class="btn-back" onclick="window.cambiarAVistaCarrito()">Volver</button>
+                    <button type="submit" class="btn-submit-order">💬 Elegir WhatsApp</button>
                 </div>
-
-
-                <div
-                    class="form-buttons"
-                >
-
-                    <button
-                        type="button"
-                        class="btn-back"
-                        onclick="
-                            window.cambiarAVistaCarrito()
-                        "
-                    >
-                        Volver
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="btn-submit-order"
-                    >
-                        💬 Elegir WhatsApp
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="whatsapp-box"
-                >
-
-                    <div
-                        class="whatsapp-title"
-                    >
-                        📲 ¿Cómo querés enviar tu pedido?
+                <div class="whatsapp-box">
+                    <div class="whatsapp-title">📲 ¿Cómo querés enviar tu pedido?</div>
+                    <div class="whatsapp-subtitle">Primero se generará automáticamente tu código de seguimiento.</div>
+                    <div class="whatsapp-options">
+                        <button type="button" class="whatsapp-option btn-whatsapp" onclick="window.enviarOrdenWhatsApp(event, 'whatsapp')">💬 WhatsApp</button>
+                        <button type="button" class="whatsapp-option btn-business" onclick="window.enviarOrdenWhatsApp(event, 'business')">🟢 WhatsApp Business</button>
+                        <button type="button" class="whatsapp-option btn-web" onclick="window.enviarOrdenWhatsApp(event, 'web')">💻 WhatsApp Web / PC</button>
                     </div>
-
-
-                    <div
-                        class="whatsapp-subtitle"
-                    >
-                        Primero se generará automáticamente
-                        tu código de seguimiento.
-                    </div>
-
-
-                    <div
-                        class="whatsapp-options"
-                    >
-
-                        <button
-                            type="button"
-                            class="whatsapp-option btn-whatsapp"
-                            onclick="
-                                window.enviarOrdenWhatsApp(
-                                    event,
-                                    'whatsapp'
-                                )
-                            "
-                        >
-                            💬 WhatsApp
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="whatsapp-option btn-business"
-                            onclick="
-                                window.enviarOrdenWhatsApp(
-                                    event,
-                                    'business'
-                                )
-                            "
-                        >
-                            🟢 WhatsApp Business
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="whatsapp-option btn-web"
-                            onclick="
-                                window.enviarOrdenWhatsApp(
-                                    event,
-                                    'web'
-                                )
-                            "
-                        >
-                            💻 WhatsApp Web / PC
-                        </button>
-
-                    </div>
-
                 </div>
-
             </form>
-
         `;
-
+        cargarDatosClienteStorage();
     }
-
 }
 
-
-// ==========================================
-// IR AL FORMULARIO
-// ==========================================
-
-window.cambiarAVistaFormulario =
-function() {
-
-    vistaActual =
-        'formulario';
-
+window.cambiarAVistaFormulario = function() {
+    vistaActual = 'formulario';
     renderizarContenidoDrawer();
-
 };
 
-
-// ==========================================
-// VOLVER
-// ==========================================
-
-window.cambiarAVistaCarrito =
-function() {
-
-    vistaActual =
-        'carrito';
-
+window.cambiarAVistaCarrito = function() {
+    vistaActual = 'carrito';
     renderizarContenidoDrawer();
-
 };
 
-
-// ==========================================
-// ENVIAR PEDIDO
-// ==========================================
-
-window.enviarOrdenWhatsApp =
-function(
-    event,
-    destino = 'whatsapp'
-) {
-
-    if (event) {
-
-        event.preventDefault();
-
-    }
-
-
-    const form =
-        document.getElementById(
-            'orderForm'
-        );
-
-
-    if (
-        form &&
-        !form.checkValidity()
-    ) {
-
+window.enviarOrdenWhatsApp = function(event, destino = 'whatsapp') {
+    if (event) event.preventDefault();
+    const form = document.getElementById('orderForm');
+    if (form && !form.checkValidity()) {
         form.reportValidity();
-
         return;
-
     }
-
-
-    if (
-        carrito.length === 0
-    ) {
-
-        alert(
-            'El carrito está vacío.'
-        );
-
+    if (carrito.length === 0) {
+        alert('El carrito está vacío.');
         return;
-
     }
 
-
-    // ==========================================
-    // GENERAR CÓDIGO AUTOMÁTICAMENTE
-    // ==========================================
-
-    const codigoSeguimiento =
-        generarCodigoSeguimiento();
-
-
-    const nombre =
-        document.getElementById(
-            'nombreCliente'
-        ).value.trim();
-
-
-    const tel =
-        document.getElementById(
-            'telCliente'
-        ).value.trim();
-
-
-    const email =
-        document.getElementById(
-            'emailCliente'
-        ).value.trim() ||
-        "No especificado";
-
-
-    const dir =
-        document.getElementById(
-            'dirCliente'
-        ).value.trim();
-
-
-    const ciudad =
-        document.getElementById(
-            'ciudadCliente'
-        ).value.trim();
-
-
-    const cp =
-        document.getElementById(
-            'cpCliente'
-        ).value.trim();
-
-
-    const obs =
-        document.getElementById(
-            'obsCliente'
-        ).value.trim() ||
-        "Ninguna";
-
-
-    const {
-
-        subtotal,
-
-        descuento,
-
-        recargoTotal,
-
-        costoEnvio,
-
-        total,
-
-        valorCuota
-
-    } = calcularTotales();
-
-
-    const infoEnvio =
-        tarifasProvincias[
-            localidadSeleccionadaGlobal
-        ];
-
-
-    let detalleProductos =
-        "";
-
-
-    carrito.forEach(
-        (
-            item,
-            index
-        ) => {
-
-            detalleProductos +=
-
-                `*${index + 1}.* ` +
-
-                `${item.nombre} ` +
-
-                `(SKU: ${item.sku}) ` +
-
-                `- Cant: ${item.cantidad} ` +
-
-                `- Subtotal: ` +
-
-                `${formatearMoneda(
-                    item.precioOferta *
-                    item.cantidad
-                )}\n`;
-
-        }
-    );
-
-
-    let textoMetodoPago =
-
-        metodoPagoGlobal ===
-            'transferencia'
-
-            ? "Transferencia Bancaria (15% OFF)"
-
-            : (
-
-                metodoPagoGlobal ===
-                    'creditoDni'
-
-                    ? `Cuenta DNI (${cuotasGlobal} pagos)`
-
-                    : `Tarjeta de Crédito (${cuotasGlobal} pagos)`
-
-            );
-
-
-    let mensaje =
-
-        `📦 *NUEVA ORDEN DE COMPRA - NOVA ENVÍOS & CRÉDITOS*\n`;
-
-
-    mensaje +=
-
-        `🆔 *Código de seguimiento:* ${codigoSeguimiento}\n\n`;
-
-
-    mensaje +=
-
-        `👤 *CLIENTE*\n` +
-
-        `• Nombre: ${nombre}\n` +
-
-        `• Teléfono: ${tel}\n` +
-
-        `• Email: ${email}\n\n`;
-
-
-    mensaje +=
-
-        `📍 *ENVÍO*\n` +
-
-        `• Dirección: ${dir}, ${ciudad} (CP: ${cp})\n` +
-
-        `• Zona: ${infoEnvio.nombre} (${formatearMoneda(
-            costoEnvio
-        )})\n` +
-
-        `• Demora estimada: ${infoEnvio.demora}\n\n`;
-
-
-    mensaje +=
-
-        `🛒 *PRODUCTOS*\n` +
-
-        `${detalleProductos}\n`;
-
-
-    mensaje +=
-
-        `💳 *PAGO*\n` +
-
-        `• Método: ${textoMetodoPago}\n`;
-
-
-    if (
-        cuotasGlobal > 1
-    ) {
-
-        mensaje +=
-
-            `• Valor Cuota: ${formatearMoneda(
-                valorCuota
-            )}\n`;
-
-    }
-
-
-    mensaje +=
-
-        `• Subtotal: ${formatearMoneda(
-            subtotal
-        )}\n`;
-
-
-    if (
-        descuento > 0
-    ) {
-
-        mensaje +=
-
-            `• Descuento: -${formatearMoneda(
-                descuento
-            )}\n`;
-
-    }
-
-
-    if (
-        recargoTotal > 0
-    ) {
-
-        mensaje +=
-
-            `• Recargo: +${formatearMoneda(
-                recargoTotal
-            )}\n`;
-
-    }
-
-
-    mensaje +=
-
-        `• Costo Envío: ${formatearMoneda(
-            costoEnvio
-        )}\n`;
-
-
-    mensaje +=
-
-        `💰 *TOTAL FINAL:* ${formatearMoneda(
-            total
-        )}\n\n`;
-
-
-    mensaje +=
-
-        `📝 *Observaciones:* ${obs}\n\n`;
-
-
-    mensaje +=
-
-        `Hola, ya elegí mi producto y me gustaría avanzar con la compra.`;
-
-
-    const textoCodificado =
-        encodeURIComponent(
-            mensaje
-        );
-
-
-    // ==========================================
-    // ELEGIR DESTINO
-    // ==========================================
-
+    const codigoSeguimiento = generarCodigoSeguimiento();
+    const nombre = document.getElementById('nombreCliente').value.trim();
+    const tel = document.getElementById('telCliente').value.trim();
+    const email = document.getElementById('emailCliente').value.trim() || "No especificado";
+    const dir = document.getElementById('dirCliente').value.trim();
+    const ciudad = document.getElementById('ciudadCliente').value.trim();
+    const cp = document.getElementById('cpCliente').value.trim();
+    const obs = document.getElementById('obsCliente').value.trim() || "Ninguna";
+
+    const { subtotal, descuento, recargoTotal, costoEnvio, total, valorCuota } = calcularTotales();
+    const infoEnvio = tarifasProvincias[localidadSeleccionadaGlobal];
+
+    let detalleProductos = "";
+    carrito.forEach((item, index) => {
+        detalleProductos += `*${index + 1}.* ${item.nombre} (SKU: ${item.sku}) - Cant: ${item.cantidad} - Subtotal: ${formatearMoneda(item.precioOferta * item.cantidad)}\n`;
+    });
+
+    let textoMetodoPago = metodoPagoGlobal === 'transferencia' ? "Transferencia Bancaria (15% OFF)" : (metodoPagoGlobal === 'creditoDni' ? `Cuenta DNI (${cuotasGlobal} pagos)` : `Tarjeta de Crédito (${cuotasGlobal} pagos)`);
+
+    let mensaje = `📦 *NUEVA ORDEN DE COMPRA - NOVA ENVÍOS & CRÉDITOS*\n`;
+    mensaje += `🆔 *Código de seguimiento:* ${codigoSeguimiento}\n\n`;
+    mensaje += `👤 *CLIENTE*\n• Nombre: ${nombre}\n• Teléfono: ${tel}\n• Email: ${email}\n\n`;
+    mensaje += `📍 *ENVÍO*\n• Dirección: ${dir}, ${ciudad} (CP: ${cp})\n• Zona: ${infoEnvio.nombre} (${formatearMoneda(costoEnvio)})\n• Demora estimada: ${infoEnvio.demora}\n\n`;
+    mensaje += `🛒 *PRODUCTOS*\n${detalleProductos}\n`;
+    mensaje += `💳 *PAGO*\n• Método: ${textoMetodoPago}\n`;
+    if (cuotasGlobal > 1) mensaje += `• Valor Cuota: ${formatearMoneda(valorCuota)}\n`;
+    mensaje += `• Subtotal: ${formatearMoneda(subtotal)}\n`;
+    if (descuento > 0) mensaje += `• Descuento: -${formatearMoneda(descuento)}\n`;
+    if (recargoTotal > 0) mensaje += `• Recargo: +${formatearMoneda(recargoTotal)}\n`;
+    mensaje += `• Costo Envío: ${formatearMoneda(costoEnvio)}\n`;
+    mensaje += `💰 *TOTAL FINAL:* ${formatearMoneda(total)}\n\n`;
+    mensaje += `📝 *Observaciones:* ${obs}\n\n`;
+    mensaje += `Hola, ya elegí mi producto y me gustaría avanzar con la compra.`;
+
+    const textoCodificado = encodeURIComponent(mensaje);
     let url = '';
-
-
-    if (
-        destino === 'web'
-    ) {
-
-        url =
-            `https://web.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${textoCodificado}`;
-
+    if (destino === 'web') {
+        url = `https://web.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${textoCodificado}`;
+    } else if (destino === 'business') {
+        url = `https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${textoCodificado}`;
+    } else {
+        url = `https://wa.me/${NUMERO_WHATSAPP}?text=${textoCodificado}`;
     }
 
-    else if (
-        destino === 'business'
-    ) {
+    window.open(url, '_blank', 'noopener,noreferrer');
 
-        url =
-            `https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${textoCodificado}`;
-
-    }
-
-    else {
-
-        url =
-            `https://wa.me/${NUMERO_WHATSAPP}?text=${textoCodificado}`;
-
-    }
-
-
-    // ==========================================
-    // ABRIR WHATSAPP
-    // ==========================================
-
-    window.open(
-        url,
-        '_blank',
-        'noopener,noreferrer'
-    );
-
-
-    // ==========================================
-    // MOSTRAR CÓDIGO GENERADO
-    // ==========================================
-
-    setTimeout(
-        () => {
-
-            alert(
-                `Pedido preparado correctamente.\n\n` +
-                `Código de seguimiento:\n` +
-                `${codigoSeguimiento}\n\n` +
-                `Guardá este código para cargarlo posteriormente en tu sistema de seguimiento.`
-            );
-
-        },
-        500
-    );
-
+    setTimeout(() => {
+        alert(`Pedido preparado correctamente.\n\nCódigo de seguimiento:\n${codigoSeguimiento}\n\nGuardá este código para cargarlo posteriormente en tu sistema de seguimiento.`);
+    }, 500);
 };
-
-
-// ==========================================
-// INICIALIZAR
-// ==========================================
 
 renderizarProductos();
-
 actualizarContadorCarrito();
-
 </script>
 
 </body>
