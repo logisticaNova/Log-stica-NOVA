@@ -888,7 +888,7 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // ACÁ PODÉS CARGAR TUS CÓDIGOS MANUALMENTE Y CAMBIAR SU ETAPA (0 al 8) CUANDO QUIERAS
+        // ACÁ PODÉS CARGAR TUS CÓDIGOS MANUALMENTE Y CAMBIAR SU ETAPA (1 en adelante)
         let envios = {
             "NV-9178547": {
                 comprador: "Leonardo Arce",
@@ -899,7 +899,7 @@
                 envio: "$18.500",
                 total: "$2.090.500",
                 producto: "Apple Iphone 17 Pro 256GB",
-                etapa: 1, // Cambiá este número del 0 al 8 según prefieras
+                etapa: 1, // Ya cargado con progreso
                 fecha: "09/09/2026"
             }
         };
@@ -916,7 +916,7 @@
                 return;
             }
 
-            // Si el código no existe en el objeto de arriba, se crea automáticamente en etapa 0 (pendiente)
+            // Si el código no está registrado previamente, se crea automáticamente en etapa 0 (Pendiente)
             if (!envios[input]) {
                 envios[input] = {
                     comprador: "Pendiente de actualización",
@@ -927,7 +927,7 @@
                     envio: "A calcular",
                     total: "A calcular",
                     producto: "Pedido registrado - A la espera de detalles",
-                    etapa: 0,
+                    etapa: 0, // Nuevo seguimiento en estado pendiente
                     fecha: new Date().toLocaleDateString()
                 };
             }
